@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 5/13/2012 11:30:54 AM -->
+<GameData>
+	<IconFontTextures>
+		<Row>
+			<IconFontTexture>ICON_FONT_TEXTURE_RED_WWII</IconFontTexture>
+			<IconFontTextureFile>RED_WWII_FontIcons</IconFontTextureFile>
+		</Row>
+	</IconFontTextures>
+
+	<IconFontMapping>
+		<Row>
+			<IconName>ICON_PERSONNEL</IconName>
+			<IconFontTexture>ICON_FONT_TEXTURE_RED_WWII</IconFontTexture>
+			<IconMapping>1</IconMapping>
+		</Row>
+
+		<Row>
+			<IconName>ICON_MATERIEL</IconName>
+			<IconFontTexture>ICON_FONT_TEXTURE_RED_WWII</IconFontTexture>
+			<IconMapping>2</IconMapping>
+		</Row>
+
+		<Row>
+			<IconName>ICON_MEDALS</IconName>
+			<IconFontTexture>ICON_FONT_TEXTURE_RED_WWII</IconFontTexture>
+			<IconMapping>3</IconMapping>
+		</Row>
+
+		<Row>
+			<IconName>ICON_MEDAL</IconName>
+			<IconFontTexture>ICON_FONT_TEXTURE_RED_WWII</IconFontTexture>
+			<IconMapping>4</IconMapping>
+		</Row>
+		
+	</IconFontMapping>
+</GameData>

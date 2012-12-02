@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" FontStyle="Base" Color="Beige" Color1="Black" >
+
+    <AlphaAnim Size="F,F" AlphaStart="0" AlphaEnd="1" Pause="1" Cycle="once" Hidden="1" ID="Anim" >
+
+        <AlphaAnim Size="F,F" AlphaStart="1" AlphaEnd="0" Cycle="once" Pause="4" >
+            <Grid Anchor="C,T" Offset="0,190" Size="Full,64" Padding="8,8" Style="Grid9FrameTurns" ID="NewTurnGrid" >
+                <Label Anchor="C,C" Offset="0,8" Font="TwCenMT24" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" ID="NewTurn" />
+                <Label Anchor="C,C" Offset="0,-14" Font="TwCenMT20" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" ID="NewTurnInfo" />
+                
+                <Image Anchor="C,T" AnchorSide="I.O" Size="256,64" Offset="0,-9"  Texture="assets\UI\Art\Icons\Top512IconTrim.dds" >
+                  <Image ID="CivIconBG" Size="64.64" Anchor="C,C" Offset="-1,-1" TextureOffset="77,0" Texture="CivIconBGSizes.dds" />
+                  <Image ID="CivIconShadow" Size="48.48" Anchor="C,C" Offset="0,0" Texture="CivSymbolAtlas48.dds" Color="Black.128"/>
+                  <Image ID="CivIcon" Size="48,48" Offset="-1,-1"  Anchor="C,C" Texture="CivSymbolsColor512.dds" />
+                </Image>
+
+            </Grid>
+
+        </AlphaAnim>
+
+
+    </AlphaAnim>
+
+</Context>

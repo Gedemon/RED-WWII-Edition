@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Ed Beach (Firaxis Games) -->
+<!-- Created by ModBuddy on 1/20/2011 9:24:48 AM -->
+<GameData>
+	<DeleteMissingReferences table="Units" column="Type"/>
+	<DeleteMissingReferences table="Improvements" column="CivilizationType"/>
+	<DeleteMissingReferences table="UnitClasses" column="Type"/>
+	<DeleteMissingReferences table="Unit_AITypes" column="UnitType"/>
+	<DeleteMissingReferences table="Unit_FreePromotions" column="UnitType"/>
+	<DeleteMissingReferences table="Unit_Flavors" column="UnitType"/>
+	<DeleteMissingReferences table="Unit_UniqueNames" column="UnitType"/>
+	<DeleteMissingReferences table="UnitGameplay2DScripts" column="UnitType"/>
+</GameData>

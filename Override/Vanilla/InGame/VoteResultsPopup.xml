@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" FontStyle="Base" Color="Beige" Color1="Black" >
+
+    <Instance Offset="0,2" Name="PlayerEntryInstance" >
+        <Box Size="570,60" Anchor="L,T" Color="0.0.0.0" ID="PlayerEntryBox">
+            
+            <!-- Leader Portrait -->
+            <Image Anchor="L,C" Size="64,64" Offset="0,0"  Texture="Assets/UI/Art/Icons/IconFrame64.dds"  >
+                <Image Anchor="L,C" Offset="0,0" Size="64,64"   Texture="Assets/UI/Art/Icons/LeaderPortraits512.dds"  ID="Portrait"/>
+            </Image>
+            
+            <!-- Civ Icon -->
+            <Box Anchor="L,C" Color="200.0.0.0" Offset="72,0">
+                <Image ID="IconBG" Size="32.32" Anchor="C,C" Offset="0,0" TextureOffset="32,0" Texture="CivIconBGSizes.dds" />
+                <Image ID="IconShadow" Size="24.24" Anchor="C,C" Offset="1,1" Texture="CivSymbolAtlas16.dds" Color="Black.128"/>
+                <Image ID="Icon" Size="24.24" Anchor="C,C" Offset="0,0" Texture="CivSymbolsColor256.dds" />
+            </Box>
+            
+            <Box ID="PlayerNameBox" Anchor="L,C" Color="200.0.0.0" Offset="85,0" Size="200,32">
+                <Label Anchor="L,C"   Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="Player Name" ID="PlayerNameText"/>
+            </Box>
+            
+            <Box ID="VoteCastBox" Offset="290,0" Anchor="L,C" Color="200.0.0.0" Size="200,32" >
+                <Box Offset="0,0" Anchor="L,C" Color="200.0.0.0" Size="32,32" >
+                    <Image ID="BallotIconBG" Size="32.32" Anchor="C,C" Offset="0,0" TextureOffset="32,0" Texture="CivIconBGSizes.dds" />
+                    <Image ID="BallotIconShadow" Size="24.24" Anchor="C,C" Offset="1,1" Texture="CivSymbolAtlas16.dds" Color="Black.128"/>
+                    <Image ID="BallotIcon" Size="24.24"   Anchor="C,C" Offset="0,0" Texture="CivSymbolsColor256.dds" />
+                </Box>
+                <Stack Anchor="L,C" StackGrowth="Right" Padding="0" >
+                    <Label Anchor="L,C" Offset="32,0" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="Vote" ID="VoteCastText" />
+                    <Image ID="UNIcon" Size="45.45" Anchor="L,C" Offset="0,0" TextureOffset="90,135" Texture="WonderAtlas360.dds" Hidden="1"/>
+                </Stack>
+            </Box>
+
+            <Label Anchor="R,C" Offset="20,0" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="666" ID="VotesText" />
+            <Image Anchor="C,B" Offset="32,0" Texture="bar400x2.dds" Size="400.1" />
+        </Box>
+    </Instance>
+    
+
+    <Box Style="BGBlock_ClearTopBar" />
+
+    <Grid Size="637,585" Anchor="C,C" Offset="0,0" Style="Grid9DetailFive140"  Hidden="0" >
+
+        <Label Anchor="C,T" Offset="0,15" Font="TwCenMT24" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" String="TXT_KEY_POP_UN_ELEC_RESULTS" ID="VoteResultsLabel">
+            <Label Anchor="C,T" Offset="0,35" Font="TwCenMT20" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" String="TXT_KEY_POP_VOTES_TO_WIN" ID="VotesNeededLabel" />
+        </Label>
+        <Box Size="600,460" Anchor="C,T" Offset="0,80" Color="0.200.0.0" >
+
+            <Label ID="PlayerHeader" Anchor="L,T" Offset="35,10" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_UN_PLAYER" />
+            <Label Anchor="C,T" Offset="50,10" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_UN_VOTED_FOR" />
+            <Label Anchor="R,T" Offset="35,10" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_UN_VOTES" />
+
+            <Label Anchor="C,T" Offset="0,-18" Font="TwCenMT20" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" />
+            <ScrollPanel Anchor="L,T" Offset="0,30" Size="575,430" ID="PlayerListScrollPanel" Vertical="1" >
+
+                <Stack Anchor="L,T" Size="556,32" StackGrowth="B" Padding="8" ID="PlayerListStack" />
+
+                <ScrollBar Offset="-3.0" Style="VertSlider" Anchor="R,C" AnchorSide="O,I" Length="390" />
+                <UpButton  Offset="-3.0"  Style="ScrollBarUp"  Anchor="R,T" AnchorSide="O,I" />
+                <DownButton Offset="-3.0" Style="ScrollBarDown"  Anchor="R,B" AnchorSide="O,I" />
+
+            </ScrollPanel>
+
+        </Box>
+
+        <TextButton Offset="29,27" Anchor="L.B" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" String="TXT_KEY_CLOSE" ToolTip="TXT_KEY_CLOSE" FontStyle="Shadow" MouseOverStyle="SoftShadow" ConsumeMouse="1" ID="CloseButton" Hidden="0" />
+
+    </Grid>
+</Context>

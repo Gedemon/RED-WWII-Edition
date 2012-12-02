@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context>
+
+    <Container ID="ResourceIconContainer" Hidden="1" />
+
+    <Instance Name="ResourceIcon" >
+        <WorldAnchor ID="Anchor">
+            <Image Size="64,64" Anchor="C,C" Texture="Assets/UI/Art/Icons/ResourcesBack64.dds"/>
+            <Image Size="64,64" Anchor="C,C" Texture="Assets/UI/Art/Icons/Resources512.dds"  ID="ResourceIcon" />
+            <!--Image Size="64,64" Anchor="C,C" Texture="Assets/UI/Art/Icons/ResourcesHappy64.dds" Hidden="1" ID="Happy" /-->
+            <!--Image Size="64,64" Anchor="C,C" Texture="Assets/UI/Art/Icons/ResourcesStrategic64.dds" Hidden="1" ID="Strategic" /-->
+        </WorldAnchor>
+    </Instance>
+
+
+</Context>

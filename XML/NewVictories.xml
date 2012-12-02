@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 9/3/2011 11:05:27 PM -->
+<GameData>
+	<Victories>
+		<Row>
+			<Type>VICTORY_ALLIED_EUROPE</Type>
+			<Description>TXT_KEY_VICTORY_DOMINATION</Description>
+			<VictoryStatement>TXT_KEY_VICTORY_DOMINATION_BANG</VictoryStatement>
+			<VictoryBackground>victory_allies.dds</VictoryBackground>
+			<Civilopedia>TXT_KEY_VICTORY_DOMINATION_PEDIA</Civilopedia>
+			<WinsGame>true</WinsGame>
+			<Conquest>true</Conquest>
+			<Audio>AS2D_VICTORY_SPEECH_CONQUEST_VICTORY</Audio>
+		</Row>
+		<Row>
+			<Type>VICTORY_AXIS_EUROPE</Type>
+			<Description>TXT_KEY_VICTORY_DOMINATION</Description>
+			<VictoryStatement>TXT_KEY_VICTORY_DOMINATION_BANG</VictoryStatement>
+			<VictoryBackground>victory_axis.dds</VictoryBackground>
+			<Civilopedia>TXT_KEY_VICTORY_DOMINATION_PEDIA</Civilopedia>
+			<WinsGame>true</WinsGame>
+			<Conquest>true</Conquest>
+			<Audio>AS2D_VICTORY_SPEECH_CONQUEST_VICTORY</Audio>
+		</Row>
+		<Row>
+			<Type>VICTORY_USSR_EUROPE</Type>
+			<Description>TXT_KEY_VICTORY_DOMINATION</Description>
+			<VictoryStatement>TXT_KEY_VICTORY_DOMINATION_BANG</VictoryStatement>
+			<VictoryBackground>victory_ussr.dds</VictoryBackground>
+			<Civilopedia>TXT_KEY_VICTORY_DOMINATION_PEDIA</Civilopedia>
+			<WinsGame>true</WinsGame>
+			<Conquest>true</Conquest>
+			<Audio>AS2D_VICTORY_SPEECH_CONQUEST_VICTORY</Audio>
+		</Row>
+		<Row>
+			<Type>VICTORY_GERMANY_EUROPE</Type>
+			<Description>TXT_KEY_VICTORY_DOMINATION</Description>
+			<VictoryStatement>TXT_KEY_VICTORY_DOMINATION_BANG</VictoryStatement>
+			<VictoryBackground>victory_germany.dds</VictoryBackground>
+			<Civilopedia>TXT_KEY_VICTORY_DOMINATION_PEDIA</Civilopedia>
+			<WinsGame>true</WinsGame>
+			<Conquest>true</Conquest>
+			<Audio>AS2D_VICTORY_SPEECH_CONQUEST_VICTORY</Audio>
+		</Row>
+	</Victories>
+</GameData>

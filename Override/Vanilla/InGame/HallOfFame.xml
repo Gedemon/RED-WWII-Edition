@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black" Font="TwCenMT20" FontStyle="Shadow" >
+
+    <!-- GameInstance -->
+    <Instance Name="GameInstance" >
+
+        <Box Size="930,64" Anchor="L,T" ID="GameItem" Color="White.0" >
+            <Stack Anchor="L,T" Offset="0,0" StackGrowth="Right" Padding="0" >
+
+                <!-- Your Info -->
+                <Box Size="300,64" Anchor="L,T" Color="White.0" >
+                    <Box  Anchor="L,C" Size="100,64" Color="White.0" >
+                        <Label Anchor="C,C" Offset="0,0" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" ID="Score"/>
+                        <Image Anchor="R,C" AnchorSide="O.I" Offset="0,0" Texture="LeaderPortraits512.dds" Size="64.64" ID="LeaderPortrait">
+                            <Stack Anchor="R,C" AnchorSide="O.I" Offset="0,3" StackGrowth="Bottom" Padding="0" >
+                                <Label Anchor="L,T"  Offset="0,0" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="LeaderName"/>
+                                <Image ID="CivSymbol" Size="32.32" Offset="-6,0"  Anchor="L,T"  Texture="CivSymbolsColor256.dds" >
+                                    <Label Anchor="R,C"  Offset="0,0" Font="TwCenMT16" AnchorSide="O.I" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_CIVILIZATION_NAME" ID="CivName"/>
+                                </Image>
+                            </Stack>
+                        </Image>
+                    </Box>
+                </Box>
+
+                <Box Size="200,64" Offset="0,0" Anchor="L,T" Color="White.0" >
+                    <Label Anchor="C,C" WrapWidth="200" LeadingOffset="0" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_STATUS" ID="DidWin"/>
+
+                </Box>
+
+                <Box Size="200,64" Anchor="R,T" Color="White.0" >
+
+                    <Box Anchor="L,C" Color="White.0" Size="64,64"  Offset="0,0">
+                        <Image ID="CivIconBG" Size="64.64" Anchor="C,C" Offset="-1,-1" TextureOffset="77,0" Texture="CivIconBGSizes.dds" />
+                        <Image ID="CivIconShadow" Size="48.48" Anchor="C,C" Offset="0,0" Texture="CivSymbolAtlas48.dds" Color="Black.128"/>
+                        <Image ID="WinCivIcon" Anchor="C,C" Size="48,48" Offset="-1,-1" Texture="CivSymbolsColor512.dds" />
+                        <Stack Anchor="L,C" Offset="64,0" StackGrowth="Bottom" Padding="7" >
+                            <Label Anchor="L,T"  Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="WinningCivName"/>
+                            <Label Anchor="L,B"  Font="TwCenMT16" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_CIVILIZATION_NAME" ID="WinType" />
+                        </Stack>
+                    </Box>
+
+                </Box>
+            </Stack>
+
+                <!-- Game Info -->
+                <Stack ID="SettingStack" Size="200,64" Offset="0,0" Padding="2" StackGrowth="Bottom" Anchor="R,T" >
+                    
+                    <Stack ID="IconStack" Anchor="R,T" Offset="0,3" StackGrowth="Right" Padding="-6" >
+                        <Image Anchor="C,C"  Offset="0,0" Size="32,32" Texture="Assets/UI/Art/Icons/MapTypeIcons128.dds" ID="MapType" Sample="Linear" ToolTip="TXT_KEY_AD_SETUP_MAP_TYPE"/>
+                        <Image Anchor="C,C"  Offset="0,0" Size="32,32" Texture="Assets/UI/Art/Icons/MapSizeIcons128.dds" ID="MapSize"  ToolTip="TXT_KEY_AD_SETUP_MAP_SIZE"/>
+                        <Image Anchor="C,C"  Offset="0,0" Size="32,32" Texture="Assets/UI/Art/Icons/DifficultyLevelIcons128.dds" ID="Difficulty" Sample="Linear" ToolTip="TXT_KEY_AD_SETUP_HANDICAP"/>
+                        <Image Anchor="C,C"  Offset="0,0" Size="32,32" Texture="Assets/UI/Art/Icons/GameSpeedIcons128.dds" ID="SpeedIcon" ToolTip="TXT_KEY_GAME_SPEED"/>
+                    </Stack>
+                    <Label Anchor="R,T"  Offset="0,0" WrapWidth="200" LeadingOffset="-6" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_CIVILIZATION_NAME" ID="StartEraTurns" />
+                    <Label Anchor="R,T"  Offset="0,0" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_CIVILIZATION_NAME" ID="TimeFinished" />
+                </Stack>
+
+
+
+            <Stack Anchor="L,B" Offset="500,5" StackGrowth="Right" Padding="70" />
+            <Image Anchor="C,B" Offset="0,-7" Texture="HorizontalTrim.dds" Size="930.2" />
+
+        </Box>
+
+    </Instance>
+    <Box ID="Background" Size="Full.Full" Color="Black.200" Hidden="1"/>
+
+    <Grid Size="990,620" Anchor="C,C" Offset="0,34" Style="Grid9DetailFive140" ConsumeMouse="1" ID="FrontEndFrame">
+
+        <Image Anchor="C,B" Offset="0,105" Texture="HorizontalTrim.dds" Size="956.5" />
+
+        <!-- Panel Header Text -->
+        <Label String="TXT_KEY_HALL_OF_FAME" ID="Title" Anchor="C,T" Offset="0,19" Font="TwCenMT20" Color0="30.50.80.255" Color1="133.184.186.255" Color2="133.184.186.255" FontStyle="SoftShadow"  />
+
+
+        <Image Anchor="C,T" Offset="0,-33" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/topframe.dds" Size="512,128" />
+        <Image Anchor="C,B" Offset="0,-109" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/bottomframe.dds" Size="512,128" />
+
+        <Box Anchor="C,B" AnchorSide="I.I" Offset="0,54"   Size="956,56" Color="255,255,255,0" >
+
+            <!-- Back Button  -->
+            <GridButton Anchor="L,B"  Style="SmallButton" Size="150,32"  Offset="14,0" StateOffsetIncrement="0,0" ID="BackButton"  >
+                <Label Anchor="C,C"  Offset="0,0"  String="TXT_KEY_BACK_BUTTON" Font="TwCenMT18" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" />
+            </GridButton>
+
+        </Box>
+
+    </Grid>
+
+    <Grid Anchor="C,C" Offset="0,-220"  Style="WindowGrid" Size="956,24"  >
+
+        <Stack Anchor="L,T" Offset="0,0" StackGrowth="Right" Padding="0" >
+
+            <Box Anchor="L,T" Color="White.0" Size="100,24" Offset="0,0">
+                <Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_SCORE" />
+            </Box>
+            
+            <Box Anchor="L,T"  Color="White.0" Size="200,24" Offset="0,0">
+                <Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_VOTE_RESULTS_YOU" />
+            </Box>
+
+            <Box Anchor="L,T" Color="White.0" Size="200,24" Offset="0,0">
+                <Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_HOF_RESULTS" />
+            </Box>
+
+            <Box Anchor="L,T"  Color="White.0" Size="200,24" Offset="0,0">
+                <Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_GAME_CONCEPT_SECTION_21" />
+            </Box>
+
+            <Box Anchor="L,T" Color="White.0" Size="200,24" Offset="0,0">
+                <Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_HOF_SETTINGS" />
+            </Box>
+
+
+        </Stack>
+        <!-- List of Games Completed -->
+
+
+        <ScrollPanel Offset="0,26" Anchor="L,T" AutoScrollBar="1" Size="954,440" Vertical="1" ID="ScrollPanel" >
+
+            <ScrollBar Style="VertSlider" Length="404" Offset="0.18" Anchor="R,T" AnchorSide="I,I" />
+            <UpButton  Offset="0.0"  Style="ScrollBarUp"  Anchor="R,T" AnchorSide="I,I" />
+            <DownButton Offset="0.420" Style="ScrollBarDown"  Anchor="R,T" AnchorSide="I,I" />
+
+            <Stack Anchor="L,T"  Offset="0,0" Size="260,216" StackGrowth="Bottom" Padding="5" ID="GameStack" />
+
+        </ScrollPanel>
+
+
+
+
+    </Grid>
+
+
+    <Label Anchor="C,C" String="TXT_KEY_HALL_OF_FAME_EMPTY" ID="HallOfFameEmpty" />
+
+</Context>

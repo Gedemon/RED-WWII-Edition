@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="450,640" Offset="200,32" Padding="0,0" Style="GridBlack16">
+		<Stack Anchor="L,T" Offset="20,20" Padding="0" StackGrowth="Bottom" ID="HexDebugTextMenu">
+			<Button Style="Button_128" Anchor="C,Top" Void2="0" ID="Exit_Button" String="Exit"/>
+			<Stack Ancor="L,T">
+				<RadioButton String="OFF" ID="HexDebug_Off_Button" Void2="1" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="1" RadioGroup="one"/>
+				<RadioButton String="Start Fertility" ID="HexDebug_StartFertility_Button" Void2="2" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one"/>
+				<RadioButton String="Settler Fertility" ID="HexDebug_SettlerFert_Button" Void2="3" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one"/>
+				<RadioButton String="Tactical Analysis" ID="HexDebug_WorkerPriority_Button" Void2="4" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one"/>
+				<RadioButton String="Danger Value" ID="HexDebug_DangerValue_Button" Void2="5" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one"/>
+				<RadioButton String="Revealed" ID="HexDebug_Revealed_Button" Void2="6" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one"/>
+				<RadioButton String="Visible" ID="HexDebug_Visible_Button" Void2="7" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one"/>
+			</Stack>
+			<Label Offset="10,0" Anchor="R,C" AnchorSide="O,I" String="Player:">
+				<Button Anchor="R,C" AnchorSide="O,I" Style="Button_16" Void1="-1" ID="HexDebug_ButtonDown" String="&lt;">
+					<Label Anchor="R,C" AnchorSide="O,I" String="0" ID="HexDebugPlayer_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+						<Button Anchor="R,C" AnchorSide="O,I" Style="Button_16" Void1="1" ID="HexDebug_ButtonUp" String="&gt;">
+						</Button>
+					</Label>
+				</Button>
+			</Label>
+		</Stack>
+	</Grid>
+</Context>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Scott Lewis (Firaxis Games) -->
+<Context>
+	<Container Anchor="L,T" Offset="0, 50">
+		<Box Anchor="L,T" ID="TutorialTextBox" Color="0,0,0,100">
+			<Label Offset="5,5" Anchor="L,T" String="" Font="TwCenMT14" Color0="255,255,200,255" Color1="0,0,0,255" FontStyle="Base" ID="TutorialText"/>
+		</Box>
+	</Container>
+</Context>

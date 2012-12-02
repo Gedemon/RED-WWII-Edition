@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="200,720" Offset="200,32" Padding="0,0" Style="GridBlack16">
+		<Stack Anchor="L,T" Offset="20,20" Padding = "0" StackGrowth="Bottom" ID="GraphicMenu">
+			<Button Style="Button_128" Anchor="C,Top" Void2="0" ID="Exit_Button" String="Exit"/>
+			<Stack Anchor="L,T" StackGrowth="Bottom" String="Toggle Systems">
+				<CheckBox String="Terrain"		 Anchor="R,C"  TextAnchor="R,C" ID="TerrainToggle" Void2="1" IsChecked="1"/>
+				<CheckBox String="Landmarks"	 Anchor="R,C" TextAnchor="R,C"  ID="FeatureToggle" Void2="2" IsChecked="1"/>
+				<CheckBox String="Cities"		 Anchor="R,C"  TextAnchor="R,C" ID="CityToggle" Void2="3" IsChecked="1"/>
+				<CheckBox String="Units"		 Anchor="R,C" TextAnchor="R,C"  ID="UnitToggle" Void2="4" IsChecked="1"/>
+				<CheckBox String="Forests"		 Anchor="R,C"  TextAnchor="R,C" ID="ForestToggle" Void2="5" IsChecked="1"/>
+				<CheckBox String="Particles"	 Anchor="R,C" TextAnchor="R,C" ID="ParticleToggle" Void2="6" IsChecked="1"/>
+				<CheckBox String="FOW"			 Anchor="R,C" TextAnchor="R,C" ID="FOWToggle" Void2="7" IsChecked="1"/>			
+				<CheckBox String="Overlay"		 Anchor="R,C" TextAnchor="R,C" ID="Overlay" Void2="8" IsChecked="1"/>
+				<CheckBox String="DistanceFog"	 Anchor="R,C" TextAnchor="R,C" ID="DistanceFOG" Void2="9" IsChecked="1"/>
+				<CheckBox String="Water"		 Anchor="R,C" TextAnchor="R,C" ID="Water" Void2="10" IsChecked="1"/>
+				<CheckBox String="FluidFOW"		 Anchor="R,C" TextAnchor="R,C" ID="FluidFOWToggle" Void2="11" IsChecked="1"/>
+		        <CheckBox String="Toggle Overlay Style" Anchor="R,C" TextAnchor="R,C" ID="SSOverlay" Void2="12" IsChecked="1"/>
+			</Stack>
+
+			<Stack Ancor="L,T">
+				<RadioButton String="MIP Display None" ID="DisplayNOMIP_Button" Void2="1" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="1" RadioGroup="one" />
+				<RadioButton String="MIP Display Relative" ID="DisplayAbsMIP_Button" Void2="2" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="MIP Display Absolute" ID="DisplayRelMIP_Button" Void2="3" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+			</Stack>
+			<Stack Ancor="L,T">
+				<CheckBox String="Thread Submission" ID="ThreadedSubmit" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="1" RadioGroup="one" Void2="42"/>
+        <CheckBox String="CB Rebase" ID="CBRebase" TextAnchor="R,C" TextAnchorSide="0,0" IsChecked="1" RadioGroup="one" Void2="43"/>
+			</Stack>
+		</Stack>
+	</Grid>
+</Context>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="200,800" Offset="200,32" Padding="0,0" Style="GridBlack16">
+		<Stack Anchor="L,T" Offset="10,20" Padding = "0" StackGrowth="Bottom" ID="NetworkDebugMenu">
+			<Button Style="Button_128" Anchor="C,Top" Void2="0" ID="Exit_Button" String="Exit"/>
+			<Stack Anchor="L,T" StackGrowth="Bottom" String="Toggle Systems">
+				<CheckBox String="Verbose Logging"		 Anchor="L,C"  TextAnchor="R,C" ID="VerboseLoggingToggle" Void2="1" IsChecked="1"/>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Max Messages:"/>
+					<Label Anchor="R,T" Offset="50,5" ID="MaxMessages"/>
+					<Button Style="Button_16" Anchor="R,T" Offset="20, -5" Void2="0" ID="DecreaseMessageCount" String="-"/>
+					<Button Style="Button_16" Anchor="R,T" Offset="0, -5" Void2="0" ID="IncreaseMessageCount" String="+"/>
+				</Box>
+			</Stack>
+			<Stack Padding="2" Offset="0,0" StackGrowth="Bottom">
+				<Label Anchor="L,T" Offset="0,5" String="Local:"/>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Shortest:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="LocalSliceShortest"/>
+				</Box>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Longest:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="LocalSliceLongest"/>
+				</Box>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Average:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="LocalSliceAverage"/>
+				</Box>
+			</Stack>
+			<Stack Anchor="L,T" Hidden="0" StackGrowth="Bottom" ID="PlayerSliceInfoStack"/>
+		</Stack>
+	</Grid>
+	<Instance Name="PlayerSliceInfoInstance">
+		<Grid Size="180,78" Anchor="L,T" ID="PlayerSliceInfoBox" Style="GridBlack16">
+			<Stack Padding="0" Offset="0,4" StackGrowth="Bottom">
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Player:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="Name"/>
+				</Box>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Shortest:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="SliceShortest"/>
+				</Box>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Longest:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="SliceLongest"/>
+				</Box>
+				<Box Anchor="L,T" Size="180,16" Padding="0,0" Color="0,0,0,0" >
+					<Label Anchor="L,T" Offset="8,5" String="Average:"/>
+					<Label Anchor="R,T" Offset="8,5" ID="SliceAverage"/>
+				</Box>
+			</Stack>				
+		</Grid>
+	</Instance>
+</Context>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" Font="TwCenMT22" FontStyle="Shadow" >
+
+
+    <Box Style="BGBlock_ClearTopBar" />
+
+    <Grid Padding="50,70" Size="400,270" Anchor="C,C" Offset="0,0" Style="Grid9DetailFive140" ID="Grid" >
+
+        <Image Anchor="L,C" AnchorSide="O.I"  Offset="-17,0" Texture="Dec32x64Left.dds" Size="32.64" />
+        <Image Anchor="R,C" AnchorSide="O.I"  Offset="-17,0" Texture="Dec32x64Right.dds" Size="32.64" />
+        <!--
+        <Image Anchor="C,T" ID="TopImage" Offset="0,-33" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/topframe.dds" Size="512,128" />
+        -->
+        <Image Anchor="C,B" ID="BottomImage" Offset="0,-109" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/bottomframe.dds" Size="512,128" />
+
+        <Label Anchor="C,T" Offset="0,70" WrapWidth="400" LeadingOffset="-4"  Font="TwCenMT20" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" String="You have found cultural artifacts which awe your citizens! You have received 30 Culture!" ID="DescriptionLabel" />
+        
+        <GridButton Size="200,36" Anchor="C,B" String="TXT_KEY_OK_BUTTON" Style="BaseButton" AnchorSide="I.I" Offset="0,50" ID="CloseButton" Hidden="0"/>
+
+    </Grid>
+
+
+</Context>

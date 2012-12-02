@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Scott Lewis (Firaxis Games) -->
+<Context Font="TwCenMT18" FontStyle="Shadow" ColorSet="Beige_Black_Alpha">
+	<Box Style="BGBlock_ClearTopBar"/>
+	<Box Size="1024,384" Anchor="C,C" Color="255,255,255,0"/>
+	<Grid Size="700,658" Anchor="C,C" Offset="0,48" Padding="0,0" Style="Grid9DetailFive140">
+		<Label Anchor="C,T" Offset="0,20" Font="TwCenMT20" FontStyle="Shadow" Color0="Beige.255" Color1="Black.128" ID="PlayerTitleLabel"/>
+		<Image Anchor="L,C" AnchorSide="O.I" Offset="-17,0" Texture="Dec32x64Left.dds" Size="32.64"/>
+		<Image Anchor="R,C" AnchorSide="O.I" Offset="-17,0" Texture="Dec32x64Right.dds" Size="32.64"/>
+		<Image Anchor="C,T" AnchorSide="I.O" Size="256,64" Offset="0,-16" Texture="assets\UI\Art\Icons\Top512IconTrim.dds">
+      <Image ID="CivIconBG" Size="64.64" Anchor="C,C" Offset="-1,-1" TextureOffset="77,0" Texture="CivIconBGSizes.dds" />
+      <Image ID="CivIconShadow" Size="48.48" Anchor="C,C" Offset="0,0" Texture="CivSymbolAtlas48.dds" Color="Black.128"/>
+      <Image ID="Icon" Size="48,48" Offset="-1,-1"  Anchor="C,C" Texture="CivSymbolsColor512.dds" />
+		</Image>
+		<Box Size="420,567" Anchor="R,T" Offset="42,48" Color="255,255,255,0">
+			<Image Anchor="C,T" Size="340,1" Offset="0,36" Texture="assets\UI\Art\Controls\9 Grids\bar340x2.dds">
+				<Label ID="TitleLabel" Anchor="C,T" AnchorSide="I.O" Offset="0.12" Font="TwCenMT22" FontStyle="SoftShadow" ColorSet="Beige_Black_Alpha"/>
+
+        <ScrollPanel Anchor="C,B" AnchorSide="I.O" Vertical="1" Offset="0,12" Size="400,400" AutoScrollBar="1">
+					<Label ID="DescriptionLabel" Anchor="C,T" Offset="0,0" WrapWidth="380" LeadingOffset="-4" Font="TwCenMT18" FontStyle="Shadow" ColorSet="Beige_Black_Alpha" String="Congratulations!"/>
+					<!-- Scroll Controls -->
+					<ScrollBar Style="VertSlider" Length="360" Anchor="R,C" AnchorSide="O,I"/>
+					<UpButton Style="ScrollBarUp" Anchor="R,T" AnchorSide="O,I"/>
+					<DownButton Style="ScrollBarDown" Anchor="R,B" AnchorSide="O,I"/>
+				</ScrollPanel>
+			</Image>
+		</Box>
+		<!--Economic_Advisor -->
+		<Image ToolTip="TXT_KEY_ADVISOR_ECON_TITLE" ID="EconomicAdvisor" Anchor="L,T" AnchorSide="I.I" Size="180,220" Offset="36,60" Texture="assets\UI\Art\Notification\AdvisorEconomic001.dds" Hidden="0">
+			<Grid Size="184,224" Anchor="C,C" Offset="0,0" Style="Grid9Frame" Hidden="0"/>
+		</Image>
+		<!--Foreign_Advisor -->
+		<Image ToolTip="TXT_KEY_ADVISOR_FOREIGN_TITLE" ID="ForeignAdvisor" Anchor="L,T" AnchorSide="I.I" Size="180,220" Offset="36,60" Texture="assets\UI\Art\Notification\AdvisorForeign001.dds" Hidden="1">
+			<Grid Size="184,224" Anchor="C,C" Offset="0,0" Style="Grid9Frame" Hidden="0"/>
+		</Image>
+		<!--Military_Advisor -->
+		<Image ToolTip="TXT_KEY_ADVISOR_MILITARY_TITLE" ID="MilitaryAdvisor" Anchor="L,T" AnchorSide="I.I" Size="180,220" Offset="36,60" Texture="assets\UI\Art\Notification\AdvisorMilitary001.dds" Hidden="1">
+			<Grid Size="184,224" Anchor="C,C" Offset="0,0" Style="Grid9Frame" Hidden="0"/>
+		</Image>
+		<!--Science_Advisor -->
+		<Image ToolTip="TXT_KEY_ADVISOR_SCIENCE_TITLE" ID="ScienceAdvisor" Anchor="L,T" AnchorSide="I.I" Size="180,220" Offset="36,60" Texture="assets\UI\Art\Advisors\AdvisorScience001.dds" Hidden="1">
+			<Grid Size="184,224" Anchor="C,C" Offset="0,0" Style="Grid9Frame" Hidden="0"/>
+		</Image>
+		<Label ID="AdvisorLabel" Anchor="L,T" AnchorSide="O.I" Offset="0,270" Font="TwCenMT16" FontStyle="Shadow" Hidden="1" ColorSet="Beige_Black_Alpha"/>
+		<Stack Anchor="C,B" StackGrowth="Bottom" Padding="10" Offset="0,60">
+			
+			<Stack Anchor="C,B" Padding="4" StackGrowth="Right">
+				<GridButton Size="202,32" Style="SmallButton" Anchor="L,T" AnchorSide="I.I" ID="ConfirmButton" Hidden="0">
+					<Label Anchor="C,C" ColorSet="Beige_Black_Alpha" Font="TwCenMT18" FontStyle="Shadow"/>
+				</GridButton>
+				<GridButton Size="202,32" Style="SmallButton" Anchor="L,T" AnchorSide="I.I" ID="CancelButton" Hidden="0">
+					<Label Anchor="C,C" ColorSet="Beige_Black_Alpha" Font="TwCenMT18" FontStyle="Shadow"/>
+				</GridButton>
+			</Stack>
+      <CheckBox String="TXT_KEY_ADVISOR_MODAL_DONT_SHOW_ME_AGAIN" TextAnchor="R,C" Anchor="L,B" ID="DontShowAgainCheckbox"/>
+		</Stack>
+	</Grid>
+</Context>

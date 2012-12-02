@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" Font="TwCenMT22" FontStyle="Shadow" >
+
+    <Box Anchor="C,C" Color="White.0"  Offset="0,3" Size="956,470" >
+        <Grid Anchor="L,T" Offset="0,0"  Style="WindowGrid" Size="956,24"  >
+
+            <Label Anchor="L,C"  Offset="32,-1" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="Title"/>
+            <Label Anchor="R,C"  Offset="64,-1" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_SCORE" />
+            <Image Anchor="C,B" Offset="0,0" Texture="bar900x2.dds" Size="900.1" />
+        
+        </Grid>
+
+        <ScrollPanel Offset="0,26" Anchor="L,T" AutoScrollBar="0" Size="954,440" Vertical="1" ID="MainScroll" >
+
+            <ScrollBar Style="VertSlider" Length="404" Offset="0.18" Anchor="R,T" AnchorSide="I,I" />
+            <UpButton  Offset="0.0"  Style="ScrollBarUp"  Anchor="R,T" AnchorSide="I,I" />
+            <DownButton Offset="0.420" Style="ScrollBarDown"  Anchor="R,T" AnchorSide="I,I" />
+
+
+            <Stack Anchor="L,T" ID="MainStack" StackGrowth="Bottom" Padding="0"/>
+        </ScrollPanel>
+
+        <Image Anchor="C,B" Offset="0,0" Texture="HorizontalTrim.dds" Size="956.5" />
+    </Box>
+
+
+    <Instance Name="RankEntry" >
+        <Button Anchor="L,T"  ID="MainStack"  Size="900,48" >
+            <Grid   Size="920,48" Offset="0,-2" Padding="0,0" Style="GridSquare8" ID="SelectHighlight" Hidden="1"/>
+            <Stack Anchor="L,T" ID="MyStack" StackGrowth="Bottom" Padding="10" Offset="0,0">
+                <Box Anchor="L,T" Size="900,1" Color="0,0,220,0" >
+                    <Label Anchor="R,T" Offset="0,10" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="LeaderScore"/>
+                </Box>
+                <Stack Anchor="L,T" ID="HorizontalStack" StackGrowth="Right" Padding="20" Offset="0,0">
+                    <Box Anchor="L,T" Offset="20,0" Size="30,24" Color="0,0,0,0">
+                        <Label Anchor="R,T" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="Number"/>
+                    </Box>
+                    <Box Anchor="L,T" Size="230,24" Color="0,0,0,0">
+                        <Label Anchor="L,T" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="LeaderName"/>
+                    </Box>
+                    <Stack Anchor="L,T" Size="400,24" Color="0,222,0,202">
+                        <Label Anchor="L,T" WrapWidth="400" Font="TwCenMT18" LeadingOffset="-4" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_DIPLO_LEADER_NAME" ID="LeaderQuote" Hidden="1"/>
+                    </Stack>
+                </Stack>
+                <Image Anchor="L,B" Offset="0,0" Texture="bar900x2.dds" Size="900.1" />
+            </Stack>
+        </Button>
+
+    </Instance>
+
+</Context>

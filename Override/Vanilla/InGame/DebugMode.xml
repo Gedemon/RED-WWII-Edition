@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="200,640" Offset="200,32" Padding="0,0" Style="GridBlack16" ConsumeMouse="1">
+		<Stack Anchor="L,T" Offset="20,30" Padding = "0" StackGrowth="Bottom" ID="GraphicMenu" >
+			<Button Style="Button_128" Anchor="C,Top" Void2="100" ID="Exit_Button" String="Exit"/>
+			<Stack Anchor="L,T" StackGrowth="Bottom" String="Toggle Systems">
+				<RadioButton String="Default Mode"		ID="DefaultMode_Button" Void2="0" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="1" RadioGroup="one" />
+				<RadioButton String="Create City"		ID="CreateCity_Button" Void2="1" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Edit City"			ID="EditCity_Button" Void2="3" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Edit Improvement"  ID="EditImprovement_Button" Void2="4" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Edit Resource"	    ID="EditResource_Button" Void2="5" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Create Road"	    ID="CreateRoad_Button" Void2="7" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Change Border"	    ID="ChangeBorder_Button" Void2="8" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Create Farm"		ID="CreateFarm_Button" Void2="9" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Create Unit"		ID="CreateUnit_Button" Void2="10" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Edit Unit"			ID="EditUnit_Button" Void2="11" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Move Unit"			ID="MoveUnit_Button" Void2="12" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Rotate Unit"		ID="RotateUnit_Button" Void2="13" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Attack Unit"		ID="AttackUnit_Button" Void2="14" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+				<RadioButton String="Reload Assets"		ID="ReloadAssets_Button" Void2="15" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+        <RadioButton String="Spawn Arrow"		ID="SpawnArrow_Button" Void2="17" TextAnchor="R,C" TextAnchorSide="O,O" IsChecked="0" RadioGroup="one" />
+			</Stack>
+		</Stack>
+
+		<!-- City Edit panel -->
+		<Grid AutoSize="1" Padding="10,10" Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="EditCity_Panel" ConsumeMouse="1" Hidden="1">
+			<Stack Offset="20,0" Anchor="L,C" StackGrowth="Bottom">
+				<Label Offset="0,16" Anchor="L,T" String="Edit City Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Button  Anchor="L,C" Style="Button_128" ID="CityEra_Button" String="Set Era"/>
+					<Label Offset="10,0" Anchor="L,C" String="Player:"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="-1" ID="CityPlayer_ButtonDown" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="1" ID="CityPlayer_ButtonUp" String="&gt;"/>
+					<Label Anchor="L,C"  String="0" ID="CityPlayer_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<Label Anchor="L,C" String="Era:"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="-1" ID="CityEra_ButtonDown" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="1" ID="CityEra_ButtonUp" String="&gt;"/>
+					<Label Anchor="L,C"  String="1" ID="CityEra_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Button  Anchor="L,C" Style="Button_128" ID="CityCulture_ButtonApply" String="Set Culture"/>
+					<Button Anchor="L,C"  Style="Button_16" Void1="-1" ID="CityCulture_ButtonDown" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" Void1="1" ID="CityCulture_ButtonUp" String="&gt;"/>
+					<Label Anchor="L,C" String="1" ID="CityCulture_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Button  Anchor="L,C" Style="Button_128" ID="CitySize_ButtonApply" String="Set Size"/>
+					<Button Anchor="L,C"  Style="Button_16" Void1="-1" ID="CitySize_ButtonDown" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="1" ID="CitySize_ButtonUp" String="&gt;"/>
+					<Label Anchor="L,C"  String="1/10" ID="CitySize_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+                <Stack StackGrowth="Right"  Anchor="L,T">
+                    <Button  Anchor="L,C" Style="Button_128" ID="CityContinent_ButtonApply" String="Set Continent"/>
+                    <Button Anchor="L,C"  Style="Button_16" Void1="-1" ID="CityContinent_ButtonDown" String="&lt;"/>
+                    <Button Anchor="L,C" Style="Button_16" Void1="1" ID="CityContinent_ButtonUp" String="&gt;"/>
+                    <Label Anchor="L,C"  String="1/5" ID="CityContinent_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+                </Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Building Size"/>
+					<Button Offset="20,0" Anchor="L,C" Style="Button_16" Void1="-10" ID="CityBuildingSize_ButtonGrtrDown" String="&lt;&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="-1" ID="CityBuildingSize_ButtonDown" String="&lt;"/>
+					<Button Offset="5,0" Anchor="L,C"  Style="Button_16" Void1="1" ID="CityBuildingSize_ButtonUp" String="&gt;"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="10" ID="CityBuildingSize_ButtonGrtrUp" String="&gt;&gt;"/>
+					<Label Anchor="L,C" String="1.00" ID="CityBuildingSize_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+			</Stack>
+		</Grid>
+		
+        <!-- Edit Improvement panel -->
+		<Grid AutoSize="1"  Padding="10,10"  Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="EditImprovement_Panel" ConsumeMouse="1" Hidden="1">
+			<Stack Offset="20,0" Anchor="L,C" StackGrowth="Bottom">
+				<Label Anchor="L,T" String="Improvement Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Button Style="Button_128" Offset="0,10" Anchor="L,Top" ID="GenerateImprovements_Button" String="Gen. Improvements"/>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Improvement Type:"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ImprovementType_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ImprovementType_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Choose Improvement                                       " ID="ImprovementType_Label" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+                </Stack>
+                <Stack StackGrowth="Right"  Anchor="L,T">
+                    <Label Anchor="L,C" String="Raw Resource Type:"/>
+                    <Button Anchor="L,C" Style="Button_16" ID="ImprovementRRType_ButtonDown" Void1="-1" String="&lt;"/>
+                    <Button Anchor="L,C" Style="Button_16" ID="ImprovementRRType_ButtonUp" Void1="1" String="&gt;"/>
+                    <Label Anchor="L,C"  String="Choose Resource                                          " ID="ImprovementRRType_Label" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+                </Stack>
+                <Stack StackGrowth="Right"  Anchor="L,T">
+                    <Label Anchor="L,C" String="Era:"/>
+                    <Button Anchor="L,C" Style="Button_16" ID="ImprovementEra_ButtonDown" Void1="-1" String="&lt;"/>
+                    <Button Anchor="L,C" Style="Button_16" ID="ImprovementEra_ButtonUp" Void1="1" String="&gt;"/>
+                    <Label Anchor="L,C"  String="Choose Era  " ID="ImprovementEra_Label" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+
+                    <Label Anchor="L,C"  String="    " ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+                    
+                    <Label Anchor="L,C" String="State:"/>
+                    <Button Anchor="L,C" Style="Button_16" ID="ImprovementState_ButtonDown" Void1="-1" String="&lt;"/>
+                    <Button Anchor="L,C" Style="Button_16" ID="ImprovementState_ButtonUp" Void1="1" String="&gt;"/>
+                    <Label Anchor="L,C"  String="Choose State  " ID="ImprovementState_Label" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+                </Stack>
+			</Stack>
+		</Grid>
+        
+		<!-- Edit Raw Resources panel -->
+		<Grid AutoSize="1"  Padding="10,10"  Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="EditResource_Panel" ConsumeMouse="1" Hidden="1">
+			<Stack Offset="20,0" Anchor="L,C" StackGrowth="Bottom">
+				<Label Anchor="L,T" String="Resources Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Button Style="Button_128" Offset="0,10" Anchor="L,Top" ID="GenerateResources_Button" String="Gen. Resources"/>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Resource Type:"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ResourceType_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="ResourceType_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Choose Resource              " ID="ResourceType_Label" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+
+				</Stack>
+			</Stack>
+		</Grid>
+
+		<!-- Create Road panel -->
+		<Grid AutoSize="1" Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="CreateRoad_Panel" ConsumeMouse="1" Hidden="1">
+			<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+				<Label Offset="0,10" Anchor="L,T" String="Create Road Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Label Offset="0,10" Anchor="L,T" String="Create Mode" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+        <CheckBox Anchor="L,C" Style="Button_16" ID="CreateRoad_Checkbox" />
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Player:" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<Button Anchor="L,C" Style="Button_16" Void1="-1" ID="RoadPlayer_ButtonDown" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" Void1="1" ID="RoadPlayer_ButtonUp" String="&gt;"/>
+					<Label Anchor="L,C"  String="0" ID="RoadPlayer_Label" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+			</Stack>
+		</Grid>
+
+		<!-- Create Unit panel -->
+		<Grid AutoSize="1" Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="CreateUnit_Panel" ConsumeMouse="1" Hidden="1">
+			<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+				<Label Offset="0,16" Anchor="L,T" String="Create Unit Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Unit Type:"/>
+					<Button  Anchor="L,C"  Style="Button_16" ID="CreateUnitType_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button  Anchor="L,C"  Style="Button_16" ID="CreateUnitType_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Choose Common or Great Unit" ID="CreateUnitType_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label  Anchor="L,C" String="Unique Unit:"/>
+					<Button Anchor="L,C" Style="Button_16" ID="CreateUniqueUnitType_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="CreateUniqueUnitType_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="R,C"  String="Choose Unique Unit" ID="CreateUniqueUnitType_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+			</Stack>
+		</Grid>
+
+		<!-- Edit Unit Panel -->
+		<Grid AutoSize="1" Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="EditUnit_Panel" ConsumeMouse="1" Hidden="1">
+
+			<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+				<Label Anchor="L,T" Offset="0,16" String="Edit Unit Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Label Anchor="L,T" Offset="0,16" String="Flag" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Button Anchor="L,C" Style="Button_16" ID="UnitFlagCulture_ButtonDown" Void1="0" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitFlagCulture_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Culture" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitFlagType_ButtonDown" Void1="0" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitFlagType_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Type" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitFlagHealth_ButtonDown" Void1="0" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitFlagHealth_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Health" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<CheckBox Anchor="L,C"  Style="Button_16" ID="UnitFlagFortify_Checkbox" Void2="1"/>
+					<Label Anchor="L,C"  String="Fortified" Font="TwCenMT18" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+
+				<Label Anchor="L,T" Offset="0,16" String="Animation" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Unit Variable:"/>
+					<Button Offset="10,0" Anchor="L,C"  Style="Button_16" ID="UnitVariableName_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button  Anchor="L,C"  Style="Button_16" ID="UnitVariableName_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="Choose Variable              " ID="UnitVariableName_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Variable Value:"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitVariableValue_ButtonMaxDown" Void1="-3" String="&lt;&lt;&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitVariableValue_ButtonGrtDown" Void1="-2" String="&lt;&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitVariableValue_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitVariableValue_ButtonUp" Void1="1" String="&gt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitVariableValue_ButtonGrtUp" Void1="2" String="&gt;&gt;"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="UnitVariableValue_ButtonMaxUp" Void1="3" String="&gt;&gt;&gt;"/>
+					<Label Anchor="L,C"  String="0.0" ID="UnitVariableValue_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<!--Slider Length="100" Offset="150,0" Anchor="L,C" Style="TestSlider" ID="UnitVariableValue_Slider" WheelSteps="10" Gutter="5" Value="0.0">
+                      								<Shuttle Style="Grid3Shuttle" Size="16,16" />
+                    							</Slider-->
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Unit Member:"/>
+					<Button Offset="14,0" Anchor="L,C"  Style="Button_16" ID="UnitMember_ButtonDown" Void1="-1" String="&lt;"/>
+					<Button Offset="20,0" Anchor="L,C"  Style="Button_16" ID="UnitMember_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C"  String="1" ID="UnitMember_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+
+					<CheckBox Anchor="L,C"  ID="UnitMemberSelectAll_Checkbox"/>
+					<Label Anchor="L,C"  String="All Members" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<CheckBox Anchor="L,C"  ID="UnitMemberFSMDebug_Checkbox"/>
+					<Label Anchor="L,C"  String="Debug State Machine" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label Anchor="L,C" String="Specular Rendering:"/>
+					<CheckBox Anchor="L,C"  ID="UnitSpecRenderNormal_Checkbox" Void1="0"/>
+					<Label Anchor="L,C"  String="Normal" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<CheckBox Anchor="L,C"  ID="UnitSpecRenderDiffuse_Checkbox" Void1="1"/>
+					<Label Anchor="L,C"  String="Diffuse Only" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<CheckBox Anchor="L,C" ID="UnitSpecRenderSpecular_Checkbox" Void1="2"/>
+					<Label Anchor="L,C" String="Specular Only" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+
+				</Stack>
+				<Button Offset="0,16" Style="Button_128" Anchor="L,T" Void2="1" ID="EditUnit_ButtonApply" String="Apply Changes"/>
+			</Stack>
+		</Grid>
+
+		<!-- Asset Reloading panel -->
+		<Grid AutoSize="1" Anchor="R,T" AnchorSide="O,I"  Style="GridBlack16" ID="ReloadAssets_Panel" ConsumeMouse="1" Hidden="1">
+
+			<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+				<Label Anchor="L,T" Offset="0,16" String="Asset Reload Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Label  Anchor="L,T" String="Click on any asset in game window to reload it."/>
+				<Label Anchor="L,T" String="Press any of the buttons to reload all assets of that type."/>
+				<Label Anchor="L,T" String="Press 'F8' to reload every asset."/>
+				<Button  Anchor="C,T" Style="Button_128" Void1="0" ID="ReloadLandmarks_Button" String="Reload All Landmarks"/>
+				<Button Anchor="C,T" Style="Button_128" Void1="1" ID="ReloadUnits_Button" String="Reload All Units"/>
+				<Button Anchor="C,T" Style="Button_128" Void1="2" ID="ReloadBuildings_Button" String="Reload All Buildings"/>
+
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label  Anchor="L,T" String="City Culture:"/>
+					<Button Anchor="L,C"  Style="Button_16" ID="BuildingCulture_ButtonDown" Void1="-1" String="&lt;"/>
+					<Label Anchor="L,C" String="-1" ID="BuildingCulture_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<Button Anchor="L,C" Style="Button_16" ID="BuildingCulture_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="L,C" String="City Era:"/>
+					<Button Anchor="L,C" Style="Button_16" ID="BuildingEra_ButtonDown" Void1="-1" String="&lt;"/>
+					<Label Anchor="L,C" String="-1" ID="BuildingEra_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+					<Button Anchor="L,C" Style="Button_16" ID="BuildingEra_ButtonUp" Void1="1" String="&gt;"/>
+				</Stack>
+			</Stack>
+		</Grid>
+	</Grid>
+</Context>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black" Font="TwCenMT20" FontStyle="Shadow">
+
+	<Box Anchor="C,C" Size="Full,Full" Color="0,0,0,255" />
+	<Image Anchor="C,C" Offset="0,0"  Size="1920,1200" ID="RedWW2Logo" />
+
+	<Instance Name="GameOptionInstance">
+		<CheckBox ButtonTexture="assets/UI/Art/Controls/CheckBox2TheBox.dds" Anchor="L,C" TextAnchorSide="Right" Font="TwCenMT20" Offset="0,0" TextOffset="40,0" IsChecked="0" ID="GameOptionRoot" ConsumeMouse="1"  />
+	</Instance>
+
+	<Instance Name="DropDownOptionInstance">
+		<Container Anchor="L,T" Size="450,32" Offset="20,0" ID="DropDownOptionRoot">
+			<Label Anchor="L,C" ColorSet="Beige_Black" Font="TwCenMT20" FontStyle="Shadow" ID="OptionName"/>
+			<PullDown Style="GenericPullDown" ScrollThreshold="400" Offset="130,0" Size="170,27" SpaceForScroll="0" ID="OptionDropDown"/>
+		</Container>
+	</Instance>
+	
+	<Instance Name="SelectCivInstance">
+		<Button Anchor="L,T" Offset="0,0" Size="902,100" Color="255,255,255,0" ID="Button">
+			<ShowOnMouseOver>
+				<AlphaAnim Anchor="L,T" Size="922,102" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+					<Grid Size="902,104" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL"/>
+				</AlphaAnim>
+			</ShowOnMouseOver>
+			<Image Anchor="L,C" Offset="-12,0" Size="128,128" Texture="Assets/UI/Art/Icons/LeaderPortraits1024Frame.dds">
+				<Image Anchor="C,C" Offset="0,0" Size="128,128" Texture="Assets/UI/Art/Icons/LeaderPortraits1024.dds" ID="Portrait"/>
+			</Image>
+			<Stack Anchor="L,T" Size="565,128" Offset="116,4" StackGrowth="Bottom" Padding="6">
+				<Box Offset="-12,0" Anchor="L,T" Size="424,28" Color="White.0">
+					<Label Anchor="L,C" Offset="12,4" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" ID="Title"/>
+				</Box>
+				<Label Anchor="L,T" Offset="0,0" WrapWidth="565" LeadingOffset="-5" Font="TwCenMT18" FontStyle="Base" ID="BonusDescription" String="[ICON_BULLET]Civ Specific Bonus 2"/>
+			</Stack>
+			<!-- Civ specific bonuses -->
+			<Stack Anchor="R,C" Size="128,128" StackGrowth="Right" Padding="-8" Offset="4,12">
+				<Image Anchor="C,C" Offset="0,0" Texture="IconFrame64.dds" Size="64.64" Hidden="0">
+					<Image Size="64,64" Anchor="C,C" Texture="Assets/UI/Art/Icons/Units/CivSymbolsColor512.dds" ID="IconShadow" Hidden="0"/>
+				</Image>
+				<Image Anchor="L,C" Texture="IconFrame64.dds" Size="64.64" Hidden="0" ID="BF1">
+					<Image Anchor="C,C" Size="64,64" Texture="WonderAtlas512.dds" ID="B1"/>
+				</Image>
+				<Image Anchor="C,C" Texture="IconFrame64.dds" Size="64.64" ID="BF2">
+					<Image Anchor="C,C" Size="64,64" Texture="WonderAtlas512.dds" ID="B2"/>
+				</Image>
+			</Stack>
+			<Box Anchor="L,T" Offset="84,8" Size="530,64" Color="255,255,255,0">
+				<Label Anchor="L,T" Offset="0,0" WrapWidth="520" LeadingOffset="-8" Font="TwCenMT18" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" ID="Description" Hidden="1"/>
+			</Box>
+			<Image Size="54,54" Offset="3,3" Anchor="L,B" Texture="Assets/UI/Art/UnitPanel/UnitTypeFrame.dds" Hidden="1">
+				<Image Size="38,38" Offset="0,0" Anchor="C,C" Color="128.128.128.255" Texture="Assets/UI/Art/UnitPanel/unitbackteamcolor.dds" ID="TeamColor" Hidden="1"/>
+				<Image Size="38,38" TextureOffset="0,39" Anchor="C,C" Texture="Assets/UI/Art/UnitPanel/unitbackteamcolor.dds" Hidden="1"/>
+				<Image Size="32,32" Offset="0,0" Anchor="C,C" Color="White.255" Texture="Assets/UI/Art/Icons/Units/CivSymbolAtlas32.dds" ID="Icon" Hidden="1"/>
+			</Image>
+			<Image Anchor="C,B" Offset="0,0" Texture="bar900x2.dds" Size="900.1"/>
+		</Button>
+	</Instance>
+	<Container ID="MainSelection" Size="1024,700" Anchor="c,c">
+		<Grid Size="960,658" Anchor="C,C" Offset="0,36" Padding="0,0" Style="Grid9DetailFive140">
+			<AlphaAnim Anchor="R,C" AnchorSide="O.O" Offset="-8,0" Size="16,32" TextureOffset="16.0" Texture="Assets/UI/Art/Controls/buttonsidesglow.dds" Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".99" AlphaEnd=".25" Hidden="0"/>
+			<AlphaAnim Anchor="L,C" AnchorSide="O.O" Offset="-8,0" Size="16,32" TextureOffset="0.0" Texture="Assets/UI/Art/Controls/buttonsidesglow.dds" Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".99" AlphaEnd=".25" Hidden="0"/>
+			<Image Anchor="R,C" Offset="-8,0" TextureOffset="8.0" AnchorSide="O.O" Texture="Assets/UI/Art/Controls/buttonsides.dds" Size="8,16"/>
+			<Image Anchor="L,C" Offset="-8,0" TextureOffset="0.0" AnchorSide="O.O" Texture="Assets/UI/Art/Controls/buttonsides.dds" Size="8,16"/>
+			<Image Anchor="C,T" Offset="0,-33" AnchorSide="O.O" Texture="Assets/UI/Art/Controls/topframe.dds" Size="512,128"/>
+			<Image Anchor="C,B" Offset="0,-109" AnchorSide="O.O" Texture="Assets/UI/Art/Controls/bottomframe.dds" Size="512,128"/>
+			<!-- Screen Title  -->
+			<Label Anchor="C,T" ID="ScreenTitle" Offset="0,19" Font="TwCenMT20" Color0="30.50.80.255" Color1="133.184.186.255" Color2="133.184.186.255" FontStyle="SoftShadow" String="TXT_KEY_GAME_SELECTION_SCREEN"/>
+			<!-- Civilization -->
+			<Button Anchor="L,T" Offset="20,50" Size="922,100" Color="255,255,255,0" ID="CivilizationButton">
+				<ShowOnMouseOver>
+					<AlphaAnim Anchor="L,T" Size="922,102" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+						<Grid Size="922,104" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL"/>
+					</AlphaAnim>
+				</ShowOnMouseOver>
+				<Image Anchor="L,C" Offset="-12,0" Size="128,128" Texture="Assets/UI/Art/Icons/LeaderPortraits1024Frame.dds">
+					<Image Anchor="C,C" Offset="0,0" Size="128,128" Texture="Assets/UI/Art/Icons/LeaderPortraits1024.dds" ID="Portrait"/>
+				</Image>
+				<Stack Anchor="L,T" Size="565,128" Offset="116,4" StackGrowth="Bottom" Padding="6">
+					<Box Offset="-12,0" Anchor="L,T" Size="424,28" Color="White.0">
+						<Label Anchor="L,C" Offset="12,4" Font="TwCenMT22" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" ID="Title"/>
+					</Box>
+					<Label Anchor="L,T" Offset="0,0" WrapWidth="565" LeadingOffset="-5" Font="TwCenMT18" ID="BonusDescription" String="[ICON_BULLET]Civ Specific Bonus 2"/>
+				</Stack>
+				<!-- Civ specific bonuses -->
+				<Stack Anchor="R,C" Size="128,128" StackGrowth="Right" Padding="-8" Offset="24,12">
+					<Image Anchor="L,C" Texture="IconFrame64.dds" Size="64.64" Hidden="0" ID="BF1">
+						<Image Anchor="C,C" Size="64,64" Texture="WonderAtlas512.dds" ID="B1"/>
+					</Image>
+					<Image Anchor="C,C" Texture="IconFrame64.dds" Size="64.64" ID="BF2">
+						<Image Anchor="C,C" Size="64,64" Texture="WonderAtlas512.dds" ID="B2"/>
+					</Image>
+					<Image Anchor="C,C" Offset="0,0" Texture="IconFrame64.dds" Size="64.64" Hidden="0">
+						<Image Size="64,64" Anchor="C,C" Texture="Assets/UI/Art/Icons/Units/CivSymbolsColor512.dds" ID="IconShadow" Hidden="0"/>
+					</Image>
+				</Stack>
+			</Button>
+			<!-- Civ Selection -->
+			<ScrollPanel Anchor="L,T" Offset="20,155" Size="902,404" Vertical="1" ID="SelectCivScrollPanel" Hidden="1">
+				<!-- Scroll Controls -->
+				<ScrollBar Style="VertSlider" Length="370" Offset="0.18" Anchor="R,T" AnchorSide="O,I"/>
+				<UpButton Offset="0.0" Style="ScrollBarUp" Anchor="R,T" AnchorSide="O,I"/>
+				<DownButton Offset="0.1" Style="ScrollBarDown" Anchor="R,B" AnchorSide="O,I"/>
+				<Stack Anchor="L,T" Offset="0,0" Size="902,128" StackGrowth="Bottom" Padding="0" ID="SelectCivStack"/>
+			</ScrollPanel>
+			<!-- Option  Selection Menu -->
+			<Box Anchor="L,T" Offset="38,155" Size="354,404" Color="255,255,255,0" ID="OptionSelectionBox" >
+				<Grid Anchor="L,T" Offset="0,0" Size="350,404" Padding="0,0" Style="GridBlackIndent8" Hidden="0" >
+					<Grid Anchor="L,T" Offset="4,0" Size="354,404" Padding="0,0" Style="Grid9Frame" Hidden="0" >
+
+						<Image Anchor="L,C" AnchorSide="O.I" Offset="-11,0" Size="32,64" Texture="Assets/UI/Art/Controls/9 Grids/Dec32x64Left.dds" />
+
+						<ScrollPanel Anchor="L,T" Offset="0,32" Size="330,368" Vertical="1" ID="OptionsScrollPanel" >
+							<!-- Scroll Controls -->
+							<ScrollBar Style="VertSlider" Length="332" Offset="0.18" Anchor="R,T" AnchorSide="O,I" />
+							<UpButton  Offset="0.0"  Style="ScrollBarUp"  Anchor="R,T" AnchorSide="O,I" />
+							<DownButton Offset="0.0" Style="ScrollBarDown"  Anchor="R,B" AnchorSide="O,I" />
+
+							<Stack ID="GameOptionsFullStack" Anchor="L,T" Offset="0,0" Padding="0" StackGrowth="Bottom" >
+
+								<Stack Anchor="L,T" Offset="0,3" Padding="0" StackGrowth="Bottom" ID="DropDownOptionsStack" >
+
+									<Container Anchor="L,T" Size="450,32" Offset="20,0">
+										<Label Anchor="L,C" ColorSet="Beige_Black" Font="TwCenMT20" FontStyle="Shadow" String="TXT_KEY_AD_SETUP_HANDICAP" />
+										<PullDown Style="GenericPullDown" ScrollThreshold="400" Offset="130,0" Size="170,27" SpaceForScroll="0" ID="HandicapPullDown"/>
+									</Container>
+
+								</Stack>
+
+								<!-- List of Check Boxes -->
+								<Stack Anchor="L,T" Offset="10,0" Padding="-7" StackGrowth="Bottom" ID="GameOptionsStack">
+								</Stack>
+								
+							</Stack>
+							<!--<Stack Anchor="L,T" Offset="0,0" StackGrowth="Bottom" Padding="0" ID="OptionStack" /> -->
+
+						</ScrollPanel>
+					</Grid>
+				</Grid>
+				<Image Anchor="L,T" Offset="4,-1" Size="354,45" Texture="Assets/UI/Art/WorldView/SetupTab2.dds">
+					<Label Anchor="C,C" Offset="0,-7" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" String="TXT_KEY_AD_SETUP_GAME_OPTIONS" FontStyle="Shadow"/>
+				</Image>
+			</Box>
+			<!-- Dawn of Man-->
+			<Box Anchor="R,T" Offset="38,155" Size="524,404" Color="255,255,255,0" ID="DoMBox">
+				<Grid Anchor="C,T" Offset="0,0" Size="520,404" Padding="0,0" Style="GridBlackIndent8" Hidden="0">
+					<Grid Anchor="C,T" Offset="0,0" Size="524,404" Padding="0,0" Style="Grid9Frame" Hidden="0">
+						<Image Anchor="R,C" AnchorSide="O.I" Offset="-11,0" Size="32,64" Texture="Assets/UI/Art/Controls/9 Grids/Dec32x64Right.dds"/>
+						<ScrollPanel Anchor="L,T" Offset="0,6" Size="500,392" Vertical="1" ID="DoMScrollPanel">
+							<!-- Scroll Controls -->
+							<ScrollBar Style="VertSlider" Length="356" Offset="0,18" Anchor="R,T" AnchorSide="O,I"/>
+							<UpButton Offset="0.0" Style="ScrollBarUp" Anchor="R,T" AnchorSide="O,I"/>
+							<DownButton Offset="0.0" Style="ScrollBarDown" Anchor="R,B" AnchorSide="O,I"/>
+							<Stack Anchor="C,T" Offset="0,36" Size="128,128" StackGrowth="Bottom" Padding="12" ID="MainStack">
+								<Label Anchor="C,C" WrapWidth="460" ID="Quote" LeadingOffset="-4" Offset="0,0" ColorSet="Beige_Black_Alpha" Font="TwCenMT14" FontStyle="Shadow"/>
+								<Box Anchor="C.C" Offset="0,0" Size="400,6" Color="White.0"/>
+								<Box Size="128,36" Color="Black,0"/>
+							</Stack>
+						</ScrollPanel>
+					</Grid>
+				</Grid>
+			</Box>
+			<!-- Back Button -->
+			<GridButton Anchor="L,B" Style="SmallButton" Size="150,32" Offset="38,54" StateOffsetIncrement="0,0" ID="BackButton">
+				<Label Anchor="C,C" Offset="0,0" String="TXT_KEY_BACK_BUTTON" Font="TwCenMT18" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</GridButton>
+			<!-- Start Game  -->
+			<GridButton Anchor="R,B" ID="StartButton" Offset="38,54" Size="260,45" Style="BaseButton" String="TXT_KEY_START_GAME"/>
+		</Grid>
+
+	</Container>
+
+</Context>

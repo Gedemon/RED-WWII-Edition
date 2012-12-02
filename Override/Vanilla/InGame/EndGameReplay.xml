@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black" Font="TwCenMT20" FontStyle="Shadow" >
+
+	<!-- GameInstance -->
+	<Instance Name="ReplayMessageInstance" >
+		<Label Anchor="L,T" ColorSet="Beige_Black_Alpha" Font="TwCenMT18" FontStyle="Shadow" String="asdf asdf asdf asdf " ID="MessageText" />
+	</Instance>
+
+	<Grid Anchor="C,C" Offset="0,-220"  Style="WindowGrid" Size="956,24"  >
+
+		<!--<Stack Anchor="L,T" Offset="0,0" StackGrowth="Right" Padding="0" >
+
+			<Box Anchor="L,T" Color="White.0" Size="100,24" Offset="0,0">
+				<Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_SCORE" />
+			</Box>
+
+			<Box Anchor="L,T"  Color="White.0" Size="200,24" Offset="0,0">
+				<Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_POP_VOTE_RESULTS_YOU" />
+			</Box>
+
+			<Box Anchor="L,T" Color="White.0" Size="200,24" Offset="0,0">
+				<Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_HOF_RESULTS" />
+			</Box>
+
+			<Box Anchor="L,T"  Color="White.0" Size="200,24" Offset="0,0">
+				<Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_GAME_CONCEPT_SECTION_21" />
+			</Box>
+
+			<Box Anchor="L,T" Color="White.0" Size="200,24" Offset="0,0">
+				<Label Anchor="C,C" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_HOF_SETTINGS" />
+			</Box>
+		</Stack>-->
+		
+		<!-- List of Replay Messages -->
+		<ScrollPanel Offset="0,26" Anchor="R,T" AutoScrollBar="1" Size="454,440" Vertical="1" ID="ReplayMessageScrollPanel" >
+
+			<ScrollBar Style="VertSlider" Length="404" Offset="0.18" Anchor="R,T" AnchorSide="I,I" />
+			<UpButton  Offset="0.0"  Style="ScrollBarUp"  Anchor="R,T" AnchorSide="I,I" />
+			<DownButton Offset="0.420" Style="ScrollBarDown"  Anchor="R,T" AnchorSide="I,I" />
+
+			<Stack Anchor="L,T"  Offset="0,0" Size="260,216" StackGrowth="Bottom" Padding="5" ID="ReplayMessageStack" />
+
+		</ScrollPanel>
+	</Grid>
+
+</Context>

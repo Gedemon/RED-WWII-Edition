@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 8/20/2011 12:41:33 AM -->
+<GameData>
+	<!-- English US -->
+	<Language_en_US>
+		
+		<!-- Replaced texts -->
+		
+		<Replace Tag="TXT_KEY_UNIT_HELP_ARTILLERY">
+			<Text>Howitzers fire projectiles at relatively high trajectories, with a steep angle of descent, making them usefull against fortified positions and cities defense, while allowing indirect fire above obstacle. Their HE ammo give them a bonus against infantry units. This regiment-sized unit can stack with a Division unit.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_HELP_ANTI_TANK_GUN">
+			<Text>Field Guns fire smaller shells with higher velocities and flatter trajectories than Howitzers. Combined with armor-piercing ammo they can inflict great casualties on armor units. This regiment-sized unit can stack with a Division unit.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_HELP_ANTI_AIRCRAFT_GUN">
+			<Text>Anti-Aircraft Artillery are guns with a high muzzle velocity – allowing the projectiles to reach greater altitudes – and a high rate of fire, that can also be used defensively against armor units. This regiment-sized unit can stack with a Division unit and will protect it from enemy aircraft.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_HELP_BOMBER">
+			<Text>Aircraft specialized in bombarding enemy targets. Strong against Cities, they lack precision when bombing Units.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_UNIT_ARTILLERY">
+			<Text>Howitzer-Gun</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_AT_GUN">
+			<Text>Field Gun</Text>
+		</Replace>
+		
+		<!-- New texts -->
+
+		<Row Tag="TXT_KEY_UNIT_CONVOY">
+			<Text>Convoy</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_CONVOY">
+			<Text>Escort the convoy to one of your cities.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_CONVOY_STRATEGY">
+			<Text>Convoy transport reinforcements for your nation.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIV5_INDUSTRIAL_CONVOY_HEADING">
+			<Text>Convoy</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIV5_INDUSTRIAL_CONVOY_STATBOX">
+			<Text>missing stats</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIV5_INDUSTRIAL_CONVOY_TEXT">
+			<Text>Escort the convoy to one of your cities.</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_UNIT_SPECIAL_FORCES">
+			<Text>Special Forces</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_LIGHT_TANK">
+			<Text>Light Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_LIGHT_TANK_DESTROYER">
+			<Text>Light Tank Destroyer</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_CRUISER_TANK">
+			<Text>Cruiser Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_MAIN_BATTLE_TANK">
+			<Text>Main Battle Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_TANK">
+			<Text>Heavy Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_SUPER_HEAVY_TANK">
+			<Text>Super Heavy Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_DESTROYER">
+			<Text>Tank Destroyer</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_TANK_DESTROYER">
+			<Text>Heavy Tank Destroyer</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_ASSAULT_GUN">
+			<Text>Assault Gun</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_ASSAULT_GUN">
+			<Text>Heavy Assault Gun</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_FIGHTER_BOMBER">
+			<Text>Fighter Bomber</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_ATTACK_AIRCRAFT">
+			<Text>Attack Aircraft</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_FIGHTER">
+			<Text>Heavy Fighter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_FAST_BOMBER">
+			<Text>Fast Bomber</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_BOMBER">
+			<Text>Heavy Bomber</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_CRUISER">
+			<Text>Cruiser</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_CRUISER">
+			<Text>Heavy Cruiser</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_DREADNOUGHT">
+			<Text>Dreadnought</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_BATTLESHIP_2">
+			<Text>Capital Ship</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_MOBILE_ARTILLERY">
+			<Text>Mobile Artillery</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_ENGINEER">
+			<Text>Engineer</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_FORTIFICATION">
+			<Text>Fortification</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_MOBILE_HQ">
+			<Text>Mobile HQ</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_AIRFIELD">
+			<Text>Airfield</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_BLOCKER">
+			<Text>Blocked Path</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_HELP_FAST_BOMBER">
+			<Text>Fast Bombers are small twin-engines bombers with good speed, making them difficult to intercept. More precise against units, they deal less damage to cities than normal bombers.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_BOMBER">
+			<Text>Long range and well armed bombers with large payload that can deal a lot of damage to cities, but very imprecise against units.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_FIGHTER">
+			<Text>Twin-engines fighters with bigger payload and better range than normal fighters. They are polyvalent and can be used for enemy bomber's interception, reconnaissance missions or ground attack runs.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_ATTACK_AIRCRAFT">
+			<Text>Light aircrafts used for ground attack, they have a short range and are weak to enemy fighters, but they are your best choice to safely take out enemy armored vehicules.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_ASSAULT_GUN">
+			<Text>Gun or howitzer mounted on a motor vehicle or armored chassis, designed for use when attacking fortified positions. Strong against cities and fortified infantries, they can also be used succesfully against other armors, but are slow and weak in defense.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_ASSAULT_GUN">
+			<Text>Large and heavy assault guns, they are deadly against cities and fortified infantries, are feared by other armors, but are very slow and weaker in defense.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_LIGHT_TANK_DESTROYER">
+			<Text>Anti-tank guns mounted on wheeled or tracked chassis, generally using ambush to counter enemy tanks. They have lower mobility than tanks, and are weak on attack.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_TANK_DESTROYER">
+			<Text>Anti-tank guns mounted on an armored chassis, generally using ambush to counter enemy tanks. They have lower mobility than tanks, and are weak on attack.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_TANK_DESTROYER">
+			<Text>Large and heavy armored tank destroyers, they are lethal for other tanks. They have low mobility, and drain resources heavily.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_TANK">
+			<Text>Large and heavy armored tanks, they are very strong but slow and drain a lot of resources to be operational. Their size make them easy target for air attacks.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_CRUISER_TANK">
+			<Text>Cruiser tanks (also called cavalry tanks) are very fast moving tanks that can take advantage of gaps in the enemy front to cut it's supply lines. Lightly armed and lightly armored for better speed, they are no match for other tanks and weak in defense.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_LIGHT_TANK">
+			<Text>Light armored and fast moving tanks, needing less resources than normal tanks, good against infantry or for scouting.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_CRUISER">
+			<Text>Smaller than Battleships but larger than Destroyers, Cruisers have a well balanced combination of speed, range and firepower.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_CRUISER">
+			<Text>Heavy Cruisers are designed for long range mission, they move fast and are well armed with naval guns of roughly 203mm calibre.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_DREADNOUGHT">
+			<Text>Obsolete Battleships or Battlecruisers, they lack speed and are outclassed by modern battleships, but their heavy armament is still a threat for any other ships.</Text>
+		</Row>
+		
+	</Language_en_US>
+	
+	<!-- German -->
+	<Language_DE_DE>
+	</Language_DE_DE>
+	<!-- Spanish -->
+	<Language_ES_ES>
+	</Language_ES_ES>
+	<!-- French -->
+	<Language_FR_FR>
+	</Language_FR_FR>
+	<!-- Italian -->
+	<Language_IT_IT>
+	</Language_IT_IT>
+
+</GameData>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="400,300" Offset="200,32" Padding="0,0" Style="GridBlack16" ConsumeMouse="1">
+		<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+			<Label Offset="0,16" Anchor="L,T" String="Fluid FOW Key Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label Anchor="L,C" String="Fluid Density"/>
+				<Button  Anchor="L,C"  Style="Button_16" ID="Density_ButtonDown" Void1="2" String="&lt;"/>
+				<Button  Anchor="L,C"  Style="Button_16" ID="Density_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="L,C"  String="0" ID="Density_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label  Anchor="L,C" String="Speed"/>
+				<Button Anchor="L,C" Style="Button_16" ID="Speed_ButtonDown" Void1="2" String="&lt;"/>
+				<Button Anchor="L,C" Style="Button_16" ID="Speed_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="R,C"  String="0" ID="Speed_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label  Anchor="L,C" String="Drag"/>
+				<Button Anchor="L,C" Style="Button_16" ID="Drag_ButtonDown" Void1="2" String="&lt;"/>
+				<Button Anchor="L,C" Style="Button_16" ID="Drag_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="R,C"  String="0" ID="Drag_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label  Anchor="L,C" String="Master Size"/>
+				<Button Anchor="L,C" Style="Button_16" ID="MasterSize_ButtonDown" Void1="2" String="&lt;"/>
+				<Button Anchor="L,C" Style="Button_16" ID="MasterSize_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="R,C"  String="0" ID="MasterSize_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label  Anchor="L,C" String="ForceField Strength"/>
+				<Button Anchor="L,C" Style="Button_16" ID="ForceStrength_ButtonDown" Void1="2" String="&lt;"/>
+				<Button Anchor="L,C" Style="Button_16" ID="ForceStrength_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="R,C"  String="0" ID="ForceStrength_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label  Anchor="L,C" String="Max Rotate Speed"/>
+				<Button Anchor="L,C" Style="Button_16" ID="MaxRotate_ButtonDown" Void1="2" String="&lt;"/>
+				<Button Anchor="L,C" Style="Button_16" ID="MaxRotate_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="R,C"  String="0" ID="MaxRotate_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Button Anchor="Left,Top" Style="Button_128" ID="Reload_Button" Void1="0" String="Reload Textures"/>
+		</Stack>
+	</Grid>
+</Context>

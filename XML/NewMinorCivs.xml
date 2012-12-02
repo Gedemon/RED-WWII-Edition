@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+	<MinorCivilizations>
+		<Row>
+			<ID>0</ID>
+			<Type>MINOR_CIV_POLAND</Type>
+			<Description>Poland</Description>
+			<ShortDescription>Poland</ShortDescription>
+			<Adjective>Polish</Adjective>
+			<Civilopedia>The Sanacja movement controlled Poland until the start of World War II in 1939, when Nazi Germany invaded on 1 September and the Soviet invasion of Poland followed by breaking the Soviet–Polish Non-Aggression Pact on 17 September. Warsaw capitulated on 28 September 1939. As agreed in the Molotov–Ribbentrop Pact, Poland was split into two zones, one occupied by Germany while the eastern provinces fell under the control of the Soviet Union. (from Wikipedia)</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_WHITE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_NORWAY</Type>
+			<Description>Norway</Description>
+			<ShortDescription>Norway</ShortDescription>
+			<Adjective>Norwegian</Adjective>
+			<Civilopedia>Norway proclaimed its neutrality during World War II, but was invaded by German forces on 9 April 1940. Norway was unprepared for the German surprise attack, so military and naval resistance only lasted for two months. The armed forces in the north launched an offensive against the German forces in the Battles of Narvik, until they were forced to surrender on June 10 after losing British help following the Fall of France. (from Wikipedia)</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_MIDDLE_BLUE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_SWEDEN</Type>
+			<Description>Sweden</Description>
+			<ShortDescription>Sweden</ShortDescription>
+			<Adjective>Swedish</Adjective>
+			<Civilopedia>Sweden remained officially neutral during World War II, although its neutrality has been disputed. Sweden was under German influence for much of the war, as ties to the rest of the world were cut off through blockades. The Swedish government felt that it was in no position to openly contest Germany, and therefore made some concessions. Sweden also supplied steel and machined parts to Germany throughout the war. However, Sweden supported Norwegian resistance, and in 1943 helped rescue Danish Jews from deportation to concentration camps. Sweden also supported Finland in the Winter War and the Continuation War with volunteers and materiel.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_YELLOW</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_FINLAND</Type>
+			<Description>Finland</Description>
+			<ShortDescription>Finland</ShortDescription>
+			<Adjective>Finnish</Adjective>
+			<Civilopedia>During World War II, Finland fought the Soviet Union twice: in the Winter War of 1939–40 after the Soviet Union had attacked Finland; and in the Continuation War of 1941–44, following Operation Barbarossa, in which Germany invaded the Soviet Union. For 872 days, German and Finnish armies besieged Leningrad, the Soviet Union's second largest city. The siege of Leningrad resulted in the deaths of some one million of the city's inhabitants. After fighting a major Soviet offensive in June/July 1944 to a standstill, Finland reached an armistice with the Soviet Union. This was followed by the Lapland War of 1944–45, when Finland forced the Germans out of northern Finland.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LIGHT_BROWN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_DENMARK</Type>
+			<Description>Denmark</Description>
+			<ShortDescription>Denmark</ShortDescription>
+			<Adjective>Danish</Adjective>
+			<Civilopedia>Germany's invasion of Denmark on 9 April 1940 – code named Operation Weserübung – met only two hours of military resistance before the Danish government surrendered. Economic co-operation between Germany and Denmark continued until 1943, when the Danish government refused further co-operation and its navy sank most of its ships and sent as many of their officers as they could to neutral Sweden. During the war, the government was helpful towards the Danish Jewish minority, and the Danish resistance performed a rescue operation that managed to get most of them to Sweden and safety shortly before the Germans planned to round up the Danish Jews.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_RED</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_SWITZERLAND</Type>
+			<Description>Switzerland</Description>
+			<ShortDescription>Switzerland</ShortDescription>
+			<Adjective>Swiss</Adjective>
+			<Civilopedia>
+				During World War II, Switzerland was able to remain independent through a combination of military deterrence, concessions to Germany, and good fortune as larger events during the war delayed an invasion. Detailed plans were drawn up by the Germans, but never used. Under General Henri Guisan, a massive mobilisation of militia forces was ordered. The Swiss military strategy was changed from one of static defence at the borders to protect the economic heartland, to one of organised long-term attrition and withdrawal to strong, well-stockpiled positions high in the Alps known as the Reduit. Switzerland was an important base for espionage by both sides in the conflict and often mediated communications between the Axis and Allied powers.[NEWLINE][NEWLINE]
+				Switzerland's trade was blockaded by both the Allies and by the Axis. Economic cooperation and extension of credit to the Third Reich varied according to the perceived likelihood of invasion and the availability of other trading partners. Concessions reached a peak after a crucial rail link through Vichy France was severed in 1942, leaving Switzerland completely surrounded by the Axis. Over the course of the war, Switzerland interned over 300,000 refugees and the International Red Cross, based in Geneva, played an important part during the conflict. Strict immigration and asylum policies as well as the financial relationships with Nazi Germany raised controversy but not until the end of the 20th century, carrying on to this day with some Swiss banks and entities still refusing to surrender the assets deposited by victims of Nazi persecution.[NEWLINE][NEWLINE]
+				During the war, the Swiss Air Force engaged aircraft of both sides, shooting down 11 intruding Luftwaffe planes in May and June 1940, then forcing down other intruders after a change of policy following threats from Germany. The fact that the Swiss Air Force consistently beat the Luftwaffe was a recurring embarrassment for Hitler in World War II. The Allies acknowledged this, but the Allied Air Forces also many times intruded Swiss Air Space and made raids on several cities during the War. Over 100 Allied bombers and their crews were interned during the war. During 1944–45, Allied bombers mistakenly bombed a few places in Switzerland, among which were the cities of Schaffhausen, Basel and Zurich.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_SWISS</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_IRELAND</Type>
+			<Description>Ireland</Description>
+			<ShortDescription>Ireland</ShortDescription>
+			<Adjective>Irish</Adjective>
+			<Civilopedia>
+				The Ireland state was nominally neutral during World War II, a period known within the state as the "Emergency", though behind the scenes it worked closely with the Allies; for example the date of the D-Day Normandy landings was decided on the basis of transatlantic weather reports supplied by the Irish state. It is estimated that about 100,000 men from Ireland took part, with that number roughly evenly divided between Northern Ireland and the southern state. Tens of thousands more men who enlisted in Britain also gave next-of-kin addresses in Ireland, so the true figure is much higher. Conversely, following the suicide of Adolf Hitler, de Valera, following diplomatic protocol, controversially offered condolences to the German ambassador. The state's decision to adopt neutrality was influenced by memories of the Anglo-Irish War and the Civil War, and the state's lack of military preparedness for involvement in a war.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_MIDDLE_GREEN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_BALTIC_STATES</Type>
+			<Description>Baltic states</Description>
+			<ShortDescription>Baltic states</ShortDescription>
+			<Adjective>Balts</Adjective>
+			<Civilopedia>
+				Following the Molotov-Ribbentrop Pact of 1939, the Soviet Army entered eastern Poland as well as military bases in the Baltic states which were granted after U.S.S.R. had threatened the three countries with military invasion. In June 1940, the Red Army occupied all of the territory of Estonia, Latvia, and Lithuania, and the Red Army installed new, pro-Soviet governments in all three countries. Following rigged elections, in which only pro-communist candidates were allowed to run, the newly "elected" parliaments of the three countries formally applied to "join" the U.S.S.R. in August 1940 and were annexed into it as the Estonian SSR, the Latvian SSR, and the Lithuanian SSR.[NEWLINE][NEWLINE]
+				The Soviet control of the Baltic states was interrupted by Nazi German invasion of this region in 1941. The German occupation lasted until late 1944 (in Courland, until early 1945), when the countries were reoccupied by the Red Army. In all three countries, Baltic partisans, known colloquially as the Forest Brothers, Latvian national partisans, and Lithuanian partisans (1944 – 53), waged unsuccessful guerrilla warfare against the Soviet occupation for the next eight years in a bid to regain their nations' independence.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_CYAN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_NETHERLANDS</Type>
+			<Description>Netherlands</Description>
+			<ShortDescription>Netherlands</ShortDescription>
+			<Adjective>Dutch</Adjective>
+			<Civilopedia>
+				The Netherlands intended to remain neutral during the Second World War, although contingency plans involving the armies of Belgium, France and the United Kingdom were drawn up in case of German aggression. Despite this neutrality, Nazi Germany invaded the Netherlands on 10 May 1940 as part of their campaign against the Allied forces. French forces in the south and British ships in the west came to help but turned around quickly, evacuating many civilians and several thousand German prisoners of war from the German elite airborne divisions.[NEWLINE][NEWLINE]
+				The country was overrun in five days. Only after (but not because of) the bombing of Rotterdam, the main element of the Dutch army surrendered on 14 May 1940; although a Dutch and French force held the western part of Zeeland for some time after the surrender. The Kingdom as such, continued the war from the colonial empire; the government in exile resided in London.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ORANGE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_BELGIUM</Type>
+			<Description>Belgium</Description>
+			<ShortDescription>Belgium</ShortDescription>
+			<Adjective>Belgian</Adjective>
+			<Civilopedia>
+				On 10 May 1940, Germany's armed forces, the Wehrmacht, invaded Luxembourg, The Netherlands, and Belgium under the operational plan Fall Gelb (Case Yellow). The Allied Armies attempted to halt the German Army in Belgium, believing it to be the main German thrust. After the French had fully committed the best of the Allied Armies to Belgium between 10 and 12 May, the Germans enacted the second phase of their operation, a break-through, or sickle cut, through the Ardennes, and advanced towards the English Channel. The German Army (Heer) reached the Channel after five days, encircling the Allied Armies. The Germans gradually reduced the pocket of Allied forces, forcing them back to the sea. The Belgian Army surrendered on 28 May 1940, ending the battle.[NEWLINE][NEWLINE]
+				The Battle of Belgium included the first tank battle of the war, the Battle of Hannut. It was the largest tank battle in history up to that date but was later surpassed by the battles of the North African campaign and the Eastern Front. The battle also included the Battle of Fort Eben-Emael, the first strategic airborne operation using paratroopers.[NEWLINE][NEWLINE]
+				The German official history stated that in the 18 days of bitter fighting, the Belgian Army were tough opponents, and spoke of the "extraordinary bravery" of its soldiers. The Belgian collapse forced the Allied withdrawal from continental Europe. The British Royal Navy evacuated Belgian ports during Operation Dynamo, allowing the British Army to escape and continue military operations. Belgium was occupied by the Germans until the winter of 1944–1945, when it was liberated by the Western Alliance.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_CYAN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_YUGOSLAVIA</Type>
+			<Description>Yugoslavia</Description>
+			<ShortDescription>Yugoslavia</ShortDescription>
+			<Adjective>Yugoslav</Adjective>
+			<Civilopedia>
+				On April 6, 1941, German, Italian and Hungarian forces attacked Yugoslavia. The German Air Force (Luftwaffe) bombed Belgrade and other major Yugoslav cities. On April 17, representatives of Yugoslavia's various regions signed an armistice with Germany in Belgrade, ending 11 days of resistance against the invading German Army (Wehrmacht Heer). More than 300,000 Yugoslav officers and soldiers were taken prisoner.[NEWLINE][NEWLINE]
+				The Axis Powers occupied Yugoslavia and split it up. The Independent State of Croatia was established as a Nazi satellite state, ruled by the fascist militia known as the Ustaše that came into existence in 1929, but was relatively limited in its activities until 1941. German troops occupied Bosnia and Herzegovina as well as part of Serbia and Slovenia, while other parts of the country were occupied by Bulgaria, Hungary, and Italy. From 1941-45, the Croatian Ustaše regime murdered around 500,000 people, 250,000 were expelled, and another 200,000 were forced to convert to Catholicism; the victims were predominantly Serbs but included 37,000 Jews.[NEWLINE][NEWLINE]
+				From the start, the Yugoslav resistance forces consisted of two factions: the communist-led Yugoslav Partisans and the royalist Chetniks, with the former receiving Allied recognition only at the Tehran conference (1943). The heavily pro-Serbian Chetniks were led by Draža Mihajlović, while the pan-Yugoslav oriented Partisans were led by Josip Broz Tito.[NEWLINE][NEWLINE]
+				The Partisans initiated a guerrilla campaign that developed into the largest resistance army in occupied Western and Central Europe. The Chetniks were initially supported by the exiled royal government as well as the Allies, they but soon focused increasingly on combating the Partisans rather than the occupying Axis forces. By the end of the war, the Chetnik movement transformed into a collaborationist Serb nationalist militia completely dependent on Axis supplies. The highly mobile Partisans, however, carried on their guerrilla warfare with great success. Most notable of the victories against the occupying forces were the battles of Neretva and Sutjeska.[NEWLINE][NEWLINE]
+				On November 25, 1942, the Anti-Fascist Council of National Liberation of Yugoslavia was convened in Bihać, modern day Bosnia and Herzegovina. The council reconvened on November 29, 1943, in Jajce, also in Bosnia and Herzegovina, and established the basis for post-war organization of the country, establishing a federation (this date was celebrated as Republic Day after the war).[NEWLINE][NEWLINE]
+				The Yugoslav Partisans were able to expel the Axis from Serbia in 1944 and the rest of Yugoslavia in 1945. The Red Army provided limited assistance with the liberation of Belgrade and withdrew after the war was over. In May 1945, the Partisans met with Allied forces outside former Yugoslav borders, after also taking over Trieste and parts of the southern Austrian provinces of Styria and Carinthia. However, the Partisans withdrew from Trieste in June of the same year.[NEWLINE][NEWLINE]
+				Western attempts to reunite the Partisans, who denied the supremacy of the old government of the Kingdom of Yugoslavia, and the émigrés loyal to the king led to the Tito-Šubašić Agreement in June 1944; however, Marshal Josip Broz Tito was seen as a national hero by the citizens and was elected by referendum to lead the new independent communist state, starting as a prime minister.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LIGHT_PURPLE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_HUNGARY</Type>
+			<Description>Hungary</Description>
+			<ShortDescription>Hungary</ShortDescription>
+			<Adjective>Hungarian</Adjective>
+			<Civilopedia>
+				The Germans and Italians granted back to Hungary a part of southern Czechoslovakia and Subcarpathia in the First Vienna Award of 1938, and then northern Transylvania in the Second Vienna Award of 1940. In 1941, the Hungarian army took part in the invasion of Yugoslavia, regaining some more territories. On 22 June 1941, Germany invaded the Soviet Union under Operation Barbarossa; Hungary joined the German effort and declared war on the Soviet Union, and formally entered World War II on the side of the Axis Powers. In late 1941, the Hungarian troops on the Eastern Front experienced success at the Battle of Uman. By 1943, after the Hungarian Second Army suffered extremely heavy losses at the River Don, the Hungarian government sought to negotiate a surrender with the Allies. In 1944, as a result of this duplicity, German troops occupied Hungary in what was known as Operation Margarethe. Miklós Horthy made a token effort to disengage Hungary from the war, but he was replaced by a puppet government under the pro-German Prime Minister Ferenc Szálasi of the Arrow Cross Party.[NEWLINE][NEWLINE]
+				In late 1944, Hungarian troops on the Eastern Front again experienced success at the Battle of Debrecen, but this was followed immediately by the Soviet invasion of Hungary and the Battle of Budapest. During the German occupation in May–June 1944, the Arrow Cross Party and Hungarian police deported nearly 440,000 Jews, mostly to Auschwitz. The Swedish Diplomat Raoul Wallenberg managed to save a considerable number of Hungarian Jews by giving them Swedish passports, but when the Soviets arrived, he was arrested as a spy and disappeared. Rudolf Kastner (original spelling Kasztner), one of the leaders of the Hungarian Aid and Rescue Committee, negotiated with senior SS officers such as Adolf Eichmann to allow a number of Jews to escape in exchange for money, gold, and diamonds. Other diplomats also organized false papers and safe houses for Jews in Budapest and hundreds of Hungarian people were executed by the Arrow Cross Party for sheltering Jews.[NEWLINE][NEWLINE]
+				The war left Hungary devastated destroying over 60% of the economy and causing huge loss of life. On 13 February 1945, the Hungarian capital city surrendered unconditionally. By the agreement between the Czechoslovakian president Edvard Beneš and Joseph Stalin, wild expulsions of Hungarians from Czechoslovakia and Slovaks from Hungary started. 250,000 ethnic Germans were also transferred to Germany pursuant to article XIII of the Potsdam Protocol of 2 August 1945.[NEWLINE][NEWLINE]
+				The territories regained with the Vienna Awards and during World War II, were again lost by Hungary with the Paris Peace Treaty in 1947.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_LEMON</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_GREECE</Type>
+			<Description>Greece</Description>
+			<ShortDescription>Greece</ShortDescription>
+			<Adjective>Greek</Adjective>
+			<Civilopedia>
+				Despite the country's numerically small and ill-equipped armed forces, Greece made a decisive contribution to the Allied efforts in World War II. At the start of the war Greece sided with the Allies and refused to give in to Italian demands. Italy invaded Greece by way of Albania on 28 October 1940, but Greek troops repelled the invaders after a bitter struggle. This marked the first Allied victory in the war.[NEWLINE][NEWLINE]
+				Primarily to secure his strategic southern flank, German dictator Adolf Hitler reluctantly stepped in and launched the Battle of Greece. Troops from Germany, Bulgaria, and Italy successfully invaded Greece, through Yugoslavia, overcoming Greek, British, Australian, and New Zealand units.[NEWLINE][NEWLINE]
+				On 20 May 1941, the Germans attempted to seize Crete with a large attack by paratroops—with the aim of reducing the threat of a counter-offensive by Allied forces in Egypt—but faced heavy resistance. The Greek campaign might have delayed German military plans against Soviet Union and the heavy losses of German paratroopers led the Germans to launch no further large-scale air-invasions.[NEWLINE][NEWLINE]
+				During the years of Occupation of Greece by Nazi Germany, thousands of Greeks died in direct combat, in concentration camps, or of starvation. The occupiers murdered the greater part of the Jewish community despite efforts by the Greek Orthodox Church and many other Christian Greeks to shelter the Jews. The economy of Greece was devastated.[NEWLINE][NEWLINE]
+				When the Soviet Army began its drive across Romania in August 1944, the German Army in Greece began withdrawing north and northwestward from Greece into Yugoslavia and Albania to avoid being cut off in Greece. Hence, the German occupation of Greece ended in October 1944. British troops landed on 4 October in Patras, and entered Athens at October 13.[NEWLINE][NEWLINE]
+				During the period between 1942 and 1944, known as the first phase of the greek civil wars, marxist and non-Marxist resistance groups fought each other in a fratricidal conflict to establish the leadership of the Greek resistance movement. In the second phase (1944) the ascendant communists, in military control of most of Greece, confronted the returning Greek government in exile, which had been formed under Western Allied auspices in Cairo and originally included six KKE-affiliated ministers. In the third phase (commonly called the "Third Round" by the Communists) (1946–1949), guerrilla forces controlled by KKE fought against the internationally recognized Greek Government which was formed after elections boycotted by KKE.[NEWLINE][NEWLINE]
+				The civil war left Greece with a legacy of political polarization; as a result, Greece also entered into alliance with the United States and joined NATO, while relationships with its Communist northern neighbours, both pro-Soviet and neutral, became strained.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LIGHT_BLUE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ALBANIA</Type>
+			<Description>Albania</Description>
+			<ShortDescription>Albania</ShortDescription>
+			<Adjective>Albanian</Adjective>
+			<Civilopedia>
+				Starting in 1928, but especially during the Great Depression, the government of King Zog, which brought law and order to the country, began to cede Albania's sovereignty to Italy. Despite some insignificant resistance, especially at Durrës, Italy invaded Albania on 7 April 1939 and took control of the country, with the Italian Fascist dictator Benito Mussolini proclaiming Italy's figurehead King Victor Emmanuel III of Italy as King of Albania. The nation thus became one of the first to be occupied by the Axis Powers in World War II.[NEWLINE][NEWLINE]
+				As Hitler began his aggressions, Mussolini decided to occupy Albania as a means to compete with Hitler's territorial gains. Mussolini and the Italian Fascists saw Albania as a historical part of the Roman Empire, and the occupation was intended to fulfill Mussolini's dream of creating an Italian Empire. During the Italian occupation, Albania's population was subject to a policy of forced Italianization by the kingdom's Italian governors, in which the use of the Albanian language was discouraged in schools while the Italian language was promoted. At the same time, the colonization of Albania by Italians was encouraged.[NEWLINE][NEWLINE]
+				Mussolini, in October 1940, used his Albanian base to launch an attack on Greece, which led to the defeat of the Italian forces and the Greek occupation of Southern Albania in what was seen by the Greeks as the liberation of Northern Epirus. While preparing for the Invasion of Russia, Hitler decided to attack Greece in December 1940 to prevent a British attack on his southern flank.[NEWLINE][NEWLINE]
+				After the fall of Yugoslavia and Greece in April 1941, the Italian Fascists added to the territory of the Kingdom of Albania most of the Albanian-inhabited areas that had been previously given to the Kingdom of Yugoslavia. The Albanian fascists claimed in May 1941 that nearly all the Albanian populated territories were united to Albania. Even areas of northern Greece (Chameria) were administered by Albanians. But this was even a consequence of borders that Italy and Germany agreed on when dividing their spheres of influence. Some small portions of territories with Albanian majority remained outside the new borders and contact between the two parts was practically impossible: the Albanian population under the Bulgarian rule was heavily oppressed.[NEWLINE][NEWLINE]
+				Following the surrender of the Italian Army in September 1943, Albania was occupied by the Germans and soon exploded into a ferocious guerilla war.[NEWLINE][NEWLINE]
+				With the collapse of the Mussolini government in line with the Allied invasion of Italy, Germany occupied Albania in September 1943, dropping paratroopers into Tirana before the Albanian guerrillas could take the capital.[NEWLINE][NEWLINE]
+				The communist partizans entirely liberated Albania from German occupation on November 29, 1944, pursuing the German army till Višegrad, Bosnia (then Yugoslavia) in collaboration with the Yugoslav communist forces. The Albanian partisans also liberated Kosovo, part of Montenegro, and southern Bosnia and Herzegovina. By November 1944, they had thrown out the Germans, being with Yugoslavia the only East European nations to do so without any assistance from the Soviet Army. Enver Hoxha became the leader of the country by virtue of his position as Secretary General of the Albanian Communist Party. After having taken over power of the country, the Albanian communists launched a tremendous terror campaign, shooting intellectuals and arresting thousands of innocent people.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_CYAN_AND_LEMON</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_BULGARIA</Type>
+			<Description>Bulgaria</Description>
+			<ShortDescription>Bulgaria</ShortDescription>
+			<Adjective>Bulgarian</Adjective>
+			<Civilopedia>
+				In the 1920s and 1930s Bulgaria suffered political unrest, which led to the establishment of a royal authoritarian dictatorship by Tsar Boris III (reigned 1918–1943). After regaining control of Southern Dobrudzha in 1940, Bulgaria entered World War II in 1941 as a member of the Axis. However, it declined to participate in Operation Barbarossa and never declared war on the USSR, and saved its Jewish population from deportation to concentration camps by repeatedly postponing compliance with German demands, offering various rationales. In March 1943 almost 12,000 Jews in Thrace and Macedonia, both of which were administered by the Bulgarian government on behalf of the Nazis, were deported to Auschwitz and Treblinka. In the summer of 1943 Boris III died suddenly, an event which pushed the country into political turmoil as the war turned against Nazi Germany and the Communist guerilla movement gained more power.[NEWLINE][NEWLINE]
+				In September 1944 the Communist-dominated Fatherland Front took power, following strikes and unrest, ending the alliance with Nazi Germany and joining the Allied side until the end of the war in 1945. The Communist uprising of 9 September 1944 led to the abolition of monarchic rule, but it was not until 1946 that a people's republic was established. It came under the Soviet sphere of influence, with Georgi Dimitrov (1946–1949) as the foremost Bulgarian political leader.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ORANGE_AND_GREEN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ROMANIA</Type>
+			<Description>Romania</Description>
+			<ShortDescription>Romania</ShortDescription>
+			<Adjective>Romanian</Adjective>
+			<Civilopedia>
+				During the Second World War, Romania tried again to remain neutral, but on 28 June 1940, it received a Soviet ultimatum with an implied threat of invasion in the event of non-compliance. Under Nazi and Soviet pressure, the Romanian administration and the army were forced to retreat from Bessarabia as well from northern Bukovina to avoid war. This, in combination with other factors, prompted the government to join the Axis. Thereafter, southern Dobruja was ceded to Bulgaria, while Hungary received Northern Transylvania as result of an Axis arbitration.[NEWLINE][NEWLINE]
+				The authoritarian King Carol II abdicated in 1940, and succeeded by the National Legionary State, in which power was shared by Ion Antonescu and the Iron Guard. Within months, Antonescu had crushed the Iron Guard, and the subsequent year Romania entered the war on the side of the Axis powers. During the war, Romania was the most important source of oil for Nazi Germany, which attracted multiple bombing raids by the Allies. By means of the Axis invasion of the Soviet Union, Romania recovered Bessarabia and northern Bukovina from the Soviet Russia, under the leadership of general Ion Antonescu. The Antonescu regime played a major role in the Holocaust, following to a lesser extent the Nazi policy of oppression and massacre of the Jews, and Romma, primarily in the Eastern territories Romania recovered or occupied from the Soviet Union (Transnistria) and in Moldavia.[NEWLINE][NEWLINE]
+				In August 1944, Antonescu was toppled and arrested by King Michael I of Romania and Romania changed sides and joined the Allies. But its role in the defeat of Nazi Germany was not recognized by the Paris Peace Conference of 1947.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_BROWN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_SLOVAKIA</Type>
+			<Description>Slovakia</Description>
+			<ShortDescription>Slovakia</ShortDescription>
+			<Adjective>Slovak</Adjective>
+			<Civilopedia>
+				Slovakia seceded from Czecho-Slovakia in March 1939 and allied itself, as demanded by Germany, with Hitler's coalition. The government of the First Slovak Republic, led by Jozef Tiso and Vojtech Tuka, was strongly influenced by Germany and gradually became a puppet regime in many respects.[NEWLINE][NEWLINE]
+				Most Jews were deported from the country and taken to German labour camps. Thousands of Jews, however, remained to labor in Slovak work camps in Sered, Vyhne, and Nováky. Tiso, through the granting of presidential exceptions, has been credited with saving as many as 40,000 Jews during the war, although other estimates place the figure closer to 4,000 or even 1,000. Nevertheless, under Tiso's government, 83% of Slovakia's Jewish population, a total of 75,000 individuals, were murdered. Tiso became the only European leader to actually pay Nazi authorities to deport his country's Jews.[NEWLINE][NEWLINE]
+				After it became clear that the Soviet Red Army was going to push the Nazis out of eastern and central Europe, an anti-Nazi resistance movement launched a fierce armed insurrection, known as the Slovak National Uprising, near the end of summer 1944. A bloody German occupation and a guerilla war followed. The territory of Slovakia was liberated by Soviet and Romanian forces by the end of April 1945.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_GRAY</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_TURKEY</Type>
+			<Description>Turkey</Description>
+			<ShortDescription>Turkey</ShortDescription>
+			<Adjective>Turkish</Adjective>
+			<Civilopedia>
+				Turkey remained neutral during most of World War II but entered on the side of the Allies on February 23, 1945, as a ceremonial gesture and in 1945 became a charter member of the United Nations. Difficulties faced by Greece after the war in quelling a communist rebellion, along with demands by the Soviet Union for military bases in the Turkish Straits, prompted the United States to declare the Truman Doctrine in 1947. The doctrine enunciated American intentions to guarantee the security of Turkey and Greece, and resulted in large-scale U.S. military and economic support.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_PEACH</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_EGYPT</Type>
+			<Description>Egypt</Description>
+			<ShortDescription>Egypt</ShortDescription>
+			<Adjective>Egyptian</Adjective>
+			<Civilopedia>
+				In September 1940, Italian dictator Benito Mussolini sent Italian forces stationed in Libya to launch an invasion into British held Egypt and set up defensive forts at Sidi Barrani.[NEWLINE][NEWLINE]
+				Allied forces, though greatly outnumbered, launched the counter-attack Operation Compass. It was more successful than planned and resulted in massive numbers of Italian prisoners and the advance of the Allied forces up to El Agheila. This stunning defeat of Italian forces did not go unnoticed and soon the Deutsches Afrikakorps, commanded by Erwin Rommel were sent in to reinforce them.[NEWLINE][NEWLINE]
+				Adolf Hitler sent his army to North Africa starting in February 1941. Rommel's Afrikakorps coming from victories at Tobruk in Libya, and in a classic blitzkrieg, comprehensively outfought British forces. Within weeks the British had been pushed back into Egypt. Rommel's offensive was eventually stopped at the small railway halt of El Alamein, just 150 miles from Cairo.[NEWLINE][NEWLINE]
+				By July 1942 the German had struck deep into Egypt, threatening the vital Allied supply line across the Suez Canal. Faced with overextended supply lines and lack of reinforcements and yet well aware of massive Allied reinforcements arriving, Rommel decided to strike at the Allies while their build-up was still not complete. This attack on 30 August 1942 at Alam Halfa failed, and expecting a counterattack by Montgomery's Eighth Army, the Afrika Korps dug in.[NEWLINE][NEWLINE]
+				The leadership of the United Kingdom's General Bernard Montgomery at the Second Battle of El Alamein marked a significant turning point of World War II and was the first major victory by British Commonwealth forces over the German Army. The battle lasted from October 23 to November 3, 1942. Following the First Battle of El Alamein, which had stalled the Axis advance, British general Bernard Montgomery took command of the Eighth Army from Claude Auchinleck in August 1942. Success in the battle turned the tide in the North African Campaign. Some historians believe that the battle, along with the Battle of Stalingrad, were the two major Allied victories that contributed to the eventual defeat of Nazi Germany.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_SONGHAI</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_LIBYA</Type>
+			<Description>Libya</Description>
+			<ShortDescription>Libya</ShortDescription>
+			<Adjective>Libyan</Adjective>
+			<Civilopedia>
+				During World War II there was strong support for Italy from many Muslim Libyans, who enrolled in the Italian Army. Other Libyan troops (the Savari [cavalry regiments] and the Spahi or mounted police) had been fighting for the Kingdom of Italy since the 1920s.[NEWLINE][NEWLINE]
+				A number of major battles took place in Libya during the North African Campaign of World War II. In September 1940, the Italian invasion of Egypt was launched from Libya.[NEWLINE][NEWLINE]
+				Starting in December of the same year, the British Eigtht Army launched a counterattack called Operation Compass and the Italian forces were pushed back into Libya. After losing all of Cyrenaica and almost all of its Tenth Army, Italy asked for German assistance to aid the failing campaign. This was assisted by orders from London withdrawing a large part of the Army to redeploy to Greece. According to German General Erwin Rommel " On 8th Februrary, leading troops of the British Army occupied El Agheila...Graziani's Army had ceased to virtually exist. all that remained of it were a few lorry columns and hordes of unarmed soldiers in full flight to the West. If Wavell (sic) had now continued his advance into Tripolitania, no resistance worth of the name could have been mounted"[NEWLINE][NEWLINE]
+				With German support, the lost Libyan territory was regained and by the conclusion of Operation Brevity, German and Italian forces were entering Egypt. The Siege of Tobruk in April 1941, where Rommel's forces were defeated, marked the first failure of Blitzkrieg tactics. Defeat during the Second Battle of El Alamein in Egypt spelled doom for the Axis forces in Libya and meant the end of the Western Desert Campaign.[NEWLINE][NEWLINE]
+				In February 1943, retreating German and Italian forces were forced to abandon Libya as they were pushed out of Cyrenaica and Tripolitania, thus ending Italian jurisdiction and control over Libya.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_GREEN_AND_BLACK</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_SYRIA</Type>
+			<Description>Syria</Description>
+			<ShortDescription>Syria</ShortDescription>
+			<Adjective>Syrian</Adjective>
+			<Civilopedia>
+				Syria and France negotiated a treaty of independence in September 1936, and Hashim al-Atassi, who was Prime Minister under King Faisal's brief reign, was the first president to be elected under a new constitution, effectively the first incarnation of the modern republic of Syria. However, the treaty never came into force because the French Legislature refused to ratify it. With the fall of France in 1940 during World War II, Syria came under the control of the Vichy Government until the British and Free French occupied the country in July 1941. Syria proclaimed its independence again in 1941, but it was not until 1 January 1944 that it was recognised as an independent republic. Continuing pressure from Syrian nationalist groups and British pressure forced the French to evacuate their troops in April 1946, leaving the country in the hands of a republican government that had been formed during the mandate.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LIGHT_GREEN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_LEBANON</Type>
+			<Description>Lebanon</Description>
+			<ShortDescription>Lebanon</ShortDescription>
+			<Adjective>Lebanese</Adjective>
+			<Civilopedia>
+				Lebanon was part of the Ottoman Empire for over 400 years, until 1918 when the area became a part of the French Mandate following World War I. By the end of the war, famine had killed an estimated 100,000 people in Beirut and Mount Lebanon, about 30% of the total population. On 1 September 1920, France reestablished Greater Lebanon after the Moutasarrifiya rule removed several regions belonging to the Principality of Lebanon and gave them to Syria. Lebanon was a largely Christian (mainly Maronite with some Greek Orthodox) enclave but also included areas containing many Muslims (including Druze). On 1 September 1926, France formed the Lebanese Republic.[NEWLINE][NEWLINE]
+				Lebanon gained independence in 1943, while France was occupied by Germany. General Henri Dentz, the Vichy High Commissioner for Syria and Lebanon, played a major role in the independence of the nation. The Vichy authorities in 1941 allowed Germany to move aircraft and supplies through Syria to Iraq where they were used against British forces. The United Kingdom, fearing that Nazi Germany would gain full control of Lebanon and Syria by pressure on the weak Vichy government, sent its army into Syria and Lebanon.[NEWLINE][NEWLINE]
+				After the fighting ended in Lebanon, General Charles de Gaulle visited the area. Under political pressure from both inside and outside Lebanon, de Gaulle recognized the independence of Lebanon. On 26 November 1941 General Georges Catroux announced that Lebanon would become independent under the authority of the Free French government. Elections were held in 1943 and on 8 November 1943 the new Lebanese government unilaterally abolished the mandate. The French reacted by throwing the new government into prison. In the face of international pressure, the French released the government officials on 22 November 1943 and recognized the independence of Lebanon.[NEWLINE][NEWLINE]
+				The allies kept the region under control until the end of World War II. The last French troops withdrew in 1946. Lebanon's unwritten National Pact of 1943 required that its president be Maronite Christian, its speaker of the parliament to be a Shiite Muslim, its prime minister be Sunni Muslim, and the deputy speaker of Parliament and the deputy prime minister be Greek Orthodox.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_AZTEC</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ARABIA</Type>
+			<Description>Saudi Arabia</Description>
+			<ShortDescription>Saudi Arabia</ShortDescription>
+			<Adjective>Arabian</Adjective>
+			<Civilopedia>
+				Saudi Arabia was founded in 1932 with the union of the kingdoms of the Hejaz and Nejd. Although the territory within the Kingdom of Saudi Arabia's boundaries is largely arid desert or rocky infertile terrain - home for much of its history to tribal nomadic societies with only rudimentary state structures - it has twice in world history had a global impact. The first was in the 7th century when it became the cradle of Islam. The second was from the mid-20th century when the discovery of vast oil deposits propelled it into a key economic and geo-political role. At other times, the region existed in relative obscurity and isolation, although from the 7th century the cities of Mecca and Medina had the highest spiritual significance for the Islamic world, Mecca being the destination for the Hajj annual pilgrimage.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ARABIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_IRAQ</Type>
+			<Description>Iraq</Description>
+			<ShortDescription>Iraq</ShortDescription>
+			<Adjective>Iraqi</Adjective>
+			<Civilopedia>
+				Britain granted independence to Iraq in 1932, on the urging of King Faisal, though the British retained military bases and transit rights for their forces. King Ghazi ruled as a figurehead after King Faisal's death in 1933, while undermined by attempted military coups, until his death in 1939. Ghazi was followed by his under age son, Faisal II. 'Abd al-Ilah served as Regent during Faisal's minority.[NEWLINE][NEWLINE]
+				On 1 April 1941, Rashid Ali al-Gaylani and members of the Golden Square staged a coup d'état and overthrew the government of 'Abd al-Ilah. During the subsequent Anglo-Iraqi War, the United Kingdom invaded Iraq for fear that the Rashid Ali government might cut oil supplies to Western nations because of his links to the Axis powers. The war started on 2 May and an armistice was signed 31 May.[NEWLINE][NEWLINE]
+				A military occupation followed the restoration of the pre-coup government of the Hashemite monarchy. The occupation ended on 26 October 1947. The rulers during the occupation and the remainder of the Hashemite monarchy were Nuri al-Said, the autocratic Prime Minister, who also ruled from 1930–1932, and 'Abd al-Ilah, the former Regent who now served as an adviser to King Faisal II.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_GRAY</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_IRAN</Type>
+			<Description>Iran</Description>
+			<ShortDescription>Iran</ShortDescription>
+			<Adjective>Iranian</Adjective>
+			<Civilopedia>
+				Reza Shah tried to avoid involvement with Britain and the Soviet Union. Though many of his development projects required foreign technical expertise, he avoided awarding contracts to British and Soviet companies. Although Britain, through its ownership of the Anglo-Iranian Oil Company, controlled all of Iran's oil resources, Reza Shah preferred to obtain technical assistance from Germany, France, Italy, and other European countries. This created problems for Iran after 1939, when Germany and Britain became enemies in World War II. Reza Shah proclaimed Iran as a neutral country, but Britain insisted that German engineers and technicians in Iran were spies with missions to sabotage British oil facilities in southwestern Iran. Britain demanded that Iran expel all German citizens, but Reza Shah refused, claiming this would adversely impact his development projects.[NEWLINE][NEWLINE]
+				Following Germany's invasion of the Soviet Union in June 1941, Britain and the Soviet Union became allies. Britain and the USSR saw the newly-opened Trans-Iranian Railway as an attractive route to transport supplies from the Persian Gulf to the Soviet Union. In August 1941, because Reza Shah refused to expel the German nationals, Britain and the Soviet Union invaded Iran, arrested the Shah and sent him into exile, taking control of Iran's communications and railroad. In 1942 the United States, an ally of Britain and the USSR during the war, sent a military force to Iran to help maintain and operate sections of the railroad. Over the next few months, the three nations took control of Iran's oil resources and secured a supply corridor for themselves. Reza Shah's regime collapsed, and the American, British and Soviet authorities limited the powers of the rump government that remained. They permitted Reza Shah's son, Mohammad Reza Pahlavi to accede to the throne.[NEWLINE][NEWLINE]
+				In January 1942 they signed an agreement with Iran to respect Iran's independence and to withdraw their troops within six months of the war's end. In 1943 at the Tehran Conference, the United States reaffirmed this commitment. In 1945, the USSR refused to announce a timetable to leave Iran's northwestern provinces of East Azerbaijan and West Azerbaijan, where Soviet-supported autonomy movements had developed. At the time, the Tudeh Party of Iran, a communist party that was already influential and had parliamentary representation, was becoming increasingly militant, especially in the North. This promoted actions from the side of the government, including attempts of the Iranian armed forces to restore order in the Northern provinces. While the Tudeh headquarters in Tehran were occupied and the Isfahan branch crushed, the Soviet troops present in the Northern parts of the country prevented the Iranian forces from entering. Thus, by the late autumn of 1945, the North was virtually controlled by the Tudeh and its affiliates.[NEWLINE][NEWLINE]
+				The USSR withdrew its troops in May 1946, but tensions continued for several months. This episode was one of the precipitating events of the emerging Cold War, the postwar rivalry between the United States and its allies, and the USSR and its allies.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_PERSIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_PORTUGAL</Type>
+			<Description>Portugal</Description>
+			<ShortDescription>Portugal</ShortDescription>
+			<Adjective>Portuguese</Adjective>
+			<Civilopedia>
+				Portugal was one of only five European countries to remain neutral in World War II.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_RED_AND_GREEN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_MED</ArtStyleSuffix>
+			<ArtStylePrefix>MEDITERRANEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_SPAIN</Type>
+			<Description>Spain</Description>
+			<ShortDescription>Spain</ShortDescription>
+			<Adjective>Spanish</Adjective>
+			<Civilopedia>
+				From the Spanish Civil War (1936–39), the Nationalist forces, led by General Francisco Franco, emerged victorious with the support of Nazi Germany and Fascist Italy. Popular Front government side was supported by the Soviet Union and Mexico and International Brigades, including the American Abraham Lincoln Brigade, but it was not supported officially by the Western powers due to the British-led policy of Non-Intervention.[NEWLINE][NEWLINE]
+				The Civil War claimed the lives of over 500,000 people and caused the flight of up to a half-million citizens. Most of their descendants now live in Latin American countries, with some 300,000 in Argentina alone. The Spanish Civil War has been called the first battle of the Second World War; under Franco the country was neutral in the Second World War, although sympathetic to the Axis.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_YELLOW_AND_PINK</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_MED</ArtStyleSuffix>
+			<ArtStylePrefix>MEDITERRANEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_MOROCCO</Type>
+			<Description>Morocco</Description>
+			<ShortDescription>Morocco</ShortDescription>
+			<Adjective>Moroccan</Adjective>
+			<Civilopedia>
+				Most of Morocco was a protectorate of France during World War II. When France was defeated, Morocco came under the control of the Vichy regime, and therefore was nominally on the side of the Axis powers, although an active resistance movement operated. In November 1942, it was invaded by the Allies as part of Operation Torch. From that point, Moroccan volunteers (the Goumier) fought on the side of the Allies.[NEWLINE][NEWLINE]
+				A small area in northern Morocco, Spanish Morocco, was a Spanish protectorate and remained neutral throughout the war, as did the international city of Tangier.[NEWLINE][NEWLINE]
+				Morocco did send troops to fight the Germans in North Africa, led by General Eli Kaltmann a small number of Moroccan troops fought against the Nazi regime.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_DARK_GREEN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ALGERIA</Type>
+			<Description>Algeria</Description>
+			<ShortDescription>Algeria</ShortDescription>
+			<Adjective>Algerian</Adjective>
+			<Civilopedia>
+				During World War II, the French Third Republic was overthrown and its replacement, the Vichy government, proved very unpopular among Algerians, since it increased taxes to pay for the war effort and supported racial policies that favored people of French ancestry. In Algeria, local hopes were raised by the Allied invasion of North Africa in 1942-1943, but dashed again when the Allies kept the existing Vichy military commanders in positions of authority.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_WHITE_AND_GREEN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_TUNISIA</Type>
+			<Description>Tunisia</Description>
+			<ShortDescription>Tunisia</ShortDescription>
+			<Adjective>Tunisian</Adjective>
+			<Civilopedia>
+				During World War II, French authorities in Tunisia initially supported the rightest Vichy regime, which continued to govern the southern provinces of France after its capitulation to German forces in 1940. Many Tunisians had felt some satisfaction at France's defeat. In July, 1942, Moncef Bey acceded to the Husaynid throne. Immediately he took a nationalist position, asserting Tunisian rights against the new Resident General appointed by Vichy. He toured the country, dispensing with beylical protocol. Soon becoming very popular as the new voice of Tunisians, Moncef Bey had assumed the place of leaders of the effectively suppressed Destour and Neo-Destour parties.[NEWLINE][NEWLINE]
+				In Africa east of Tunisia, after initial victories the German General Erwin Rommel, lacking supplies and reinforcements, in November 1942 lost the decisive battle of al-Alamein (near Alexandria, Egypt) to the newly replenished British General Bernard Montgomery, the fighting ending November 4, 1942. On November 7, the Allies began landing forces in Morocco (Operation Torch). The German Afrika Korps retreated from Egypt westward to Tunisia and set up defensive positions at the Mareth Line south of Gabès. The British following on its heels here eventually broke through. Rommel did have some success against the "green" American and Free French troops advancing from the west. General George Patton, however, later beat Rommel in battle. The fighting ended in May 1943. Tunisia became a staging area for operations in the invasion of Sicily later that year. General Dwight Eisenhower subsequently wrote of the occupation of Tunisia (evidently following an anti-colonial policy, yet one compromised) "far from governing a conquered country, we were attempting only to force a gradual widening of the base of government, with the final objective of turning all internal affairs over to popular control."[NEWLINE][NEWLINE]
+				Following the Allied landings in Morocco in late 1942, Vichy France and Tunisia were taken over by the Axis, Tunisia being flooded with German forces. During this period (November 1942 to May 1943) Moncef Bey "judiciously refused to take sides". He did, however, use what leverage he could muster to appoint the first Tunisian government since 1881, which was inclusive of the then political landscape, containing some pro-Allied elements. Later, with the advent of Allied control, French colons began falsely denouncing Moncef Bey as a German collaborator and seeking his removal; they were appeased. "Late in 1943 Musif Bey was deposed by the French on the pretext that he had collaborated with the enemy."[NEWLINE][NEWLINE]
+				Habib Bourguiba, the leading figure in the Neo-Destour party, had been taken to Rome from Vichy France by the Germans, and feted there to further Italian designs on Tunisia; then he was repatriated to his Axis-occupied homeland. But Bourguiba remained pro-Independence without being anti-French (his wife being French). In Tunisia, however, some pro-German Destour leaders had been willing to work with the Third Reich, despite Bourguiba's persistent warnings. After the war, Bourguiba's American connections managed to clear him of false charges that he was a collaborator. Then with Salah Ben Yusef he began to rebuild the Neo-Destour political organization.[NEWLINE][NEWLINE]
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DARK_YELLOW</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_PALESTINE</Type>
+			<Description>Palestine</Description>
+			<ShortDescription>Palestine</ShortDescription>
+			<Adjective>Palestinian</Adjective>
+			<Civilopedia>
+				Palestine remained under the British Mandate system during the war. During the war, it acted as a location of hostilities, as a staging area for the British and a source of troops. In July 1940, Italy began bombing Tel Aviv, Haifa and other coastal cities.[NEWLINE][NEWLINE]
+				Since Nazi Germany was seen as a greater threat, Ben Gurion ordered the Jews in Palestine to set aside their grievances against the British stemming for the 1939 White Paper restricting Jewish immigration to Palestine, stating "support the British as if there is no White Paper and oppose the White Paper as if there is no war".[NEWLINE][NEWLINE]
+				During the Syria-Lebanon Campaign starting on 8 June 1941, many volunteers from Palestine participated in the fighting, including Palmach units that had been attached to allied troops.[NEWLINE][NEWLINE]
+				In order to maintain the status quo ante bellum between the Jews and the Arabs, the British instated a policy of equal recruitment from both groups to the Palestine Regiment. However, due to the events of the 1936–1939 Arab revolt in Palestine and the alliance of exiled former Grand Mufti of Jerusalem Hajj Mohammad Amin al-Husayni with Adolf Hitler, only one Arab volunteered for every three Jewish volunteers. On August 6, 1942, the policy was relinquished and the regiment was formed, containing three Jewish battalions and one Arab. The regiment was assigned mostly to guard duty in Egypt and North Africa.[NEWLINE][NEWLINE]
+				On July 3, 1944, Britain agreed to allow the Jews to fight against the Nazis directly and not just in a supportive role. Thus the three Jewish battalions of the Palestine Regiment together with the 200th Field Regiment were reorganized under the aegis of the Jewish Brigade, which would see action in Italy.[NEWLINE][NEWLINE]
+				At the start of the war, approximately a thousand German nationals residing in Palestine known as Templers were deported by Britain to Australia, where they were held in internment camps until 1946–47. Although some had been registered members of the Nazi party and Nazi marches had taken place in their settlements, no evidence has been presented until now that the majority supported Hitler. Although their property had been confiscated by the British authorities, the State of Israel chose to compensate them in 1962. Their settlements would later greatly influence Israeli urban architecture.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_PINK</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<!-- Hidden -->
+
+		<Row>
+			<Type>MINOR_CIV_VICHY</Type>
+			<Description>Vichy France</Description>
+			<ShortDescription>Vichy France</ShortDescription>
+			<Adjective>Vichy French</Adjective>
+			<Civilopedia>
+				Vichy France, Vichy Regime, or Vichy Government, are common terms used to describe the government of France that allied with the Axis powers for industrial purposes from July 1940 to August 1944. This government succeeded the Third Republic and preceded the Provisional Government of the French Republic. It officially called itself the French State (État Français), in contrast with the previous designation, the French Republic.[NEWLINE][NEWLINE]
+				Marshal Philippe Pétain proclaimed the government following the military defeat of France by Germany during World War II and the vote by the National Assembly on 10 July 1940. This vote granted extraordinary powers to Pétain, the last Président du Conseil (Prime Minister) of the Third Republic, who then took the additional title Chef de l'État Français ("Chief of the French State"). Pétain headed the reactionary program of the so-called "Révolution nationale", aimed at "regenerating the nation."[NEWLINE][NEWLINE]
+				The Vichy regime maintained some legal authority in the northern zone of France (the Zone occupée), which was occupied by the German Wehrmacht. Its laws, however, were only applied where they did not contradict German ones. This meant that the regime was most powerful in the unoccupied southern "free zone", where its administrative centre of Vichy was located, until November 1942. After the landing of the Allied forces in North Africa on 8 November 1942, Hitler ordered the occupation of France's free zone, after which the former free zone was subject to German rule like the northern zone, except for a sliver along the Alps that was under Italian rule until September 1942.[NEWLINE][NEWLINE]
+				In the aftermath of the 1940 defeat, Pétain collaborated actively with the German occupying forces. Vichy forces refused to surrender or save the fleet at Mers-el-Kebir for the Allies and fought the Allied invasion of French-controlled Syria and Lebanon in June–July 1941, with just above 15% of the resulting prisoners of war electing to join Free French forces while the others were repatriated to metropolitan France to be demobilized. However, the military ties with Germany weakened over time. The Vichy-mandated Scuttling of the French fleet in Toulon stands in contrast to the Mers-el-Kebir episode of two years earlier, and the Vichy French forces put up limited resistance to the Allied invasion of North Africa, with more commanders and units in Africa joining the Free French forces. The Vichy leaders collaborated as far as ordering the French police and the local milice (militiamen) to go on raids to capture Jews and other minorities considered "undesirables" by Germany as well as political opponents and members of the Resistance, thus helping enforce German policy in occupied zones. Vichy also promulgated its own, German-inspired laws and policies that restricted political freedom and took rights away from foreigners and racial minorities.[NEWLINE][NEWLINE]
+				The legitimacy of Vichy France and Pétain's leadership was constantly challenged by the exiled General Charles de Gaulle, who claimed to represent the legitimacy and continuity of the French government. Public opinion turned against the Vichy regime and the occupying German forces over time, and resistance to them grew within France. Following the Allies' invasion of France in Operation Overlord, de Gaulle proclaimed the Provisional Government of the French Republic (GPRF) in June 1944. After the Liberation of Paris in August, the GPRF installed itself in Paris on 31 August. The GPRF was recognized as the legitimate government of France by the Allies on 23 October 1944.[NEWLINE][NEWLINE]
+				On 20 August 1944, the Vichy officials and chief supporters were moved to Sigmaringen in Germany and there established a government in exile, headed by Fernand de Brinon, until early April 1945. Most of the Vichy regime's leaders were subsequently sentenced by the GPRF and a number of them were executed. Pétain himself was sentenced to death for treason, but his sentence was commuted to life imprisonment.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_CYAN_AND_GRAY</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_AFRICA_FREE_FRANCE</Type>
+			<Description>Free France</Description>
+			<ShortDescription>Free France</ShortDescription>
+			<Adjective>Free French</Adjective>
+			<Civilopedia>
+				After the fall of France in 1940, the French colonies of Cameroun and French Equatorial Africa (except for Gabon) joined the Free French while the remainder sided with the Vichy Regime. With the addition of French African colonies came a large number of African colonial troops. From July to November 1940, Free French forces fought French troops loyal to Vichy France during the West African Campaign. The outcome of this campaign was mixed with the Vichy French claiming victory at the Battle of Dakar and the Free French claiming victory at the Battle of Gabon. The French West African colonies remained Vichy French and the French Equatorial African colonies, now including Gabon, remained Free French.[NEWLINE][NEWLINE]
+				In Asia and the Pacific, the French South Pacific colonies of New Caledonia, French Polynesia and the New Hebrides joined the Free French later. The South Pacific colonies would become vital Allied bases in the Pacific Ocean. French Indochina was invaded by Japan in September 1940, although the colony remained under nominal Vichy control. On 9 March 1945, the Japanese took full control of Indochina and launched the Second French Indochina Campaign.[NEWLINE][NEWLINE]
+				In North America, Saint-Pierre and Miquelon (near Canada) joined the Free French after an "invasion" on 24 December 1941 by Rear Admiral Emile Muselier and the forces he was able to load onto three corvettes and a submarine of the Free French Naval Forces (Forces navales françaises libres, or FNFL).[NEWLINE][NEWLINE]
+				During 1941, Free French units fought with the British Commonwealth army against Italian troops in Ethiopia and Eritrea during the East African Campaign. During the Syria-Lebanon Campaign, Free French forces fighting alongside British Commonwealth forces once more faced French troops loyal to Vichy France — this time in the Levant. By July 1941, General Henri Dentz and his Vichy Army of the Levant were defeated. Free French General Georges Catroux was appointed as High Commissioner of the Levant. From this point, Free France controlled both Syria and Lebanon until they became independent.[NEWLINE][NEWLINE]
+				In Africa, the Vichy colonies were gradually overthrown as Free French forces took part in the allied campaigns on the continent. Free French soldiers participated in the Allied North African campaign, in Libya and Egypt. General Marie Pierre Koenig and his unit, the 1st Free French Brigade, fought well against the Afrika Korps at the Battle of Bir Hakeim in June 1942, although eventually obliged to withdraw. To the west the Allies launched Operation Torch, an invasion of Vichy-controlled French North Africa in November 1942. Many Vichy troops surrendered and joined the Free French cause. Vichy coastal defences were captured by the French Resistance. Vichy General Henri Giraud rejoined the Allies, but he lacked the authority that was required and de Gaulle kept his leadership of the Free French, despite American objections. In late 1942, after the Battle of Madagascar, the Vichy French forces under Governor-General Armand Léon Annet were defeated and Free French General Paul Legentilhomme was appointed High Commissioner for Madagascar. On 28 December, after a prolonged blockade, the Vichy forces in French Somaliland were ousted.[NEWLINE][NEWLINE]
+				The Nazi Germans lost faith in the Vichy regime after Operation Torch and, during Case Anton in November 1942, German and Italian forces occupied Vichy France. In response, the 60,000-strong Vichy forces in French North Africa — the Army of Africa — joined the Allied side as the French XIX Corps within the British 1st Army, which also included the U.S. II Corps and two British corps. They fought in Tunisia for six months until April 1943. Using antiquated equipment, the XIX Corps took heavy casualties (16,000) against modern armour and a desperate Axis enemy.[NEWLINE][NEWLINE]
+				After these successes, Guadeloupe and Martinique in the West Indies, as well as French Guiana on the northern coast of South America, joined Free France in 1943. In November 1943, the French forces received enough military equipment through Lend-Lease to re-equip eight divisions and allow the return of borrowed British equipment. At this point, the Free French and ex-Vichy French Corps were merged. In 1943, Colonel (later General) Philippe Leclerc and Lieutenant-Colonel Camille d'Ornano led a column of 16,500 colonial troops from Chad to attack Italian forces in southern Libya and to occupy Kufra in the Fezzan region.
+			</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_FRANCE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+	</MinorCivilizations>
+	<MinorCivilization_CityNames>
+		<Row>
+			<MinorCivType>MINOR_CIV_PALESTINE</MinorCivType>
+			<CityName>HAIFA</CityName>
+		</Row>
+	</MinorCivilization_CityNames>
+	<MinorCivilization_Flavors>
+		<Row>
+			<MinorCivType>MINOR_CIV_PALESTINE</MinorCivType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>5</Flavor>
+		</Row>
+		<Row>
+			<MinorCivType>MINOR_CIV_PALESTINE</MinorCivType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<MinorCivType>MINOR_CIV_PALESTINE</MinorCivType>
+			<FlavorType>FLAVOR_WONDER</FlavorType>
+			<Flavor>0</Flavor>
+		</Row>
+		<Row>
+			<MinorCivType>MINOR_CIV_PALESTINE</MinorCivType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>0</Flavor>
+		</Row>
+	</MinorCivilization_Flavors>
+	
+	<!-- Earth 1941 -->
+
+	<MinorCivilizations>
+		<Row>
+			<Type>MINOR_CIV_SOUTHAFRICA</Type>
+			<Description>South Africa</Description>
+			<ShortDescription>South Africa</ShortDescription>
+			<Adjective>South African</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_CAPE_TOWN_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_SOUTHAFRICA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_AFGHANISTAN</Type>
+			<Description>Afghanistan</Description>
+			<ShortDescription>Afghanistan</ShortDescription>
+			<Adjective>Afghan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_KUALA_LUMPUR_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_AFGHANISTAN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
+			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
+			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_THAILAND</Type>
+			<Description>Thailand</Description>
+			<ShortDescription>Thailand</ShortDescription>
+			<Adjective>Thai</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_HANOI_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_THAILAND</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_ASIAN</ArtStyleType>
+			<ArtStyleSuffix>_ASIA</ArtStyleSuffix>
+			<ArtStylePrefix>ASIAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_NEWZEALAND</Type>
+			<Description>New Zealand</Description>
+			<ShortDescription>New Zealand</ShortDescription>
+			<Adjective>New Zealander</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_EDINBURGH_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_NEWZEALAND</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_CUBA</Type>
+			<Description>Cuba</Description>
+			<ShortDescription>Cuba</ShortDescription>
+			<Adjective>Cuban</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_CUBA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_HAITI</Type>
+			<Description>Haiti</Description>
+			<ShortDescription>Haiti</ShortDescription>
+			<Adjective>Haitian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_HAITI</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_DOMINICANREPUBLIC</Type>
+			<Description>Dominican Republic</Description>
+			<ShortDescription>Dominican Republic</ShortDescription>
+			<Adjective>Dominican</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_DOMINICANREPUBLIC</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ECUADOR</Type>
+			<Description>Ecuador</Description>
+			<ShortDescription>Ecuador</ShortDescription>
+			<Adjective>Ecuadorian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ECUADOR</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_PANAMA</Type>
+			<Description>Panama</Description>
+			<ShortDescription>Panama</ShortDescription>
+			<Adjective>Panamanian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_PANAMA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_HONDURAS</Type>
+			<Description>Honduras</Description>
+			<ShortDescription>Honduras</ShortDescription>
+			<Adjective>Honduran</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_HONDURAS</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_GUATAMALA</Type>
+			<Description>Guatamala</Description>
+			<ShortDescription>Guatamala</ShortDescription>
+			<Adjective>Guatamalan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_GUATAMALA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ELSALVADOR</Type>
+			<Description>El Salvador</Description>
+			<ShortDescription>El Salvador</ShortDescription>
+			<Adjective>Salvadoran</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ELSALVADOR</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_COSTARICA</Type>
+			<Description>Costa Rica</Description>
+			<ShortDescription>Costa Rica</ShortDescription>
+			<Adjective>Costa Rican</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_COSTARICA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_NICARAGUA</Type>
+			<Description>Nicaragua</Description>
+			<ShortDescription>Nicaragua</ShortDescription>
+			<Adjective>Nicaraguan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_NICARAGUA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_TIBET</Type>
+			<Description>Tibet</Description>
+			<ShortDescription>Tibet</ShortDescription>
+			<Adjective>Tibetan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_LHASA_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_TIBET</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_ASIAN</ArtStyleType>
+			<ArtStyleSuffix>_ASIA</ArtStyleSuffix>
+			<ArtStylePrefix>ASIAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_MONGOLIA</Type>
+			<Description>Mongolia</Description>
+			<ShortDescription>Mongolia</ShortDescription>
+			<Adjective>Mongolian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_MONGOLIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_URAGUAY</Type>
+			<Description>Uraguay</Description>
+			<ShortDescription>Uraguay</ShortDescription>
+			<Adjective>Uraguayan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_URAGUAY</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_PARAGUAY</Type>
+			<Description>Paraguay</Description>
+			<ShortDescription>Paraguay</ShortDescription>
+			<Adjective>Paraguayan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_PARAGUAY</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_VENEZUELA</Type>
+			<Description>Venezuela</Description>
+			<ShortDescription>Venezuela</ShortDescription>
+			<Adjective>Venezuelan</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_VENEZUELA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_PERU</Type>
+			<Description>Peru</Description>
+			<ShortDescription>Peru</ShortDescription>
+			<Adjective>Peruvian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_PERU</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_MEXICO</Type>
+			<Description>Mexico</Description>
+			<ShortDescription>Mexico</ShortDescription>
+			<Adjective>Mexican</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_MEXICO</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_COLOMBIA</Type>
+			<Description>Colombia</Description>
+			<ShortDescription>Colombia</ShortDescription>
+			<Adjective>Colombian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_COLOMBIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_CHILE</Type>
+			<Description>Chile</Description>
+			<ShortDescription>Chile</ShortDescription>
+			<Adjective>Chilean</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_CHILE</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_BOLIVIA</Type>
+			<Description>Bolivia</Description>
+			<ShortDescription>Bolivia</ShortDescription>
+			<Adjective>Bolivian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_BOLIVIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_CANADA</Type>
+			<Description>Canada</Description>
+			<ShortDescription>Canada</ShortDescription>
+			<Adjective>Canadian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_CANADA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_AUSTRALIA</Type>
+			<Description>Australia</Description>
+			<ShortDescription>Australia</ShortDescription>
+			<Adjective>Australian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_AUSTRALIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ARGENTINA</Type>
+			<Description>Argentina</Description>
+			<ShortDescription>Argentina</ShortDescription>
+			<Adjective>Argentinian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ARGENTINA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_BRAZIL</Type>
+			<Description>Brazil</Description>
+			<ShortDescription>Brazil</ShortDescription>
+			<Adjective>Brazilian</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_BRAZIL</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_COMMUNISTCHINA</Type>
+			<Description>Communist China</Description>
+			<ShortDescription>Communist China</ShortDescription>
+			<Adjective>Communist Chinese</Adjective>
+			<Civilopedia>TXT_KEY_CIV5_LHASA_TEXT</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_COMMUNISTCHINA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_ASIAN</ArtStyleType>
+			<ArtStyleSuffix>_ASIA</ArtStyleSuffix>
+			<ArtStylePrefix>ASIAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_LUXEMBOURG</Type>
+			<Description>Luxembourg</Description>
+			<ShortDescription>Luxembourg</ShortDescription>
+			<Adjective>Luxembourgish</Adjective>
+			<Civilopedia>During World War II Luxembourg tried to stay nuetral but on May 10th 1940 they would be invaded by the German blitzkrieg just like so many other nations. They were liberated in 1945 by Allied troops and they would soon after be a founder of the United Nations and the European Union.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LUXEMBOURG</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_AUSTRIA</Type>
+			<Description>Austria</Description>
+			<ShortDescription>Austria</ShortDescription>
+			<Adjective>Austrian</Adjective>
+			<Civilopedia>After World War I Austria was carved out of the German and Austrio-Hungarian empires, however in 1938 it would be annexed once again by Germany. After World War II, Austria would gain it's freedom in 1955 becoming apart of NATO and the western Allies.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_AUSTRIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_CZECHOSOLVAKIA</Type>
+			<Description>Czechosolvakia</Description>
+			<ShortDescription>Czechosolvakia</ShortDescription>
+			<Adjective>Czech</Adjective>
+			<Civilopedia>After World War I Czechosolvakia was carved out of the German and Austrio-Hungarian empires, in 1938 it was annexed by German through Hitler "Sudentenland" Claims. After it was liberated in 1945 it would soon fall into Communist hands and become apart of the Warsaw Pact.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_CZECHOSOLVAKIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_NATIONALISTSPAIN</Type>
+			<Description>Nationalist Spain</Description>
+			<ShortDescription>Nationalist Spain</ShortDescription>
+			<Adjective>Spanish</Adjective>
+			<Civilopedia>Led by Francisco Franco, the Nationalists rose up against the Republican government in 1936. After a long an bloody civil war, the Nationalists would win with the help of Facist Italy and Nazi Germany. Seizing the Opportunity Franco imposed an Autocratic dictatorship but would stay nuetral through World War II.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_NATIONALISTSPAIN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_MED</ArtStyleSuffix>
+			<ArtStylePrefix>MEDITERRANEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_REPUBLICANSPAIN</Type>
+			<Description>Republican Spain</Description>
+			<ShortDescription>Republican Spain</ShortDescription>
+			<Adjective>Spanish</Adjective>
+			<Civilopedia>Republican Spain entered a bloody civil war in 1936, when the Nationalists rose up against their government. Gaining much support from the Soviet Union and minor support from the western Allies, they would be defeated becoming a foot note in history.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_REPBULICANSPAIN</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleSuffix>_MED</ArtStyleSuffix>
+			<ArtStylePrefix>MEDITERRANEAN </ArtStylePrefix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_ESTONIA</Type>
+			<Description>Estonia</Description>
+			<ShortDescription>Estonia</ShortDescription>
+			<Adjective>Estonian</Adjective>
+			<Civilopedia>Estonia, trying to remain nuetral during World War II would not be succesful the Soviet Union would eventually annex Estonia as part of their nation, many Estonians would join the Finnish to fight against the Soviets.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_ESTONIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_LATVIA</Type>
+			<Description>Latvia</Description>
+			<ShortDescription>Latvia</ShortDescription>
+			<Adjective>Latvian</Adjective>
+			<Civilopedia>Latvia trying to remain nuetral during World War II would not be successful as the Soviet Union would eventually annex them, many Latvians would fight for Germany in order to prevent the Soviet Union from reoccupying them.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LATVIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_LITHUANIA</Type>
+			<Description>Lithuania</Description>
+			<ShortDescription>Lithuania</ShortDescription>
+			<Adjective>Lithuanian</Adjective>
+			<Civilopedia>Lithuania trying to remain nuetral during World War II would not be successful as the Soviet Union would eventually annex them, many Lithuanians would fight for Germany in order to prevent the Soviet Union from reoccupying them.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_LITHUANIA</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+		<Row>
+			<Type>MINOR_CIV_CENTRALAMERICA</Type>
+			<Description>Central America</Description>
+			<ShortDescription>Central America</ShortDescription>
+			<Adjective>Central American</Adjective>
+			<Civilopedia>Central America represents the many nations around the area of Central American and the Caribbean. Central America would be unaffected by the war but in 1942 to 1945 many of the countries located in this area would join the Allies. Some of them contributed to the founding of the United Nations.</Civilopedia>
+			<DefaultPlayerColor>PLAYERCOLOR_HONDURAS</DefaultPlayerColor>
+			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
+			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
+			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
+			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
+		</Row>
+	</MinorCivilizations>
+	
+</GameData>

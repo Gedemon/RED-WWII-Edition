@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context>
+
+    <Instance Name="NaturalWonder" >
+        <WorldAnchor ID="Anchor" >
+            <Image Size="64,64" TextureOffset="192,0" Anchor="C,C" Offset="0,40" Texture="Assets/UI/Art/Icons/NaturalWonders256.dds" ID="Icon" />
+        </WorldAnchor>
+    </Instance>
+
+    <Container ID="NaturalWonderStore" />
+
+	<Instance Name="SettlerReccomendation" >
+		<WorldAnchor ID="Anchor" >
+			<Image Size="64,64" TextureOffset="128,320" Anchor="C,C" Texture="Assets/UI/Art/Icons/Promotions512.dds" ID="Icon" />
+		</WorldAnchor>
+	</Instance>
+
+	<Container ID="SettlerReccomendationStore" />
+
+	<Instance Name="WorkerReccomendation" >
+		<WorldAnchor ID="Anchor" >
+			<Image Size="45,45" Anchor="C,C" ID="Icon" />
+		</WorldAnchor>
+	</Instance>
+
+	<Container ID="WorkerReccomendationStore" />
+
+</Context>

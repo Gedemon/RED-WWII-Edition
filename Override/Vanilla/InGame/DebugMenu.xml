@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio - FREE Community Edition 7.1.4.1284 (http://www.liquid-technologies.com) -->
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="200,640" Offset="4,32" Padding="0,0" ID="DebugMenu" Style="GridBlack16">
+		<Stack Anchor="L,C" Offset="0,0" Padding="15" StackGrowth="Bottom">
+			<Box Offset="0.10" Size="200,600" Color="0,0,0,0" ConsumeMouse="1">
+				<Label Anchor="C,T" Offset="0,0" String="Debug Panel" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Label Anchor="C,T" Offset="0,20" String="Press ~ to hide" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Label Anchor="C,B" Offset="0,0" String="InvalidVersionNumber" ID="VersionNumber_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				<Stack Padding="40" Offset="10`,40" StackGrowth="Right">
+					<Stack Padding="5" StackGrowth="Bottom">
+						<Button Style="Button_128" Anchor="C,Top" Void2="17" ID="GraphicsPanel_Button" String="Graphics Panel"/>
+						<Button Style="Button_128" Anchor="C,Top" Void2="21" ID="HexDebugTextPanel_Button" String="Hex Debug Panel"/>
+						<Button Style="Button_128" Anchor="C,Top" Void2="22" ID="DebugModePanel_Button" String="Debug Mode Panel"/>
+						<Button Style="Button_128" Anchor="C,Top" Void2="14" ID="DebugAudio_Button" String="Debug Audio"/>
+						<Button Style="Button_128" Anchor="C,Top" Void2="15" ID="DebugTerrain_Button" String="Debug Terrain"/>
+						<Button Style="Button_128" Anchor="C,Top" Void2="16" ID="ParticleEffects_Button" String="Particle Effects"/>
+						<Button Style="Button_128" Anchor="c,Top" Void2="23" ID="ColorKeyPanel_Button" String="ColorKeys"/>
+						<Button Style="Button_128" Anchor="c,Top" Void2="24" ID="FluidFOWPanel_Button" String="Fluid FOW"/>
+                        <Button Style="Button_128" Anchor="C,Top" Void2="25" ID="DebugAdvisors_Button" String="Debug Advisors"/>
+                        <Button Style="Button_128" Anchor="c,Top" ID="TogglePauseGameplay_Button" String="Pause Game"/>
+						<Button Style="Button_128" Anchor="c,Top" ID="FOW_RevealAll_Button" String="Reveal All"/>
+						<Button Style="Button_128" Anchor="c,Top" ID="ResetAchievements_Button" String="Reset Achievements"/>
+
+
+						<!-- <Label Anchor="c,c" String="[COLOR_WARNING_TEXT]Do not add buttons below this!!![COLOR_REVERT]" ID="WarningButtonText" /> -->
+						<Button Style="Button_128" Anchor="C,Top" Void2="13" ID="ReloadTextures_Button" String="Reload Textures"/>
+						
+						<Label Anchor="C,T" String="Icons" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+						<Button Anchor="C,Top" ID="ToggleCityBanners_Button" Style="Button_128" String="City">
+							<CheckBox Anchor="R,C" AnchorSide="o,i" ID="ToggleCityBanners_Checkbox" IsChecked="True"/>
+						</Button>
+						<Button Anchor="C,Top" ID="ToggleUnitFlags_Button" Style="Button_128" String="Units">
+							<CheckBox Anchor="R,C" AnchorSide="o,i" ID="ToggleUnitFlags_Checkbox" IsChecked="True"/>
+						</Button>
+						<Label Anchor="L,T" String="SyncRandSeed" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" ID="SyncRandSeedLabel"/>
+						<Label Anchor="L,T" String="MapRandSeed" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" ID="MapRandSeedLabel"/>
+                        <Label ID="DBMemoryAllocated" String="SQL Cur Memory:" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" />
+                        <Label ID="DBMemoryMaxAllocated" String="SQL Max Memory:" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" />
+                        <Label ID="GCMemory" String="Lua Memory: ###### kb" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" />
+                    </Stack>
+				</Stack>
+			</Box>
+			
+			<!-- Audio Debug panel -->
+			<Box Offset="200,-640" Size="225,225" Color="0,0,0,0" ID="DebugAudio_Panel" Hidden="1">
+				<Grid Anchor="L,T" Size="225,225" Offset="0,0" Padding="0,0" Style="GridBlack16">
+					<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+						<Label Offset="0,16" Anchor="L,T" String="Audio Debug Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+						<Button Offset="0,16" Anchor="L,T" Style="Button_16" Void1="0" ID="AudioNextSong_Button">
+							<Label Anchor="R,C" AnchorSide="O,I" String="Play Next Song"/>
+						</Button>
+						<Button Anchor="L,T" Style="Button_16" Void1="1" ID="AudioToggleWar_Button">
+							<Label Anchor="R,C" AnchorSide="O,I" String="Toggle Peace/War"/>
+						</Button>
+						<Button Anchor="L,T" Style="Button_16" Void1="2" ID="AudioReset_Button">
+							<Label Anchor="R,C" AnchorSide="O,I" String="Reset Audio System"/>
+						</Button>
+						<Label Offset="0,16" Anchor="L,T" String="Audio Sound ID Label:">
+							<Label Offset="5,0" Anchor="R,C" AnchorSide="O,I" String="N/A" ID="AudioSoundID_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+						</Label>
+					</Stack>
+				</Grid>
+			</Box>
+			<!-- Particle Effects Panel -->
+			<Box Offset="200,-640" Size="250,250" Color="0,0,0,0" ID="ParticleEffects_Panel" Hidden="1">
+				<Grid Anchor="L,T" Size="250,110" Offset="0,0" Padding="0,0" Style="GridBlack16">
+					<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+						<Label Offset="0,16" Anchor="L,T" String="Particle Effects Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+						<Button Offset="0,16" Anchor="C,T" Style="Button_128" ID="ParticleEffectsShowStats_Button" String="Show Statistics"/>
+						<Button Anchor="C,T" Style="Button_128" ID="ParticleEffectsReloadAll_Button" String="Reload Particle Effects"/>
+					</Stack>
+				</Grid>
+			</Box>
+			<!-- PEffectMode_StatsPanel [Displayed next to the ParticleEffects_Panel] -->
+			<Box Offset="450,-265" Size="300,250" Color="0,0,0,0" ID="ParticleEffectsStats_Panel" Hidden="1">
+				<Grid Anchor="L,T" Size="300,250" Offset="0,0" Padding="0,0" Style="GridBlack16">
+					<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+						<Label Offset="0,16" Anchor="L,T" String="Particle Effects Statistics" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+						<Label Anchor="L,T" Offset="0,16" ID="ParticleEffectsStats_Label0" String="Simulated Effects: 0"/>
+						<Label Anchor="L,T" Offset="0,5" ID="ParticleEffectsStats_Label1" String="Simulated Emitters: 0"/>
+						<Label Anchor="L,T" Offset="0,5" ID="ParticleEffectsStats_Label2" String="Simulated Particles: 0"/>
+						<Label Anchor="L,T" Offset="0,5" ID="ParticleEffectsStats_Label3" String="Rendered Models: 0"/>
+						<Label Anchor="L,T" Offset="0,5" ID="ParticleEffectsStats_Label4" String="Rendered Particles: 0"/>
+						<Label Anchor="L,T" Offset="0,5" ID="ParticleEffectsStats_Label5" String="Rendered Particle Polys: 0"/>
+					</Stack>
+				</Grid>
+			</Box>
+      <!-- Advisor Debug Panel -->
+      <Box Offset="200,-640" Size="225,225" Color="0,0,0,0" ID="DebugAdvisor_Panel" Hidden="1">
+        <Grid Anchor="L,T" Size="225,225" Offset="0,0" Padding="0,0" Style="GridBlack16">
+          <Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+            <Label Offset="0,16" Anchor="L,T" String="Advisor Debug Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+            <Button Offset="0,16" Anchor="L,T" Style="Button_16" Void1="0" ID="NextAdvisorPrompt_Button">
+              <Label Anchor="R,C" AnchorSide="O,I" String="Next Advisor Prompt"/>
+            </Button>
+            <Button Offset="0,16" Anchor="L,T" Style="Button_16" Void1="0" ID="PrevAdvisorPrompt_Button">
+              <Label Anchor="R,C" AnchorSide="O,I" String="Prev Advisor Prompt"/>
+            </Button>
+
+          </Stack>
+        </Grid>
+      </Box>
+
+    </Stack>
+	</Grid>
+	<LuaContext FileName="Assets/UI/InGame/DebugMode" ID="DebugMode_Panel" Hidden="1"/>
+	<LuaContext FileName="Assets/UI/InGame/GraphicsPanel" ID="Graphics_Panel" Hidden="1"/>
+	<LuaContext FileName="Assets/UI/InGame/TerrainPanel"  ID="Terrain_Panel" Hidden="1"/>
+	<LuaContext FileName="Assets/UI/InGame/HexDebugTextPanel" ID="HexDebugText_Panel" Hidden="1"/>
+	<LuaContext FileName="Assets/UI/InGame/ColorKey" ID="ColorKey_Panel" Hidden="1"/>
+	<LuaContext FileName="Assets/UI/InGame/FluidFOW" ID="FluidFOW_Panel" Hidden="1"/>
+</Context>

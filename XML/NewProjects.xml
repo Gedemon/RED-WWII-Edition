@@ -1,0 +1,3439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 7/19/2011 1:43:51 PM -->
+<GameData>
+
+	<!-- ATTACK AIRCRAFT -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_ATTACK_AIRCRAFT</Type>
+			<Description>TXT_KEY_PROJECT_ATTACK_AIRCRAFT</Description>
+			<Help>TXT_KEY_PROJECT_ATTACK_AIRCRAFT_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_ATTACK_AIRCRAFT_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_ATTACK_AIRCRAFT_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>375</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_ATTACK_AIRCRAFT</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_ATTACK_AIRCRAFT</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_ATTACK_AIRCRAFT">
+			<Text>Attack Aircraft design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_ATTACK_AIRCRAFT_DESC">
+			<Text>The German Ju 87 has proved it's value during the Spanish civil war, we may need a plane like it to counter enemy armored units.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY BOMBER -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_HEAVY_BOMBER</Type>
+			<Description>TXT_KEY_PROJECT_HEAVY_BOMBER</Description>
+			<Help>TXT_KEY_PROJECT_HEAVY_BOMBER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_HEAVY_BOMBER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_HEAVY_BOMBER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>475</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_HEAVY_BOMBER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_HEAVY_BOMBER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_HEAVY_BOMBER">
+			<Text>Heavy Bomber design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_HEAVY_BOMBER_DESC">
+			<Text>If cities defense become stronger or if your medium bombers are starting to take to much damages facing enemy fighters, new bombers with bigger payload and powerful defensive armament will be needed. Completing this project will allow the construction of modern Heavy Bombers.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- FRANCE -->
+
+	<!-- LIGHT TANK H39 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_H39</Type>
+			<Description>TXT_KEY_PROJECT_H39</Description>
+			<Help>TXT_KEY_PROJECT_H39_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_H39_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_H39_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>150</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_H39</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_H39</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_H39">
+			<Text>Hotchkiss H39 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_H39_DESC">
+			<Text>An evolution of the Hotchkiss H35 cavalry tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- LIGHT TANK R40 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LIGHT_TANK_R40</Type>
+			<Description>TXT_KEY_PROJECT_LIGHT_TANK_R40</Description>
+			<Help>TXT_KEY_PROJECT_LIGHT_TANK_R40_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LIGHT_TANK_R40_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LIGHT_TANK_R40_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>150</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LIGHT_TANK_R40</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LIGHT_TANK_R40</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_R40">
+			<Text>Renault R-40 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_R40_DESC">
+			<Text>An evolution of the Renault R-35 light tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK ARL-44 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_ARL_44</Type>
+			<Description>TXT_KEY_PROJECT_ARL_44</Description>
+			<Help>TXT_KEY_PROJECT_ARL_44_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_ARL_44_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_ARL_44_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>475</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_ARL_44</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_ARL_44</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_ARL_44">
+			<Text>ARL-44 Heavy Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_ARL_44_DESC">
+			<Text>The French Military lacks a modern heavy tank like many other neighboring nations, but our engineers now have plans ready for a new design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER M.B.152 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_MB152</Type>
+			<Description>TXT_KEY_PROJECT_MB152</Description>
+			<Help>TXT_KEY_PROJECT_MB152_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_MB152_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_MB152_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_MB152</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_MB152</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_MB152">
+			<Text>M.B.152 fighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MB152_DESC">
+			<Text>Our Air Force lacks a modern fighter plane, we believe this design could be one of the solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER M.S.406 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_MS406</Type>
+			<Description>TXT_KEY_PROJECT_MS406</Description>
+			<Help>TXT_KEY_PROJECT_MS406_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_MS406_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_MS406_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>425</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_MS406</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_MS406</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_MS406">
+			<Text>M.S.406 fighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MS406_DESC">
+			<Text>Our Air Force lacks a modern fighter plane, we believe this design could be one of the possible solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER D520 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_FIGHTER_D520</Type>
+			<Description>TXT_KEY_PROJECT_FIGHTER_D520</Description>
+			<Help>TXT_KEY_PROJECT_FIGHTER_D520_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_FIGHTER_D520_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_FIGHTER_D520_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_FIGHTER_D520</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_FIGHTER_D520">
+			<Text>Dewotine D.520 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_FIGHTER_D520_DESC">
+			<Text>Our nation still lack a competitive modern fighter, this time we strongly agree that the proposed design is the solution.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- USSR -->
+	
+	<!-- TANK T34 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_T34</Type>
+			<Description>TXT_KEY_PROJECT_T34</Description>
+			<Help>TXT_KEY_PROJECT_T34_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_T34_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_T34_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>345</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_T34</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_T34</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_T34">
+			<Text>T-34 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_T34_DESC">
+			<Text>This excellent tank design is a top priority project.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK T34/76 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_T34_76</Type>
+			<Description>TXT_KEY_PROJECT_T34_76</Description>
+			<Help>TXT_KEY_PROJECT_T34_76_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_T34_76_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_T34_76_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_T34_76</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_T34_76</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_T34_76">
+			<Text>T-34/76 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_T34_76_DESC">
+			<Text>Our engineers have a project to mount the powerfull F-34 76.2 mm gun on the T-34.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK T-34/85 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_T34_85</Type>
+			<Description>TXT_KEY_PROJECT_T34_85</Description>
+			<Help>TXT_KEY_PROJECT_T34_85_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_T34_85_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_T34_85_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_T34_85</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_T34_85</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_T34_85">
+			<Text>T-34/85 Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_T34_85_DESC">
+			<Text>An Upgraded T-34 fitted with a better gun and a larger 3 man turret.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- KV-1 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_KV1</Type>
+			<Description>TXT_KEY_PROJECT_KV1</Description>
+			<Help>TXT_KEY_PROJECT_KV1_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_KV1_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_KV1_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>450</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_KV1</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_KV1</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_KV1">
+			<Text>KV-1 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_KV1_DESC">
+			<Text>Our engineers have designed a powerful heavy tank to add in our arsenal, that, we believe, may be superior even to the French char B1.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK IS-1 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_IS_1</Type>
+			<Description>TXT_KEY_PROJECT_IS_1</Description>
+			<Help>TXT_KEY_PROJECT_IS_1_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_IS_1_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_IS_1_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>500</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_IS_1</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_IS_1</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_IS_1">
+			<Text>IS-1 Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IS_1_DESC">
+			<Text>Our Engineers are ready to create a heavy tank design that will be able to counter Germany heavy armor and firepower.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK IS-2 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_IS_2</Type>
+			<Description>TXT_KEY_PROJECT_IS_2</Description>
+			<Help>TXT_KEY_PROJECT_IS_2_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_IS_2_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_IS_2_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>525</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_IS_2</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_IS_2</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_IS_2">
+			<Text>IS-2 Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IS_2_DESC">
+			<Text>Our Engineers are ready to upgrade the IS-1 with a 122mm Gun and double-baffle muzzle brake.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY ASSAULT GUN KV-2 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_KV2</Type>
+			<Description>TXT_KEY_PROJECT_KV2</Description>
+			<Help>TXT_KEY_PROJECT_KV2_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_KV2_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_KV2_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_KV2</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_KV2</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_KV2">
+			<Text>KV-2 Heavy Assault Gun design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_KV2_DESC">
+			<Text>Our enginers have plans for a KV-1 equiped with a 152 mm howitzer, this design will be perfect to assault enemy fortifications and cities.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER LaGG3 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LAGG3</Type>
+			<Description>TXT_KEY_PROJECT_LAGG3</Description>
+			<Help>TXT_KEY_PROJECT_LAGG3_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LAGG3_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LAGG3_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>335</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LAGG3</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LAGG3</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LAGG3">
+			<Text>Lavochkin LaGG-3 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LAGG3_DESC">
+			<Text>This project is the first available modern fighter design for USSR.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER La-5 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LA5</Type>
+			<Description>TXT_KEY_PROJECT_LA5</Description>
+			<Help>TXT_KEY_PROJECT_LA5_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LA5_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LA5_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>175</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LA5</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LA5</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LA5">
+			<Text>Lavochkin La-5 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LA5_DESC">
+			<Text>An evolution of the LaGG-3 design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER La-5 v2 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LA5_V2</Type>
+			<Description>TXT_KEY_PROJECT_LA5_V2</Description>
+			<Help>TXT_KEY_PROJECT_LA5_V2_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LA5_V2_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LA5_V2_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LA5_V2</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LA5_V2</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LA5_V2">
+			<Text>Lavochkin La-5 FN design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LA5_V2_DESC">
+			<Text>An evolution of the La-5 design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER La-7 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LA7</Type>
+			<Description>TXT_KEY_PROJECT_LA7</Description>
+			<Help>TXT_KEY_PROJECT_LA7_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LA7_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LA7_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>250</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LA7</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LA7</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LA7">
+			<Text>Lavochkin La-7 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LA7_DESC">
+			<Text>An evolution of the La-5 design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER Yak-7 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_YAK7</Type>
+			<Description>TXT_KEY_PROJECT_YAK7</Description>
+			<Help>TXT_KEY_PROJECT_YAK7_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_YAK7_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_YAK7_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_YAK7</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_YAK7</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_YAK7">
+			<Text>Yak-7 Fighter Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_YAK7_DESC">
+			<Text>Our Engineers are ready to create a two seat close support fighter.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- ATTACK AIRCRAFT IL-2 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_IL2</Type>
+			<Description>TXT_KEY_PROJECT_IL2</Description>
+			<Help>TXT_KEY_PROJECT_IL2_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_IL2_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_IL2_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>375</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_IL2</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_IL2</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_IL2">
+			<Text>Ilyushin Il-2 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IL2_DESC">
+			<Text>The German Ju 87 has proved it's value during the Spanish civil war, we may need a plane like it (but sturdier) to counter enemy armored units.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FAST BOMBER TUPOLEV TU-2 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BOMBER_TU2</Type>
+			<Description>TXT_KEY_PROJECT_BOMBER_TU2</Description>
+			<Help>TXT_KEY_PROJECT_BOMBER_TU2_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BOMBER_TU2_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BOMBER_TU2_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>395</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BOMBER_TU2</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BOMBER_TU2</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_TU2">
+			<Text>Tupolev Tu-2 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_TU2_DESC">
+			<Text>This high speed aircraft has a greater bomb load than the PE-2 and will even more likely evade interception.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BOMBER IL-4 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_IL4</Type>
+			<Description>TXT_KEY_PROJECT_IL4</Description>
+			<Help>TXT_KEY_PROJECT_IL4_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_IL4_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_IL4_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>415</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_IL4</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_IL4</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_IL4">
+			<Text>Ilyushin Il-4 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IL4_DESC">
+			<Text>A medium bomber design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BATTLESHIP Soyuz class -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BATTLESHIP_SOYUZ</Type>
+			<Description>TXT_KEY_PROJECT_BATTLESHIP_SOYUZ</Description>
+			<Help>TXT_KEY_PROJECT_BATTLESHIP_SOYUZ_DESC</Help>
+			<Civilopedia>TXT_PROJECT_BATTLESHIP_SOYUZ_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BATTLESHIP_SOYUZ_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>800</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>21</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BATTLESHIP_SOYUZ</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BATTLESHIP_SOYUZ</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BATTLESHIP_SOYUZ">
+			<Text>Sovetsky Soyuz class battleship design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BATTLESHIP_SOYUZ_DESC">
+			<Text>We have no modern battleships to face the german fleet, those will be needed if we want to be able to keep control of our maritime sea routes for transport of materiel and troops.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- GERMANY -->
+	
+	<!-- LIGHT TANK PANZER II Ausf L -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LIGHT_TANK_PANZER_II_L</Type>
+			<Description>TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L</Description>
+			<Help>TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>150</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LIGHT_TANK_PANZER_II_L</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LIGHT_TANK_PANZER_II_L</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L">
+			<Text>Panzer II Ausf L design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L_DESC">
+			<Text>An evolution of the Panzer II light tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- Panzer III -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_PANZERIII</Type>
+			<Description>TXT_KEY_PROJECT_PANZERIII</Description>
+			<Help>TXT_KEY_PROJECT_PANZERIII_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_PANZERIII_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_PANZERIII_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_PANZERIII</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_PANZERIII</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_PANZERIII">
+			<Text>Panzer III tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZERIII_DESC">
+			<Text>We believe that we can work off of our orginal panzers and create a new one that can counter enemy armored fighting vehicles, overall becoming a very useful design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Panzer III Ausf J -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TANK_PANZER_III_J</Type>
+			<Description>TXT_KEY_PROJECT_TANK_PANZER_III_J</Description>
+			<Help>TXT_KEY_PROJECT_TANK_PANZER_III_J_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TANK_PANZER_III_J_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TANK_PANZER_III_J_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>250</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TANK_PANZER_III_J</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TANK_PANZER_III_J</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_III_J">
+			<Text>Panzer III Ausf J design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_III_J_DESC">
+			<Text>An evolution of the Panzer III tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- Panzer IV -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_PANZERIV</Type>
+			<Description>TXT_KEY_PROJECT_PANZERIV</Description>
+			<Help>TXT_KEY_PROJECT_PANZERIV_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_PANZERIV_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_PANZERIV_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_PANZERIV</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_PANZERIV</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_PANZERIV">
+			<Text>Panzer IV tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZERIV_DESC">
+			<Text>Our Infantry units could use more support from Infantry tanks, our engineers are ready to devolope a Panzer IV (the most common tank in the German Army).</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Panzer IV Ausf G -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TANK_PANZER_IV_G</Type>
+			<Description>TXT_KEY_PROJECT_TANK_PANZER_IV_G</Description>
+			<Help>TXT_KEY_PROJECT_TANK_PANZER_IV_G_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TANK_PANZER_IV_G_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TANK_PANZER_IV_G_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TANK_PANZER_IV_G</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TANK_PANZER_IV_G</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_G">
+			<Text>Panzer IV Ausf G design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_G_DESC">
+			<Text>An evolution of the Panzer IV tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Panzer IV Ausf H -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TANK_PANZER_IV_H</Type>
+			<Description>TXT_KEY_PROJECT_TANK_PANZER_IV_H</Description>
+			<Help>TXT_KEY_PROJECT_TANK_PANZER_IV_H_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TANK_PANZER_IV_H_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TANK_PANZER_IV_H_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TANK_PANZER_IV_H</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TANK_PANZER_IV_H</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_H">
+			<Text>Panzer IV Ausf H design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_H_DESC">
+			<Text>An evolution of the Panzer IV Ausf G tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Panzer V Panther -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_PANZER_V_PANTHER</Type>
+			<Description>TXT_KEY_PROJECT_PANZER_V_PANTHER</Description>
+			<Help>TXT_KEY_PROJECT_PANZER_V_PANTHER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_PANZER_V_PANTHER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_PANZER_V_PANTHER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_PANZER_V_PANTHER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_PANZER_V_PANTHER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_PANZER_V_PANTHER">
+			<Text>Panzer V Panther Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZER_V_PANTHER_DESC">
+			<Text>Russian T-34 and KV-1's are outclassing our Panzer IV and Panzer III designs, our engineers are ready to create a new design to counter their tanks.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Panzer VI Tiger -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_PANZER_VI_TIGER</Type>
+			<Description>TXT_KEY_PROJECT_PANZER_VI_TIGER</Description>
+			<Help>TXT_KEY_PROJECT_PANZER_VI_TIGER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_PANZER_VI_TIGER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_PANZER_VI_TIGER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>500</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_PANZER_VI_TIGER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_PANZER_VI_TIGER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_PANZER_VI_TIGER">
+			<Text>Panzer VI Tiger Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZER_VI_TIGER_DESC">
+			<Text>Our Engineers are ready to create a powerful heavy tank design that will emphasize both Firepower and Armor.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER BF-109F -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BF109F</Type>
+			<Description>TXT_KEY_PROJECT_BF109F</Description>
+			<Help>TXT_KEY_PROJECT_BF109F_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BF109F_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BF109F_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>175</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BF109F</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BF109F</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BF109F">
+			<Text>Messerschmitt Bf 109F design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF109F_DESC">
+			<Text>An evolution of the Messerschmitt Bf 109E design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER BF-109G -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BF109G</Type>
+			<Description>TXT_KEY_PROJECT_BF109G</Description>
+			<Help>TXT_KEY_PROJECT_BF109G_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BF109G_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BF109G_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>250</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BF109G</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BF109G</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BF109G">
+			<Text>Messerschmitt Bf 109G design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF109G_DESC">
+			<Text>An evolution of the Messerschmitt Bf 109F design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER FW-190 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_FW190</Type>
+			<Description>TXT_KEY_PROJECT_FW190</Description>
+			<Help>TXT_KEY_PROJECT_FW190_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_FW190_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_FW190_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>365</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_FW190</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_FW190</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_FW190">
+			<Text>Focke-Wulf Fw 190 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_FW190_DESC">
+			<Text>A powerfull fighter design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER BF-110 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BF110</Type>
+			<Description>TXT_KEY_PROJECT_BF110</Description>
+			<Help>TXT_KEY_PROJECT_BF110_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BF110_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BF110_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>425</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BF110</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BF110</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BF110">
+			<Text>BF-110 Heavy Fighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF110_DESC">
+			<Text>Our engineers are ready to create a twin engine fighter, that will be much heavier then our BF-109s, able to take a lot more damage and deliver alot more firepower.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY FIGHTER BF110F4 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BF110F4</Type>
+			<Description>TXT_KEY_PROJECT_BF110F4</Description>
+			<Help>TXT_KEY_PROJECT_BF110F4_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BF110F4_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BF110F4_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BF110F4</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BF110F4</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BF110F4">
+			<Text>Messerschmitt Bf 110 F4 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF110F4_DESC">
+			<Text>An evolution of the Bf 110 design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY FIGHTER JU88 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_JU88</Type>
+			<Description>TXT_KEY_PROJECT_JU88</Description>
+			<Help>TXT_KEY_PROJECT_JU88_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_JU88_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_JU88_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>250</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_JU88</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_JU88</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_JU88">
+			<Text>Junker Ju 88C design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_JU88_DESC">
+			<Text>The Junker Ju 88C is a heavy fighter version of the Ju 88A fast bomber.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY FIGHTER HE 219 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_HE219</Type>
+			<Description>TXT_KEY_PROJECT_HE219</Description>
+			<Help>TXT_KEY_PROJECT_HE219_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_HE219_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_HE219_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>425</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_HE219</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_HE219</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_HE219">
+			<Text>Heinkel He 219 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_HE219_DESC">
+			<Text>The Heinkel He 219 Uhu ("Eagle-Owl") design is very sophisticated, it will include an advanced VHF-band intercept radar and the first operational use of ejection seat.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY BOMBER HE 177 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_HE177</Type>
+			<Description>TXT_KEY_PROJECT_HE177</Description>
+			<Help>TXT_KEY_PROJECT_HE177_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_HE177_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_HE177_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>500</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_HE177</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_HE177</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_HE177">
+			<Text>Heinkel He 177 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_HE177_DESC">
+			<Text>If cities defense become stronger or if your medium bombers are starting to take to much damages facing enemy fighters, new bombers with bigger payload and powerful defensive armament will be needed. Completing this project will allow the construction of modern Heavy Bombers.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- UK -->
+
+	<!-- Tetrarch -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TETRARCH</Type>
+			<Description>TXT_KEY_PROJECT_TETRARCH</Description>
+			<Help>TXT_KEY_PROJECT_TETRARCH_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TETRARCH_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TETRARCH_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TETRARCH</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TETRARCH</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TETRARCH">
+			<Text>Tetrarch tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TETRARCH_DESC">
+			<Text>Our earlier made light tanks lack a strong main gun, the Tetrarch will be designed to fit a 2 pounder cannon which will drastically improve our armored divisions.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- Matilda I -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_MATILDAI</Type>
+			<Description>TXT_KEY_PROJECT_MATILDAI</Description>
+			<Help>TXT_KEY_PROJECT_MATILDAI_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_MATILDAI_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_MATILDAI_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>375</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_MATILDAI</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_MATILDAI</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_MATILDAI">
+			<Text>Matilda I tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MATILDAI_DESC">
+			<Text>Going off of the Vickers MK VI, we believe we can create a better infantry tank armed with a better vickers machine gun.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- Matilda II -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_MATILDAII</Type>
+			<Description>TXT_KEY_PROJECT_MATILDAII</Description>
+			<Help>TXT_KEY_PROJECT_MATILDAII_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_MATILDAII_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_MATILDAII_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_MATILDAII</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_MATILDAII</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_MATILDAII">
+			<Text>Matilda II tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MATILDAII_DESC">
+			<Text>Based upon prior tank designs, our engineers think they will be able to devolope a new advanced light tank to match other modern tank designs.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- Cruiser MK III -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_CRUISERMKIII</Type>
+			<Description>TXT_KEY_PROJECT_CRUISERMKIII</Description>
+			<Help>TXT_KEY_PROJECT_CRUISERMKIII_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_CRUISERMKIII_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_CRUISERMKIII_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>275</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_CRUISERMKIII</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_CRUISERMKIII</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_CRUISERMKIII">
+			<Text>Cruiser MK III tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_CRUISERMKIII_DESC">
+			<Text>A new suspension system is available to make our cruiser tanks go faster, our engineers are ready to design a cruiser tank to fit with the new suspension system.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK A-10 Valentine -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_A10_VALENTINE</Type>
+			<Description>TXT_KEY_PROJECT_A10_VALENTINE</Description>
+			<Help>TXT_KEY_PROJECT_A10_VALENTINE_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_A10_VALENTINE_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_A10_VALENTINE_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_A10_VALENTINE</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_A10_VALENTINE</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_A10_VALENTINE">
+			<Text>A10 Valentine Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A10_VALENTINE_DESC">
+			<Text>Our Enginers are ready to create a new Infantry Cruiser Support Tank.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK A-13 Covenanter -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_A13_COVENANTER</Type>
+			<Description>TXT_KEY_PROJECT_A13_COVENANTER</Description>
+			<Help>TXT_KEY_PROJECT_A13_COVENANTER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_A13_COVENANTER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_A13_COVENANTER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_A13_COVENANTER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_A13_COVENANTER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_A13_COVENANTER">
+			<Text>A13 Covenanter Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A13_COVENANTER_DESC">
+			<Text>Our Engineers are ready to create a better armor replacement for the Cruiser IV tank.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK A-15 Crusader -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_A15_CRUSADER</Type>
+			<Description>TXT_KEY_PROJECT_A15_CRUSADER</Description>
+			<Help>TXT_KEY_PROJECT_A15_CRUSADER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_A15_CRUSADER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_A15_CRUSADER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>375</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_A15_CRUSADER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_A15_CRUSADER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER">
+			<Text>A15 Crusader Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER_DESC">
+			<Text>Our Engineers are ready to create a faster and strong Cruiser tank to counter enemy Panzer III and Panzer IV tanks.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK A-15 Crusader MK III -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_A15_CRUSADER_MKIII</Type>
+			<Description>TXT_KEY_PROJECT_A15_CRUSADER_MKIII</Description>
+			<Help>TXT_KEY_PROJECT_A15_CRUSADER_MKIII_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_A15_CRUSADER_MKIII_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_A15_CRUSADER_MKIII_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_A15_CRUSADER_MKIII</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_A15_CRUSADER_MKIII</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER_MKIII">
+			<Text>A15 Crusader MK III Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER_MKIII_DESC">
+			<Text>An Upgraded A15 Crusader with a 6mm Pounder Gun.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- CRUISER TANK MK IV -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_CRUISER_IV</Type>
+			<Description>TXT_KEY_PROJECT_CRUISER_IV</Description>
+			<Help>TXT_KEY_PROJECT_CRUISER_IV_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_CRUISER_IV_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_CRUISER_IV_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>150</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_CRUISER_IV</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_CRUISER_IV</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_CRUISER_IV">
+			<Text>A13 Mk II Cruiser Mk IV design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_CRUISER_IV_DESC">
+			<Text>The Cruiser tanks have not yet meet the required specifications, this new design is another step to the right direction.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4 Firefly -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M4_FIREFLY</Type>
+			<Description>TXT_KEY_PROJECT_M4_FIREFLY</Description>
+			<Help>TXT_KEY_PROJECT_M4_FIREFLY_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M4_FIREFLY_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M4_FIREFLY_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>365</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M4_FIREFLY</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M4_FIREFLY</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M4_FIREFLY">
+			<Text>M4 Sherman Firefly design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M4_FIREFLY_DESC">
+			<Text>This design is based on the US M4 Sherman on which the deadly british 17 pounder anti-tank gun will be mounted.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY TANK CHURCHILL -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_CHURCHILL</Type>
+			<Description>TXT_KEY_PROJECT_CHURCHILL</Description>
+			<Help>TXT_KEY_PROJECT_CHURCHILL_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_CHURCHILL_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_CHURCHILL_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>365</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_CHURCHILL</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_CHURCHILL</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_CHURCHILL">
+			<Text>A22 Churchill design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_CHURCHILL_DESC">
+			<Text>Heavy Tank design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER Spitfire Mk V -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SPITFIRE_V</Type>
+			<Description>TXT_KEY_PROJECT_SPITFIRE_V</Description>
+			<Help>TXT_KEY_PROJECT_SPITFIRE_V_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SPITFIRE_V_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SPITFIRE_V_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>175</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SPITFIRE_V</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SPITFIRE_V</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_V">
+			<Text>Spitfire Mk V design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_V_DESC">
+			<Text>An evolution of the Spitfire design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER Spitfire Mk IX -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SPITFIRE_IX</Type>
+			<Description>TXT_KEY_PROJECT_SPITFIRE_IX</Description>
+			<Help>TXT_KEY_PROJECT_SPITFIRE_IX_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SPITFIRE_IX_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SPITFIRE_IX_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>250</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SPITFIRE_IX</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SPITFIRE_IX</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_IX">
+			<Text>Spitfire Mk IX design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_IX_DESC">
+			<Text>An evolution of the Spitfire design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY FIGHTER Whirlwind -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_WHIRLWIND</Type>
+			<Description>TXT_KEY_PROJECT_WHIRLWIND</Description>
+			<Help>TXT_KEY_PROJECT_WHIRLWIND_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_WHIRLWIND_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_WHIRLWIND_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>275</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_WHIRLWIND</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_WHIRLWIND</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_WHIRLWIND">
+			<Text>Westland Whirlwind design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_WHIRLWIND_DESC">
+			<Text>Heavy Fighter design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY FIGHTER Beaufighter -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BEAUFIGHTER</Type>
+			<Description>TXT_KEY_PROJECT_BEAUFIGHTER</Description>
+			<Help>TXT_KEY_PROJECT_BEAUFIGHTER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BEAUFIGHTER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BEAUFIGHTER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>360</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BEAUFIGHTER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BEAUFIGHTER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BEAUFIGHTER">
+			<Text>Bristol Beaufighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BEAUFIGHTER_DESC">
+			<Text>Sturdy Heavy Fighter design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FAST BOMBER MOSQUITO -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_BOMBER_MOSQUITO</Type>
+			<Description>TXT_KEY_PROJECT_BOMBER_MOSQUITO</Description>
+			<Help>TXT_KEY_PROJECT_BOMBER_MOSQUITO_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_BOMBER_MOSQUITO_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_BOMBER_MOSQUITO_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>395</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_BOMBER_MOSQUITO</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_BOMBER_MOSQUITO</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_MOSQUITO">
+			<Text>De Havilland Mosquito design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_MOSQUITO_DESC">
+			<Text>Designed from the beginning as a light unarmed bomber, the Mosquito will surely be one of the fastest available aircraft, allowing it to avoid interception before being able to reach it's target.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BOMBER Avro Lancaster -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LANCASTER</Type>
+			<Description>TXT_KEY_PROJECT_LANCASTER</Description>
+			<Help>TXT_KEY_PROJECT_LANCASTER_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LANCASTER_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LANCASTER_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LANCASTER</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LANCASTER</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LANCASTER">
+			<Text>Avro Lancaster Bomber Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LANCASTER_DESC">
+			<Text>Our Engineers are ready to create our second heavy bomber that will be very effective in night raids.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ITALY -->
+
+	<!-- LIGHT TANK L6/40 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_L6040</Type>
+			<Description>TXT_KEY_PROJECT_L6040</Description>
+			<Help>TXT_KEY_PROJECT_L6040_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_L6040_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_L6040_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_L6040</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_L6040</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_L6040">
+			<Text>L6/40 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_L6040_DESC">
+			<Text>Our army could use an advanced light tank to support our infantry on the battlefield, this is the solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M11-39 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M1139</Type>
+			<Description>TXT_KEY_PROJECT_M1139</Description>
+			<Help>TXT_KEY_PROJECT_M1139_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M1139_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M1139_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M1139</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M1139</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M1139">
+			<Text>M-11-39 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M1139_DESC">
+			<Text>Our army lacks a modern tank that can compare to other nation's tanks, our engineers copying other nations designs are ready to devolope the M-11-39.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M13/40 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M13_40</Type>
+			<Description>TXT_KEY_PROJECT_M13_40</Description>
+			<Help>TXT_KEY_PROJECT_M13_40_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M13_40_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M13_40_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>175</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M13_40</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M13_40</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M13_40">
+			<Text>Fiat-Ansaldo M13/40 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M13_40_DESC">
+			<Text>An evolution of the M11/39 tank design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M14/41 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M14_41</Type>
+			<Description>TXT_KEY_PROJECT_M14_41</Description>
+			<Help>TXT_KEY_PROJECT_M14_41_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M14_41_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M14_41_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>235</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M14_41</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M14_41</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M14_41">
+			<Text>Fiat M14/41 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M14_41_DESC">
+			<Text>An evolution of the M13/40 tank design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M15/42 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M15_42</Type>
+			<Description>TXT_KEY_PROJECT_M15_42</Description>
+			<Help>TXT_KEY_PROJECT_M15_42_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M15_42_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M15_42_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>345</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M15_42</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M15_42</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M15_42">
+			<Text>M15/42 tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M15_42_DESC">
+			<Text>An evolution of the M14/41 tank design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY TANK P26/40 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_P26_40</Type>
+			<Description>TXT_KEY_PROJECT_P26_40</Description>
+			<Help>TXT_KEY_PROJECT_P26_40_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_P26_40_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_P26_40_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>425</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_P26_40</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_P26_40</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_P26_40">
+			<Text>Ansaldo P26/40 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P26_40_DESC">
+			<Text>Heavy Tank design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER G.50 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_G50</Type>
+			<Description>TXT_KEY_PROJECT_G50</Description>
+			<Help>TXT_KEY_PROJECT_G50_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_G50_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_G50_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_G50</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_G50</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_G50">
+			<Text>G.50 Fighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_G50_DESC">
+			<Text>Our Air Force lacks a monoplane fighter, our engineers are ready to devolope our first ever single seat fighter.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER Maachi C.202 Folgore -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_MC202</Type>
+			<Description>TXT_KEY_PROJECT_MC202</Description>
+			<Help>TXT_KEY_PROJECT_MC202_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_MC202_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_MC202_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_MC202</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_MC202</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_MC202">
+			<Text>Maachi C.202 Folgore Fighter Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MC202_DESC">
+			<Text>Our Engineers are ready to create our next Fighter Plane Design, which will emphasize dog fighting.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER G.55 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_G55</Type>
+			<Description>TXT_KEY_PROJECT_G55</Description>
+			<Help>TXT_KEY_PROJECT_G55_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_G55_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_G55_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>360</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_G55</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_G55</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>40</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_G55">
+			<Text>Fiat G.55 Centauro design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_G55_DESC">
+			<Text>A modern fighter design with great promises.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BOMBER SM.84 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SM84</Type>
+			<Description>TXT_KEY_PROJECT_SM84</Description>
+			<Help>TXT_KEY_PROJECT_SM84_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SM84_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SM84_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>395</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SM84</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SM84</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SM84">
+			<Text>Savoia-Marchetti SM.84 design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SM84_DESC">
+			<Text>Bomber design Based on the SM.79 with more power, better defense and heavier payload, but also slower and less manoeuvrable.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- USA -->
+
+	<!-- M3 Grant -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M3GRANT</Type>
+			<Description>TXT_KEY_PROJECT_M3GRANT</Description>
+			<Help>TXT_KEY_PROJECT_M3GRANT_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M3GRANT_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M3GRANT_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>375</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M3GRANT</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M3GRANT</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M3GRANT">
+			<Text>M3 Grant tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M3GRANT_DESC">
+			<Text>Our military lacks tanks especially one that is meant to fight other tanks, the M3 Grant will be our solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- LIGHT TANK M5 Stuart -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_LIGHT_TANK_M5</Type>
+			<Description>TXT_KEY_PROJECT_LIGHT_TANK_M5</Description>
+			<Help>TXT_KEY_PROJECT_LIGHT_TANK_M5_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_LIGHT_TANK_M5_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_LIGHT_TANK_M5_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>150</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_LIGHT_TANK_M5</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_LIGHT_TANK_M5</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_M5">
+			<Text>M5 Stuart design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_M5_DESC">
+			<Text>An evolution of the M3 Stuart light tank</Text>
+		</Row>
+	</Language_en_US>
+	<!-- M4 Sherman -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M4SHERMAN</Type>
+			<Description>TXT_KEY_PROJECT_M4SHERMAN</Description>
+			<Help>TXT_KEY_PROJECT_M4SHERMAN_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M4SHERMAN_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M4SHERMAN_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M4SHERMAN</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M4SHERMAN</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M4SHERMAN">
+			<Text>M4A1 Sherman II tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M4SHERMAN_DESC">
+			<Text>Based upon prior tank preformances in Europe and Africa, our engineers have come up with a modern tank design (the most common tank in the American Army).</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4A1(76)W Sherman IIA -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SHERMAN_IIA</Type>
+			<Description>TXT_KEY_PROJECT_SHERMAN_IIA</Description>
+			<Help>TXT_KEY_PROJECT_SHERMAN_IIA_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SHERMAN_IIA_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SHERMAN_IIA_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_IIA</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_IIA</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIA">
+			<Text>M4A1(76)W Sherman IIA tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIA_DESC">
+			<Text>British use of the Sherman in North Africa has proved itself on the battlefield, we can make it better by mounting a 76 mm gun and a higher caliber machine gun.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4A2 Sherman III -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SHERMAN_III</Type>
+			<Description>TXT_KEY_PROJECT_SHERMAN_III</Description>
+			<Help>TXT_KEY_PROJECT_SHERMAN_III_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SHERMAN_III_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SHERMAN_III_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>275</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_III</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_III</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_III">
+			<Text>M4A2 Sherman III tank design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_III_DESC">
+			<Text>Our Engineers have planned an improved Sherman hull based off of information from the front, this will improve the Sherman's ability to take a hit.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4A2(76)W Sherman IIIA -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SHERMAN_IIIA</Type>
+			<Description>TXT_KEY_PROJECT_SHERMAN_IIIA</Description>
+			<Help>TXT_KEY_PROJECT_SHERMAN_IIIA_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SHERMAN_IIIA_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SHERMAN_IIIA_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_IIIA</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_IIIA</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIIA">
+			<Text>M4A2(76)W Sherman IIIA Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIIA_DESC">
+			<Text>An Upgraded M4A2 Sherman fitted with a 76mm gun and better armor.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4A3 Sherman IV -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SHERMAN_IV</Type>
+			<Description>TXT_KEY_PROJECT_SHERMAN_IV</Description>
+			<Help>TXT_KEY_PROJECT_SHERMAN_IV_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SHERMAN_IV_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SHERMAN_IV_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>325</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_IV</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_IV</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IV">
+			<Text>M4A3 Sherman IV Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IV_DESC">
+			<Text>Our Engineers are ready to create the fourth Sherman Design, which will emphasize production speed and armor.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4A3E2 Sherman Jumbo -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SHERMAN_JUMBO</Type>
+			<Description>TXT_KEY_PROJECT_SHERMAN_JUMBO</Description>
+			<Help>TXT_KEY_PROJECT_SHERMAN_JUMBO_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SHERMAN_JUMBO_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SHERMAN_JUMBO_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_JUMBO</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_JUMBO</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_JUMBO">
+			<Text>M4A3E2 Sherman Jumbo Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_JUMBO_DESC">
+			<Text>Another Upgrade of the Sherman giving a whole lot more armor and a bigger better turret design.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M4A3E8 Easy Eight -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_SHERMAN_EASYEIGHT</Type>
+			<Description>TXT_KEY_PROJECT_SHERMAN_EASYEIGHT</Description>
+			<Help>TXT_KEY_PROJECT_SHERMAN_EASYEIGHT_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_SHERMAN_EASYEIGHT_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_SHERMAN_EASYEIGHT_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_EASYEIGHT</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_SHERMAN_EASYEIGHT</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_EASYEIGHT">
+			<Text>M4A3E8 Sherman Easy Eight Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_EASYEIGHT_DESC">
+			<Text>Another Upgrade of the Sherman giving it a better designed gun, armor and track system.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK M-26 PERSHING -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_M26_PERSHING</Type>
+			<Description>TXT_KEY_PROJECT_M26_PERSHING</Description>
+			<Help>TXT_KEY_PROJECT_M26_PERSHING_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_M26_PERSHING_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_M26_PERSHING_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>525</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_M26_PERSHING</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_M26_PERSHING</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_M26_PERSHING">
+			<Text>M-26 Pershing Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M26_PERSHING_DESC">
+			<Text>Our military lacks a heavy tank to counter the German line of heavy tanks, this is the solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER P-40 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_P40</Type>
+			<Description>TXT_KEY_PROJECT_P40</Description>
+			<Help>TXT_KEY_PROJECT_P40_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_P40_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_P40_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_P40</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_P40</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_P40">
+			<Text>P-40 Fighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P40_DESC">
+			<Text>Our Air Force lacks a modern fighter like the ones in Europe, our engineers are ready to design the P-40 fighter.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER P-51 Mustang -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_P51</Type>
+			<Description>TXT_KEY_PROJECT_P51</Description>
+			<Help>TXT_KEY_PROJECT_P51_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_P51_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_P51_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_P51</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_P51</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_P51">
+			<Text>P-51 Mustang design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P51_DESC">
+			<Text>Our Bombers lack longe range fighter escorts, this, surely one of the most powerful fighters that can be designed, is the solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- FIGHTER P-38 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_P38</Type>
+			<Description>TXT_KEY_PROJECT_P38</Description>
+			<Help>TXT_KEY_PROJECT_P38_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_P38_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_P38_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>450</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>17</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_P38</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_P38</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_P38">
+			<Text>P-38 Heavy Fighter design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P38_DESC">
+			<Text>Our engineers are ready to create our first heavy fighter, which will be much stronger then regular fighters.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BOMBER B-25 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_B25</Type>
+			<Description>TXT_KEY_PROJECT_B25</Description>
+			<Help>TXT_KEY_PROJECT_B25_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_B25_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_B25_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>475</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_B25</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_B25</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_B25">
+			<Text>B-25 Bomber design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_B25_DESC">
+			<Text>Our Air Force could use a lighter bomber then the well made heavy bomber, our engineers are ready to come up with a design for a new Boeing bomber.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BOMBER B-17 -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_B17</Type>
+			<Description>TXT_KEY_PROJECT_B17</Description>
+			<Help>TXT_KEY_PROJECT_B17_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_B17_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_B17_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>475</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_B17</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>35</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_B17</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>25</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_B17">
+			<Text>B-17 Bomber design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_B17_DESC">
+			<Text>Our Air Force lacks a modern strategic bomber that can perform long range bombing runs on enemy cities and units, this is the solution.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- BOMBER B-24 Liberator -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_B24</Type>
+			<Description>TXT_KEY_PROJECT_B24</Description>
+			<Help>TXT_KEY_PROJECT_B24_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_B24_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_B24_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>400</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>18</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_B24</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_B24</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>30</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_B24">
+			<Text>B-24 Liberator Bomber Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_B24_DESC">
+			<Text>Our Engineers are ready to create our second heavy bomber design to compete with our B-17 heavy bombers.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- JAPAN -->
+	
+	<!-- TANK Type 3 Chi-Nu -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TYPE3</Type>
+			<Description>TXT_KEY_PROJECT_TYPE3</Description>
+			<Help>TXT_KEY_PROJECT_TYPE3_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TYPE3_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TYPE3_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>300</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TYPE3</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TYPE3</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TYPE3">
+			<Text>Type 3 Chi-Nu Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE3_DESC">
+			<Text>Our type 97 tank proves to be ineffective against more advanced tanks like the Sherman, this design will handle that problem effectively.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Type 4 Ke-Nu -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TYPE4</Type>
+			<Description>TXT_KEY_PROJECT_TYPE4</Description>
+			<Help>TXT_KEY_PROJECT_TYPE4_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TYPE4_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TYPE4_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TYPE4</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TYPE4</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TYPE4">
+			<Text>Type 4 Ke-Nu Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE4_DESC">
+			<Text>Our Engineers think they can make a our light tank design better by fitting larger turrets on our light tank hulls.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Type 4 Chi-To -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TYPE4_CHITO</Type>
+			<Description>TXT_KEY_PROJECT_TYPE4_CHITO</Description>
+			<Help>TXT_KEY_PROJECT_TYPE4_CHITO_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TYPE4_CHITO_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TYPE4_CHITO_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>350</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TYPE4_CHITO</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TYPE4_CHITO</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TYPE4_CHITO">
+			<Text>Type 4 Chi-To Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE4_CHITO_DESC">
+			<Text>The Japanese Army lacks effective modern tanks, our engineers believe they can make a design that can solve this solution by creating the first Japanese heavy tank.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- TANK Type 5 Chi-Ri -->
+	<Projects>
+		<Row>
+			<Type>PROJECT_TYPE5</Type>
+			<Description>TXT_KEY_PROJECT_TYPE5</Description>
+			<Help>TXT_KEY_PROJECT_TYPE5_DESC</Help>
+			<Civilopedia>TXT_KEY_PROJECT_TYPE5_DESC</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_TYPE5_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>375</Cost>
+			<IconAtlas>UNIT_ATLAS_2</IconAtlas>
+			<PortraitIndex>13</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>PROJECT_TYPE5</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>50</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>PROJECT_TYPE5</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROJECT_TYPE5">
+			<Text>Type 5 Chi-Ri Tank Design</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE5_DESC">
+			<Text>The strongest Japanese heavy tank, our engineers believe that this tank will wreck havoc against Allied Sherman and Medium tanks.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- MILITARY OPERATION *************************************************************** -->
+	
+	<!-- Operation Weserübung (Norway / Denmark invasion) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_WESERUBUNG</Type>
+			<Description>TXT_KEY_OPERATION_WESERUBUNG</Description>
+			<Help>TXT_KEY_OPERATION_WESERUBUNG_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_WESERUBUNG_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_WESERUBUNG_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>465</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_WESERUBUNG</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_WESERUBUNG</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_WESERUBUNG">
+			<Text>Operation Weserübung</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_WESERUBUNG_DESC">
+			<Text>Our generals have proposed to assemble a force of airborn divisions to secure the area around Narvik in Norway. Once the taskforce will be assembled, the assault will be launched immediatly if we have already declared war to Norway and Denmark, or when it will start, before French and British troops take the initiative there. They suggest to deploy a close naval support for those troops.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Seelöwe (UK invasion) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_SEELOWE</Type>
+			<Description>TXT_KEY_OPERATION_SEELOWE</Description>
+			<Help>TXT_KEY_OPERATION_SEELOWE_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_SEELOWE_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_SEELOWE_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>750</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_SEELOWE</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_SEELOWE</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_SEELOWE">
+			<Text>Operation Seelöwe</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_SEELOWE_DESC">
+			<Text>After France, we must invade U.K. to eliminate all menace from the west before expanding to the east. The operation our generals are now planing is far more ambitious than any initial proposal, with the creation of two complete amphibious armies and numerous Fallschirmjagerdivision. Once completed this operation will only be launched if France has surrendered.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- NEW -->
+
+
+	<!-- Operation China (Invasion of China) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_CHINA</Type>
+			<Description>TXT_KEY_OPERATION_CHINA</Description>
+			<Help>TXT_KEY_OPERATION_CHINA_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_CHINA_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_CHINA_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>1</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_CHINA</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_CHINA</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_CHINA">
+			<Text>Invasion of China</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_CHINA_DESC">
+			<Text>Our Generals have devised a strategy to invade China, in order to sieze major ports and resources located along their coast. This is Free because we have been prepared for such an event.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Norway (Invasion of Norway and Denmark) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_NORWAY</Type>
+			<Description>TXT_KEY_OPERATION_NORWAY</Description>
+			<Help>TXT_KEY_OPERATION_NORWAY_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_NORWAY_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_NORWAY_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>1</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_NORWAY</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_NORWAY</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_NORWAY">
+			<Text>Operation Weserübung</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_NORWAY_DESC">
+			<Text>Our Generals have devised a strategy to invade Norway and Denmark. This is Free because we have been prepared for such an event.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Fall Gelb (Invasion Plan of France, Netherlands and Belgium) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_FALLGELB</Type>
+			<Description>TXT_KEY_OPERATION_FALLGELB</Description>
+			<Help>TXT_KEY_OPERATION_FALLGELB_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_FALLGELB_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_FALLGELB_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>1</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_FALLGELB</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_FALLGELB</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_FALLGELB">
+			<Text>Operation Fall Gelb</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_FALLGELB_DESC">
+			<Text>Our Generals have devised a strategy to invade France, the Netherlands and Belgium. This is Free because we have been prepared for such an event (AI Only).</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Sonnenblume (German Support in Africa) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_SONNENBLUME</Type>
+			<Description>TXT_KEY_OPERATION_SONNENBLUME</Description>
+			<Help>TXT_KEY_OPERATION_SONNENBLUME_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_SONNENBLUME_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_SONNENBLUME_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>425</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_SONNENBLUME</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>20</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_SONNENBLUME</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>45</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_SONNENBLUME">
+			<Text>Operation Sonnenblume</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_SONNENBLUME_DESC">
+			<Text>Our Allies in Italy have requested support in Africa, if we can drive them back we can take the Suez and have access to the oil rich Middle East. Our Generals are ready to devolope a plan and a "Afrika Korps" to support our Italian allies.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Twenty Five (Invasion Plan of Yugoslavia) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_TWENTYFIVE</Type>
+			<Description>TXT_KEY_OPERATION_TWENTYFIVE</Description>
+			<Help>TXT_KEY_OPERATION_TWENTYFIVE_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_TWENTYFIVE_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_TWENTYFIVE_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>1</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_TWENTYFIVE</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_TWENTYFIVE</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_TWENTYFIVE">
+			<Text>Operation Twenty Five</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_TWENTYFIVE_DESC">
+			<Text>Our Generals have devised a strategy to invade Yugoslavia. This is Free because we have been prepared for such an event (AI Only).</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Marita (Invasion Plan of Greece) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_MARITA</Type>
+			<Description>TXT_KEY_OPERATION_MARITA</Description>
+			<Help>TXT_KEY_OPERATION_MARITA_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_MARITA_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_MARITA_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>1</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_MARITA</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_MARITA</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_MARITA">
+			<Text>Operation Marita</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_MARITA_DESC">
+			<Text>Our Generals have devised a strategy to invade Greece. This is Free because we have been prepared for such an event (AI Only).</Text>
+		</Row>
+	</Language_en_US>
+	<!-- Operation Pacific (Invasion Plan of Indonesia and the Philippines) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_PACIFIC</Type>
+			<Description>TXT_KEY_OPERATION_PACIFIC</Description>
+			<Help>TXT_KEY_OPERATION_PACIFIC_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_PACIFIC_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_PACIFIC_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>1</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_PACIFIC</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_PACIFIC</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>75</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_PACIFIC">
+			<Text>Invasion of Indonesia and the Philippines</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_PACIFIC_DESC">
+			<Text>Our Generals have devised a strategy to invade Indonesia and the Philippines taking control of the vital resources in this region. This is Free because we have been prepared for such an event.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Operation Torch (Invasion Plan of North Africa) -->
+
+	<Projects>
+		<Row>
+			<Type>OPERATION_TORCH</Type>
+			<Description>TXT_KEY_OPERATION_TORCH</Description>
+			<Help>TXT_KEY_OPERATION_TORCH_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_TORCH_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_TORCH_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>750</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_TORCH</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_TORCH</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>80</Flavor>
+		</Row>
+	</Project_Flavors>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_OPERATION_TORCH">
+			<Text>Operation Torch</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_TORCH_DESC">
+			<Text>British Generals have suggested a plan to knock the Axis out of Africa, with the Allied army in the east we can crush the Italian, Vichy and German troops between our two armies. This plan will liberate many Vichy held cities and return them to Free France.</Text>
+		</Row>
+	</Language_en_US>
+</GameData>

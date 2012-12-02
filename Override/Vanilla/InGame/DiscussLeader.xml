@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black" Font="TwCenMT20" FontStyle="Shadow" >
+
+    <Grid Anchor="R,B" Offset="50,50" Size="350,350" Style="GridBlue" ID="DiscussionOptions" >
+        <Stack Anchor="C,Top" Offset="0,40" Padding="20" StackGrowth="Bottom" >
+            <Button Anchor="C,T" ID="OpinionButton"  Style="Button_512L" String="TXT_KEY_DIPLO_DISUCSS_OPINION_OF_LEADER" />
+			<Button Anchor="C,T" ID="LikeButton"  Style="Button_512L" String="TXT_KEY_DIPLO_DISUCSS_LIKE_LEADER" />
+			<Button Anchor="C,T" ID="DislikeButton"  Style="Button_512L" String="TXT_KEY_DIPLO_DISUCSS_DISLIKE_LEADER" />
+			<Button Anchor="C,T" ID="AttackButton"  Style="Button_512L" String="TXT_KEY_DIPLO_DISUCSS_ATTACK_LEADER" />
+            <Button Anchor="C,T" ID="BackButton"       Style="Button_256L" String="TXT_KEY_BACK_BUTTON" />
+        </Stack>
+    </Grid>
+
+</Context>

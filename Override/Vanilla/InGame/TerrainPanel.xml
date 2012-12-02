@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="300,800" Offset="200,32" Padding="0,0" Style="GridBlack16">
+		<Stack Anchor="L,T" Offset="20,20" Padding = "0" StackGrowth="Bottom" ID="TerrainPanel">
+			<Button Style="Button_128" Anchor="C,Top" Void2="0" ID="Exit_Button" String="Exit"/>
+			<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+				<Button Offset="0,16" Anchor="L,T" Style="Button_16" Void2="1" ID="ToggleDiffuse">
+					<Label Anchor="R,C" AnchorSide="O,I" String="Toggle Diffuse" />
+				</Button>
+				<Button Anchor="L,T" Style="Button_16" Void2="2" ID="ToggleSpecular">
+					<Label Anchor="R,C" AnchorSide="O,I" String="Toggle Specular" />
+				</Button>
+				<Button Anchor="L,T" Style="Button_128" Void2="3" ID="ReloadLightEnvironment">
+					<Label  Anchor="C,Top" String="Reload Light/Water" />
+				</Button>
+				<Button Anchor="L,T" Style="Button_128" Void2="4" ID="ForceRefresh">
+					<Label  Anchor="C,Top" String="Force Refresh" />
+				</Button>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label  Anchor="L,C" String="Spec Sun Yaw"/>
+					<Button Anchor="L,C" Style="Button_16" ID="SunYaw_ButtonDown" Void1="2" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="SunYaw_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="R,C"  String="0" ID="SunYaw_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label  Anchor="L,C" String="Spec Sun Pitch"/>
+					<Button Anchor="L,C" Style="Button_16" ID="SunPitch_ButtonDown" Void1="2" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="SunPitch_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="R,C"  String="0" ID="SunPitch_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label  Anchor="L,C" String="Reflect  Yaw"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ReflectYaw_ButtonDown" Void1="2" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ReflectYaw_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="R,C"  String="0" ID="ReflectYaw_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Right"  Anchor="L,T">
+					<Label  Anchor="L,C" String="Reflect  Pitch"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ReflectPitch_ButtonDown" Void1="2" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ReflectPitch_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="R,C"  String="0" ID="ReflectPitch_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+				<Stack StackGrowth="Reflect percent"  Anchor="L,T">
+					<Label  Anchor="L,C" String="Reflectivity"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ReflectAmount_ButtonDown" Void1="2" String="&lt;"/>
+					<Button Anchor="L,C" Style="Button_16" ID="ReflectAmount_ButtonUp" Void1="1" String="&gt;"/>
+					<Label Anchor="R,C"  String="0" ID="ReflectAmount_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+				</Stack>
+
+        <Button Anchor="L,T" Style="Button_128" Void2="5" ID="RebuildIce">
+          <Label  Anchor="C,Top" String="Reload Ice" />
+        </Button>
+
+        <Button Anchor="L,T" Style="Button_128" Void2="5" ID="RebuildWaves">
+          <Label  Anchor="C,Top" String="Reload Waves" />
+        </Button>
+
+        <Label Offset="0,8" Anchor="L,T" String="Water System" />
+        <CheckBox Offset="12,0" String="Auto Reload Water" Anchor="L,C" TextAnchor="R,C" ID="WaterAutoReload_Checkbox" IsChecked="0"/>
+				<Label Offset="20,0" Anchor="L,T" String="Water Sun Power:">
+					<Button Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterSunSpecular_ButtonDown" Void1="-1" String="&lt;">
+						<Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterSunSpecular_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+							<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterSunSpecular_ButtonUp" Void1="1" String="&gt;" />
+						</Label>
+					</Button>
+				</Label>
+				<Label Offset="20,8" Anchor="L,T" String="Water Sky Power:">
+					<Button Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterSkySpecular_ButtonDown" Void1="-1" String="&lt;">
+						<Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterSkySpecular_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+							<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterSkySpecular_ButtonUp" Void1="1" String="&gt;" />
+						</Label>
+					</Button>
+				</Label>
+				<Label Offset="20,8" Anchor="L,T" String="Amplitude:">
+					<Button Offset="44,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterAmplitude_ButtonDown" Void1="-1" String="&lt;">
+						<Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterAmplitude_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+							<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterAmplitude_ButtonUp" Void1="1" String="&gt;" />
+						</Label>
+					</Button>
+				</Label>
+				<Label Offset="20,8" Anchor="L,T" String="Overflow Control:">
+					<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterGradientScale_ButtonDown" Void1="-1" String="&lt;">
+						<Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterGradientScale_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+							<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterGradientScale_ButtonUp" Void1="1" String="&gt;" />
+						</Label>
+					</Button>
+				</Label>
+				<Label Offset="20,8" Anchor="L,T" String="Texture Scale:">
+					<Button Offset="23,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterScale_ButtonDown" Void1="-1" String="&lt;">
+						<Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterScale_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+							<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterScale_ButtonUp" Void1="1" String="&gt;" />
+						</Label>
+					</Button>
+				</Label>
+				<Label Offset="20,8" Anchor="L,T" String="Speed:">
+					<Button Offset="63,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterSpeed_ButtonDown" Void1="-1" String="&lt;">
+						<Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterSpeed_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+							<Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterSpeed_ButtonUp" Void1="1" String="&gt;" />
+						</Label>
+					</Button>
+				</Label>
+        <Label Offset="20,8" Anchor="L,T" String="Flow Strength:">
+          <Button Offset="25,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterFlow_ButtonDown" Void1="-1" String="&lt;">
+            <Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterFlow_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+              <Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterFlow_ButtonUp" Void1="1" String="&gt;" />
+            </Label>
+          </Button>
+        </Label>
+        <Label Offset="20,8" Anchor="L,T" String="Noise Strength:">
+          <Button Offset="17,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterNoise_ButtonDown" Void1="-1" String="&lt;">
+            <Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterNoise_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+              <Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterNoise_ButtonUp" Void1="1" String="&gt;" />
+            </Label>
+          </Button>
+        </Label>
+        <Label Offset="20,8" Anchor="L,T" String="Noise Hex Scale:">
+          <Button Offset="6,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterNoiseScale_ButtonDown" Void1="-1" String="&lt;">
+            <Label Anchor="R,C" AnchorSide="O,I" String="16" ID="WaterNoiseScale_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+              <Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="WaterNoiseScale_ButtonUp" Void1="1" String="&gt;" />
+            </Label>
+          </Button>
+        </Label>
+        <Label Offset="20,8" Anchor="L,T" String="Tess LOD:">
+          <Button Offset="6,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="TessLOD_ButtonDown" Void1="-1" String="&lt;">
+            <Label Anchor="R,C" AnchorSide="O,I" String="16" ID="TessLOD_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+              <Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="TessLOD_ButtonUp" Void1="1" String="&gt;" />
+            </Label>
+          </Button>
+        </Label>
+        <Label Offset="20,8" Anchor="L,T" String="Tess Level:">
+          <Button Offset="6,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="TessLevel_ButtonDown" Void1="-1" String="&lt;">
+            <Label Anchor="R,C" AnchorSide="O,I" String="16" ID="TessLevel_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow">
+              <Button Offset="5,0" Anchor="R,C" AnchorSide="O,I" Style="Button_16" ID="TessLevel_ButtonUp" Void1="1" String="&gt;" />
+            </Label>
+          </Button>
+        </Label>
+        <CheckBox String="Tesselation"		 Anchor="R,C"  TextAnchor="R,C" ID="TerrainTessellation" Void2="1" IsChecked="1"/>
+        <CheckBox String="Wireframe"		 Anchor="R,C"  TextAnchor="R,C" ID="TerrainWireframe" Void2="1" IsChecked="0"/>
+        <Label Offset="0,16" Anchor="L,T" String="Cached Tiles" ID="TerrainCacheTiles_Label" />
+				<Label Offset="0,0" Anchor="L,T" String="Cached Memory Usage" ID="TerrainCachedMemoryUsage_Label" />
+				<Label Offset="0,0" Anchor="L,T" String="Rendered Tiles" ID="TerrainRenderedTiles_Label" />
+				<Label Offset="0,0" Anchor="L,T" String="CPU Creation Time" ID="GPUTerrainCreationTime_Label" />
+				<Label Offset="0,0" Anchor="L,T" String="GPU Creation Time" ID="CPUTerrainCreationTime_Label" />
+			</Stack>
+		</Stack>
+	</Grid>
+</Context>

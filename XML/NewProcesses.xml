@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 8/21/2011 12:01:43 AM -->
+<GameData>
+	<Processes>
+		<Row>
+			<Type>PROCESS_RECRUITING</Type>
+			<Description>TXT_KEY_PROCESS_RECRUITING</Description>
+			<Help>TXT_KEY_PROCESS_RECRUITING_HELP</Help>
+			<TechPrereq>TECH_CURRENCY</TechPrereq>
+			<IconAtlas>WW2_PROCESSES_ICONS</IconAtlas>
+			<PortraitIndex>0</PortraitIndex>
+		</Row>
+		<Row>
+			<Type>PROCESS_WAR_BONDS</Type>
+			<Description>TXT_KEY_PROCESS_WAR_BONDS</Description>
+			<Help>TXT_KEY_PROCESS_WAR_BONDS_HELP</Help>
+			<TechPrereq>TECH_CURRENCY</TechPrereq>
+			<IconAtlas>WW2_PROCESSES_ICONS</IconAtlas>
+			<PortraitIndex>1</PortraitIndex>
+		</Row>
+	</Processes>  
+</GameData>

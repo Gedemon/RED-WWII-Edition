@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" Font="TwCenMT16" FontStyle="Shadow">
+	<Instance Name="ResourceInstance">
+		<Box Anchor="R,C" Color="255.255.255.0" Offset="0,0" Size="355,24" ID="Root">
+			<Stack Size="355,24" Anchor="L,C" StackGrowth="Right" ID="ResourceStack" >
+				<Box Anchor="L,C" Color="255.255.255.0" Offset="0,0" Size="22,24">
+					<Label Anchor="R,C" ID="ResourceQty" Offset="2,0" ColorSet="Beige_Black_Alpha" Font="TwCenMT18" FontStyle="Shadow" />
+				</Box>
+				<Box Anchor="L,C" Color="255.255.255.0" Offset="0,0" Size="103,24">
+					<Label Anchor="L,C" ID="ResourceName" Offset="0,0" ColorSet="Beige_Black_Alpha" Font="TwCenMT18" FontStyle="Shadow" />
+				</Box>
+				<Box Anchor="L,C" Color="255.255.255.0" Offset="0,0" Size="210,24" ID="TradeInfoBox">
+					<Label Anchor="C,C" ID="TradeInfo" Offset="0,0" ColorSet="Beige_Black_Alpha" Font="TwCenMT18" FontStyle="Shadow" />
+				</Box>
+			</Stack>
+		</Box>
+	</Instance>
+
+	<!--=======================================================================================================================-->
+	<!--=======================================================================================================================-->
+	
+	<Grid Size="390,400" Anchor="L,T" Offset="-7,4" Style="Grid9DetailFive140" ConsumeMouse="1" >
+		<Box Offset="18,44" Anchor="L,T" Size="355,24" Color="255,255,255,0" >
+			<Stack Anchor="L,C" StackGrowth="Right" Offset="0,0" Padding="0" >
+				<Button Offset="0,0" Anchor="R,C" Size="150,24" ID="SortName" ToolTip="TXT_KEY_SORT_NAME">
+					<Label Anchor="C,C" Offset="0,-1" String="TXT_KEY_NAME" ColorSet="Beige_Black_Alpha" Font="TwCenMT20" FontStyle="Shadow" />
+
+					<ShowOnMouseOver>
+						<AlphaAnim Anchor="L,C" Size="150,32" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="2" AlphaEnd="1">
+							<Grid Size="150,32" Offset="0,0" Padding="0,0" Style="Grid9FrameTurnsHL" />
+						</AlphaAnim>
+					</ShowOnMouseOver>
+				</Button>
+
+				<Button Offset="0,0" Anchor="L,C" Size="210,24" ID="SortTradeInfo" ToolTip="TXT_KEY_SORT_TRADE">
+					<Label Anchor="C,C" Offset="0,-1" String="TXT_KEY_TRADE_INFO" ColorSet="Beige_Black_Alpha" Font="TwCenMT20" FontStyle="Shadow" />
+
+					<ShowOnMouseOver>
+						<AlphaAnim Anchor="L,C" Size="210,32" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="2" AlphaEnd="1">
+							<Grid Size="210,32" Offset="0,0" Padding="0,0" Style="Grid9FrameTurnsHL" />
+						</AlphaAnim>
+					</ShowOnMouseOver>
+				</Button>
+			</Stack>
+
+			<Image Anchor="L,T" Offset="0,24" Texture="HorizontalTrim.dds" Size="355.5" />
+		</Box>
+		
+		<ScrollPanel Anchor="L,T" Offset="18,72" Size="412,282" Vertical="1" ID="ScrollPanel" >
+			<Stack Anchor="L,T" StackGrowth="B" Padding="0" ID="MainStack" >
+
+				<Stack Size="355,24" Anchor="L,C" StackGrowth="B" Color="255,255,255,0" ID="LuxuryHeader">
+					<Image Anchor="C,C" Texture="bar340x2.dds" Size="340.1" />
+
+					<Button Size="355,24" Offset="25,0" Anchor="L,C" TextAnchor="L,C" Font="TwCenMT18" TextOffset="0,0" ID="LuxuryToggle" String="TXT_KEY_RESOURCE_LUXURY_DETAILS_COLLAPSE">
+						<ShowOnMouseOver>
+							<AlphaAnim Anchor="L,C" Size="350,27" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="2" AlphaEnd="1">
+								<Grid Size="350,27" Offset="0,0" Padding="0,0" Style="Grid9FrameTurnsHL" />
+							</AlphaAnim>
+						</ShowOnMouseOver>
+					</Button>
+
+					<Image Anchor="C,C" Texture="bar340x2.dds" Size="340.1" />
+				</Stack>
+
+				<Stack Anchor="L,T" Size="0,0" Offset="25,0" StackGrowth="Bottom" Padding="0" ID="LuxuryStack" >
+				</Stack>
+
+				<Stack Size="355,24" Anchor="L,C" StackGrowth="B" Color="255,255,255,0" ID="StrategicHeader">
+					<Image Anchor="C,C" Texture="bar340x2.dds" Size="340.1" />
+
+					<Button Size="355,24" Offset="25,0" Anchor="L,C" TextAnchor="L,C" Font="TwCenMT18" TextOffset="0,0" ID="StrategicToggle" String="TXT_KEY_RESOURCE_STRATEGIC_DETAILS_COLLAPSE">
+						<ShowOnMouseOver>
+							<AlphaAnim Anchor="L,C" Size="350,27" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="2" AlphaEnd="1">
+								<Grid Size="350,27" Offset="0,0" Padding="0,0" Style="Grid9FrameTurnsHL" />
+							</AlphaAnim>
+						</ShowOnMouseOver>
+					</Button>
+
+					<Image Anchor="C,C" Texture="bar340x2.dds" Size="340.1" />
+				</Stack>
+				
+				<Stack Anchor="L,T" Size="0,0" Offset="25,0" StackGrowth="Bottom" Padding="0" ID="StrategicStack" >
+				</Stack>
+
+				<Stack Size="355,24" Anchor="L,C" StackGrowth="B" Color="255,255,255,0" ID="BonusHeader">
+					<Image Anchor="C,C" Texture="bar340x2.dds" Size="340.1" />
+
+					<Button Size="355,24" Offset="25,0" Anchor="L,C" TextAnchor="L,C" Font="TwCenMT18" TextOffset="0,0" ID="BonusToggle" String="TXT_KEY_RESOURCE_BONUS_DETAILS_COLLAPSE">
+						<ShowOnMouseOver>
+							<AlphaAnim Anchor="L,C" Size="350,27" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="2" AlphaEnd="1">
+								<Grid Size="350,27" Offset="0,0" Padding="0,0" Style="Grid9FrameTurnsHL" />
+							</AlphaAnim>
+						</ShowOnMouseOver>
+					</Button>
+
+					<Image Anchor="C,C" Texture="bar340x2.dds" Size="340.1" />
+				</Stack>
+				
+				<Stack Anchor="L,T" Size="0,0" Offset="25,0" StackGrowth="Bottom" Padding="0" ID="BonusStack" >
+				</Stack>
+			</Stack>
+
+			<ScrollBar Offset="0,0" Style="VertSlider" Anchor="L,T" Length="287" ID="ScrollBar" />
+			<UpButton Offset="-222,0" Style="ScrollBarUp" Anchor="l,T" ID="UpButton" />
+			<DownButton Offset="-222,261" Style="ScrollBarDown" Anchor="l,T" ID="DownButton" />
+		</ScrollPanel>
+
+		<TextButton Offset="0,22" Anchor="C,B" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" String="TXT_KEY_CLOSE" ToolTip="TXT_KEY_CLOSE" FontStyle="Shadow" MouseOverStyle="SoftShadow" ConsumeMouse="1" ID="CloseButton" Hidden="0" />
+	</Grid>
+</Context>

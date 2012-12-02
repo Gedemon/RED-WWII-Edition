@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Ed Beach (Firaxis Games) -->
+<GameData>
+	<!-- Table data -->
+	<Civilizations>
+		<Delete Type="CIVILIZATION_ARABIA"/>
+		<Delete Type="CIVILIZATION_AZTEC"/>
+		<Delete Type="CIVILIZATION_BABYLON"/>
+		<Delete Type="CIVILIZATION_EGYPT"/>
+		<Delete Type="CIVILIZATION_INCA"/>
+		<Delete Type="CIVILIZATION_INDIA"/>
+		<Delete Type="CIVILIZATION_IROQUOIS"/>
+		<Delete Type="CIVILIZATION_OTTOMAN"/>
+		<Delete Type="CIVILIZATION_PERSIA"/>
+		<Delete Type="CIVILIZATION_POLYNESIA"/>
+		<Delete Type="CIVILIZATION_SONGHAI"/>
+		<Delete Type="CIVILIZATION_SIAM"/>
+		<Delete Type="CIVILIZATION_SPAIN"/>
+		<Delete Type="CIVILIZATION_DENMARK"/>
+		<Delete Type="CIVILIZATION_KOREA"/>
+		<Delete Type="CIVILIZATION_AUSTRIA"/>
+		<Delete Type="CIVILIZATION_BYZANTIUM"/>
+		<Delete Type="CIVILIZATION_CARTHAGE"/>
+		<Delete Type="CIVILIZATION_CELTS"/>
+		<Delete Type="CIVILIZATION_ETHIOPIA"/>
+		<Delete Type="CIVILIZATION_HUNS"/>
+		<Delete Type="CIVILIZATION_MAYA"/>
+		<Delete Type="CIVILIZATION_NETHERLANDS"/>
+		<Delete Type="CIVILIZATION_SWEDEN"/>
+		<Update>
+			<Where Type="CIVILIZATION_MONGOL"/>
+			<Set>
+				<Description>TXT_KEY_RED_HOTSEAT_DESC</Description>
+				<ShortDescription>TXT_KEY_RED_HOTSEAT_TITLE</ShortDescription>
+				<CivilopediaTag>TXT_KEY_RED_MOD_DESC</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_HOT_SEAT_LOAD</DawnOfManQuote>
+				<DawnOfManImage>dom_multi.dds</DawnOfManImage>
+				<MapImage>Earth1936startscreen.dds</MapImage>
+				<PortraitIndex>63</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_FRANCE"/>
+			<Set>
+				<Description>TXT_KEY_RED_WWII_FRANCE</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_FRANCE_SHORT</ShortDescription>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_FRANCE</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_FRANCE_BRIEFING</DawnOfManQuote>
+				<DawnOfManImage>dom_france.dds</DawnOfManImage>
+				<MapImage>Earth1936startscreen.dds</MapImage>
+				<PortraitIndex>5</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_GERMANY"/>
+			<Set>
+				<Description>TXT_KEY_RED_WWII_GERMANY</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_GERMANY_SHORT</ShortDescription>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_GERMANY</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_GERMANY_BRIEFING</DawnOfManQuote>
+				<DawnOfManImage>dom_germany.dds</DawnOfManImage>
+				<MapImage>mapGermany.dds</MapImage>
+				<PortraitIndex>0</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_ENGLAND"/>
+			<Set>
+				<Description>TXT_KEY_RED_WWII_UK</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_UK_SHORT</ShortDescription>
+				<Adjective>British</Adjective>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_UK</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_UK_BRIEFING</DawnOfManQuote>
+				<DawnOfManImage>dom_uk.dds</DawnOfManImage>
+				<MapImage>Earth1936startscreen.dds</MapImage>
+				<PortraitIndex>1</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_ROME"/>
+			<Set>
+				<Description>TXT_KEY_RED_WWII_ITALY</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_ITALY_SHORT</ShortDescription>
+				<Adjective>Italian</Adjective>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_ITALY</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_ITALY_BRIEFING</DawnOfManQuote>
+				<DawnOfManImage>dom_italy.dds</DawnOfManImage>
+				<MapImage>mapItaly.dds</MapImage>
+				<PortraitIndex>6</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_RUSSIA"/>
+			<Set>
+				<Description>TXT_KEY_RED_WWII_USSR</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_USSR_SHORT</ShortDescription>
+				<Adjective>Soviet</Adjective>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_USSR</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_USSR_BRIEFING</DawnOfManQuote>
+				<DawnOfManImage>dom_ussr.dds</DawnOfManImage>
+				<MapImage>mapUSSR.dds</MapImage>
+				<PortraitIndex>2</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_GREECE"/>
+			<Set>
+				<Description>TXT_KEY_RED_WWII_GREECE</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_GREECE_SHORT</ShortDescription>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_GREECE</CivilopediaTag>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_GREECE_BRIEFING</DawnOfManQuote>
+				<DawnOfManImage>dom_greece.dds</DawnOfManImage>
+				<MapImage>Earth1936startscreen.dds</MapImage>
+				<PortraitIndex>17</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_AMERICA"/>
+			<Set>
+				<Description>The United States of America</Description>
+				<ShortDescription>United States</ShortDescription>
+				<Adjective>American</Adjective>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_AMERICA</CivilopediaTag>
+				<DawnOfManQuote>"Mr. President, After the victory of World War I, we entered an economic boom becoming the largest economic country in the world. However our nation in the past decade has entered a Great Depression creating havoc for the American people and the American economy. They then elected you to lead them through the depression and hard economic times. You let them have a New Deal giving many Americans jobs and hope for a good future however the nation was still stung deeply by the Depression.[NEWLINE][NEWLINE]But The storm clouds in Europe are brewing once again and the American people have elected you to find away to stay out of the conflict. Can you Mr. President redeem the American economy, can you free the world of Facism and Communism, can you become a super power...?"[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]</DawnOfManQuote>
+				<DawnOfManImage>dom_america.dds</DawnOfManImage>
+				<MapImage>mapUSA.dds</MapImage>
+				<PortraitIndex>3</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_JAPAN"/>
+			<Set>
+				<Description>The Empire of Japan</Description>
+				<ShortDescription>Japan</ShortDescription>
+				<Adjective>Japanese</Adjective>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_JAPAN</CivilopediaTag>
+				<DawnOfManQuote>"Emperor, for years the Europeans have dominated the Asian world, but no longer. They have grown weak since World War I, and it is our right to take back Asia from the European and American plague. We are now a strong power, the Empire of the Rising Sun has already built one of the greatest navies in the world. We have already defeated the Chinese in Manchuria, and have taken islands in the Pacific.[NEWLINE][NEWLINE]We are at our golden age, the Empire of Japan is ready to achieve it's glory as a world power. Can you Emperor defeat the European and American plague and reunite the Asian lands...?"[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL]</DawnOfManQuote>
+				<DawnOfManImage>dom_japan.dds</DawnOfManImage>
+				<MapImage>Earth1936startscreen.dds</MapImage>
+				<PortraitIndex>4</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="CIVILIZATION_CHINA"/>
+			<Set>
+				<Description>Nationalist China</Description>
+				<ShortDescription>China</ShortDescription>
+				<Adjective>Chinese</Adjective>
+				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_CHINA</CivilopediaTag>
+				<DawnOfManQuote>"Generalissimo, earlier in the centuary we broke away from Monarchy and formed our very own Republic. You Generalissimo assumed command and were able to force the other warlords to join your country creating a short lived united China. Only a couple years later our lands became englufed into a Civil War, against Communist China. To make things worse the militarists of Japan invade Manchuria forcing us to surrender the province of Machuria to them. With our military scattered and broken, with the Japanese to our northeast and the Communists lurking at our northwest we are under attack from enemies on all sides.[NEWLINE][NEWLINE]The people have look to you Generalissimo to fight against Communism and Militarism to put an end to violence in this country to bring peace and prosperity to the region. Can you bring peace to the people who havn't known peace for centuries, can you defeat Japan and Chinese Rebels, can you one again become the center of Asia...?"[NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]</DawnOfManQuote>
+				<DawnOfManImage>dom_china.dds</DawnOfManImage>
+				<MapImage>Earth1936startscreen.dds</MapImage>
+				<PortraitIndex>7</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
+			</Set>
+		</Update>
+	</Civilizations>
+	<Civilization_FreeTechs>
+		<Delete />
+		<Row>
+			<CivilizationType>CIVILIZATION_ENGLAND</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_FRANCE</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_GERMANY</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_ROME</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_RUSSIA</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_GREECE</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_JAPAN</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_AMERICA</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+		<Row>
+			<CivilizationType>CIVILIZATION_CHINA</CivilizationType>
+			<TechType>TECH_SATELLITES</TechType>
+		</Row>
+	</Civilization_FreeTechs>
+	<Civilization_Leaders>
+		<Delete CivilizationType="CIVILIZATION_ARABIA"/>
+		<Delete CivilizationType="CIVILIZATION_AZTEC"/>
+		<Delete CivilizationType="CIVILIZATION_BABYLON"/>
+		<Delete CivilizationType="CIVILIZATION_EGYPT"/>
+		<Delete CivilizationType="CIVILIZATION_INCA"/>
+		<Delete CivilizationType="CIVILIZATION_INDIA"/>
+		<Delete CivilizationType="CIVILIZATION_IROQUOIS"/>
+		<Delete CivilizationType="CIVILIZATION_OTTOMAN"/>
+		<Delete CivilizationType="CIVILIZATION_PERSIA"/>
+		<Delete CivilizationType="CIVILIZATION_POLYNESIA"/>
+		<Delete CivilizationType="CIVILIZATION_SONGHAI"/>
+		<Delete CivilizationType="CIVILIZATION_SIAM"/>
+		<Delete CivilizationType="CIVILIZATION_SPAIN"/>
+		<Delete CivilizationType="CIVILIZATION_DENMARK"/>
+		<Delete CivilizationType="CIVILIZATION_KOREA"/>
+		<Delete CivilizationType="CIVILIZATION_AUSTRIA"/>
+		<Delete CivilizationType="CIVILIZATION_BYZANTIUM"/>
+		<Delete CivilizationType="CIVILIZATION_CARTHAGE"/>
+		<Delete CivilizationType="CIVILIZATION_CELTS"/>
+		<Delete CivilizationType="CIVILIZATION_ETHIOPIA"/>
+		<Delete CivilizationType="CIVILIZATION_HUNS"/>
+		<Delete CivilizationType="CIVILIZATION_MAYA"/>
+		<Delete CivilizationType="CIVILIZATION_NETHERLANDS"/>
+		<Delete CivilizationType="CIVILIZATION_SWEDEN"/>
+	</Civilization_Leaders>
+	<Civilization_BuildingClassOverrides>
+		<Delete />
+	</Civilization_BuildingClassOverrides>
+	<Civilization_UnitClassOverrides>
+		<Delete />
+	</Civilization_UnitClassOverrides>
+	<Civilization_FreeBuildingClasses>
+		<Delete />
+	</Civilization_FreeBuildingClasses>
+	<Civilization_Start_Along_Ocean>
+		<Delete />
+	</Civilization_Start_Along_Ocean>
+	<Civilization_Start_Along_River>
+		<Delete />
+	</Civilization_Start_Along_River>
+	<Civilization_Start_Region_Priority>
+		<Delete />
+	</Civilization_Start_Region_Priority>
+	<Civilization_Start_Region_Avoid>
+		<Delete />
+	</Civilization_Start_Region_Avoid>
+	<Civilization_CityNames>
+		<Delete />
+	</Civilization_CityNames>
+	
+	
+	<Leaders>
+		<Update>
+			<Where Type="LEADER_GENGHIS_KHAN"/>
+			<Set>
+				<Description>TXT_KEY_RED_MOD_TITLE</Description>
+				<CivilopediaTag>TXT_KEY_RED_MOD_DESC</CivilopediaTag>
+				<PortraitIndex>22</PortraitIndex>
+				<IconAtlas>LEADER_ATLAS</IconAtlas>
+				<!--<PortraitIndex>63</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>-->
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_NAPOLEON"/>
+			<Set>
+				<Description>TXT_KEY_LEADER_DE_GAULLE</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_DE_GAULLE</CivilopediaTag>
+				<ArtDefineTag>DiploFrance.xml</ArtDefineTag>
+				<PortraitIndex>5</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_BISMARCK"/>
+			<Set>
+				<Description>TXT_KEY_LEADER_HITLER</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_HITLER</CivilopediaTag>
+				<ArtDefineTag>DiploGermany.xml</ArtDefineTag>
+				<PortraitIndex>0</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_ELIZABETH"/>
+			<Set>
+				<Description>TXT_KEY_LEADER_CHURCHILL</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_CHURCHILL</CivilopediaTag>
+				<ArtDefineTag>DiploUK.xml</ArtDefineTag>
+				<PortraitIndex>1</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_AUGUSTUS"/>
+			<Set>
+				<Description>TXT_KEY_LEADER_MUSSOLINI</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_MUSSOLINI</CivilopediaTag>
+				<ArtDefineTag>DiploItaly.xml</ArtDefineTag>
+				<PortraitIndex>6</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_CATHERINE"/>
+			<Set>
+				<Description>TXT_KEY_LEADER_STALIN</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_STALIN</CivilopediaTag>
+				<ArtDefineTag>DiploUSSR.xml</ArtDefineTag>
+				<PortraitIndex>2</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_ALEXANDER"/>
+			<Set>
+				<Description>TXT_KEY_LEADER_METAXAS</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_METAXAS</CivilopediaTag>
+				<ArtDefineTag>DiploGreece.xml</ArtDefineTag>
+				<PortraitIndex>17</PortraitIndex>
+				<IconAtlas>WW2_FLAGS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_WU_ZETIAN"/>
+			<Set>
+				<Description>Chiang Kai-Shek</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_CHIANG</CivilopediaTag>
+				<ArtDefineTag>DiploChina.xml</ArtDefineTag>
+				<PortraitIndex>7</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_WASHINGTON"/>
+			<Set>
+				<Description>Franklin Roosevelt</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_ROOSEVELT</CivilopediaTag>
+				<ArtDefineTag>DiploAmerica.xml</ArtDefineTag>
+				<PortraitIndex>3</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+		<Update>
+			<Where Type="LEADER_ODA_NOBUNAGA"/>
+			<Set>
+				<Description>Hideki Tojo</Description>
+				<CivilopediaTag>TXT_KEY_CIVILOPEDIA_LEADERS_TOJO</CivilopediaTag>
+				<ArtDefineTag>DiploJapan.xml</ArtDefineTag>
+				<PortraitIndex>4</PortraitIndex>
+				<IconAtlas>WW2_LEADERS</IconAtlas>
+			</Set>
+		</Update>
+	</Leaders>
+	<Leader_Flavors>
+		<Update>
+			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_DEFENSE"/>
+			<Set>
+				<Flavor>20</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_OFFENSE"/>
+			<Set>
+				<Flavor>50</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_OFFENSE"/>
+			<Set>
+				<Flavor>10</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_OFFENSE"/>
+			<Set>
+				<Flavor>10</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_DEFENSE"/>
+			<Set>
+				<Flavor>10</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_OFFENSE"/>
+			<Set>
+				<Flavor>50</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_OFFENSE"/>
+			<Set>
+				<Flavor>10</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_HAPPINESS"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_SCIENCE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_CULTURE"/>
+			<Set>
+				<Flavor>0</Flavor>
+			</Set>
+		</Update>
+	</Leader_Flavors>
+	<Leader_Traits>
+		<Update>
+			<Where LeaderType="LEADER_GENGHIS_KHAN"/>
+			<Set>
+				<TraitType>TRAIT_RED_WW2</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ELIZABETH"/>
+			<Set>
+				<TraitType>TRAIT_NEVER_SURRENDER</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_BISMARCK"/>
+			<Set>
+				<TraitType>TRAIT_BLITZKRIEG</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_NAPOLEON"/>
+			<Set>
+				<TraitType>TRAIT_RESISTANCE</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_CATHERINE"/>
+			<Set>
+				<TraitType>TRAIT_GREAT_PATRIOTIC_WAR</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WASHINGTON"/>
+			<Set>
+				<TraitType>TRAIT_ARSENALOFDEMOCRACY</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_WU_ZETIAN"/>
+			<Set>
+				<TraitType>TRAIT_SUNYATSENSTHEORY</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_AUGUSTUS"/>
+			<Set>
+				<TraitType>TRAIT_MARENOSTRUM</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ALEXANDER"/>
+			<Set>
+				<TraitType>TRAIT_HEROES</TraitType>
+			</Set>
+		</Update>
+	</Leader_Traits>
+	<Traits>
+		<Row>
+			<Type>TRAIT_RED_WW2</Type>
+			<Description>TXT_KEY_RED_MOD_DESC</Description>
+			<ShortDescription>TXT_KEY_RED_MOD_TITLE</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_NEVER_SURRENDER</Type>
+			<Description>TXT_KEY_TRAIT_NEVER_SURRENDER</Description>
+			<ShortDescription>TXT_KEY_TRAIT_NEVER_SURRENDER_DESC</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_BLITZKRIEG</Type>
+			<Description>TXT_KEY_TRAIT_BLITZKRIEG</Description>
+			<ShortDescription>TXT_KEY_TRAIT_BLITZKRIEG_DESC</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_RESISTANCE</Type>
+			<Description>TXT_KEY_TRAIT_RESISTANCE</Description>
+			<ShortDescription>TXT_KEY_TRAIT_RESISTANCE_DESC</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_GREAT_PATRIOTIC_WAR</Type>
+			<Description>TXT_KEY_TRAIT_GREAT_PATRIOTIC_WAR</Description>
+			<ShortDescription>TXT_KEY_TRAIT_GREAT_PATRIOTIC_WAR_DESC</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_ARSENALOFDEMOCRACY</Type>
+			<Description>The Manufactory Improvement's output of [ICON_PRODUCTION] Production is doubled.</Description>
+			<ShortDescription>The Arsenal of Democracy</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_SUNYATSENSTHEORY</Type>
+			<Description>Units recieve 33% more experiance from combat.</Description>
+			<ShortDescription>Three Principles of the People</ShortDescription>
+			<LevelExperienceModifier>-33</LevelExperienceModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_MARENOSTRUM</Type>
+			<Description>Sea units require 33% less maintenance and start with the Supply promotion.</Description>
+			<ShortDescription>Mare Nostrum</ShortDescription>
+			<NavalUnitMaintenanceModifier>-33</NavalUnitMaintenanceModifier>
+		</Row>
+		<Row>
+			<Type>TRAIT_HEROES</Type>
+			<Description>Land Units receive the Discipline promotions.</Description>
+			<ShortDescription>"Heroes fight like Greeks"</ShortDescription>
+		</Row>
+	</Traits>
+
+	<Trait_ImprovementYieldChanges>
+		<Row>
+			<TraitType>TRAIT_ARSENALOFDEMOCRACY</TraitType>
+			<ImprovementType>IMPROVEMENT_MANUFACTORY</ImprovementType>
+			<YieldType>YIELD_PRODUCTION</YieldType>
+			<Yield>4</Yield>
+		</Row>
+	</Trait_ImprovementYieldChanges>
+
+	<Trait_FreePromotionUnitCombats>
+		<Row>
+			<TraitType>TRAIT_HEROES</TraitType>
+			<UnitCombatType>UNITCOMBAT_LAND</UnitCombatType>
+			<PromotionType>PROMOTION_ADJACENT_BONUS</PromotionType>
+		</Row>
+		<Row>
+			<TraitType>TRAIT_MARENOSTRUM</TraitType>
+			<UnitCombatType>UNITCOMBAT_NAVAL</UnitCombatType>
+			<PromotionType>PROMOTION_SUPPLY</PromotionType>
+		</Row>
+	</Trait_FreePromotionUnitCombats>
+
+	<Units>
+		<Update>
+			<Set GoldenAgeTurns="0"/>
+		</Update>
+	</Units>
+</GameData>

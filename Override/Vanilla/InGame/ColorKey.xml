@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context Font="TwCenMT14" ColorSet="Beige_Black">
+	<Grid Anchor="L,T" Size="400,200" Offset="200,32" Padding="0,0" Style="GridBlack16" ConsumeMouse="1">
+		<Stack Padding="6" Offset="20,0" StackGrowth="Bottom">
+			<Label Offset="0,16" Anchor="L,T" String="Color Key Panel" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label Anchor="L,C" String="System:"/>
+				<Button  Anchor="L,C"  Style="Button_16" ID="System_ButtonDown" Void1="-1" String="&lt;"/>
+				<Button  Anchor="L,C"  Style="Button_16" ID="System_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="L,C"  String="Select System" ID="System_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Stack StackGrowth="Right"  Anchor="L,T">
+				<Label  Anchor="L,C" String="Color Profile:"/>
+				<Button Anchor="L,C" Style="Button_16" ID="Type_ButtonDown" Void1="-1" String="&lt;"/>
+				<Button Anchor="L,C" Style="Button_16" ID="Type_ButtonUp" Void1="1" String="&gt;"/>
+				<Label Anchor="R,C"  String="Select Type" ID="Type_Label" Font="TwCenMT20" ColorSet="Beige_Black_Alpha" FontStyle="Shadow"/>
+			</Stack>
+			<Button Anchor="Left,Top" Style="Button_128" ID="Reload_Button" Void1="0" String="Reload Color Key"/>
+			<Button Anchor="Left,Top" Style="Button_128" ID="Reset_Button" Void1="0" String="Reset Color Key"/>
+			<Button Anchor="Left,Top" Style="Button_128" ID="Save_Button" Void1="0" String="Save Color Key"/>
+		</Stack>
+	</Grid>
+</Context>

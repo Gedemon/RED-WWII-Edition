@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" FontStyle="SoftShadow" >
+
+
+
+
+
+
+
+    <GridButton ID="EndTurnButton" Size="320,36" Anchor="R,B" Offset="16,200"  Hidden="0" ConsumeMouse="1" >
+        <GridData Style="Grid9DarkBlue8Button" />
+
+
+
+        <!--  Production Highlight TopFrame2 -->
+        <AlphaAnim ID="EndTurnButtonProductionAlpha" Anchor="C,C" Offset="0,0" Size="300,36" TextureOffset="0.0"  Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".55" AlphaEnd=".6" Hidden="1" >
+            <Grid  Size="320,36" Anchor="C,C" Offset="0,0" Style="Grid9Production8" />
+            <ScrollAnim  Offset="0,-6"  Size="320.48" Speed="0.05" Texture="assets\UI\Art\Notification\Production256.dds" MaskTexture="assets\UI\Art\Notification\BubblesMask336x48.dds" />
+        </AlphaAnim>
+
+        <!--  Science Highlight  -->
+        <AlphaAnim  ID="EndTurnButtonScienceAlpha" Anchor="C,C" Offset="0,0" Size="300,36" TextureOffset="0.0"  Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".25" AlphaEnd=".6" Hidden="1">
+            <Grid  Size="320,36" Anchor="C,C" Offset="0,0" Style="Grid9Science8" />
+            <ScrollAnim  Offset="0,-6"  Size="320.48" Speed="0.25" Texture="assets\UI\Art\Notification\Bubbles256.dds" MaskTexture="assets\UI\Art\Notification\BubblesMask336x48.dds" />
+        </AlphaAnim>
+
+        <!--  Free Tech Highlight  -->
+        <AlphaAnim  ID="EndTurnButtonFreeTechAlpha" Anchor="C,C" Offset="0,0" Size="300,36" TextureOffset="0.0"  Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".75" AlphaEnd=".6" Hidden="1">
+            <Grid  Size="320,36" Anchor="C,C" Offset="0,0" Style="Grid9Production8" />
+            <ScrollAnim  Offset="0,-6"  Size="320.48" Speed="0.25" Texture="Bubbles256Orange.dds" MaskTexture="assets\UI\Art\Notification\BubblesMask336x48.dds" />
+        </AlphaAnim>
+
+        <!--  Generic Highlight  -->
+        <AlphaAnim ID="EndTurnButtonEndTurnAlpha"  Anchor="C,C" Offset="0,0" Size="300,36" TextureOffset="0.0"  Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".25" AlphaEnd=".6" Hidden="1">
+            <Grid  Size="320,36" Anchor="C,C" Offset="0,0" Style="Grid9Highlight8" />
+        </AlphaAnim>
+
+        <Label Anchor="C,C" Offset="0,-2" String="END TURN"  Color0="255.255.200.255" Color1="0.0.0.128" Color2="255.255.200.255" Font="TwCenMT24" FontStyle="SoftShadow" ID="EndTurnText" />
+        <Grid Anchor="C,C" Offset="0,0" Size="324,40" Padding="0,0" Style="Grid9Frame" Hidden="0" />
+
+
+        <ShowOnMouseOver>
+            <AlphaAnim ID="EndTurnButtonMouseOverAlpha" Anchor="C,C" Offset="0,0" Size="320,36" TextureOffset="0.0"  Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".25" AlphaEnd=".6" Hidden="0">
+                <Grid  Size="320,36" Anchor="C,C" Offset="0,0" Style="Grid9Highlight8" />
+            </AlphaAnim>
+            <AlphaAnim  Anchor="R,C"  AnchorSide="O.O"  Offset="0,0" Size="16,32" TextureOffset="16.0" Texture="Assets/UI/Art/Controls/buttonsidesglow.dds" Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".6" AlphaEnd=".25" Hidden="0"/>
+            <AlphaAnim  Anchor="L,C"  AnchorSide="O.O"  Offset="0,0" Size="16,32" TextureOffset="0.0" Texture="Assets/UI/Art/Controls/buttonsidesglow.dds" Pause="0" Cycle="Bounce" Speed="1" AlphaStart=".6" AlphaEnd=".25" Hidden="0"/>
+            <Image Anchor="R,C" Offset="0,0" TextureOffset="8.0" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/buttonsides.dds" Size="8,16" />
+            <Image Anchor="L,C" Offset="0,0" TextureOffset="0.0" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/buttonsides.dds" Size="8,16" />
+
+        </ShowOnMouseOver>
+
+    </GridButton>
+
+    <Button Anchor="C,B" StateOffsetIncrement="0,0" Offset="20,20" Texture="assets\UI\Art\WorldView\TimerMeter.dds" Color="Black.164" Size="100.100" ID="EndTurnTimerButton">
+        <AlphaAnim Size="100,100" ause="0" Cycle="Bounce" Speed="1" AlphaStart=".8" AlphaEnd=".4">
+            <Meter Size="100,100" Texture="assets\UI\Art\WorldView\TimerMeter.dds" HasShadow="1" Color="White.255" ShadowColor="0,0,0,100" ID="EndTurnTimeMeter" />
+        </AlphaAnim>
+        <Image Anchor="C,C" Texture="assets\UI\Art\WorldView\TimerFrame.dds" Size="100.100" />
+        <Label Anchor="C,C" Offset="0,-2" String=""  Font="TwCenMT22" ColorSet="Beige_Black" FontStyle="Stroke" ID="TimerCountDown" />
+    </Button>
+
+
+
+
+
+    <LuaContext FileName="Assets/UI/InGame/WorldView/NotificationPanel" ID="NotificationPanel" />
+
+
+</Context>

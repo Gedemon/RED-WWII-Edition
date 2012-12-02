@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 7/15/2011 7:08:44 PM -->
+<GameData>
+	<!-- NO SUPPLY (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_NO_SUPPLY</Type>
+			<Description>TXT_KEY_PROMOTION_NO_SUPPLY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_NO_SUPPLY_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_NO_SUPPLY_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<AttackMod>-25</AttackMod>
+			<CityAttack>-25</CityAttack>
+			<DefenseMod>-10</DefenseMod>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY">
+			<Text>Supply line is cut</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_DESC">
+			<Text>-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR][NEWLINE]-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR][NEWLINE]Can't get reinforcements</Text>
+		</Row>
+	</Language_en_US>
+	<!-- NO SUPPLY SPECIAL FORCES (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_NO_SUPPLY_SPECIAL_FORCES</Type>
+			<Description>TXT_KEY_PROMOTION_NO_SUPPLY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC">
+			<Text>Can't get reinforcements.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- HEAVY (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_HEAVY</Type>
+			<Description>TXT_KEY_PROMOTION_HEAVY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_HEAVY_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_HEAVY_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY">
+			<Text>Heavy unit</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_DESC">
+			<Text>+ 100% [ICON_MATERIEL] materiel needed to reinforce this unit.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- COUNTER-ATTACK RANGED PENALTY (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_RANGED_PENALTY_20</Type>
+			<Description>TXT_KEY_PROMOTION_WEAK_RANGED</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_WEAK_RANGED</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_WEAK_RANGED</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<RangedAttackModifier>-20</RangedAttackModifier>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>		
+	</UnitPromotions>
+	<Language_en_US>
+		
+	</Language_en_US>
+
+	<!-- 99% COMBAT PENALTY (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_FULL_PENALTY</Type>
+			<Description>TXT_KEY_PROMOTION_FULL_PENALTY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_FULL_PENALTY</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_FULL_PENALTY</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CombatPercent>-99</CombatPercent>
+			<RangedDefenseMod>-99</RangedDefenseMod>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+
+	</Language_en_US>
+	<!-- SPECIAL FORCES (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SPECIAL_FORCES</Type>
+			<Description>TXT_KEY_PROMOTION_SPECIAL_FORCES</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SPECIAL_FORCES_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SPECIAL_FORCES_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SPECIAL_FORCES">
+			<Text>Special Forces</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SPECIAL_FORCES_DESC">
+			<Text>Invisible in Forest/Jungle.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- LONG RANGE PARADROP (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_LONG_PARADROP</Type>
+			<Description>TXT_KEY_PROMOTION_PARADROP</Description>
+			<Help>TXT_KEY_PROMOTION_PARADROP</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<DropRange>99</DropRange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+			<PediaEntry>TXT_KEY_PEDIA_PROMOTION_PARADROP</PediaEntry>
+		</Row>
+	</UnitPromotions>	
+	
+	<!-- EMBARKED FIX (deprecated)-->
+	<!-- try to fix bombers one shooting embarked units while it takes 5-6 shoots for a destroyer... -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_EMBARKED_FIX</Type>
+			<Description>TXT_KEY_PROMOTION_EMBARKED_FIX</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_EMBARKED_FIX</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_EMBARKED_FIX</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_EMBARKED_FIX</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>-66</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_EMBARKED_FIX</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>200</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_EMBARKED_FIX</PromotionType>
+			<UnitClassType>UNITCLASS_ARTILLERY</UnitClassType>
+			<Modifier>85</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_EMBARKED_FIX">
+			<Text>Embarked land unit.</Text>
+		</Row>
+	</Language_en_US>
+	<!-- EMBARKED FIX (ARTILLERY) (deprecated)-->
+	<!-- try to fix bombers one shooting embarked units while it takes 5-6 shoots for a destroyer... -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_EMBARKED_ARTILLERY_FIX</Type>
+			<Description>TXT_KEY_PROMOTION_EMBARKED_FIX</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_EMBARKED_FIX</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_EMBARKED_FIX</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_EMBARKED_ARTILLERY_FIX</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>-75</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_EMBARKED_ARTILLERY_FIX</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-75</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_EMBARKED_ARTILLERY_FIX</PromotionType>
+			<UnitClassType>UNITCLASS_ARTILLERY</UnitClassType>
+			<Modifier>-55</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+
+	<!-- DESERT MOVES x2 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_DESERT_POWER</Type>
+			<Description>TXT_KEY_PROMOTION_DESERT_POWER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_DESERT_POWER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_DESERT_POWER_HELP</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<PromotionPrereqOr1>PROMOTION_SHOCK_3</PromotionPrereqOr1>
+			<PromotionPrereqOr2>PROMOTION_DRILL_3</PromotionPrereqOr2>
+			<OrderPriority>3</OrderPriority>
+			<PortraitIndex>3</PortraitIndex>
+			<IconAtlas>NEW_PROMOTION_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Terrains>
+		<Row>
+			<PromotionType>PROMOTION_DESERT_POWER</PromotionType>
+			<TerrainType>TERRAIN_DESERT</TerrainType>
+			<DoubleMove>true</DoubleMove>
+		</Row>
+	</UnitPromotions_Terrains>
+	<UnitPromotions_UnitCombats>
+		<Row>
+			<PromotionType>PROMOTION_DESERT_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_DESERT_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_DESERT_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_DESERT_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+		</Row>
+	</UnitPromotions_UnitCombats>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_DESERT_POWER">
+			<Text>Desert Rats</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_DESERT_POWER_HELP">
+			<Text>x2 [ICON_MOVE] Moves on Desert.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- Ready for winter -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_WINTER_READY</Type>
+			<Description>TXT_KEY_PROMOTION_WINTER_READY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_WINTER_READY</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_WINTER_READY_HELP</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_WINTER_READY">
+			<Text>Prepared for Winter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_WINTER_READY_HELP">
+			<Text>Unit can gain Winter Equipement faster.</Text>
+		</Row>
+	</Language_en_US>
+	
+	<!-- SNOW MOVES x2 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ARCTIC_POWER</Type>
+			<Description>TXT_KEY_PROMOTION_ARCTIC_POWER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ARCTIC_POWER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ARCTIC_POWER_HELP</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<PromotionPrereqOr1>PROMOTION_SHOCK_3</PromotionPrereqOr1>
+			<PromotionPrereqOr2>PROMOTION_DRILL_3</PromotionPrereqOr2>
+			<PromotionPrereqOr3>PROMOTION_WINTER_READY</PromotionPrereqOr3>
+			<OrderPriority>3</OrderPriority>
+			<PortraitIndex>2</PortraitIndex>
+			<IconAtlas>NEW_PROMOTION_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Terrains>
+		<Row>
+			<PromotionType>PROMOTION_ARCTIC_POWER</PromotionType>
+			<TerrainType>TERRAIN_SNOW</TerrainType>
+			<DoubleMove>true</DoubleMove>
+		</Row>
+	</UnitPromotions_Terrains>
+	<UnitPromotions_UnitCombats>
+		<Row>
+			<PromotionType>PROMOTION_ARCTIC_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ARCTIC_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ARCTIC_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_RECON</UnitCombatType>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ARCTIC_POWER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+		</Row>
+	</UnitPromotions_UnitCombats>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_ARCTIC_POWER">
+			<Text>Winter Equipment</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ARCTIC_POWER_HELP">
+			<Text>x2 [ICON_MOVE] Moves on snow.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ARTILLERY (Howitzer-Guns)-->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ARTILLERY</Type>
+			<Description>TXT_KEY_PROMOTION_ARTILLERY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ARTILLERY</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ARTILLERY_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>100</CityAttack>
+			<AttackFortifiedMod>100</AttackFortifiedMod>
+			<RangeAttackIgnoreLOS>1</RangeAttackIgnoreLOS>
+			<OnlyDefensive>1</OnlyDefensive> 
+			<NoDefensiveBonus>0</NoDefensiveBonus>			<!-- default = 1 -->
+			<InterceptChanceChange>0</InterceptChanceChange>
+			<VisibilityChange>-1</VisibilityChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_ARTILLERY</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_ARTILLERY</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>-50</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_ARTILLERY">
+			<Text>Howitzer-Guns</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ARTILLERY_DESC">
+			<Text>Can fire over obstacles.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Gun[ENDCOLOR] units.[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.[NEWLINE]May not melee attack, limited visibility.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ARTILLERY (Field Guns)-->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_FIELD_GUN</Type>
+			<Description>TXT_KEY_PROMOTION_FIELD_GUN</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_FIELD_GUN</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_FIELD_GUN_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<OnlyDefensive>1</OnlyDefensive>
+			<InterceptChanceChange>0</InterceptChanceChange>
+			<VisibilityChange>-1</VisibilityChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_FIELD_GUN</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>100</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_FIELD_GUN</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>-50</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN">
+			<Text>Field Guns</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN_DESC">
+			<Text>Direct fire only.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor Units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.[NEWLINE]May not melee attack, limited visibility.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ARTILLERY (Anti Aircraft Guns)-->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ANTI_AIRCRAFT_GUN</Type>
+			<Description>TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<OnlyDefensive>1</OnlyDefensive>
+			<InterceptChanceChange>100</InterceptChanceChange>
+			<NumInterceptionChange>2</NumInterceptionChange>
+			<VisibilityChange>-1</VisibilityChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_ANTI_AIRCRAFT_GUN</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>100</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_ANTI_AIRCRAFT_GUN</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>100</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN">
+			<Text>Anti-Aircraft Guns</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN_DESC">
+			<Text>Can make 3 interceptions per turn.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Air Units[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor Units[ENDCOLOR].[NEWLINE]May not melee attack, limited visibility.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- HEAVY TANK -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_HEAVY_TANK</Type>
+			<Description>TXT_KEY_PROMOTION_HEAVY_TANK</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_HEAVY_TANK</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_HEAVY_TANK_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>-50</CityAttack>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_TANK</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>15</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_TANK">
+			<Text>Heavy Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_TANK_DESC">
+			<Text>+ 15% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor[ENDCOLOR] units.[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].</Text>
+		</Row>
+	</Language_en_US>
+
+
+	<!-- LIGHT TANK -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_LIGHT_TANK</Type>
+			<Description>TXT_KEY_PROMOTION_LIGHT_TANK</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_LIGHT_TANK</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_LIGHT_TANK_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>-25</CityAttack>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_LIGHT_TANK</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_LIGHT_TANK</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_TANK">
+			<Text>Light Tank</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_TANK_DESC">
+			<Text>+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Gun[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Armor[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ASSAULT GUN -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ASSAULT_GUN</Type>
+			<Description>TXT_KEY_PROMOTION_ASSAULT_GUN</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ASSAULT_GUN</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ASSAULT_GUN_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>50</CityAttack>
+			<AttackFortifiedMod>50</AttackFortifiedMod>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_ASSAULT_GUN</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ASSAULT_GUN</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_ASSAULT_GUN">
+			<Text>Assault Gun</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ASSAULT_GUN_DESC">
+			<Text>+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Gun[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- FIGHTER -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_FIGHTER</Type>
+			<Description>TXT_KEY_PROMOTION_FIGHTER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_FIGHTER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_FIGHTER_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangedAttackModifier>-50</RangedAttackModifier>
+			<CityAttack>-25</CityAttack>
+			<NumInterceptionChange>1</NumInterceptionChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_FIGHTER</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-33</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-33</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-33</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_FIGHTER">
+			<Text>Fighter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FIGHTER_DESC">
+			<Text>Can intercept two [COLOR_POSITIVE_TEXT]Air[ENDCOLOR] units per turn.[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Air[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 83% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] [COLOR_NEGATIVE_TEXT]Ranged[ENDCOLOR] Combat.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- MODERN FIGHTER -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_MODERN_FIGHTER</Type>
+			<Description>TXT_KEY_PROMOTION_MODERN_FIGHTER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_MODERN_FIGHTER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_MODERN_FIGHTER_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>-25</CityAttack>
+			<RangedAttackModifier>-50</RangedAttackModifier>
+			<NumInterceptionChange>2</NumInterceptionChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_MODERN_FIGHTER</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>50</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_MODERN_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-33</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_MODERN_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-33</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_MODERN_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-33</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_MODERN_FIGHTER">
+			<Text>Modern Fighter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_MODERN_FIGHTER_DESC">
+			<Text>Can intercept three [COLOR_POSITIVE_TEXT]Air[ENDCOLOR] units per turn.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Air[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 83% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] [COLOR_NEGATIVE_TEXT]Ranged[ENDCOLOR] Combat.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- HEAVY FIGHTER -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_HEAVY_FIGHTER</Type>
+			<Description>TXT_KEY_PROMOTION_HEAVY_FIGHTER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_HEAVY_FIGHTER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_HEAVY_FIGHTER_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangedAttackModifier>-25</RangedAttackModifier>
+			<CityAttack>-25</CityAttack>
+			<NumInterceptionChange>1</NumInterceptionChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_BOMBER</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_OLD_HEAVY_BOMBER</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_HEAVY_BOMBER</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_HEAVY_BOMBER_2</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_HEAVY_BOMBER_3</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_FIGHTER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_FIGHTER">
+			<Text>Heavy Fighter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_FIGHTER_DESC">
+			<Text>Can intercept two [COLOR_POSITIVE_TEXT]Air[ENDCOLOR] units per turn.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Bomber[ENDCOLOR] units.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Heavy Bomber[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 75% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] [COLOR_NEGATIVE_TEXT]Ranged[ENDCOLOR] Combat.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ATTACK AIRCRAFT -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ATTACK_AIRCRAFT</Type>
+			<Description>TXT_KEY_PROMOTION_ATTACK_AIRCRAFT</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ATTACK_AIRCRAFT</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ATTACK_AIRCRAFT_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>-25</CityAttack>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<DomainType>DOMAIN_LAND</DomainType>
+			<Modifier>100</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>33</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>50</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_OLD_FIGHTER</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER_B</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER_C</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER_D</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER_2</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER_2_B</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_FIGHTER_3</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_ATTACK_AIRCRAFT</PromotionType>
+			<UnitClassType>UNITCLASS_JET_FIGHTER</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_ATTACK_AIRCRAFT">
+			<Text>Attack Aircraft</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ATTACK_AIRCRAFT_DESC">
+			<Text>+ 150% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor[ENDCOLOR] units.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Land[ENDCOLOR] units.[NEWLINE]+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]- 15% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Fighters[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- FAST BOMBER -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_FAST_BOMBER</Type>
+			<Description>TXT_KEY_PROMOTION_FAST_BOMBER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_FAST_BOMBER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_FAST_BOMBER_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<EvasionChange>25</EvasionChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_FAST_BOMBER</PromotionType>
+			<DomainType>DOMAIN_LAND</DomainType>
+			<Modifier>50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_FAST_BOMBER</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>50</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_FAST_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-75</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_FAST_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-75</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_FAST_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-75</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_FAST_BOMBER">
+			<Text>Fast Bomber</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FAST_BOMBER_DESC">
+			<Text>+25% chance to evade interception.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Land[ENDCOLOR] units.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- HEAVY BOMBER -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_HEAVY_BOMBER</Type>
+			<Description>TXT_KEY_PROMOTION_HEAVY_BOMBER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_HEAVY_BOMBER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_HEAVY_BOMBER_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>20</CityAttack>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<DomainType>DOMAIN_LAND</DomainType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>-70</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<Modifier>15</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_BOMBER">
+			<Text>Heavy Bomber</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_BOMBER_DESC">
+			<Text>+ 20% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 35% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Gun[ENDCOLOR] units.[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Land[ENDCOLOR] units.[NEWLINE]- 70% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]- 75% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Armor[ENDCOLOR] units.[NEWLINE]- 95% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- SUBMARINES -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SUBMARINE</Type>
+			<Description>TXT_KEY_PROMOTION_SUBMARINE</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SUBMARINE</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SUBMARINE_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_SUBMARINE</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>100</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE">
+			<Text>Submarine</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE_DESC">
+			<Text>+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Sea[ENDCOLOR] and [COLOR_POSITIVE_TEXT]Embarked[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- CRUISER -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_CRUISER</Type>
+			<Description>TXT_KEY_PROMOTION_CRUISER</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_CRUISER</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_CRUISER_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_CRUISER</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>25</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_CRUISER</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_CRUISER">
+			<Text>Cruiser</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_CRUISER_DESC">
+			<Text>+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Sea[ENDCOLOR] and [COLOR_POSITIVE_TEXT]Air[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- SMALL EVASION -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SMALL_EVASION</Type>
+			<Description>TXT_KEY_PROMOTION_SMALL_EVASION</Description>
+			<Help>TXT_KEY_PROMOTION_SMALL_EVASION</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<EvasionChange>50</EvasionChange>
+			<PortraitIndex>59</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+			<PediaEntry>TXT_KEY_PEDIA_PROMOTION_EVASION_I</PediaEntry>
+		</Row>		
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SMALL_EVASION">
+			<Text>Evasion</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SMALL_EVASION_DESC">
+			<Text>+25% chance to evade interception.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- GUN 25 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_GUN_25</Type>
+			<Description>TXT_KEY_PROMOTION_GUN_25</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_GUN_25</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_GUN_25_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>59</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_GUN_25</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_GUN_25">
+			<Text>Bonus vs Gun</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_GUN_25_DESC">
+			<Text>+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Gun[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- RANGE +3 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SCENARIO_RANGE_3</Type>
+			<Description>TXT_KEY_PROMOTION_SCENARIO_RANGE_3</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SCENARIO_RANGE_3</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SCENARIO_RANGE_3_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangeChange>4</RangeChange> <!-- Range of artillery has been reduced by 1 since this promotion was named... -->
+			<PortraitIndex>59</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_3">
+			<Text>Tactical Map</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_3_DESC">
+			<Text>+ 4 [ICON_MOVE] Range from scenario settings.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- RANGE +6 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SCENARIO_RANGE_6</Type>
+			<Description>TXT_KEY_PROMOTION_SCENARIO_RANGE_6</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SCENARIO_RANGE_6</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SCENARIO_RANGE_6_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangeChange>6</RangeChange>
+			<PortraitIndex>59</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_6">
+			<Text>Tactical Map</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_6_DESC">
+			<Text>+ 6 [ICON_MOVE] Range from scenario settings.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- NAVAL MOVE +2 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SCENARIO_NAVAL_MOVEMENT_2</Type>
+			<Description>TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<ExtraNavalMovement>2</ExtraNavalMovement>
+			<PortraitIndex>59</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2">
+			<Text>Fast Naval Travel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2_DESC">
+			<Text>+ 2 [ICON_MOVE] Moves from scenario settings.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- OCEAN MOVE x2 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SCENARIO_OCEAN_MOVEMENT</Type>
+			<Description>TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>59</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Terrains>
+		<Row>
+			<PromotionType>PROMOTION_SCENARIO_OCEAN_MOVEMENT</PromotionType>
+			<TerrainType>TERRAIN_OCEAN</TerrainType>
+			<DoubleMove>true</DoubleMove>
+		</Row>
+	</UnitPromotions_Terrains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT">
+			<Text>Fast Ocean Travel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT_DESC">
+			<Text>x2 [ICON_MOVE] Moves on Ocean from scenario settings.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- LARGE TARGET (AIR PENALTY 25) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_LARGE_TARGET</Type>
+			<Description>TXT_KEY_PROMOTION_LARGE_TARGET</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_LARGE_TARGET</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_LARGE_TARGET_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_LARGE_TARGET</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_LARGE_TARGET">
+			<Text>Large Target</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LARGE_TARGET_DESC">
+			<Text>- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Air[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- ARMOR PENALTY 25 (not used)-->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ARMOR_PENALTY_25</Type>
+			<Description>TXT_KEY_PROMOTION_ARMOR_PENALTY_25</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ARMOR_PENALTY_25</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ARMOR_PENALTY_25_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_ARMOR_PENALTY_25</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_ARMOR_PENALTY_25">
+			<Text>Penalty vs Armor</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ARMOR_PENALTY_25_DESC">
+			<Text>- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Armor[ENDCOLOR].</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- SUBMARINE PENALTY 50 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_SUBMARINE_PENALTY_50</Type>
+			<Description>TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_SUBMARINE_PENALTY_50</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_SUBMARINE_PENALTY_50</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_2</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+		<Row>
+			<PromotionType>PROMOTION_SUBMARINE_PENALTY_50</PromotionType>
+			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
+			<Modifier>-50</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50">
+			<Text>Penalty vs Submarine</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50_DESC">
+			<Text>- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- CITY PENALTY 50 -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_CITY_PENALTY_50</Type>
+			<Description>TXT_KEY_PROMOTION_CITY_PENALTY_50</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_CITY_PENALTY_50</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_CITY_PENALTY_50_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>-50</CityAttack>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+
+	</UnitPromotions>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_CITY_PENALTY_50">
+			<Text>Penalty vs Cities</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_CITY_PENALTY_50_DESC">
+			<Text>- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].</Text>
+		</Row>
+	</Language_en_US>
+
+	<!-- LIGHT EQUIPEMENT PENALTY -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_LIGHT</Type>
+			<Description>TXT_KEY_PROMOTION_LIGHT</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_LIGHT</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_LIGHT_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>-10</CityAttack>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_LIGHT</PromotionType>
+			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT">
+			<Text>Light Equipment</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_DESC">
+			<Text>- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Armor[ENDCOLOR].[NEWLINE]- 10% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].</Text>
+		</Row>
+	</Language_en_US>
+	
+</GameData>

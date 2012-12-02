@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" FontStyle="Shadow" Font="TwCenMT16" >
+
+
+    <ScrollPanel Anchor="R,T" Size="175,200" Offset="0,120" Vertical="1" ID="MPListScroll" Hidden="0" >
+        
+        <Stack StackGrowth="Bottom" Anchor="R,T" ID="MPListStack" />
+        
+        <ScrollBar  Offset="0,0" Style="VertSlider"      Anchor="R,C"   AnchorSide="o,i"    ID="ScrollBar"/>
+        <UpButton   Offset="0,0" Style="ScrollBarUp"     Anchor="R,T"   AnchorSide="o,i"    ID="UpButton"/>
+        <DownButton Offset="0,0" Style="ScrollBarDown"   Anchor="R,B"   AnchorSide="o,i"    ID="DownButton"/>
+        
+    </ScrollPanel>
+
+    
+    <Instance Name="TeamEntry" >
+        <Stack ID="Root" ConsumeMouse="1" >
+					  <Box Size="200,30" Color="0,0,0,128" ID="TeamBox">
+                <Label Anchor="L,C" Offset="6,0" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="Team Name" ID="TeamName" ConsumeMouse="0"/>
+                <Label Anchor="R,C" Offset="10,0" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Stroke" String="123" ID="Score" ConsumeMouse="0"/>
+                <Box Anchor="C,B" Size="175,1" Offset="0,1" Color="255,255,200,128" />
+								<BoxButton Anchor="R,T" Size="200,30" Color="0,0,0,0" ID="TeamClickEntry"/>
+						</Box>
+						<Stack StackGrowth="Bottom" ID="TeamStack" />
+            <Box Anchor="C,B" AnchorSide="i,o" Size="175,1" Offset="0,-1" Color="255,255,200,128" ID="TeamSeparator"/>
+        </Stack>
+    </Instance>
+
+    
+    <Instance Name="PlayerEntry" >
+				<Box Anchor="R,T" Size="200,28" Color="0,0,0,128" ID="Root" ConsumeMouse="1" >
+            <Label Anchor="L,C" Offset="35,0" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="Player Name" ID="Name" ConsumeMouse="0"/>
+            <Label Anchor="R,C" Offset="10,0" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Stroke" String="123" ID="Score" ConsumeMouse="0"/>
+						<Label Anchor="R,C" Offset="10,0" Font="TwCenMT14" ColorSet="Beige_Black_Alpha" FontStyle="Stroke" String="999ms" ID="Ping" Hidden="1" ConsumeMouse="0"/>
+						<Box ID="IconBox" Color="255,255,255,0" Anchor="L,C" Offset="16,0" >
+                <Image ID="CivIconBG" Size="32.32" Anchor="C,C" Offset="0,0" TextureOffset="32,0" Texture="CivIconBGSizes.dds" />
+                <Image ID="CivIconShadow" Size="24.24" Anchor="C,C" Offset="1,1" Texture="CivSymbolAtlas16.dds" Color="Black.128"/>
+                <Image ID="Icon" Size="24.24" Offset="0,0"  Anchor="C,C" Texture="CivSymbolsColor256.dds" />
+            </Box>
+            <Box Anchor="C,B" Size="175,1" Offset="0,1" Color="255,255,200,128" ID="Seperator" />
+						<BoxButton Anchor="R,T" Size="200,28" Color="0,0,0,0" ID="ClickEntry"/>
+        </Box>
+    </Instance>
+
+
+</Context>

@@ -1,0 +1,915 @@
+<GameData>
+
+
+	<!-- +++++++++++++ -->
+	<!-- SHIPS ENTRIES -->
+	<!-- +++++++++++++ -->
+	
+	<Language_en_US>
+		
+		<!--CIVILOPEDIA ENTRIES-->
+		
+		<!--CIVILOPEDIA HOOD-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_HOOD">
+			<Text>
+				HMS Hood (pennant number 51) was the last battlecruiser built for the Royal Navy.
+				One of four Admiral-class battlecruisers ordered in mid-1916, her design—although drastically revised after the Battle of Jutland and improved while she was under construction—still had serious limitations.
+				For this reason she was the only ship of her class to be completed.
+				She was named after the 18th-century Admiral Samuel Hood.
+				When war with Germany was declared in September 1939, Hood was operating in the area around Iceland, and spent the next several months hunting between Iceland and the Norwegian Sea for German commerce raiders and blockade runners.
+				After a brief overhaul to her engine plant, she sailed as the flagship of Force H, and participated in the destruction of the French Fleet at Mers-el-Kebir.
+				Relieved as flagship of Force H, Hood was dispatched to Scapa Flow, and operated in the area as a convoy escort and later as a defence against a potential German invasion fleet.
+				In May 1941, she and the battleship HMS Prince of Wales were ordered to intercept the German battleship Bismarck which was en route to attack convoys in the Atlantic.
+				On 24 May 1941, Hood was struck by several German shells early in the Battle of the Denmark Strait and exploded; the loss had a profound effect on the British.
+				Prime Minister Winston Churchill ordered the Royal Navy to "sink the Bismarck", and they fulfilled his command on 26–27 May.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA LITTORIO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_LITTORIO">
+			<Text>
+				Littorio was a Vittorio Veneto-class battleship that served in the Regia Marina during World War II.
+				On 30 July 1943, after the fall of Benito Mussolini, Littorio was renamed Italia.
+				The Armistice between Italy and Allied armed forces took place on 8 September, along with the rest of the Italian fleet she was formally surrendered to the Allies on the following day.
+				She was stationed in the Great Bitter Lake in Egypt until the end of the war.
+				Littorio participated in 46 war missions, nine of which were enemy hunting and three were as an escort.
+			</Text>
+		</Row>
+		<!--IOWA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_IOWA">
+			<Text>
+				USS Iowa (BB-61) was the lead ship of her class of battleship and the fourth in the United States Navy to be named in honor of the 29th state.[NEWLINE]
+				Owing to the cancellation of the Montana-class battleships, Iowa is the last lead ship of any class of United States battleships, and was the only ship of her class to have served in the Atlantic Ocean during World War II.[NEWLINE]
+				Iowa was decommissioned for the last time in 1990, and was initially struck from the Naval Vessel Register in 1995.[NEWLINE]
+				She was reinstated from 1999 to 2006 to comply with federal laws that required retention and maintenance of two Iowa-class battleships.[NEWLINE]
+				Iowa is currently berthed with the National Defense Reserve Fleet at Suisun Bay, near San Francisco, California, and is awaiting donation to a not-for-profit entity for use as a museum ship.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA RICHELIEU-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_RICHELIEU">
+			<Text>
+				The Richelieu class battleships were the last and largest battleships of the French Navy, staying in service into the 1960s.[NEWLINE]
+				Designed in the 1930s to counter of threat of the Italian Vittorio Veneto class battleships, the Richelieu class were essentially scaled-up versions of the preceding Dunkerque class, featuring a main armament of eight 380 mm guns in two quadruple turrets in forward superfiring positions.[NEWLINE]
+				Four Richelieu class ships, of three different subclasses, were laid down over the course of three naval construction programs, in 1935, 1936, and 1938. Only the two first units, Richelieu and Jean Bart, were ever completed, and saw service during World War II, first under Vichy control in Dakar (1940) and Casablanca (1942), then under the Allies' control, Richelieu participating in British Home Fleet and Eastern Fleet operations, and supported the French forces return to Indochina in late 1945.[NEWLINE]
+				Jean Bart was not completed until the 1950s, and took part in the operations off Port Saïd (Egypt) during the Suez Crisis in 1956.[NEWLINE]
+				Both were scrapped in the late 1960s.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DUNKERQUE-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_DUNKERQUE">
+			<Text>
+				The Dunkerque was the first of a new class of warship of the French Navy labeled as a "fast battleship".[NEWLINE]
+				Not as well-armed and considerably less armoured than contemporary battleships, they are nonetheless considered scaled-down battleships and they are considerably more balanced (in the ship's performance tradeoffs between armour and armament) than battlecruisers.[NEWLINE]
+				The Dunkerques were superior in all respects to and designed to counter the threat of the German pocket battleships of the Deutschland class, which were in effect scaled-up cruisers.[NEWLINE]
+				She was scuttled, along with Strasbourg, on 27 November 1942 in Toulon.
+			</Text>
+		</Row>
+		<!--YAMATO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_YAMATO">
+			<Text>
+				Yamato, named after the ancient Japanese Yamato Province, was the lead ship of the Yamato class of battleships that served with the Imperial Japanese Navy during World War II.[NEWLINE]
+				She and her sister ship, Musashi, "were the largest and most powerful battleships ever built", displacing 72,800 tonnes at full load and armed with nine 46 cm (18.1 inch) main guns.[NEWLINE]
+				Neither survived the war.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA BISMARCK-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_BISMARCK">
+			<Text>
+				Bismarck was the first of two Bismarck-class battleships built for the German Kriegsmarine during World War II.
+				The ship was named after Chancellor Otto von Bismarck, the primary force behind the German unification in 1871.
+				Along with her sister ship Tirpitz, Bismarck was the largest battleship ever built by Germany, and the heaviest built by any European power.
+				Bismarck conducted only one offensive operation, codenamed Rheinübung, in May 1941.
+				The ship, along with the heavy cruiser Prinz Eugen, was to break out into the Atlantic Ocean and raid Allied shipping from North America to Great Britain.
+				The two ships were detected several times off Scandinavia, however, and British naval units were deployed to block their route.
+				At the Battle of Denmark Strait, Bismarck engaged and destroyed the battlecruiser HMS Hood, the pride of the Royal Navy, and forced the battleship HMS Prince of Wales to retreat with heavy damage, although in the end Bismarck herself was hit three times and suffered an oil leak from a ruptured tank following the hits.
+				The destruction of Hood spurred a relentless pursuit by the Royal Navy with dozens of warships involved.
+				Two days later, while steaming for the relative safety of occupied France, Bismarck was attacked by Fairey Swordfish torpedo bombers from the aircraft carrier HMS Ark Royal;
+				one hit was scored that jammed the battleship's steering gear and rendered her unmanoeuvrable.
+				The following morning, Bismarck suffered heavy damage from the battleships HMS King Georges V and HMS Rodney, she was scuttled by her crew and in June 1989, Robert Ballard discovered the location of Bismarck's wreck.
+			</Text>
+		</Row>
+		<!--GANGUT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_GANGUT">
+			<Text>
+				Gangut was both the lead ship of the Gangut-class battleships of the Imperial Russian Navy built before World War I and the last of her class to be completed.
+				The Ganguts were the first class of Russian dreadnoughts.
+				She was named after the Russian victory over the Swedish Navy in the Battle of Gangut in 1714.
+				She was reconstructed between 1931 and 1934 with new boilers, fire-control systems and greatly enlarged superstructures.
+				During the Winter War she bombarded Finnish coastal artillery positions one time.
+				Her anti-aircraft armament was greatly reinforced in early 1941, just before Operation Barbarossa.
+				She provided gunfire support against the Germans during the Siege of Leningrad despite being bombed three times and under repair for a year.
+				Retained on active duty after the war she became a training ship in 1954 before being struck off the Navy List in 1956 and slowly scrapped.
+				On 22 July 1944 she was awarded the Order of the Red Banner.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DREADNOUGHT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_DREADNOUGHT">
+			<Text>
+				The dreadnought was the predominant type of 20th-century battleship.[NEWLINE]
+				The first of the kind, the Royal Navy's Dreadnought had such an impact when launched in 1906 that battleships built after her were referred to as 'dreadnoughts', and earlier battleships became known as pre-dreadnoughts.[NEWLINE]
+				Her design had two revolutionary features: an 'all-big-gun' armament scheme and steam turbine propulsion.[NEWLINE]
+				The arrival of the dreadnoughts renewed the naval arms race, principally between the United Kingdom and Germany but reflected worldwide, as the new class of warships became a crucial symbol of national power.[NEWLINE]
+				The term 'dreadnought' gradually dropped from use after World War I, especially after the Washington Naval Treaty, as all remaining battleships shared dreadnought characteristics; it can also be used to describe battlecruisers, the other type of ship resulting from the dreadnought revolution.
+			</Text>
+		</Row>
+
+		<!--CIVILOPEDIA SOUTH DAKOTA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SOUTH_DAKOTA">
+			<Text>
+				The South Dakota-class was a group of four fast battleships built by the United States Navy. They were the second class of battleships to be named after the 40th State; the first class was designed in the 1920s and canceled under the terms of the Washington Naval Treaty. The class comprised four ships: South Dakota, Indiana, Massachusetts, and Alabama. They were more compact and better protected than the preceding North Carolina class, but had the same main battery, nine 16-inch (406 mm)/45-caliber guns in triple turrets. The ships can be visually distinguished from the earlier vessels by their single funnel, compared to twin funnels in the North Carolinas. According to authors William Garzke and Robert Dulin, the South Dakota design was the best "treaty battleship" ever built.
+				[NEWLINE][NEWLINE]
+				Construction began shortly before World War II, with Fiscal Year (FY) 1939 appropriations. Commissioning through the summer of 1942, the four ships served in both the Atlantic, ready to intercept possible German capital ship sorties. As the U.S. went on the offensive in the Central Pacific, they joined in escorting the fast carrier task forces, a job for which their heavy anti-aircraft gun batteries were well-suited. They also employed their main battery guns in shore bombardment, and were kept ready to form battle line in case their Japanese opposite numbers should appear. All four ships were retired post-war; South Dakota and Indiana were scrapped, while Massachusetts and Alabama were retained as museum ships.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SCHARNHORST-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SCHARNHORST">
+			<Text>
+				The Scharnhorst class were the first capital ships, alternatively referred to as battlecruisers or battleships, built for the German Navy (Kriegsmarine) after World War I. The class comprised two vessels: the lead ship Scharnhorst and Gneisenau.[NEWLINE]Scharnhorst was launched first, and so she is considered to be the lead ship by some sources; however, they are also referred to as the Gneisenau class in some other sources, as Gneisenau was the first to be laid down and commissioned. They marked the beginning of German naval rearmament after the Treaty of Versailles.[NEWLINE]The ships were armed with nine 28 cm (11 in) SK C/34 guns in three triple turrets, though there were plans to replace these weapons with six 38 cm (15 in) SK C/34 guns in twin turrets.
+				[NEWLINE][NEWLINE]
+				The two ships were laid down in 1935, launched in late 1936, and commissioned into the German fleet by early 1939. Scharnhorst and Gneisenau operated together for much of the early portion of World War II, including sorties into the Atlantic to raid British merchant shipping. The two ships participated in Operation Weserübung, the German invasion of Norway. During operations off Norway, the two ships engaged the battlecruiser HMS Renown and sank the aircraft carrier HMS Glorious— in the engagement with Glorious, Scharnhorst achieved one of the longest-range naval gunfire hits in history. In early 1942, the two ships made a daylight dash up the English Channel from occupied France to Germany.
+				[NEWLINE][NEWLINE]
+				In late 1942, Gneisenau was heavily damaged in an Allied air raid against Kiel. In early 1943, Scharnhorst joined the Bismarck class battleship Tirpitz in Norway to interdict Allied convoys to the Soviet Union. Scharnhorst and several destroyers sortied from Norway to attack a convoy; the Germans were instead intercepted by British naval patrols. During the battle of North Cape, the Royal Navy battleship HMS Duke of York sank Scharnhorst. In the meantime, repair work on Gneisenau had begun, and the ship was in the process of being rearmed. However, when Scharnhorst was sunk, work on her sister was abandoned. Instead, she was sunk as a blockship in Gdynia in 1945; the wreck was broken up for scrap in the 1950s.
+			</Text>
+		</Row>
+		
+	</Language_en_US>
+	<Language_fr_FR>
+		<!--CIVILOPEDIA ENTRIES-->
+
+		<!--CIVILOPEDIA RICHELIEU-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_RICHELIEU">
+			<Text>
+				Le Richelieu était un cuirassé français construit à partir de 1935, baptisé en l'honneur du cardinal de Richelieu, pour le rôle fondateur de ce ministre dans la création d'une première puissance navale française au début du XVIIe siècle.
+				Premier cuirassé français, d'un déplacement égal au maximum autorisé à l'époque par les traités de limitation des armements navals (35 000 tonnes), destiné à contrer les cuirassés italiens de la classe Vittorio Veneto.
+				c'était une version plus puissante de la classe Dunkerque, dont il reprend la disposition spécifique de l'artillerie principale en deux tourelles quadruples à l'avant, mais cette fois au calibre de 380 mm.
+				Un sister-ship de la classe Richelieu, le Jean Bart, mis sur cale, en 1936, alors qu'allait commencer la construction du cuirassé allemand Bismarck, n'entrera en service qu'en 1955.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA HOOD-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_HOOD">
+			<Text>
+				Le HMS Hood est un croiseur de bataille britannique, fleuron de la Royal Navy pendant l'entre-deux-guerres, coulé le 24 mai 1941 à la sortie du détroit du Danemark, lors d'une bataille navale l'opposant au cuirassé allemand Bismarck.
+				Le 21 mai 1941, le cuirassé allemand Bismarck, ainsi que le croiseur lourd SMS Prinz Eugen , sont repérés à Bergen, en Norvège.
+				Le 22 mai, à 22 h 15, le Hood et le Prince of Wales quittent Scapa Flow pour aller à leur rencontre au détroit du Danemark.
+				Le lendemain 24 mai, à 5 h 05, à la sortie du détroit du Danemark, les deux flottes s'aperçoivent. La bataille est engagée à 5 h 52, les quatre navires en présence encaissent chacun des coups sévères, mais personne ne semble emporter la décision.
+				Les navires allemands deviennent pourtant de plus en plus précis dans leur tir, tandis que le navire amiral britannique, le Hood, souffre de nombreux problèmes techniques qui l'empêchent de tirer plus vite.
+				A 5 h 57, la seconde salve du SMS Prinz Eugen déclenche un incendie, à 6 h 00, un obus du Bismarck atteint le talon d'Achille du Hood, au niveau de la soute à munitions insuffisamment protégée.
+				Une formidable explosion retentit, avec une boule de feu haute de plusieurs centaines de mètres : le navire est cassé en deux et coule en quelques minutes.
+				On ne trouvera que trois survivants sur les 1419 hommes d'équipage.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA LITTORIO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_LITTORIO">
+			<Text>
+				Le Littorio est le premier cuirassé d'une classe de quatre navires italiens de la Seconde Guerre mondiale : le Littorio, le Vittorio Veneto, le Roma (entré en service fin 1942) et l’Impero (non terminé).
+				Le 11 novembre 1940 le Vittorio Veneto fut légèrement endommagé pendant la bataille de Tarente.
+				Touché par trois torpilles alors qu'il était à quai, les réparations furent rapides.
+				En septembre 1941, le Littorio participa à l'attaque d'un convoi britannique ravitaillant Malte.
+				Fin 1941 et début 1942, il participa aux batailles de Syrte, près des côtes libyennes, au cours desquelles il coula les destroyers HMS Havroc et HMS Kingston.
+				Le 15 juin 1942, il attaqua un convoi britannique mais fut endommagé par une torpille lancée depuis un bombardier Vickers Wellington.
+				Le 30 juillet 1943, il fut renommé Italia et, après l'armistice du 8 septembre 1943, il fut envoyé au Grand Lac Amer en Égypte et il y resta jusqu'en 1948, année de son démantèlement.
+				Les caractéristiques de cette classe sont :
+				Blindage : 225 à 350 mm à la ceinture, 152 à 203 mm sur le pont.
+				Armement : 9 canons de 381 mm en tourelles triples (2 avant et 1 arrière), 12 canons de 152 mm, 12 canons de 90 mm anti-aériens et 50 mitrailleuses anti-aériennes de 37 et 20 mm.
+				Les navires de la classe Littorio emportaient également trois hydravions mis en œuvre grâce à une catapulte.
+			</Text>
+		</Row>
+		<!--IOWA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_IOWA">
+			<Text>
+				L’USS Iowa (BB-61) (« The Big Stick ») est un cuirassé de l'United States Navy qui participa notamment à la Seconde Guerre mondiale.
+			</Text>
+		</Row>
+		<!--YAMATO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_YAMATO">
+			<Text>
+				Le Yamato, du nom de l'ancienne province japonaise de Yamato, était un cuirassé de premier rang de la marine impériale japonaise, et le premier de la classe Yamato.[NEWLINE]
+				Avec son jumeau le Musashi, le Yamato était le plus grand des cuirassés jamais construits, déplaçant 65 027 tonnes, et armés de pièces de 460 mm, le plus gros calibre jamais monté sur un navire de guerre.[NEWLINE]
+				Le Yamato fut coulé le 7 Avril 1945 par les portes avions américains.
+			</Text>
+		</Row>
+		<!--GANGUT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_GANGUT">
+			<Text>
+				Le Gangut est un cuirassé de classe Gangut qui servit dans la Marine impériale de Russie de 1911 à 1917, puis dans la Marine soviétique de 1917 à 1956.
+				Le 27 juin 1925 il prit le nom de Révolution d'Octobre (Oktyabrkaya Revolutsiya).
+				Il prit part à trois conflits : la Première Guerre mondiale, la Guerre d'Hiver (1939-1940), la Seconde Guerre mondiale.
+				Dès la déclaration de la Seconde Guerre mondiale, le Révolution d'Octobre entreprit un voyage de Tallinn à Kronstadt, puis de ce port se rendit à Leningrad (septembre 1941). Le cuirassé prit part à la défense de cette ville pendant toute la durée du conflit opposant l'URSS à l'Allemagne nazie. De 1941 à 1945, sous le commandement de MZ Moskalenko, NA Petrichev et S.D Soloukhine l'artillerie de marine ouvrit le feu sur les forces armées allemandes.
+				Armé de canons anti-aériens (4x75 mm - 14x37 mm - 10x12,7 mm - et 89 canons de 7,62 mm) installés en 1941) le cuirassé dirigea ses tirs contre les pilotes de la Luftwaffe.
+				Au cours de l'attaque aérienne du 21 septembre 1941, le Révolution d'Octobre fut touché par trois bombes, lors du raid aérien du 27 septembre 1941, un bombe atteignit les tourelles du cuirassé provoquant un incendie à bord, le mécanisme de rotation resta bloqué, mais le navire continua la défense de la Leningrad.
+				En 1944, le Révolution d'Octobre apporta son soutien lors de l'offensive du front de Leningrad.
+				Pour son comportement héroïque lors de la défense de Leningrad, le 22 juillet 1944, le Révolution d'Octobre fut décoré de l'Ordre du Drapeau rouge.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA BISMARCK-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_BISMARCK">
+			<Text>
+				Le Bismarck est un cuirassé allemand de la Seconde Guerre mondiale, fleuron de la Kriegsmarine du IIIe Reich et qui porte le nom du chancelier Otto von Bismarck (1815-1898).
+				Il est célèbre pour avoir coulé le croiseur de bataille HMS "Hood" et gravement endommagé le cuirassé HMS "Prince of Wales".
+				Il s'ensuivit une prise en chasse par la flotte britannique, avec notamment les cuirassés HMS Rodney et HMS King George V ainsi que le porte avions HMS Ark Royal.
+				Sa barre bloquée par l'explosion d'une torpille tirée d'un avion "Swordfish" le Bismarck ne put échappé aux cuirassés anglais.
+				Gravement endommagé par les tirs ennemis l'équipage saborda le navire au large de Brest le 27 mai 1941.
+				Sur un équipage de plus de 2 200 hommes, seuls 115 survivants furent recueillis par le Dorsetshire.
+				Ils étaient des centaines (peut-être un millier) encore à l'eau, lorsqu'ils furent abandonnés sous les yeux effarés des matelots britanniques, le croiseur ayant cru repérer un sous-marin allemand tout proche.
+				Il fut, avec son "sister-ship" le Tirpitz, le bâtiment le plus puissant du régime nazi et la fierté de son pays.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DUNKERQUE-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_DUNKERQUE">
+			<Text>
+				Le Dunkerque était, comme son sistership de la classe Dunkerque, le Strasbourg, difficilement classable.[NEWLINE]
+				En effet, à peine moins rapides mais mieux protégés qu'un croiseur de bataille, leur blindage était moindre que celui des derniers cuirassés construits antérieurement au Traité de Washington de 1922, mais en revanche ils avaient une vitesse supérieure.[NEWLINE]
+				Les historiens maritimes les classent indifféremment comme croiseur de bataille ou cuirassé, c'est-à-dire bâtiment de ligne.[NEWLINE]
+				Mis en service respectivement en 1937 et 1939, le Dunkerque et le Strasbourg constituent l'avant-dernière classe de navires de ligne mis en service par la Marine nationale française.[NEWLINE]
+				Ils étaient remarquables par leur artillerie principale de 330 mm, en deux tourelles quadruples à l'avant.[NEWLINE]
+				Ils ont fini leur carrière sabordés à Toulon, pour éviter de tomber aux mains des Allemands, le 27 novembre 1942.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DREADNOUGHT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_DREADNOUGHT">
+			<Text>
+				Le dreadnought est le type prédominant de cuirassé du XXe siècle.[NEWLINE]
+				Il tire son nom du navire de guerre britannique HMS Dreadnought, lancé en 1906, qui présentait deux caractéristiques nouvelles pour l'époque : son artillerie principale n'était que d'un seul calibre (all-big-gun) et il était propulsé par un système révolutionnaire de turbine à vapeur alimentée au charbon.[NEWLINE]
+				Son impact fut si grand que les cuirassés construits après lui reprirent ces caractéristiques et furent appelés des « dreadnoughts » (ceux construits avant, des pré-dreadnoughts).[NEWLINE]
+				Le terme « dreadnought » fut progressivement abandonné après la Première Guerre mondiale, quand tous les cuirassés en partagèrent les caractéristiques.[NEWLINE]
+				Le terme dreadnought pouvait aussi inclure les croiseurs de bataille, type de navire alliant la vitesse mais aussi la légèreté de blindage des croiseurs à l'armement principal des révolutionnaires dreadnoughts.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SCHARNHORST-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SCHARNHORST">
+			<Text>
+				Les Scharnhorst ne rentrent dans aucune des catégories de navires construites dans les années trente. Ils ont une protection digne d'un cuirassé, mais un armement inférieur à celui d'un croiseur de bataille. Ils font suite aux corsaires de la classe Deutschland mais vont beaucoup plus vite grâce à leurs turbines. Par contre, leur autonomie est limitée. Ils naissent comme une réponse aux Dunkerque français (eux mêmes une réponse aux Deutschland) avec une puissance de feu est un peu inférieure (9 x 280mm contre 8 x 330mm) mais une protection très supérieure. Il était prévu de les réarmer avec les mêmes canons de 380mm que les Bismarck, mais le plan n'aboutit pas (ce sera commencé sur le Gneisenau).
+				En 1939, ce sont les deux plus grosses unités de la Kriegsmarine, status qu'ils conserveront jusqu'à l'entrée en service du Bismarck. Pendant trois ans, ils opèrent de conserve, remportant plusieurs succès spectaculaires comme la destruction du Glorious au large de la Norvège ou une campagne dévastatrice contre le commerce allié dans l'Atlantique en 1941. Le redressement sur mer et dans les airs des alliés ensuite leurs rend la vie pénible. Ils sont bloqués pendant plus de 6 mois à Brest avant de remporter leur dernier succès commun, la traversée de la Manche en plein jour en février 1942 à la barbe des Anglais. Ce sera la dernière action de guerre du Gneisenau, endommagé à plusieurs reprise et dont la reconstruction avec des canons de 380mm sera abandonnée quelques mois plus tard.
+				Le Scharnhorst va continuer à hanter les eaux du grand nord pendant encore un an, redevenant par période la plus importante unité de la Kriegsmarine quand le Tirpitz était hors combat. En tentant d'attaquer un convoi arctique au large du Cap Nord en décembre 1943, il sera surpris et détruit par le cuirassé britannique HMS Duke of York.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SOUTH DAKOTA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SOUTH_DAKOTA">
+			<Text>
+				Les "South Dakota" furent conçus en tirant les enseignements des "North Carolina". Ils devaient remplacer ces derniers, pour faire face aux nouveaux cuirassés japonais.
+				C'est une version raccourcie de son prédécesseur. Ses machines, moins puissantes et volumineuses, permettaient de gagner du poids et de la place, mis à profit pour renforcer le blindage du navire, calculé pour résister à des obus de 406mm et non plus seulement de 356mm. Pour le reste, ses performances (vitesse et armement) sont similaires à celles des 'North Carolina".
+				[NEWLINE][NEWLINE]
+				Ils entrent en service dans la seconde moitié de l'année 1942.
+				Le South Dakota arrive juste à temps dans le Pacifique Sud pour participer à la bataille navale de Santa Cruz, et il sera endommagé le 14 novembre 1942, lors de la seconde bataille navale de Guadalcanal.
+				[NEWLINE][NEWLINE]
+				L'Alabama et le Massachussetts servirent pendant un temps dans l'Atlantique, puis furent transférés dans le Pacifique. Les quatre "South Dakota" participèrent ensuite à l'offensive de Nimitz dans le Pacifique central, en novembre 1943. Puis jusqu'à la fin de la guerre du Pacifique. Ils servirent essentiellement pour l'escorte des porte-avions d'escadre.
+				[NEWLINE][NEWLINE]
+				Après la guerre, ils furent versés dans la réserve, jusqu'à leur mise à la ferraille, au début des années soixantes, exceptés l'Alabama et le Massachussetts, transformés en musées.
+			</Text>
+		</Row>
+	</Language_fr_FR>
+	<Language_de_DE>
+		<!--CIVILOPEDIA ENTRIES-->
+		
+		<!--CIVILOPEDIA HOOD-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_HOOD">
+			<Text>
+				Die HMS Hood war ein Schlachtkreuzer der britischen Kriegsmarine.
+				Sie war eines von vier Schiffen der Admiral-Klasse, deren Bau noch während des Ersten Weltkrieges ab Mitte 1916 begann.
+				Die Hood war allerdings das einzige Schiff dieser Klasse, das fertiggestellt wurde.
+				Die Arbeiten an den anderen wurden eingestellt, da die deutschen Großkampfschiffe, gegen die die Klasse vorgesehen war, nach Ende des Krieges offensichtlich nicht mehr gebaut werden würden.
+				Das Schiff war benannt nach Admiral Samuel Hood, dem 1. Viscount Hood (1724–1816).
+				Am 24. Mai 1941 wurde die Hood beim Gefecht in der Dänemarkstraße versenkt.
+				Der Bismarck gelang dabei nach nur sechsminütigem Feuergefecht durch die fünfte Salve aus allen vier Türmen ein vernichtender Treffer aufgrund unzureichender Deckpanzerung in die achtere Hauptmunitionskammer der Hood, der das Schiff auseinanderriss und eine weitere Explosion in der vorderen Munitionskammer unterhalb des Turms „B“ auslöste.
+				Vor- und Achterschiff hoben sich aus dem Wasser, brachen nahe dem achteren Mast auseinander und versanken in zwei Minuten in den eisigen Fluten.
+				Von den 1418 Mann Besatzung konnten nur drei gerettet werden.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA LITTORIO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_LITTORIO">
+			<Text>
+				Die Littorio war ein italienisches Schlachtschiff der Littorio-Klasse der Regia Marina im Zweiten Weltkrieg.
+				Nach dem Sturz des Faschismus und der Verhaftung Mussolinis wurde die Littorio am 30. Juli 1943 in Italia umbenannt.
+				Nach dem Waffenstillstand zwischen Italien und den Alliierten am 8. September wurde das Schlachtschiff zusammen mit ihrem Schwesterschiff Vittorio Veneto für den Rest des Krieges im Großen Bittersee im Sueskanal interniert.
+				Vorschläge, die Schiffe nach der italienischen Kriegserklärung an die Achsenmächte auf Seiten der Alliierten einzusetzen, wurden aus politischen und organisatorischen Gründen abgelehnt.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA IOWA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_IOWA">
+			<Text>
+				Die USS Iowa (BB-61) war ein Schlachtschiff der United States Navy und Typschiff der Iowa-Klasse.[NEWLINE]
+				Sie wurde 1943 in Dienst gestellt und fuhr noch im selben Jahr im Atlantischen Ozean Einsätze im Zweiten Weltkrieg.[NEWLINE]
+				1944 wechselte sie in den Pazifik und nahm am Pazifikkrieg teil, wo sie die Luftverteidigung für Flugzeugträger übernahm und später die japanischen Hauptinseln beschoss.[NEWLINE]
+				Im Rahmen der Verkleinerung der US-Streitkräfte nach Ende des Krieges wurde sie 1949 außer Dienst gestellt, aber in Reserve gehalten.[NEWLINE]
+				Schon zwei Jahre später wurde die Iowa allerdings reaktiviert, um im Koreakrieg ihre 40,6-Zentimeter-Geschütze gegen nordkoreanische Ziele abzufeuern.[NEWLINE]
+				1990 wurde das Schlachtschiff letztmals außer Dienst gestellt, aber noch in der Reserveflotte geführt. 2006 wurde sie endgültig aus dem Naval Vessel Register gestrichen.[NEWLINE]
+				Seit 2001 liegt die Iowa in der Suisun Bay, San Francisco. Als einziges der vier Schiffe ihrer Klasse ist sie nicht als Museumsschiff der Öffentlichkeit zugänglich.[NEWLINE]
+				Die Navy möchte sie aber ebenfalls an eine gemeinnützige Organisation abgeben.[NEWLINE]
+				Es gibt Bestrebungen das Schiff in Kalifornien zu behalten.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA YAMATO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_YAMATO">
+			<Text>
+				Die Yamato (nach der Provinz Yamato) war ein japanisches Schlachtschiff aus dem Zweiten Weltkrieg. Sie war das Typschiff der Yamato-Klasse.[NEWLINE]
+				Ihre schwere Artillerie hatte mit 46 Zentimetern das größte bisher bei Hinterladergeschützen auf Schiffen verwendete Kaliber.[NEWLINE]
+				Das Schiff wurde von 1937 bis 1941 auf der Marinewerft in Kure gebaut und in der Folge wie auch das Schwesterschiff Musashi im Pazifikkrieg eingesetzt.[NEWLINE]
+				Die Yamato wurde am 7. April 1945 300 Kilometer südlich der japanischen Insel Kyūshū von US-amerikanischen Trägerflugzeugen versenkt.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA GANGUT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_GANGUT">
+			<Text>
+				Die Gangut war das Typschiff einer Klasse von vier Linienschiffen der kaiserlich-russischen Marine.
+				Sie war benannt nach der Seeschlacht von Hanko (russisch: Gangut) im Jahre 1714.
+				Schwesterschiffe waren die Petropawlowsk, die Sewastopol und die Poltawa.
+				Die vier waren die ersten russischen Dreadnoughts.
+				Die Gangut wurde am 3. Juni 1909 in St. Petersburg auf Kiel gelegt, am 24. September 1911 vom Stapel gelassen und im Dezember 1914 fertiggestellt.
+				Während des Ersten Weltkrieges diente die Gangut in der Baltischen Flotte, aus ihrem Heimathafen Helsingfors (Helsinki) – ohne je an größeren Operationen beteiligt zu sein.
+				Das Schiff nahm 1918 am sogenannten Eismarsch der Baltischen Flotte teil.
+				Nach dem Kriegsende in die sowjetische Marine übernommen, wurde sie am 27. Juni 1925 in Oktjabrskaja Revoljuzija (Oktoberrevolution) umbenannt und erheblich modernisiert.
+				Nach dem deutschen Angriff auf die Sowjetunion 1941 wurde das Schiff von Tallinn zunächst nach Kronstadt und dann Ende September nach Leningrad verlegt, wo es seine schwere Artillerie zur Verteidigung der belagerten Stadt einsetzte.
+				Am 22. Juli 1944 wurde das Schiff mit dem Roten-Banner-Orden geehrt und hieß seitdem Rotbanner-Schlachtschiff Oktoberrevolution.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA BISMARCK-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_BISMARCK">
+			<Text>
+				Die Bismarck war ein Schlachtschiff der deutschen Kriegsmarine und gehörte mit ihrem Schwesterschiff Tirpitz der Bismarck-Klasse an.
+				Bei der Indienststellung im August 1940 unter dem Kommando von Kapitän zur See Ernst Lindemann war die Bismarck das weltweit größte und kampfstärkste Schlachtschiff.
+				Im Zweiten Weltkrieg sank sie, nach schwerem Gefecht mit Einheiten der britischen Royal Navy Ende Mai 1941, mit dem Großteil ihrer Besatzung im Nordatlantik.
+				[NEWLINE]
+				Nachdem die Bismarck einsatzbereit war, entschied sich die deutsche Kriegsmarine, sie in den Atlantik zu entsenden.
+				Sie sollte dort im Verband mit dem Schweren Kreuzer Prinz Eugen auch bewachte Geleitzüge angreifen können, indem die Bismarck gegnerische Kriegsschiffe auf sich zog, während die Prinz Eugen die Handelsschiffe angreifen sollte.
+				Ursprünglich war geplant, das ebenfalls der Bismarck-Klasse angehörende Schlachtschiff Tirpitz mit einzubeziehen, das jedoch kurz nach seiner eigenen Fertigstellung noch nicht einsatzbereit war.
+				Der Ausbruch dieser Kampfgruppe durch die britische Blockade in den Atlantik wurde als Unternehmen Rheinübung bezeichnet.
+				Geplant war, durch die Dänemarkstraße zwischen Island und Grönland den offenen Atlantik zu erreichen, wo es für die alliierte Flotte außerordentlich schwierig wäre, die deutschen Kriegsschiffe zu stellen.
+				Der Durchbruch der deutschen Kriegsschiffe gelang nicht unentdeckt, und der Verband wurde von den britischen Schiffen HMS Hood und HMS Prince of Wales gestellt.
+				In diesem Gefecht in der Dänemarkstraße wurde das Flaggschiff des britischen Verbandes, die Hood, von der fünften Salve der Bismarck versenkt.
+				Die sechste Salve war bereits abgefeuert, bevor die Hood getroffen wurde. Es gab nur drei Überlebende von insgesamt 1419 Besatzungsmitgliedern.
+				Die Prince of Wales erhielt ebenfalls mehrere schwere Treffer und drehte ab.
+				[NEWLINE]
+				Auf der Fahrt nach Saint-Nazaire erhielt sie am 26. Mai 1941 durch einen Flugzeugtorpedo, abgeworfen von einem Fairey Swordfish-Torpedobomber der HMS Ark Royal, einen Treffer in die Ruderanlage, wodurch ein Entkommen vor den herbeieilenden britischen Schiffen unmöglich wurde.
+				Am 27. Mai wurde sie schließlich im Nordatlantik von zwei Schlachtschiffen und zwei Schweren Kreuzern gestellt und ging etwa 550 Seemeilen (etwa 1.000 Kilometer) westlich von Brest unter.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DUNKERQUE-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_DUNKERQUE">
+			<Text>
+				Die Dunkerque war das erste Exemplar eines neuen Kriegsschiff-Typs der französischen Marine, der als Schnelles Schlachtschiff bezeichnet wurde.[NEWLINE]
+				Sie sollte der Gefahr durch die deutschen Panzerschiffe der Deutschland-Klasse begegnen.[NEWLINE]
+				Die deutsche "Antwort" auf diese beiden Schiffe waren die neuen Schlachtschiffe Scharnhorst und Gneisenau, die ihnen an Panzerung und Geschwindigkeit überlegen und in Sachen Bewaffnung in etwa gleichwertig waren.[NEWLINE]
+				Die Dunkerque wurde mit ihrem Schwesterschiff Strasbourg und dem Großteil der französischen Flotte in Toulon selbst versenkt, um zu verhindern, dass sie den Deutschen in die Hände fiel.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DREADNOUGHT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_DREADNOUGHT">
+			<Text>
+				Der englische Begriff Dreadnought (deutsche Bedeutung: Fürchtenichts) bezeichnete in der ersten Hälfte des 20. Jahrhunderts einen neuen Typ von Kriegsschiff, der ab 1906 die bis dahin vorherrschenden Linienschiffe in jeder Hinsicht übertrumpfte.[NEWLINE]
+				Der Begriff geht zurück auf das erste Schiff dieser Art, die in jenem Jahr fertiggestellte HMS Dreadnought.[NEWLINE]
+				Die Vorgängerbauten, die noch nicht über eine Bewaffnung mit einem Einheitskaliber verfügten, wurden fortan als „Pre-Dreadnoughts“ oder Einheitslinienschiffe bezeichnet.[NEWLINE]
+				Alle diese Bezeichnungen waren aber nur von umgangssprachlicher Bedeutung, während amtliche Stellen diese Typen weiter als Linienschiffe oder Schlachtschiffe einstuften.[NEWLINE]
+				Nach dem Ersten Weltkrieg wurde der Begriff allmählich durch „Großkampfschiff“ oder „Schlachtschiff“ verdrängt.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SOUTH DAKOTA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SOUTH_DAKOTA">
+			<Text>
+				Die South-Dakota-Klasse war eine Klasse von vier Schlachtschiffen der United States Navy. Sie wurde Ende der 1930er-Jahre aus der North-Carolina-Klasse entwickelt, mit der zusammen sie zu Kriegsbeginn das Rückgrat der amerikanischen Schlachtschiffflotte bildete. Die Schiffe, die von 1942 bis 1947 bei der US-Marine in Dienst standen, wurden hauptsächlich auf dem pazifischen Kriegsschauplatz, aber auch zeitweise im Atlantik eingesetzt. Zwei Schiffe der Klasse sind heute als Museumsschiffe erhalten.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SCHARNHORST-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SCHARNHORST">
+			<Text>
+				Die Scharnhorst-Klasse war die erste Schlachtschiff-Klasse, die nach dem Ersten Weltkrieg in Deutschland gebaut wurde. Die beiden Schiffe gingen als erste deutlich über die im Versailler Vertrag festgelegten Grenzen hinaus. Die Indienststellungen erfolgten 1938 und 1939 und beide Schiffe kamen bei verschiedenen Operationen der Kriegsmarine zum Einsatz, bei denen sie mehrfach beschädigt wurden.[NEWLINE]Die Schiffe der Scharnhorst-Klasse hatten für Schlachtschiffe ihrer Zeit eine schwache Hauptartillerie mit einem Kaliber von nur 28 cm, weswegen sie im Ausland zum Teil auch als Schlachtkreuzer eingestuft wurden.[NEWLINE][NEWLINE]
+				Die beiden Schiffe unternahmen bis 1942 mehrere gemeinsame Gefechtseinsätze gegen die Handelsschifffahrt und zur Unterstützung der Besetzung Norwegens. Die Scharnhorst wurde am 26. Dezember 1943 im Seegefecht vor dem Nordkap durch britische Einheiten versenkt. Die Gneisenau wurde im Schwimmdock der Deutschen Werke in Kiel durch einen Luftangriff im Februar 1942 erheblich beschädigt und nicht wieder in Dienst gestellt. Am 27. März 1945 wurde der Rumpf als Blockschiff in der Hafeneinfahrt von Gotenhafen auf Grund gesetzt.
+			</Text>
+		</Row>
+	</Language_de_DE>
+
+	<!-- +++++++++++++ -->
+	<!-- TANKS ENTRIES -->
+	<!-- +++++++++++++ -->
+	
+	<Language_en_US>
+
+		<!--"TXT_KEY_UNIT_TXT" ENTRIES-->
+
+		<Row Tag="TXT_KEY_UNIT_TANK_R35_TEXT">
+			<Text>
+				The Renault R35, an abbreviation of Char léger Modèle 1935 R or R 35, was a French light infantry tank of the Second World War.
+				Designed from 1933 and produced from 1936, the type was intended as a light infantry support tank, equipping autonomous tank battalions, that would be allocated to individual infantry divisions to assist them in executing offensive operations.
+				To this end it was relatively well-armoured but slow and lacking a good antitank-capacity, fitted with a short 37 mm gun.
+				The R 35 was intended to replace the FT 17 as standard light infantry tank from the summer of 1936, but even by May 1940 not enough conscripts had been retrained and therefore eight battalions of the older tank had to be kept operational.
+				On 1 September 1939, at the outbreak of war, 975 vehicles had been delivered out of 1070 produced; 765 were fielded by tank battalions in France, 49 used for drive training, 33 were in depot and 45 present in the colonies.
+				Of a total order for 2,300 at least 1,601 had been produced until 1 June 1940 — the numbers for that month are lacking — but 245 had been exported: to Poland (50), Turkey (100; two batches of fifty each in February and March 1940), Romania (41 from an order for 200), and Yugoslavia (54).
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_I_TEXT">
+			<Text>
+				The Panzer I was a light tank produced in Germany in the 1930s. The name is short for the German Panzerkampfwagen I (armored fighting vehicle mark I), abbreviated PzKpfw I. The tank's official German ordnance inventory designation was SdKfz 101 (special purpose vehicle 101).
+				Design of the Panzer I began in 1932 and mass production in 1934. Intended only as a training tank to introduce the concept of armored warfare to the German Army, the Panzer I saw combat in Spain during the Spanish Civil War, in Poland, France, the Soviet Union and North Africa during the Second World War, and in China during the Second Sino-Japanese War.
+				Experiences with the Panzer I during the Spanish Civil War helped shape the German armored corps' invasion of Poland in 1939 and France in 1940.
+				By 1941, the Panzer I chassis design was used for production of tank destroyers and assault guns. There were attempts to upgrade the Panzer I throughout its service history, including by foreign nations to extend the design lifespan. It continued to serve in the armed forces of Spain until 1954.
+				The Panzer I's performance in combat was limited by its thin armor and light armament of two general purpose machine guns. As a design intended for training, the Panzer I was not as capable as other light tanks of the era, such as the T-26.
+				Although weak in combat, it formed a large portion of Germany's tank strength in numbers and was used in all major campaigns between September 1939 and December 1941. The small, vulnerable light tank would be surpassed in importance by better-known German tanks such as the Panzer IV, Panther, and Tiger.
+				Nevertheless, the Panzer I's contribution to the early victories of Nazi Germany during the Second World War was significant.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_II_TEXT">
+			<Text>
+				The Panzer II was the common name for a family of German tanks used in World War II. The official German designation was Panzerkampfwagen II (abbreviated PzKpfw II).
+				Although the vehicle had originally been designed as a stopgap while more advanced tanks were developed, it nonetheless went on to play an important role in the early years of World War II, during the Polish and French campaigns.
+				By the end of 1942 it had been largely removed from front line service, and production of the tank itself ceased by 1943. Its chassis remained in use as the basis of several other armored vehicles.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_MATHILDA_I_TEXT">
+			<Text>
+				The Tank, Infantry, Mk I, Matilda I (A11) was a British infantry tank of the Second World War. It is not to be confused with the later model Tank, Infantry Mk II (A12), also known as the "Matilda II" which took over the "Matilda" name after the early part of the war when the first Matilda was withdrawn from combat service.
+				They were of totally different design and did not share components, but did have some similar traits because they were both designed to be infantry tanks, a type of tank that tended to sacrifice speed for increased armour protection.
+				The Matilda I (55) and Matilda II tanks fought together in France as part of the 1st Army Tank Brigade of the British Expeditionary Force in the Battle of France.
+				They participated in the defence and counter-attack operation at Arras against the invasion by Nazi Germany in May 1940, temporarily discomfiting the 7th Panzer Division under Rommel.
+				When the BEF returned to the United Kingdom, nearly all their armour was left behind. Matilda Mk Is left in the United Kingdom were withdrawn for training purposes.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_7TP_TXT">
+			<Text>
+				The 7TP (siedmiotonowy polski - 7-ton Polish) was the Polish light tank of the Second World War.
+				A development of the British Vickers 6-ton, it was significantly better armed than its most common opponents, the German Panzer I and Panzer II.
+				A standard tank of the Polish Army during the Polish Defensive War of 1939, its production never exceeded 150 vehicles.
+				Its chassis was used as the base for C7P artillery tractor.
+				All 7TP tanks took part in combat in the Polish Defensive War of 1939.
+				Most of them were attached to two light tank battalions (the 1st and the 2nd).
+				The remaining tanks, that is the ones used for training as well as tanks that were finished after the outbreak of the war, were used in an improvised tank unit fighting in the defence of Warsaw.
+				Although technically superior to any of the German light tanks of the era, the 7TP was too scarce to change the outcome of the war.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_P38T_TEXT">
+			<Text>
+				he Panzerkampfwagen 38(t) was originally a Czech tank of pre-World War II design.
+				After Czechoslovakia was taken over by Germany, it was adopted by the German Army, seeing service as a substitute for the Panzer III in the invasions of Poland and Russia.
+				Production ended in 1942, when its armament was deemed inadequate. In all, over 1400 were manufactured.
+				It was an export success: 50 were exported to Iran, 24 each to Peru and Switzerland.
+				The Panzer 38(t) was manufactured up to the middle of World War II. The small turret was incapable of taking a weapon big enough to destroy late-war tanks, and manufacturing of the tank version ceased.
+				However, the chassis continued in production as the basis for several turretless assault guns, anti-tank guns and anti-aircraft guns. A Swedish variant, the Sav m/43, remained in use until 1970.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SOMUA_S35_TEXT">
+			<Text>
+				The SOMUA S35 was a French Cavalry tank of the Second World War.
+				Built from 1936 until 1940 to equip the armoured divisions of the Cavalry, it was for its time a relatively agile medium-weight tank, superior in armour and armament to both its French and foreign competitors, such as the contemporary versions of the German Panzerkampfwagen III.
+				It was constructed from well-sloped, mainly cast, armour sections, that however made it expensive to produce and time-consuming to maintain.
+				During the German invasion of May 1940, the SOMUA S35 proved itself to be a tactically effective type, but this was negated by strategic mistakes in deploying its units.
+				After the defeat of France in June 1940, limiting production to a number of 430, captured SOMUA S35s were used by the Axis powers.
+				A derived type, the SOMUA S40, with an improved suspension, lowered hull cast and welded turret armour, had been planned to replace the original version on the production lines in July 1940.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SHERMAN_M4_TXT">
+			<Text>
+				The M4 Sherman, formally Medium Tank, M4, was the primary tank used by the United States during World War II.
+				Thousands were also distributed to the Allies, including the British Commonwealth and Soviet armies, via lend-lease.
+				In the United Kingdom, the M4 was named after Union General William Tecumseh Sherman, following the British practice of naming their American-built tanks after famous American Civil War generals.
+				Subsequently the British name found its way into common use in the U.S.
+				The M4A1 Sherman first saw combat at the Second Battle of El Alamein in October 1942 with the British 8th Army.
+				The first U.S. Shermans in battle were M4A1s in Operation Torch the next month.
+				At this time, Shermans successfully engaged German Panzer IIIs with long barreled 50 mm L/60 guns, and Panzer IVs with short barreled 75 mm L/24 guns.
+				Encounters with a company of Tiger Is, with their heavier armor and 88 mm L/56 guns, in Tunisia were typical of the mid-war period:
+				the fearsome quality of a few German heavy tanks and their crews could be overcome by the quantity and mobility of the Shermans, supported by artillery and airpower,
+				but sometimes at a great cost in U.S. tanks and crewmen.
+				By June 1944, the Panzer IV had been up-gunned with a 75 mm L/48 weapon, and 75 mm Shermans were out-gunned on a regular basis.
+				The first Sherman to enter combat with the 76 mm gun in July 1944 was the M4A1, closely followed by the M4A3.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_TYPE_97_TEXT">
+			<Text>
+				The Type 97 medium tank Chi-Ha was a medium tank used by the Imperial Japanese Army during the Second Sino-Japanese War, at Nomonhan against the Soviet Union, and the Second World War.
+				It was the most widely produced Japanese medium tank of World War II, with about 26mm thick armor on its turret sides, and 33mm on its gun shield, considered average protection in the 1930s.
+				The 57mm main gun was a carry over from the 1933 Type 89 medium tank, and was designed to support the infantry, while the 170 hp diesel Mitsubishi was a capable engine for the tank in 1938.
+				But was less effective after 1941 than most Allied tank designs.
+				The Type 97's low silhouette, asymmetric turret, semicircular radio aerial on the turret roof, complicated hull front, and seesaw-type suspension system combined to give the tank a unique appearance that distinguished it from other contemporary Japanese tanks.
+				One key to the Japanese success in Malaya was the unexpected appearance of their tanks in areas where the British did not believe tanks could be used. The wet jungle terrain did not turn out to be an obstacle.
+				The 3rd Tank Group's tanks were particularly effective at the Battle of Slim River on 7 January 1942, where a company of 20 tanks under the command of Major Hajime Shimada destroyed the better part of the Indian 11th Infantry Division in about five hours.
+				The Type 97-kai was first used in combat in the invasion of the Philippines at the Battle of Corregidor with the 4th and 7th Tank regiments. After this operation, the Type 97-kai was tested against a captured M3 Stuart light tank, and at a range of 1,000 meters, three out of six hits penetrated the M3's frontal armor. At a distance of 800 meters six out of nine hits penetrated.
+				Type 97 tanks were also used by Imperial Japanese Navy SNLF armored units alongside naval infantry units in Pacific areas.
+				As the tide of the war turned against Japan, the Type 97s were increasingly expended in banzai charges, or were dug-in as pillboxes in static defense positions in the Japanese-occupied islands.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_M13_40_TXT">
+			<Text>
+				The Fiat-Ansaldo M13/40 was an Italian medium tank ("M" for Medio (medium) according to the Italian tank weight standards at the time.
+				The M13/40 was used in the Greek campaign in 1940 and 1941 and in the North African Campaign.
+				The M13/40 was not used on the Eastern Front; Italian forces there were equipped only with Fiat L6/40s and Semovente 47/32s.
+				Beginning in 1942, the Italian Army recognized the firepower weakness of the M13/40 series and employed the Semovente 75/18 self propelled gun alongside the tanks in their armored units.
+				The M13/40 was a conventional light tank of the early war period, similar in capability to other Vickers-derived designs such as the Polish 7TP and Soviet T-26.
+				With a weight of 13 tons, it carried armor comparable to its opponents of 1940-41, and sufficient firepower to engage the British tanks of 1940-41.
+				Armament was sufficient for 1940-41 but did not keep up with the increased armor and firepower on Allied or German tanks.
+			</Text>
+		</Row>
+
+		<!--UNIT_TANK_RENAULT_B1 ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_B1_TEXT">
+			<Text>
+				The Char B1 was a French heavy tank manufactured before World War II.
+				The Char B1 was a specialised heavy break-through vehicle, originally conceived as a self-propelled gun with a 75 mm howitzer in the hull;
+				later a 47 mm gun in a turret was added, to allow it to function also as a Char de Bataille, a "battle tank" fighting enemy armour, equipping the armoured divisions of the Infantry Arm.
+				Among the most powerfully armed and armoured tanks of its day, the type was very effective in direct confrontations with German armour in 1940 during the Battle of France,
+				but slow speed and high fuel consumption made it ill-adapted to the war of movement then being fought.
+				After the defeat of France captured Char B1 (bis) would be used by Germany, with some rebuilt as flamethrowers or mechanised artillery.
+
+			</Text>
+		</Row>
+		<!--UNIT_TANK_P26_40 ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_P26_40_TEXT">
+			<Text>
+				The P40 was an Italian World War II tank design. It was armed with a 75 mm gun and an 8 mm Breda machine gun, plus another optional machine gun in an anti-aircraft mount.
+				The official Italian designation was Carro Armato ("armored tank") P 26/40. The designation means: P for pesante (Italian: "heavy"), the weight of 26 tons, and the year of adoption 1940.
+				Design had started in 1940 but very few had been built by the time Italy signed the armistice with the Allies and the few produced afterwards were used by the Germans.
+				The P40 design was reasonably up-to-date, but the tank was without some modern features such as welded armour, modern suspension, and a cupola for the commander.
+				The armour, quite resistant by Italian standards, was capable of protecting the tank against early anti-tank guns such as the British QF 2 pounder (40 mm, 1.6 in), but was vulnerable to 1943 anti-tank weapons such as the British QF 6 pounder (57 mm, 2.24 in) and QF 17 pounder (76 mm, 3 in) which were capable of piercing more than 100 mm (3.9 in) of armour at typical combat ranges.
+				Also, compared to welded armour, riveted armour is vulnerable to breaking apart at the joints meaning that even quite resistant plates can be defeated by rivet failures.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_M26_PERSHING ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_M26_PERSHING_TEXT">
+			<Text>
+				The Heavy Tank M26 Pershing was an American heavy tank briefly used in World War II and in the Korean War.
+				It was named after General John Pershing, who led the American Expeditionary Force in Europe in World War I.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_CHURCHILL ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_CHURCHILL_TEXT">
+			<Text>
+				The Tank, Infantry, Mk IV (A22) was a heavy British infantry tank used in the Second World War, best known for its heavy armour, large longitudinal chassis with all-around tracks with multiple bogies, and its use as the basis of many specialist vehicles.
+				It was one of the heaviest allied tanks of the war. This series of tanks was named after Winston Churchill,
+				who was Prime Minister of the United Kingdom and Minister of Defence at the time, and had been involved with the development of the tank as a weapon during the First World War.
+			</Text>
+			A few Churchills were in use for the Second Battle of El Alamein in October 1942. The six Mk III tanks (with the 6 pounder gun) of "KingForce" went into battle in support of the 7th Motor Brigade.
+			Although all were heavily shelled by German anti-tank guns, only one received more than light damage; one tank was said to have been hit up to 80 times.
+
+			In one encounter a Churchill tank got the better of a German heavy tank, Tiger I, when a shot lodged between the Tiger's turret and turret ring. The crew abandoned the Tiger, which was subsequently captured by the British. As the first Tiger captured by the Western Allies it was particularly useful, and is now on display at Bovington Tank Museum in the United Kingdom.
+			Churchills saw widespread action in Normandy as well as subsequent operations in the Low Countries and into Germany such as the fighting in Reichwald during Operation Veritable.
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TIGER_II_TEXT">
+			<Text>
+				Tiger II is the common name of a German heavy tank of the Second World War.
+				The final official German designation was Panzerkampfwagen Tiger Ausf. B, often shortened to Tiger B.
+				The ordnance inventory designation was Sd.Kfz. 182.
+				It is also known under the informal name Königstiger (the German name for the "Bengal tiger"), often translated as King Tiger or Royal Tiger by Allied soldiers.
+			</Text>
+			The Tiger II combined the thick armor of the Tiger I with the sloped armor used on the Panther medium tank.
+			The tank weighed almost seventy metric tons, was protected by 100 to 180 mm (3.9 to 7.1 in) of armor to the front, and was armed with the long barrelled 8.8 cm Kampfwagenkanone 43 L/71 gun.
+			The chassis was also the basis for the Jagdtiger turretless tank destroyer.
+			The Tiger II was issued to heavy tank battalions of the Army (Schwere Heeres Panzer Abteilung - abbreviated s.H.Pz.Abt) and the Waffen-SS (s.SS.Pz.Abt).
+			It was first used in combat with s.H.Pz.Abt. 503 during the Normandy campaign on 11 July 1944.
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_KV1_TEXT">
+			<Text>
+				The Kliment Voroshilov (KV) tanks were a series of Soviet heavy tanks, named after the Soviet defense commissar and politician Kliment Voroshilov.
+				The KV series were known for their extremely heavy armour protection during the early war, especially during the first year of the invasion of the Soviet Union in World War II.
+				Almost completely immune to the 7.5 cm KwK 37 and 3.7 cm KwK 36 guns mounted on the early Panzer III and Panzer IV tanks, until better guns were developed often the only way to defeat a KV was a point-blank shot to the rear.
+				Prior to the invasion, about 500 of the over 22,000 tanks in Soviet service at the time were of the KV-1 type. When the KV-1 appeared, it outclassed the French Char B1,[1] the only heavy tank used in the world at that time.
+				Yet in the end it turned out that there was little sense in producing the expensive KV tanks, as the T-34 medium tank performed better (or at least equally) in all practical respects.
+				Later in the war, the KV series have become a base of development of the Iosif Stalin tanks.
+			</Text>
+		</Row>
+	</Language_en_US>
+	<Language_fr_FR>
+		<!--"TXT_KEY_UNIT_TXT" ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_R35_TEXT">
+			<Text>
+				Le char Renault R-35 était un char léger d'infanterie français de la Seconde Guerre mondiale.
+				Il possédait un blindage avant de 43 mm, ce qui était considérable pour l'époque, mais son canon de 37 mm datait de la Première Guerre mondiale
+				et son équipage ne comptait que deux personnes (un pilote et le commandant, « un homme à tout faire » en charge du rechargement, du ciblage et de guider le pilote).
+				Il possédait un moteur de 85 chevaux à essence qui pouvait l'amener à une vitesse de pointe de 20 km/h mais son autonomie était limitée.
+				Les Français utilisaient (en cas du R-35) des tactiques qui se sont révélé inefficaces; au lieu d'approcher l'ennemi en grande formation blindée, ils employaient des attaques solitaires par des bataillons.
+				Ces tactiques dépassées, son armement peu puissant et son équipage peu important conduisit les R-35 Renault à leur mort opérationnelle.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_I_TEXT">
+			<Text>
+				Le Panzer I est un char léger allemand, conçut dans les années 1930 et utilisé, lors de la Guerre d'Espagne et au début de la Seconde Guerre mondiale. Il fut le premier panzer réalisé alors que l'Allemagne, suite au traité de Versailles, avait interdiction d'étudier ou de construire des engins blindés, si bien que la première désignation qui lui fut appliquée pour brouiller les pistes, fut bien anodine, Landwirtschaftlicher Schlepper, ou tracteur agricole, mais par la suite il en reçut une plus officielle Panzerkampfwagen I (véhicule de combat blindé I). Il est également connu sous le nom de Sonderkraftfahrzeug 101 (abréviation SdKfz 101) littéralement véhicule spécial à moteur.
+				Il était principalement destiné à servir comme véhicule d'instruction, peu coûteux car légèrement armé et blindé, pour formaliser les nouvelles doctrines de la blitzkrieg, mais les retards sur les modèles suivants contraignirent les allemands à l'utiliser au combat. Il constitua ainsi les gros des panzerdivisions, lors des campagnes de Pologne et de France, mais fut rapidement retiré des premières lignes et converti à d'autres usages, principalement comme tracteur pour des canons sur roues.
+				Son équipage se composait d'un conducteur et d'un commandant qui était également tireur. Il possédait deux mitrailleuses de calibres 7,92 mm. La faible épaisseur de son blindage n'était efficace que contre l'infanterie légère. Pour un poids de près de 5 tonnes, le moteur de 100 chevaux était nettement insuffisant et sa consommation de près de 120l les 100km trop importante.
+				En dépit de ses faibles performances de combat, l'expérience du "Panzer I" s'avéra précieuse lorsqu'il fallut développer des chars plus puissants et la plupart des équipages de "Panzers" furent formés sur ce char.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_II_TEXT">
+			<Text>
+				Le Panzerkampfwagen II ( PzKpfw II ) ou Sd. Kfz. 121 était un char d'assaut de fabrication allemande. Comme le PzKpfw I, il fut conçu comme un modèle provisoire, en attendant des chars comme les PzKpfw III ou les PzKpfw IV.
+				Ces deux types de véhicules étaient destinés à fournir des engins d'entraînement pour les équipages de la Panzerwaffe, afin de mettre au point les tactiques de la future Blitzkrieg.
+				Cependant, le retard dans la production de véritables chars de combat obligea les Allemands à les utiliser massivement au début de la Seconde Guerre mondiale et ce n'est qu'à partir de 1941 qu'ils furent progressivement retirés des premières lignes.
+				Le PzKpfw II resta cependant longtemps un véhicule important de l'arsenal de la Wehrmacht, grâce à des dérivés de reconnaissance et comme châssis pour des canons automoteurs comme les Marder II et les Wespe.
+				Il comptait un membre d'équipage de plus que le Panzer I, un opérateur radio, également chargé du rechargement du canon automatique de 20 mm.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_MATHILDA_I_TEXT">
+			<Text>
+				Le Matilda fut développé à partir de l'expérience de 1917, consistant à utiliser les chars uniquement comme soutien de l'infanterie. D'après le cahier des charges de 1934, il devait être doté d'un blindage pouvant résister aux canons antichars de l'époque et pouvoir évoluer sur des terrains difficilement praticables.
+				Le Matilda appartenait aux 4th et 7th Battalions du Royal Tank Corps et arriva en France avec le BEF. Malgré un blindage et une vitesse insuffisante, 60 Matilda Mk.I furent déployés avec 16 Matilda Mk.II, des chars beaucoup plus performants, contre les chars de la 7e Panzerdivision de Rommel durant la bataille d'Arras.
+				Avec des résultats aux combats décevants, le Matilda Mk.I fut retiré du service en Angleterre. Les Allemands ne jugèrent pas utile de le réutiliser comme chars capturés.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_7TP_TXT">
+			<Text>
+				Le 7TP est un char d'assaut polonais de la Seconde Guerre mondiale.
+				Le char 7TP est une copie du char Vickers-Armstrong britannique de 1934, les Polonais s'étant contentés de l'équiper d'un canon antichar de 37 mm et d'un moteur diesel de 110 cv (ce fut alors le premier char diesel au monde) qui pouvait l'amener à une vitesse de 37 km/h.
+				Il avait également un blindage de 17 mm.
+				Il était parfaitement apte à s'attaquer aux Panzers I et II mais comme les Polonais ne disposaient que de 137 7TP lors de l'invasion allemande, ils furent alors totalement submergés.
+				En Pologne occupée, les Allemands se servirent alors des 7TP restants comme tracteurs ou pour les missions de police.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_P38T_TEXT">
+			<Text>
+				Le Panzerkampfwagen 38(t) (ce qui signifiait : « véhicule de combat blindé tchécoslovaque, modèle 1938 ») était le nom donné par les Allemands à un char d'assaut tchécoslovaque fabriqué dans les usines de chars Škoda qu'ils avaient mis au service de leur industrie de guerre durant l'année 1939 avant l'éclatement du confit.
+				Le nom que lui donnait l'armée tchécoslovaque était LT vz. 38.
+				Ce véhicule de combat blindé fut conçu par les Tchécoslovaques à partir de 1935.
+				Il a eu du succès à l'exportation, avec 50 chars exportés vers l'Iran, 24 vers la Suisse et autant vers le Pérou.
+				L'armée tchécoslovaque en commande 150, mais ceux-ci ne sont pas entrés en service avant l'occupation du pays par l'Allemagne en 1939.
+				Les occupants allemands ont ordonné la poursuite de la production entre 1938 et 1942.
+				Au total, lorsque la production cessa, 1411 Panzerkampfwagen 38(t) (modèles A à G) avaient été fabriqués.
+				La production des Panzer 38 (t) a continué jusqu'en 1942, mais son canon était trop peu puissant pour percer les blindages de la fin de la guerre.
+				Le châssis restait intéressant, donc les derniers modèles ont été produits sans tourelle afin d'y monter une autre arme.
+				Plusieurs modèles de canons d'assaut, de chasseurs de chars ou de véhicules antiaériens ont été produits à partir de ce châssis.
+				La transformation de Panzer 38(t) déjà existants en ces véhicules a libéré 351 tourelles, qui ont par la suite été employées dans des fortifications fixes.
+				Une version suédoise, le Sav m/43, a été employée en Suède jusqu'en 1970.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SOMUA_S35_TEXT">
+			<Text>
+				Le char Somua S35 était un véhicule blindé de la Seconde Guerre mondiale construit par Somua, considéré comme le meilleur char de combat français en 1940.
+				Produit à 430 exemplaires, il était rapide, correctement blindé (ce fut le premier char de l'histoire équipé d'un blindage incliné, plus résistant pour autant d'épaisseur) et armé d’un canon de 47 mm.
+				Équipé d’une tourelle monoplace, le chef de char faisait office de canonnier, ce qui empêchait de tirer pleinement parti de l'armement principal.
+				Le Somua S-35 participa victorieusement le 12 mai 1940 à la bataille de Hannut en Belgique, première bataille rangée de blindés de l'histoire.
+				Sa fabrication en série fut limitée par les demandes de l'État-Major (une centaine par an) entre 1938 et 1939 alors que les capacités de production de SOMUA étaient supérieures.
+				Aussi, à peine plus de 400 Somua furent produits, tous étant engagés au combat en mai-juin 1940 y compris ceux sortants d'usine et remis aux mains d'équipages inexpérimentés, comme à la 4e DCR du colonel de Gaulle.
+				Les S-35 étaient concentrés dans les Divisions Légères Mécaniques, comme le firent les Allemands avec leurs divisions de Panzer.
+				Néanmoins, ils furent pratiquement tous détruits ou sabordés et, à la défaite de la France, les Allemands en saisirent le plus qu'ils purent (environ 297) et pensèrent les utiliser aux côtés des Pz III trop peu nombreux.
+				Toutefois, la tourelle monoplace du S 35 fut rejetée et ils les reconvertirent en chars d'entraînement ou pour le combat contre les partisans sous l'appellation Panzerkampfwagen 35-S 739(f).
+				Certains furent envoyés sur le front de l'Est, d’autres furent cédés à l'armée italienne.
+				L'un d'eux, capturé par les partisans yougoslaves, reprit du service dans le camp allié.
+				L'armée allemande l'utilisa sur le territoire français en juin 1944 lorsqu'elle tenta de repousser l'invasion alliée.
+				À mesure que les alliés parvenaient à les capturer, ils les cédaient aux Français qui les retournaient contre la Wehrmacht.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SHERMAN_M4_TXT">
+			<Text>
+				Le Medium Tank M4 est le char américain moyen produit en plus grande quantité pendant la Seconde Guerre mondiale.
+				Près de cinquante mille exemplaires (toutes versions confondues) furent produits.
+				Son surnom de « Sherman », lui est attribué par les Britanniques, quand ils reçoivent leurs premiers exemplaires dans le cadre de la loi de prêt-bail, continuant leur tradition de nommer les chars d'origine américaine d'après le nom d'un général nordiste de la guerre de Sécession célèbre de ce pays.
+				L'US Army adopte par la suite ce surnom, et le Medium Tank M4 est dès lors appelé « M4 Sherman ». Les Soviétiques surnomment les leurs « Emcha ».
+				Le Sherman est engagé pour la première fois au combat lors de la bataille d'El-Alamein, en octobre 1942.
+				Très rapidement, il démontre d'excellentes qualités au combat.
+				Il possède en particulier une très bonne fiabilité mécanique qui lui permet des taux de disponibilités importants, contrairement à beaucoup de chars de son époque.
+				Son armement, avec un canon de 75 mm en tourelle, est une révolution pour les équipages britanniques, car il permet de tirer sans exposer la caisse du char, comme c'est le cas avec le M3 Lee.
+				Par rapport aux chars britanniques contemporains, armés de canon de 40 mm, ce canon a une puissance suffisante en tir antipersonnel, en particulier contre les servants des canons antichars, et se révèle efficace contre des chars comme les Panzer III et Panzer IV.
+				Il a donc une influence déterminante dans la défaite infligée à l'Afrika Korps.
+				Cependant, il souffre aussi de graves défauts, qui vont apparaître, progressivement au cours de l'avancée des alliés en 1943.
+				Le premier à être reconnu est sa tendance à prendre rapidement feu suite à un impact, qui lui vaut les sobriquets peu flatteurs de « Ronson » par les Britanniques et « Tommy Cooker » par les Allemands.
+				Sa haute silhouette, avec ses 2,74 mètres, se révèle aussi préjudiciable sur le champ de bataille, en particulier dans le désert.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_TYPE_97_TEXT">
+			<Text>
+				Le char moyen type 97 Chi-Ha était un char japonais de la Seconde Guerre mondiale.
+				Après l'abandon de la recherche des chars lourds et des chenillettes, le Japon se mit à la recherche d'un char moyen.
+				Le type 97 de 16 tonnes, considéré comme trop coûteux, fut préféré après le début des hostilités en Chine, mettant de côté les considérations économiques.
+				2 123 type 97 Chi-Ha de 16 tonnes allaient ainsi être fabriqués et mis en service entre 1938 et 1943.
+				Utilisé contre la Chine, il ne faisait pas le poids contre les chars occidentaux développés pendant la Seconde Guerre mondiale.
+				Il resta pourtant le char standard de l'armée impériale japonaise pendant tout le conflit.
+				Utilisé aussi lors de la bataille à Guadalcanal, les bases japonaises étaient isolées.
+				Bien que puissants, les chi-ha furent repoussés et Guadalcanal fut prise.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_M13-40_TXT">
+			<Text>
+				Le Char Fiat-Ansaldo M13/40 était un char moyen italien, conçu afin de remplacer le Fiat L3, le Fiat L6/40 et le Fiat M11/39 dans l'Armée italienne au commencement de la Seconde Guerre mondiale.
+				Bien que conçu comme un char moyen, le M13/40 était plus près à l'époque des standards d'un char léger en termes de blindage, mais pas en ce qui concerne sa puissance de feu.
+				On comprend ainsi sa dénomination : "M" pour Medio ("moyen"), 13 pour son poids en tonne (poids prévu initialement lors du lancement de la production) et 40 pour son année d'adoption (1940).
+				Le M13/40 fut utilisé durant la campagne des Balkans en 1941 et pendant la Guerre du désert. Il n'a pas connu le Front de l'Est où les forces italiennes ne disposaient que des Fiat L6/40 et des Semovente 47/32.
+				Début 1942, l'Armée italienne dut admettre le manque de puissance de feu du M13/40 et passa au Semovente 75/18 pour l'ossature de ses bataillons de chars.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_B1_TEXT">
+			<Text>
+				Le char B1 est un blindé lourd, conçu en France au cours des années 1930.
+				En septembre 1939, il existait quatre bataillons équipés de chars B1, les 8e, 15e, 28e et 37e bataillons de chars de combat, chacun avec 33 chars.
+				Le dernier était équipé de la première version du char, les autres mettant en ligne des B1 bis.
+				Bien qu'engagé en urgence, et dans un rôle pour lequel il n'a pas été conçu, le B1 bis posa de très nombreux problèmes aux troupes allemandes, son épais blindage résistant à toutes les armes antichar.
+				Les Allemands durent alors improviser pour le mettre hors de combat, en utilisant leurs pièces d'artillerie en tir tendu, en particulier les canons antiaériens de 88 mm (Le B1 bis nommé Jeanne d'Arc, par exemple, encaissa 90 impacts avant d'être incendié par un 88).
+				Malgré cette supériorité écrasante, tous les défauts du B1 bis et des divisions cuirassées empêchèrent la relative impunité des B1 d'avoir une influence sur le cours de l'offensive allemande.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_P26_40 ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_P26_40_TEXT">
+			<Text>
+				Le Char Ansaldo P26/40, ou P-26/40, était un char d'assaut italien de 26 tonnes nominales conçu à la fin des années 1930.
+				Ce nouveau char est né suite à la conclusion de l'État-Major de l'Armée royale italienne qui avait considéré que les chars de moyen tonnage « M » n'auraient pas pu résister très longtemps aux nouveaux chars étrangers, dont la gamme moyenne tendait à dépasser les 20 tonnes.
+				Le fait que le P.40 n'ait pas été employé par l'armée régulière italienne contre d'autres chars de sa catégorie rend l'évaluation de ses capacités difficile.
+				Toutefois, le fait que les armées nazies l'aient comparé à leur Panzer IV Ausf G et l'aient jugé digne d'être produit jusqu'en 1945 montre qu'il avait une valeur militaire plus que certaine.
+				Il faut dire que ce char avait une vitesse supérieure au Panzer IV et que son blindage était beaucoup plus efficace.
+				Ce seront plus de 100 chars italiens qui seront livrés aux troupes allemandes.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_M26_PERSHING ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_M26_PERSHING_TEXT">
+			<Text>
+				Le Heavy Tank M26 Pershing était un char lourd construit par les États-Unis et utilisé au cours de la Seconde Guerre mondiale et de la guerre de Corée.
+				Il fut nommé en hommage au Général John Pershing, le chef du corps expéditionnaire américain au cours de la Première Guerre mondiale.
+				Belton Y. Cooper, un officier d’armement du Combat Command de la 3rd Armored Division écrivit un rapport sur ses expériences de combat au sein de la force blindée américaine.
+				Selon lui, 10 M26 furent envoyés à la 3rd Armored Division en février 1945.
+				D’après Cooper, le premier engagement d’un M26 de la 3rd Armored Division montra qu’il était l’égal du Panther.
+				Il rapporte aussi qu’un M26, en embuscade, attaqua 2 Tigres I et 1 Panzer IV et les mit hors de combat à une distance de 1 km.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_CHURCHILL ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_CHURCHILL_TEXT">
+			<Text>
+				Le char Churchill ou plus officiellement, Infantry Tank MkIV ou A22, est un char britannique utilisé lors de la Seconde Guerre mondiale.
+				Il est le dernier aboutissement du concept de char d'infanterie, en vigueur alors dans l'armée britannique.
+				Il était réputé pour son solide blindage, et pour avoir servi de base à de nombreux dérivés spéciaux, les Hobart's Funnies.
+				Après des débuts difficiles, il fut produit à près de 8 400 exemplaires et servit honorablement dans l'armée britannique jusqu'en 1952.
+				Il reçut son nom en l'honneur de Winston Churchill qui, en plus d'être le premier ministre de l'époque, avait pris une part importante, lors de la Première Guerre mondiale, à l'émergence des premiers chars d'assaut.
+				Celui-ci aurait déclaré à ce propos : « Ce tank a encore plus de défauts que moi ».
+			</Text>
+		</Row>
+		<!--UNIT_TIGER_BATTALION ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TIGER_II_TEXT">
+			<Text>
+				Le Panzerkampfwagen VI Königstiger, ou Sd.Kfz. 182 Panzer VI ausf B Tiger II, surnommé le Königstiger (Tigre royal), est un char d'assaut allemand de la Seconde Guerre mondiale.
+				Produit à 50 exemplaires pour le modèle à tourelle "Porsche", à 439 exemplaires pour le modèle à tourelle "Henschel", ce char était pourvu d'un important blindage, d'un canon antichar lui donnant la possibilité de mettre hors de combat tous les chars alliés en service lors des deux dernières années du conflit, mais il possédait le même moteur que le char Panther. Son rapport poids-puissance était donc moindre, il était lent et peu mobile, extrêmement gourmand en carburant, et devait changer de chenilles avant et après tout transport par rail.
+				Ce char ne fut pas non plus endivisionné, à l'instar de son prédécesseur, et remplaça le Tigre I dans les schwere Panzer Abteilungen, ou bataillons de chars lourds. 150 d'entre eux furent confiés à des unités de Waffen SS, tous les autres furent affectés à la Wehrmacht. Ils arrivèrent sur le front en février 1944. Ses premiers engagements eurent lieu autour de Minsk en mai de la même année. Leur action fut cependant restreinte, surtout sur le front Ouest, à cause des restrictions en carburant, des problèmes techniques, pannes, et surtout à cause de la redoutable aviation d'attaque au sol (jabo, de l'allemand "Jagdbomber", chasseur-bombardier) des alliés. Lors de la bataille de Normandie, certains Königstigers furent même engagés par des croiseurs.
+				Le dernier char de la guerre à être détruit fut aussi un Tigre Royal, saboté par son équipage suite à un problème mécanique, le 10 mai 1945, en Autriche.
+				Le dernier de ces chars à être maintenu en état de marche est exposé au musée des blindés de Saumur.
+				[NEWLINE]
+				Il était armé d'un canon de 88 mm de 71 calibres de longueur (fût de 6,30 mètres), comparé aux 88 mm 56 calibres du Tigre I.
+				La portée effective de ce canon était de dix kilomètres. Il pouvait percer le blindage frontal d'un char T-34/85, d'un Sherman M4 ou d'un Cromwell à 3,5 km, au-delà même de la portée des canons de ces chars.
+				L'optique de visée du canon était elle aussi à la hauteur de ces extraordinaires caractéristiques balistiques.
+				À titre indicatif, le canon du Königstiger perforait entre 132 et 153 mm de blindage incliné à 30° à 2 000 mètres de distance.
+			</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_TANK_KV-1">
+			<Text>
+				Le char Kliment Voroshilov (KV) est un char de rupture soviétique.
+				Il fut une désagréable surprise pour la Wehrmacht lors de l’opération Barbarossa : il était à l'époque quasiment invulnérable à toutes ses armes excepté le canon antiaérien Flak de 88 mm et des tirs directs d’artillerie.
+			</Text>
+			En 1943, l’idée de réarmer le kV avec un 85 mm, se concrétisa enfin, rendue urgente par l’apparition des chars Tigre allemands beaucoup plus difficiles à détruire.
+			L’objet 237 armé avec un S-18 puis des kV réarmés avec des S-31 et des D-5T, furent testés, et finalement à la fin de l’année apparut le kV-85 qui partageait sa tourelle avec l'IS-85. Il fut produit parallèlement au kV-1s.
+		</Row>
+	</Language_fr_FR>
+	<Language_de_DE>
+		<!--"TXT_KEY_UNIT_TXT" ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_R35_TEXT">
+			<Text>
+				Der Renault R35 war ein zu Anfang bis Mitte der 1930er-Jahre in Frankreich entwickelter Panzer.
+				Er sollte den veralteten Renault FT 17 aus dem Ersten Weltkrieg ersetzen.
+				Mit etwa 1700 gebauten Exemplaren war der R 35 der am häufigsten eingesetzte französische Panzer im Zweiten Weltkrieg.
+				Im Westfeldzug war er den meisten deutschen Panzern mit seiner Panzerung und Bewaffnung sogar überlegen.
+				Allerdings wirkten sich andere Dinge negativ zu Ungunsten der französischen Panzer aus wie beispielsweise das Fehlen von Funkgeräten oder die Taktik, mit der die Panzer eingesetzt wurden.
+				Im Vergleich zu den Deutschen setzten die Franzosen ihre Panzer in vielen kleinen Gruppen ein, während die Deutschen sie in wenigen großen Gruppen konzentrierten.
+				Zunächst wurde der R 35 in gesonderten Panzerbataillonen zu je 45 Panzern eingesetzt, die mit den Infanteriedivisionen kooperieren sollten.
+				Die Bataillone wurden dann jedoch teilweise in den neu gebildeten Panzerdivisionen (Division Cuirassée de Réserve) zusammengefasst.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_I_TEXT">
+			<Text>
+				Der Panzerkampfwagen I war ein deutscher leichter Panzer der 1930er-Jahre und der Anfangsjahre des Zweiten Weltkrieges.
+				Er war der erste deutsche Panzerkampfwagen nach dem Ersten Weltkrieg, der in Serie produziert wurde. Zwischen 1934 und 1937 entstanden knapp 1500 Fahrzeuge, wobei es neben den Hauptausführungen „A“ und „B“ noch mehrere Weiterentwicklungen und Abarten gab.
+				Ursprünglich als reiner Übungspanzer konzipiert, wurde der Panzer dennoch im Gefecht eingesetzt. Aufgrund seiner geringen Kampfkraft wurde er jedoch schon in der ersten Kriegshälfte immer schneller ausgemustert und war Ende 1941 als Kampffahrzeug fast restlos verschwunden.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_II_TEXT">
+			<Text>
+				Der Panzerkampfwagen II (auch PzKpfw II oder Panzer II) war ein leichter Panzer der deutschen Wehrmacht, der Mitte der 1930er-Jahre konzipiert wurde.
+				Eigentlich nur als Übergangslösung projektiert, bildete der Panzer II zu Beginn des Zweiten Weltkrieges aufgrund der ungenügenden Leistung der deutschen Rüstungsindustrie das Rückgrat der Panzerdivisionen.
+				Rund 1900 Panzer II wurden von 1935 bis Ende 1942 hergestellt. Als Kampffahrzeug nur eingeschränkt verwendbar, wurde der Panzer bis 1943 nach und nach ausgemustert, jedoch war sein Chassis als Grundlage für zahlreiche Selbstfahrlafetten bis zum Kriegsende in Gebrauch.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_7TP_TXT">
+			<Text>
+				Der 7TP war ein polnischer Leichter Panzer im Zweiten Weltkrieg mit einem Gewicht von 9,9 t.
+				Er basierte auf dem britischen Vickers-Armstrong Mk. E, der als nichtstaatliche Entwicklung unter anderem an Polen und die Sowjetunion (T-26) verkauft worden war.
+				Die maximale Panzerung lag bei 17 mm und damit leicht über der des deutschen Panzerkampfwagens II, jedoch deutlich unter derjenigen der moderneren deutschen Panzer.
+				Die schwedische 37-mm-Bofors-Kanone des 7 TP war in der Lage, die Panzerung aller deutschen Panzer einschließlich derjenigen des modernen Panzerkampfwagens IV zu durchschlagen; die Panzerung des 7TP war letzterem gegenüber jedoch deutlich schwächer.
+				Die Wehrmacht erbeutete einige 7TP und formierte daraus das 203. Panzerbataillon, welches 1940 in Norwegen und Frankreich (1 Kompanie) zum Einsatz kam.
+				Ferner setzte sie den 7TP zu Polizeizwecken im besetzten Polen ein.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_P38T_TEXT">
+			<Text>
+				Der Panzerkampfwagen 38(t) war ein Panzer tschechoslowakischer Konstruktion, der nach der Besetzung der Tschechoslowakei durch das Deutsche Reich von der deutschen Wehrmacht übernommen und in den Anfangsjahren des Zweiten Weltkriegs eingesetzt wurde.
+				Die Bewaffnung, eine 3,72-cm-Kanone L/47,8, war derjenigen der deutschen leichten Panzer überlegen und auch die Panzerung der Front war mit 25 mm nur unwesentlich schwächer als die der Panzerkampfwagen III und IV (frühe Versionen ~30 mm).
+				In späteren Varianten wurde die Frontpanzerung auf bis zu 50 mm verstärkt.
+				Auch nach dem Ende des Zweiten Weltkrieges waren exportierte Modelle bzw. Lizenzbauten bis Ende der 1960er-Jahre hinein in der Schweiz (ČKD-Praga LT-H, Panzerkrafwagen 39 (Praga) und in Schweden, teilweise auch als Jagdpanzer 38(t), im Einsatz.
+				Syrien setzte diese Modelle noch im Sechstagekrieg ein.
+				Bei Beginn des Zweiten Weltkrieges waren 57 Panzer 38(t) einsatzbereit und wurden bei der 3. leichten Division beim Angriff auf Polen eingesetzt.
+				Davon wurden bis zum 25. September 1939 sieben Panzer zerstört.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SOMUA_S35_TEXT">
+			<Text>
+				Der SOMUA S-35 war ein französischer mittlerer Kampfpanzer des Zweiten Weltkriegs.
+				Nur selten wurde der S-35 konzentriert eingesetzt.
+				Am 12. Mai 1940 griffen jedoch Teile der 3e division légère mécanique unter General de Lafont deutsche Verbände der 3. Panzerdivision an, die zuvor den Bach Gette nahe dem belgischen Dorf Orb-le-Grand auf einer Pionierbrücke überquert hatten.
+				Die deutschen Panzerregimenter PR5 und PR6 wurden von mehr als 100 französischen Panzern der Typen H-35 und S-35 der 5e brigade légère mécanique teilweise in Nahkämpfe verwickelt, die sich über den ganzen Tag hinzogen, so dass beide Seiten bei Abbruch der Gefechte schwere Verluste erlitten hatten.
+				Die S-35 bewährten sich gegenüber den deutschen Panzern, jedoch waren auch ihre Verluste als Folge der kurzen Kampfentfernungen hoch.
+				Für ihr in den Kämpfen zwischen dem 10. und 13. Mai 1940 gezeigtes hohes Maß an Einsatzbereitschaft, das sich auch in den schweren Verlusten widerspiegelte, wurde die 5e brigade légère mécanique als Teil der 3e division légère mécanique ausgezeichnet.
+				Die deutsche Wehrmacht erbeutete während des Frankreichfeldzugs 1940 und danach insgesamt 297 SOMUA S-35, die unter der Bezeichnung Pz.Kpfw. 35 S 739 in der Wehrmacht eingesetzt wurden.
+				Die Pz.Kpfw. 35 S 739 erhielten neue Funkgeräte und einen modernisierten Turm mit der Kommandantenkuppel des Panzer II Ausf. F. Erbeutete Somua S-35 wurden 1941 in Finnland und 1944 in der Normandie eingesetzt.
+				Einige Fahrzeuge wurden auch an Italien weitergegeben.
+				Am 16. August 1944 wurde in Orléans das französische 13ème Régiment de Dragons neu aufgestellt und mit von der Wehrmacht erbeuteten Somua S-35 und Char B1 ausgerüstet.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SHERMAN_M4_TXT">
+			<Text>
+				Der M4 Sherman war ein mittlerer Panzer aus US-amerikanischer Produktion, der im Zweiten Weltkrieg und im Koreakrieg zum Einsatz kam.
+				Benannt war das Fahrzeug – der meistgebaute US-Panzer des Zweiten Weltkrieges – nach General William T. Sherman (1820–1891).
+				Eine bekannte Schwäche der frühen M4 war die hohe Wahrscheinlichkeit, dass es nach einem Treffer zur Explosion der Munition kam, was dann auch den Motor in Brand setzte.
+				Wegen dieser Brände hat der Sherman bei den Besatzungen auch die Spitznamen „Ronson“ (Feuerzeugmarke) und „Tommy Cooker“ bekommen.
+				Ab Ende 1943 war der Sherman den schwereren deutschen Panzern (Panther, Jagdpanther, Tiger, Königstiger, Jagdtiger) im Gefecht deutlich unterlegen;
+				so konnte unter idealen Bedingungen selbst ein einzelner Panzer VI „Tiger“ einem Sherman-Verband aufgrund seiner überlegenen Feuerkraft schwere Verluste zufügen.
+				Die hohe Produktionsrate des M4 sowie die im Vergleich zu den deutschen Fahrzeugen einfache Reparatur und Wartung glichen den qualitativen Unterschied durch massive quantitative Überlegenheit aus.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_TYPE_97_TEXT">
+			<Text>
+				Der Typ-97 Chi-Ha war ein mittlerer japanischer Panzer des Zweiten Weltkrieges.
+				Die Entwicklung dieses Panzers wurde Mitte der 1930er-Jahre von der japanischen Armee in Auftrag gegeben.
+				Mitsubishi und das Osaka-Arsenal der Armee erhielten jeweils den Auftrag, einen Prototypen nach unterschiedlichen Vorgaben zu bauen.
+				Nach den Tests fiel die Wahl aus Kostengründen zuerst auf den mittleren Panzer Typ 97 Chi-Ni mit geringerer Leistungsfähigkeit und nur drei Mann Besatzung.
+				Nach dem Kriegsbeginn mit China änderte die Armeeführung ihre Entscheidung und gab den Zuschlag für den von Mitsubishi entwickelten Typ.
+				Der Chi-Ha war mit einer 57-mm-Kanone und zwei 7,7-mm-MGs zur Infanteriebekämpfung bewaffnet.
+				Ein MG war im Bug montiert, das andere in einem Erker im Turmheck.
+				Ab 1944 war er seinen Hauptgegnern im Pazifischen Kriegsgebiet, allen voran dem M24 Chaffee, hoffnungslos unterlegen.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_M13-40_TXT">
+			<Text>
+				Der Panzer M13/40 (auch Carro Armato M13/40) von Fiat-Ansaldo war zusammen mit dem leicht verbesserten M14/41 der einzige in nennenswerten Zahlen von Italien im Zweiten Weltkrieg produzierte Kampfpanzer.
+				Im Bereich der Bewaffnung waren sowohl der M11/39 mit seiner (kaum schwenkbaren) 37-mm-Bordkanone und dann besonders auch der M13/40 mit der 47-mm-Bordkanone zunächst noch auf der Höhe der Zeit.
+				In dieser Phase des Zweiten Weltkrieges war kein alliierter Kampfpanzer mit einer Bordkanone eines Kalibers von über 47 mm ausgerüstet, da die französischen Char-B1-Panzer während des Frankreich-Feldzuges vollständig vernichtet oder erbeutet wurden.
+				Der M13/40 war jedoch von Anfang an unzureichend gepanzert und motorisiert.
+				Den von den Alliierten ab 1942 eingesetzten Panzern der Typen M3 Lee/Grant und M4 Sherman hatte der M13/40 und auch seine verbesserten Varianten nichts mehr entgegenzusetzen.
+				Dennoch kämpften die italienischen Panzerdivisionen „Ariete“ und „Littorio“ bei El Alamein, sowie die Panzerdivision „Centauro“ in Tunesien mit diesen Panzern bis zuletzt.
+				Zur Unterstützung des M13 verwendete man nunmehr das als Kampfpanzer recht wirksam eingesetzte Sturmgeschütz Semovente 75/18 (Turm mit 75-mm-Kanone auf M13-Chassis).
+				Als Weiterentwicklung des M13/40 ist der M14/41, später der M15/42 oder der schwere Panzer P40 (auch P26/40) zu nennen.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_B1_TEXT">
+			<Text>
+				Der Char de Manoeuvre B, später Char de Bataille B1, war ein französischer Panzer, der in der Zwischenkriegszeit entwickelt wurde und im Zweiten Weltkrieg zum Einsatz kam.
+				Von Bewaffnung und Panzerung her war der Char B1 1940 allen deutschen Panzern überlegen.
+				Zum Nachteil gerieten ihm seine geringe Beweglichkeit und Reichweite sowie sein Ein-Mann-Turm, in dem der Kommandant gleichzeitig die Funktion des Richt- und Ladeschützen übernehmen musste, aber auch bei Bedarf das MG zu bedienen hatte.
+				Ein Mitglied der Besatzung bediente dagegen nur das Funkgerät.
+				Ein Beispiel seiner Überlegenheit gegenüber den deutschen Panzern zeigte das Gefechte um das Dorf Stonne südlich von Sedan.
+				Hier gelang es am Morgen des 16. Mai 1940 dem Führungspanzer „Eure“ von der 1. Kompanie des Panzerbataillons 41 unter dem Befehl von Capitain Billotte während eines Gegenangriffs bis zur einzigen Straße des Dorfes vorzudringen.
+				Dort stieß er auf eine Kolonne von elf Panzer III und zwei Panzer IV der 10. Panzerdivision.
+				Mit seinen beiden Kanonen schoss „Eure“ alle 13 Panzer ab und vernichtete zusätzlich noch zwei Panzerabwehrgeschütze.
+				„Eure“ selbst erhielt während des Gefechtes 140 Treffer, ohne dass auch nur eine einzige Granate seine Panzerung durchschlagen konnte.
+				Viele Char B1 wurden von der deutschen Wehrmacht erbeutet und dienten nach dem Feldzug von 1940 in der Wehrmacht weiter, zum Teil umgebaut als Flammenwerfer-Panzer und als Selbstfahrlafette bei der mobilen Artillerie.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_P26_40 ENTRIES-->
+
+		<Row Tag="TXT_KEY_UNIT_TANK_P26_40_TEXT">
+			<Text>
+				Der P26/40 (auch Carro Armato P26/40 bzw. Carro Pesante P26/40) war ein Panzer der Firma Fiat-Ansaldo.
+				Der im Zweiten Weltkrieg gebaute italienische Panzer P26/40 (auch P40 oder P75 genannt) war eine Weiterentwicklung des M13/40.
+				Er unterschied sich vom Vorgängermodell durch eine verbesserte Bewaffnung und Panzerung.
+				Das Fahrzeug trug eine Kanone vom Kaliber 75 mm und ein MG.
+				Die maximale Panzerung betrug 60 mm, das Gesamtgewicht 26 Tonnen.
+				Der P26/40 konnte es dank seiner 75-mm-Kanone mit allen mittleren Panzern der Alliierten aufnehmen, bei der Panzerung und der Motorisierung entsprach er jedoch zur Zeit seiner Einführung nicht mehr dem Stand der Technik.
+				Auf Grund der Verzögerungen beim Bau war das italienische Militär gezwungen, seinen Standardkampfpanzer M13/40 und dessen leicht verbesserte Varianten noch 1942 gegen die M3 Lee/Grants und M4 Shermans der Alliierten einzusetzen.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_M26_PERSHING ENTRIES-->
+
+		<Row Tag="TXT_KEY_UNIT_TANK_M26_PERSHING_TEXT">
+			<Text>
+				Der M26 Pershing (benannt nach General John J. Pershing) war der schwerste Kampfpanzer, der ab Februar 1945 von der US Army im Zweiten Weltkrieg eingesetzt wurde.
+				Er kam später von 1950 bis 1953 im Koreakrieg sehr erfolgreich zum Einsatz.
+				Der M26 Pershing wurde während des Koreakriegs auch an verbündete Staaten wie Belgien, Frankreich und Italien geliefert.
+			</Text>
+			Dank seiner 90-mm-Kanone war der M26 der einzige US-Panzer, der es mit den überlegenen schweren deutschen Panzern Tiger sowie unter Abstrichen Panther direkt aufnehmen konnte.
+			Er wurde deswegen auch „Tiger-Tamer“ (Tigerbändiger) genannt, obwohl die US-Besatzungen vor allem wegen seiner geringeren Geschwindigkeit zu Beginn noch etwas enttäuscht von diesem neuen Panzer waren.
+			Allerdings war der Pershing dem Tiger II (Königstiger) weiterhin klar unterlegen und die wenigen im Einsatz befindlichen Exemplare versuchten den Kampf mit diesem nach Möglichkeit zu vermeiden.
+		</Row>
+		<!--UNIT_TANK_CHURCHILL ENTRIES-->
+
+		<Row Tag="TXT_KEY_UNIT_TANK_CHURCHILL_TEXT">
+			<Text>
+				Der Churchill war ein schwerer britischer Sturmpanzer des Zweiten Weltkrieges, der nach dem Politiker Sir Winston Churchill benannt wurde.
+				1943 sollte die Produktion zugunsten des erfolgreichen A27-Cruiser-Panzers eingestellt werden.
+				Auf Grund der erfolgreichen Schlachten in Afrika entschied man sich jedoch zur Fortsetzung der Produktion. Insgesamt wurden 5479 Stück produziert.
+				Schwächen des Panzers waren seine geringe Geschwindigkeit sowie der schlechte Überblick der Besatzung über das Gefechtsfeld.
+				Vor allem das Schussfeld des MG-Schützen im Bug wurde durch die Kettenschürzen stark eingeschränkt.
+				Das Fahrzeug verfügte jedoch über eine gute Panzerung und war daher für Unterstützungsaufgaben gut geeignet.
+
+			</Text>
+		</Row>
+		<!--UNIT_TIGER_BATTALION ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TIGER_II_TEXT">
+			<Text>
+				Der Panzerkampfwagen VI Ausf. B „Tiger II“ (Sd. Kfz. 182), auch „Königstiger“ genannt, war ein schwerer Panzer der Wehrmacht und der schwerste im Zweiten Weltkrieg eingesetzte Panzer.
+				Die Bezeichnung „Königstiger“ war die inoffizielle Bezeichnung und fand ihren Ursprung bei den westalliierten Panzersoldaten, die diesen schweren Panzer als erste als „King Tiger“ oder „Royal Tiger“ bezeichneten.
+				Der Panzerkampfwagen Tiger II wurde hauptsächlich an die schweren Panzerabteilungen ausgeliefert, die schon mit dem Panzerkampfwagen VI Tiger I ausgestattet waren.
+				Der Tiger II war der Höhepunkt der Panzerentwicklung im Deutschen Reich während des Zweiten Weltkrieges, wobei sich die Formgebung am Panther orientierte. Gegenüber dem Tiger I wuchsen sowohl die Abmessungen als auch die Panzerstärken und damit das Gewicht.
+				Das Ergebnis war ein frontal nur schwer verwundbares Fahrzeug, das allerdings wegen seiner großen Masse von 68 t relativ langsam war.
+				Die 8,8-cm-KwK 43 L/71 war die beste Panzerkanone ihrer Zeit und verlieh dem „Königstiger“ eine gewaltige Feuerkraft.
+				Alle feindlichen Panzer konnten frontal auf Entfernungen von 1000 bis 3000 m abgeschossen werden; es gibt einige wenige Abschussberichte von T-34 bei einer Kampfentfernung von etwa 4000 Metern. In Bezug auf Panzerung und Bewaffnung gleichwertig, aber etwa 20 t leichter und damit beweglicher, wäre nur der sowjetische JS-3 gewesen, der aber auf dem europäischen Schlachtfeld nicht mehr zum Einsatz kam.
+				Von der Bewaffnung, nicht aber der Panzerung, waren der M26 Pershing und der IS-2 Modell 1944 etwa gleichwertig.
+			</Text>
+		</Row>
+	</Language_de_DE>
+	
+
+</GameData>
