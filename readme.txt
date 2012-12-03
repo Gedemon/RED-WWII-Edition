@@ -53,13 +53,15 @@ Gedemon: design/coding, scenarios
 
 	-- version history --
 	
-v.34 (Dec 01, 2012):
+v.34 (Dec 02, 2012):
+- CrashFix: Attacking submarines was crashing the game when using G+K.
 - Balance: City siege Promotion (free for infantries) was 10 times stronger when using G+K (+200%), restored to normal (+20%)
 - Balance: Fighter were given Anti-Air promotion when using G+K, which was added to the mod base promotion, keep only the base promotion
 - Balance: The 100% defensive bonus vs aircraft for embarked units was not initialized when using G+K
+- Balance: Field Guns are now "Siege" combat class, not "Gunpowder".
 - BugFix: Embarked units were given 0 strenght when using G+K.
-- Add: Field Guns and AA Guns to Stalingrad scenario.
-- Add: More description for scenarios, add warning about stability and requirements.
+- Add: Field Guns and AA Guns to units list for Stalingrad scenario.
+- Add: More description for scenarios, add warnings when needed about stability and requirements.
 	
 v.33 (Dec 01, 2012):
 - Installation Fix: Removed files of size 0 from the archive. Firaxis, please, for christmas can you make me an version of Civ5 that does not crash when it meet a 0 size file in an archive ?

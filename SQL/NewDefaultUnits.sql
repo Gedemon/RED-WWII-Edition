@@ -36,6 +36,7 @@ INSERT INTO "Unit_FreePromotions" (UnitType, PromotionType)	VALUES ( 'UNIT_SETTL
 -- Infantry
 UPDATE "Units" SET Cost ='200', UnitFlagIconOffset='0', UnitFlagAtlas = 'WW2_UNIT_FLAGS' WHERE Type = 'UNIT_INFANTRY';
 INSERT INTO "Unit_FreePromotions" (UnitType, PromotionType)	VALUES ( 'UNIT_INFANTRY', 'PROMOTION_CITY_SIEGE' );
+--REPLACE INTO "ArtDefine_StrategicView" VALUES('ART_DEF_UNIT_INFANTRY','Unit','SV_Blank.dds');
 
 -- Tank
 UPDATE "Units" SET UnitFlagIconOffset='1', UnitFlagAtlas = 'WW2_UNIT_FLAGS' WHERE Type = 'UNIT_TANK';
@@ -53,7 +54,7 @@ DELETE FROM Unit_FreePromotions WHERE UnitType = 'UNIT_ARTILLERY' AND PromotionT
 DELETE FROM Unit_FreePromotions WHERE UnitType = 'UNIT_ARTILLERY' AND PromotionType='PROMOTION_MUST_SET_UP'; -- removed for regiment mechanism
 
 -- Artillery (Field Gun)
-UPDATE "Units" SET Range = '1', Combat = '16', RangedCombat = '60', UnitFlagIconOffset='25', UnitFlagAtlas = 'WW2_UNIT_FLAGS' WHERE Type = 'UNIT_ANTI_TANK_GUN';
+UPDATE "Units" SET CombatClass = 'UNITCOMBAT_SIEGE', Range = '1', Combat = '16', RangedCombat = '60', UnitFlagIconOffset='25', UnitFlagAtlas = 'WW2_UNIT_FLAGS' WHERE Type = 'UNIT_ANTI_TANK_GUN';
 DELETE FROM Unit_FreePromotions WHERE UnitType = 'UNIT_ANTI_TANK_GUN' AND PromotionType='PROMOTION_ANTI_TANK'; -- included in PROMOTION_FIELD_GUN
 INSERT INTO "Unit_FreePromotions" (UnitType, PromotionType)	VALUES ( 'UNIT_ANTI_TANK_GUN', 'PROMOTION_FIELD_GUN' );
 

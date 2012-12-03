@@ -6,6 +6,13 @@
 
 */
 
+
+DROP TABLE IF EXISTS "Building_ResourceQuantity";
+
+
+-- Above should have been taken care by VanillaCiv5Database.sql
+/*
+
 --------------------------------------------------------------------------------------------
 -- Combat Defines, vanilla values
 --------------------------------------------------------------------------------------------
@@ -47,7 +54,8 @@ INSERT OR REPLACE INTO Defines VALUES ("EMBARKED_NOT_CIVILIAN_COMBAT_STRENGTH","
 UPDATE UnitPromotions SET CityAttack = 20 WHERE Type = 'PROMOTION_CITY_SIEGE';
 
 UPDATE UnitPromotions_UnitCombatMods SET Modifier = 100 WHERE PromotionType = 'PROMOTION_ANTI_AIR';
-DELETE FROM Unit_FreePromotions WHERE PromotionType='PROMOTION_ANTI_AIR'; -- Vanilla has it for AA-Guns, but the mod was removing it anyway...
+--DELETE FROM Unit_FreePromotions WHERE PromotionType='PROMOTION_ANTI_AIR'; -- Vanilla has it for AA-Guns, but the mod was removing it anyway...
+DELETE FROM Unit_FreePromotions WHERE PromotionType='PROMOTION_ANTI_AIR_II'; -- does not exist in vanilla
 
 --------------------------------------------------------------------------------------------
 -- Minor Civs Visual Relation Status, Vanilla table
@@ -67,3 +75,4 @@ INSERT INTO MinorCivTraits_Status VALUES ("FRIENDSHIP_THRESHOLD_NEUTRAL","CitySt
 --------------------------------------------------------------------------------------------
 
 ALTER TABLE Buildings ADD COLUMN 'Culture' INTEGER DEFAULT 0;
+*/

@@ -220,44 +220,8 @@ function UpdateData()
 			local iNumTotal;
 			
 			local strResourceText = "";
-			local strTempText = "";
-			
-			for pResource in GameInfo.Resources() do
-				local iResourceLoop = pResource.ID;
-				
-				if (Game.GetResourceUsageType(iResourceLoop) == ResourceUsageTypes.RESOURCEUSAGE_STRATEGIC) then
-					
-					bShowResource = false;
-					
-					if (pTeam:GetTeamTechs():HasTech(GameInfoTypes[pResource.TechReveal])) then
-						if (pTeam:GetTeamTechs():HasTech(GameInfoTypes[pResource.TechCityTrade])) then
-							bShowResource = true;
-						end
-					end
-					
-					iNumAvailable = pPlayer:GetNumResourceAvailable(iResourceLoop, true);
-					iNumUsed = pPlayer:GetNumResourceUsed(iResourceLoop);
-					iNumTotal = pPlayer:GetNumResourceTotal(iResourceLoop, true);
-					
-					if (iNumUsed > 0) then
-						bShowResource = true;
-					end
-							
-					if (bShowResource) then
-						local text = Locale.ConvertTextKey(pResource.IconString);
-						strTempText = string.format("%i %s   ", iNumAvailable, text);
-						
-						-- Colorize for amount available
-						if (iNumAvailable > 0) then
-							strTempText = "[COLOR_POSITIVE_TEXT]" .. strTempText .. "[ENDCOLOR]";
-						elseif (iNumAvailable < 0) then
-							strTempText = "[COLOR_WARNING_TEXT]" .. strTempText .. "[ENDCOLOR]";
-						end
-						
-						strResourceText = strResourceText .. strTempText;
-					end
-				end
-			end
+			local strTempText = "";		
+
 			
 			Controls.ResourceString:SetText(strResourceText);
 			
@@ -272,7 +236,7 @@ function UpdateData()
 		local turn = Locale.ConvertTextKey("TXT_KEY_TP_TURN_COUNTER", Game.GetGameTurn());
 		Controls.CurrentTurn:SetText(turn);
 		
-		-- REC <<<<
+		-- RED <<<<
 		-- Update Unit Supply
 		if SHOW_UNIT_SUPPLY then
 			local iUnitSupplyMod = pPlayer:GetUnitProductionMaintenanceMod();
