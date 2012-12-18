@@ -125,7 +125,28 @@ end
 
 function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 	local bDebug = true
-  if ALLOW_SCRIPTED_EVENTS then
+
+	if  not ALLOW_SCRIPTED_EVENTS then
+		return
+	end
+
+	local turn = Game.GetGameTurn()
+	local turnDate = REAL_WORLD_ENDING_DATE  
+	if g_Calendar[turn] then 
+		if g_Calendar[turn].Number > MAX_FALL_OF_FRANCE_DATE then -- Fall of france has a date of peremption...
+			return 
+		end
+	end 
+	
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
+
+	---[[
+	if AreAtWar( iGermany, iUSSR) then -- There is hope in the East !
+		return
+	end
+	--]]
+
 	local cityPlot = Map.GetPlot( ToGridFromHex( hexPos.x, hexPos.y ) )
 	
 	local x, y = ToGridFromHex( hexPos.x, hexPos.y )
@@ -421,12 +442,8 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								Players[originalOwner]:AcquireCity(city, false, true)
 							end
 						elseif originalOwner ~= iFrance and ownerID == iFrance then -- liberate plot captured by France
-							local closeCity = GetCloseCity ( originalOwner, plot )
-							if closeCity then
-								plot:SetOwner(originalOwner, closeCity:GetID() ) 
-							else
-								plot:SetOwner(originalOwner, -1 ) 
-							end
+							plot:SetOwner(originalOwner, -1 ) 
+
 						elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
 							--Dprint("(".. x ..",".. y ..") = Plot in occupied territory")
 							if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
@@ -434,12 +451,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[newPlayerID]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( newPlayerID, plot )
-								if closeCity then
-									plot:SetOwner(newPlayerID, closeCity:GetID() ) 
-								else
-									plot:SetOwner(newPlayerID, -1 ) 
-								end
+								plot:SetOwner(newPlayerID, -1 ) 
 							end
 						elseif originalOwner == iFrance and ((y > 32 and x < 32))  then -- Vichy territory
 							--Dprint("(".. x ..",".. y ..") = Plot in Vichy territory")
@@ -448,12 +460,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iVichy]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iVichy, plot )
-								if closeCity then
-									plot:SetOwner(iVichy, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iVichy, -1 ) 
-								end
+								plot:SetOwner(iVichy, -1 ) 
 							end
 						elseif originalOwner == iFrance and (y > 26 and x > 31 and y < 38 and x < 36) then -- Nice, Ajaccio region to Italy
 							--Dprint("(".. x ..",".. y ..") = Plot in Italy occupied territory")
@@ -462,12 +469,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iItaly]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iItaly, plot )
-								if closeCity then
-									plot:SetOwner(iItaly, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iItaly, -1 ) 
-								end
+								plot:SetOwner(iItaly, -1 ) 
 							end
 						elseif originalOwner == iFrance and (y > 40 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg region to Germany
 							--Dprint("(".. x ..",".. y ..") = Plot in Germany occupied territory")
@@ -476,12 +478,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iGermany]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iGermany, plot )
-								if closeCity then
-									plot:SetOwner(iGermany, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iGermany, -1 ) 
-								end
+								plot:SetOwner(iGermany, -1 ) 
 							end
 						end
 					end
@@ -491,6 +488,8 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 				local teamGermany = Teams[ pGermany:GetTeam() ]
 				local teamItaly = Teams[ pItaly:GetTeam() ]
 				local teamFrance = Teams[ pFrance:GetTeam() ]
+
+				-- Change relation before declaring war or after peace !
 
 				pVichy:ChangeMinorCivFriendshipWithMajor( iGermany, 50 )
 				pVichy:ChangeMinorCivFriendshipWithMajor( iItaly, 50 )
@@ -506,36 +505,31 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 				pLebanon:ChangeMinorCivFriendshipWithMajor( iFrance, - pLebanon:GetMinorCivFriendshipWithMajor(iFrance) )
 				pLebanon:ChangeMinorCivFriendshipWithMajor( iEngland, - pLebanon:GetMinorCivFriendshipWithMajor(iEngland) )
 
-				--teamFrance:DeclareWar( pAlgeria:GetTeam() )
-				DeclarePermanentWar(iFrance, iAlgeria)
+				--DeclarePermanentWar(iFrance, iAlgeria) -- wait for Operation Torch
 				teamGermany:MakePeace( pAlgeria:GetTeam() )
 				teamItaly:MakePeace( pAlgeria:GetTeam() )
 				pAlgeria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iGermany) )
 				pAlgeria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iItaly) )
 				
-				--teamFrance:DeclareWar( pMorocco:GetTeam() )
-				DeclarePermanentWar(iFrance, iMorocco)
+				--DeclarePermanentWar(iFrance, iMorocco) -- wait for Operation Torch
 				teamGermany:MakePeace( pMorocco:GetTeam() )
 				teamItaly:MakePeace( pMorocco:GetTeam() )
 				pMorocco:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iGermany) )
 				pMorocco:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iItaly) )
 				
-				--teamFrance:DeclareWar( pSyria:GetTeam() )
 				DeclarePermanentWar(iFrance, iSyria)
 				teamGermany:MakePeace( pSyria:GetTeam() )
 				teamItaly:MakePeace( pSyria:GetTeam() )
 				pSyria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pSyria:GetMinorCivFriendshipWithMajor(iGermany) )
 				pSyria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pSyria:GetMinorCivFriendshipWithMajor(iItaly) )
 				
-				--teamFrance:DeclareWar( pTunisia:GetTeam() )
-				DeclarePermanentWar(iFrance, iTunisia)
+				--DeclarePermanentWar(iFrance, iTunisia) -- wait for Operation Torch
 				teamGermany:MakePeace( pTunisia:GetTeam() )
 				teamItaly:MakePeace( pTunisia:GetTeam() )
 				pTunisia:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iGermany) )
 				pTunisia:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iItaly) )	
 
-				--teamFrance:DeclareWar( pLebanon:GetTeam() )
-				DeclarePermanentWar(iFrance, iLebanon)
+				--DeclarePermanentWar(iFrance, iLebanon) -- wait for Operation Torch
 				teamGermany:MakePeace( pLebanon:GetTeam() )
 				teamItaly:MakePeace( pLebanon:GetTeam() )
 				pLebanon:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iGermany) )
@@ -554,7 +548,6 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 			end
 		end
 	end
-  end
 end
 -- add to Events.SerialEventCityCaptured in main scenario Lua
 
@@ -575,6 +568,16 @@ function ConvertToFreeFrance (iAttackingPlayer, iAttackingUnit, attackerDamage, 
 			local attUnitData = g_UnitData[attUnitKey]
 			local defUnitKey =  GetUnitKey(defUnit)
 			local defUnitData = g_UnitData[defUnitKey]
+			if not attUnitData then
+				Dprint ("ERROR : attUnitData is NIL in ConvertToFreeFrance, unit key = " .. tostring(attUnitKey)) -- how ?
+				return
+			end
+			
+			if not defUnitData then
+				Dprint ("ERROR : defUnitData is NIL in ConvertToFreeFrance, unit key = " .. tostring(defUnitKey))
+				return
+			end
+
 			if (attUnit:GetDomainType() == DomainTypes.DOMAIN_LAND and defUnit:GetDomainType() == DomainTypes.DOMAIN_LAND and defUnitData) then
 				if AreSameSide(iAttackingPlayer, franceID) and defUnitData.BuilderID == franceID then -- ally attacks old french unit, try to convert
 					Dprint ("Ally unit is attacking a Vichy France unit")
@@ -605,7 +608,7 @@ function ConvertToFreeFrance (iAttackingPlayer, iAttackingUnit, attackerDamage, 
 					local attHealthRatio =  attHealth / attackerMaxHP * rand -- 0 to 100
 					local damageRatio = diffDamage * rand  -- (- diffDamage * 100) to (diffDamage * 100)
 
-					if defenderHealth > 0 and (defenderHealthRatio < 10 or damageRatio < - 100) then
+					if attHealth > 0 and (attHealthRatio < 10 or damageRatio < - 100) then
 						-- chance are relative to lower health of old unit or low damage received on defeat
 						Events.GameplayAlertMessage(attUnit:GetName() .. " has joined Free France Army after a fight against " .. defUnit:GetNameNoDesc() )
 						local newUnit = ChangeUnitOwner (defUnit, franceID)
@@ -753,7 +756,7 @@ function GiveVilniusToPoland()
 			if GetPlotFirstOwner(plotKey) == iBaltic and plot:GetOwner() ~= iBaltic
 			and not (plotKey == "56,51" or plotKey == "57,52" or plotKey == "57,53" or plotKey == "58,54") 
 			    then -- Give Only Vilnius and 3 plots to Poland, give back the others to Baltic States...
-				plot:SetOwner(iBaltic) 
+				plot:SetOwner(iBaltic, -1) 
 			end
 		end
 	end 
@@ -859,34 +862,17 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 							local originalOwner = GetPlotFirstOwner(plotKey)
 
 							if originalOwner ~= iPoland and ownerID == iPoland then -- liberate plot captured by Poland
-								local closeCity = GetCloseCity ( originalOwner, plot )
-								if closeCity then
-									plot:SetOwner(originalOwner, closeCity:GetID() ) 
-								else
-									plot:SetOwner(originalOwner, -1 ) 
-								end
+								plot:SetOwner(originalOwner, -1 ) 
 
 							elseif originalOwner == iPoland and (x > 46 and x < 51)  then -- German territory
-								local closeCity = GetCloseCity ( iGermany, plot )
-								if closeCity then
-									plot:SetOwner(iGermany, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iGermany, -1 ) 
-								end
+								plot:SetOwner(iGermany, -1 ) 
+
 							elseif originalOwner == iPoland and (x > 50 and x < 55) then -- Central territory
-								local closeCity = GetCloseCity ( newPlayerID, plot )
-								if closeCity then
-									plot:SetOwner(newPlayerID, closeCity:GetID() ) 
-								else
-									plot:SetOwner(newPlayerID, -1 ) 
-								end
+								plot:SetOwner(newPlayerID, -1 ) 
+
 							elseif originalOwner == iPoland and (x > 54 and x < 61) then -- USSR Territory
-								local closeCity = GetCloseCity ( iUSSR, plot )
-								if closeCity then
-									plot:SetOwner(iUSSR, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iUSSR, -1 ) 
-								end
+								plot:SetOwner(iUSSR, -1 ) 
+
 							end
 						end
 					end				
@@ -998,27 +984,14 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 						local originalOwner = GetPlotFirstOwner(plotKey)
 
 						if originalOwner ~= iDenmark and ownerID == iDenmark then -- liberate plot captured by Poland
-							local closeCity = GetCloseCity ( originalOwner, plot )
-							if closeCity then
-								plot:SetOwner(originalOwner, closeCity:GetID() ) 
-							else
-								plot:SetOwner(originalOwner, -1 ) 
-							end
+							plot:SetOwner(originalOwner, -1 ) 
 
 						elseif originalOwner == iDenmark and (x > 35)  then -- German territory
-							local closeCity = GetCloseCity ( iGermany, plot )
-							if closeCity then
-								plot:SetOwner(iGermany, closeCity:GetID() ) 
-							else
-								plot:SetOwner(iGermany, -1 ) 
-							end
+							plot:SetOwner(iGermany, -1 ) 
+
 						elseif originalOwner == iDenmark and (x < 35) and ownerID == iDenmark then -- Denmark to UK
-							local closeCity = GetCloseCity ( iUK, plot )
-							if closeCity then
-								plot:SetOwner(iUK, closeCity:GetID() ) 
-							else
-								plot:SetOwner(iUK, -1 ) 
-							end
+							plot:SetOwner(iUK, -1 ) 
+
 						end
 					end
 				end				

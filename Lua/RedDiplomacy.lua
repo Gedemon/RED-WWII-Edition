@@ -22,7 +22,7 @@ function PrepareForWar(turnBefore)
 	local activePlayerID = Game.GetActivePlayer()
 	
 	-- vs major
-	if g_Calendar[warTurn] then turnDate = g_Calendar[warTurn].Number else turnDate = 19470105 end
+	if g_Calendar[warTurn] then turnDate = g_Calendar[warTurn].Number else turnDate = REAL_WORLD_ENDING_DATE end
 	if g_Calendar[warTurn-1] then prevDate = g_Calendar[warTurn-1].Number else  prevDate = turnDate - 1 end
 	
 	Dprint("Look for active player (".. activePlayerID ..") at turn ".. warTurn, bDebug)

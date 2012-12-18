@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.31
+v.36
 
 	-- Presentation --
 
@@ -53,13 +53,37 @@ Gedemon: design/coding, scenarios
 
 	-- version history --
 	
+v.35 (Dec 19, 2012):
+- Compatibility : not compatible with saves from previous versions.
+- Compatibility : R.E.D. DLL v.4 is mandatory (already included in v.35 if you have G+K).
+- DLL feature : add the notion of supply lines to tiles, when not linked to a city or an unit, a plot can flip to the closest enemy unit or city.
+- DLL feature : tiles owned by cities does not flip side when the city is captured.
+- DLL feature : units can enter allied cities
+- DLL feature : units can stack in cities (unlimited stacking now, limited stacking relative to buildings is planned)
+- DLL feature : prevent some check related to Minor Civs asking for help, which in turn prevent a crash occuring during the AI turn (related to forced teams ?) 
+- Optimization : no need to link tiles to cities on "Fall of..." events (save processing time)
+- Optimization : archive combat log in a separate table when needed (save up to 10-15 s/turn in late game) 
+- Optimization : add PlotIterator code from whoward69
+- Bugfix : once the mod is loaded, does not allow the user to return to the main menu (exit game instead), as the game fail to unload the files that are overriden using the VFS property.
+- Bugfix : code to find a city to heal AI Naval Units was sometime failing, making all other AI override inactive for that turn (other naval units and air units...)
+- Bugfix : change the way the mod handle support fire, to prevent units from being one-shooted by artillery if they were not supposed to be the target of the attack.
+- Bugfix : save all tables at the end of the barbarian player turn, so they can be added to the game autosaves which is done just after.
+- Balance: Field Guns bonus vs armor lowered to +25% (was +100%)
+- Balance: on the 39-45 Europe map, "Fall of France" on Paris capture doesn't happen after 01/01/1942 or if U.S.S.R and Germany are already at war. 
+- Balance: on the 39-45 Europe map, make Paris an "open city" (less defense, no defensive buildings allowed).
+- Balance: on the 39-45 Europe map, don't force DoW on all French colonies vs allied (prelude to Operation Torch implementation).
+- Balance: allow Air type ratio restriction for the AI (force a limit on each "class" type)
+- Correction : Japan DoM text now refers to "Prime Minister"
+- Correction : Notification texts were not using the damage number when killing an enemy unit in defense.
+
+
 v.34 (Dec 02, 2012):
 - CrashFix: Attacking submarines was crashing the game when using G+K.
 - Balance: City siege Promotion (free for infantries) was 10 times stronger when using G+K (+200%), restored to normal (+20%)
 - Balance: Fighter were given Anti-Air promotion when using G+K, which was added to the mod base promotion, keep only the base promotion
 - Balance: The 100% defensive bonus vs aircraft for embarked units was not initialized when using G+K
 - Balance: Field Guns are now "Siege" combat class, not "Gunpowder".
-- BugFix: Embarked units were given 0 strenght when using G+K.
+- BugFix: Embarked units were given 0 strength when using G+K.
 - Add: Field Guns and AA Guns to units list for Stalingrad scenario.
 - Add: More description for scenarios, add warnings when needed about stability and requirements.
 	

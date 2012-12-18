@@ -21,7 +21,10 @@ REINFORCEMENT_SAVE_SLOT =	"1,0"
 PROJECTS_SAVE_SLOT =		"1,1"
 COMBATLOG_SAVE_SLOT =		"0,2"
 DYNAMICMAP_SAVE_SLOT =		"1,2"
+COMBAT_ARCHIVE_SAVE_SLOT =	"2,0"
 
+MAX_COMBAT_LOG_ENTRIES = 1500	-- Archive old entries above this value
+MIN_COMBAT_LOG_ENTRIES = 250	-- Keep this number on entries in Combat Log when archiving
 
 -------------------------------------------------------------------------------------------------------
 -- DEBUG Output
@@ -135,7 +138,7 @@ MOVE_DENOMINATOR = GameDefines.MOVE_DENOMINATOR
 --player ID
 ----------------------------------------------------------------------------------------------------------------------------
 LOCAL_PLAYER = Game.GetActivePlayer
-BARBARIAN_PLAYER = GameDefines.MAX_PLAYERS
+BARBARIAN_PLAYER = GameDefines.MAX_CIV_PLAYERS
 --HANDICAP = modUserData.GetValue ("Handicap")
 
 --[[
@@ -178,6 +181,7 @@ g_Axis = {
 -- Calendar
 ----------------------------------------------------------------------------------------------------------------------------
 
+REAL_WORLD_ENDING_DATE = 19470105 -- Nothing related to calendar happens after this date.
 g_Calendar = {}
 local monthList = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }
 local dayList = { "1", "5", "10", "15", "20", "25" }
@@ -255,7 +259,9 @@ g_Buildings_Exclusion = {
 	[MEDIUM_AIR_FACTORY] =	{LAND_FACTORY, SHIPYARD}, 
 	[LARGE_AIR_FACTORY] =	{LAND_FACTORY, SMALL_AIR_FACTORY, SHIPYARD}, 
 	[SHIPYARD] =			{LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY}, 
-	[OPEN_CITY] =			{ARSENAL, BARRACKS, BASE, BARRICADE}, 
+	[ARSENAL] =				{OPEN_CITY}, 
+	[BARRACKS] =			{OPEN_CITY}, 
+	[BARRICADE] =			{OPEN_CITY},
 }
 
 -- Available buildings for minor civs

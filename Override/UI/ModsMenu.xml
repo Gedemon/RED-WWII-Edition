@@ -113,6 +113,7 @@
 	<LuaContext FileName="ScenarioMod" ID="ScenarioMod" Hidden="1" />
 	<LuaContext FileName="HotSeatLoad" ID="HotSeatLoadScreen" Hidden="1" />
 	<LuaContext FileName="SingleLoad" ID="SingleLoadScreen" Hidden="1" />
+	<LuaContext FileName="PreLoading" ID="PreLoading" Hidden="1" />
     
     <!-- Hiding for now until we address issues with multiplayer and modding -->
     <!--<LuaContext FileName="Assets/UI/FrontEnd/Multiplayer/MultiplayerSelect" ID="ModMultiplayerSelectScreen" Hidden="1"/>-->

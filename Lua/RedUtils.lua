@@ -46,6 +46,21 @@ function Shuffle(t)
   return t
 end
 
+function GetSize(t)
+
+	if type(t) ~= "table" then
+		return 1 
+	end
+
+	local n = #t 
+	if n == 0 then
+		for k, v in pairs(t) do
+			n = n + 1
+		end
+	end 
+	return n
+end
+
 -- From Thalassicus utils 
 function IsBetween(lower, mid, upper)
 	return ((lower <= mid) and (mid <= upper))
@@ -228,6 +243,18 @@ function GetPlotsInCircle(plot, minRadius, maxRadius)
     return plotList
 end  
 
+
+function GetPlotsInSpiral(plot, range, bIncludeCenter)
+	if bIncludeCenter == nil then
+		bIncludeCenter = true
+	end
+    local plotList    = {}
+	for pAreaPlot in PlotAreaSpiralIterator(plot, range, SECTOR_NORTH, DIRECTION_CLOCKWISE, DIRECTION_OUTWARDS, bIncludeCenter) do
+		table.insert(plotList, pAreaPlot)
+    end
+    return plotList
+end  
+
 -- check if a plot and all adjacents are safe for spawning (no enemy units)
 function IsSafePlot( plot, playerID)
 	local bSafe= true
@@ -273,7 +300,6 @@ end
 
 function IsNearNavalFriendlyCity(plot, playerID)
 	local bFriendlyCity= false
-	--local player = Players[ playerID ]
 	local adjacentPlots = GetAdjacentPlots(plot, false) -- don't check central plot
 	for i, adjPlot in pairs(adjacentPlots) do		
 		-- test for cities
@@ -405,7 +431,7 @@ end
 
 -- return Civ type ID for playerID
 function GetCivIDFromPlayerID (playerID, bReportError)
-	if (playerID ~= -1) then
+	if (playerID and playerID ~= -1) then
 		if playerID <= GameDefines.MAX_MAJOR_CIVS-1 then
 			local civID = Players[playerID]:GetCivilizationType()
 			if (civID ~= -1) then
@@ -424,7 +450,7 @@ function GetCivIDFromPlayerID (playerID, bReportError)
 			end
 		end
 	else
-		Dprint ("WARNING : trying to find CivType for PlayerId = -1", bReportError) 
+		Dprint ("WARNING : trying to find CivType for PlayerId = -1 or nil", bReportError) 
 		return false
 	end
 end
@@ -460,13 +486,19 @@ end
 function REDAutoSaveEachPlayer(iplayer)
 	local player = Players[iplayer]
 	if player and RED_AUTOSAVE_EACH_PLAYER and iplayer < GameDefines.MAX_MAJOR_CIVS then
-		SaveAllTable()
 		Dprint("-------------------------------------")
 		Dprint("Auto-Saving for each player is ON ...")
+		SaveAllTable()
 		local saveName = "RED_WWII_Autosave_EndTurn_"..tostring(player:GetName())		
 		Dprint("Saving: " .. saveName )
 		UI.SaveGame( saveName )
 	end
+	if iplayer == BARBARIAN_PLAYER then
+		Dprint("-------------------------------------")
+		Dprint("Saving all table at end of Barbarian (last) player, before civ5's autosaving...")
+		SaveAllTable()
+	end
+
 end
 
 function LoadAllTable()
@@ -490,11 +522,25 @@ function SaveAllTable()
 	Dprint("Saving data table ...")
 	DEBUG_PERFORMANCE = true	
 	local t1 = os.clock()
+
+	if #g_CombatsLog > MAX_COMBAT_LOG_ENTRIES then -- do we need to archive combat log ?
+		local logArchive = LoadData("CombatsLogArchive", {}, COMBAT_ARCHIVE_SAVE_SLOT)
+		local logActive = {}
+		for i, data in ipairs(g_CombatsLog) do
+			if i < (MAX_COMBAT_LOG_ENTRIES - MIN_COMBAT_LOG_ENTRIES) then 
+				table.insert(logArchive, data)
+			else
+				table.insert(logActive, data)
+			end
+		end
+		SaveData("CombatsLogArchive", logArchive, COMBAT_ARCHIVE_SAVE_SLOT)
+		g_CombatsLog = logActive
+	end
 	
+	SaveData("CombatsLog", g_CombatsLog, COMBATLOG_SAVE_SLOT)
 	SaveData("Unit", g_UnitData, UNIT_SAVE_SLOT)
 	SaveData("Reinforcement", g_ReinforcementData, REINFORCEMENT_SAVE_SLOT)
 	SaveData("ProjectsDone", g_ProjectsDone, PROJECTS_SAVE_SLOT)
-	SaveData("CombatsLog", g_CombatsLog, COMBATLOG_SAVE_SLOT)
 	SaveData("DynamicMap", g_DynamicMap, DYNAMICMAP_SAVE_SLOT)
 
 	local t2 = os.clock()
@@ -510,7 +556,7 @@ function LoadData( name, defaultValue, key )
 		local value = load( pPlot, name ) or defaultValue
 		local endTime = os.clock()
 		local totalTime = endTime - startTime
-		Dprint ("LoadData() used " .. tostring(totalTime) .. " sec to retrieve " .. tostring(name) .. " from plot " .. tostring(plotKey), DEBUG_PERFORMANCE)
+		Dprint ("LoadData() used " .. tostring(totalTime) .. " sec to retrieve " .. tostring(name) .. " from plot " .. tostring(plotKey) .. " (#entries = " .. tostring(GetSize(value)) ..")", DEBUG_PERFORMANCE)
 		return value
 	else
 		Dprint("Error: trying to load script data from invalid plot (" .. tostring(plotKey) .."), data = " .. tostring(name))
@@ -525,7 +571,7 @@ function SaveData( name, value, key )
 		save( pPlot, name, value )
 		local endTime = os.clock()
 		local totalTime = endTime - startTime
-		Dprint ("SaveData() used " .. tostring(totalTime) .. " sec to store " .. tostring(name) .. " in plot " .. tostring(plotKey), DEBUG_PERFORMANCE)
+		Dprint ("SaveData() used " .. tostring(totalTime) .. " sec to store " .. tostring(name) .. " in plot " .. tostring(plotKey) .. " (#entries = " .. tostring(GetSize(value)) ..")", DEBUG_PERFORMANCE)
 	else
 		Dprint("Error: trying to save script data to invalid plot (" .. tostring(plotKey) .."), data = " .. tostring(name) .. " value = " .. tostring(value))
 	end
@@ -599,7 +645,11 @@ end
 function InitializeGameOption()
 
 	-- first set the mandatory options
-	PreGame.SetGameOption("GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR", 1)
+	PreGame.SetGameOption("GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR", 1)	
+	PreGame.SetGameOption("GAMEOPTION_FREE_PLOTS", 1)
+	PreGame.SetGameOption("GAMEOPTION_NO_MINOR_DIPLO_SPAM", 1)
+	PreGame.SetGameOption("GAMEOPTION_CAN_STACK_IN_CITY", 1)
+	PreGame.SetGameOption("GAMEOPTION_CAN_ENTER_FOREIGN_CITY", 1)
 
 	if USE_CUSTOM_OPTION then
 		Dprint("-------------------------------------")

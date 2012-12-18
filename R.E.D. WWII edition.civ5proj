@@ -104,6 +104,12 @@
         <Description>TXT_KEY_RED_SMALL_EURO1940_SCENARIO_DESC</Description>
         <FileName>GameSetup/RedSmallEuro1940Setup.xml</FileName>
       </Content>
+      <Content>
+        <Type>InGameUIAddin</Type>
+        <Name>OptionsScreen</Name>
+        <Description>Option screen for flag promotions</Description>
+        <FileName>UI/FlagPromotions/OptionsScreen.lua</FileName>
+      </Content>
     </ModContent>
     <ModActions>
       <Action>
@@ -366,6 +372,10 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\special.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\StalingradMap.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -443,6 +453,10 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Lua\Earth1936\ScriptEarth1936.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\PlotIterators.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -651,6 +665,14 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Override\UI\EndGameMenu.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Override\UI\GameMenu.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Override\UI\GameMenu.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -1051,14 +1073,6 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Override\Vanilla\InGame\FluidFOW.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Override\Vanilla\InGame\GameMenu.lua">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Override\Vanilla\InGame\GameMenu.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -1602,6 +1616,22 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
+    <Content Include="UI\FlagPromotions\OptionsScreen.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="UI\FlagPromotions\OptionsScreen.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="UI\PreLoading.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="UI\PreLoading.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="UI\ScenarioMod.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -1617,14 +1647,6 @@
     <Content Include="UI\FlagPromotions\MiniMapPanel_addin.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="UI\FlagPromotions\OptionsScreen.lua">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="UI\FlagPromotions\OptionsScreen.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="UI\HotSeatLoad.lua">
       <SubType>Lua</SubType>

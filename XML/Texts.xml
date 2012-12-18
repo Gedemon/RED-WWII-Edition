@@ -183,11 +183,11 @@
 		</Update>
 		<Update>
 			<Where Tag="TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT" />
-			<Set Text="While defending, your {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{4_Num}[ENDCOLOR] damage) [COLOR_POSITIVE_TEXT]killed[ENDCOLOR] {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@5_owner_adjective}} {@4_EnUName}!" />
+			<Set Text="While defending, your {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] damage) [COLOR_POSITIVE_TEXT]killed[ENDCOLOR] {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@4_owner_adjective}} {@3_EnUName}!" />
 		</Update>
 		<Update>
 			<Where Tag="TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT_CITY" />
-			<Set Text="While defending, your City of {@1_CityName} ([COLOR_NEGATIVE_TEXT]{4_Num}[ENDCOLOR] damage) [COLOR_POSITIVE_TEXT]killed[ENDCOLOR] {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@4_owner_adjective}} {3_EnUName}!" />
+			<Set Text="While defending, your City of {@1_CityName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] damage) [COLOR_POSITIVE_TEXT]killed[ENDCOLOR] {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@4_owner_adjective}} {3_EnUName}!" />
 		</Update>
 		<Update>
 			<Where Tag="TXT_KEY_MISC_YOU_REDUCE_CITY_DEFENSES" />

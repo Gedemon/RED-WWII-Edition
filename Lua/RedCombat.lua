@@ -50,7 +50,6 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 		
 		SetStartCombatNum()
 		local turn = Game.GetGameTurn()
-
 		Dprint("")
 		Dprint("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", g_DebugCombat)
 		Dprint("COMBAT Started #".. tostring(g_StartNum), g_DebugCombat)
@@ -168,7 +167,7 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 		
 		DefenderPlayerID = iDefendingPlayer
 		DefenderCivType = GetCivTypeFromPlayerID(iDefendingPlayer)
-
+		
 		if pDefendingUnit then
 			DefenderUnitKey = GetUnitKey(pDefendingUnit)
 			DefenderUniqueID = g_UnitData[DefenderUnitKey].UniqueID
@@ -183,10 +182,10 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 			InterceptorUnitType = GameInfo.Units[pInterceptingUnit:GetUnitType()].Type
 			InterceptorToAttacker = interceptorDamage
 		end
-
+		
 		AttackerToDefender = defenderDamage
 		DefenderToAttacker = attackerDamage
-
+		
 		-- display combat result
 		Dprint("---------------------------------------------------------------------------------------------------------------", g_DebugCombat)
 		Dprint ("Combat Started:		" .. Locale.ToUpper(attackingPlayerName) .."		attack			".. Locale.ToUpper(defendingPlayerName), g_DebugCombat);
@@ -385,6 +384,8 @@ end
 --GameEvents.CombatResult.Add( CombatResult )
 
 function CombatEnded (iAttackingPlayer, iAttackingUnit, attackerDamage, attackerFinalDamage, attackerMaxHP, iDefendingPlayer, iDefendingUnit, defenderDamage, defenderFinalDamage, defenderMaxHP, iInterceptingPlayer, iInterceptingUnit, interceptorDamage, plotX, plotY)
+	
+	local bDebugEndCombat = false
 
 	local pAttackingPlayer = Players[ iAttackingPlayer ]
 	if pAttackingPlayer then -- In case the combat was aborted...
@@ -396,8 +397,9 @@ function CombatEnded (iAttackingPlayer, iAttackingUnit, attackerDamage, attacker
 		Dprint("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", g_DebugCombat)
 		Dprint("COMBAT Ended #".. tostring(g_EndNum), g_DebugCombat)
 		Dprint("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", g_DebugCombat)
-		local bDebugCombat = g_DebugCombat
-		g_DebugCombat = false
+		
+		
+
 		local pAttackingUnit = pAttackingPlayer:GetUnitByID( iAttackingUnit );		
 		Dprint ("Attacking from plot at " .. pAttackingUnit:GetPlot():GetX() .. "," ..pAttackingUnit:GetPlot():GetY(), g_DebugCombat)
 		Dprint ("Attacker is " .. tostring(pAttackingUnit:GetName()) .. ", Current Damage = " .. tostring(pAttackingUnit:GetDamage()), g_DebugCombat)
@@ -507,31 +509,35 @@ function CombatEnded (iAttackingPlayer, iAttackingUnit, attackerDamage, attacker
 		DefenderToAttacker = attackerDamage
 
 		-- display combat result
-		Dprint("---------------------------------------------------------------------------------------------------------------", g_DebugCombat)
-		Dprint ("Combat Ended:		" .. Locale.ToUpper(attackingPlayerName) .."		attack			".. Locale.ToUpper(defendingPlayerName), g_DebugCombat);
-		Dprint("---------------------------------------------------------------------------------------------------------------", g_DebugCombat)
-		Dprint ("Attacking Unit:		" .. attackingUnitName, g_DebugCombat);
-		Dprint ("Defending Unit:							".. defendingUnitName, g_DebugCombat);
+		Dprint("---------------------------------------------------------------------------------------------------------------", bDebugEndCombat)
+		Dprint ("Combat Ended:		" .. Locale.ToUpper(attackingPlayerName) .."		attack			".. Locale.ToUpper(defendingPlayerName), bDebugEndCombat);
+		Dprint("---------------------------------------------------------------------------------------------------------------", bDebugEndCombat)
+		Dprint ("Attacking Unit:		" .. attackingUnitName, bDebugEndCombat);
+		Dprint ("Defending Unit:							".. defendingUnitName, bDebugEndCombat);
 		-- if interception was made
 		if pInterceptingUnit then
-			Dprint ("Intercepting Unit:						".. interceptingUnitName, g_DebugCombat);
-			Dprint ("From Interceptor:		".. interceptorDamage, g_DebugCombat);
-			Dprint ("From Opponent:		".. attackerDamage .."					".. defenderDamage, g_DebugCombat);
+			Dprint ("Intercepting Unit:						".. interceptingUnitName, bDebugEndCombat);
+			Dprint ("From Interceptor:		".. interceptorDamage, bDebugEndCombat);
+			Dprint ("From Opponent:		".. attackerDamage .."					".. defenderDamage, bDebugEndCombat);
 		else	
-			Dprint ("Receveid Damage:		".. attackerDamage .."					".. defenderDamage, g_DebugCombat);
+			Dprint ("Receveid Damage:		".. attackerDamage .."					".. defenderDamage, bDebugEndCombat);
 		end
-		Dprint ("Final Damage:		".. attackerFinalDamage .."					"..  defenderFinalDamage, g_DebugCombat);
+		Dprint ("Final Damage:		".. attackerFinalDamage .."					"..  defenderFinalDamage, bDebugEndCombat);
 		if pAttackingUnit:IsRanged() and pAttackingUnit:GetDomainType() ~= DomainTypes.DOMAIN_AIR then -- fix bad leftHP calculation for ranged unit
-			Dprint ("HitPoints left:		".. attackerMaxHP - pAttackingUnit:GetDamage() .."					"..  defenderHealth, g_DebugCombat);
+			Dprint ("HitPoints left:		".. attackerMaxHP - pAttackingUnit:GetDamage() .."					"..  defenderHealth, bDebugEndCombat);
 		else
-			Dprint ("HitPoints left:		".. attackerMaxHP - attackerFinalDamage .."					"..  defenderHealth, g_DebugCombat);
+			Dprint ("HitPoints left:		".. attackerMaxHP - attackerFinalDamage .."					"..  defenderHealth, bDebugEndCombat);
 		end
 
 		-- call OnCityAttacked functions
 		if pDefendingCity then
+			Dprint("City owner	= " .. pDefendingCity:GetOwner(), g_DebugCombat)
+			Dprint("Attacker ID = " .. iAttackingPlayer, g_DebugCombat)
 			LuaEvents.OnCityAttacked(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
 		end
-		g_DebugCombat = bDebugCombat
+		if pDefendingCity and pDefendingCity:GetOwner() == iAttackingPlayer then -- Defending city has been captured by the attacker
+			LuaEvents.OnCityCaptured(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
+		end
 	end
 	
 
@@ -913,7 +919,7 @@ function FirstStrike(iPlayer, iUnit, x, y, iMission)
 		if not attackerPlot:IsCity() then -- no defensive strike against city...
 
 			DefensiveFirstStrikeUnit = GetDefensiveFirstStrikeUnit(defenderPlot)
-			if DefensiveFirstStrikeUnit and not g_DefensiveFirstStrike[DefensiveFirstStrikeUnit] then -- Support one attack per turn
+			if DefensiveFirstStrikeUnit and not g_DefensiveFirstStrike[DefensiveFirstStrikeUnit] then -- Support one defense per turn
 	
 				Dprint("--------------------------", g_DebugCombat)
 				Dprint("Defensive Support Fire", g_DebugCombat)
@@ -933,14 +939,14 @@ function FirstStrike(iPlayer, iUnit, x, y, iMission)
 				end
 			
 				local movesLeft = DefensiveFirstStrikeUnit:MovesLeft()				-- save unit moves
-				local bAttackLeft = not DefensiveFirstStrikeUnit:IsOutOfAttacks()	-- save  attack state
+				local bNoAttackLeft = DefensiveFirstStrikeUnit:IsOutOfAttacks()		-- save attack status
 				DefensiveFirstStrikeUnit:SetMoves(MOVE_DENOMINATOR)					-- Give one free move for attack
 				DefensiveFirstStrikeUnit:SetMadeAttack(false)						-- Make sure it can attack
-				SetTemporaryBestDefender(attackingUnit)								-- lower all combat value of units on the attacker plot except the attacking unit so it will be the one selected to defend against the support-fire...
+				SetTemporaryBestDefender(attackingUnit)								-- mark the attacking unit so it will be the one selected to defend against the support-fire...
 				DefensiveFirstStrikeUnit:RangeStrike(attX, attY)					-- Supporting-Fire !!!
-				RemoveTemporaryBestDefender(attackingUnit)							-- restore the normal combat value of all unit on the attacker plot
+				RemoveTemporaryBestDefender(attackingUnit)							-- remove the "forced best defender" mark on the attacking unit
 				DefensiveFirstStrikeUnit:SetMoves(movesLeft)						-- restore unit moves			
-				DefensiveFirstStrikeUnit:SetMadeAttack(bAttackLeft)					-- restore  attack state
+				DefensiveFirstStrikeUnit:SetMadeAttack(bNoAttackLeft)				-- restore attack status	
 
 				-- illimited defensive support ?
 				--g_DefensiveFirstStrike[DefensiveFirstStrikeUnit] = true -- mark this unit to not attack again. To Do : set this in unit global table, use a number, allow multiple support per turn...

@@ -559,9 +559,12 @@ function AbortSuicideAttacks(iAttackingPlayer, iAttackingUnit, attackerDamage, a
 			if diffDamage > SUICIDE_DIFF_DAMAGE_THRESHOLD and ratio < SUICIDE_HP_RATIO then -- that really looks like a suicide attack
 				Dprint ("Suicide attack detected, ABORT !!!", g_bAIDebug)
 				Events.GameplayAlertMessage(pAttackingUnit:GetName() .. " current mission was aborted, considered suicidal." )
+				-- Fix visual effect
+				pAttackingUnit:ChangeDamage(1)
+				pAttackingUnit:ChangeDamage(-1)
 				return true
 			else
-				Dprint ("Close to suicidal, but let it do, it will survive...", g_bAIDebug)
+				Dprint ("Close to suicidal ratio (".. tostring(SUICIDE_HP_RATIO) .."), but let it do, it will survive...", g_bAIDebug)
 			end
 			Dprint("---------------------------------------------------------------------------------------------------------------", g_bAIDebug)
 		end
@@ -635,15 +638,16 @@ function GoHealing(unit)
 		local unitPlot = unit:GetPlot()
 		local playerID = unit:GetOwner()
 		if IsNearNavalFriendlyCity(unitPlot, playerID) then
-			Dprint("No naval friendly city nearby, leave to AI control...", g_bAIDebug)
-			--unit:SetMoves(0)
+			Dprint("Naval friendly city nearby, try to heal...", g_bAIDebug)
+			unit:SetMoves(0)
 		else
 			local navalCity = GetCloseFriendlyNavalCity ( playerID, unitPlot)
-			Dprint("Found naval friendly city nearby, trying to reach " .. tostring(navalCity:GetName()), g_bAIDebug)
 			if navalCity then
+				Dprint("Found naval friendly city nearby, trying to reach " .. tostring(navalCity:GetName()), g_bAIDebug)
 				MoveUnitTo (unit, navalCity:Plot())
 				unit:SetMoves(0)
 			else
+				Dprint("No naval friendly city nearby, leave to AI control...", g_bAIDebug)
 				-- can't find route to healing plot, leave under AI control
 			end
 		end

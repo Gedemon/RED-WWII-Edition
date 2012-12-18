@@ -28,9 +28,11 @@ NO_SUICIDE_ATTACK = true -- If set to true, try to prevent suicide attacks
 -- Calendar
 ----------------------------------------------------------------------------------------------------------------------------
 
+REAL_WORLD_ENDING_DATE	= 19470105
+MAX_FALL_OF_FRANCE_DATE = 19420101 -- France will not surrender if Paris fall after this date...
+
 g_Calendar = {}
 local monthList = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }
---local dayList = { "1", "5", "10", "15", "20", "25" }
 local dayList = { "1", "10", "20" }
 local turn = 0
 for year = 1939, 1946 do -- see large
@@ -156,6 +158,17 @@ g_Max_Armor_SubClass_Percent = {
 	[GERMANY]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
 	[ITALY]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
 	[GREECE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
+}	
+
+-- Air type ratio restriction used by AI
+g_Max_Air_SubClass_Percent = {
+	-- max num	<= armor units / type units
+	[FRANCE]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
+	[ENGLAND]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
+	[USSR]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 50, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
+	[GERMANY]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 20, [CLASS_HEAVY_BOMBER] = 15,	},
+	[ITALY]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
+	[GREECE]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
 }		
 
 -- Order of Battle
@@ -314,6 +327,11 @@ g_Axis = {
 	[GERMANY] = true,
 	[ITALY] = true,
 }
+
+-- check functions for diplomacy tables. Must be defined before the table, but can call functions defined later in the script.
+function DiploFranceHasFallen()
+	return FranceHasFallen()
+end
 
 -- Major Civilizations
 -- to do in all table : add entry bCheck = function() return true or false, apply change only if true or nill
@@ -534,7 +552,7 @@ g_Cities = {
 	{X = 47, Y = 40, Buildings = { FACTORY }, }, -- VIENNA
 	{X = 40, Y = 40, Buildings = { FACTORY }, }, -- MUNICH
 	-- FRANCE
-	{X = 28, Y = 45, Key = true,  Buildings = { FACTORY, BANK }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
+	{X = 28, Y = 45, Key = true,  Buildings = { FACTORY, BANK, OPEN_CITY }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
 	{X = 29, Y = 34, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- MARSEILLE
 	{X = 30, Y = 38, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- LYON
 	{X = 25, Y = 36, Buildings = { FACTORY }, }, -- TOULOUSE
@@ -721,13 +739,13 @@ g_Cities = {
 	-- ALBANIA
 	{X = 51, Y = 24, }, -- TIRANA
 	-- NORWAY
-	{X = 43, Y = 72, }, -- TRONDHEIM
-	{X = 44, Y = 66, Buildings = { HARBOR }, }, -- OSLO
-	{X = 39, Y = 68, }, -- BERGEN
-	{X = 47, Y = 79, }, -- MO I RANA
-	{X = 54, Y = 87, }, -- TROMSE
-	{X = 51, Y = 85, Buildings = { HARBOR }, }, -- NARVIK
-	{X = 60, Y = 87, Buildings = { HARBOR }, }, -- KIRKENES
+	{X = 43, Y = 72, },										-- TRONDHEIM
+	{X = 44, Y = 66, Buildings = { HARBOR }, },				-- OSLO
+	{X = 39, Y = 68, },										-- BERGEN
+	{X = 47, Y = 79, Buildings = { OPEN_CITY }, },			-- MO I RANA
+	{X = 54, Y = 87, Buildings = { OPEN_CITY }, },			-- TROMSE
+	{X = 51, Y = 85, Buildings = { HARBOR, OPEN_CITY }, },	-- NARVIK
+	{X = 60, Y = 87, Buildings = { HARBOR, OPEN_CITY }, },	-- KIRKENES
 	-- NETHERLANDS
 	{X = 34, Y = 52,Buildings = { HARBOR },  }, -- AMSTERDAM
 	-- HUNGARY

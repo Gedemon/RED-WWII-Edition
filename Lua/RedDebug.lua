@@ -599,7 +599,49 @@ function HideHUD(bValue)
 	ContextPtr:LookUpControl("/InGame/UnitFlagManager"):SetHide(bValue)
 end 
 
-
+function CheckUnitData()
+	print ("------------------------------------------------------")
+	print ("- CheckUnitData:")
+	print ("------------------------------------------------------")
+	for iPlayer = 0, GameDefines.MAX_PLAYERS-1 do
+		local player = Players[iPlayer]
+		if player ~= nil and player:IsAlive() then
+			print ("Player : " .. tostring(player:GetName()))
+			print ("---------------------------")
+			for unit in player:Units() do
+				local unitKey = GetUnitKey(unit)
+				if unitKey   then
+					print("unitKey = " .. unitKey)	
+					print("Name = " .. tostring(unit:GetName()))
+					print("Turn created = ".. tostring(unit:GetGameTurnCreated()))				
+					if g_UnitData[unitKey]  then
+						print("unitData[unitKey]")						
+						if g_UnitData[unitKey].OrderType then
+							print("unitData[unitKey].OrderType = " .. g_UnitData[unitKey].OrderType)							
+							if unit:GetUnitType() == CONVOY and g_UnitData[unitKey].OrderType == RED_CONVOY then
+								print("Unit is convoy with order type 'RED_CONVOY'")
+							else
+								print("ERROR : convoy without unitData[unitKey].OrderType == RED_CONVOY")
+							end 
+						else
+							print("unitData[unitKey].OrderType = Nil")
+						end 
+					else
+						print("ERROR : no unitData[unitKey]")
+						print("Forcing Registration NOW...")
+						RegisterNewUnit(iPlayer, unit)
+						g_UnitData[unitKey].TurnCreated = unit:GetGameTurnCreated()
+					end 
+				else
+					print("ERROR : no unitKey")
+				end 				
+				print ("---------------------------")
+			end			
+			print ("------------------------------------------------------")
+		end
+	end
+	SaveData("Unit", g_UnitData, UNIT_SAVE_SLOT)
+end
 
 -- Debug DLL event
 function DLL_Debug(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10)

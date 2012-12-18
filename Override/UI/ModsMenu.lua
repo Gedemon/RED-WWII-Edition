@@ -14,7 +14,7 @@ g_InstanceManager = InstanceManager:new( "ModInstance", "Label", Controls.ModsSt
 g_FirstInitialization = true
 
 g_NumBackground = 14 -- number of available background screens to chose from
-g_DLL_MinimumVersion = 2 -- DLL minimum version to be used
+g_DLL_MinimumVersion = 4 -- DLL minimum version to be used
 
 g_AuthorizedModList = {
 	"580c14eb-9799-4d31-8b14-c2a78931de89", -- R.E.D. WWII Edition
@@ -34,11 +34,15 @@ g_AuthorizedModList = {
 -- Navigation Routines (Installed,Online,Back)
 --------------------------------------------------
 function NavigateBack()
+	-- Exit game instead of returning to mod menu as it doesn't unload VFS override files...
+	--[[
 	ContextPtr:LookUpControl("/FrontEnd/AtlasLogo"):SetTextureAndResize( "CivilzationVAtlas.dds" ) -- restore civ5 background
 	UIManager:SetUICursor( 1 );
 	Modding.DeactivateMods();
 	UIManager:DequeuePopup( ContextPtr );
 	UIManager:SetUICursor( 0 );
+	--]]
+    Events.UserRequestClose();
 end
 
 ----------------------------------------------------
@@ -131,27 +135,89 @@ end);
 
 Controls.MultiPlayerButton:SetHide(true);
 
+function CompareTime(time1, time2)
+	
+	--First, convert the table into a single numerical value
+	-- YYYYMMDDHH
+	function convert(t)
+		local r = 0;
+		if(t.year ~= nil) then
+			r = r + t.year * 1000000
+		end
+		
+		if(t.month ~= nil) then
+			r = r + t.month * 10000
+		end
+		
+		if(t.day ~= nil) then
+			r = r + t.day * 100
+		end
+		
+		if(t.hour ~= nil) then
+			r = r + t.hour;
+		end
+		
+		return r;
+	end
+	
+	local ct1 = convert(time1);
+	local ct2 = convert(time2);
+	
+	if(ct1 < ct2) then
+		return -1;
+	elseif(ct1 > ct2) then
+		return 1;
+	else
+		return 0;
+	end
+end
 
 function Initialize()
 
 	local bNeedUpdate = false
 	
-	--print("- Set Quick Combat Option to false...")
-	--PreGame.SetGameOption("GAMEOPTION_QUICK_COMBAT", false)
+	print("- Initialize mandatory Game Option...")
+	PreGame.SetGameOption("GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR", 1)
+	PreGame.SetGameOption("GAMEOPTION_FREE_PLOTS", 1)
+	PreGame.SetGameOption("GAMEOPTION_NO_MINOR_DIPLO_SPAM", 1)
+	PreGame.SetGameOption("GAMEOPTION_CAN_STACK_IN_CITY", 1)
+	PreGame.SetGameOption("GAMEOPTION_CAN_ENTER_FOREIGN_CITY", 1)
 	
 	print("- Initializing WWII background...")
 
 	local randNum = math.random(1, g_NumBackground)
 	local background = "Background_" .. tostring(randNum) .. ".dds"
-	
+
+	-- Special date background...
+	local special = {
+		start = {
+			year = 2012,
+			month = 12,
+			day = 24,
+			hour = 1,
+		},			
+		stop = {
+			year = 2012,
+			month = 12, 
+			day = 25,
+			hour = 23,
+		},			
+		background = "special.dds"
+
+	}
+	local currentDate = os.date("!*t");
+	if(CompareTime(currentDate, special.start) >= 0 and CompareTime(special.stop, currentDate) >= 0) then
+			background = special.background
+	end
+
+
 	print("- Set texture to " .. background)
 
 	ContextPtr:LookUpControl("/FrontEnd/AtlasLogo"):SetTextureAndResize( background )
+	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/PreLoading/LoadingImage"):SetTextureAndResize( background )
+
 	ContextPtr:LookUpControl("/FrontEnd/MainMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
 	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
-	--ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModdingSinglePlayer/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
-	
-	--Controls.SinglePlayerButton:SetText("START R.E.D. WWII")
 
 	print("-------------------------------------")
 	print("Check DLC compatibility list...")
@@ -245,7 +311,6 @@ function Initialize()
 		local title = "[COLOR_RED]Error: R.E.D. DLL is not active ![ENDCOLOR][NEWLINE]Launch buttons have been disabled.[NEWLINE]Please see installation instructions."
 		Controls.WarningTitle:SetText(title)
 		Controls.WarningGrid:SetHide(false)
-		--UI.AddPopup(popupInfo)
 		Controls.LoadSingleGameButton:SetDisabled(true)
 		Controls.LoadHotseatGameButton:SetDisabled(true)
 		Controls.SinglePlayerButton:SetDisabled(true)
@@ -255,7 +320,6 @@ function Initialize()
 			local title = "[COLOR_RED]Error: obsolete R.E.D. DLL ![ENDCOLOR][NEWLINE]Launch buttons have been disabled.[NEWLINE]Please install the latest version."
 			Controls.WarningTitle:SetText(title)
 			Controls.WarningGrid:SetHide(false)
-			--UI.AddPopup(popupInfo)
 			Controls.LoadSingleGameButton:SetDisabled(true)
 			Controls.LoadHotseatGameButton:SetDisabled(true)
 			Controls.SinglePlayerButton:SetDisabled(true)
@@ -263,6 +327,9 @@ function Initialize()
 			Controls.WarningGrid:SetHide(true)
 		end
 	end
+	
+	-- "back" button lead to exit game instead of returning to mod menu as it doesn't unload VFS override files...
+	Controls.BackButton:LocalizeAndSetText("TXT_KEY_MENU_EXIT_TO_WINDOWS")
 
 	print("-------------------------------------")
 	g_FirstInitialization = false

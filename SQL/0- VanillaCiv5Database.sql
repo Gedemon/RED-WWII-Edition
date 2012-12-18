@@ -7450,7 +7450,6 @@ INSERT INTO "Defines" VALUES('NUM_CITY_PLOTS',37);
 INSERT INTO "Defines" VALUES('CITY_HOME_PLOT',0);
 INSERT INTO "Defines" VALUES('CITY_PLOTS_RADIUS',3);
 INSERT INTO "Defines" VALUES('CITY_PLOTS_DIAMETER',7);
-INSERT INTO "Defines" VALUES('DLL_RED_VANILLA',3);
 DROP TABLE IF EXISTS "DenialInfos";
 CREATE TABLE DenialInfos ('ID' integer primary key autoincrement , 'Type' text  not null unique , 'Description' text );
 DROP TABLE IF EXISTS "Diplomacy_Responses";

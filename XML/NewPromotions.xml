@@ -412,7 +412,7 @@
 		<Row>
 			<PromotionType>PROMOTION_FIELD_GUN</PromotionType>
 			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
-			<Modifier>100</Modifier>
+			<Modifier>25</Modifier>
 		</Row>
 	</UnitPromotions_UnitCombatMods>
 	<UnitPromotions_Domains>
@@ -427,7 +427,7 @@
 			<Text>Field Guns</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN_DESC">
-			<Text>Direct fire only.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor Units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.[NEWLINE]May not melee attack, limited visibility.</Text>
+			<Text>Direct fire only.[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor Units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.[NEWLINE]May not melee attack, limited visibility.</Text>
 		</Row>
 	</Language_en_US>
 

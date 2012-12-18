@@ -20,6 +20,7 @@ include ("RedDefinesGlobal")	-- Always first !
 include ("RedUtils")			-- Before functions & debug...
 include ("RedDebug")
 include ("RouteConnections")
+include ("PlotIterators")
 include ("RedFunctions")
 include ("RedDiplomacy")
 include ("RedUnitUtils")

@@ -86,20 +86,11 @@ function AustriaAnnexation()
 					local plotKey = GetPlotKey ( plot )
 					local originalOwner = GetPlotFirstOwner(plotKey)
 					if originalOwner ~= iAustria and ownerID == iAustria then -- liberate plot captured by Austria
-						local closeCity = GetCloseCity ( originalOwner, plot )
-						if closeCity then
-							plot:SetOwner(originalOwner, closeCity:GetID() ) 
-						else
-							plot:SetOwner(originalOwner, -1 ) 
-						end
+						plot:SetOwner(originalOwner, -1 ) 
 								 
 					elseif originalOwner == iAustria and (x > 1 and x < 26)  then -- German territory
-						local closeCity = GetCloseCity ( iGermany, plot )
-						if closeCity then
-							plot:SetOwner(iGermany, closeCity:GetID() ) 
-						else
-							plot:SetOwner(iGermany, -1 ) 
-						end
+						plot:SetOwner(iGermany, -1 ) 
+
 					end
 				end
 			end			
@@ -197,29 +188,14 @@ function CzechAnnexation()
 					local plotKey = GetPlotKey ( plot )
 					local originalOwner = GetPlotFirstOwner(plotKey)
 					if originalOwner ~= iCzechosolvakia and ownerID == iCzechosolvakia then -- liberate plot captured by Czechosolvakia
-						local closeCity = GetCloseCity ( originalOwner, plot )
-						if closeCity then
-							plot:SetOwner(originalOwner, closeCity:GetID() ) 
-						else
 							plot:SetOwner(originalOwner, -1 ) 
-						end
 								 
 					elseif originalOwner == iCzechosolvakia and (x > 1 and x < 26)  then -- German territory
-						local closeCity = GetCloseCity ( iGermany, plot )
-						if closeCity then
-							plot:SetOwner(iGermany, closeCity:GetID() ) 
-						else
 							plot:SetOwner(iGermany, -1 ) 
-						end
-
 
 					elseif originalOwner == iCzechosolvakia and (x > 27 and x < 100)  then -- Hungary territory
-						local closeCity = GetCloseCity ( iHungary, plot )
-						if closeCity then
-							plot:SetOwner(iHungary, closeCity:GetID() ) 
-						else
 							plot:SetOwner(iHungary, -1 ) 
-						end
+
 					end
 				end
 			end			
@@ -302,20 +278,11 @@ function LithuaniaAnnexation()
 					local plotKey = GetPlotKey ( plot )
 					local originalOwner = GetPlotFirstOwner(plotKey)
 					if originalOwner ~= iLithuania and ownerID == iLithuania then -- liberate plot captured by Lithuania
-						local closeCity = GetCloseCity ( originalOwner, plot )
-						if closeCity then
-							plot:SetOwner(originalOwner, closeCity:GetID() ) 
-						else
-							plot:SetOwner(originalOwner, -1 ) 
-						end
+						plot:SetOwner(originalOwner, -1 ) 
 								 
 					elseif originalOwner == iLithuania and (x > 1 and x < 115)  then -- USSR territory
-						local closeCity = GetCloseCity ( iUSSR, plot )
-						if closeCity then
-							plot:SetOwner(iUSSR, closeCity:GetID() ) 
-						else
-							plot:SetOwner(iUSSR, -1 ) 
-						end
+						plot:SetOwner(iUSSR, -1 ) 
+
 					end
 				end
 			end			
@@ -567,12 +534,8 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 						local originalOwner = GetPlotFirstOwner(plotKey)
 
 						if originalOwner ~= iFrance and ownerID == iFrance then -- liberate plot captured by France
-							local closeCity = GetCloseCity ( originalOwner, plot )
-							if closeCity then
-								plot:SetOwner(originalOwner, closeCity:GetID() ) 
-							else
-								plot:SetOwner(originalOwner, -1 ) 
-							end
+							plot:SetOwner(originalOwner, -1 ) 
+
 						elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 12 and y > 57) or (y > 64 and x < 19)) then -- occupied territory
 							--Dprint("(".. x ..",".. y ..") = Plot in occupied territory")
 							if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
@@ -580,12 +543,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[newPlayerID]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( newPlayerID, plot )
-								if closeCity then
-									plot:SetOwner(newPlayerID, closeCity:GetID() ) 
-								else
-									plot:SetOwner(newPlayerID, -1 ) 
-								end
+								plot:SetOwner(newPlayerID, -1 ) 
 							end
 						elseif originalOwner == iFrance and ((y > 57 and x < 16))  then -- Vichy territory
 							--Dprint("(".. x ..",".. y ..") = Plot in Vichy territory")
@@ -594,12 +552,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iVichy]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iVichy, plot )
-								if closeCity then
-									plot:SetOwner(iVichy, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iVichy, -1 ) 
-								end
+								plot:SetOwner(iVichy, -1 ) 
 							end
 						elseif originalOwner == iFrance and (y > 56 and x > 16 and y < 58 and x < 18) then -- Nice, Ajaccio region to Italy
 							--Dprint("(".. x ..",".. y ..") = Plot in Italy occupied territory")
@@ -608,12 +561,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iItaly]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iItaly, plot )
-								if closeCity then
-									plot:SetOwner(iItaly, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iItaly, -1 ) 
-								end
+								plot:SetOwner(iItaly, -1 ) 
 							end
 						elseif originalOwner == iFrance and (y > 59 and x > 16 and y < 66 and x < 18) then -- Metz, Strasbourg region to Germany
 							--Dprint("(".. x ..",".. y ..") = Plot in Germany occupied territory")
@@ -622,12 +570,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iGermany]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iGermany, plot )
-								if closeCity then
-									plot:SetOwner(iGermany, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iGermany, -1 ) 
-								end
+								plot:SetOwner(iGermany, -1 ) 
 							end
 						elseif originalOwner == iFrance and (y > 1 and x > 74 and y < 48 and x < 82) then -- Indochina Japan
 							--Dprint("(".. x ..",".. y ..") = Plot in Japan occupied territory")
@@ -636,12 +579,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 								EscapeUnitsFromPlot(plot)
 								Players[iJapan]:AcquireCity(city, false, true)
 							else
-								local closeCity = GetCloseCity ( iJapan, plot )
-								if closeCity then
-									plot:SetOwner(iJapan, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iJapan, -1 ) 
-								end
+								plot:SetOwner(iJapan, -1 ) 
 							end
 						end
 					end
@@ -814,34 +752,17 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 							local originalOwner = GetPlotFirstOwner(plotKey)
 
 							if originalOwner ~= iPoland and ownerID == iPoland then -- liberate plot captured by Poland
-								local closeCity = GetCloseCity ( originalOwner, plot )
-								if closeCity then
-									plot:SetOwner(originalOwner, closeCity:GetID() ) 
-								else
-									plot:SetOwner(originalOwner, -1 ) 
-								end
+								plot:SetOwner(originalOwner, -1 ) 
 
 							elseif originalOwner == iPoland and (x > 20 and x < 26)  then -- German territory
-								local closeCity = GetCloseCity ( iGermany, plot )
-								if closeCity then
-									plot:SetOwner(iGermany, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iGermany, -1 ) 
-								end
+								plot:SetOwner(iGermany, -1 ) 
+
 							elseif originalOwner == iPoland and (x > 25 and x < 29) then -- Central territory
-								local closeCity = GetCloseCity ( newPlayerID, plot )
-								if closeCity then
-									plot:SetOwner(newPlayerID, closeCity:GetID() ) 
-								else
-									plot:SetOwner(newPlayerID, -1 ) 
-								end
+								plot:SetOwner(newPlayerID, -1 ) 
+
 							elseif originalOwner == iPoland and (x > 28 and x < 50) then -- USSR Territory
-								local closeCity = GetCloseCity ( iUSSR, plot )
-								if closeCity then
-									plot:SetOwner(iUSSR, closeCity:GetID() ) 
-								else
-									plot:SetOwner(iUSSR, -1 ) 
-								end
+								plot:SetOwner(iUSSR, -1 ) 
+
 							end
 						end
 					end				

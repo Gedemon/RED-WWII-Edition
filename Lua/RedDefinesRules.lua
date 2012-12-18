@@ -44,10 +44,12 @@ ALLY_REINFORCEMENT_PERCENT = 60 -- ratio of reinforcement recieved from allied C
 
 -- Senario
 WAR_MINIMUM_STARTING_TURN = 0 -- can't manually start war before this turn (but forced DOW via SetMajorRelations or SetMinorDOW are possible)
+
 CAN_BUILD_UNIT_IN_OCCUPIED_CITY = false -- need special building to build unit in occupied cities
 REVEAL_ALL_CITIES = false -- cities tiles are always visible for every civs
 REVEAL_ALL_MAP = false -- reveal all map for every civs
 EMBARK_FROM_HARBOR = false -- allow embarking only from a city with a harbor (and adjacent hexes)
+
 ALLOW_SCRIPTED_EVENTS = true -- allow scripted events like "Fall of France", "Fall of Poland", etc...
 ALLOW_ALTERNATE_HISTORY = true -- allow declarations of war outside the historic calendar
 
@@ -55,7 +57,9 @@ SCENARIO_MATERIEL_PER_TURN = 500 -- / ((HANDICAP + 2 ) /2) = materiel for reinfo
 SCENARIO_PERSONNEL_PER_TURN = 350 -- / ((HANDICAP + 2 ) /2) = personnel for reinforcement bonus each turn
 
 CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will close neutral territories unless for civs which have reached the allied treshold
---NO_TILE_FLIPPING_ON_CITY_CAPTURE = false
+
+CHECK_FOR_ORPHAN_TILE = true -- if true will flip back captured tiles that are not linked to a close city or unit 
+MAX_PLOT_CONTROL_RANGE = 6 -- distance at which a unit or city can control an enemy orphan plot
 
 NUM_BUILDINGS_IMPORTANT_CITY = 1 -- city with at least NUM_BUILDINGS_IMPORTANT_CITY number of buildings are flagged important and won't be on auto-wealth at start
 

@@ -586,14 +586,7 @@ function SetTemporaryBestDefender(unit)
 	Dprint("    - Moves Left = ".. unit:MovesLeft(), bDebug)
 	unit:SetMoves(unit:MovesLeft() + MOVE_DENOMINATOR) -- DLL won't pick immobile unit as BestDefender... 
 	Dprint("    - Moves Left with bonus added = ".. unit:MovesLeft(), bDebug)
-	local plot = unit:GetPlot()
-	local unitCount = plot:GetNumUnits()
-	for i = 0, unitCount - 1, 1 do	
-    	local testUnit = plot:GetUnit(i)
-		if testUnit and testUnit ~= unit then
-			testUnit:SetHasPromotion(PROMOTION_FULL_PENALTY, true)
-		end
-	end
+	unit:SetMarkedBestDefender(true)
 end
 
 function RemoveTemporaryBestDefender(unit)
@@ -602,14 +595,7 @@ function RemoveTemporaryBestDefender(unit)
 	Dprint("    - Moves Left = ".. unit:MovesLeft(), bDebug)
 	unit:SetMoves(unit:MovesLeft() - MOVE_DENOMINATOR) -- We had given this in SetTemporaryBestDefender()... 
 	Dprint("    - Moves Left with bonus removed = ".. unit:MovesLeft(), bDebug)
-	local plot = unit:GetPlot()
-	local unitCount = plot:GetNumUnits()
-	for i = 0, unitCount - 1, 1 do	
-    	local testUnit = plot:GetUnit(i)
-		if testUnit then
-			testUnit:SetHasPromotion(PROMOTION_FULL_PENALTY, false)
-		end
-	end
+	unit:SetMarkedBestDefender(false)
 end
 
 function GetBestDefender(plot, unit)
@@ -661,4 +647,28 @@ function IsSubmarineClass(iNumType)
 	return (    iNumType == CLASS_SUBMARINE
 			 or iNumType == CLASS_SUBMARINE_3
 			)
+end
+
+function ReinitUnitsOnLoad()
+	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
+		ReinitUnits(playerID)
+	end
+end
+
+
+function ReinitUnits(playerID)
+	local player = Players[playerID]
+	if player and player:IsAlive() then
+		for unit in player:Units() do
+			local unitType = unit:GetUnitType()
+			if unit:IsMarkedBestDefender() then
+				Dprint("WARNING: ".. unit:GetName() .." of ".. player:GetName() .." was marked 'best defender' outside combat, unmark it...") 
+				unit:SetMarkedBestDefender(false)
+			end
+			if g_SpecialType[unitType] and not unit:IsSpecialType() then
+				Dprint("WARNING: ".. unit:GetName() .." of ".. player:GetName() .." was not marked 'special type', mark it...") 
+				unit:SetIsSpecialType(true)
+			end
+		end
+	end
 end

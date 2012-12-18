@@ -229,7 +229,6 @@ UPDATE Process_ProductionYields SET Yield = 50 WHERE ProcessType = 'PROCESS_WEAL
 --------------------------------------------------------------------------------------------
 -- Terrains
 --------------------------------------------------------------------------------------------
-
 UPDATE Defines SET Value = 10 WHERE Name = 'HILLS_EXTRA_DEFENSE';
 UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_DESERT';
 UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_SNOW';
@@ -237,7 +236,6 @@ UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_SNOW';
 --------------------------------------------------------------------------------------------
 -- Improvements
 --------------------------------------------------------------------------------------------
-
 UPDATE Improvements SET DefenseModifier = 15 WHERE Type = 'IMPROVEMENT_TRADING_POST';
 UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
 UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
@@ -245,7 +243,6 @@ UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_CITY_RUIN
 --------------------------------------------------------------------------------------------
 -- Unit Supply Production Modifier
 --------------------------------------------------------------------------------------------
-
 UPDATE HandicapInfos SET ProductionFreeUnits = 5;
 UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 1;
 UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 25;
@@ -253,8 +250,10 @@ UPDATE Defines SET Value = 90 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
 INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 4); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
 
 --------------------------------------------------------------------------------------------
--- Game Options
+-- Game hidden options checked in DLL code...
 --------------------------------------------------------------------------------------------
-
---UPDATE GameOptions SET Visible = 0 WHERE Type = 'GAMEOPTION_QUICK_COMBAT';
-INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR', 1, 0 ); -- hidden option, used in DLL side to double defense strenght of embarked units against air.
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR', 1, 0 );	-- double defense strenght of embarked units against air.
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_FREE_PLOTS', 1, 0 );							-- remove city ownership on plots (don't change owner on city capture).
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_NO_MINOR_DIPLO_SPAM', 1, 0 );					-- prevent minor civs to send "please gift units message". (and fix a crash that can occur when the minor try to send the message)
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_STACK_IN_CITY', 1, 0 );						-- allow unit stacking in cities.
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_ENTER_FOREIGN_CITY', 1, 0 );				-- allow units to enter in foreign cities.

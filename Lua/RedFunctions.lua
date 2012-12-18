@@ -27,34 +27,65 @@ end
 
 function MapUpdate() -- to do : check culture tile consistency. for example, a city can get a culture tile from a friendly civs if this tile was conquered by the ancient city owner, we should fix that once per turn here
 	Dprint("-------------------------------------")
-	Dprint("Updating map ...")	
+	Dprint("Updating map ...")		
+	local t1 = os.clock()
+	local orphanTestTime = 0
 	for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
 		local plot = Map.GetPlotByIndex(iPlotLoop)
 		local x = plot:GetX()
 		local y = plot:GetY()
 		local ownerID = plot:GetOwner()
+
 		-- check only owned plot...
 		if (ownerID ~= -1) then
 			local plotKey = GetPlotKey ( plot )
 			local originalOwner = GetPlotFirstOwner(plotKey)
+			local bCapturedPlot = ownerID ~= originalOwner
 
 			-- there shouldn't be any culture on water when calling this function, but just in case...
 			if ( plot:IsWater() ) then
 				Dprint("WARNING: Culture was set on water plot ("..x..","..y.."), removing it ...")
 				plot:SetOwner(-1, -1)
+
 			-- if the original plot owner is a possible ally of the current owner, give it back to him
-			elseif ( ownerID ~= originalOwner and AreSameSide( ownerID, originalOwner) and Players[originalOwner]:IsAlive() ) then -- to do: check AreSameside, not working
-			
+			elseif bCapturedPlot and AreSameSide( ownerID, originalOwner) then -- and Players[originalOwner]:IsAlive() ) then 			
 				Dprint("Changing owner at ("..x..","..y.."), ".. Players[originalOwner]:GetName() .. " and " .. Players[ownerID]:GetName() .." are same side")
-				local closeCity = GetCloseCity ( originalOwner, plot )
-				if closeCity then
-					plot:SetOwner(originalOwner, closeCity:GetID() ) 
-				else
-					plot:SetOwner(originalOwner, -1 ) 
-				end
+				plot:SetOwner(originalOwner, -1 ) 
+				bCapturedPlot = false
+			end	
+			local t_start = os.clock()
+			if CHECK_FOR_ORPHAN_TILE and not IsUnderControl ( plot, bCapturedPlot ) then
+				TestEnemyControl(plot, bCapturedPlot)
+			end	
+			local t_end = os.clock()
+			orphanTestTime = orphanTestTime + (t_end - t_start)
+		elseif not plot:IsWater() then		
+			if plot:Area():GetNumCities() > 0 then
+				Dprint("WARNING: plot ("..x..","..y..") is not owned, give it to first player found in range...")
+				GiveToNearestPlayer(plot)
 			end
 		end
 	end
+	local t2 = os.clock()
+	Dprint("  - Total time for map update :		" .. t2 - t1 .. " s")
+	Dprint("	- Orphan tiles used :		" .. orphanTestTime .. " s")
+	Dprint("-------------------------------------")
+end
+
+function OnLoadMapUpdate() 
+	Dprint("-------------------------------------")
+	Dprint("Updating map on loading ...")		
+	local t1 = os.clock()
+	for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
+		local plot = Map.GetPlotByIndex(iPlotLoop)
+		local ownerID = plot:GetOwner()
+		if (ownerID ~= -1) then
+			plot:SetOwner(ownerID, -1)
+		end
+	end
+	local t2 = os.clock()
+	Dprint("  - Total time for map update :		" .. t2 - t1 .. " s")
+	Dprint("-------------------------------------")
 end
 
 -- handle city capture
@@ -97,15 +128,27 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 				local originalPlotOwner = GetPlotFirstOwner(plotKey)
 				local currentPlotOwner = plot:GetOwner()
 				if ( originalCityOwner == originalPlotOwner and AreSameSide( newPlayerID, currentPlotOwner) ) then
-					plot:SetOwner(newPlayerID, cityID)
+					plot:SetOwner(newPlayerID, -1)
 				end
 			end
 			
 		end
-	end
+	end	
+
 	Dprint ("-------------------------------------", bDebugOutput)
 end
 -- add to Events.SerialEventCityCaptured
+
+function FixCityGraphicBug(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
+	Dprint (" - Fix city capture graphic bug...", bDebugOutput)
+	local cityPlot = GetPlotFromKey ( defendingPlotKey )
+	local city = cityPlot:GetPlotCity()
+	Dprint ("     - 1st : Pop +1", bDebugOutput)
+	city:ChangePopulation(1, true)
+	Dprint ("     - 2nd : Pop -1", bDebugOutput)
+	city:ChangePopulation(-1, true)
+end
+-- add to LuaEvents.OnCityCaptured( FixCityGraphicBug )
 
 function VictoryCheck (hexPos, playerID, cityID, newPlayerID)	  
 
@@ -227,6 +270,15 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 				if GameInfo.Units[iUnitType].Domain == "DOMAIN_AIR" then
 					if (air > 0) and (totalUnits/air < g_Combat_Type_Ratio[civID].Air) then
 						return false
+					end
+					
+					if g_Max_Air_SubClass_Percent and g_Max_Air_SubClass_Percent[civID] then
+						local airType = g_Unit_Classes[unitClass].NumType
+						local maxPercent = g_Max_Air_SubClass_Percent[civID][airType]
+
+						if (air > 0) and (aliveUnitSubClass/air*100 > maxPercent) then
+							return false
+						end
 					end
 				end
 				-- Sea restriction
@@ -798,9 +850,11 @@ function CreateTerritoryMap()
 				-- all tiles belong to capital city ? or initialize to close city ? leave original value from WB map ?
 				--local capitalCity = player:GetCapitalCity()
 				--local closeCity = GetCloseCity ( owner, plot )
-				--plot:SetOwner(owner, closeCity:GetID() )
+				--plot:SetOwner(owner, -1 )
 				territoryMap[GetPlotKey ( plot )] = { PlayerID = owner, CivID = civID, Type = type, TerrainType = plot:GetTerrainType(), FeatureType = plot:GetFeatureType() }
 			end
+			
+			plot:SetOwner(owner, -1) -- Make sure no plots are owned by cities...
 		end
 	end
 	SaveTerritoryMap( territoryMap )
@@ -867,7 +921,9 @@ function CommonOnGameInitReloaded()
 	InitializeGameOption()								-- before everything else !
 	LoadAllTable()										-- before any change on tables...
 	Events.SerialEventUnitCreated.Add( InitializeUnit )
+	OnLoadMapUpdate()
 	GameEvents.UnitSetXY.Add( DynamicTilePromotion )
+	ReinitUnitsOnLoad()
 	InitializeHotseat()
 	ShareGlobalTables() -- Before UI initialization
 end
@@ -875,7 +931,8 @@ end
 -- functions to call after entering game (DoM screen button pushed)
 function CommonOnEnterGame()
 	Events.SerialEventCityCaptured.Add(	VictoryCheck )
-	GameEvents.CityCaptureComplete.Add(	HandleCityCapture )	
+	GameEvents.CityCaptureComplete.Add(	HandleCityCapture )					-- called before the attack animation
+	LuaEvents.OnCityCaptured( FixCityGraphicBug )							-- called after the attack animation
 	GameEvents.MustAbortAttack.Add(	AbortSuicideAttacks )
 	GameEvents.CombatResult.Add( CombatResult )
 	GameEvents.CombatEnded.Add(	CombatEnded )
@@ -897,6 +954,7 @@ function CommonOnEnterGame()
 	GameEvents.PlayerDoTurn.Add( AIUnitControl )
 	GameEvents.PlayerDoTurn.Add( LaunchMilitaryOperation )
 	GameEvents.PlayerDoTurn.Add( ResetCombatTracking )
+	GameEvents.PlayerDoTurn.Add( ReinitUnits )
 	GameEvents.PlayerCanConstruct.Add( PlayerBuildingRestriction )
 	GameEvents.PlayerCanTrain.Add( PlayerTrainingRestriction )
 	GameEvents.PlayerCanCreate.Add( PlayerCreateRestriction )
@@ -1077,3 +1135,169 @@ end
 
 --Events.LocalMachineAppUpdate.Add(function() Dprint("LocalMachineAppUpdate called at " .. tostring(os.clock()) ); end )
 --GameEvents.GameCoreUpdateBegin.Add(function() Dprint("GameCoreUpdateBegin called at " .. tostring(os.clock()) ); end )
+
+
+function IsUnderControl ( plot, bCapturedPlot )
+
+	if plot:IsWater() then
+		return
+	end
+
+	local bDebug = false
+	local playerID = plot:GetOwner()
+	local player = Players[ playerID ]
+
+	if (not player) or (not player:IsAlive()) then
+		return false
+	end
+
+	local area = plot:GetArea()
+	Dprint (" - Search supply line for plot " .. plot:GetX() .. ",".. plot:GetY(), bDebug)
+
+	-- save time, try the most common first
+	local closeCity = GetCloseCity ( playerID, plot )
+	if closeCity then
+		local cityPlot = closeCity:Plot()
+		-- first check the area, no need to calculate land path if not in the same land... 
+		if bCapturedPlot then
+			if ( cityPlot:GetArea() == area and isPlotConnected(player, plot, cityPlot, "Land", nil, nil, NoNationalPath) ) then -- path must be direct (not going through friendly territory)
+				Dprint ("   - Found path with close city (".. closeCity:GetName() ..")", bDebug )
+				return true
+			end
+		else
+			if ( cityPlot:GetArea() == area and isPlotConnected(player, plot, cityPlot, "Land", nil, nil, PathBlocked) ) then -- for "free territory", friendly path is allowed
+				Dprint ("   - Found path with close city (".. closeCity:GetName() ..")", bDebug )
+				return true
+			end
+		end
+	end
+
+	--local adjacentPlots = GetPlotsInCircle(plot, 0, MAX_PLOT_CONTROL_RANGE)
+	--local adjacentPlots = GetPlotsInSpiral(plot, MAX_PLOT_CONTROL_RANGE)
+		
+	Dprint ("   - No path yet, check near area", bDebug )
+	--for i, adjPlot in pairs(adjacentPlots) do			
+
+	for adjPlot in PlotAreaSpiralIterator(plot, MAX_PLOT_CONTROL_RANGE, SECTOR_NORTH, DIRECTION_CLOCKWISE, DIRECTION_OUTWARDS, true) do	
+
+		-- units
+		local unitCount = adjPlot:GetNumUnits()    
+		for i = 0, unitCount - 1, 1	do
+    		local unit = adjPlot:GetUnit(i)
+			if unit then 
+
+				local unitClassID = unit:GetUnitClassType()	-- yes GetUnitClassType return an ID...
+
+				if bCapturedPlot and plot:GetOwner() == unit:GetOwner() then -- captured plot are kept under control by own units only...
+					if CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then -- path must be direct for captured plots (not going through friendly territory)
+						Dprint ("   - Found path with unit (".. unit:GetName() ..")", bDebug )
+						return true
+					end
+				elseif AreSameSide( plot:GetOwner(), unit:GetOwner()) then -- any ally can keep control of free territory
+					if CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, PathBlocked) then -- for "free territory", friendly path is allowed
+						Dprint ("   - Found path with unit (".. unit:GetName() ..")", bDebug )
+						return true
+					end
+				end
+			end
+		end
+
+		-- cities
+		if adjPlot:IsCity() then
+			local city = adjPlot:GetPlotCity()
+			if city  then -- AreSameSide( plot:GetOwner(), city:GetOwner()) then
+				if bCapturedPlot and plot:GetOwner() == city:GetOwner() then -- captured plot are kept under control by own cities only...
+					if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then  -- path must be direct for captured plots (not going through friendly territory)
+						Dprint ("   - Found path with city (".. closeCity:GetName() ..")", bDebug )
+						return true
+					end
+				elseif AreSameSide( plot:GetOwner(), city:GetOwner()) then -- any ally can keep control of free territory
+					if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, PathBlocked) then -- for "free territory", friendly path is allowed
+						Dprint ("   - Found path with city (".. closeCity:GetName() ..")", bDebug )
+						return true
+					end
+				end
+			end
+		end
+	end
+
+	return false
+end
+
+function TestEnemyControl(plot, bCapturedPlot)
+
+	local bDebug = false
+	
+	Dprint (" - Search new military control for plot " .. plot:GetX() .. ",".. plot:GetY(), bDebug )
+	--local adjacentPlots = GetPlotsInCircle(plot, 0, MAX_PLOT_CONTROL_RANGE)
+	--local adjacentPlots = GetPlotsInSpiral(plot, MAX_PLOT_CONTROL_RANGE)
+
+	--for j, adjPlot in pairs(adjacentPlots) do
+	for adjPlot in PlotAreaSpiralIterator(plot, MAX_PLOT_CONTROL_RANGE, SECTOR_NORTH, DIRECTION_CLOCKWISE, DIRECTION_OUTWARDS, true) do
+
+		-- units
+		local unitCount = adjPlot:GetNumUnits()    
+		for i = 0, unitCount - 1, 1	do
+    		local unit = adjPlot:GetUnit(i)
+			if unit and ( AreAtWar( plot:GetOwner(), unit:GetOwner()) or bCapturedPlot ) then
+				local unitClassID = unit:GetUnitClassType()	-- yes GetUnitClassType return an ID...
+				if CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then
+					plot:SetOwner(unit:GetOwner(), -1)
+					Dprint ("   - controlled by " .. unit:GetName(), bDebug )
+					return
+				end
+			end
+		end
+
+		-- cities
+		if adjPlot:IsCity() then
+			local city = adjPlot:GetPlotCity()
+			if city and ( AreAtWar( plot:GetOwner(), city:GetOwner()) or bCapturedPlot ) then
+				if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then
+					plot:SetOwner(city:GetOwner(), -1)
+					Dprint ("   - controlled by " .. city:GetName(), bDebug )
+					return
+				end
+			end
+		end
+	end
+end
+
+
+function GiveToNearestPlayer(plot)
+
+	local bDebug = true
+	
+	Dprint (" - Search new military control for unowned plot " .. plot:GetX() .. ",".. plot:GetY(), bDebug )
+	--local adjacentPlots = GetPlotsInCircle(plot, 0, MAX_PLOT_CONTROL_RANGE)
+
+	--for j, adjPlot in pairs(adjacentPlots) do
+	for adjPlot in PlotAreaSpiralIterator(plot, MAX_PLOT_CONTROL_RANGE, SECTOR_NORTH, DIRECTION_CLOCKWISE, DIRECTION_OUTWARDS, true) do
+		
+		-- units
+		local unitCount = adjPlot:GetNumUnits()    
+		for i = 0, unitCount - 1, 1	do
+    		local unit = adjPlot:GetUnit(i)
+			if unit then
+				local unitClassID = unit:GetUnitClassType()	-- yes GetUnitClassType return an ID...
+				if CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then
+					plot:SetOwner(unit:GetOwner(), -1)
+					Dprint ("   - controlled by " .. unit:GetName(), bDebug )
+					return
+				end
+			end
+		end
+
+		-- cities
+		if adjPlot:IsCity() then
+			local city = adjPlot:GetPlotCity()
+			if city then
+				if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then
+					plot:SetOwner(city:GetOwner(), -1)
+					Dprint ("   - controlled by " .. city:GetName(), bDebug )
+					return
+				end
+			end
+		end
+	end
+end

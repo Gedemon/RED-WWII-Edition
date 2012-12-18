@@ -56,71 +56,37 @@ function UnitCaptureTile(playerID, UnitID, x, y)
 			-- liberating our territory
 			if (firstOwner == playerID) then
 				Dprint(" - Unit is liberating it's own territory", bDebug)
-				--local capitalCity = player:GetCapitalCity()
-				--plot:SetOwner(playerID, capitalCity:GetID() )				
-				local closeCity = GetCloseCity ( playerID, plot )					
-				if closeCity then
-					g_FixedPlots[plotKey] = true
-					plot:SetOwner(playerID, closeCity:GetID() )
-				else
-					g_FixedPlots[plotKey] = true
-					plot:SetOwner(playerID, -1 )
-				end
+				g_FixedPlots[plotKey] = true
+				plot:SetOwner(playerID, -1 )
 
 			-- capturing current owner territory			
 			elseif ( ownerID == firstOwner) then
-				Dprint(" - Unit is capturing territory", bDebug)
-				--local capitalCity = player:GetCapitalCity()
-				--plot:SetOwner(playerID, capitalCity:GetID() )
-				
-				local closeCity = GetCloseCity ( playerID, plot )					
-				if closeCity then
-					g_FixedPlots[plotKey] = true
-					plot:SetOwner(playerID, closeCity:GetID() )
-				else
-					g_FixedPlots[plotKey] = true
-					plot:SetOwner(playerID, -1 )
-				end
+				Dprint(" - Unit is capturing territory", bDebug)				
+				g_FixedPlots[plotKey] = true
+				plot:SetOwner(playerID, -1 )
+
 			else
 				-- don't free old owner territory if we're at war !
 				local player3 = Players[ firstOwner ]				
 				if team:IsAtWar( player3:GetTeam() ) then
 					Dprint(" - Unit is capturing territory, old owner civ (id=".. firstOwner ..") is also at war with unit owner", bDebug)
-					--local capitalCity = player:GetCapitalCity()
-					--plot:SetOwner(playerID, capitalCity:GetID() )	
 					g_FixedPlots[plotKey] = true
-					plot:SetOwner(playerID, -1 )			
+					plot:SetOwner(playerID, -1 )
+
 				elseif ( not player3:IsAlive() ) then
 					Dprint(" - Unit is capturing territory, old owner civ (id=".. firstOwner ..") is dead", bDebug)
-					--local capitalCity = player:GetCapitalCity()
-					--plot:SetOwner(playerID, capitalCity:GetID() )	
-					local closeCity = GetCloseCity ( playerID, plot )
-					if closeCity then
-						g_FixedPlots[plotKey] = true
-						plot:SetOwner(playerID, closeCity:GetID() )
-					else
-						g_FixedPlots[plotKey] = true
-						plot:SetOwner(playerID, -1 )
-					end
+					g_FixedPlots[plotKey] = true
+					plot:SetOwner(playerID, -1 )
+
 				else
 				-- liberating old owner territory
 					Dprint(" - Unit is liberating this territory belonging to another civ (id=".. firstOwner ..")", bDebug)
-					--local capitalCity = player3:GetCapitalCity()
-					--if (capitalCity ~= nil) then
-					--	plot:SetOwner(firstOwner, capitalCity:GetID() )
-					--else
-					local closeCity = GetCloseCity ( firstOwner, plot )					
-					if closeCity then
-						g_FixedPlots[plotKey] = true
-						plot:SetOwner(firstOwner, closeCity:GetID() )
-					else
-						g_FixedPlots[plotKey] = true
-						plot:SetOwner(firstOwner, -1 )
-					end					
+					g_FixedPlots[plotKey] = true
+					plot:SetOwner(firstOwner, -1 )	
+
 					if player3:IsMinorCiv() and not player:IsMinorCiv() then
 						player3:ChangeMinorCivFriendshipWithMajor( playerID, LIBERATE_MINOR_TERRITORY_BONUS ) -- give diplo bonus for liberating minor territory
 					end
-					--end
 				end
 			end
 		end
@@ -584,6 +550,21 @@ function PathBlocked(pPlot, pPlayer)
 		return false
 	end
 
+	return true -- return true if the path is blocked...
+end
+
+function NoNationalPath(pPlot, pPlayer)
+	if ( pPlot == nil or pPlayer == nil) then
+		Dprint ("WARNING : CanPass() called with a nil argument")
+		return true
+	end
+
+	local ownerID = pPlot:GetOwner()
+	local playerID = pPlayer:GetID()
+
+	if ( ownerID == playerID or ownerID == -1 ) then
+		return false
+	end
 	return true -- return true if the path is blocked...
 end
 

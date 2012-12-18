@@ -627,24 +627,9 @@ function CreateTerritoryMap()
 						plot:SetRevealed(iTeamLoop, true)
 					end
 				end
-				--[[
-				local player = Players [owner]
-				local civID = GetCivIDFromPlayerID( owner, true )
-				local type
-				if (player:IsMinorCiv()) then
-					type = GameInfo.MinorCivilizations[civID].Type
-				else
-					type = GameInfo.Civilizations[civID].Type
-				end
-				if not type then
-					Dprint("WARNING, can't find type for playerID = " .. owner ..", civID = " .. civID)
-				end
-				-- all tiles belong to capital city ? or initialize to close city ? leave original value from WB map ?
-				--local capitalCity = player:GetCapitalCity()
-				--local closeCity = GetCloseCity ( owner, plot )
-				--plot:SetOwner(owner, closeCity:GetID() )
-				territoryMap[GetPlotKey ( plot )] = { PlayerID = owner, CivID = civID, Type = type }
-				--]]
+				-- remove city ownership...
+				plot:SetOwner(-1, -1 )
+				plot:SetOwner(owner, -1 )
 			else
 				-- WB map is crashing trying to place dummy civ for hotseat if all culture is already filled, so fill it now it has been placed during initialization...
 				local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
@@ -717,41 +702,6 @@ function CheckEmbarkedPromotion(unit)
 		unit:SetHasPromotion(PROMOTION_EMBARKATION, true)
 	end
 end
-
---[[
-function CheckCultureChange(iHexX, iHexY, iPlayerID, bUnknown)
-	local bDebug = true
-	if (iPlayerID ~= -1) then
-		local x, y = ToGridFromHex( iHexX, iHexY )
-		local plot = GetPlot(x,y)
-		Dprint("-------------------------------------", bDebug)
-		Dprint("Culture changed at ("..x..","..y.."), testing...", bDebug)
-		if ( plot:IsWater() ) then
-			Dprint("-------------------------------------", bDebug)
-			Dprint("Culture was set on water plot ("..x..","..y.."), removing it ...", bDebug)
-			plot:SetOwner(-1, -1)
-		end
-		plotKey = GetPlotKey(plot)
-		if g_FixedPlots[plotKey] or (not g_StalingradInit) or plot:IsCity() then
-			return
-		end
-		-- NO_TILE_FLIPPING_ON_CITY_CAPTURE
-		local iUSSR = GetPlayerIDFromCivID (USSR, false)
-		local iGermany = GetPlayerIDFromCivID (GERMANY, false)
-
-		Dprint("-------------------------------------")
-		Dprint("Plot ("..x..","..y.."), was flipped by city capture, give it back to the other side...", bDebug)
-
-		if iPlayerID == iUSSR then
-			g_FixedPlots[plotKey] = true
-			plot:SetOwner(iGermany)
-		else
-			g_FixedPlots[plotKey] = true
-			plot:SetOwner(iUSSR)
-		end
-	end
-end
---]]
 
 function Set6thArmyInitialStrength()
 	local savedData = Modding.OpenSaveData()

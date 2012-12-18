@@ -135,27 +135,22 @@ function GetOwnerString(pPlot)
 	else
 		
 		-- Plot owner
-		local iOwner = pPlot:GetRevealedOwner(iActiveTeam, bIsDebug);
+		local iOwner = pPlot:GetOwner();
 		
 		if (iOwner >= 0) then
 			local pPlayer = Players[iOwner];
 			
-			-- Player using nickname
-			--if (pPlayer:GetNickName() ~= nil and pPlayer:GetNickName() ~= "") then
-			--	strResult = Locale.ConvertTextKey("TXT_KEY_PLOTROLL_OWNED_PLAYER", pPlayer:GetNickName());
-			-- Use civ short description
-			--else
-				strResult = strResult .. Locale.ConvertTextKey("TXT_KEY_PLOTROLL_OWNED_CIV", pPlayer:GetCivilizationShortDescriptionKey());
-			--end
-				local iActiveTeam = Game.GetActiveTeam();
-				local plotTeam = pPlayer:GetTeam();
-				if iActiveTeam == plotTeam then
-					strResult = "[COLOR_WHITE]" .. strResult .. "[ENDCOLOR]";
-				elseif pTeam:IsAtWar(plotTeam) then
-					strResult = "[COLOR_NEGATIVE_TEXT]" .. strResult .. "[ENDCOLOR]";
-				else
-					strResult = "[COLOR_POSITIVE_TEXT]" .. strResult .. "[ENDCOLOR]";
-				end
+			strResult = strResult .. Locale.ConvertTextKey("TXT_KEY_PLOTROLL_OWNED_CIV", pPlayer:GetCivilizationShortDescriptionKey());
+
+			local iActiveTeam = Game.GetActiveTeam();
+			local plotTeam = pPlayer:GetTeam();
+			if iActiveTeam == plotTeam then
+				strResult = "[COLOR_WHITE]" .. strResult .. "[ENDCOLOR]";
+			elseif pTeam:IsAtWar(plotTeam) then
+				strResult = "[COLOR_NEGATIVE_TEXT]" .. strResult .. "[ENDCOLOR]";
+			else
+				strResult = "[COLOR_POSITIVE_TEXT]" .. strResult .. "[ENDCOLOR]";
+			end
 		end
 	end
 	
