@@ -644,13 +644,15 @@ end
 
 function InitializeGameOption()
 
-	-- first set the mandatory options
+	-- Mandatory DLL configuration for R.E.D.
 	PreGame.SetGameOption("GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR", 1)	
 	PreGame.SetGameOption("GAMEOPTION_FREE_PLOTS", 1)
 	PreGame.SetGameOption("GAMEOPTION_NO_MINOR_DIPLO_SPAM", 1)
 	PreGame.SetGameOption("GAMEOPTION_CAN_STACK_IN_CITY", 1)
 	PreGame.SetGameOption("GAMEOPTION_CAN_ENTER_FOREIGN_CITY", 1)
+	PreGame.SetGameOption("GAMEOPTION_REBASE_IN_FRIENDLY_CITY", 1)
 
+	-- Options related to Lua code. Non-mandatory DLL options does not need to be defined here or before, setting them in the start-up screen is enough.
 	if USE_CUSTOM_OPTION then
 		Dprint("-------------------------------------")
 		Dprint("Initialize Game Options ...")
@@ -658,32 +660,74 @@ function InitializeGameOption()
 		local savedData = Modding.OpenSaveData()
 		
 		-- City Revealed to all civs
-		if(PreGame.GetGameOption("RevealCities") ~= nil) and (PreGame.GetGameOption("RevealCities") >  0) then REVEAL_ALL_CITIES = true end
-		if(PreGame.GetGameOption("RevealCities") ~= nil) and (PreGame.GetGameOption("RevealCities") == 0) then REVEAL_ALL_CITIES = false end
+		if(PreGame.GetGameOption("RevealCities") ~= nil) and (PreGame.GetGameOption("RevealCities") >  0) then
+			REVEAL_ALL_CITIES = true
+			Dprint("- RevealCities		-> ON")
+		end
+		if(PreGame.GetGameOption("RevealCities") ~= nil) and (PreGame.GetGameOption("RevealCities") == 0) then
+			REVEAL_ALL_CITIES = false
+			Dprint("- RevealCities		-> OFF")
+		end
 		
 		-- AI control
-		if(PreGame.GetGameOption("AIoverride") ~= nil) and (PreGame.GetGameOption("AIoverride") >  0) then ALLOW_AI_CONTROL = true end
-		if(PreGame.GetGameOption("AIoverride") ~= nil) and (PreGame.GetGameOption("AIoverride") == 0) then ALLOW_AI_CONTROL = false end
+		if(PreGame.GetGameOption("AIoverride") ~= nil) and (PreGame.GetGameOption("AIoverride") >  0) then
+			ALLOW_AI_CONTROL = true
+			Dprint("- AIoverride		-> ON")
+		end
+		if(PreGame.GetGameOption("AIoverride") ~= nil) and (PreGame.GetGameOption("AIoverride") == 0) then
+			ALLOW_AI_CONTROL = false
+			Dprint("- AIoverride		-> OFF")
+		end
 
 		-- Alternate History
-		if(PreGame.GetGameOption("AlternateHistory") ~= nil) and (PreGame.GetGameOption("AlternateHistory") >  0) then ALLOW_ALTERNATE_HISTORY = true end
-		if(PreGame.GetGameOption("AlternateHistory") ~= nil) and (PreGame.GetGameOption("AlternateHistory") == 0) then ALLOW_ALTERNATE_HISTORY = false end
+		if(PreGame.GetGameOption("AlternateHistory") ~= nil) and (PreGame.GetGameOption("AlternateHistory") >  0) then
+			ALLOW_ALTERNATE_HISTORY = true
+			Dprint("- AlternateHistory	-> ON")
+		end
+		if(PreGame.GetGameOption("AlternateHistory") ~= nil) and (PreGame.GetGameOption("AlternateHistory") == 0) then
+			ALLOW_ALTERNATE_HISTORY = false
+			Dprint("- AlternateHistory	-> OFF")
+		end
 		
 		-- No embarkation for the AI
-		if(PreGame.GetGameOption("NoAIEmbarkation") ~= nil) and (PreGame.GetGameOption("NoAIEmbarkation") >  0) then NO_AI_EMBARKATION = true end
-		if(PreGame.GetGameOption("NoAIEmbarkation") ~= nil) and (PreGame.GetGameOption("NoAIEmbarkation") == 0) then NO_AI_EMBARKATION = false end
+		if(PreGame.GetGameOption("NoAIEmbarkation") ~= nil) and (PreGame.GetGameOption("NoAIEmbarkation") >  0) then
+			NO_AI_EMBARKATION = true
+			Dprint("- NoAIEmbarkation		-> ON")
+		end
+		if(PreGame.GetGameOption("NoAIEmbarkation") ~= nil) and (PreGame.GetGameOption("NoAIEmbarkation") == 0) then
+			NO_AI_EMBARKATION = false
+			Dprint("- NoAIEmbarkation		-> OFF")
+		end
 		
 		-- Can only embark from harbor
-		if(PreGame.GetGameOption("EmbarkFromHarbor") ~= nil) and (PreGame.GetGameOption("EmbarkFromHarbor") >  0) then EMBARK_FROM_HARBOR = true end
-		if(PreGame.GetGameOption("EmbarkFromHarbor") ~= nil) and (PreGame.GetGameOption("EmbarkFromHarbor") == 0) then EMBARK_FROM_HARBOR = false end
+		if(PreGame.GetGameOption("EmbarkFromHarbor") ~= nil) and (PreGame.GetGameOption("EmbarkFromHarbor") >  0) then
+			EMBARK_FROM_HARBOR = true
+			Dprint("- EmbarkFromHarbor	-> ON")
+		end
+		if(PreGame.GetGameOption("EmbarkFromHarbor") ~= nil) and (PreGame.GetGameOption("EmbarkFromHarbor") == 0) then
+			EMBARK_FROM_HARBOR = false
+			Dprint("- EmbarkFromHarbor	-> OFF")
+		end
 		
 		-- Auto-saving at end of turn
-		if(PreGame.GetGameOption("RedAutosave") ~= nil) and (PreGame.GetGameOption("RedAutosave") >  0) then RED_AUTOSAVE = true end
-		if(PreGame.GetGameOption("RedAutosave") ~= nil) and (PreGame.GetGameOption("RedAutosave") == 0) then RED_AUTOSAVE = false end
+		if(PreGame.GetGameOption("RedAutosave") ~= nil) and (PreGame.GetGameOption("RedAutosave") >  0) then
+			RED_AUTOSAVE = true
+			Dprint("- RedAutosave		-> ON")
+		end
+		if(PreGame.GetGameOption("RedAutosave") ~= nil) and (PreGame.GetGameOption("RedAutosave") == 0) then
+			RED_AUTOSAVE = false
+			Dprint("- RedAutosave		-> OFF")
+		end
 		
 		-- Allow scripted events
-		if(PreGame.GetGameOption("AllowScriptedevents") ~= nil) and (PreGame.GetGameOption("AllowScriptedevents") >  0) then ALLOW_SCRIPTED_EVENTS = true end
-		if(PreGame.GetGameOption("AllowScriptedevents") ~= nil) and (PreGame.GetGameOption("AllowScriptedevents") == 0) then ALLOW_SCRIPTED_EVENTS = false end
+		if(PreGame.GetGameOption("AllowScriptedevents") ~= nil) and (PreGame.GetGameOption("AllowScriptedevents") >  0) then
+			ALLOW_SCRIPTED_EVENTS = true
+			Dprint("- AllowScriptedevents	-> ON")
+		end
+		if(PreGame.GetGameOption("AllowScriptedevents") ~= nil) and (PreGame.GetGameOption("AllowScriptedevents") == 0) then
+			ALLOW_SCRIPTED_EVENTS = false
+			Dprint("- AllowScriptedevents	-> OFF")
+		end
 	end
 end
 

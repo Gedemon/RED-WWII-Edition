@@ -880,7 +880,7 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 					-- remove resistance from Warsaw
 					pWarsaw:ChangeResistanceTurns(-pWarsaw:GetResistanceTurns())
 				
-					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, pPoland:GetName() .. " governement has fled the country, Poland has fall under Germany and Soviet control.", pPoland:GetName() .. " has fall !", -1, -1)
+					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "The Polish governement has fled the country, Poland has fallen under German and Soviet control.", "Poland has fallen !", cityPlot:GetX(), cityPlot:GetY())
 
 					savedData.SetValue("PolandHasFalled", 1)
 				end
@@ -999,7 +999,7 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 				-- remove resistance from Copenhagen
 				pCopenhagen:ChangeResistanceTurns(-pCopenhagen:GetResistanceTurns())
 				
-				Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "To prevent civilian losses " .. pDenmark:GetName() .. " has surrender to Germany, Denmark has fallen under Germany control. Remaining Denmark territory is now under UK protection", pDenmark:GetName() .. " has fallen !", -1, -1)
+				Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "To prevent civilian losses " .. pDenmark:GetName() .. " has surrender to Germany, Denmark has fallen under German control. Remaining Denmark territory is now under U.K. protection", pDenmark:GetName() .. " has fallen !", cityPlot:GetX(), cityPlot:GetY())
 
 				savedData.SetValue("DenmarkHasFalled", 1)
 			end
@@ -1106,15 +1106,8 @@ end
 function IsRouteOpenUStoFrance()
 	local bDebug = false
 	Dprint("   - Checking possible maritime route from US to France", bDebug)
-	--[[
-	local turn = Game.GetGameTurn()
-	if g_Calendar[turn] then 
-		turnDate = g_Calendar[turn].Number
-	 else 
-		turnDate = 0
-	end
-	--]]
 	if FranceHasFallen() then
+		Dprint("      - France has fallen...", bDebug)
 		return false
 	end
 	if not AreAtWar( GetPlayerIDFromCivID(FRANCE, false), GetPlayerIDFromCivID(GERMANY, false)) then
@@ -1144,7 +1137,7 @@ function IsRouteOpenUStoUK()
 end
 
 function IsRailOpenMurmansktoMoscow()
-	local bDebug = false
+	local bDebug = true
 	if not AreAtWar( GetPlayerIDFromCivID(USSR, false), GetPlayerIDFromCivID(GERMANY, false)) then
 		Dprint("      - USSR is not at war with Germany, no need for reinforcement...", bDebug)
 		return false
@@ -1154,14 +1147,14 @@ function IsRailOpenMurmansktoMoscow()
 	local ussr = Players[GetPlayerIDFromCivID(USSR, false)]
 	local bRoad = isPlotConnected( ussr , plotMurmansk, plotMoscow, "Railroad", false, nil , PathBlocked)
 	if bRoad then
-		Dprint("     - Rail from Suez to Stalingrad is open for USSR...", bDebug)
+		Dprint("     - Rail from Murmansk to Moscow is open for USSR...", bDebug)
 	else
-		Dprint("     - Rail from Suez to Stalingrad is closed for USSR...", bDebug)
+		Dprint("     - Rail from Murmansk to Moscow is closed for USSR...", bDebug)
 	end	
 	return bRoad
 end
 function IsRailOpenSueztoStalingrad()
-	local bDebug = false
+	local bDebug = true
 	if not AreAtWar( GetPlayerIDFromCivID(USSR, false), GetPlayerIDFromCivID(GERMANY, false)) then
 		Dprint("      - USSR is not at war with Germany, no need for reinforcement...", bDebug)
 		return false
@@ -1473,8 +1466,8 @@ g_Convoy = {
 		DestinationList = { {X=72, Y=5}, }, -- Suez
 		RandomDestination = false, -- false : sequential try in destination list
 		CivID = USSR,
-		MaxFleet = 1,
-		Frequency = 20, -- probability (in percent) of convoy spawning at each turn
+		MaxFleet = 5,
+		Frequency = 35, -- probability (in percent) of convoy spawning at each turn
 		Condition = IsRailOpenSueztoStalingrad,
 		Transport = GetSueztoUSSRTransport,
 	},
@@ -1485,11 +1478,11 @@ g_Convoy = {
 		DestinationList = { {X=65, Y=85}, }, -- Murmansk
 		RandomDestination = false, -- false : sequential try in destination list
 		CivID = USSR,
-		MaxFleet = 1,
-		Frequency = 20, -- probability (in percent) of convoy spawning at each turn
+		MaxFleet = 5,
+		Frequency = 30, -- probability (in percent) of convoy spawning at each turn
 		Condition = IsRailOpenMurmansktoMoscow,
-		UnloadCondition = IsRailOpenMurmansktoMoscow,
-		Transport = GetSueztoUSSRTransport,
+		UnloadCondition = IsRailOpenMurmansktoMoscow, 
+		Transport = GetUStoUSSRTransport,
 	},
 	[NORWAY_TO_GERMANY] = {
 		Name = "Norway to Germany",

@@ -52,7 +52,18 @@ Gedemon: design/coding, scenarios
 
 
 	-- version history --
-	
+
+v.36 (Dec 30, 2012):
+- DLL : Update source code to 1.0.2.21 (thanks, again, to whoward69's compilation tips)
+- Bugfix : games were not correctly initialized when using the 1939-45 Europe map, causing order of battles to be re-spawned when reloading.
+- Bugfix : change a road tile to a railroads on both Europe maps. On the Europe 39-45 scenario, this was preventing soviet convoys to spawn from US to Murmansk.
+- Balance: raise spawning probability for soviet convoys
+- Change : Rebase in friendly city is a permanent feature.
+- Optimization : check air distance between a boat and a submarine's attack before trying to find a route (prevent searching for tousands of tiles routes on larger maps)
+- AI : don't try to heal unit's types which have reached their ratio limit.
+- Correction : a few typo/grammar.
+- Authorize mod: IGE - InGame Editor
+
 v.35 (Dec 19, 2012):
 - Compatibility : not compatible with saves from previous versions.
 - Compatibility : R.E.D. DLL v.4 is mandatory (already included in v.35 if you have G+K).

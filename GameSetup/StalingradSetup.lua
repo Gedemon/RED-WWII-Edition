@@ -315,18 +315,7 @@ function RefreshCheckBoxGameOptions()
 			GameOption = true,
 			Checked = true,
 			SortPriority = 3,
-		},
-		--[[
-		{
-			Type = "AllowScriptedevents",
-			Name = "Allow Scripted Events",
-			ToolTip = "Uncheck this to prevent special scripts to be used, like the 'Fall of France' event, as it has been reported to be a cause of crash on some computers.",
-			Disabled = false,
-			GameOption = true,
-			Checked = true,
-			SortPriority = 3,
-		},	--]]	
-		{
+		},	{
 			Type = "GAMEOPTION_NO_MP_LIST",
 			Name = "Hide MP List",
 			ToolTip = "The multiplayer score list on the right will be hidden in hotseat mode.",

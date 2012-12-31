@@ -55,7 +55,10 @@ function MapUpdate() -- to do : check culture tile consistency. for example, a c
 			end	
 			local t_start = os.clock()
 			if CHECK_FOR_ORPHAN_TILE and not IsUnderControl ( plot, bCapturedPlot ) then
-				TestEnemyControl(plot, bCapturedPlot)
+				local bChangedOwner = TestEnemyControl(plot, bCapturedPlot)
+				if not bChangedOwner and not Players[originalOwner]:IsAlive() then 
+					GiveToNearestPlayer(plot)
+				end
 			end	
 			local t_end = os.clock()
 			orphanTestTime = orphanTestTime + (t_end - t_start)
@@ -140,12 +143,12 @@ end
 -- add to Events.SerialEventCityCaptured
 
 function FixCityGraphicBug(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
-	Dprint (" - Fix city capture graphic bug...", bDebugOutput)
+	Dprint (" - Fix city capture graphic bug...")
 	local cityPlot = GetPlotFromKey ( defendingPlotKey )
 	local city = cityPlot:GetPlotCity()
-	Dprint ("     - 1st : Pop +1", bDebugOutput)
+	Dprint ("     - 1st : Pop +1")
 	city:ChangePopulation(1, true)
-	Dprint ("     - 2nd : Pop -1", bDebugOutput)
+	Dprint ("     - 2nd : Pop -1")
 	city:ChangePopulation(-1, true)
 end
 -- add to LuaEvents.OnCityCaptured( FixCityGraphicBug )
@@ -238,12 +241,15 @@ function PlayerBuildingRestriction(iPlayer, iBuildingType)
 end
 function PlayerTrainingRestriction(iPlayer, iUnitType)
 
+	g_UnitRestrictionString = ""
+
 	local player = Players[iPlayer]
 	local civID = GetCivIDFromPlayerID(iPlayer)
 
 	if g_UnitsProject[iUnitType] then
 		local projectID = g_UnitsProject[iUnitType]
 		if not IsProjectDone(projectID, civID) then
+			g_UnitRestrictionString = "required project is missing."
 			return false
 		end
 	end
@@ -258,71 +264,25 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 		-- restriction ratio for AI player
 		if not player:IsMinorCiv() and not player:IsBarbarian() and not player:IsHuman() then
 			local totalUnits = player:GetNumMilitaryUnits()
-			local aliveUnitClass = CountUnitClassAlive (unitClass, iPlayer)
-			local aliveUnitSubClass = CountUnitSubClassAlive (unitClass, iPlayer)
-			local aliveArmor = CountArmorAlive (unitClass, iPlayer)
-			local aliveUnitType = CountUnitTypeAlive (iUnitType, iPlayer)
-			local land, sea, air = CountDomainUnits (iPlayer)
-			
-			-- Class restriction
-			if g_Combat_Type_Ratio then -- scenario may not use this
-				-- Air restriction
-				if GameInfo.Units[iUnitType].Domain == "DOMAIN_AIR" then
-					if (air > 0) and (totalUnits/air < g_Combat_Type_Ratio[civID].Air) then
-						return false
-					end
-					
-					if g_Max_Air_SubClass_Percent and g_Max_Air_SubClass_Percent[civID] then
-						local airType = g_Unit_Classes[unitClass].NumType
-						local maxPercent = g_Max_Air_SubClass_Percent[civID][airType]
+			local numDomain = CountDomainUnits (iPlayer, iUnitType)			
 
-						if (air > 0) and (aliveUnitSubClass/air*100 > maxPercent) then
-							return false
-						end
-					end
-				end
-				-- Sea restriction
-				if GameInfo.Units[iUnitType].Domain == "DOMAIN_SEA" then
-					if (sea > 0) and (totalUnits/sea < g_Combat_Type_Ratio[civID].Sea) then
-						return false
-					end
-				end
-				-- no land restriction...
-
-				-- Armor restriction
-				if IsArmorClass(g_Unit_Classes[unitClass].NumType) then
-					if (aliveArmor > 0) and (land/aliveArmor < g_Combat_Type_Ratio[civID].Armor) then
-						return false
-					end					
-
-					if g_Max_Armor_SubClass_Percent and g_Max_Armor_SubClass_Percent[civID] then
-						local armorType = g_Unit_Classes[unitClass].NumType
-						local maxPercent = g_Max_Armor_SubClass_Percent[civID][armorType]
-
-						if (aliveArmor > 0) and (aliveUnitSubClass/aliveArmor*100 > maxPercent) then
-							return false
-						end
-					end
-				end
-		
-				-- Artillery restriction
-				if g_Unit_Classes[unitClass].NumType == CLASS_ARTILLERY then
-					if (aliveUnitClass > 0) and (land/aliveUnitClass < g_Combat_Type_Ratio[civID].Artillery) then
-						return false
-					end			
-				end
+			if IsLimitedByRatio(iUnitType, iPlayer, civID, totalUnits, numDomain) then
+				return false
 			end
 		end
 
 		-- restriction when upgrade is available
 		local upgradeType = GetUnitUpgradeType( iUnitType )
-		if upgradeType and player:CanTrain(upgradeType) then			
+		if upgradeType and player:CanTrain(upgradeType) then	
+			g_UnitRestrictionString = "upgraded type available."		
 			return false
 		end
 
 		-- restriction on builded units of this type
 		local maxNumber = g_UnitMaxNumber[iUnitType]
+		local numUnitType = CountUnitType (iUnitType)
 		if (maxNumber and maxNumber <= CountUnitType (iUnitType)) then
+			g_UnitRestrictionString = "Max build number reached (g_UnitMaxNumber[unitType] <= CountUnitType (unitType)) -> (".. maxNumber .." <= ".. numUnitType ..")"
 			return false
 		end
 	
@@ -331,23 +291,27 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 		if maxInstance then
 			local aliveUnits = CountUnitTypeAlive (iUnitType)
 			if (maxInstance <= aliveUnits) then
+				g_UnitRestrictionString = "Max instance reached (g_UnitMaxInstance[unitType] <= CountUnitTypeAlive (unitType)) -> (".. maxInstance .." <= ".. aliveUnits ..")"
 				return false
 			end
 		end
 	end
 
 	-- allowed unit ?
+	-- check last, as it returns "true"
 	local civID = GetCivIDFromPlayerID(iPlayer, false)
 	local allowedTable = g_Major_Units[civID]
 	if (allowedTable) then
 		for i, allowedType in pairs (allowedTable) do
 			if (allowedType == iUnitType) then
+				g_UnitRestrictionString = "found in allowed table for major civs."
 				return true
 			end
 		end
 	else	
 		for i, allowedType in pairs (g_Minor_Units) do
 			if (allowedType == iUnitType) then
+				g_UnitRestrictionString = "found in allowed table for minor civs."
 				return true
 			end
 		end
@@ -1143,7 +1107,7 @@ function IsUnderControl ( plot, bCapturedPlot )
 		return
 	end
 
-	local bDebug = false
+	local bDebug = DEBUG_ORPHAN_TILE
 	local playerID = plot:GetOwner()
 	local player = Players[ playerID ]
 
@@ -1188,9 +1152,9 @@ function IsUnderControl ( plot, bCapturedPlot )
 
 				local unitClassID = unit:GetUnitClassType()	-- yes GetUnitClassType return an ID...
 
-				if bCapturedPlot and plot:GetOwner() == unit:GetOwner() then -- captured plot are kept under control by own units only...
-					if CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then -- path must be direct for captured plots (not going through friendly territory)
-						Dprint ("   - Found path with unit (".. unit:GetName() ..")", bDebug )
+				if bCapturedPlot then -- and plot:GetOwner() == unit:GetOwner() then -- captured plot are kept under control by own units only...
+					if plot:GetOwner() == unit:GetOwner() and CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then -- path must be direct for captured plots (not going through friendly territory)
+						Dprint ("   - Found path with unit (".. unit:GetName() ..") for captured plot", bDebug )
 						return true
 					end
 				elseif AreSameSide( plot:GetOwner(), unit:GetOwner()) then -- any ally can keep control of free territory
@@ -1206,9 +1170,9 @@ function IsUnderControl ( plot, bCapturedPlot )
 		if adjPlot:IsCity() then
 			local city = adjPlot:GetPlotCity()
 			if city  then -- AreSameSide( plot:GetOwner(), city:GetOwner()) then
-				if bCapturedPlot and plot:GetOwner() == city:GetOwner() then -- captured plot are kept under control by own cities only...
-					if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then  -- path must be direct for captured plots (not going through friendly territory)
-						Dprint ("   - Found path with city (".. closeCity:GetName() ..")", bDebug )
+				if bCapturedPlot then --and plot:GetOwner() == city:GetOwner() then -- captured plot are kept under control by own cities only...
+					if plot:GetOwner() == city:GetOwner() and isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then  -- path must be direct for captured plots (not going through friendly territory)
+						Dprint ("   - Found path with city (".. closeCity:GetName() ..") for captured plot", bDebug )
 						return true
 					end
 				elseif AreSameSide( plot:GetOwner(), city:GetOwner()) then -- any ally can keep control of free territory
@@ -1226,7 +1190,7 @@ end
 
 function TestEnemyControl(plot, bCapturedPlot)
 
-	local bDebug = false
+	local bDebug = DEBUG_ORPHAN_TILE
 	
 	Dprint (" - Search new military control for plot " .. plot:GetX() .. ",".. plot:GetY(), bDebug )
 	--local adjacentPlots = GetPlotsInCircle(plot, 0, MAX_PLOT_CONTROL_RANGE)
@@ -1244,7 +1208,7 @@ function TestEnemyControl(plot, bCapturedPlot)
 				if CanCaptureTile(unitClassID) and isPlotConnected(Players[unit:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then
 					plot:SetOwner(unit:GetOwner(), -1)
 					Dprint ("   - controlled by " .. unit:GetName(), bDebug )
-					return
+					return true
 				end
 			end
 		end
@@ -1256,17 +1220,18 @@ function TestEnemyControl(plot, bCapturedPlot)
 				if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then
 					plot:SetOwner(city:GetOwner(), -1)
 					Dprint ("   - controlled by " .. city:GetName(), bDebug )
-					return
+					return true
 				end
 			end
 		end
 	end
+	return false
 end
 
 
 function GiveToNearestPlayer(plot)
 
-	local bDebug = true
+	local bDebug = DEBUG_ORPHAN_TILE
 	
 	Dprint (" - Search new military control for unowned plot " .. plot:GetX() .. ",".. plot:GetY(), bDebug )
 	--local adjacentPlots = GetPlotsInCircle(plot, 0, MAX_PLOT_CONTROL_RANGE)

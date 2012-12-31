@@ -91,6 +91,10 @@ function SpawnConvoy()
 				Dprint("      - Can't get a destination...", bDebug)
 			end
 
+			if not condition then
+				Dprint("      - Condition is not true...", bDebug)
+			end
+
 			if condition and objective and rand < data.Frequency then
 				local playerID = GetPlayerIDFromCivID( data.CivID, data.IsMinor )
 				local player = Players [ playerID ]

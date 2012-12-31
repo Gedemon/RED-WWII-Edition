@@ -256,12 +256,16 @@ function UpdateData()
 				Controls.UnitSupplyString:SetHide(false);
 			else
 				local iUnitsLeft = iUnitsSupplied - iUnitsTotal
-				local strUnitSupplyToolTip = Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_TOOLTIP", iUnitsSupplied, iUnitsTotal, iUnitsFromCities, iUnitsFromPopulation, iUnitsFromHandicap);
-				local strUnitSupply = "[ICON_STRENGTH] " .. Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY", iUnitsLeft);
+				if iUnitsLeft <= SHOW_UNIT_SUPPLY_THRESHOLD then
+					local strUnitSupplyToolTip = Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_TOOLTIP", iUnitsSupplied, iUnitsTotal, iUnitsFromCities, iUnitsFromPopulation, iUnitsFromHandicap);
+					local strUnitSupply = "[ICON_STRENGTH] " .. Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY", iUnitsLeft);
 			
-				Controls.UnitSupplyString:SetToolTipString(strUnitSupplyToolTip);
-				Controls.UnitSupplyString:SetText(strUnitSupply);
-				Controls.UnitSupplyString:SetHide(false);
+					Controls.UnitSupplyString:SetToolTipString(strUnitSupplyToolTip);
+					Controls.UnitSupplyString:SetText(strUnitSupply);
+					Controls.UnitSupplyString:SetHide(false);
+				else
+					Controls.UnitSupplyString:SetHide(true);
+				end
 			end
 		else
 			Controls.UnitSupplyString:SetHide(true);

@@ -308,13 +308,6 @@ function RefreshCheckBoxGameOptions()
 			Checked = true,
 			SortPriority = 3,
 		},	{
-			Type = "GAMEOPTION_REBASE_IN_FRIENDLY_CITY",
-			Name = "Allow rebase in foreign cities",
-			ToolTip = "Allow air units to rebase in foreign cities if you share open borders with the city owner.",
-			Disabled = false,
-			GameOption = true,
-			SortPriority = 3,
-		},		{
 			Type = "NoAIEmbarkation",
 			Name = "Restrict AI Embarkation",
 			ToolTip = "Limit the use of embarkation for AI units",

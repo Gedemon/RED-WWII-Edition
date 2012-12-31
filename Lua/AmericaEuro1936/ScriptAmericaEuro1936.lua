@@ -999,7 +999,7 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 					-- remove resistance from Warsaw
 					pWarsaw:ChangeResistanceTurns(-pWarsaw:GetResistanceTurns())
 				
-					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, pPoland:GetName() .. " governement has fled the country, Poland has fall under Germany and Soviet control.", pPoland:GetName() .. " has fall !", -1, -1)
+					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "The Polish governement has fled the country, Poland has fallen under German and Soviet control.", "Poland has fallen !", cityPlot:GetX(), cityPlot:GetY())
 
 					savedData.SetValue("PolandHasFalled", 1)
 				end

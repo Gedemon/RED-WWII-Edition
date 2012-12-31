@@ -257,3 +257,4 @@ INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_FREE_PLO
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_NO_MINOR_DIPLO_SPAM', 1, 0 );					-- prevent minor civs to send "please gift units message". (and fix a crash that can occur when the minor try to send the message)
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_STACK_IN_CITY', 1, 0 );						-- allow unit stacking in cities.
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_ENTER_FOREIGN_CITY', 1, 0 );				-- allow units to enter in foreign cities.
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_UNIT_LIMIT_FIX', 1, 0 );						-- allow the map loader to use the hack to allow more than 255 unit types.

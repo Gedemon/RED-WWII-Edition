@@ -35,7 +35,9 @@ DEBUG_SHOW_PLOT_XY =	false	-- show plot X,Y on mouse over plot
 DEBUG_SHOW_UNIT_KEY =	false	-- show unitkey on mouse over flag
 DEBUG_PERFORMANCE =		false	-- always show loading/save time of tables
 USE_CUSTOM_OPTION =		true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
+DEBUG_ORPHAN_TILE =		false	-- orphan tile function output debug text to firetuner ON/OFF
 
+g_UnitRestrictionString = ""
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- UI
@@ -45,6 +47,8 @@ SHOW_FORCED_MOVE =			true	-- show moves of human units under AI control
 SHOW_UNIT_SUPPLY =			true	-- show unit supply (number of unit supported by your nation) on TopPanel
 RED_AUTOSAVE =				true	-- autosave at human player turn end
 RED_AUTOSAVE_EACH_PLAYER =	false	-- autosave at each player turn end
+
+SHOW_UNIT_SUPPLY_THRESHOLD = 20		-- don't show unit supply left until this number is reached 
 
 -------------------------------------------------------------------------------------------------------
 -- use mod data to save / load value between game initialisation phases

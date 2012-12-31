@@ -134,17 +134,14 @@ function CountUnitClassAlive (unitClass, playerID)
 	local num = 0
 
 	for key, values in pairs (g_UnitData) do
-		if ( values.BuilderID == playerID 
-		and (
-				values.NumType == g_Unit_Classes[unitClass].NumType
+		if (	values.NumType == g_Unit_Classes[unitClass].NumType
 				or (IsArmorClass(values.NumType) and IsArmorClass(g_Unit_Classes[unitClass].NumType))
 				or (IsFighterClass(values.NumType) and IsFighterClass(g_Unit_Classes[unitClass].NumType))
-				or (IsBomberClass(values.NumType) and IsBomberClass(g_Unit_Classes[unitClass].NumType))
-				)
+				or (IsBomberClass(values.NumType) and IsBomberClass(g_Unit_Classes[unitClass].NumType))				
 		) then
 			if g_UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
-				if unit and not unit:IsDead() then
+				if unit and playerID == unit:GetOwner() and not unit:IsDead() then
 					num = num +1
 				end
 			end
@@ -160,10 +157,10 @@ function CountUnitSubClassAlive (unitClass, playerID)
 	local num = 0
 
 	for key, values in pairs (g_UnitData) do
-		if ( values.BuilderID == playerID and values.NumType == g_Unit_Classes[unitClass].NumType ) then
+		if ( values.NumType == g_Unit_Classes[unitClass].NumType ) then
 			if g_UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
-				if unit and not unit:IsDead() then
+				if unit and playerID == unit:GetOwner() and not unit:IsDead() then
 					num = num +1
 				end
 			end
@@ -177,10 +174,10 @@ function CountArmorAlive (unitClass, playerID)
 	local bDebug = true
 	local num = 0
 	for key, values in pairs (g_UnitData) do
-		if ( values.BuilderID == playerID and IsArmorClass(values.NumType) ) then
+		if ( IsArmorClass(values.NumType) ) then
 			if g_UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
-				if unit and not unit:IsDead() then
+				if unit and playerID == unit:GetOwner() and not unit:IsDead() then
 					num = num +1
 				end
 			end
@@ -223,7 +220,7 @@ function CountUnitTypeAlive (unitType, playerID)
 end
 
 -- return num of units in each domain for a player
-function CountDomainUnits (playerID)
+function CountDomainUnits (playerID, unitType)
 	local land, sea, air = 0, 0, 0
 	player = Players[playerID]
 	for unit in player:Units() do
@@ -235,7 +232,16 @@ function CountDomainUnits (playerID)
 			air = air + 1
 		end
 	end
-	return land, sea, air
+	if unitType then -- return domain number for this UnitType only
+		if GameInfo.Units[unitType].Domain == "DOMAIN_AIR" then
+			return air
+		elseif GameInfo.Units[unitType].Domain == "DOMAIN_SEA" then
+			return sea
+		else -- Domain Land
+			return land
+		end
+	end
+	return land, sea, air -- else return all domains numbers
 end
 
 -- return number of land units of playerID in areaID
@@ -655,7 +661,6 @@ function ReinitUnitsOnLoad()
 	end
 end
 
-
 function ReinitUnits(playerID)
 	local player = Players[playerID]
 	if player and player:IsAlive() then
@@ -671,4 +676,90 @@ function ReinitUnits(playerID)
 			end
 		end
 	end
+end
+
+function IsMaxNumber(unitType)
+	if g_UnitMaxNumber[unitType] and g_UnitMaxNumber[unitType] then
+		local maxNumber = g_UnitMaxNumber[unitType]
+		if (maxNumber and maxNumber <= CountUnitType (unitType)) then
+			return true
+		end
+	end
+	return false
+end
+
+-- Check if this unit class is limited by ratio for the AI
+function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDebug )
+
+	local unitClassType = GameInfo["Units"][unitType]["Class"]
+	local unitClass = GameInfo.UnitClasses[unitClassType].ID
+	
+	if not g_Unit_Classes[unitClass] then
+		return false
+	end
+
+	local aliveUnitClass = CountUnitClassAlive (unitClass, playerID)
+	local aliveUnitSubClass = CountUnitSubClassAlive (unitClass, playerID)
+
+	local bDebug = bDebug or false
+	
+	if GameInfo.Units[unitType].Domain == "DOMAIN_AIR" then
+
+		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then
+			if (numDomain > 0) and (totalUnits/numDomain < g_Combat_Type_Ratio[civID].Air) then
+				g_UnitRestrictionString = "Air ratio restriction (totalUnits/numDomain < g_Combat_Type_Ratio[civID].Air) -> (".. totalUnits .." / ".. numDomain .." < ".. g_Combat_Type_Ratio[civID].Air..")"
+				return true
+			end
+		end					
+		if g_Max_Air_SubClass_Percent and g_Max_Air_SubClass_Percent[civID] then
+			local airType = g_Unit_Classes[unitClass].NumType
+			local maxPercent = g_Max_Air_SubClass_Percent[civID][airType]
+			if (numDomain > 0) and (aliveUnitSubClass / numDomain * 100 > maxPercent) then
+				g_UnitRestrictionString = "Air type restriction (aliveUnitSubClass / numDomain * 100 > g_Max_Air_SubClass_Percent[civID][airType]) -> (".. aliveUnitSubClass .." / ".. numDomain .." * 100 > ".. maxPercent..")"
+				return true
+			end
+		end
+
+	elseif GameInfo.Units[unitType].Domain == "DOMAIN_SEA" then
+		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then	
+			if (numDomain > 0) and (totalUnits / numDomain < g_Combat_Type_Ratio[civID].Sea) then			
+				g_UnitRestrictionString = "Sea ratio restriction (totalUnits / numDomain < g_Combat_Type_Ratio[civID].Sea) -> (".. totalUnits .." / ".. numDomain .." < ".. g_Combat_Type_Ratio[civID].Sea..")"
+				return true
+			end
+		end
+
+	else -- Domain land
+
+		-- Armor restriction
+		if IsArmorClass(g_Unit_Classes[unitClass].NumType) then
+		
+			local aliveArmor = CountArmorAlive (unitClass, playerID)
+
+			if (aliveArmor > 0) and (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) then
+				g_UnitRestrictionString = "Armor ratio restriction (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) -> (".. numDomain .." / ".. aliveArmor .." < ".. g_Combat_Type_Ratio[civID].Armor..")"
+				return true
+			end					
+
+			if g_Max_Armor_SubClass_Percent and g_Max_Armor_SubClass_Percent[civID] then
+				local armorType = g_Unit_Classes[unitClass].NumType
+				local maxPercent = g_Max_Armor_SubClass_Percent[civID][armorType]
+
+				if (aliveArmor > 0) and ( aliveUnitSubClass / aliveArmor * 100 > maxPercent) then
+				g_UnitRestrictionString = "Armor type restriction (aliveUnitSubClass / aliveArmor * 100 > g_Max_Armor_SubClass_Percent[civID][armorType]) -> (".. aliveUnitSubClass .." / ".. aliveArmor .." * 100 > ".. maxPercent..")"
+					return true
+				end
+			end
+		end
+		-- Artillery restriction
+		if g_Unit_Classes[unitClass].NumType == CLASS_ARTILLERY and g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then
+			if (aliveUnitClass > 0) and (numDomain / aliveUnitClass < g_Combat_Type_Ratio[civID].Artillery) then
+				g_UnitRestrictionString = "Artillery ratio restriction (numDomain / aliveUnitClass < g_Combat_Type_Ratio[civID].Artillery) -> (".. numDomain .." / ".. aliveUnitClass .." < ".. g_Combat_Type_Ratio[civID].Artillery..")"
+				return true
+			end			
+		end
+	end
+
+	-- No limit found
+	return false
+
 end

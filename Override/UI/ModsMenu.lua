@@ -28,6 +28,7 @@ g_AuthorizedModList = {
 	"139c327c-57ec-4c30-afb1-8ca41998492d", -- LiveTuner - Texture Viewer
 	"2896c6d4-0273-4527-813b-b9ab58f0b95e", -- R.E.D. DLL
 	"1f0a153b-26ae-4496-a2c0-a106d9b43c95", -- UI - Promotion Tree
+	"170c8ed1-b516-4fe2-b571-befeac39d220", -- I.G.E. - Ingame Editor
 }
 
 --------------------------------------------------
@@ -176,12 +177,14 @@ function Initialize()
 
 	local bNeedUpdate = false
 	
-	print("- Initialize mandatory Game Option...")
+	print("- Initialize mandatory Game Option...") -- but maybe to soon for PreGame here ?
 	PreGame.SetGameOption("GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR", 1)
 	PreGame.SetGameOption("GAMEOPTION_FREE_PLOTS", 1)
 	PreGame.SetGameOption("GAMEOPTION_NO_MINOR_DIPLO_SPAM", 1)
 	PreGame.SetGameOption("GAMEOPTION_CAN_STACK_IN_CITY", 1)
 	PreGame.SetGameOption("GAMEOPTION_CAN_ENTER_FOREIGN_CITY", 1)
+	--PreGame.SetGameOption("GAMEOPTION_UNIT_LIMIT_FIX", 1) -- In SQL rules
+	PreGame.SetGameOption("GAMEOPTION_REBASE_IN_FRIENDLY_CITY", 1)
 	
 	print("- Initializing WWII background...")
 

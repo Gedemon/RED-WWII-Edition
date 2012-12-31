@@ -327,7 +327,7 @@ function ShowPlayerTrainingRestriction(iPlayer)
 		local civType = GetCivTypeFromPlayerID(iPlayer)
 
 		local line1 = "id = " .. iUnitType .. ", name = " .. name
-		local line2 = "restrictions = "
+		local line2 = "restriction = "
 		local bShow = true
 		local bTest = true
 
@@ -337,18 +337,15 @@ function ShowPlayerTrainingRestriction(iPlayer)
 				bShow = false -- not for this civ...
 				bTest = false
 			end
+		end		
+
+		if bTest then
+			local aliveUnitType = CountUnitTypeAlive (iUnitType, iPlayer)
+			line1 = line1 .. ", num alive = "..aliveUnitType
+			PlayerTrainingRestriction(iPlayer, iUnitType)
 		end
 
-		if bTest and g_UnitsProject[iUnitType] then
-			local projectID = g_UnitsProject[iUnitType]
-			if not IsProjectDone(projectID, civID) then
-				line2 = line2 .. "Required Project not available, "
-			end
-		end
-
-		local unitClassType = GameInfo["Units"][iUnitType]["Class"]
-		local unitClass = GameInfo.UnitClasses[unitClassType].ID
-	
+		--[[
 		-- restrictions based on numbers
 
 		if bTest and g_Unit_Classes[unitClass] then -- bugfix : some unused classes are not defined (Settler, Worker...), just don't test them...
@@ -393,18 +390,6 @@ function ShowPlayerTrainingRestriction(iPlayer)
 						else
 							line2 = line2 .. "Global Armor OK (".. land.."/"..aliveArmor .."<".. g_Combat_Type_Ratio[civID].Armor .."), "
 						end
-						
-						--[[
-						if (aliveUnitClass > 0) and (aliveArmor/aliveUnitClass < 5) then
-							-- false
-							line2 = line2 .. "Armor Class restriction (".. aliveArmor.."/"..aliveUnitClass .."<".. 5 .."), "
-						end
-
-						if (aliveUnitType > 0) and (aliveArmor/aliveUnitType < 5) then
-							-- false
-							line2 = line2 .. "Armor Type restriction (".. aliveArmor.."/"..aliveUnitType .."<".. 5 .."), "
-						end
-						--]]
 
 						if g_Max_Armor_SubClass_Percent and g_Max_Armor_SubClass_Percent[civID] then
 							local armorType = g_Unit_Classes[unitClass].NumType
@@ -456,9 +441,10 @@ function ShowPlayerTrainingRestriction(iPlayer)
 				end
 			end
 		end
+		
+		--]]
 
 		-- allowed unit ?
-		local civID = GetCivIDFromPlayerID(iPlayer, false)
 		local allowedTable = g_Major_Units[civID]
 		if (allowedTable) then
 			local bAllow = false
@@ -472,9 +458,10 @@ function ShowPlayerTrainingRestriction(iPlayer)
 				bShow = false
 			end
 		end
+
 		if bShow then
 			Dprint(line1)
-			Dprint(line2)
+			Dprint(line2 .. g_UnitRestrictionString)
 			Dprint("-------------------------------------")
 		end
 	end

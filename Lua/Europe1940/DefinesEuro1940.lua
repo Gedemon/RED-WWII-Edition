@@ -21,6 +21,7 @@ CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will place mountain on neutral
 -- AI Scenario Specific Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
+ALLOW_AI_CONTROL = true
 NO_AI_EMBARKATION = true -- remove AI ability to embark (to do : take total control of AI unit to embark)
 NO_SUICIDE_ATTACK = true -- If set to true, try to prevent suicide attacks
 

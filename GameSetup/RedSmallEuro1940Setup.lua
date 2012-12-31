@@ -316,13 +316,6 @@ function RefreshCheckBoxGameOptions()
 			GameOption = true,
 			SortPriority = 3,
 		},	{
-			Type = "GAMEOPTION_REBASE_IN_FRIENDLY_CITY",
-			Name = "Allow rebase in foreign cities",
-			ToolTip = "Allow air units to rebase in foreign cities if you share open borders with the city owner.",
-			Disabled = false,
-			GameOption = true,
-			SortPriority = 3,
-		},		{
 			Type = "RedAutosave",
 			Name = "Extra Auto Save",
 			ToolTip = "Create a save game named 'RED_WWII_Autosave_EndTurn' at the end of each turn",
