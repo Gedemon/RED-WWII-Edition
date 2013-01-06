@@ -108,6 +108,30 @@ function RequestedReinforcementsPerHP(iUnitType, unit)
 	return reqMateriel, reqPersonnel
 end
 
+-- check if the unit is elligible for reinforcement
+function CanGetReinforcement(unit)
+	if not unit then
+		return false
+	end
+	if not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY))
+		and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY_SPECIAL_FORCES))
+		and ( unit:GetCurrHitPoints() < unit:GetMaxHitPoints() )
+		and not unit:IsEmbarked() -- land unit won't heal on sea or near harbor...
+		and not unit:IsDead()
+		then
+
+		local unitType = unit:GetUnitType()
+		local plot = unit:GetPlot()
+		if ( GameInfo.Units[unitType].Domain ~= "DOMAIN_SEA" ) 
+			or (GameInfo.Units[unitType].Domain == "DOMAIN_SEA" and (IsNearNavalFriendlyCity(plot, playerID) or plot:IsCity() )) 
+			then -- To do : aircraft on carrier
+
+			return true
+		end
+	end
+	return false
+end
+
 -- return num of units of this class already build for auto-naming
 function CountUnitClass (unitClass, playerID)
 	local num = 0
@@ -697,14 +721,14 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 	if not g_Unit_Classes[unitClass] then
 		return false
 	end
-
+	
 	local aliveUnitClass = CountUnitClassAlive (unitClass, playerID)
 	local aliveUnitSubClass = CountUnitSubClassAlive (unitClass, playerID)
-
+	
 	local bDebug = bDebug or false
 	
 	if GameInfo.Units[unitType].Domain == "DOMAIN_AIR" then
-
+	
 		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then
 			if (numDomain > 0) and (totalUnits/numDomain < g_Combat_Type_Ratio[civID].Air) then
 				g_UnitRestrictionString = "Air ratio restriction (totalUnits/numDomain < g_Combat_Type_Ratio[civID].Air) -> (".. totalUnits .." / ".. numDomain .." < ".. g_Combat_Type_Ratio[civID].Air..")"
@@ -729,13 +753,13 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 		end
 
 	else -- Domain land
-
+	
 		-- Armor restriction
 		if IsArmorClass(g_Unit_Classes[unitClass].NumType) then
 		
 			local aliveArmor = CountArmorAlive (unitClass, playerID)
-
-			if (aliveArmor > 0) and (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) then
+			
+			if (aliveArmor > 0) and g_Combat_Type_Ratio and (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) then
 				g_UnitRestrictionString = "Armor ratio restriction (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) -> (".. numDomain .." / ".. aliveArmor .." < ".. g_Combat_Type_Ratio[civID].Armor..")"
 				return true
 			end					

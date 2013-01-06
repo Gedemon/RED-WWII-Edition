@@ -23,8 +23,9 @@ COMBATLOG_SAVE_SLOT =		"0,2"
 DYNAMICMAP_SAVE_SLOT =		"1,2"
 COMBAT_ARCHIVE_SAVE_SLOT =	"2,0"
 
-MAX_COMBAT_LOG_ENTRIES = 1500	-- Archive old entries above this value
-MIN_COMBAT_LOG_ENTRIES = 250	-- Keep this number on entries in Combat Log when archiving
+MAX_COMBAT_LOG_ENTRIES	= 1500	-- Archive/delete old entries above this value
+MIN_COMBAT_LOG_ENTRIES	= 300	-- Keep this number on entries in Combat Log when deleting/archiving
+USE_ARCHIVE				= false	-- If true, archive the old entries, else delete them. Archiving can take up to 2-3 mn in late game (with more than 10,000 combats)
 
 -------------------------------------------------------------------------------------------------------
 -- DEBUG Output
@@ -72,8 +73,9 @@ g_ProjectsDone = {}
 g_CombatsLog = {}
 g_DynamicMap = {}
 
--- Temporary
+-- Cached 
 g_FixedPlots = {}
+g_Wounded = {}
 
 
 ----------------------------------------------------------------------------------------------------------------------------

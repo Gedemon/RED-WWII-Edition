@@ -418,13 +418,12 @@ function GetFoodTooltip(pCity)
 		strFoodToolTip = strFoodToolTip .. Locale.ConvertTextKey("TXT_KEY_FOOD_HELP_INFO");
 		strFoodToolTip = strFoodToolTip .. "[NEWLINE][NEWLINE]";
 	end
-	
+	--[[
 	local fFoodProgress = pCity:GetFoodTimes100() / 100;
 	local iFoodNeeded = pCity:GrowthThreshold();
 	
 	strFoodToolTip = strFoodToolTip .. Locale.ConvertTextKey("TXT_KEY_FOOD_PROGRESS", fFoodProgress, iFoodNeeded);
-	
-	strFoodToolTip = strFoodToolTip .. "[NEWLINE][NEWLINE]";
+	--]]
 	strFoodToolTip = strFoodToolTip .. GetYieldTooltipHelper(pCity, iYieldType, "[ICON_FOOD]");
 	
 	return strFoodToolTip;

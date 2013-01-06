@@ -868,7 +868,16 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
                     controlTable = {};
                     self.m_CargoControls.PullDown:BuildEntry( "UnitInstance", controlTable );
                     
-					controlTable.Button:SetText( Locale.ConvertTextKey(pPlotUnit:GetNameKey()) );
+					local nameStr = Locale.ConvertTextKey(pPlotUnit:GetNameKey())				
+					if (pPlotUnit:GetDamage() > 0) then
+						local healthPercent = math.max(math.min(pPlotUnit:GetCurrHitPoints() / pPlotUnit:GetMaxHitPoints(), 1), 0)
+						if healthPercent < 0.33 then
+							nameStr = "[COLOR_WARNING_TEXT]".. nameStr .."[ENDCOLOR]"
+						elseif healthPercent < 0.66 then
+							nameStr = "[COLOR_YELLOW]".. nameStr .."[ENDCOLOR]"
+						end
+					end
+					controlTable.Button:SetText( nameStr )
 
 					local str = ""
 					str = str .. pPlotUnit:GetNameNoDesc() .. "[NEWLINE]" .. Locale.ConvertTextKey(pPlotUnit:GetNameKey())
@@ -881,6 +890,20 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 					-- Hit Points
 					if (pPlotUnit:GetDamage() > 0) then
 						str = str .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UPANEL_SET_HITPOINTS_TT", pPlotUnit:GetMaxHitPoints() - pPlotUnit:GetDamage(), pPlotUnit:GetMaxHitPoints());
+					end
+
+					-- Activity
+					if pPlotUnit:GetOwner() == Game.GetActivePlayer() then
+						local activityType = pPlotUnit:GetActivityType()
+						if activityType == ActivityTypes.ACTIVITY_INTERCEPT then
+							str = str .. "[NEWLINE]" .. "On Interception"
+						elseif activityType == ActivityTypes.ACTIVITY_HOLD then
+							str = str .. "[NEWLINE]" .. "On Hold"
+						elseif activityType == ActivityTypes.ACTIVITY_AWAKE then
+							str = str .. "[NEWLINE]" .. "Waiting for orders"
+						elseif activityType == ActivityTypes.ACTIVITY_SLEEP then
+							str = str .. "[NEWLINE]" .. "Reserve squadron"
+						end
 					end
 
 					controlTable.Button:SetToolTipString( str );
@@ -1127,6 +1150,7 @@ function OnFlagTypeChange( playerID, unitID )
         flag:UpdateFlagOffset();
 		flag:UpdateTooltip();
     end
+	UpdateCityCargo( Players[ playerID ]:GetUnitByID( unitID ):GetPlot() );
 end
 Events.UnitActionChanged.Add( OnFlagTypeChange );
 Events.UnitGarrison.Add( OnFlagTypeChange );
@@ -1267,7 +1291,17 @@ function UpdateCityCargo( pPlot )
                 controlTable = {};
                 cityFlagInstance.PullDown:BuildEntry( "UnitInstance", controlTable );
                 
-                controlTable.Button:SetText( Locale.ConvertTextKey(pPlotUnit:GetNameKey()) );
+				local nameStr = Locale.ConvertTextKey(pPlotUnit:GetNameKey())				
+				if (pPlotUnit:GetDamage() > 0) then
+					local healthPercent = math.max(math.min(pPlotUnit:GetCurrHitPoints() / pPlotUnit:GetMaxHitPoints(), 1), 0)
+					if healthPercent < 0.33 then
+						nameStr = "[COLOR_WARNING_TEXT]".. nameStr .."[ENDCOLOR]"
+					elseif healthPercent < 0.66 then
+						nameStr = "[COLOR_YELLOW]".. nameStr .."[ENDCOLOR]"
+					end
+				end
+                controlTable.Button:SetText( nameStr )
+
 				local str = ""
 				str = str .. pPlotUnit:GetNameNoDesc() .. "[NEWLINE]" .. Locale.ConvertTextKey(pPlotUnit:GetNameKey())
 				str = str .. "[NEWLINE]" .. Locale.ConvertTextKey(GameInfo.UnitClasses[pPlotUnit:GetUnitClassType()].Description)
@@ -1279,6 +1313,20 @@ function UpdateCityCargo( pPlot )
 				-- Hit Points
 				if (pPlotUnit:GetDamage() > 0) then
 					str = str .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UPANEL_SET_HITPOINTS_TT", pPlotUnit:GetMaxHitPoints() - pPlotUnit:GetDamage(), pPlotUnit:GetMaxHitPoints());
+				end
+
+				-- Activity
+				if pPlotUnit:GetOwner() == Game.GetActivePlayer() then
+					local activityType = pPlotUnit:GetActivityType()
+					if activityType == ActivityTypes.ACTIVITY_INTERCEPT then
+						str = str .. "[NEWLINE]" .. "On Interception"
+					elseif activityType == ActivityTypes.ACTIVITY_HOLD then
+						str = str .. "[NEWLINE]" .. "On Hold"
+					elseif activityType == ActivityTypes.ACTIVITY_AWAKE then
+						str = str .. "[NEWLINE]" .. "Waiting for orders"
+					elseif activityType == ActivityTypes.ACTIVITY_SLEEP then
+						str = str .. "[NEWLINE]" .. "Reserve squadron"
+					end
 				end
 
                 controlTable.Button:SetToolTipString( str );
@@ -1418,6 +1466,8 @@ function OnUnitSelect( playerID, unitID, i, j, k, isSelected )
     else
         g_MasterList[ playerID ][ unitID ]:UpdateSelected( isSelected );
     end
+	-- RED
+	UpdateCityCargo( Players[ playerID ]:GetUnitByID( unitID ):GetPlot() );
 end
 Events.UnitSelectionChanged.Add( OnUnitSelect );
 

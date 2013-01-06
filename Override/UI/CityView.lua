@@ -5,6 +5,11 @@ include( "IconSupport" );
 include( "InstanceManager" );
 include( "SupportFunctions"  );
 include( "InfoTooltipInclude" );
+-------------------------------------------------------------------------------------------------------
+-- R.E.D. WW II edition
+-------------------------------------------------------------------------------------------------------
+include ("RedOverrideInclude")
+-------------------------------------------------------------------------------------------------------
 
 local g_BuildingIM   = InstanceManager:new( "BuildingInstance", "BuildingButton", Controls.BuildingStack );
 local g_GPIM   = InstanceManager:new( "GPInstance", "GPBox", Controls.GPStack );
@@ -737,7 +742,9 @@ function OnCityViewUpdate()
 
 	    Controls.Defense:SetText(  math.floor( pCity:GetStrengthValue() / 100 ) );
 
- 		CivIconHookup( pPlayer:GetID(), 64, Controls.CivIcon, Controls.CivIconBG, Controls.CivIconShadow, false, true );
+ 		--CivIconHookup( pPlayer:GetID(), 64, Controls.CivIcon, Controls.CivIconBG, Controls.CivIconShadow, false, true );
+		
+ 		CivIconHookup( pCity:GetOriginalOwner(), 64, Controls.CivIcon, Controls.CivIconBG, Controls.CivIconShadow, false, true );
 		
 		-------------------------------------------
 		-- Growth Meter
@@ -745,22 +752,10 @@ function OnCityViewUpdate()
 		local iCurrentFood = pCity:GetFood();
 		local iFoodNeeded = pCity:GrowthThreshold();
 		local iFoodPerTurn = pCity:FoodDifference();
-		local iCurrentFoodPlusThisTurn = iCurrentFood + iFoodPerTurn;
-		
-		local fGrowthProgressPercent = iCurrentFood / iFoodNeeded;
-		local fGrowthProgressPlusThisTurnPercent = iCurrentFoodPlusThisTurn / iFoodNeeded;
-		if (fGrowthProgressPlusThisTurnPercent > 1) then
-			fGrowthProgressPlusThisTurnPercent = 1
-		end
-		
-		local iTurnsToGrowth = pCity:GetFoodTurnsLeft();
-		
+		local iCurrentFoodPlusThisTurn = iCurrentFood + iFoodPerTurn;		
+	
 		local cityPopulation = math.floor(pCity:GetPopulation());
-		Controls.CityPopulationLabel:SetText(tostring(cityPopulation));
-		Controls.PeopleMeter:SetPercent( pCity:GetFood() / pCity:GrowthThreshold() );
-		
-		--Update suffix to use correct plurality.
-		Controls.CityPopulationLabelSuffix:LocalizeAndSetText("TXT_KEY_CITYVIEW_CITIZENS_TEXT", cityPopulation);
+		Controls.CityPopulationLabel:LocalizeAndSetText("TXT_KEY_CITYVIEW_CITIZENS_TEXT", cityPopulation);
 
 		-------------------------------------------
 		-- Deal with the production queue buttons
@@ -969,6 +964,12 @@ function OnCityViewUpdate()
 			Controls.WorkerManagementBox:SetHide( true );
 		end
 		Controls.WorkerHeader:RegisterCallback( Mouse.eLClick, OnWorkerHeaderSelected );
+
+		-- RED disable uneeded info
+		Controls.ResearchFocusButton:SetHide( true );
+		Controls.CultureFocusButton:SetHide( true );
+		Controls.GPFocusButton:SetHide( true );
+		Controls.AvoidGrowthButton:SetHide( true );
 		
 		-- add in the Great Person Meters
 		local numGPs = 0;		
@@ -1271,14 +1272,16 @@ function OnCityViewUpdate()
 		-----------------------------------------
 		-- Buying Plots
 		-------------------------------------------
+		--[[
 		szText = string.format( Locale.ConvertTextKey( "TXT_KEY_CITYVIEW_BUY_TILE") );
 	    Controls.BuyPlotButton:SetToolTipString( Locale.ConvertTextKey( "TXT_KEY_CITYVIEW_BUY_TILE_TT" ) );
 		Controls.BuyPlotText:SetText(szText);
 	    if (GameDefines["BUY_PLOTS_DISABLED"] ~= 0) then
 			Controls.BuyPlotButton:SetDisabled(true);			
 	    end
-	    
-		
+	    --]]
+		Controls.BuyPlotButton:SetHide(true);
+
 		-------------------------------------------
 		-- Resource Demanded
 		-------------------------------------------
@@ -1362,44 +1365,22 @@ function OnCityViewUpdate()
 		Controls.GoldPerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_PERTURN_TEXT", iGoldPerTurn) );
 		--Controls.ProdBox:SetToolTipString(strToolTip);
 		
-		-- display science income
-		if (Game.IsOption(GameOptionTypes.GAMEOPTION_NO_SCIENCE)) then
-			Controls.SciencePerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_OFF") );
-		else
-			local iSciencePerTurn = pCity:GetYieldRateTimes100(YieldTypes.YIELD_SCIENCE) / 100;
-			Controls.SciencePerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_PERTURN_TEXT", iSciencePerTurn) );
-		end
-		--Controls.ScienceBox:SetToolTipString(strToolTip);
+		-- RED: Personnel production use science tag. to do: clean that. (3 files to edit: this one, city view normal xml, city view small xml)
+		local cityPersonnel = GetCityPersonnel(pCity);
+		Controls.SciencePerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_PERTURN_TEXT", cityPersonnel.total) );
+
+		local cityPersonnelTooltip = GetCityPersonnelTooltip(cityPersonnel)
+		Controls.ScienceBox:SetToolTipString(cityPersonnelTooltip);
 		
-		local iCulturePerTurn = pCity:GetJONSCulturePerTurn();
-		Controls.CulturePerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_PERTURN_TEXT", iCulturePerTurn) );
-		--Controls.CultureBox:SetToolTipString(strToolTip);
-		local cultureStored = pCity:GetJONSCultureStored();
-		local cultureNext = pCity:GetJONSCultureThreshold();
-		local cultureDiff = cultureNext - cultureStored;
-		if iCulturePerTurn > 0 then
-			local cultureTurns = math.ceil(cultureDiff / iCulturePerTurn);
-			if (cultureTurns < 1) then
-			   cultureTurns = 1
-			end
-			Controls.CultureTimeTillGrowthLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_TURNS_TILL_TILE_TEXT", cultureTurns) );
-			Controls.CultureTimeTillGrowthLabel:SetHide( false );
-		else
-			Controls.CultureTimeTillGrowthLabel:SetHide( true );
-		end
-		local percentComplete = cultureStored / cultureNext;
-		Controls.CultureMeter:SetPercent( percentComplete );
-		
-		local cityGrowth = pCity:GetFoodTurnsLeft();			
-		if (pCity:IsFoodProduction() or pCity:FoodDifferenceTimes100() == 0) then
-			Controls.CityGrowthLabel:SetText(Locale.ConvertTextKey("TXT_KEY_CITYVIEW_STAGNATION_TEXT"));
-		elseif pCity:FoodDifference() < 0 then
-			Controls.CityGrowthLabel:SetText(Locale.ConvertTextKey("TXT_KEY_CITYVIEW_STARVATION_TEXT"));
-		else
-			Controls.CityGrowthLabel:SetText(Locale.ConvertTextKey("TXT_KEY_CITYVIEW_TURNS_TILL_CITIZEN_TEXT", cityGrowth));
-		end
-		local iFoodPerTurn = pCity:FoodDifferenceTimes100() / 100;
-		
+		-- RED: Materiel production use science tag. to do: clean that.
+		local cityMateriel = GetCityMateriel(pCity);
+		Controls.CulturePerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_PERTURN_TEXT", cityMateriel.total) );
+
+		local cityMaterielTooltip = GetCityMaterielTooltip(cityMateriel)
+		Controls.CultureBox:SetToolTipString(cityMaterielTooltip);
+
+
+		local iFoodPerTurn = pCity:FoodDifferenceTimes100() / 100;		
 		if (iFoodPerTurn >= 0) then
 			Controls.FoodPerTurnLabel:SetText( Locale.ConvertTextKey("TXT_KEY_CITYVIEW_PERTURN_TEXT", iFoodPerTurn) );
 		else
@@ -1653,16 +1634,16 @@ function DoUpdateUpperLeftTooltips()
 	
 	local strFoodToolTip = GetFoodTooltip(pCity);
 	Controls.FoodBox:SetToolTipString(strFoodToolTip);
-	Controls.PopulationBox:SetToolTipString(strFoodToolTip);
+	Controls.PopulationBox:SetToolTipString(Locale.ConvertTextKey("TXT_KEY_CITY_POPULATION", pCity:GetRealPopulation()));
 	
 	local strGoldToolTip = GetGoldTooltip(pCity);
 	Controls.GoldBox:SetToolTipString(strGoldToolTip);
 	
-	local strScienceToolTip = GetScienceTooltip(pCity);
-	Controls.ScienceBox:SetToolTipString(strScienceToolTip);
+	--local strScienceToolTip = GetScienceTooltip(pCity);
+	--Controls.ScienceBox:SetToolTipString(strScienceToolTip);
 	
-	local strCultureToolTip = GetCultureTooltip(pCity);
-	Controls.CultureBox:SetToolTipString(strCultureToolTip);
+	--local strCultureToolTip = GetCultureTooltip(pCity);
+	--Controls.CultureBox:SetToolTipString(strCultureToolTip);
 	
 end
 
@@ -1834,6 +1815,7 @@ function UpdateWorkingHexes()
 		end
 		
 		-- Add buy plot buttons
+		--[[
 		g_BuyPlotButtonIM:ResetInstances();
 		if UI.GetInterfaceMode() == InterfaceModeTypes.INTERFACEMODE_PURCHASE_PLOT then
 			Events.RequestYieldDisplay( YieldDisplayTypes.CITY_PURCHASABLE, pCity:GetX(), pCity:GetY() );
@@ -1870,11 +1852,12 @@ function UpdateWorkingHexes()
 
 		-- Standard mode - show plots that will be acquired by culture
 		else
-			local aPurchasablePlots = {pCity:GetBuyablePlotList()};
+			--local aPurchasablePlots = {pCity:GetBuyablePlotList()};
 			for i = 1, #aPurchasablePlots, 1 do
 				Events.SerialEventHexHighlight( ToHexFromGrid( Vector2( aPurchasablePlots[i]:GetX(), aPurchasablePlots[i]:GetY() ) ), true, Vector4( 1.0, 0.0, 1.0, 1 ) );
 			end
 		end
+		--]]
     end
 end
 Events.SerialEventCityHexHighlightDirty.Add(UpdateWorkingHexes);

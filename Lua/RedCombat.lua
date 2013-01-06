@@ -533,12 +533,13 @@ function CombatEnded (iAttackingPlayer, iAttackingUnit, attackerDamage, attacker
 		if pDefendingCity then
 
 			Dprint("City owner	= " .. pDefendingCity:GetOwner(), g_DebugCombat)
+			Dprint("Final damage= " .. defenderFinalDamage, g_DebugCombat)
 			Dprint("Attacker ID = " .. iAttackingPlayer, g_DebugCombat)
 
 			Dprint("City has been attacked, calling LuaEvents.OnCityAttacked ...", g_DebugCombat)
 			LuaEvents.OnCityAttacked(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
 			
-			if pDefendingCity:GetOwner() == iAttackingPlayer then -- Defending city has been captured by the attacker
+			if defenderFinalDamage >= defenderMaxHP then --pDefendingCity:GetGameTurnAcquired() == turn or  then -- little hack, see if defenderFinalDamage can be used here.
 				Dprint("City has been captured, calling LuaEvents.OnCityCaptured ...", g_DebugCombat)
 				LuaEvents.OnCityCaptured(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
 			end

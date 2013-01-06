@@ -225,6 +225,9 @@ function Initialize()
 	print("-------------------------------------")
 	print("Check DLC compatibility list...")
 	print("-------------------------------------")
+	
+	local gameVersion = UI.GetVersionInfo()
+	print ("game version : " .. gameVersion )
 
 	local ExpansionID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
 	local MongolDlcID = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID
@@ -242,14 +245,13 @@ function Initialize()
 	else
 		print ("- G&K Expansion not active...")		
 	end
-	
+	--]]	
 	if not bMongolDlcActive then
 		print ("- Mongol DLC inactive, marked for activation...")
 		table.insert(packages, {MongolDlcID, ContentType.GAMEPLAY, true})
 	else
 		print ("- Mongol DLC is active...")		
 	end
-	--]]
 	
 	print("-------------------------------------")
 	print("Check Mods compatibility list...")

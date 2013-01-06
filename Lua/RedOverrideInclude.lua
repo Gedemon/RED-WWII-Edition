@@ -9,6 +9,7 @@ include ("RedDefinesGlobal")	-- Always first !
 include ("RedUtils")			-- Before functions & debug
 include ("RedDebug")
 include ("RedFunctions")
+include ("RedDiplomacy")
 include ("RedUnitUtils")
 include ("RedUnitFunctions")
 include ("RedReinforcements")

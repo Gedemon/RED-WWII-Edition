@@ -98,7 +98,6 @@ function AIUnitControl(playerID)
 	Dprint("AI : ARMY" , bDebug)
 	Dprint("----------------------------------------------------------------------------------------------------------------------------------------------------", bDebug)
 	for i, unit in pairs( armyForce ) do
-
 		local unitKey = GetUnitKey(unit)
 		local unitType = unit:GetUnitType()
 		Dprint("")
@@ -106,7 +105,7 @@ function AIUnitControl(playerID)
 		if g_UnitData[unitKey] 
 		and (ALLOW_AI_CONTROL or g_UnitData[unitKey].TotalControl)
 		and ((not player:IsHuman()) or g_UnitData[unitKey].TotalControl) then
-
+		
 			if g_UnitData[unitKey].OrderType then
 				if g_UnitData[unitKey].OrderType == RED_CONVOY then
 					MoveConvoy(unit)

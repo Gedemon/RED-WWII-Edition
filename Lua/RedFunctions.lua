@@ -19,7 +19,9 @@ function CheckCultureChange(iHexX, iHexY, iPlayerID, bUnknown)
 			Dprint("-------------------------------------")
 			Dprint("Culture was set on water plot ("..x..","..y.."), removing it ...")
 			plot:SetOwner(-1, -1)
-		end
+		elseif plot:IsCity() then
+			FixCityGraphicBug(plot)
+		end		
 	end
 end
 -- Events.SerialEventHexCultureChanged.Add(CheckCultureChange)
@@ -142,16 +144,18 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 end
 -- add to Events.SerialEventCityCaptured
 
-function FixCityGraphicBug(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
+-- function FixCityGraphicBug(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
+function FixCityGraphicBug(plot)
 	Dprint (" - Fix city capture graphic bug...")
-	local cityPlot = GetPlotFromKey ( defendingPlotKey )
+	--local cityPlot = GetPlotFromKey ( defendingPlotKey )
+	local cityPlot = plot
 	local city = cityPlot:GetPlotCity()
 	Dprint ("     - 1st : Pop +1")
 	city:ChangePopulation(1, true)
 	Dprint ("     - 2nd : Pop -1")
 	city:ChangePopulation(-1, true)
 end
--- add to LuaEvents.OnCityCaptured( FixCityGraphicBug )
+-- add to Events.SerialEventCityCaptured
 
 function VictoryCheck (hexPos, playerID, cityID, newPlayerID)	  
 
@@ -780,25 +784,24 @@ function CreateTerritoryMap()
 		local x = plot:GetX()
 		local y = plot:GetY()
 
-		-- Spies everywhere : reveal cities plot (allow long range bombing), or all map
-		if (plot:IsCity() and REVEAL_ALL_CITIES) or REVEAL_ALL_MAP then
-			for iTeamLoop = 0, GameDefines.MAX_CIV_TEAMS - 1, 1 do
-				if (plot:GetVisibilityCount(iTeamLoop) > 0) then
-					plot:ChangeVisibilityCount(iTeamLoop, -1, -1, true)
-				end
-
-				plot:SetRevealed(iTeamLoop, false)
-
-				plot:ChangeVisibilityCount(iTeamLoop, 1, -1, true)
-				plot:SetRevealed(iTeamLoop, true)
-			end
-		end
-
 		if ( plot:IsWater() ) then
 			plot:SetOwner(-1, -1)
 		else
 			local owner = plot:GetOwner()
 			if (owner ~= -1) then
+				-- Spies everywhere : reveal cities plot (allow long range bombing), or all map
+				if (plot:IsCity() and REVEAL_ALL_CITIES) or REVEAL_ALL_MAP then
+					for iTeamLoop = 0, GameDefines.MAX_CIV_TEAMS - 1, 1 do
+						if (plot:GetVisibilityCount(iTeamLoop) > 0) then
+							plot:ChangeVisibilityCount(iTeamLoop, -1, -1, true)
+						end
+
+						plot:SetRevealed(iTeamLoop, false)
+
+						plot:ChangeVisibilityCount(iTeamLoop, 1, -1, true)
+						plot:SetRevealed(iTeamLoop, true)
+					end
+				end
 
 				local player = Players [owner]
 				local civID = GetCivIDFromPlayerID( owner, true )
@@ -811,10 +814,7 @@ function CreateTerritoryMap()
 				if not type then
 					Dprint("WARNING, can't find type for playerID = " .. owner ..", civID = " .. civID)
 				end
-				-- all tiles belong to capital city ? or initialize to close city ? leave original value from WB map ?
-				--local capitalCity = player:GetCapitalCity()
-				--local closeCity = GetCloseCity ( owner, plot )
-				--plot:SetOwner(owner, -1 )
+
 				territoryMap[GetPlotKey ( plot )] = { PlayerID = owner, CivID = civID, Type = type, TerrainType = plot:GetTerrainType(), FeatureType = plot:GetFeatureType() }
 			end
 			
@@ -896,7 +896,7 @@ end
 function CommonOnEnterGame()
 	Events.SerialEventCityCaptured.Add(	VictoryCheck )
 	GameEvents.CityCaptureComplete.Add(	HandleCityCapture )					-- called before the attack animation
-	LuaEvents.OnCityCaptured( FixCityGraphicBug )							-- called after the attack animation
+	--LuaEvents.OnCityCaptured.Add( FixCityGraphicBug )						-- called after the attack animation ?
 	GameEvents.MustAbortAttack.Add(	AbortSuicideAttacks )
 	GameEvents.CombatResult.Add( CombatResult )
 	GameEvents.CombatEnded.Add(	CombatEnded )
@@ -919,6 +919,7 @@ function CommonOnEnterGame()
 	GameEvents.PlayerDoTurn.Add( LaunchMilitaryOperation )
 	GameEvents.PlayerDoTurn.Add( ResetCombatTracking )
 	GameEvents.PlayerDoTurn.Add( ReinitUnits )
+	GameEvents.PlayerDoTurn.Add( UpdatePlayerData )
 	GameEvents.PlayerCanConstruct.Add( PlayerBuildingRestriction )
 	GameEvents.PlayerCanTrain.Add( PlayerTrainingRestriction )
 	GameEvents.PlayerCanCreate.Add( PlayerCreateRestriction )
@@ -941,6 +942,7 @@ function CommonOnEnterGame()
 	GameEvents.PushingMissionTo.Add( PushingMissionTo )
 	GameEvents.GameCoreUpdateBegin.Add( InitializeUnitFunctions )
 	InitializeClosedBorders()
+	UpdateGlobalData()
 	InitializeUI()															-- InitializeUI: Last to call
 end
 
@@ -1085,21 +1087,6 @@ function InitializeNumInterceptions()
 		end
 	end
 end
-
-
---Events.UnitFlagUpdated.Add(function() Dprint("UnitFlagUpdated called at " .. tostring(os.clock()) ); end )
---Events.UnitDataEdited.Add(function() Dprint("UnitDataEdited called at " .. tostring(os.clock()) ); end )
---Events.UnitDataRequested.Add(function() Dprint("UnitDataRequested called at " .. tostring(os.clock()) ); end )
---Events.UnitDebugFSM.Add(function() Dprint("UnitDebugFSM called at " .. tostring(os.clock()) ); end )
---Events.UnitLibrarySwap.Add(function() Dprint("UnitLibrarySwap called at " .. tostring(os.clock()) ); end )
-
---Events.SerialEventUnitInfoDirty.Add(function() Dprint("SerialEventUnitInfoDirty called at " .. tostring(os.clock()) ); end )
---Events.LocalMachineUnitPositionChanged.Add(function() Dprint("LocalMachineUnitPositionChanged called at " .. tostring(os.clock()) ); end ) -- ( playerID, unitID, unitPosition )
---Events.UnitStateChangeDetected.Add(function() Dprint("UnitStateChangeDetected called at " .. tostring(os.clock()) ); end ) -- ( playerID, unitID, fogState )
-
---Events.LocalMachineAppUpdate.Add(function() Dprint("LocalMachineAppUpdate called at " .. tostring(os.clock()) ); end )
---GameEvents.GameCoreUpdateBegin.Add(function() Dprint("GameCoreUpdateBegin called at " .. tostring(os.clock()) ); end )
-
 
 function IsUnderControl ( plot, bCapturedPlot )
 
@@ -1263,6 +1250,40 @@ function GiveToNearestPlayer(plot)
 					return
 				end
 			end
+		end
+	end
+end
+
+function UpdatePlayerData(playerID)
+
+	local player = Players[playerID]
+	if not player then
+		return
+	end
+	Dprint("-------------------------------------")
+	Dprint("Updating player #".. tostring(playerID) .." data ...")	
+
+	-- Update number of wounded soldier that could be healed.
+	local wounded = 0
+	for unit in player:Units() do
+		-- Count only wounded from unit that have a supply line
+		if CanGetReinforcement(unit) then
+			local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unit:GetUnitType(), unit)
+			local totalPers = reqPersonnel * unit:GetDamage()
+			wounded = wounded + (totalPers * WOUNDED_PERCENT / 100)
+		end
+	end
+	g_Wounded[playerID] = Round(wounded)
+	---
+
+
+end
+
+function UpdateGlobalData()
+	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
+		local player = Players[playerID]
+		if player and player:IsAlive() and not player:IsBarbarian() then
+			UpdatePlayerData(playerID)
 		end
 	end
 end

@@ -6,44 +6,210 @@
 print("Loading Red Reinforcements Functions...")
 print("-------------------------------------")
 
-function GetPersonnelReinforcement (playerID, reinforcementData)
-	
-	-- use passed table (from toppanel) or  global table (from redmain context)
-	-- passed table is loaded from previous turn save, toppanel display show previous turn data
-	local reinforcementData = reinforcementData or g_ReinforcementData
+function GetNeededReinforcementForUnits(playerID, bOnlySupplied)
 
 	local player = Players[playerID]
+	if not player then
+		return
+	end
 
-	local fromGlobal = math.floor ( player:CalculateTotalYield(YieldTypes.YIELD_FOOD) / 2) --/ player:GetTotalPopulation() * 25)
-	local fromHospital, fromPropaganda, fromRecruiting, fromNeedYou, fromTrait, fromMinor, fromScenario = 0, 0, 0, 0, 0, 0, 0
+	local neededReinforcement = {}
+	neededReinforcement.totalMat = 0
+	neededReinforcement.totalPers = 0
+	neededReinforcement.nextTurnMat = 0
+	neededReinforcement.nextTurnPers = 0
+
+	for unit in player:Units() do
+		-- Count only unit that have a supply line
+		if CanGetReinforcement(unit) or not bOnlySupplied then
+			local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unit:GetUnitType(), unit)
+			local damage = unit:GetDamage()
+			local addedMat = reqMateriel * damage
+			local addedPers = reqPersonnel * damage
+			neededReinforcement.totalMat	= neededReinforcement.totalMat + addedMat
+			neededReinforcement.totalPers	= neededReinforcement.totalPers + addedPers
+			if damage > MAX_HP_HEALED then			
+				neededReinforcement.nextTurnMat		= neededReinforcement.nextTurnMat + (reqMateriel * MAX_HP_HEALED)
+				neededReinforcement.nextTurnPers	= neededReinforcement.nextTurnPers + (reqPersonnel * MAX_HP_HEALED)
+			else
+				neededReinforcement.nextTurnMat		= neededReinforcement.nextTurnMat + addedMat
+				neededReinforcement.nextTurnPers	= neededReinforcement.nextTurnPers + addedPers
+			end
+		end
+	end
+
+
+	return neededReinforcement
+end
+
+function GetHealedFromHospital(city, bUpdate)
+	local healed = 0
+	local playerID = city:GetOwner()
+	if g_Wounded[playerID] then
+		healed = math.min(Round(g_Wounded[playerID] * HOSPITAL_HEALING_PERCENT), HOSPITAL_MAX_HEALING_PER_TURN )
+		if bUpdate then
+			g_Wounded[playerID] = g_Wounded[playerID] - healed
+		end
+	end
+	return healed
+end
+
+function GetCityPersonnel(city, bUpdate) -- when bUpdate is true, variables can be updated (like number of wounded soldiers to be healed)
+	local cityPersonnel = {}
+	local ratio = 100
+	local size = city:GetPopulation()
+	local bCaptured = city:GetOriginalOwner() ~= city:GetOwner()
+
+	cityPersonnel.fromHospital, cityPersonnel.fromPropaganda, cityPersonnel.fromRecruiting, cityPersonnel.fromNeedYou, cityPersonnel.fromFoodYield, cityPersonnel.fromTrait = 0, 0, 0, 0, 0, 0
+
+	-- get ratio from captured cities
+	if bCaptured then 
+		ratio = CAPTURED_REINFORCEMENT_PERCENT	
+		if city:IsOccupied() and not city:IsNoOccupiedUnhappiness() then
+			ratio = OCCUPIED_REINFORCEMENT_PERCENT
+		end
+		if city:IsResistance() then
+			ratio = RESISTANCE_REINFORCEMENT_PERCENT
+		end
+	end
+	cityPersonnel.ratio = ratio
+
+	-- to do : remove (magic numbers) !
+	cityPersonnel.fromFoodYield = cityPersonnel.fromFoodYield + ((city:GetYieldRate(YieldTypes.YIELD_FOOD)/(2)) * ratio / 100)
+	if city:IsHasBuilding(HOSPITAL) then cityPersonnel.fromHospital = cityPersonnel.fromHospital + ((GetHealedFromHospital(city, bUpdate)) * ratio / 100); end
+	if city:IsHasBuilding(RADIO) then cityPersonnel.fromRecruiting = cityPersonnel.fromRecruiting + (size * (RADIO_RECRUITING_FACTOR) * ratio / 100); end
+	if city:IsHasBuilding(ACADEMY) then cityPersonnel.fromRecruiting = cityPersonnel.fromRecruiting + ((25) * ratio / 100); end
+	if city:IsHasBuilding(BARRACKS) then cityPersonnel.fromRecruiting = cityPersonnel.fromRecruiting + ((15) * ratio / 100); end
+	if city:GetProductionProcess() == RECRUITING then cityPersonnel.fromNeedYou = cityPersonnel.fromNeedYou + ( (((city:FoodDifferenceTimes100() / 100) + size) /2) * ratio / 100); end
+
+	cityPersonnel.total = cityPersonnel.fromHospital + cityPersonnel.fromRecruiting + cityPersonnel.fromFoodYield + cityPersonnel.fromNeedYou
+
+	-- Apply bonuses
+	if city:IsHasBuilding(RADIO) then cityPersonnel.fromPropaganda = cityPersonnel.fromPropaganda + ((cityPersonnel.fromRecruiting + cityPersonnel.fromNeedYou) * RADIO_PROPAGANDA_BONUS / 100 * ratio / 100); end	
+	if not bCaptured and GetCivIDFromPlayerID (city:GetOwner()) == USSR then cityPersonnel.fromTrait = (cityPersonnel.fromRecruiting + cityPersonnel.fromNeedYou) * (100) / 100; end -- soviet trait
+
+	-- Total
+	cityPersonnel.total = cityPersonnel.total + cityPersonnel.fromPropaganda + cityPersonnel.fromTrait
+
+	return cityPersonnel
+end
+
+function GetCityPersonnelTooltip(cityPersonnel)
+	
+	local strPersonnelToolTip = ""
+	
+	if (not OptionsManager.IsNoBasicHelp()) then
+		strPersonnelToolTip = strPersonnelToolTip .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_HELP_INFO")
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE][NEWLINE]"
+	end
+	
+	if (cityPersonnel.fromFoodYield ~= 0) then
+		strPersonnelToolTip = strPersonnelToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_FOOD", cityPersonnel.fromFoodYield);
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]";
+	end
+	if (cityPersonnel.fromHospital ~= 0) then
+		strPersonnelToolTip = strPersonnelToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_HOSPITAL", cityPersonnel.fromHospital);
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]";
+	end
+	if (cityPersonnel.fromRecruiting ~= 0) then
+		strPersonnelToolTip = strPersonnelToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_RECRUITING", cityPersonnel.fromRecruiting);
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]";
+	end
+	if (cityPersonnel.fromNeedYou ~= 0) then
+		strPersonnelToolTip = strPersonnelToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_WE_NEED_YOU", cityPersonnel.fromNeedYou);
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]";
+	end
+
+	local iBase = cityPersonnel.fromHospital + cityPersonnel.fromRecruiting + cityPersonnel.fromFoodYield + cityPersonnel.fromNeedYou
+
+	local strTotal
+	if (cityPersonnel.total >= 0) then
+		strTotal = Locale.ConvertTextKey("TXT_KEY_YIELD_TOTAL", cityPersonnel.total, "[ICON_PERSONNEL]")
+	else
+		strTotal = Locale.ConvertTextKey("TXT_KEY_YIELD_TOTAL_NEGATIVE", cityPersonnel.total, "[ICON_PERSONNEL]")
+	end
+	
+	-- Penalties were applied ?
+	local ratio = 100 -- normal ratio
+	if cityPersonnel.ratio ~= ratio then -- captured city
+
+		local strMalusString = ""
+
+		if cityPersonnel.ratio == OCCUPIED_REINFORCEMENT_PERCENT then
+			ratio = ratio - OCCUPIED_REINFORCEMENT_PERCENT
+			strMalusString = strMalusString .. Locale.ConvertTextKey("TXT_KEY_REINFORCEMENT_FROM_OCCUPIED", ratio) .. "[NEWLINE]";
+
+		elseif cityPersonnel.ratio == RESISTANCE_REINFORCEMENT_PERCENT then
+			ratio = ratio - RESISTANCE_REINFORCEMENT_PERCENT				
+			strMalusString = strMalusString .. Locale.ConvertTextKey("TXT_KEY_REINFORCEMENT_FROM_RESISTANCE", ratio) .. "[NEWLINE]";
+
+		else -- captured with administrative building	
+			ratio = ratio - CAPTURED_REINFORCEMENT_PERCENT		
+			strMalusString = strMalusString .. Locale.ConvertTextKey("TXT_KEY_REINFORCEMENT_FROM_CAPTURED", ratio) .. "[NEWLINE]";
+		end		
+		strPersonnelToolTip = strPersonnelToolTip .. "----------------[NEWLINE]" .. strMalusString;
+	end	
+	
+	strPersonnelToolTip = strPersonnelToolTip .. "----------------";
+
+	-- Build combined string
+	if (iBase ~= cityPersonnel.total) then
+		local strBase = Locale.ConvertTextKey("TXT_KEY_YIELD_BASE", iBase, "[ICON_PERSONNEL]")
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]" .. strBase;
+	end
+	
+	-- Modifiers
+	if (cityPersonnel.fromPropaganda ~= 0 or cityPersonnel.fromTrait ~= 0) then
+
+		local strModifiersString = ""
+
+		if (cityPersonnel.fromPropaganda ~= 0) then
+			strModifiersString = strModifiersString .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_PROPAGANDA", RADIO_PROPAGANDA_BONUS);
+		end
+
+		if (cityPersonnel.fromTrait ~= 0) then
+			strModifiersString = strModifiersString .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_TRAIT");
+		end
+
+
+		strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]----------------" .. strModifiersString .. "[NEWLINE]----------------";
+	end
+
+	-- Total
+	strPersonnelToolTip = strPersonnelToolTip .. "[NEWLINE]" .. strTotal;
+
+	return strPersonnelToolTip
+end
+
+function GetPersonnelReinforcement (playerID, bUpdate)
+	
+	local reinforcementData = g_ReinforcementData
+
+	local player = Players[playerID]
+	local personnelReinforcement = {}
+	personnelReinforcement.fromGlobal, personnelReinforcement.fromHospital, personnelReinforcement.fromPropaganda, personnelReinforcement.fromRecruiting, personnelReinforcement.fromNeedYou, personnelReinforcement.fromTrait, personnelReinforcement.fromMinor, personnelReinforcement.fromScenario = 0, 0, 0, 0, 0, 0, 0, 0
 	
 	local handicap = GetHandicapForRED(player)
 
 	-- Bonus from scenario
 	if SCENARIO_PERSONNEL_PER_TURN and not player:IsMinorCiv() then
-		fromScenario = Round(SCENARIO_PERSONNEL_PER_TURN / ((handicap + 2 ) /2) )
+		personnelReinforcement.fromScenario = Round(SCENARIO_PERSONNEL_PER_TURN / ((handicap + 2 ) /2) )
 	end
 
 	for city in player:Cities() do
-		-- to do : link with city population
-		local ratio = 100
-		if city:GetOriginalOwner() ~= city:GetOwner() then ratio = CAPTURED_REINFORCEMENT_PERCENT; end
-		if city:IsOccupied() then ratio = OCCUPIED_REINFORCEMENT_PERCENT; end
-		if city:IsResistance() then ratio = 0; end
-		if city:IsHasBuilding(HOSPITAL) then fromHospital = fromHospital + math.ceil((20) * ratio / 100); end -- to do: link to wounded personnel ?
-		if city:IsHasBuilding(RADIO) then fromPropaganda = fromPropaganda + math.ceil((10) * ratio / 100); end -- to do: link to city population
-		if city:IsHasBuilding(ACADEMY) then fromRecruiting = fromRecruiting + math.ceil(25 * ratio / 100); end
-		if city:IsHasBuilding(BARRACKS) then fromRecruiting = fromRecruiting + math.ceil(15 * ratio / 100); end
-		if city:GetProductionProcess() == RECRUITING then fromNeedYou = fromNeedYou + math.ceil(((city:FoodDifferenceTimes100() / 100)) * ratio / 100); end
+		
+		local cityPersonnel = GetCityPersonnel(city, bUpdate)
+		
+		personnelReinforcement.fromGlobal = personnelReinforcement.fromGlobal + cityPersonnel.fromFoodYield
+		personnelReinforcement.fromHospital = personnelReinforcement.fromHospital + cityPersonnel.fromHospital
+		personnelReinforcement.fromNeedYou = personnelReinforcement.fromNeedYou + cityPersonnel.fromNeedYou
+		personnelReinforcement.fromPropaganda = personnelReinforcement.fromPropaganda + cityPersonnel.fromPropaganda
+		personnelReinforcement.fromRecruiting = personnelReinforcement.fromRecruiting + cityPersonnel.fromRecruiting
+		personnelReinforcement.fromTrait = personnelReinforcement.fromTrait + cityPersonnel.fromTrait
+
 	end
 
-	local total = fromGlobal + fromHospital + fromPropaganda + fromRecruiting + fromNeedYou + fromScenario
-
-	-- apply soviet trait
-	if GetCivIDFromPlayerID (playerID) == USSR then		
-		fromTrait = total
-		total = total + fromTrait
-	end
+	personnelReinforcement.total = personnelReinforcement.fromGlobal + personnelReinforcement.fromHospital + personnelReinforcement.fromPropaganda + personnelReinforcement.fromRecruiting + personnelReinforcement.fromNeedYou + personnelReinforcement.fromScenario + personnelReinforcement.fromTrait
 
 	-- apply minor help
 	if not player:IsMinorCiv() and not player:IsBarbarian() then
@@ -61,54 +227,184 @@ function GetPersonnelReinforcement (playerID, reinforcementData)
 					if level == 2 then ratio = ALLY_REINFORCEMENT_PERCENT; end -- Allied
 					if level == 1 then ratio = FRIEND_REINFORCEMENT_PERCENT; end -- Friend
 					if flux > personnel then
-						bonus = math.ceil(personnel*ratio/100)
+						bonus = personnel*ratio/100
 					else
-						bonus = math.ceil(flux*ratio/100)
+						bonus = flux*ratio/100
 					end
 					-- apply change here only if g_ReinforcementData exist (redmain context, for calculation)
 					if g_ReinforcementData[i] then
 						--g_ReinforcementData[i].Personnel = personnel - bonus
 						--g_ReinforcementData[i].FluxPersonnel = flux - bonus
 					end
-					fromMinor = fromMinor + bonus
+					personnelReinforcement.fromMinor = personnelReinforcement.fromMinor + bonus
 					--Dprint(" - " .. minor:GetName() .. " send " .. bonus .. " troops to reinforce " .. player:GetName() .. " (total reinforcements from allies is " .. fromMinor .. ")" )
 				end
 			end
 		end
 	end
 
-	total = total + fromMinor
+	personnelReinforcement.total = personnelReinforcement.total + personnelReinforcement.fromMinor
 	--Dprint ("   return personnel : " .. total ..",".. fromGlobal ..",".. fromHospital..",".. fromPropaganda..",".. fromRecruiting..",".. fromTrait..",".. fromNeedYou..",".. fromMinor)
-	return total, fromGlobal, fromHospital, fromPropaganda, fromRecruiting, fromTrait, fromNeedYou, fromMinor, fromScenario
+	--return Round(total), Round(fromGlobal), Round(fromHospital), Round(fromPropaganda), Round(fromRecruiting), Round(fromTrait), Round(fromNeedYou), Round(fromMinor), Round(fromScenario)
+	return personnelReinforcement
 end
 
-function GetMaterielReinforcement (playerID, reinforcementData)
-	local reinforcementData = reinforcementData or g_ReinforcementData -- use passed table (from toppanel) or  global table (from redmain context)
+function GetCityMateriel(city, bUpdate)
+	local cityMateriel = {}
+	local ratio = 100
+	local size = city:GetPopulation()
+	local bCaptured = city:GetOriginalOwner() ~= city:GetOwner()
+	local bBlockaded =  city:IsBlockaded()
+
+	cityMateriel.fromProdYield, cityMateriel.fromFactory, cityMateriel.fromHarbor, cityMateriel.fromWarBonds = 0, 0, 0, 0
+
+	-- get ratio from captured cities
+	if bCaptured then 
+		ratio = CAPTURED_REINFORCEMENT_PERCENT	
+		if city:IsOccupied() and not city:IsNoOccupiedUnhappiness() then
+			ratio = OCCUPIED_REINFORCEMENT_PERCENT
+		end
+		if city:IsResistance() then
+			ratio = RESISTANCE_REINFORCEMENT_PERCENT
+		end
+	end
+	cityMateriel.ratio = ratio
+
+	-- to do : remove (magic numbers) !	
+	cityMateriel.fromProdYield = cityMateriel.fromProdYield + ((city:GetYieldRate(YieldTypes.YIELD_PRODUCTION)/(2)) * ratio / 100)
+	if city:IsHasBuilding(FACTORY) then cityMateriel.fromFactory = cityMateriel.fromFactory + math.ceil((20) * ratio / 100); end
+	if city:IsHasBuilding(LAND_FACTORY) then cityMateriel.fromFactory = cityMateriel.fromFactory + math.ceil((15) * ratio / 100); end
+	if city:IsHasBuilding(SMALL_AIR_FACTORY) then cityMateriel.fromFactory = cityMateriel.fromFactory + math.ceil((5) * ratio / 100); end
+	if city:IsHasBuilding(MEDIUM_AIR_FACTORY) then cityMateriel.fromFactory = cityMateriel.fromFactory + math.ceil((5) * ratio / 100); end
+	if city:IsHasBuilding(LARGE_AIR_FACTORY) then cityMateriel.fromFactory = cityMateriel.fromFactory + math.ceil((5) * ratio / 100); end
+	if city:IsHasBuilding(SHIPYARD) then cityMateriel.fromFactory = cityMateriel.fromFactory + math.ceil((15) * ratio / 100); end
+	if city:IsHasBuilding(HARBOR) and not bBlockaded then cityMateriel.fromHarbor = cityMateriel.fromHarbor + math.ceil((10) * ratio / 100); end 
+	if city:GetProductionProcess() == WAR_BONDS then cityMateriel.fromWarBonds = cityMateriel.fromWarBonds + math.ceil((((city:GetCurrentProductionDifferenceTimes100(false, false) + city:GetYieldRateTimes100(YieldTypes.YIELD_GOLD)) / 100 * WAR_BONDS_PRODUCTION_PERCENT / 100)) * ratio / 100); end -- Hey, Firaxis, you could have used simplier callbacks here...
+
+	cityMateriel.total = cityMateriel.fromProdYield + cityMateriel.fromFactory + cityMateriel.fromHarbor + cityMateriel.fromWarBonds
+
+	-- Apply bonuses (none yet)
+	
+	-- Total
+	--cityMateriel.total = cityMateriel.total + bonuses
+
+	return cityMateriel
+end
+
+-- to do...
+function GetCityMaterielTooltip(cityMateriel)
+	
+	local strMaterielToolTip = ""
+	
+	if (not OptionsManager.IsNoBasicHelp()) then
+		strMaterielToolTip = strMaterielToolTip .. Locale.ConvertTextKey("TXT_KEY_MATERIEL_HELP_INFO")
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE][NEWLINE]"
+	end
+	
+	if (cityMateriel.fromProdYield ~= 0) then
+		strMaterielToolTip = strMaterielToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_MATERIEL_FROM_PRODUCTION", cityMateriel.fromProdYield);
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]";
+	end
+	if (cityMateriel.fromFactory ~= 0) then
+		strMaterielToolTip = strMaterielToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_MATERIEL_FROM_FACTORY", cityMateriel.fromFactory);
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]";
+	end
+	if (cityMateriel.fromHarbor ~= 0) then
+		strMaterielToolTip = strMaterielToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_MATERIEL_FROM_HARBOR", cityMateriel.fromHarbor);
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]";
+	end
+	if (cityMateriel.fromWarBonds ~= 0) then
+		strMaterielToolTip = strMaterielToolTip .. "[ICON_BULLET]" .. Locale.ConvertTextKey("TXT_KEY_MATERIEL_FROM_WAR_BONDS", cityMateriel.fromWarBonds);
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]";
+	end
+
+	local iBase = cityMateriel.fromProdYield + cityMateriel.fromFactory + cityMateriel.fromHarbor + cityMateriel.fromWarBonds
+
+	local strTotal
+	if (cityMateriel.total >= 0) then
+		strTotal = Locale.ConvertTextKey("TXT_KEY_YIELD_TOTAL", cityMateriel.total, "[ICON_MATERIEL]")
+	else
+		strTotal = Locale.ConvertTextKey("TXT_KEY_YIELD_TOTAL_NEGATIVE", cityMateriel.total, "[ICON_MATERIEL]")
+	end
+	
+	-- Penalties were applied ?
+	local ratio = 100 -- normal ratio
+	if cityMateriel.ratio ~= ratio then -- captured city
+
+		local strMalusString = ""
+
+		if cityMateriel.ratio == OCCUPIED_REINFORCEMENT_PERCENT then
+			ratio = ratio - OCCUPIED_REINFORCEMENT_PERCENT
+			strMalusString = strMalusString .. Locale.ConvertTextKey("TXT_KEY_REINFORCEMENT_FROM_OCCUPIED", ratio) .. "[NEWLINE]";
+
+		elseif cityMateriel.ratio == RESISTANCE_REINFORCEMENT_PERCENT then
+			ratio = ratio - RESISTANCE_REINFORCEMENT_PERCENT				
+			strMalusString = strMalusString .. Locale.ConvertTextKey("TXT_KEY_REINFORCEMENT_FROM_RESISTANCE", ratio) .. "[NEWLINE]";
+
+		else -- captured with administrative building	
+			ratio = ratio - CAPTURED_REINFORCEMENT_PERCENT		
+			strMalusString = strMalusString .. Locale.ConvertTextKey("TXT_KEY_REINFORCEMENT_FROM_CAPTURED", ratio) .. "[NEWLINE]";
+		end		
+		strMaterielToolTip = strMaterielToolTip .. "----------------[NEWLINE]" .. strMalusString;
+	end	
+	
+	strMaterielToolTip = strMaterielToolTip .. "----------------";
+
+	-- Build combined string
+	if (iBase ~= cityMateriel.total) then
+		local strBase = Locale.ConvertTextKey("TXT_KEY_YIELD_BASE", iBase, "[ICON_MATERIEL]")
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]" .. strBase;
+	end
+	
+	-- Modifiers (none yet)
+	--[[
+	if (cityMateriel.fromPropaganda ~= 0 or cityMateriel.fromTrait ~= 0) then
+
+		local strModifiersString = ""
+
+		if (cityPersonnel.fromPropaganda ~= 0) then
+			strModifiersString = strModifiersString .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_PROPAGANDA", RADIO_PROPAGANDA_BONUS);
+		end
+
+		if (cityPersonnel.fromTrait ~= 0) then
+			strModifiersString = strModifiersString .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_PERSONNEL_FROM_TRAIT");
+		end
+
+
+		strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]----------------" .. strModifiersString .. "[NEWLINE]----------------";
+	end
+	--]]
+
+	-- Total
+	strMaterielToolTip = strMaterielToolTip .. "[NEWLINE]" .. strTotal;
+
+	return strMaterielToolTip
+end
+
+function GetMaterielReinforcement (playerID, bUpdate)
+
+	local reinforcementData = g_ReinforcementData
 
 	local player = Players[playerID]
-	local fromGlobal = math.floor ( player:CalculateTotalYield(YieldTypes.YIELD_PRODUCTION) / 2 ) --/ 10 )
-	local fromFactory, fromHarbor, fromWarBonds, fromMinor, fromScenario = 0, 0, 0, 0, 0
+	local materielReinforcement = {}
+
+	materielReinforcement.fromGlobal, materielReinforcement.fromFactory, materielReinforcement.fromHarbor, materielReinforcement.fromWarBonds, materielReinforcement.fromMinor, materielReinforcement.fromScenario = 0, 0, 0, 0, 0, 0
 
 	-- Bonus from scenario
 	local handicap = GetHandicapForRED(player)
 	if SCENARIO_MATERIEL_PER_TURN and not player:IsMinorCiv() then
-		fromScenario = Round(SCENARIO_MATERIEL_PER_TURN / ((handicap + 2 ) /2) )
+		materielReinforcement.fromScenario = Round(SCENARIO_MATERIEL_PER_TURN / ((handicap + 2 ) /2) )
 	end
 
 	for city in player:Cities() do
 		-- to do : link with city production
-		local ratio = 100
-		if city:GetOriginalOwner() ~= city:GetOwner() then ratio = CAPTURED_REINFORCEMENT_PERCENT; end
-		if city:IsOccupied() then ratio = OCCUPIED_REINFORCEMENT_PERCENT; end
-		if city:IsResistance() then ratio = 0; end
-		if city:IsHasBuilding(FACTORY) then fromFactory = fromFactory + math.ceil((20) * ratio / 100); end
-		if city:IsHasBuilding(LAND_FACTORY) then fromFactory = fromFactory + math.ceil((15) * ratio / 100); end
-		if city:IsHasBuilding(SMALL_AIR_FACTORY) then fromFactory = fromFactory + math.ceil((5) * ratio / 100); end
-		if city:IsHasBuilding(MEDIUM_AIR_FACTORY) then fromFactory = fromFactory + math.ceil((5) * ratio / 100); end
-		if city:IsHasBuilding(LARGE_AIR_FACTORY) then fromFactory = fromFactory + math.ceil((5) * ratio / 100); end
-		if city:IsHasBuilding(SHIPYARD) then fromFactory = fromFactory + math.ceil((15) * ratio / 100); end
-		if city:IsHasBuilding(HARBOR) then fromHarbor = fromHarbor + math.ceil((10) * ratio / 100); end -- to do: no prod when blockaded
-		if city:GetProductionProcess() == WAR_BONDS then fromWarBonds = fromWarBonds + math.ceil(((((city:GetCurrentProductionDifferenceTimes100(false, false) / 100) + (city:GetYieldRateTimes100(YieldTypes.YIELD_GOLD) / 100))/2)) * ratio / 100); end -- Hey, Firaxis, you could have used simplier callbacks here...
+
+		local cityMateriel = GetCityMateriel(city)
+		materielReinforcement.fromGlobal	= materielReinforcement.fromGlobal + cityMateriel.fromProdYield
+		materielReinforcement.fromFactory	= materielReinforcement.fromFactory + cityMateriel.fromFactory	
+		materielReinforcement.fromHarbor	= materielReinforcement.fromHarbor + cityMateriel.fromHarbor
+		materielReinforcement.fromWarBonds	= materielReinforcement.fromWarBonds + cityMateriel.fromWarBonds
+
 	end
 	
 	-- apply minor help
@@ -119,32 +415,26 @@ function GetMaterielReinforcement (playerID, reinforcementData)
 				local favorite = minor:GetMinorCivFavoriteMajor()
 				local friendship = minor:GetMinorCivFriendshipWithMajor(playerID)
 				if friendship > 30 and reinforcementData[i] then
-				--if favorite == playerID  and reinforcementData[i] then
 					local flux = tonumber(reinforcementData[i].FluxMateriel) or 0
 					local materiel = tonumber(reinforcementData[i].Materiel) or 0
 					local level = minor:GetMinorCivFriendshipLevelWithMajor(favorite)
 					local ratio, bonus = 0, 0
 					if level == 2 then ratio = 50; end -- Allied
 					if level == 1 then ratio = 20; end -- Friend
-					if flux > materiel then  -- don't apply change here, called multiple times for display !!!
+					if flux > materiel then
 						bonus = math.ceil(materiel*ratio/100)
 					else
 						bonus = math.ceil(flux*ratio/100)
 					end
-					-- apply change here only if g_ReinforcementData exist (redmain context, for calculation)
-					if g_ReinforcementData[i] then
-						--g_ReinforcementData[i].Materiel = materiel - bonus
-						--g_ReinforcementData[i].FluxMateriel = flux - bonus
-					end
-					fromMinor = fromMinor + bonus
+					materielReinforcement.fromMinor = materielReinforcement.fromMinor + bonus
 				end
 			end
 		end
 	end
 	
-	local total = fromGlobal + fromFactory + fromHarbor + fromWarBonds + fromMinor + fromScenario
-	--Dprint ("   return materiel : " .. total ..",".. fromGlobal..",".. fromFactory.."," ..fromHarbor..",".. fromWarBonds..",".. fromMinor)
-	return total, fromGlobal, fromFactory, fromHarbor, fromWarBonds, fromMinor, fromScenario
+	materielReinforcement.total = materielReinforcement.fromGlobal + materielReinforcement.fromFactory + materielReinforcement.fromHarbor + materielReinforcement.fromWarBonds + materielReinforcement.fromMinor + materielReinforcement.fromScenario
+
+	return materielReinforcement
 end
 
 function GetMaxPersonnel (playerID)
@@ -202,35 +492,38 @@ function InitializeReinforcementTable()
 			
 			local civID = GetCivIDFromPlayerID ( playerID )
 
-			local fluxPersonnel, persFromGlobal, persFromHospital, persFromPropaganda, persFromRecruiting, persFromTrait, persFromNeedYou, persFromMinor, persFromScenario = GetPersonnelReinforcement (playerID)
+			local personnelReinforcement = GetPersonnelReinforcement (playerID)
+			local fluxPersonnel = personnelReinforcement.total
 			local maxPersonnel = GetMaxPersonnel (playerID)
-			local fluxMateriel, matFromGlobal, matFromFactory, matFromHarbor, matFromWarBonds, matFromMinor, matFromScenario = GetMaterielReinforcement (playerID)
+
+			local materielReinforcement = GetMaterielReinforcement (playerID)
+			local fluxMateriel = materielReinforcement.total
 			local maxMateriel = GetMaxMateriel (playerID)
 
 			g_ReinforcementData[playerID] = {}
 			g_ReinforcementData[playerID].Personnel = INITIAL_PERSONNEL_VALUE
-			g_ReinforcementData[playerID].Materiel = INITIAL_MATERIEL_VALUE
+			g_ReinforcementData[playerID].Materiel	= INITIAL_MATERIEL_VALUE
 			g_ReinforcementData[playerID].FluxPersonnel = fluxPersonnel
-			g_ReinforcementData[playerID].FluxMateriel = fluxMateriel
-			g_ReinforcementData[playerID].MaxPersonnel = maxPersonnel
-			g_ReinforcementData[playerID].MaxMateriel = maxMateriel
+			g_ReinforcementData[playerID].FluxMateriel	= fluxMateriel
+			g_ReinforcementData[playerID].MaxPersonnel	= maxPersonnel
+			g_ReinforcementData[playerID].MaxMateriel	= maxMateriel
 		
-			g_ReinforcementData[playerID].ReceivedPers = fluxPersonnel
-			g_ReinforcementData[playerID].ReceivedMat = fluxMateriel
-			g_ReinforcementData[playerID].PersFromGlobal = persFromGlobal
-			g_ReinforcementData[playerID].PersFromHospital = persFromHospital
-			g_ReinforcementData[playerID].PersFromPropaganda = persFromPropaganda
-			g_ReinforcementData[playerID].PersFromRecruiting = persFromRecruiting
-			g_ReinforcementData[playerID].PersFromTrait = persFromTrait
-			g_ReinforcementData[playerID].PersFromNeedYou = persFromNeedYou
-			g_ReinforcementData[playerID].PersFromMinor = persFromMinor
-			g_ReinforcementData[playerID].PersFromScenario = persFromScenario
-			g_ReinforcementData[playerID].MatFromGlobal = matFromGlobal
-			g_ReinforcementData[playerID].MatFromFactory = matFromFactory
-			g_ReinforcementData[playerID].MatFromHarbor = matFromHarbor
-			g_ReinforcementData[playerID].MatFromWarBonds = matFromWarBonds
-			g_ReinforcementData[playerID].MatFromMinor = matFromMinor
-			g_ReinforcementData[playerID].MatFromScenario = matFromScenario
+			g_ReinforcementData[playerID].ReceivedPers		= fluxPersonnel
+			g_ReinforcementData[playerID].ReceivedMat		= fluxMateriel
+			g_ReinforcementData[playerID].PersFromGlobal	= personnelReinforcement.fromGlobal
+			g_ReinforcementData[playerID].PersFromHospital	= personnelReinforcement.fromHospital
+			g_ReinforcementData[playerID].PersFromPropaganda= personnelReinforcement.fromPropaganda
+			g_ReinforcementData[playerID].PersFromRecruiting= personnelReinforcement.fromRecruiting
+			g_ReinforcementData[playerID].PersFromTrait		= personnelReinforcement.fromTrait
+			g_ReinforcementData[playerID].PersFromNeedYou	= personnelReinforcement.fromNeedYou
+			g_ReinforcementData[playerID].PersFromMinor		= personnelReinforcement.fromMinor
+			g_ReinforcementData[playerID].PersFromScenario	= personnelReinforcement.fromScenario
+			g_ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
+			g_ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
+			g_ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
+			g_ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
+			g_ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
+			g_ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
 			g_ReinforcementData[playerID].TotalMatFromSupplyRoute = 0
 			g_ReinforcementData[playerID].MatFromSupplyRoute = 0
 			g_ReinforcementData[playerID].TotalPersFromSupplyRoute = 0
@@ -266,9 +559,12 @@ function Reinforcements(playerID)
 
 		local civID = GetCivIDFromPlayerID ( playerID )
 
-		local fluxPersonnel, persFromGlobal, persFromHospital, persFromPropaganda, persFromRecruiting, persFromTrait, persFromNeedYou, persFromMinor, persFromScenario = GetPersonnelReinforcement (playerID)
+		local personnelReinforcement = GetPersonnelReinforcement (playerID, true) -- second parameter to force updating on some values (like number of wounded left after an Hospital has healed some)
+		local fluxPersonnel = personnelReinforcement.total
 		local maxPersonnel = GetMaxPersonnel (playerID)
-		local fluxMateriel, matFromGlobal, matFromFactory, matFromHarbor, matFromWarBonds, matFromMinor, matFromScenario = GetMaterielReinforcement (playerID)
+
+		local materielReinforcement = GetMaterielReinforcement (playerID, true)
+		local fluxMateriel = materielReinforcement.total
 		local maxMateriel = GetMaxMateriel (playerID)
 		
 		-- Supply Routes
@@ -286,22 +582,22 @@ function Reinforcements(playerID)
 		g_ReinforcementData[playerID].MaxPersonnel = maxPersonnel
 		g_ReinforcementData[playerID].MaxMateriel = maxMateriel
 		
-		g_ReinforcementData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower flux
-		g_ReinforcementData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower flux
-		g_ReinforcementData[playerID].PersFromGlobal = persFromGlobal
-		g_ReinforcementData[playerID].PersFromHospital = persFromHospital
-		g_ReinforcementData[playerID].PersFromPropaganda = persFromPropaganda
-		g_ReinforcementData[playerID].PersFromRecruiting = persFromRecruiting
-		g_ReinforcementData[playerID].PersFromTrait = persFromTrait
-		g_ReinforcementData[playerID].PersFromNeedYou = persFromNeedYou
-		g_ReinforcementData[playerID].PersFromMinor = persFromMinor
-		g_ReinforcementData[playerID].PersFromScenario = persFromScenario
-		g_ReinforcementData[playerID].MatFromGlobal = matFromGlobal
-		g_ReinforcementData[playerID].MatFromFactory = matFromFactory
-		g_ReinforcementData[playerID].MatFromHarbor = matFromHarbor
-		g_ReinforcementData[playerID].MatFromWarBonds = matFromWarBonds
-		g_ReinforcementData[playerID].MatFromMinor = matFromMinor
-		g_ReinforcementData[playerID].MatFromScenario = matFromScenario
+		g_ReinforcementData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower the flux
+		g_ReinforcementData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower the flux
+		g_ReinforcementData[playerID].PersFromGlobal = personnelReinforcement.fromGlobal
+		g_ReinforcementData[playerID].PersFromHospital = personnelReinforcement.fromHospital
+		g_ReinforcementData[playerID].PersFromPropaganda = personnelReinforcement.fromPropaganda
+		g_ReinforcementData[playerID].PersFromRecruiting = personnelReinforcement.fromRecruiting
+		g_ReinforcementData[playerID].PersFromTrait = personnelReinforcement.fromTrait
+		g_ReinforcementData[playerID].PersFromNeedYou = personnelReinforcement.fromNeedYou
+		g_ReinforcementData[playerID].PersFromMinor = personnelReinforcement.fromMinor
+		g_ReinforcementData[playerID].PersFromScenario = personnelReinforcement.fromScenario
+		g_ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
+		g_ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
+		g_ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
+		g_ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
+		g_ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
+		g_ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
 		
 		Dprint("-------------------------------------", bDebug)
 		Dprint("Sending Reinforcements to units...", bDebug)

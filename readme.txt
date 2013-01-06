@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.36
+v.37
 
 	-- Presentation --
 
@@ -15,7 +15,7 @@ Once you've enabled all the mods you want to play with, click "next"
 
 - Important : when updating always remove the previous version of any mod from your mod folder
 
-- update your version of Civilization to at least patch 1.0.1.217
+- update your version of Civilization to at least patch 1.0.2.21
 - download the 2 mod files to your mod folder (..\My Documents\My Games\Sid Meier's Civilization 5\MODS).
 - launch civ5, go to the mod browser, find the "R.E.D. WWII" lines and activate the mods.
 - from the mod section, go to single player and then to custom game
@@ -31,27 +31,29 @@ None, it won't launch if another mod is activated
 	-- Credits & thanx --
 
 
-danrell: all the WW2 units used in this mod
-T_KCommanderbly : unit icons, DoM presentation and text, scenarios
-FouR_Pharao : unit icons
-JanBoruta : Nation maps
-Hulfgar: civilopedia entries and unit icons
-Putmalk: unit icons
-rhettrongun: UnitAI test
-NiRv4n4: the European Landmass map
-mihaifx: the City States Leaders mod
-pap1723: the WW2 civ flag & leaders icons
-Whys: SaveUtils code
-whoward69: route finding code, satellite reveals cities mod
-smellymummy : AI override
-Mylon : naval counter-attack
-Redox : PathNode function for Air units rebasing
-csebal: CsebMod
-Erendir, Xienwolf, Kael and Thalassicus: Flag Promotions mod
-Gedemon: design/coding, scenarios
+see the full list here: http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.37 (Jan 06, 2013):
+- UI : show current and next turn values for reinfocements, planned values are updated in real time (for example after combat or after changing city specialization/production)
+- UI : add local reinforcement data in city screen.
+- UI : change the fonticon for personnel.
+- UI : add color-coding for damage to the aircraft list, add the current aircraft mission to the tooltip.
+- UI : change some of the game text related to food and gold to reflect the mod's rules.
+- UI : include the "Simple 24 Hour Clock Mod" from AgentofEvil in top panel.
+- Bugfix: the score in Stalingrad scenario was broken again (this time I forgot to change the original plot ownership initialization with the new tile supply system)
+- Bugfix: LuaEvents.OnCityCaptured fire for all city capture.
+- Bugfix: the new code to check ratio restriction for the AI failed for armor units on a few scenarios and was crashing the AI override script.
+- Bugfix: the diplomacy AreSameside function was sometime crashing, causing the AI override script to fail when searching for a city to heal its ships.
+- Optimization: archiving of the combat log can be deactivated, while cleaning remains active (archiving could take up to 2-3 mn every 10-15 turns in late games with more than 10.000 combats)
+- Balance : "buy war bonds" process has been buffed, it now converts 75% of city gold+production to materiel (was 50%)
+- Balance : Hospital truly heals wounded soldiers. Each turn the game calculate the number of "out of combat" men based on units damage and their personnel ratio (for units that have a supply line), then it applies another ratio to get a "pool of wounded" (men that are not dead or invalid), and finally each hospital can heal 3% of that pool with a maximum rate of 150 personnel / turn. 
+- Balance : Radio generate a number of recruits based on city size (x3) and provide a 50% bonus to all recruiting buildings (the radio itself, barracks, military academy and the "We need you" process).
+- Balance : the USSR trait is only applied on direct recruitement source (barracks, military academy, radio, "we need you").
+- Balance : deal duration (open borde) is all game (well 999 turns in fact)
+
 
 v.36 (Dec 30, 2012):
 - DLL : Update source code to 1.0.2.21 (thanks, again, to whoward69's compilation tips)
@@ -572,4 +574,4 @@ Thanks to Civfanatics, R.E.D. WWII has it's [url=http://forums.civfanatics.com/f
 [b]Credits[/b]
 =========================================================================
 
-danrell, T_KCommanderbly, FouR_Pharao, JanBoruta, Hulfgar, Putmalk, NwabudikeMorgan, rhettrongun, Genghis Kai, NiRv4n4, mihaifx, pap1723, Whys, whoward69, smellymummy, Redox, Mylon, csebal, Erendir, Xienwolf, Kael, Thalassicus, PAVLOS_GR300
+see the full [url=http://forums.civfanatics.com/showthread.php?t=484955 ]credits list[/url].

@@ -1691,7 +1691,7 @@ INSERT INTO "Units" ('Type', 'Description', 'Civilopedia', 'Strategy', 'Help', '
 			("ART_DEF_UNIT_TANK_T34_85"), "UnitArtInfoCulturalVariation", "UnitArtInfoEraVariation", ("PROJECT_T34_85"), "SpaceshipProject", "LeaderPromotion", "LeaderExperience", "DontShowYields", "ShowInPedia", "MoveRate", ("1"), "PortraitIndex", "IconAtlas", ("WW2_UNIT_FLAGS")
 	FROM "Units" WHERE (Type = "UNIT_TANK_2_D");
 INSERT INTO "Language_en_US" ( 'Tag', 'Text' )
-	VALUES ( 'TXT_KEY_UNIT_TANK_T34_85', 'T-35/85' );
+	VALUES ( 'TXT_KEY_UNIT_TANK_T34_85', 'T-34/85' );
 INSERT INTO "Unit_AITypes" ('UnitType', 'UnitAIType')
 	SELECT ("UNIT_TANK_T34_85"), "UnitAIType"
 	FROM "Unit_AITypes" WHERE (UnitType = "UNIT_TANK_2_D");

@@ -29,17 +29,17 @@
 			<Text>Forms a [ICON_CONNECTED] Trade Route with the [ICON_CAPITAL] Capital over water (if they're not already [ICON_CONNECTED] connected by land).[NEWLINE]City must be built on the coast.[NEWLINE]+15% [ICON_PRODUCTION] Production for Naval Units.[NEWLINE]+10 [ICON_MATERIEL] Materiel / turn.[NEWLINE]Can stock 50 [ICON_MATERIEL] Materiel.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_HOSPITAL_STRATEGY">
-			<Text>The Hospital will heal wounded soldiers.[NEWLINE]+20 [ICON_PERSONNEL] Personnel / turn.</Text>
+			<Text>The Hospital will heal up to 3% of your wounded soldiers each turn, with a maximum rate of 150 [ICON_PERSONNEL] Personnel.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_BROADCAST_TOWER_HELP">
-			<Text>Using radio to broadcast propaganda will gain new recruits for the army.[NEWLINE]Combined with an Administrative Building, it will allow units recruiting in occupied cities.[NEWLINE]+10 [ICON_PERSONNEL] Personnel / turn.</Text>
+			<Text>Radio are used to broadcast propaganda.[NEWLINE]With an Administrative Building, it allows units training and reinforcement process in occupied cities.[NEWLINE]Generate [ICON_PERSONNEL] Personnel recruitment, depending of city size.[NEWLINE]+ 50 % [ICON_PERSONNEL] Personnel recruitment rate from all buildings in this city.</Text>
 		</Replace>
 
 		<Replace Tag="TXT_KEY_BUILDING_COURTHOUSE">
 			<Text>Administrative Building</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_COURTHOUSE_HELP">
-			<Text>Allows administration of occupied cities.[NEWLINE]Combined with a Broadcast Tower to diffuse our propaganda, it will allow units recruiting in occupied cities.</Text>
+			<Text>Allows administration of occupied cities.[NEWLINE]With a Broadcast Tower for propaganda, it allows units training and reinforcement process in occupied cities.[NEWLINE]Raise the base reinforcement rate in captured cities.</Text>
 		</Replace>
 
 		<Replace Tag="TXT_KEY_BUILDING_BANK_HELP">

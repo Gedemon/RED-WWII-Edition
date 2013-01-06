@@ -109,15 +109,19 @@ function AreSameSide( player1ID, player2ID)
 
 	local bDebug = false
 
-	if player1ID == -1 or player2ID == -1 then
-		return false
-	end
-
 	if player1ID == player2ID then -- obvious but useful !
 		return true
 	end
 	local player = Players[ player1ID ]
 	local player2 = Players[ player2ID ]
+
+	if not player then
+		return false
+	end
+	if not player2 then
+		return false
+	end
+
 	Dprint ("testing same side for : " .. player:GetName() .." and " .. player2:GetName(), bDebug )
 	local team = Teams[ player:GetTeam() ]
 	local team2 = Teams[ player2:GetTeam() ]

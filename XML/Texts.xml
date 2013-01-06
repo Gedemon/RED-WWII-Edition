@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameData>
-<!-- English -->
+<!-- English / US -->
 	<Language_en_US>
-
 
 		<!-- ++++++++++++++++++++ -->
 		<!-- +  REPLACED TEXTS  + -->
@@ -36,6 +35,22 @@
 
 		<Replace Tag="TXT_KEY_PRODMOD_UNIT_SUPPLY">
 			<Text>[NEWLINE][ICON_BULLET]Modifier from Supply: {1_Num}%</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_CITYVIEW_CITIZENS_TEXT">
+			<Text>City Size: {1_NumCitizens}</Text>
+		</Replace>
+		
+		<Replace Tag="TXT_KEY_FOOD_HELP_INFO">
+			<Text>[ICON_FOOD] Food is what determines the number of soldiers that your army can sustain. The more food is produced by your nation, the faster your reserve of personnel will be filled.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_GOLD_HELP_INFO">
+			<Text>[ICON_GOLD] Gold is stockpiled in the national treasury. It may be used to purchase items in Cities, sustain your infrastructure, and as leverage in Diplomacy.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_TP_GOLD_EXPLANATION">
+			<Text>With [ICON_GOLD] Gold you may purchase units and buildings in your cities, sustain your infrastructure, and use it as leverage in Diplomacy.</Text>
 		</Replace>
 		
 		<!-- Damage Text -->
@@ -494,7 +509,7 @@
 		</Row>
 		
 		<Row Tag="TXT_KEY_TRAIT_GREAT_PATRIOTIC_WAR">
-			<Text>Double the rate of [ICON_PERSONNEL] personnel recruiting for reinforcements.</Text>
+			<Text>Double the rate of [ICON_PERSONNEL] personnel recruited in Soviet cities.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_TRAIT_GREAT_PATRIOTIC_WAR_DESC">
 			<Text>Great Patriotic War</Text>
@@ -506,16 +521,30 @@
 			<Text>Your country needs YOU !</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROCESS_RECRUITING_HELP">
-			<Text>Recruits personnel for reinforcement in this city. The number of recruits per turn is relative to this city [ICON_FOOD] food production.</Text>
+			<Text>Recruits personnel for reinforcement in this city. The number of recruits per turn is relative to this city size and [ICON_FOOD] growth.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROCESS_WAR_BONDS">
 			<Text>Buy War Bonds !</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROCESS_WAR_BONDS_HELP">
-			<Text>Convert 50% of [ICON_GOLD] gold and [ICON_PRODUCTION] production to materiel for reinforcements.</Text>
+			<Text>Convert 75% of [ICON_GOLD] gold and [ICON_PRODUCTION] production to materiel for reinforcements.</Text>
 		</Row>
 		
 		<!-- WWII UI -->
+
+		<Row Tag="TXT_KEY_NUMBER_TEXT">
+			<Text>{1_Num:number "#.##"}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NUMBER_PERTURN_TEXT">
+			<Text>+{1_perTurn:number "#.##"}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE">
+			<Text>[COLOR_WARNING_TEXT]{1_perTurn:number "#.##"}[ENDCOLOR]</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_CITY_POPULATION"  >
+			<Text>City Population = {1_Num} [ICON_CITIZEN]</Text>
+		</Row>
 
 		<Row Tag="TXT_KEY_TP_SCENARIO_GPT">
 			<Text>{1_Num} from scenario setting.</Text>
@@ -525,6 +554,59 @@
 		</Row>
 		<Row Tag="TXT_KEY_PRODUCTION_PERSONNEL">
 			<Text>[ICON_PERSONNEL] Personnel: {1_Num} for 1 HitPoint.</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_MATERIEL">
+			<Text>Materiel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_HELP_INFO">
+			<Text>[ICON_MATERIEL] Materiel are needed to reinforce your units after they have taken damage in combat. Depending of the unit type, more or less materiel will be needed.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_PRODUCTION">
+			<Text>{1_Num} [ICON_MATERIEL] from city production</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_FACTORY">
+			<Text>{1_Num} [ICON_MATERIEL] from factories</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_HARBOR">
+			<Text>{1_Num} [ICON_MATERIEL] from harbor (imports)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_WAR_BONDS">
+			<Text>{1_Num} [ICON_MATERIEL] from War Bonds</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_PERSONNEL">
+			<Text>Personnel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_HELP_INFO">
+			<Text>[ICON_PERSONNEL] Personnel are needed to reinforce your units after they have taken casualties in combat. Depending of the unit type, more or less personnel will be needed.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_FOOD">
+			<Text>{1_Num} [ICON_PERSONNEL] from city growth</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_HOSPITAL">
+			<Text>{1_Num} [ICON_PERSONNEL] from healed soldiers</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_RECRUITING">
+			<Text>{1_Num} [ICON_PERSONNEL] recruited from buildings</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_WE_NEED_YOU">
+			<Text>{1_Num} [ICON_PERSONNEL] recruited from city process</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_PROPAGANDA">
+			<Text>+ {1_Num} % recruiting from propaganda</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_TRAIT">
+			<Text>+ 100 % recruiting from trait</Text>
+		</Row>
+		<Row Tag="TXT_KEY_REINFORCEMENT_FROM_OCCUPIED">
+			<Text>(with {1_Num} % occupation penalty)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_REINFORCEMENT_FROM_RESISTANCE">
+			<Text>(with {1_Num} % resistance penalty)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_REINFORCEMENT_FROM_CAPTURED">
+			<Text>(with {1_Num} % capture penalty)</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_UNIT_SUPPLY_TOOLTIP">
@@ -537,10 +619,9 @@
 		<!-- Impassable Features for closed borders -->
 		<Row Tag="TXT_KEY_FEATURE_CLOSED_BORDER">
 			<Text>Closed Borders</Text>
-		</Row>
-		
+		</Row>		
 	
-</Language_en_US>
+	</Language_en_US>
 <!-- German -->
 	<Language_DE_DE>
 	</Language_DE_DE>

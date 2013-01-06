@@ -187,7 +187,7 @@
                 </Grid>
                 <Image Anchor="R,T" Offset="0,0" Texture="VerticalTrim.dds" Size="5.26"/>
                 <Grid Anchor="L,T" Size="70,24" Color="White.0" Offset="0,0" Style="GridSquare8">
-                    <Label Anchor="C,C" Offset="0,-2" String="+89" Color0="Science.255" Color1="0.0.0.128" Color2="255.255.200.255" Font="TwCenMT22" FontStyle="Shadow" ID="Science"/>
+                    <Label Anchor="C,C" Offset="0,-2" String="+89" Font="TwCenMT22" Color0="Food.255" Color1="0.0.0.128" Color2="255.255.200.255" FontStyle="Shadow" ID="Science"/>
                 </Grid>
                 <Image Anchor="R,T" Offset="0,0" Texture="VerticalTrim.dds" Size="5.26"/>
                 <Grid Anchor="L,T" Size="70,24" Color="White.0" Offset="0,0" Style="GridSquare8">
@@ -195,12 +195,12 @@
                 </Grid>
                 <Image Anchor="R,T" Offset="0,0" Texture="VerticalTrim.dds" Size="5.26"/>
                 <Grid Anchor="L,T" Size="70,24" Color="White.0" Offset="0,0" Style="GridSquare8">
-                    <Label Anchor="C,C" Offset="0,-2" String="+2" Color0="Culture.255" Color1="0.0.0.128" Color2="255.255.200.255" Font="TwCenMT22" FontStyle="Shadow" ID="Culture"/>
+                    <Label Anchor="C,C" Offset="0,-2" String="+2" Font="TwCenMT22" Color0="Production.255" Color1="0.0.0.128" Color2="255.255.200.255" FontStyle="Shadow" ID="Culture"/>
                 </Grid>
             </Stack>
             <Image Anchor="L,T" Offset="0,-5" Texture="HorizontalTrim.dds" Size="452.5"/>
         </Box>
-    </Grid>
+</Grid>
 
 
     <!-- BOTTOM PANEL-->

@@ -211,8 +211,7 @@ function UpdateWindow( city )
     Controls.CityName:SetText( city:GetName() );
     
     local cityPopulation = city:GetPopulation();
-    Controls.Population:SetText( cityPopulation );
-    Controls.PopulationSuffix:LocalizeAndSetText("TXT_KEY_CITYVIEW_CITIZENS_TEXT", cityPopulation);
+    Controls.Population:LocalizeAndSetText("TXT_KEY_CITYVIEW_CITIZENS_TEXT", cityPopulation);
     
     local productionYield = city:GetYieldRate(YieldTypes.YIELD_PRODUCTION);
     local productionPerTurn = math.floor(productionYield + (productionYield * (city:GetProductionModifier() / 100)));
@@ -222,26 +221,22 @@ function UpdateWindow( city )
 		scienceYield = 0;
 	end
     
-	Controls.GrowthBar:SetPercent( city:GetFood() / city:GrowthThreshold() );
+
     Controls.Food:SetText( "[ICON_FOOD]" .. city:FoodDifference() );
     Controls.Production:SetText( "[ICON_PRODUCTION]" .. productionPerTurn );
-    Controls.Science:SetText( "[ICON_RESEARCH]" ..  scienceYield);
-    Controls.Gold:SetText( "[ICON_GOLD]" .. city:GetYieldRate( YieldTypes.YIELD_GOLD ) );
-    Controls.Culture:SetText( "[ICON_CULTURE]" .. city:GetJONSCulturePerTurn() );
-    Controls.CityButton:SetVoids( city:GetX(), city:GetY() );
+	
+	local cityPersonnel = GetCityPersonnel(city);
+    Controls.Science:SetText( "[ICON_PERSONNEL]" ..  Round(cityPersonnel.total));
 
-	local cityGrowth = city:GetFoodTurnsLeft();			
-	if (city:IsFoodProduction() or city:FoodDifferenceTimes100() == 0) then
-		Controls.CityGrowthLabel:SetText(Locale.ConvertTextKey("TXT_KEY_CITYVIEW_STAGNATION_TEXT"));
-	elseif city:FoodDifference() < 0 then
-		Controls.CityGrowthLabel:SetText(Locale.ConvertTextKey("TXT_KEY_CITYVIEW_STARVATION_TEXT"));
-	else
-		Controls.CityGrowthLabel:SetText(Locale.ConvertTextKey("TXT_KEY_CITYVIEW_TURNS_TILL_CITIZEN_TEXT", cityGrowth));
-	end
+    Controls.Gold:SetText( "[ICON_GOLD]" .. city:GetYieldRate( YieldTypes.YIELD_GOLD ) );
+		
+	local cityMateriel = GetCityMateriel(city);
+    Controls.Culture:SetText( "[ICON_MATERIEL]" .. Round(cityMateriel.total) );
+    Controls.CityButton:SetVoids( city:GetX(), city:GetY() );
 
 	-- Yield (and Culture) Tooltips
 	local strFoodToolTip = GetFoodTooltip(city);
-	Controls.PopBox:SetToolTipString(strFoodToolTip);
+	Controls.PopBox:SetToolTipString(Locale.ConvertTextKey("TXT_KEY_CITY_POPULATION", city:GetRealPopulation()));
 	Controls.Food:SetToolTipString(strFoodToolTip);
 	
 	local strProductionToolTip = GetProductionTooltip(city);
@@ -250,16 +245,21 @@ function UpdateWindow( city )
 	local strGoldToolTip = GetGoldTooltip(city);
 	Controls.Gold:SetToolTipString(strGoldToolTip);
 	
-	local strScienceToolTip = GetScienceTooltip(city);
-	Controls.Science:SetToolTipString(strScienceToolTip);
+	local cityPersonnelTooltip = GetCityPersonnelTooltip(cityPersonnel)
+	Controls.Science:SetToolTipString(cityPersonnelTooltip);
 	
-	local strCultureToolTip = GetCultureTooltip(city);
-	Controls.Culture:SetToolTipString(strCultureToolTip);
+	local cityPersonnelTooltip = GetCityMaterielTooltip(cityMateriel)
+	Controls.Culture:SetToolTipString(cityPersonnelTooltip);
    
 	local ourCiv = player:GetCivilizationType();
     local ourCivCiv = GameInfo.Civilizations[ourCiv];
  	IconHookup( ourCivCiv.PortraitIndex, 32, ourCivCiv.IconAtlas, Controls.CivIcon );                    
-            
+    
+	-- show original owner icon... todo : need check for CS !
+	--local oldCiv = Players[city:GetOriginalOwner()]:GetCivilizationType();
+    --local oldCivCiv = GameInfo.Civilizations[oldCiv];
+ 	--IconHookup( oldCivCiv.PortraitIndex, 32, oldCivCiv.IconAtlas, oldCivCiv.CivIcon );
+
 	local strTurnsLeft = g_strInfiniteTurns;
 	
 	local bGeneratingProduction = false;

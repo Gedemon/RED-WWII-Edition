@@ -15,7 +15,7 @@ include("InstanceManager")
 -- Gold Tooltip init
 function DoInitStalingradUI()
 	ContextPtr:LookUpControl("/InGame/TopPanel/GoldPerTurn"):SetToolTipCallback( GoldTipforStalingradHandler )
-	ContextPtr:LookUpControl("/InGame/TopPanel/ResourceString"):SetToolTipCallback( ToolTipStalingradScore )
+	ContextPtr:LookUpControl("/InGame/TopPanel/REDScore"):SetToolTipCallback( ToolTipStalingradScore )
 	UpdateStalingradScoreString()
 end
 
@@ -228,8 +228,8 @@ function UpdateStalingradScoreString()
 		scoreString = scoreString .. " (".. tostring(turnsLeft) .." turn(s) left)"
 	end
 
-	ContextPtr:LookUpControl("/InGame/TopPanel/ResourceString"):SetText( scoreString )
-	ContextPtr:LookUpControl("/InGame/TopPanel/ResourceString"):SetHide( false )
+	ContextPtr:LookUpControl("/InGame/TopPanel/REDScore"):SetText( scoreString )
+	ContextPtr:LookUpControl("/InGame/TopPanel/REDScore"):SetHide( false )
 end
 
 
@@ -603,7 +603,7 @@ end
 function CreateTerritoryMap()
 	Dprint("-------------------------------------")
 	Dprint("Creating Territory Map...")
-	--local territoryMap = LoadTerritoryMap()
+	local territoryMap = LoadTerritoryMap()
 
 	for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
 		local plot = Map.GetPlotByIndex(iPlotLoop)
@@ -627,13 +627,29 @@ function CreateTerritoryMap()
 						plot:SetRevealed(iTeamLoop, true)
 					end
 				end
-				-- remove city ownership...
-				plot:SetOwner(-1, -1 )
-				plot:SetOwner(owner, -1 )
+				local player = Players [owner]
+				local civID = GetCivIDFromPlayerID( owner, true )
+				local type
+				if (player:IsMinorCiv()) then
+					type = GameInfo.MinorCivilizations[civID].Type
+				else
+					type = GameInfo.Civilizations[civID].Type
+				end
+				if not type then
+					Dprint("WARNING, can't find type for playerID = " .. owner ..", civID = " .. civID)
+				end
+
+				territoryMap[GetPlotKey ( plot )] = { PlayerID = owner, CivID = civID, Type = type, TerrainType = plot:GetTerrainType(), FeatureType = plot:GetFeatureType() }
+
 			else
 				-- WB map is crashing trying to place dummy civ for hotseat if all culture is already filled, so fill it now it has been placed during initialization...
 				local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
 				plot:SetOwner(iGermany)
+				local player = Players [iGermany]
+				local civID = GetCivIDFromPlayerID( iGermany, true )
+				local type = GameInfo.Civilizations[civID].Type
+
+				territoryMap[GetPlotKey ( plot )] = { PlayerID = iGermany, CivID = civID, Type = type, TerrainType = plot:GetTerrainType(), FeatureType = plot:GetFeatureType() }
 			end
 		end
 	end

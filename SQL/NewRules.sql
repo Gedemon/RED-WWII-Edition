@@ -9,6 +9,7 @@
 --------------------------------------------------------------------------------------------
 DELETE FROM GameSpeed_Turns WHERE GameSpeedType='GAMESPEED_STANDARD';
 INSERT INTO GameSpeed_Turns (GameSpeedType, MonthIncrement,TurnsPerIncrement) VALUES ('GAMESPEED_STANDARD', '1', '360');
+UPDATE GameSpeeds SET DealDuration = 9999;
 
 --------------------------------------------------------------------------------------------
 -- Cities

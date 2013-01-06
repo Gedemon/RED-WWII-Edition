@@ -523,8 +523,11 @@ function SaveAllTable()
 	DEBUG_PERFORMANCE = true	
 	local t1 = os.clock()
 
-	if #g_CombatsLog > MAX_COMBAT_LOG_ENTRIES then -- do we need to archive combat log ?
-		local logArchive = LoadData("CombatsLogArchive", {}, COMBAT_ARCHIVE_SAVE_SLOT)
+	if #g_CombatsLog > MAX_COMBAT_LOG_ENTRIES then -- do we need to archive or delete entries in combat log ?
+		local logArchive = {}
+		if USE_ARCHIVE then
+			LoadData("CombatsLogArchive", {}, COMBAT_ARCHIVE_SAVE_SLOT)
+		end
 		local logActive = {}
 		for i, data in ipairs(g_CombatsLog) do
 			if i < (MAX_COMBAT_LOG_ENTRIES - MIN_COMBAT_LOG_ENTRIES) then 
@@ -533,7 +536,9 @@ function SaveAllTable()
 				table.insert(logActive, data)
 			end
 		end
-		SaveData("CombatsLogArchive", logArchive, COMBAT_ARCHIVE_SAVE_SLOT)
+		if USE_ARCHIVE then
+			SaveData("CombatsLogArchive", logArchive, COMBAT_ARCHIVE_SAVE_SLOT)
+		end
 		g_CombatsLog = logActive
 	end
 	
@@ -734,6 +739,7 @@ end
 function ShareGlobalTables()
 	print("Sharing Global Tables...")
 	g_ReinforcementData = share ("Reinforcement", g_ReinforcementData)
+	g_Wounded			= share ("Wounded", g_Wounded)
 end
 
 --------------------------------------------------------------
