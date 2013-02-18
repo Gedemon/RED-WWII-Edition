@@ -2109,3 +2109,968 @@ g_Military_Project = {
 	},	
 	------------------------------------------------------------------------------------
 }
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Invasion of Poland Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarPolandPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19390901 <= turnDate and 19390901 > prevDate then
+		Dprint ("Scripted Event : War With Poland Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_POLAND, 1) end		
+		end
+	end
+end
+
+function WarPolandPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19390901 <= turnDate and 19390901 > prevDate then
+		Dprint ("Scripted Event : War With Poland Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_POLAND, 1) end		
+		end
+	end
+end
+
+function WarPolandPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19390901 <= turnDate and 19390901 > prevDate then
+		Dprint ("Scripted Event : War With Poland Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_POLAND, 1) end		
+		end
+	end
+end
+
+function WarPolandPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19390901 <= turnDate and 19390901 > prevDate then
+		Dprint ("Scripted Event : War With Poland Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_POLAND, 1) end		
+		end
+	end
+end
+
+function WarPolandPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19390901 <= turnDate and 19390901 > prevDate then
+		Dprint ("Scripted Event : War With Poland Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_POLAND, 1) end		
+		end
+	end
+end
+
+function WarPolandPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19390901 <= turnDate and 19390901 > prevDate then
+		Dprint ("Scripted Event : War With Poland Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_POLAND, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Allies Declare War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarAlliesPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19390903 <= turnDate and 19390903 > prevDate then
+		Dprint ("Scripted Event : War With Allies Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ALLIES, 1) end		
+		end
+	end
+end
+
+function WarAlliesPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19390903 <= turnDate and 19390903 > prevDate then
+		Dprint ("Scripted Event : War With Allies Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ALLIES, 1) end		
+		end
+	end
+end
+
+function WarAlliesPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19390903 <= turnDate and 19390903 > prevDate then
+		Dprint ("Scripted Event : War With Allies Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ALLIES, 1) end			
+		end
+	end
+end
+
+function WarAlliesPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19390903 <= turnDate and 19390903 > prevDate then
+		Dprint ("Scripted Event : War With Allies Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ALLIES, 1) end			
+		end
+	end
+end
+
+function WarAlliesPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19390903 <= turnDate and 19390903 > prevDate then
+		Dprint ("Scripted Event : War With Allies Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ALLIES, 1) end		
+		end
+	end
+end
+
+function WarAlliesPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19390903 <= turnDate and 19390903 > prevDate then
+		Dprint ("Scripted Event : War With Allies Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ALLIES, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Winter War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarWinterPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19391130 <= turnDate and 19391130 > prevDate then
+		Dprint ("Scripted Event : Winter War Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_WINTER, 1) end		
+		end
+	end
+end
+
+function WarWinterPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19391130 <= turnDate and 19391130 > prevDate then
+		Dprint ("Scripted Event : War With Winter Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_WINTER, 1) end		
+		end
+	end
+end
+
+function WarWinterPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19391130 <= turnDate and 19391130 > prevDate then
+		Dprint ("Scripted Event : Winter War Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_WINTER, 1) end			
+		end
+	end
+end
+
+function WarWinterPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19391130 <= turnDate and 19391130 > prevDate then
+		Dprint ("Scripted Event : Winter War Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_WINTER, 1) end			
+		end
+	end
+end
+
+function WarWinterPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19391130 <= turnDate and 19391130 > prevDate then
+		Dprint ("Scripted Event : Winter War Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_WINTER, 1) end		
+		end
+	end
+end
+
+function WarWinterPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19391130 <= turnDate and 19391130 > prevDate then
+		Dprint ("Scripted Event : Winter War Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_WINTER, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Norway Declares War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarNorwayPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19400409 <= turnDate and 19400409 > prevDate then
+		Dprint ("Scripted Event : War With Norway Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_NORWAY, 1) end		
+		end
+	end
+end
+
+function WarNorwayPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19400409 <= turnDate and 19400409 > prevDate then
+		Dprint ("Scripted Event : War With Norway Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_NORWAY, 1) end		
+		end
+	end
+end
+
+function WarNorwayPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19400409 <= turnDate and 19400409 > prevDate then
+		Dprint ("Scripted Event : War With Norway Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_NORWAY, 1) end			
+		end
+	end
+end
+
+function WarNorwayPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19400409 <= turnDate and 19400409 > prevDate then
+		Dprint ("Scripted Event : War With Norway Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_NORWAY, 1) end			
+		end
+	end
+end
+
+function WarNorwayPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19400409 <= turnDate and 19400409 > prevDate then
+		Dprint ("Scripted Event : War With Norway Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_NORWAY, 1) end		
+		end
+	end
+end
+
+function WarNorwayPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19400409 <= turnDate and 19400409 > prevDate then
+		Dprint ("Scripted Event : War With Norway Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_NORWAY, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Italy Declares War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarItalyPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19400610 <= turnDate and 19400610 > prevDate then
+		Dprint ("Scripted Event : War With Italy Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ITALY, 1) end		
+		end
+	end
+end
+
+function WarItalyPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19400610 <= turnDate and 19400610 > prevDate then
+		Dprint ("Scripted Event : War With Italy Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ITALY, 1) end		
+		end
+	end
+end
+
+function WarItalyPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19400610 <= turnDate and 19400610 > prevDate then
+		Dprint ("Scripted Event : War With Italy Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ITALY, 1) end			
+		end
+	end
+end
+
+function WarItalyPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19400610 <= turnDate and 19400610 > prevDate then
+		Dprint ("Scripted Event : War With Italy Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ITALY, 1) end			
+		end
+	end
+end
+
+function WarItalyPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19400610 <= turnDate and 19400610 > prevDate then
+		Dprint ("Scripted Event : War With Italy Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ITALY, 1) end		
+		end
+	end
+end
+
+function WarItalyPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19400610 <= turnDate and 19400610 > prevDate then
+		Dprint ("Scripted Event : War With Italy Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_ITALY, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Low Countries Declares War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarLowCountriesPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19400509 <= turnDate and 19400509 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_LOW_COUNTRIES, 1) end		
+		end
+	end
+end
+
+function WarLowCountriesPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19400509 <= turnDate and 19400509 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_LOW_COUNTRIES, 1) end		
+		end
+	end
+end
+
+function WarLowCountriesPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19400509 <= turnDate and 19400509 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_LOW_COUNTRIES, 1) end			
+		end
+	end
+end
+
+function WarLowCountriesPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19400509 <= turnDate and 19400509 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_LOW_COUNTRIES, 1) end			
+		end
+	end
+end
+
+function WarLowCountriesPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19400509 <= turnDate and 19400509 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_LOW_COUNTRIES, 1) end		
+		end
+	end
+end
+
+function WarLowCountriesPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19400509 <= turnDate and 19400509 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_LOW_COUNTRIES, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Greece Declares War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarGreecePopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19401028 <= turnDate and 19401028 > prevDate then
+		Dprint ("Scripted Event : War With Greece Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_GREECE, 1) end		
+		end
+	end
+end
+
+function WarGreecePopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19401028 <= turnDate and 19401028 > prevDate then
+		Dprint ("Scripted Event : War With Greece Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_GREECE, 1) end		
+		end
+	end
+end
+
+function WarGreecePopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19401028 <= turnDate and 19401028 > prevDate then
+		Dprint ("Scripted Event : War With Greece Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_GREECE, 1) end			
+		end
+	end
+end
+
+function WarGreecePopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19401028 <= turnDate and 19401028 > prevDate then
+		Dprint ("Scripted Event : War With Greece Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_GREECE, 1) end			
+		end
+	end
+end
+
+function WarGreecePopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19401028 <= turnDate and 19401028 > prevDate then
+		Dprint ("Scripted Event : War With Greece Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_GREECE, 1) end		
+		end
+	end
+end
+
+function WarGreecePopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19401028 <= turnDate and 19401028 > prevDate then
+		Dprint ("Scripted Event : War With Greece Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_GREECE, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Russia Declares War Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function WarRussiaPopupGermany()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if 19410622 <= turnDate and 19410622 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_RUSSIA, 1) end		
+		end
+	end
+end
+
+function WarRussiaPopupFrance()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if 19410622 <= turnDate and 19410622 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_RUSSIA, 1) end		
+		end
+	end
+end
+
+function WarRussiaPopupEngland()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if 19410622 <= turnDate and 19410622 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_RUSSIA, 1) end			
+		end
+	end
+end
+
+function WarRussiaPopupUSSR()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iUssr = GetPlayerIDFromCivID (USSR, false, true)
+	local pUssr = Players[iUssr]
+	if 19410622 <= turnDate and 19410622 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pUssr:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_RUSSIA, 1) end			
+		end
+	end
+end
+
+function WarRussiaPopupGreece()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if 19410622 <= turnDate and 19410622 > prevDate then
+		Dprint ("Scripted Event : War With Low Countries Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_RUSSIA, 1) end		
+		end
+	end
+end
+
+
+function WarRussiaPopupItaly()
+	
+	local turn = Game.GetGameTurn()
+	local turnDate, prevDate = 0, 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if g_Calendar[turn-1] then prevDate = g_Calendar[turn-1].Number else  prevDate = turnDate - 1 end
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if 19410622 <= turnDate and 19410622 > prevDate then
+		Dprint ("Scripted Event : War With Russia Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(WAR_RUSSIA, 1) end		
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Fall of France Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function FallFrancePopupGreece()
+	
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if FranceHasFallen() then
+		Dprint ("Scripted Event : Fall of France Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_FRANCE, 1) end		
+		end
+	end
+end
+
+
+function FallFrancePopupGermany()
+	
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if FranceHasFallen() then
+		Dprint ("Scripted Event : Fall of France Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_FRANCE, 1) end		
+		end
+	end
+end
+
+function FallFrancePopupEngland()
+	
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if FranceHasFallen() then
+		Dprint ("Scripted Event : Fall of France Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_FRANCE, 1) end		
+		end
+	end
+end
+
+function FallFrancePopupFrance()
+	
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if FranceHasFallen() then
+		Dprint ("Scripted Event : Fall of France Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_FRANCE, 1) end		
+		end
+	end
+end
+
+function FallFrancePopupUSSR()
+	
+	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
+	local pUSSR = Players[iUSSR]
+	if FranceHasFallen() then
+		Dprint ("Scripted Event : Fall of France Popup ACTIVATED !")
+		for city in pUSSR:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_FRANCE, 1) end		
+		end
+	end
+end
+
+function FallFrancePopupItaly()
+	
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if FranceHasFallen() then
+		Dprint ("Scripted Event : Fall of France Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_FRANCE, 1) end		
+		end
+	end
+end
+
+---------------------------------------------------------------------------------------------------------------------------
+-- Fall of Poland Popup
+----------------------------------------------------------------------------------------------------------------------------
+
+function PolandHasFallen()
+	local savedData = Modding.OpenSaveData()
+	local iValue = savedData.GetValue("PolandHasFalled")
+	if (iValue == 1) then
+		return true
+	else
+		return false
+	end
+end
+
+function FallPolandPopupGreece()
+	
+	local iGreece = GetPlayerIDFromCivID (GREECE, false, true)
+	local pGreece = Players[iGreece]
+	if PolandHasFallen() then
+		Dprint ("Scripted Event : Fall of Poland Popup ACTIVATED !")
+		for city in pGreece:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_POLAND, 1) end		
+		end
+	end
+end
+
+
+function FallPolandPopupGermany()
+	
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+	if PolandHasFallen() then
+		Dprint ("Scripted Event : Fall of Poland Popup ACTIVATED !")
+		for city in pGermany:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_POLAND, 1) end		
+		end
+	end
+end
+
+function FallPolandPopupEngland()
+	
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+	if PolandHasFallen() then
+		Dprint ("Scripted Event : Fall of Poland Popup ACTIVATED !")
+		for city in pEngland:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_POLAND, 1) end		
+		end
+	end
+end
+
+function FallPolandPopupFrance()
+	
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+	if PolandHasFallen() then
+		Dprint ("Scripted Event : Fall of Poland Popup ACTIVATED !")
+		for city in pFrance:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_POLAND, 1) end		
+		end
+	end
+end
+
+function FallPolandPopupUSSR()
+	
+	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
+	local pUSSR = Players[iUSSR]
+	if PolandHasFallen() then
+		Dprint ("Scripted Event : Fall of Poland Popup ACTIVATED !")
+		for city in pUSSR:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_POLAND, 1) end		
+		end
+	end
+end
+
+function FallPolandPopupItaly()
+	
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+	if PolandHasFallen() then
+		Dprint ("Scripted Event : Fall of Poland Popup ACTIVATED !")
+		for city in pItaly:Cities() do
+			if city:IsHasBuilding(PALACE) then city:SetNumRealBuilding(FALL_POLAND, 1) end		
+		end
+	end
+end

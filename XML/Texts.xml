@@ -454,6 +454,9 @@
 		<Row Tag="TXT_KEY_RED_EARTH1936_SCENARIO_TITLE">
 			<Text>Earth - World War II - July 1936</Text>
 		</Row>
+		<Row Tag="TXT_KEY_RED_EARTH1936v2_SCENARIO_TITLE">
+			<Text>Earth V2 - World War II - July 1936</Text>
+		</Row>
 
 		<!-- Small Europe map 68*56 = 3808 tiles -> Huge -->
 		<Row Tag="TXT_KEY_RED_SMALL_EURO1940_SCENARIO_TITLE">

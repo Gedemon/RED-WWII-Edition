@@ -1736,7 +1736,7 @@ g_Convoy = {
 	},
 	[HONGKONG_TO_UK] = {
 		Name = "Hong Kong to UK",
-		DestinationList = { {X=83, Y=44}, {X=84, Y=44}, {X=84, Y=45}, }, -- Adjacent to Hong Kong
+		SpawnList = { {X=83, Y=44}, {X=84, Y=44}, {X=84, Y=45}, }, -- Adjacent to Hong Kong
 		RandomSpawn = false, -- true : random choice in spawn list
 		DestinationList = { {X=9, Y=74}, {X=10, Y=77}, {X=11, Y=71}, }, -- Manchester, Edinburgh, London
 		RandomDestination = false, -- false : sequential try in destination list

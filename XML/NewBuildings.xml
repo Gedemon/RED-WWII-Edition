@@ -501,4 +501,546 @@
 			<HurryCostModifier>200</HurryCostModifier>
 		</Row>
 	</Building_HurryModifiers>
+
+	<!-- EVENTS -->
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_POLAND</Type>
+			<DefaultBuilding>BUILDING_WAR_POLAND</DefaultBuilding>
+			<Description>Invasion of Poland</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_POLAND</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_POLAND</BuildingClass>
+			<Cost>1</Cost>
+			<Help>After a refusal from the Allies to give over the port of Danzig to the Germans, on September 1st 1939 German troops invaded Poland. Just a week earlier Germany and the Soviet Union had signed the Molotov�Ribbentrop Pact agreeing on how to split Poland.</Help>
+			<Description>Invasion of Poland</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Germany has declared war on Poland</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_poland_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_ALLIES</Type>
+			<DefaultBuilding>BUILDING_WAR_ALLIES</DefaultBuilding>
+			<Description>The Allies declare war on Germany</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_ALLIES</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_ALLIES</BuildingClass>
+			<Cost>1</Cost>
+			<Help>Following the German invasion of Poland, the Allies (France, the United Kingdom and their holdings) delivered an ultimatum to Germany to withdraw. Without any response, on September 3rd 1939 the Allies declared war on Germany starting World War II.</Help>
+			<Description>The Allies declare war on Germany</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] The United Kingdom has declared war on Germany [NEWLINE][ICON_BULLET] France has declared war on Germany</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_allies_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_WINTER</Type>
+			<DefaultBuilding>BUILDING_WAR_WINTER</DefaultBuilding>
+			<Description>The Winter War</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_WINTER</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_WINTER</BuildingClass>
+			<Cost>1</Cost>
+			<Help>With the Allies busy with the Germans and a failed negotiation attempt in October 1939 the Soviet Union prepared an invasion of Finland. Without officially declaring war the Soviet Union invaded Finland on November 30th 1939.</Help>
+			<Description>The Winter War</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] The Soviet Union has declared war on Finland</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_winter_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_NORWAY</Type>
+			<DefaultBuilding>BUILDING_WAR_NORWAY</DefaultBuilding>
+			<Description>Invasion of Denmark and Norway</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_NORWAY</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_NORWAY</BuildingClass>
+			<Cost>1</Cost>
+			<Help>With the Allies threatening the German's iron ore supply from Sweden and the need for ports like Narvik for U-Boat operations, Hitler planned for an invasion. On April 9th 1940 Germany commenced it's invasion of Norway and Denmark in hopes that the Allies could not respond in time.</Help>
+			<Description>Invasion of Denmark and Norway</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Germany has declared war on Denmark and Norway [NEWLINE][ICON_BULLET] Denmark and Norway have joined the Allies</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_norway_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_ITALY</Type>
+			<DefaultBuilding>BUILDING_WAR_ITALY</DefaultBuilding>
+			<Description>Italy Enters the War</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_ITALY</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_ITALY</BuildingClass>
+			<Cost>1</Cost>
+			<Help>Although skeptical of entering the war imediately, Italy saw an opportunity. With the German successes in Poland and most of the Allied resources being diverted to protecting France from Germany, Italy on June 10th 1940 declared war on the Allies aligning itself with Germany.</Help>
+			<Description>Italy Enters the War</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Italy has declared war on the Allies [NEWLINE][ICON_BULLET] Italy has joined the Axis</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_italy_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_LOW_COUNTRIES</Type>
+			<DefaultBuilding>BUILDING_WAR_LOW_COUNTRIES</DefaultBuilding>
+			<Description>Invasion of the Low Countries</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_LOW_COUNTRIES</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_LOW_COUNTRIES</BuildingClass>
+			<Cost>1</Cost>
+			<Help>Without the nessesary time and resources for a war of attrition Germany decided to commence a mobile offensive plan hoping to knock France out of the war quickly. On May 9th 1940 German soldiers invaded the low countries, in order to attack France's northern border.</Help>
+			<Description>Invasion of the Low Countries</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Germany has declared war on the Low Countries [NEWLINE][ICON_BULLET] The Low Countries have joined the Allies</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_low_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_GREECE</Type>
+			<DefaultBuilding>BUILDING_WAR_GREECE</DefaultBuilding>
+			<Description>Invasion of Greece and Yugoslavia</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_GREECE</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_GREECE</BuildingClass>
+			<Cost>1</Cost>
+			<Help>Hoping to achieve the same success as Germany, Italy decided to enact its own aggressions. On October 28th 1940 Italy declared war on Greece, Germany too would declare war on Greece and later Yugoslavia in order to prevent the Allies from bombing the vital Romanian oil yards.</Help>
+			<Description>Invasion of Greece and Yugoslavia</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Germany has declared war on Greece and Yugoslavia [NEWLINE][ICON_BULLET] Greece and Yugoslavia have joined the Allies</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_greece_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_RUSSIA</Type>
+			<DefaultBuilding>BUILDING_WAR_RUSSIA</DefaultBuilding>
+			<Description>Invasion of the Soviet Union</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_RUSSIA</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_RUSSIA</BuildingClass>
+			<Cost>1</Cost>
+			<Help>With the Allies hendered in the west, Hitler began preparations for an invasion of the Soviet Union. After his successes against the Allies and the Soviet's short comings in the winter war Hitler expected a quick victory. Germany on June 22nd 1941 declared war on the Soviet Union.</Help>
+			<Description>Invasion of the Soviet Union</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] The Axis has declared war on the Soviet Union</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_russia_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_CHINA</Type>
+			<DefaultBuilding>BUILDING_WAR_CHINA</DefaultBuilding>
+			<Description>Marco Polo Bridge Incident</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_CHINA</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_CHINA</BuildingClass>
+			<Cost>1</Cost>
+			<Help>After China's defeat in the 1st Sino-Japanese war China was forced to hand over the province of Manchuria to the Japanese. Though several skirmishes had played out there was no official war between the Japan and China. On July 7th 1937 the Japanese attacked Chinese troops located near the Marco Polo Bridge.</Help>
+			<Description>Marco Polo Bridge Incident</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Japan has declared war on all of China</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_china_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_AMERICA</Type>
+			<DefaultBuilding>BUILDING_WAR_AMERICA</DefaultBuilding>
+			<Description>America Enters the War</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_AMERICA</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_AMERICA</BuildingClass>
+			<Cost>1</Cost>
+			<Help>America intending to stay out of the war was being pulled closer and closer to war as nation after nation fell to the Axis. On December 7th 1941, the Japanese launched a suprise attack on the American naval and air bases at Pearl Harbor hoping to cripple the American Navy enough to keep them out of the war as long as possible.</Help>
+			<Description>America Enters the War</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Japan has declared war on the Allies [NEWLINE][ICON_BULLET] The Axis nations of Europe have declared war on the United States and her Allies [NEWLINE][ICON_BULLET] The United States, Chinese and their Allies have joined the Allies </Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_america_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_WAR_JAPAN</Type>
+			<DefaultBuilding>BUILDING_WAR_JAPAN</DefaultBuilding>
+			<Description>Soviet invasion of Manchuria</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_WAR_JAPAN</Type>
+			<BuildingClass>BUILDINGCLASS_WAR_JAPAN</BuildingClass>
+			<Cost>1</Cost>
+			<Help>At the Tehran and Yalta conference Stalin promised the Allies to declare war on Japan as soon as the European front had been won. On August 9th 1945 the Soviet Union keeping true to its promise attacked the Japanese hoping to drive their forces away from Korea, Manchuria and China.</Help>
+			<Description>Soviet invasion of Manchuria</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] The Soviet Union has declared war on Japan</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>war_japan_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_PENTAGON_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_FALL_FRANCE</Type>
+			<DefaultBuilding>BUILDING_FALL_FRANCE</DefaultBuilding>
+			<Description>Fall of France</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_FALL_FRANCE</Type>
+			<BuildingClass>BUILDINGCLASS_FALL_FRANCE</BuildingClass>
+			<Cost>1</Cost>
+			<Help>When Paris fell a new French Vichy government formed which surrendered to the Germans agreeing to give up Northern France becoming a Puppet Regime of Germany. Charles De Gaulle however led a seperate "Free France" which would continue to fight on against the Axis and Vichy governments giving vital help to the remaining Allies.</Help>
+			<Description>Fall of France</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] The Minor Nation Vichy France has been formed [NEWLINE][ICON_BULLET] Northern France has been occupied by the Germans [NEWLINE][ICON_BULLET] France has been drived from most of it's former territory but has recieved a large sum of [ICON_GOLD] Gold.</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>fall_france_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_EIFFEL_TOWER_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_FALL_POLAND</Type>
+			<DefaultBuilding>BUILDING_FALL_POLAND</DefaultBuilding>
+			<Description>Fall of Poland</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_FALL_POLAND</Type>
+			<BuildingClass>BUILDINGCLASS_FALL_POLAND</BuildingClass>
+			<Cost>1</Cost>
+			<Help>When war started on September 1st 1939 Poland believed they could defend against the Germans for six months. But without the proper training, the Soviet attack and a population largely unprepared for a war Warsaw fell just a few weeks after the war started.</Help>
+			<Description>Fall of Poland</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Poland has been defeated and it's territory has been annexed by Germany and the Soviet Union</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>fall_poland_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_EIFFEL_TOWER_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_FALL_AUSTRIA</Type>
+			<DefaultBuilding>BUILDING_FALL_AUSTRIA</DefaultBuilding>
+			<Description>Anschluss</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_FALL_AUSTRIA</Type>
+			<BuildingClass>BUILDINGCLASS_FALL_AUSTRIA</BuildingClass>
+			<Cost>1</Cost>
+			<Help>With some of the Austrian government wanting to remain independent and some of the Austrian government wanting to join the Reich, a well planned Nazi coup d'etat saw the Austrian government annexed. On March 12th 1938 German soldiers marched into the country many of them greeted by cheering crowds.</Help>
+			<Description>Anschluss</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Austria has been annexed by Germany</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>fall_austria_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_EIFFEL_TOWER_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_FALL_CZECH</Type>
+			<DefaultBuilding>BUILDING_FALL_CZECH</DefaultBuilding>
+			<Description>Annexation of Czechosolvakia</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_FALL_CZECH</Type>
+			<BuildingClass>BUILDINGCLASS_FALL_CZECH</BuildingClass>
+			<Cost>1</Cost>
+			<Help>Wanting to Join the Sudetenland (which mainly housed German populations) with Germany, Hitler promised the Allies through the Munich agreement that he would no longer request territory. But with many of Czechosolvakia's defenses and production capabilities located in the Sudetenland, Germany on March 16th 1938 invaded the rest of Czechoslvakia annexing the state.</Help>
+			<Description>Annexation of Czechosolvakia</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Czechosolvakia has been annexed by Germany, Hungary and Solvakia [NEWLINE][ICON_BULLET] The Allies have denounced Germany</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>fall_czech_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_EIFFEL_TOWER_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_FALL_ALBANIA</Type>
+			<DefaultBuilding>BUILDING_FALL_ALBANIA</DefaultBuilding>
+			<Description>Fall of Albania</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_FALL_ALBANIA</Type>
+			<BuildingClass>BUILDINGCLASS_FALL_ALBANIA</BuildingClass>
+			<Cost>1</Cost>
+			<Help>With Germany annexing Austria and Czechsolvakia, Italy after it's conquest of Eithiopia decided to make it's own aggressive actions. Seeing Albania as important area for control of the Adriatic sea, Italy invaded Albania on April 7th 1939 facing little resistance Albania was annexed five days later.</Help>
+			<Description>Fall of Albania</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Albania has been annexed by Italy</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>fall_albania_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_EIFFEL_TOWER_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_FALL_BALTIC</Type>
+			<DefaultBuilding>BUILDING_FALL_BALTIC</DefaultBuilding>
+			<Description>Annexation of the Baltic States</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_FALL_BALTIC</Type>
+			<BuildingClass>BUILDINGCLASS_FALL_BALTIC</BuildingClass>
+			<Cost>1</Cost>
+			<Help>After the Molotov-Ribbentrop Pact the baltic states (Lithuania, Latvia and Estonia) were put into the Soviet sphere of influence, in September of 1939 the baltic states were forced to house Soviet military bases and to keep pressure on Poland. However on June 15th 1940 they were officially annexed by the Soviet Union a few days before Operation Barborossa.</Help>
+			<Description>Annexation of the Baltic States</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] Lithuania, Latvia and Estonia (the baltic states) have been annexed by the Soviet Union</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>fall_baltic_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_EIFFEL_TOWER_01</WonderSplashAudio>
+		</Row>
+	</Buildings>
+
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_EVENT_LEND_LEASE</Type>
+			<DefaultBuilding>BUILDING_EVENT_LEND_LEASE</DefaultBuilding>
+			<Description>The Lend Lease Act</Description>
+			<MaxGlobalInstances>9</MaxGlobalInstances>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_EVENT_LEND_LEASE</Type>
+			<BuildingClass>BUILDINGCLASS_EVENT_LEND_LEASE</BuildingClass>
+			<Cost>1</Cost>
+			<Help>Wanting to stay out of the war the United States saw the need to suppress the growing threat that was the Axis powers. Taking a step towards interventionalism Roosevelt signed the "Lend Lease" act which gave billions of dollers in support to the Allies and the Soviet Union.</Help>
+			<Description>The Lend Lease Act</Description>
+			<Civilopedia>None Yet.</Civilopedia>
+			<Quote>[NEWLINE][NEWLINE][ICON_BULLET] The Allies and the Soviet Union will recieve more convoys from America</Quote>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<NukeImmune>true</NukeImmune>
+			<HurryCostModifier>-1</HurryCostModifier>
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>100</ConquestProb>
+			<DisplayPosition>2</DisplayPosition>
+			<IconAtlas>BW_ATLAS_2</IconAtlas>
+			<PortraitIndex>45</PortraitIndex>
+			<WonderSplashImage>event_lease_splash.dds</WonderSplashImage>
+			<WonderSplashAudio>AS2D_WONDER_SPEECH_STATUEOF_LIBERTY</WonderSplashAudio>
+		</Row>
+	</Buildings>
 </GameData>
