@@ -604,7 +604,7 @@ end
 
 -- the territory map is an save of all nation territory at game start
 -- structure : TerritoryMap[plotKey] = { PlayerID = owner, CivID = civID, Type = type }
--- It's a one-time writen table, saved once.
+-- It's a one-time written table, saved once.
 function LoadTerritoryMap()
 	local pPlayer = Players[PLAYER_SAVE_SLOT]
 	local territoryMap = load( pPlayer, "TerritoryMap" ) or {}
@@ -621,14 +621,11 @@ function LoadDynamicMap()
 end
 
 -- Available reinforcements data
--- structure : reinforcementData[playerID] = { Personnel = , Materiel = , MaxPersonnel = , MaxMateriel = , FluxPersonnel = , FluxMateriel = }
 function LoadReinforcementData()
 	return LoadData("Reinforcement", {}, REINFORCEMENT_SAVE_SLOT)
 end
 
 -- UnitData is used to save extra info for units
--- structure : 
--- unitData[GetUnitKey(unit)] = { BuilderID = playerID, Type = unitType, TypeID = unitTypeID, Moral = , MaterielRatio = , Materiel = , MaxMateriel = , Personnel = , MaxPersonnel = , MaxHP =  }
 function LoadUnitData()
 	return LoadData("Unit", {}, UNIT_SAVE_SLOT)
 end
@@ -742,6 +739,21 @@ function ShareGlobalTables()
 	g_Wounded			= share ("Wounded", g_Wounded)
 end
 
+function ValidateData()
+
+	Dprint("-------------------------------------")
+	Dprint("Validating UnitClasses table...")	
+	if g_Unit_Classes then
+		for class in GameInfo.UnitClasses() do
+			if not g_Unit_Classes[class.ID] then
+				Dprint("WARNING: ".. tostring(class.Type).." is not defined in g_Unit_Classes")			
+			end			
+		end
+	else
+		Dprint("ERROR: g_Unit_Classes does not exist")
+	end
+	
+end
 --------------------------------------------------------------
 -- Projects Utils 
 --------------------------------------------------------------
@@ -1090,4 +1102,32 @@ function IsOperationLaunched(iOperation)
 		return true
 	end
 	return false
+end
+
+--[[
+ToHexFromGrid( Vector2( city:GetX(), city:GetY() ) )
+Events.SerialEventCityCreated(Vector2 vHexPos, PlayerID player, CityID cityID, ArtStyleType artStyleType, EraType eraType, int continent, int populationSize, int size, int fogState)
+
+
+Events.SerialEventCityCreated(ToHexFromGrid( Vector2( x, y ) ), 0, NULL, GameInfoTypes.ARTSTYLE_ASIAN, GameInfoTypes.ERA_ANCIENT, NULL, 1, 1, 2)
+
+			if (pPlot:GetVisibilityCount() > 0) then
+				pPlot:ChangeVisibilityCount(team, -1, -1, true, true);
+			end
+			pPlot:SetRevealed(team, false);
+
+--]]
+
+function CreateFakeCity(x,y, playerID, artStyleType, eraType, size, name )
+	local vHexPos = ToHexFromGrid( Vector2( x,y ) )
+	local plot = GetPlot(x,y)
+	local visibility = plot:GetVisibilityCount(Players[Game.GetActivePlayer()]:GetTeam())
+	Events.SerialEventCityCreated(ToHexFromGrid( Vector2( x, y ) ), playerID, NULL, artStyleType, eraType, NULL, 1, size, 2) -- todo: dynamic fogstate
+
+end
+
+function SetVisibility(playerID, x, y, visibility) -- DLL is broken, see ChangeVisibilityCount for Lua converting to boolean what should be an integer...
+	local player = Players[playerID]
+	local plot = GetPlot(x,y)
+	plot:ChangeVisibilityCount(player:GetTeam(), -plot:GetVisibilityCount(player:GetTeam()) + num, -1, true, false)
 end

@@ -1,40 +1,22 @@
 R.E.D. WWII edition
 for Civilization 5
-v.37
+v.38
 
 	-- Presentation --
 
-
-	-- Installation --
-
-- Installation :
-
-Click the "subscribe" button and go back in game, in the mod section, it will be downloaded automatically.
-Once downloaded, click the checkbox on the right of the mod line to enabled it.
-Once you've enabled all the mods you want to play with, click "next"
-
-- Important : when updating always remove the previous version of any mod from your mod folder
-
-- update your version of Civilization to at least patch 1.0.2.21
-- download the 2 mod files to your mod folder (..\My Documents\My Games\Sid Meier's Civilization 5\MODS).
-- launch civ5, go to the mod browser, find the "R.E.D. WWII" lines and activate the mods.
-- from the mod section, go to single player and then to custom game
-
-- fix for bomber propeller and added effect for Katyusha (optional) :
-  copy the civ5artdefines_viseffects.xml file from "..\My Documents\My Games\Sid Meier's Civilization 5\MODS\R.E.D. WWII Edition\copy to common\" folder to the "..\Steam\steamapps\common\sid meier's civilization v\resource\Common\" folder
-
-	-- Compatibility --
-
-None, it won't launch if another mod is activated
+Concepts : http://forums.civfanatics.com/showthread.php?t=436077
 
 
-	-- Credits & thanx --
+Installation thread : http://forums.civfanatics.com/showthread.php?t=472345 
 
 
-see the full list here: http://forums.civfanatics.com/showthread.php?t=484955
+Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.38 (Jan 06, 2013):
+- 
 
 v.37 (Jan 06, 2013):
 - UI : show current and next turn values for reinfocements, planned values are updated in real time (for example after combat or after changing city specialization/production)

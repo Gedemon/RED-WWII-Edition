@@ -52,6 +52,10 @@
 		<Replace Tag="TXT_KEY_TP_GOLD_EXPLANATION">
 			<Text>With [ICON_GOLD] Gold you may purchase units and buildings in your cities, sustain your infrastructure, and use it as leverage in Diplomacy.</Text>
 		</Replace>
+
+		<Replace Tag="TXT_KEY_SPECIALUNIT_FIGHTER">
+			<Text>Aircraft</Text>
+		</Replace>
 		
 		<!-- Damage Text -->
 

@@ -15,7 +15,7 @@
 
 		<TextButton Anchor="C,C" String="SUPPLY!" ID="UnitSupplyString"/>
 		
-		<TextButton Anchor="C,C" String="SCORE!" ID="REDScore" Hidden="1" />
+		<TextButton Anchor="C,C" String="SCORE!" ID="REDScore" Hidden="1" ToolTipType="TooltipTypeTopPanel"/>
 		
 	</Stack>
 

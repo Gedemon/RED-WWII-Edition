@@ -9,7 +9,7 @@
 		<Replace Tag="TXT_KEY_UNIT_HELP_ARTILLERY">
 			<Text>Howitzers fire projectiles at relatively high trajectories, with a steep angle of descent, making them usefull against fortified positions and cities defense, while allowing indirect fire above obstacle. Their HE ammo give them a bonus against infantry units. This regiment-sized unit can stack with a Division unit.</Text>
 		</Replace>
-		<Replace Tag="TXT_KEY_UNIT_HELP_ANTI_TANK_GUN">
+		<Replace Tag="TXT_KEY_UNIT_HELP_FIELD_GUN">
 			<Text>Field Guns fire smaller shells with higher velocities and flatter trajectories than Howitzers. Combined with armor-piercing ammo they can inflict great casualties on armor units. This regiment-sized unit can stack with a Division unit.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_UNIT_HELP_ANTI_AIRCRAFT_GUN">

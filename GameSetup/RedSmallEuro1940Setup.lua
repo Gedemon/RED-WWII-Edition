@@ -537,7 +537,7 @@ function Initialize()
 	end	--]]
 	print("-------------------------------------")
 
-	Controls.RedWW2Logo:SetTextureAndResize( "Background_1.dds" )
+	Controls.RedWW2Logo:SetTextureAndResize( "Background_38.dds" )
 	
 	local defaultDifficulty = GameInfo.HandicapInfos["HANDICAP_DEITY"];
 	--local defaultDifficulty = GameInfo.HandicapInfos["HANDICAP_IMMORTAL"];

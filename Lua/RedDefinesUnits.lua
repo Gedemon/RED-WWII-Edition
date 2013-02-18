@@ -20,15 +20,20 @@ AIRFIELD			= GameInfo.Units.UNIT_AIRFIELD.ID
 -- infantries
 INFANTRY				= GameInfo.Units.UNIT_INFANTRY.ID -- NumType for unit naming...
 FR_INFANTRY				= GameInfo.Units.UNIT_FRENCH_INFANTRY.ID
+FR_LEGION				= GameInfo.Units.UNIT_FRENCH_FOREIGNLEGION.ID
 US_INFANTRY				= GameInfo.Units.UNIT_AMERICAN_INFANTRY.ID
+US_MARINES				= GameInfo.Units.UNIT_AMERICAN_MARINES.ID
 GE_INFANTRY				= GameInfo.Units.UNIT_GERMAN_INFANTRY.ID
+GE_SS_INFANTRY			= GameInfo.Units.UNIT_GERMAN_SS_INFANTRY.ID
 JP_INFANTRY				= GameInfo.Units.UNIT_JAPAN_INFANTRY.ID
 UK_INFANTRY				= GameInfo.Units.UNIT_ENGLISH_INFANTRY.ID
 IT_INFANTRY				= GameInfo.Units.UNIT_ITALIAN_INFANTRY.ID
 RU_INFANTRY				= GameInfo.Units.UNIT_RUSSIAN_INFANTRY.ID
+RU_NAVAL_INFANTRY		= GameInfo.Units.UNIT_RUSSIAN_NAVAL_INFANTRY.ID
 CH_INFANTRY				= GameInfo.Units.UNIT_CHINESE_INFANTRY.ID
 GR_INFANTRY				= GameInfo.Units.UNIT_GREEK_INFANTRY.ID
 PL_INFANTRY				= GameInfo.Units.UNIT_POLAND_INFANTRY.ID
+HU_INFANTRY				= GameInfo.Units.UNIT_HUNGARY_INFANTRY.ID
 -- Mechanized Infantries
 MECHANIZED_INFANTRY 	= GameInfo.Units.UNIT_MECHANIZED_INFANTRY.ID -- NumType for unit naming...
 -- Paratrooper			
@@ -36,12 +41,9 @@ PARATROOPER				= GameInfo.Units.UNIT_PARATROOPER.ID -- NumType for unit naming..
 GE_PARATROOPER			= GameInfo.Units.UNIT_GERMAN_PARATROOPER.ID
 -- special forces
 SPECIAL_FORCES			= GameInfo.Units.UNIT_SPECIAL_FORCES.ID -- NumType for unit naming...
-FR_LEGION				= GameInfo.Units.UNIT_FRENCH_SPECIAL_FORCES.ID
 
 -- TANKS
 TANK					= GameInfo.Units.UNIT_TANK_CIV4.ID -- NumType for unit naming...
-
--- tanks
 FR_AMR35				= GameInfo.Units.UNIT_TANK_AMR35.ID
 FR_FCM36				= GameInfo.Units.UNIT_TANK_FCM36.ID
 FR_R35					= GameInfo.Units.UNIT_TANK_R35.ID
@@ -54,7 +56,8 @@ FR_CHAR_D1				= GameInfo.Units.UNIT_TANK_CHAR_D1.ID
 FR_CHAR_D2				= GameInfo.Units.UNIT_TANK_CHAR_D2.ID
 FR_S35					= GameInfo.Units.UNIT_TANK_S35.ID
 FR_B1					= GameInfo.Units.UNIT_TANK_B1.ID
-FR_ARL_44				= GameInfo.Units.UNIT_TANK_ARL_44.ID 
+FR_ARL44				= GameInfo.Units.UNIT_TANK_ARL44.ID 
+FR_CHAR_2C				= GameInfo.Units.UNIT_TANK_CHAR_2C.ID 
 IT_L6_40				= GameInfo.Units.UNIT_TANK_L6_40.ID
 IT_M11_39				= GameInfo.Units.UNIT_TANK_M11_39.ID
 IT_M13_40				= GameInfo.Units.UNIT_TANK_M13_40.ID
@@ -98,6 +101,8 @@ GE_PANZER_IV_G			= GameInfo.Units.UNIT_TANK_PANZER_IV_G.ID
 GE_PANZER_IV_H			= GameInfo.Units.UNIT_TANK_PANZER_IV_H.ID
 GE_PANZER_V				= GameInfo.Units.UNIT_TANK_PANZER_V_PANTHER.ID
 GE_PANZER_VI			= GameInfo.Units.UNIT_TANK_PANZER_VI_TIGER.ID
+GE_PANZER_VIB			= GameInfo.Units.UNIT_TANK_PANZER_VIB_TIGER_II.ID
+GE_PANZER_VIII			= GameInfo.Units.UNIT_TANK_PANZER_VIII_MAUS.ID
 GR_VICKERS_MKE			= GameInfo.Units.UNIT_TANK_VICKERS_MKE_GREECE.ID
 GR_VICKERS_MKII			= GameInfo.Units.UNIT_TANK_VICKERS_MKII_GREECE.ID
 PL_VICKERS_MKE_A		= GameInfo.Units.UNIT_TANK_VICKERS_MKE_A.ID
@@ -123,10 +128,12 @@ JP_TYPE3				= GameInfo.Units.UNIT_TANK_TYPE3_CHI_NU.ID
 JP_TYPE4_CHI_TO			= GameInfo.Units.UNIT_TANK_TYPE4_CHI_TO.ID
 JP_TYPE5				= GameInfo.Units.UNIT_TANK_TYPE5_CHI_RI.ID
 CH_T26B					= GameInfo.Units.UNIT_TANK_T26B.ID
+HU_38M_TOLDI			= GameInfo.Units.UNIT_TANK_38M_TOLDI_I.ID
+HU_40M_TURAN			= GameInfo.Units.UNIT_TANK_40M_TURAN_I.ID
 
 -- Artilleries
 ARTILLERY				= GameInfo.Units.UNIT_ARTILLERY.ID
-AT_GUN					= GameInfo.Units.UNIT_ANTI_TANK_GUN.ID
+AT_GUN					= GameInfo.Units.UNIT_FIELD_GUN.ID
 AA_GUN					= GameInfo.Units.UNIT_ANTI_AIRCRAFT_GUN.ID
 
 -- FIGHTERS
@@ -156,7 +163,7 @@ GE_FW190				= GameInfo.Units.UNIT_FIGHTER_FW190.ID
 US_P36					= GameInfo.Units.UNIT_FIGHTER_P36.ID
 US_P40					= GameInfo.Units.UNIT_FIGHTER_P40.ID
 US_P51					= GameInfo.Units.UNIT_FIGHTER_P51.ID
-JP_ZERO					= GameInfo.Units.UNIT_JAPANESE_ZERO.ID
+JP_A6M2					= GameInfo.Units.UNIT_FIGHTER_A6M2_ZERO.ID
 CH_P40N					= GameInfo.Units.UNIT_FIGHTER_P40N_CHINA.ID
 PL_P11					= GameInfo.Units.UNIT_FIGHTER_P11.ID
 GR_P24					= GameInfo.Units.UNIT_FIGHTER_P24.ID
@@ -203,7 +210,7 @@ RU_PE8					= GameInfo.Units.UNIT_BOMBER_PE8.ID
 GE_HE177				= GameInfo.Units.UNIT_BOMBER_HE177.ID
 UK_HALIFAX				= GameInfo.Units.UNIT_BOMBER_HALIFAX.ID
 UK_LANCASTER			= GameInfo.Units.UNIT_BOMBER_LANCASTER.ID
-US_B17					= GameInfo.Units.UNIT_AMERICAN_B17.ID
+US_B17					= GameInfo.Units.UNIT_BOMBER_B17.ID
 US_B24					= GameInfo.Units.UNIT_BOMBER_B24.ID
 						
 -- Convoy				
@@ -259,7 +266,8 @@ JP_BATTLESHIP_2			= GameInfo.Units.UNIT_BATTLESHIP_YAMOTO.ID
 						
 -- submarines			
 SUBMARINE				= GameInfo.Units.UNIT_SUBMARINE.ID -- NumType for unit naming...
-SUBMARINE_3				= 999 -- NumType for unit naming...
+SUBMARINE_2				= GameInfo.Units.UNIT_SUBMARINE_2.ID
+SUBMARINE_3				= GameInfo.Units.UNIT_SUBMARINE_3.ID
 FR_SUBMARINE			= GameInfo.Units.UNIT_SUBMARINE_REDOUTABLE.ID
 IT_SUBMARINE			= GameInfo.Units.UNIT_SUBMARINE_MARCELLO.ID
 UK_SUBMARINE			= GameInfo.Units.UNIT_SUBMARINE_TCLASS.ID
@@ -273,15 +281,16 @@ GR_SUBMARINE			= GameInfo.Units.UNIT_SUBMARINE_KATSONIS.ID
 CARRIER					= GameInfo.Units.UNIT_CARRIER.ID -- NumType for unit naming...
 US_CARRIER				= GameInfo.Units.UNIT_CARRIER_YORKTOWN.ID
 JP_CARRIER				= GameInfo.Units.UNIT_CARRIER_KAGA.ID
-CARRIER_2				= 999
-CARRIER_3				= 999
+CARRIER_2				= GameInfo.Units.UNIT_CARRIER_2.ID
+CARRIER_3				= GameInfo.Units.UNIT_CARRIER_3.ID
 
 -- Available units for major civs
 g_Major_Units = {
 	[FRANCE] = {
 		FR_INFANTRY, FR_LEGION,
 		FR_R35, FR_R40, FR_H35, FR_H39,
-		FR_S35, FR_B1, FR_ARL_44,
+		FR_S35,
+		FR_B1, FR_ARL44, FR_CHAR_2C,
 		FR_MB152, FR_D520, FR_POTEZ630,
 		FR_LN401, FR_AMIOT350,
 		FR_FANTASQUE, FR_GALISSONIERE, FR_SUBMARINE, FR_BATTLESHIP, FR_BATTLESHIP_2,
@@ -296,7 +305,7 @@ g_Major_Units = {
 		UK_TRIBA, UK_SUBMARINE, UK_DIDO, UK_BATTLESHIP, UK_BATTLESHIP_2,
 		ARTILLERY, AA_GUN, AT_GUN},
 	[USSR] = {
-		RU_INFANTRY,
+		RU_INFANTRY, RU_NAVAL_INFANTRY,
 		RU_T26, RU_BT7,
 		RU_T28, RU_T34, RU_T34_76, RU_T34_85,
 		RU_KV1, RU_KV2, RU_IS_1, RU_IS_2,
@@ -305,10 +314,10 @@ g_Major_Units = {
 		RU_GNEVNY, RU_SUBMARINE, RU_KIROV, RU_BATTLESHIP,
 		ARTILLERY, AA_GUN, AT_GUN},
 	[GERMANY] = {
-		GE_INFANTRY, GE_PARATROOPER,
+		GE_INFANTRY, GE_PARATROOPER, GE_SS_INFANTRY,
 		GE_PANZER_II, GE_PANZER_II_L,
 		GE_PANZER_III, GE_PANZER_III_J, GE_PANZER_IV, GE_PANZER_IV_G, GE_PANZER_IV_H, GE_PANZER_V,
-		GE_PANZER_VI,
+		GE_PANZER_VI, GE_PANZER_VIB, GE_PANZER_VIII,
 		GE_BF109, GE_BF109_F, GE_BF109_G, GE_FW190, GE_BF110, GE_BF110_F4, GE_JU88C, GE_HE219,
 		GE_JU87, GE_JU88, GE_HE111, GE_HE177,
 		GE_DESTROYER, GE_SUBMARINE, GE_LEIPZIG, GE_DEUTSCHLAND, GE_BATTLESHIP, GE_BATTLESHIP_2,
@@ -331,7 +340,7 @@ g_Major_Units = {
 	[JAPAN] = {
 		JP_INFANTRY,
 		JP_TYPE97_SHINHORO, JP_TYPE1, JP_TYPE3, JP_TYPE4, TYPE4_CHI_TO, JP_TYPE5,
-		JP_ZERO,
+		JP_A6M2,
 		JP_AICHI, JP_KI21,
 		JP_SUBMARINE, JP_BATTLESHIP_2, JP_KAGERO, JP_TAKAO, JP_BATTLESHIP, JP_CARRIER,
 		ARTILLERY, AA_GUN, AT_GUN},
@@ -396,11 +405,13 @@ g_NoSupplyPenalty= {
 	[GE_PARATROOPER] = true, 
 }
 
--- Unit that can stack with normal units (but no other special type units)
+-- Units that will never retreat
+g_NeverRetreating= {
+	[FR_LEGION] = true,
+}
+
+-- Unit that can stack with normal units (but no other special type units) - defined globally in g_Unit_Classes, but can be set for some specific units of a class here. Note that class define take priority.
 g_SpecialType = {
-	[ARTILLERY] = true,
-	[AA_GUN] = true,
-	[AT_GUN] = true,
 }
 
 -- Unit that can counter-fire (return fire on land ranged attack)
@@ -450,6 +461,13 @@ g_UnitMaxNumber= {
 g_UnitMaxInstance = {
 	[PARATROOPER] = 5,
 	[GE_PARATROOPER] = 5, 
+}
+
+g_Unit_ReqBuildings = {
+	[FR_LEGION] = {LEGION_HQ},
+	[RU_NAVAL_INFANTRY] = {SHIPYARD},
+	[US_MARINES] = {ACADEMY},
+	[GE_SS_INFANTRY] = {ACADEMY},
 }
 
 -- Available units for minor civs

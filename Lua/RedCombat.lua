@@ -221,8 +221,12 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 				Dprint  ("ratioHitPoint: " .. ratioHitPoint, g_DebugCombat);
 				if ratioHitPoint < 5 and defenderHealth > 0 then				
 					if pDefendingUnit then -- cities can't retreat...
-						Dprint ("RETREAT !!!", g_DebugCombat);
-						bRetreat = Retreat (iAttackingPlayer, iAttackingUnit, iDefendingPlayer, iDefendingUnit, defenderDamage);
+						if not IsNeverRetreating(pDefendingUnit:GetUnitType()) then
+							Dprint ("RETREAT !!!", g_DebugCombat);
+							bRetreat = Retreat (iAttackingPlayer, iAttackingUnit, iDefendingPlayer, iDefendingUnit, defenderDamage);
+						else
+							Dprint ("Retreat ? defender unit says : NEVER !!!", g_DebugCombat);
+						end
 					end
 				end
 			end

@@ -568,6 +568,14 @@ end
 -- On City Created
 -------------------------------------------------
 function OnCityCreated( hexPos, playerID, cityID, cultureType, eraType, continent, populationSize, size, fowState )
+
+	-- RED <<<<<
+	print (tostring(cityID))
+	if not cityID or cityID < 1 then 
+		return
+	end
+	-- RED >>>>> 
+
 	local controlTable = {};
 	local svStrikeButton = {};
 	

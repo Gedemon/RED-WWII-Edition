@@ -5,7 +5,7 @@
     <ProjectGuid>{ecf7c652-3ea7-41fb-9bac-83ee7e298a7d}</ProjectGuid>
     <Name>R.E.D. WWII Edition</Name>
     <Guid>580c14eb-9799-4d31-8b14-c2a78931de89</Guid>
-    <ModVersion>37</ModVersion>
+    <ModVersion>38</ModVersion>
     <Stability>Beta</Stability>
     <Teaser>R.E.D. WWII Edition</Teaser>
     <Description>R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine.[NEWLINE]Features :[NEWLINE][ICON_BULLET]Frontline: units can capture tiles (or liberate your allied/friends tiles)[NEWLINE][ICON_BULLET]Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat[NEWLINE][ICON_BULLET]Reinforcements: personnel and materiel are needed to "heal" your units.[NEWLINE][ICON_BULLET]National units: each great power have it's own set of units models[NEWLINE][NEWLINE][COLOR_RED]The[/COLOR] [COLOR_YELLOW]R.E.D. WWII Data Files (V.4)[/COLOR][COLOR_RED] mod must be activated to play this mod[/COLOR]</Description>
@@ -120,12 +120,7 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/1- Compatibility.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/ResetUnits.sql</FileName>
+        <FileName>SQL/1- VanillaCompatibility.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
@@ -190,51 +185,6 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitClasses.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewDefaultUnits.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnits.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsInfantries.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsTanks.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsAssaultGuns.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsFighters.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsBombers.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsNaval.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
         <FileName>XML/NewColors.xml</FileName>
       </Action>
       <Action>
@@ -270,17 +220,37 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/ResetClassesUpgrade.sql</FileName>
+        <FileName>SQL/2- Create Initialization Table.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/FinalizeRules.sql</FileName>
+        <FileName>SQL/3- Define Original Units.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewUnitsArt.sql</FileName>
+        <FileName>SQL/4- Define Class Template Units.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>SQL/5- Define Subclass Template Units.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>SQL/6-Define New Units.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>SQL/9- Update New Units Table.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>SQL/999- FinalizeRules.sql</FileName>
       </Action>
     </ModActions>
     <ModReferences>
@@ -384,10 +354,6 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\SV_icons\SV_Infantry.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
     <Content Include="Art\Temp\_RED_WWII_Logo.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -397,6 +363,10 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\ww2europe1940.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\_background.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -1548,7 +1518,27 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\1- Compatibility.sql">
+    <Content Include="SQL\1- VanillaCompatibility.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\2- Create Initialization Table.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\4- Define Class Template Units.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\9- Update New Units Table.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\6-Define New Units.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\5- Define Subclass Template Units.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -1556,7 +1546,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\FinalizeRules.sql">
+    <Content Include="SQL\999- FinalizeRules.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -1568,15 +1558,11 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\NewDefaultUnits.sql">
+    <Content Include="SQL\3- Define Original Units.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="SQL\NewRules.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitClasses.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

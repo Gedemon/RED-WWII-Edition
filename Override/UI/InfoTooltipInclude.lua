@@ -16,7 +16,7 @@ function GetHelpTextForUnit(iUnitID, bIncludeRequirementsInfo)
 	strHelpText = strHelpText .. Locale.ConvertTextKey( pUnitInfo.Description ) .. " (" .. Locale.ToUpper(Locale.ConvertTextKey(GameInfo.UnitClasses[pUnitInfo.Class].Description)) .. ")";
 	
 	-- Cost
-	strHelpText = strHelpText .. "[NEWLINE]----------------[NEWLINE]";
+	strHelpText = strHelpText .. "[NEWLINE]--------------------------------[NEWLINE]";
 	strHelpText = strHelpText .. Locale.ConvertTextKey("TXT_KEY_PRODUCTION_COST", pActivePlayer:GetUnitProductionNeeded(iUnitID));
 	-- Moves
 	strHelpText = strHelpText .. "[NEWLINE]";
@@ -86,7 +86,22 @@ function GetHelpTextForUnit(iUnitID, bIncludeRequirementsInfo)
 		local strWrittenHelpText = Locale.ConvertTextKey( pUnitInfo.Help );
 		if (strWrittenHelpText ~= nil and strWrittenHelpText ~= "") then
 			-- Separator
-			strHelpText = strHelpText .. "[NEWLINE]----------------[NEWLINE]";
+			strHelpText = strHelpText .. "[NEWLINE]--------------------------------[NEWLINE]";
+			strHelpText = strHelpText .. strWrittenHelpText;
+		end	
+	end
+		
+	-- Free promotion ?
+	local condition = "UnitType = '" .. pUnitInfo.Type .. "'"
+	local promotion = nil
+	for row in GameInfo.Unit_FreePromotions( condition ) do
+		promotion = GameInfo.UnitPromotions[row.PromotionType]
+	end
+	if promotion then
+		local strWrittenHelpText = Locale.ConvertTextKey( promotion.Help );
+		if (strWrittenHelpText ~= nil and strWrittenHelpText ~= "") then
+			-- Separator
+			strHelpText = strHelpText .. "[NEWLINE]--------------------------------[NEWLINE]";
 			strHelpText = strHelpText .. strWrittenHelpText;
 		end	
 	end

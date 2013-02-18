@@ -246,7 +246,7 @@ g_MinorMobilization_OOB = {
 	{Name = "Romania army", X = 59, Y = 36, Domain = "Land", CivID = ROMANIA, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
 	{Name = "Yugoslavia army", X = 53, Y = 30, Domain = "Land", CivID = YUGOSLAVIA, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
 	{Name = "Bulgaria army", X = 61, Y = 29, Domain = "Land", CivID = BULGARIA, IsMinor = true, Group = {INFANTRY, INFANTRY} },
-	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {INFANTRY, INFANTRY} },
+	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {HU_INFANTRY, HU_INFANTRY, HU_INFANTRY, HU_38M_TOLDI, HU_38M_TOLDI, HU_40M_TURAN} },
 	{Name = "Sweden army", X = 45, Y = 60, Domain = "Land", CivID = SWEDEN, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
 	{Name = "Spanish army", X = 13, Y = 30, Domain = "Land", CivID = SPAIN, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY} },
 }
@@ -262,6 +262,13 @@ g_Minor_UU = {
 				[CLASS_TANK] = PL_10TP,
 				[CLASS_INFANTRY] = PL_INFANTRY,
 				[CLASS_FIGHTER] = PL_P11,
+	},
+	[HUNGARY] = {
+				[CLASS_TANK] = HU_40M_TURAN,
+				[CLASS_INFANTRY] = HU_INFANTRY,
+	},
+	[BULGARIA] = {
+				[CLASS_INFANTRY] = HU_INFANTRY,
 	},
 }
 
@@ -559,7 +566,7 @@ g_Cities = {
 	{X = 25, Y = 36, Buildings = { FACTORY }, }, -- TOULOUSE
 	{X = 25, Y = 46, Key = true,  }, -- CAEN
 	{X = 23, Y = 48, Buildings = { HARBOR }, }, -- CHERBOURG
-	{X = 16, Y = 18, }, -- SIDI BEL ABBES
+	{X = 16, Y = 18, Buildings = { BARRACKS, LEGION_HQ }, }, -- SIDI BEL ABBES
 	{X = 33, Y = 27, Buildings = { HARBOR }, }, -- AJACCIO
 	{X = 21, Y = 45, Buildings = { HARBOR }, }, -- SAINT NAZAIRE
 	{X = 19, Y = 48, }, -- BREST

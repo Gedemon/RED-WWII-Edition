@@ -15,9 +15,9 @@
 			<MemberCount>4</MemberCount>
 		</UnitMemberArt>
 	</UnitArtInfo>
-	<!-- UNIT_ANTI_TANK_GUN ************************************************ -->
+	<!-- UNIT_FIELD_GUN ************************************************ -->
 	<UnitArtInfo>
-		<Type>ART_DEF_UNIT_ANTI_TANK_GUN</Type>
+		<Type>ART_DEF_UNIT_FIELD_GUN</Type>
 		<Formation>ThreeBigGuns</Formation>
 		<DamageStates>1</DamageStates>
 		<UnitMemberArt>

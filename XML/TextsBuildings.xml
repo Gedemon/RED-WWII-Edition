@@ -89,6 +89,13 @@
 		<Row Tag="TXT_KEY_BUILDING_OPEN_CITY_HELP">
 			<Text>You can't set defensive position in this city.</Text>
 		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_LEGION_HQ">
+			<Text>Foreign Legion HQ</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_LEGION_HQ_HELP">
+			<Text>You can train Foreign Legion units in this city.</Text>
+		</Row>
 	</Language_en_US>
 
 	<!-- German -->

@@ -68,12 +68,9 @@ end
 function RequestedReinforcementsPerHP(iUnitType, unit)
 
 	local thisUnit = GameInfo.Units[iUnitType]
-	local classID = GameInfo.UnitClasses[thisUnit.Class].ID
-	if not g_Unit_Classes[classID] then
-		return 0, 0
-	end
-	local reqMateriel = g_Unit_Classes[classID].MaterielRatio / REINFORCEMENT_RATIO
-	local reqPersonnel = REINFORCEMENT_BASE - reqMateriel
+
+	local reqMateriel = thisUnit.Materiel
+	local reqPersonnel = thisUnit.Personnel
 
 	-- apply promotion
 	-- to do: defines values
@@ -90,18 +87,6 @@ function RequestedReinforcementsPerHP(iUnitType, unit)
 		if unit:IsHasPromotion(PROMOTION_SUPPLY) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 30 / 100) end
 		if unit:IsHasPromotion(PROMOTION_SUPPLY) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end
 		if unit:IsHasPromotion(PROMOTION_HEAVY) then malusMateriel = malusMateriel + (reqMateriel * 100 / 100) end
-	else
-		local condition = "UnitType = '" .. thisUnit.Type .. "'"
-		for row in GameInfo.Unit_FreePromotions( condition ) do
-			local promotion = GameInfo.UnitPromotions[row.PromotionType]
-			if (promotion.ID == PROMOTION_MEDIC) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 10 / 100) end
-			if (promotion.ID == PROMOTION_FIELD_HOSPITAL) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 30 / 100) end
-			if (promotion.ID == PROMOTION_REPAIR) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end
-			if (promotion.ID == PROMOTION_AIR_REPAIR) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end						
-			if (promotion.ID == PROMOTION_SUPPLY) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 30 / 100) end
-			if (promotion.ID == PROMOTION_SUPPLY) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end
-			if (promotion.ID == PROMOTION_HEAVY) then malusMateriel = malusMateriel + (reqMateriel * 100 / 100) end	
-		end		
 	end
 	reqPersonnel = reqPersonnel - bonusPersonnel + malusPersonnel
 	reqMateriel = reqMateriel - bonusMateriel + malusMateriel
@@ -560,54 +545,9 @@ function HasNoSupplyPenalty(unitTypeID)
 	return g_NoSupplyPenalty[unitTypeID] or false
 end
 
--- reset number of interception available for all interceptor units of a player
-function UpdateNumInterceptions(playerID)
-
-	local bDebug = true
-
-	local player = Players[playerID]
-	if ( player:IsAlive() ) then	
-		Dprint("-------------------------------------", bDebug)
-		Dprint("Update Number of available interceptions for ".. player:GetName() .." air units ...", bDebug)
-		
-		for unit in player:Units() do
-			SetNumInterceptions(unit)
-		end
-	end
-end
--- GameEvents.PlayerDoTurn.Add(UpdateNumInterceptions)
-
--- (re-)initialize number of interceptions for a given unit
--- deprecated ?
-function SetNumInterceptions(unit)
-	if not unit then	
-		Dprint("WARNING : SetNumInterceptions called for nil unit...")
-		return
-	end
-	if not (unit:GetDomainType() == DomainTypes.DOMAIN_AIR and unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_INTERCEPTION_IV.ID )) then
-		return
-	end
-	
-	-- Promotions can add up, don't use elseif...
-	local num = 1
-	if unit:IsHasPromotion( PROMOTION_FIGHTER ) or unit:IsHasPromotion( PROMOTION_HEAVY_FIGHTER ) then
-		num = num + 1
-	end
-	if unit:IsHasPromotion( PROMOTION_SORTIE ) then
-		num = num + 1
-	end
-	if unit:IsHasPromotion( PROMOTION_MODERN_FIGHTER ) then
-		num = num + 2
-	end
-
-	local unitKey = GetUnitKey(unit)
-	if g_UnitData[unitKey] then
-		g_UnitData[unitKey].NumInterceptions = num
-		Dprint(" - Update Number of available interceptions ("..tostring(num)..") for ".. unit:GetName(), bDebug)
-	else
-		Dprint("WARNING : g_UnitData["..tostring(unitKey).."] is nil...")
-	end
-
+-- test if this Unit type (ID) is never retreating under attack
+function IsNeverRetreating(unitTypeID)
+	return g_NeverRetreating[unitTypeID] or false
 end
 
 function SetTemporaryBestDefender(unit)	
@@ -675,6 +615,7 @@ end
 
 function IsSubmarineClass(iNumType)
 	return (    iNumType == CLASS_SUBMARINE
+			 or iNumType == CLASS_SUBMARINE_2
 			 or iNumType == CLASS_SUBMARINE_3
 			)
 end
@@ -694,7 +635,7 @@ function ReinitUnits(playerID)
 				Dprint("WARNING: ".. unit:GetName() .." of ".. player:GetName() .." was marked 'best defender' outside combat, unmark it...") 
 				unit:SetMarkedBestDefender(false)
 			end
-			if g_SpecialType[unitType] and not unit:IsSpecialType() then
+			if IsRegiment(unit) and not unit:IsSpecialType() then
 				Dprint("WARNING: ".. unit:GetName() .." of ".. player:GetName() .." was not marked 'special type', mark it...") 
 				unit:SetIsSpecialType(true)
 			end
@@ -708,6 +649,18 @@ function IsMaxNumber(unitType)
 		if (maxNumber and maxNumber <= CountUnitType (unitType)) then
 			return true
 		end
+	end
+	return false
+end
+
+function IsRegiment(unit)
+	local unitClass = unit:GetUnitClassType()
+	if g_Unit_Classes[unitClass] and g_Unit_Classes[unitClass].Regiment  then
+		return true
+	end
+	local unitType = unit:GetUnitType()
+	if g_SpecialType and g_SpecialType[unitType] then
+		return true
 	end
 	return false
 end

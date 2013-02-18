@@ -234,6 +234,7 @@ AXISCITY =				GameInfo.Buildings.BUILDING_AXISCITY.ID
 COMINTERNCITY =			GameInfo.Buildings.BUILDING_COMINTERNCITY.ID
 NODRAFT =				GameInfo.Buildings.BUILDING_NODRAFT.ID
 LIMITEDDRAFT =			GameInfo.Buildings.BUILDING_LIMITEDDRAFT.ID
+LEGION_HQ =				GameInfo.Buildings.BUILDING_LEGION_HQ.ID
 
 
 -- Available buildings for major civs
@@ -271,7 +272,7 @@ g_Buildings_Exclusion = {
 }
 
 -- Available buildings for minor civs
-g_Minor_Buildings = {FACTORY, ARSENAL, HARBOR, BARRACKS, ARMORY, BASE, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY}
+g_Minor_Buildings = {FACTORY, ARSENAL, HARBOR, BARRACKS, ARMORY, BASE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY}
 
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -313,9 +314,8 @@ PROMOTION_ARCTIC_POWER =				GameInfo.UnitPromotions.PROMOTION_ARCTIC_POWER.ID
 PROMOTION_LONG_PARADROP =				GameInfo.UnitPromotions.PROMOTION_LONG_PARADROP.ID
 PROMOTION_FIGHTER =						GameInfo.UnitPromotions.PROMOTION_FIGHTER.ID
 PROMOTION_HEAVY_FIGHTER =				GameInfo.UnitPromotions.PROMOTION_HEAVY_FIGHTER.ID
-PROMOTION_MODERN_FIGHTER =				GameInfo.UnitPromotions.PROMOTION_MODERN_FIGHTER.ID
 PROMOTION_SORTIE =						GameInfo.UnitPromotions.PROMOTION_SORTIE.ID
-PROMOTION_FULL_PENALTY =				GameInfo.UnitPromotions.PROMOTION_FULL_PENALTY.ID
+PROMOTION_AIR_RECON =					GameInfo.UnitPromotions.PROMOTION_AIR_RECON.ID
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Units

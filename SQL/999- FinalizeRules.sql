@@ -62,6 +62,7 @@ DELETE FROM Units WHERE Type='UNIT_OLD_HEAVY_BOMBER';
 DELETE FROM Units WHERE Type='UNIT_BATTLESHIP_2'; 
 --*/
 
+/*
 UPDATE Units SET ID = ID + 10000 WHERE 
 	Type='UNIT_OLD_LIGHT_TANK'
 OR	Type='UNIT_LIGHT_TANK'
@@ -103,11 +104,27 @@ OR	Type='UNIT_HEAVY_FIGHTER_3'
 OR	Type='UNIT_FAST_BOMBER_2'
 OR	Type='UNIT_OLD_HEAVY_BOMBER'
 OR	Type='UNIT_BATTLESHIP_2';
+--*/
 
+/*
+	Remap Units and UnitClasses ID (the game will expect them to start at ID = 0, and at this point of the code, the first entry is ID = 1)
+	Code Thanks to lemmy101, Thalassicus, Pazyryk	 
+*/
 
--- Code's courtesy of lemmy101
+-- Units
 CREATE TABLE IDRemapper ( id INTEGER PRIMARY KEY AUTOINCREMENT, Type TEXT );
 INSERT INTO IDRemapper (Type) SELECT Type FROM Units ORDER by ID;
 UPDATE Units SET ID =	( SELECT IDRemapper.id-1 FROM IDRemapper WHERE Units.Type = IDRemapper.Type);
 DROP TABLE IDRemapper;
---
+
+-- UnitClasses
+CREATE TABLE IDRemapper ( id INTEGER PRIMARY KEY AUTOINCREMENT, Type TEXT );
+INSERT INTO IDRemapper (Type) SELECT Type FROM UnitClasses ORDER by ID;
+UPDATE UnitClasses SET ID =	( SELECT IDRemapper.id-1 FROM IDRemapper WHERE UnitClasses.Type = IDRemapper.Type);
+DROP TABLE IDRemapper;
+
+-- Reset ID autoincrement seq to correct value for modmod loaded after this one...
+UPDATE sqlite_sequence SET seq = (SELECT COUNT(ID) FROM Units)-1 WHERE name = 'Units';
+UPDATE sqlite_sequence SET seq = (SELECT COUNT(ID) FROM UnitClasses)-1 WHERE name = 'UnitClasses';
+
+--*/

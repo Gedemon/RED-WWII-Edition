@@ -131,6 +131,52 @@
 			</Text>
 		</Row>
 		
+		<!--CIVILOPEDIA Panzer IV-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_PANZER_IV">
+			<Text>
+				The Panzerkampfwagen IV (Tank Mark IV), otherwise known as the Panzer IV, was a medium infantry support tank used by Germany and its allies during the Second World War. It was the most produced German tank during the war, with more than 8,800 produced.[NEWLINE][NEWLINE]
+				The first models were infantry support tanks, armed with stubby 75mm KwK L/24. As the Panzer III became increasingly obsolete, the Wehrmacht needed a tank that could fight other tank effectively. The F2 and G models had not only Anti-tank guns (KwK L/43 on the F2, a KwK L/48 on the G) that had better armor penetration than the F-32 gun on the Soviet T-34/76, the armor was upgraded as well. A further variant, the H had side skirts to protect against small arms and explosives. Late in the war, the Panzer IVH was proven to be inferior to the Panther and Tiger, but still a capable adversary.[NEWLINE][NEWLINE]
+				While production was stopped in late 1944, they were used up until the very end of the war. The chassis was the base for many Tank Destroyers, SPGs, and Anti-Aircraft guns. The last known usage of the Panzer IV was during the Six-Day War (1967) by the Syrians.
+			</Text>
+		</Row>
+		
+		<!--CIVILOPEDIA PANZER VI-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_PANZER_VI_TIGER">
+			<Text>
+				In answer to the powerful Soviet T-34 and KV-1 mechanized units, the Panzerkempfwagon VI Tiger Ausf.E was manufactured by Henschel from 1942 to 1944 and remained in service until the end of the war. It was one of the most powerful tanks used by the German Wehrmacht during the Second World War. Hosting a crew of 5, the Tiger possessed a powerful main gun (88 mm), two secondary guns (7.92 mm MG 34), and thick armour plating (25-110 mm). Unfortunately, the Tiger was held back by the its high fuel consumption, limited mobile range, and frequent breakdowns. A fierce weapon on the field, more Tigers were lost due to malfunction and self-destruction then at the hands of the enemy. Despite these flaws, the tiger was generally feared by its opponents.[NEWLINE][NEWLINE]
+				The Tiger was also too wide and heavy for many small bridges, so it was designed to be able to, after a lengthy setup period, ford four meter deep water (two meter for later models).[NEWLINE][NEWLINE]
+				The first major use of the Tiger was at the Battle of Kursk, but it found use on all German battlefronts, including France, Italy, and North Africa where they dominated in the open terrain despite being deployed in small numbers. A testament to the Tigers durability, even though only 1,347 were manufactured and all before 1944, many remained in action until the end of the war.
+			</Text>
+		</Row>
+
+		<!--CIVILOPEDIA GREEK INFANTRY-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_GREEK_INFANTRY">
+			<Text>
+				Greek infantry was neither advanced nor numerous, and its military had suffered recent casualties from numerous wars against its neighbour, Turkey. This recent exposure to military action provided the front line infantry with operational experience.  That knowledge, and their great devotion to protecting Greece from invaders, made them an effective fighting force.[NEWLINE][NEWLINE]
+				When Fascist Italy invaded from Albania, Greek troops showed their strength and determination by forcing the Italians back across the Albanian border.  Unfortunately for the Greeks, Hitler wanted to protect his ally’s reputation, and Germany invaded Greece on 6 April 1941, conquering the country within a month.[NEWLINE][NEWLINE]
+				Throughout the occupation, Greek resistance sprung up numerous times even managing to liberate several mountainous regions from German occupation.  Unfortunately, large scale resistance beyond that was limited due to civil conflict between the different factions.[NEWLINE][NEWLINE]
+				The government in exile formed armed forces and, fighting alongside the British, engaged the Axis troops in North Africa, the Middle East, and Italy.
+			</Text>
+		</Row>
+
+		<!--CIVILOPEDIA BRITISH INFANTRY-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_ENGLISH_INFANTRY">
+			<Text>
+				At the end of the Great War, Britain found itself wanting in regards to the number of soldiers in its military, as close to a million had been lost.  At the outbreak of the Second World War Britain had a small army compared to other nations (9 available divisions compared to Germany’s 78 and France’s 86), and after declaring war on Germany, the British Expeditionary Force (BEF) was dispatched to France.[NEWLINE][NEWLINE]
+				After the fall of France, most of the remaining BEF was rescued from Dunkirk by the British Navy and civilian craft.  The British would continue to engage the Axis forces on many fronts, including Greece, North Africa, Sicily, Italy, Norway, Malaya, Singapore, and Burma.[NEWLINE][NEWLINE]
+				British troops would also take part during the D-Day landings, storming beaches Sword and Gold, and continuing on against German forces throughout Northern France, The Low Countries, and Germany itself.
+			</Text>
+		</Row>
+
+		<!--CIVILOPEDIA FRENCH INFANTRY-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FRENCH_INFANTRY">
+			<Text>
+				At the outbreak of the Second World War, France had the largest army in Europe, sporting 86 divisions.  After Germany declared war on Poland, and France’s subsequent declaration of war on Germany, the first few months were spend by the infantry relaxing.  They entered into Germany against little resistance, but shortly left.  With the exception of fighting in Norway, they then sat and waited during the time known as the Phoney War, snug in their Maginot Line fortifications. [NEWLINE][NEWLINE]
+				In the spring of 1940, the French were outflanked by the Wehrmacht, who attacked through the Low Countries, completely ignoring the Maginot Line defenses.  Although the French infantry fought fiercely, they were unprepared for the new armoured tactics devised by Germany, and soon they were routed and Paris was captured.[NEWLINE][NEWLINE]
+				The war was not over for the French infantry, however.  Although many of the survivors of the Battle of France remained in the military under Vichy Rule and some even joined the S.S., there were those who joined the Free French forces outside of the country, eventually reaching 400,000 volunteers.  Under the command of General Charles de Gaul, La France Libre forces continued to do battle against the Axis forces, engaging them in Crete, Libya, Tunisia, East Africa, and Italy.  After D-Day, they once again fought on their home soil, and battled through Belgium into Germany.
+			</Text>
+		</Row>
+		
 	</Language_en_US>
 	<Language_fr_FR>
 		<!--CIVILOPEDIA ENTRIES-->

@@ -165,12 +165,12 @@
 	<Formation>
 		<Name>TwoBigGuns</Name>
 		<SpacingX>28</SpacingX>
-		<SpacingY>36</SpacingY>
+		<SpacingY>32</SpacingY>
 		<SpacingMultiplier>1</SpacingMultiplier>
 		<PerRowInc>0</PerRowInc>
 		<YOffsetInc>1</YOffsetInc>
 		<YOffsetCurved>1</YOffsetCurved>
-		<Stagger>0</Stagger>
+		<Stagger>1</Stagger>
 		<UnitRandomness>0.2</UnitRandomness>
 		<BlockRandomness>0.2</BlockRandomness>
 		<TotalWidth>3</TotalWidth>

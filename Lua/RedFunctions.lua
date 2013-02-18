@@ -276,8 +276,8 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 		end
 
 		-- restriction when upgrade is available
-		local upgradeType = GetUnitUpgradeType( iUnitType )
-		if upgradeType and player:CanTrain(upgradeType) then	
+		local upgradeType = GetLastUnitUpgradeType(player, iUnitType )
+		if upgradeType then	
 			g_UnitRestrictionString = "upgraded type available."		
 			return false
 		end
@@ -386,8 +386,13 @@ function CityBuildingRestriction (iPlayer, iCity, iBuildingType)
 	return bAllow -- there was a request table or an exclusive table (or both), return the test result
 end
 function CityTrainingRestriction (iPlayer, iCity, iUnitType)
+	bDebug = false
 	local player = Players [ iPlayer ]
 	local city = player:GetCityByID(iCity)
+
+	
+	Dprint("- Check training restriction for " .. player:GetName() .. " in  " .. city:GetName() .. " for unitType = " .. iUnitType, bDebug)
+
 	bAllow = true
 
 	if (city:IsOccupied() and not CAN_BUILD_UNIT_IN_OCCUPIED_CITY) then
@@ -396,7 +401,7 @@ function CityTrainingRestriction (iPlayer, iCity, iUnitType)
 		end
 	end
 
-	-- runetime error: c stack overflow
+	-- runtime error: c stack overflow
 	--if not city:CanTrain( iUnitType ) then
 	--	bAllow = false
 	--end
@@ -404,14 +409,26 @@ function CityTrainingRestriction (iPlayer, iCity, iUnitType)
 	local unitClassType = GameInfo["Units"][iUnitType]["Class"]
 	local unitClass = GameInfo.UnitClasses[unitClassType]
 
-	local allowedTable = g_Unit_Classes[unitClass.ID].Buildings
-	if (allowedTable) then
+	if (g_Unit_Classes and g_Unit_Classes[unitClass.ID]) then
+		local allowedTable = g_Unit_Classes[unitClass.ID].Buildings
 		for i, reqBuilding in ipairs (allowedTable) do
 			if (not city:IsHasBuilding(reqBuilding)) then
 				bAllow = false
 			end
 		end
 	end	
+	
+	if (g_Unit_ReqBuildings and g_Unit_ReqBuildings[iUnitType]) then
+		local allowedTable = g_Unit_ReqBuildings[iUnitType]
+		for i, reqBuilding in ipairs (allowedTable) do
+			if (not city:IsHasBuilding(reqBuilding)) then
+				bAllow = false
+			end
+		end
+	end	
+
+	Dprint("   Returning: " .. tostring(bAllow), bDebug)
+
 	return bAllow
 end
 function CityCreateRestriction (iPlayer, iCity, iProjectType)
@@ -864,6 +881,7 @@ function CommonOnGameInit()
 	-- calling order is important ! 
 	InitializeGameOption()								-- before everything else !
 	LoadAllTable()										-- before any change on tables...
+	ValidateData()
 	RegisterScenarioUnits()
 	Events.SerialEventUnitCreated.Add( InitializeUnit ) -- before initializing Order Of Battle
 	CreateTerritoryMap()
@@ -1077,15 +1095,6 @@ function InitializeUI()
 	Events.SerialEventGameDataDirty()
 	Events.SerialEventTurnTimerDirty()
 	Events.SerialEventCityInfoDirty()
-end
-
-function InitializeNumInterceptions()
-	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
-		local player = Players[playerID]
-		if player and player:IsAlive() then
-			UpdateNumInterceptions(playerID)
-		end
-	end
 end
 
 function IsUnderControl ( plot, bCapturedPlot )

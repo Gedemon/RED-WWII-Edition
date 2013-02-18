@@ -75,11 +75,6 @@ UPDATE Buildings SET Defense = 600		WHERE Type='BUILDING_BARRACKS';
 --------------------------------------------------------------------------------------------
 -- Units
 --------------------------------------------------------------------------------------------
-UPDATE Units SET PrereqTech = NULL;
-DELETE FROM Unit_ResourceQuantityRequirements;
-DELETE FROM Unit_BuildingClassRequireds;
-DELETE FROM Civilization_UnitClassOverrides;
-DELETE FROM Unit_ClassUpgrades;
 --UPDATE Units SET RangedCombatLimit = 75 WHERE RangedCombatLimit = 100; -- no effect ?
 --UPDATE Technologies SET AllowsDefensiveEmbarking = "true";
 --UPDATE Traits SET EmbarkedNotCivilian = "true";
@@ -92,25 +87,6 @@ UPDATE Defines SET Value = 3		WHERE Name = 'EMBARKED_UNIT_MOVEMENT'; -- was 2, t
 UPDATE Defines SET Value = 300		WHERE Name = 'AIR_UNIT_REBASE_RANGE_MULTIPLIER';
 UPDATE Defines SET Value = -500		WHERE Name = 'DEFICIT_UNIT_DISBANDING_THRESHOLD'; -- no disbanding when negative income
 
---------------------------------------------------------------------------------------------
--- General Units Promotions (for unit specific promotions, see newDefaultUnits.SQL)
---------------------------------------------------------------------------------------------
---DELETE FROM UnitPromotions WHERE Type='PROMOTION_INSTA_HEAL' or Type='PROMOTION_MEDIC'; -- DON'T DELETE PROMOTION ID=0 FROM TABLE, BREAK SAVEGAME !!!
-DELETE FROM UnitPromotions_UnitCombats WHERE PromotionType='PROMOTION_INSTA_HEAL' or PromotionType='PROMOTION_ANTI_HELICOPTER' or PromotionType='PROMOTION_FORMATION_1' or PromotionType='PROMOTION_FORMATION_2' or PromotionType='PROMOTION_RANGE' or PromotionType='PROMOTION_AIR_RANGE';
-DELETE FROM Unit_FreePromotions WHERE PromotionType='PROMOTION_ANTI_HELICOPTER';
-DELETE FROM Unit_FreePromotions WHERE PromotionType='PROMOTION_AIR_RECON';
-UPDATE UnitPromotions SET AdjacentTileHealChange = 0 WHERE Type = 'PROMOTION_MEDIC';
-UPDATE UnitPromotions SET AlwaysHeal = 0 WHERE Type = 'PROMOTION_MARCH';
-UPDATE UnitPromotions SET AlwaysHeal = 0 WHERE Type = 'PROMOTION_REPAIR';
-UPDATE UnitPromotions SET AlwaysHeal = 0 WHERE Type = 'PROMOTION_AIR_REPAIR';
-UPDATE UnitPromotions SET Help = 'TXT_KEY_PROMOTION_REPAIR_HELP' WHERE Type = 'PROMOTION_REPAIR';
-UPDATE UnitPromotions SET Help = 'TXT_KEY_PROMOTION_REPAIR_HELP' WHERE Type = 'PROMOTION_AIR_REPAIR';
-UPDATE UnitPromotions SET Help = 'TXT_KEY_PROMOTION_ANTI_SUBMARINE_I_HELP' WHERE Type = 'PROMOTION_ANTI_SUBMARINE_I';
-UPDATE UnitPromotions SET Help = 'TXT_KEY_PROMOTION_ANTI_SUBMARINE_II_HELP' WHERE Type = 'PROMOTION_ANTI_SUBMARINE_II';
-UPDATE UnitPromotions SET HealOutsideFriendly = 0, EnemyHealChange = 0, NeutralHealChange = 0 WHERE Type = 'PROMOTION_SUPPLY';
-UPDATE UnitPromotions SET DropRange = 20 WHERE Type = 'PROMOTION_PARADROP';
-UPDATE UnitPromotions SET DefenseMod = -25 WHERE Type = 'PROMOTION_DEFENSE_PENALTY';
---UPDATE UnitPromotions SET NumInterceptionChange = 0;
 
 --------------------------------------------------------------------------------------------
 -- Game Defines

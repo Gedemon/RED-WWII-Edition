@@ -713,7 +713,7 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 
 	if ( value == nil ) then
 		Dprint("WARNING : unit (id="..unit:GetID()..", class='".. GameInfo.Units[unitType].Class .."', type='".. GameInfo.Units[unitType].Type .."') is not defined in g_Unit_Classes table", bDebug )
-		value = {Moral = 100, NumType = -1, MaterielRatio = 35, MaxHP = 100}
+		value = {Moral = 100, NumType = -1, MaxHP = 100}
 	end	
 
 	if (value.NumType == nil) then
@@ -733,8 +733,6 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 	end 
 	--]]
 
-	local materiel = maxHP * value.MaterielRatio / 100
-	local personnel = maxHP - materiel
 	local unitKey = GetUnitKey(unit)
 
 	g_UnitData[unitKey] = { 
@@ -751,11 +749,6 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 		Alive = true,
 		TotalXP = unit:GetExperience(),
 		CombatXP = 0,
-		MaterielRatio = value.MaterielRatio,
-		Materiel = materiel,
-		MaxMateriel = materiel,
-		Personnel = personnel,
-		MaxPersonnel = personnel,
 		MaxHP = value.MaxHP,
 		OrderType = nil,
 		OrderReference = nil,
@@ -774,13 +767,10 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 	CheckEmbarkedPromotion(unit)
 
 	-- Set special units that can stack with normal units (but not with other special units)
-	if g_SpecialType[unitType] then
+	if IsRegiment(unit) then
 		unit:SetIsSpecialType(true)
 	end
 	--DynamicTilePromotion(playerID, UnitID, unit:GetX(), unit:GetY())
-
-	-- Set initial interception number.
-	--SetNumInterceptions(unit)
 
 	-- apply germany trait
 	if GetCivIDFromPlayerID (playerID) == GERMANY then		
@@ -812,7 +802,7 @@ function InitializeUnit(playerID, unitID)
 		end
 		-- don't initialise settlers
 		if unit:GetUnitType() == SETTLER then
-			Dprint("  - Unit (ID=".. unit:GetID() ..") is a Settler, don't initialize... ", bDebug) 
+			Dprint("  - Unit (TypeID=".. unit:GetID() ..") is a Settler, don't initialize... ", bDebug) 
 			return
 		end
 
@@ -828,7 +818,7 @@ function InitializeUnit(playerID, unitID)
 			return
 		end
 
-		Dprint ("Initializing new unit for ".. player:GetName() .."...", bDebug)
+		Dprint ("Initializing new unit (".. unit:GetName() ..") for ".. player:GetName() .."...", bDebug)
 		local bNoAutoNaming = string.len(unit:GetNameNoDesc()) > 1 -- check if unit has a custom name
 		RegisterNewUnit(playerID, unit, bNoAutoNaming) -- no autonaming if unit already has a custom name
 		Dprint("-------------------------------------", bDebug)
@@ -1005,7 +995,7 @@ function RegisterScenarioUnits()
 	local bDebug = true
 	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
 		local player = Players[playerID]
-		if player:IsAlive() then
+		if player:IsAlive() and GetCivIDFromPlayerID (playerID) ~= HOTSEAT_CIV_TO_KILL then
 			for unit in player:Units() do
 				if (unit:GetUnitType() ~= SETTLER) then
 					local unitKey = GetUnitKey(unit)
@@ -1203,6 +1193,8 @@ function LaunchUnits(militaryOperation)
 				for i, unitKey in pairs (unitList) do		
 					local dropPlot = validPlotList[i]		
 					local spotter = player:InitUnit(SETTLER, dropPlot:GetX(), dropPlot:GetY())
+					spotter:SetHasPromotion(PROMOTION_AIR_RECON, true)
+
 					local spotterKey = GetUnitKey(spotter)
 					Dprint("     - Placing spotters (key = ".. tostring(spotterKey) ..") at " .. tostring(dropPlot:GetX()) .."," .. tostring(dropPlot:GetY()), bDebug)
 					table.insert(spotterList, spotterKey)
@@ -1344,11 +1336,27 @@ end
 -- Units Upgrade
 --------------------------------------------------------------
 
+-- Return next upgrade type for this unit type
 function GetUnitUpgradeType(unitType)
 	if g_UnitUpgrades and g_UnitUpgrades[unitType] then
 		return g_UnitUpgrades[unitType]
 	end
 	return nil
+end
+
+-- Return the last available upgrade type for this player and unit type
+function GetLastUnitUpgradeType(player, unitType)
+	local testType = unitType
+	local upgradeType = nil
+
+	repeat
+		testType = GetUnitUpgradeType(testType)
+		if testType and player:CanTrain(testType) then
+			upgradeType = testType
+		end
+	until not testType
+
+	return upgradeType
 end
 
 function GetUnitUpgradeCost(unitType, upgradeType)
@@ -1369,12 +1377,12 @@ function UpgradingUnits(playerID)
 		Dprint("Check possible unit upgrade for ".. player:GetCivilizationShortDescription() .."...", bDebug)
 		local upgradeTable = {} 
 		for unit in player:Units() do
-			local upgradeType = GetUnitUpgradeType( unit:GetUnitType() )
+			local upgradeType = GetLastUnitUpgradeType(player, unit:GetUnitType() )
 			-- to do : check if upgradeType can also be upgraded and upgrade to last type available...
-			if upgradeType and player:CanTrain(upgradeType) -- upgrade is available ?
+			if upgradeType -- upgrade is available ?
 			  and (unit:GetDamage() < unit:GetMaxHitPoints() / 2) -- don't upgrade more than half-damaged unit
 			  and not unit:IsEmbarked()
-			  and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY)) and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY_SPECIAL_FORCES)) -- unit must have supplies
+			  and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY)) and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY_SPECIAL_FORCES)) -- unit must have supply line
 			  then
 				table.insert(upgradeTable, { Unit = unit, XP = unit:GetExperience(), UpgradeType = upgradeType })
 				Dprint("   -- possible upgrade for ".. unit:GetName() .." (".. unit:GetExperience() .."xp) to " .. Locale.ConvertTextKey(GameInfo.Units[upgradeType].Description), bDebug)

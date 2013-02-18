@@ -291,7 +291,6 @@ function GetCityMateriel(city, bUpdate)
 	return cityMateriel
 end
 
--- to do...
 function GetCityMaterielTooltip(cityMateriel)
 	
 	local strMaterielToolTip = ""

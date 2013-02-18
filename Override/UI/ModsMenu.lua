@@ -13,13 +13,14 @@ g_InstanceManager = InstanceManager:new( "ModInstance", "Label", Controls.ModsSt
 
 g_FirstInitialization = true
 
-g_NumBackground = 14 -- number of available background screens to chose from
+g_NumBackground = 41 -- number of available background screens to chose from
 g_DLL_MinimumVersion = 4 -- DLL minimum version to be used
+g_Data_MinimumVersion = 5 -- DataFile minimum version to be used
+g_WarningLink = "http://forums.civfanatics.com/showthread.php?t=472345"
 
 g_AuthorizedModList = {
 	"580c14eb-9799-4d31-8b14-c2a78931de89", -- R.E.D. WWII Edition
 	"544d699d-1c84-4606-b22f-a1b009af9471", -- R.E.D. WWII Data Files
-	"abb7721a-0201-4297-ae87-0de0100ec98c", -- UI - Summary Clock
 	"420f5ed1-b43c-4ba5-a5f0-d463c4cda72e", -- Faster Aircraft Animations
 	"57402d0e-06cb-4e71-831c-10ccd40e9572", -- R.E.D. Quick Combat
 	"5739c052-e089-4c19-9f3b-73b5363d4f5c", -- Fast Moves
@@ -175,6 +176,10 @@ end
 
 function Initialize()
 
+	
+	-- "back" button lead to exit game instead of returning to mod menu as it doesn't unload VFS override files...
+	Controls.BackButton:LocalizeAndSetText("TXT_KEY_MENU_EXIT_TO_WINDOWS")
+
 	local bNeedUpdate = false
 	
 	print("- Initialize mandatory Game Option...") -- but maybe to soon for PreGame here ?
@@ -185,7 +190,87 @@ function Initialize()
 	PreGame.SetGameOption("GAMEOPTION_CAN_ENTER_FOREIGN_CITY", 1)
 	--PreGame.SetGameOption("GAMEOPTION_UNIT_LIMIT_FIX", 1) -- In SQL rules
 	PreGame.SetGameOption("GAMEOPTION_REBASE_IN_FRIENDLY_CITY", 1)
+
+	print("-------------------------------------")
+	print("Check DLC compatibility list...")
+	print("-------------------------------------")
 	
+	local gameVersion = UI.GetVersionInfo()
+	print ("game version : " .. gameVersion )
+
+	local ExpansionID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
+	local MongolDlcID = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID
+	
+	local RedWW2DataFilesModID = "544d699d-1c84-4606-b22f-a1b009af9471" -- R.E.D. WWII Datafile
+
+	local bExpansionActive = ContentManager.IsActive(ExpansionID, ContentType.GAMEPLAY)
+	local bMongolDlcActive = ContentManager.IsActive(MongolDlcID, ContentType.GAMEPLAY)
+	local bUnauthorizedModActive = false
+
+	local packages = {}
+
+	--[[
+	if bExpansionActive then
+		print ("- G&K Expansion active, marked for deactivation...")
+		table.insert(packages, {ExpansionID, ContentType.GAMEPLAY, false})
+	else
+		print ("- G&K Expansion not active...")		
+	end
+	--]]	
+	if not bMongolDlcActive then
+		print ("- Mongol DLC inactive, marked for activation...")
+		table.insert(packages, {MongolDlcID, ContentType.GAMEPLAY, true})
+	else
+		print ("- Mongol DLC is active...")		
+	end
+	
+	print("-------------------------------------")
+	print("Check Mods compatibility list...")
+	print("-------------------------------------")	
+
+	
+	local bDataFile = false -- set to true if the data file is loaded
+	local bDataVersion = false -- set to true if the loaded datafile version is correct
+	local dataNumVersion = 0
+
+	-- list mods
+	print("Active mods :")
+	local unsortedInstalledMods = Modding.GetInstalledMods()
+	for key, modInfo in pairs(unsortedInstalledMods) do
+		if modInfo.Enabled then
+			if (modInfo.Name) then
+				-- Don't allow another mod to be activated, let's help clean debugging
+				if not IsModAuthorized ( modInfo.ID ) then 				
+					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..") : Not authorised, marked for deactivation...")
+					Modding.DisableMod(modInfo.ID, modInfo.Version)
+					bUnauthorizedModActive = true
+				else				
+					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..")")
+					if (modInfo.ID == RedWW2DataFilesModID) then
+						bDataLoaded = true
+						dataNumVersion = modInfo.Version
+						if (modInfo.Version >= g_Data_MinimumVersion) then
+							bDataVersion = true
+						end
+					end
+				end
+			end
+		end
+	end
+	if g_FirstInitialization then
+		print("")
+		print("Deactivated mods :")
+		local unsortedInstalledMods = Modding.GetInstalledMods()
+		for key, modInfo in pairs(unsortedInstalledMods) do
+			if not (modInfo.Enabled) then
+				if (modInfo.Name) then
+					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..")")
+				end
+			end
+		end			
+	end
+
+		
 	print("- Initializing WWII background...")
 
 	local randNum = math.random(1, g_NumBackground)
@@ -213,78 +298,21 @@ function Initialize()
 			background = special.background
 	end
 
+	if not bDataVersion then -- Use default texture if data file is not correct !
+		background = "_background.dds"
+	end
 
 	print("- Set texture to " .. background)
 
 	ContextPtr:LookUpControl("/FrontEnd/AtlasLogo"):SetTextureAndResize( background )
 	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/PreLoading/LoadingImage"):SetTextureAndResize( background )
 
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
-
-	print("-------------------------------------")
-	print("Check DLC compatibility list...")
-	print("-------------------------------------")
-	
-	local gameVersion = UI.GetVersionInfo()
-	print ("game version : " .. gameVersion )
-
-	local ExpansionID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
-	local MongolDlcID = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID
-
-	local bExpansionActive = ContentManager.IsActive(ExpansionID, ContentType.GAMEPLAY)
-	local bMongolDlcActive = ContentManager.IsActive(MongolDlcID, ContentType.GAMEPLAY)
-	local bUnauthorizedModActive = false
-
-	local packages = {}
-
-	--[[
-	if bExpansionActive then
-		print ("- G&K Expansion active, marked for deactivation...")
-		table.insert(packages, {ExpansionID, ContentType.GAMEPLAY, false})
+	if bDataVersion then -- show logo only if correct version of data file is loaded
+		ContextPtr:LookUpControl("/FrontEnd/MainMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
+		ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
 	else
-		print ("- G&K Expansion not active...")		
-	end
-	--]]	
-	if not bMongolDlcActive then
-		print ("- Mongol DLC inactive, marked for activation...")
-		table.insert(packages, {MongolDlcID, ContentType.GAMEPLAY, true})
-	else
-		print ("- Mongol DLC is active...")		
-	end
-	
-	print("-------------------------------------")
-	print("Check Mods compatibility list...")
-	print("-------------------------------------")	
-
-	-- list mods
-	print("Active mods :")
-	local unsortedInstalledMods = Modding.GetInstalledMods()
-	for key, modInfo in pairs(unsortedInstalledMods) do
-		if modInfo.Enabled then
-			if (modInfo.Name) then
-				-- Don't allow another mod to be activated, let's help clean debugging
-				if not IsModAuthorized ( modInfo.ID ) then 				
-					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..") : Not authorised, marked for deactivation...")
-					Modding.DisableMod(modInfo.ID, modInfo.Version)
-					bUnauthorizedModActive = true
-				else				
-					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..")")
-				end
-			end
-		end
-	end
-	if g_FirstInitialization then
-		print("")
-		print("Deactivated mods :")
-		local unsortedInstalledMods = Modding.GetInstalledMods()
-		for key, modInfo in pairs(unsortedInstalledMods) do
-			if not (modInfo.Enabled) then
-				if (modInfo.Name) then
-					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..")")
-				end
-			end
-		end			
+		ContextPtr:LookUpControl("/FrontEnd/MainMenu/Civ5Logo"):SetHide( true )
+		ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/Civ5Logo"):SetHide( true )
 	end
 
 	bNeedUpdate = bExpansionActive or (not bMongolDlcActive) or bUnauthorizedModActive
@@ -311,30 +339,46 @@ function Initialize()
 
 	end
 
+	-- Check if all correct mod components are loaded
+	local bValid = true
+	local warningHelp = ''
+	local warningString = ''
+
 	if not GameDefines.DLL_RED_VANILLA then
 		print("ERROR: Custom DLL not found !")
-		local title = "[COLOR_RED]Error: R.E.D. DLL is not active ![ENDCOLOR][NEWLINE]Launch buttons have been disabled.[NEWLINE]Please see installation instructions."
-		Controls.WarningTitle:SetText(title)
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]R.E.D. DLL is not active ![ENDCOLOR]"
+		warningString = "Click for installation instructions."
+		bValid = false
+	elseif GameDefines.DLL_RED_VANILLA < g_DLL_MinimumVersion then
+		print("ERROR: RED DLL deprecated !")
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]Obsolete R.E.D. DLL ![ENDCOLOR][NEWLINE]v." .. tostring(GameDefines.DLL_RED_VANILLA) .." detected.[NEWLINE]v." .. tostring(g_DLL_MinimumVersion) .." needed."
+		warningString = "Click for installation instructions."
+		bValid = false
+	end
+
+	if not bDataLoaded then
+		print("ERROR: DataFile not found !")
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]R.E.D. Data Files is not active ![ENDCOLOR]"
+		warningString = "Click for installation instructions."
+		bValid = false
+	elseif not bDataVersion then
+		print("ERROR: DataFile deprecated !")
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]Obsolete R.E.D. Data Files ![ENDCOLOR][NEWLINE]v." .. tostring(dataNumVersion) .." detected.[NEWLINE]v." .. tostring(g_Data_MinimumVersion) .." needed."
+		warningString = "Click here for installation instructions."
+		bValid = false
+	end
+
+	if not bValid then
+		Controls.WarningTitle:SetText(warningHelp)
+		Controls.WarningButton:SetText(warningString)
 		Controls.WarningGrid:SetHide(false)
+		Controls.WarningButton:RegisterCallback(Mouse.eLClick, function()	Steam.ActivateGameOverlayToWebPage(g_WarningLink); end)
 		Controls.LoadSingleGameButton:SetDisabled(true)
 		Controls.LoadHotseatGameButton:SetDisabled(true)
 		Controls.SinglePlayerButton:SetDisabled(true)
 	else
-		if GameDefines.DLL_RED_VANILLA < g_DLL_MinimumVersion then
-			print("ERROR: RED DLL deprecated !")
-			local title = "[COLOR_RED]Error: obsolete R.E.D. DLL ![ENDCOLOR][NEWLINE]Launch buttons have been disabled.[NEWLINE]Please install the latest version."
-			Controls.WarningTitle:SetText(title)
-			Controls.WarningGrid:SetHide(false)
-			Controls.LoadSingleGameButton:SetDisabled(true)
-			Controls.LoadHotseatGameButton:SetDisabled(true)
-			Controls.SinglePlayerButton:SetDisabled(true)
-		else
-			Controls.WarningGrid:SetHide(true)
-		end
+		Controls.WarningGrid:SetHide(true)
 	end
-	
-	-- "back" button lead to exit game instead of returning to mod menu as it doesn't unload VFS override files...
-	Controls.BackButton:LocalizeAndSetText("TXT_KEY_MENU_EXIT_TO_WINDOWS")
 
 	print("-------------------------------------")
 	g_FirstInitialization = false
