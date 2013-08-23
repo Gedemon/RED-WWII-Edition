@@ -801,15 +801,6 @@ function OpenBorders(playerID)
 	Dprint("Opening Borders of " .. tostring(Players[playerID]:GetName()), bDebug)
 	local team = Teams[Players[playerID]:GetTeam()]
 	team:SetClosedBorder(false)
-	--[[
-	local map = LoadTerritoryMap()
-	for key, data in pairs ( map ) do
-		local plot = GetPlotFromKey(key)
-		if (data.PlayerID == playerID) and (data.FeatureType ~= plot:GetFeatureType()) then			
-			plot:SetFeatureType(data.FeatureType)
-		end
-	end
-	--]]
 end
 
 function InitializeClosedBorders()

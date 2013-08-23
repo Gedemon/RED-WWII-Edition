@@ -14,9 +14,12 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
-
-v.38 (Jan 06, 2013):
+	
+v.38 (Xxx xx, 2013):
 - 
+
+v.37.b (Jul 09, 2013):
+- DLL: Update to patch 1.0.3.18
 
 v.37 (Jan 06, 2013):
 - UI : show current and next turn values for reinfocements, planned values are updated in real time (for example after combat or after changing city specialization/production)
@@ -34,7 +37,7 @@ v.37 (Jan 06, 2013):
 - Balance : Hospital truly heals wounded soldiers. Each turn the game calculate the number of "out of combat" men based on units damage and their personnel ratio (for units that have a supply line), then it applies another ratio to get a "pool of wounded" (men that are not dead or invalid), and finally each hospital can heal 3% of that pool with a maximum rate of 150 personnel / turn. 
 - Balance : Radio generate a number of recruits based on city size (x3) and provide a 50% bonus to all recruiting buildings (the radio itself, barracks, military academy and the "We need you" process).
 - Balance : the USSR trait is only applied on direct recruitement source (barracks, military academy, radio, "we need you").
-- Balance : deal duration (open borde) is all game (well 999 turns in fact)
+- Balance : deal duration (open border) is all game (well 999 turns in fact)
 
 
 v.36 (Dec 30, 2012):
@@ -510,12 +513,12 @@ All other mods will be automatically deactivated to prevent potential incompatib
 [b]Installation[/b]
 =========================================================================
 
-- Click the "subscribe" button and go back in game, in the mod section, it will be downloaded automatically.
+- Click the 'subscribe' button and go back in game, in the mod section, it will be downloaded automatically.
 - Once downloaded, click the checkbox on the right of the mod line to enabled it.
 - Get the [url=http://steamcommunity.com/sharedfiles/filedetails/?id=75520782 ]R.E.D. WWII Data Files mod[/url]  
 - Once you've enabled the 2 R.E.D. WWII mods click "next"
 
-If you don't have G+K, a file must be manually installed, else you'll  get a DLL error message, see [url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions & troubleshooting[/url]
+If you don't have G+K, a file must be manually installed, else you'll  get a DLL error message, see [url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url]
 
 
 
@@ -539,8 +542,8 @@ If the mod is not downloaded automatically even after unsubscribing/restarting t
 [url=https://support.steampowered.com/kb_article.php?ref=2037-QEUH-3335 ]Check your game files integrity[/url].
 
 - second:
-Delete all the content of the civ5 cache folder ("\My Documents\My Games\Sid Meier's Civilization 5\cache")
-Go into your civ5 mods folder ("\My Documents\My Games\Sid Meier's Civilization 5\MODS") and delete any file or folder named "R.E.D. WWII Edition" or "R.E.D. WWII Data File" depending of which one has failed to download/extract/update.
+Delete all the content of the civ5 cache folder (\My Documents\My Games\Sid Meier's Civilization 5\cache)
+Go into your civ5 mods folder (\My Documents\My Games\Sid Meier's Civilization 5\MODS) and delete any file or folder named 'R.E.D. WWII Edition' or 'R.E.D. WWII Data File' depending of which one has failed to download/extract/update.
 
 
 [b]Feedback, bug reports & detailled informations[/b]
@@ -548,7 +551,7 @@ Go into your civ5 mods folder ("\My Documents\My Games\Sid Meier's Civilization 
 
 Thanks to Civfanatics, R.E.D. WWII has it's [url=http://forums.civfanatics.com/forumdisplay.php?f=471 ]own subforum there[/url], with more informations on scenarios, concepts, what's planned, etc... 
 
-[url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions & troubleshooting[/url]
+[url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url]
 [url=http://forums.civfanatics.com/showthread.php?t=431344 ]Development discussion[/url] 
 [url=http://forums.civfanatics.com/showthread.php?t=436077 ]Current features[/url] 
 
