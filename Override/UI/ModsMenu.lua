@@ -194,13 +194,13 @@ function Initialize()
 	-- Special date background...
 	local special = {
 		start = {
-			year = 2012,
+			year = 2013,
 			month = 12,
 			day = 24,
 			hour = 1,
 		},			
 		stop = {
-			year = 2012,
+			year = 2013,
 			month = 12, 
 			day = 25,
 			hour = 23,
@@ -229,23 +229,24 @@ function Initialize()
 	local gameVersion = UI.GetVersionInfo()
 	print ("game version : " .. gameVersion )
 
-	local ExpansionID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
-	local MongolDlcID = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID
+	local Expansion1ID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
+	local Expansion2ID = "6DA07636-4123-4018-B643-6575B4EC336B" -- BNW ID
+	local MongolDlcID  = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID
 
-	local bExpansionActive = ContentManager.IsActive(ExpansionID, ContentType.GAMEPLAY)
+	local bGodsKingsActive = ContentManager.IsActive(Expansion1ID, ContentType.GAMEPLAY)
+	local bBraveNewWorldActive = ContentManager.IsActive(Expansion2ID, ContentType.GAMEPLAY)
 	local bMongolDlcActive = ContentManager.IsActive(MongolDlcID, ContentType.GAMEPLAY)
 	local bUnauthorizedModActive = false
 
 	local packages = {}
-
 	--[[
-	if bExpansionActive then
-		print ("- G&K Expansion active, marked for deactivation...")
-		table.insert(packages, {ExpansionID, ContentType.GAMEPLAY, false})
+	if bBraveNewWorldActive then
+		print ("- BNW Expansion active, marked for deactivation...")
+		table.insert(packages, {Expansion2ID, ContentType.GAMEPLAY, false})
 	else
-		print ("- G&K Expansion not active...")		
-	end
-	--]]	
+		print ("- BNW Expansion not active...")		
+	end	
+	--]]
 	if not bMongolDlcActive then
 		print ("- Mongol DLC inactive, marked for activation...")
 		table.insert(packages, {MongolDlcID, ContentType.GAMEPLAY, true})
@@ -287,7 +288,8 @@ function Initialize()
 		end			
 	end
 
-	bNeedUpdate = bExpansionActive or (not bMongolDlcActive) or bUnauthorizedModActive
+	--bNeedUpdate = bBraveNewWorldActive or (not bMongolDlcActive) or bUnauthorizedModActive
+	bNeedUpdate = bBraveNewWorldActive or (not bMongolDlcActive) or bUnauthorizedModActive
 
 	if bNeedUpdate then
 		
@@ -295,18 +297,10 @@ function Initialize()
 		print("Update of Mods/DLC state is needed")
 		print("-------------------------------------")
 		UIManager:SetUICursor(1)
-		--print("- Activate/Deactivate DLC...")
-		--ContentManager.SetActive(packages)
+		print("- Activate/Deactivate DLC...")
+		ContentManager.SetActive(packages)
 		print("- Activate/Deactivate MODs...")
 		Modding.ActivateEnabledMods()
-		--[[
-		print("- Deactivate/Activate R.E.D.WWII for DLL...")
-		local REDversion = Modding.GetActivatedModVersion("580c14eb-9799-4d31-8b14-c2a78931de89")
-		Modding.DisableMod("580c14eb-9799-4d31-8b14-c2a78931de89", REDversion)
-		Modding.ActivateEnabledMods()
-		Modding.EnableMod("580c14eb-9799-4d31-8b14-c2a78931de89", REDversion)
-		Modding.ActivateEnabledMods()
-		--]]
 		UIManager:SetUICursor(0)	
 
 	end

@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.37
+v.38
 
 	-- Presentation --
 
@@ -35,6 +35,10 @@ see the full list here: http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.38 (Aug 24, 2013):
+- DLL : Update source code to patch 1.0.3.18
+- DLL : Use DLL linking as allowed by patch 1.0.3.70 (no additional installation step for Vanilla Civ5 users)
 
 v.37 (Jan 06, 2013):
 - UI : show current and next turn values for reinfocements, planned values are updated in real time (for example after combat or after changing city specialization/production)
