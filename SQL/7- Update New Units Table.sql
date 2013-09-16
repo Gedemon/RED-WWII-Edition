@@ -20,8 +20,15 @@
 INSERT OR REPLACE INTO ArtDefine_UnitMemberCombats (UnitMemberType, EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation)
 	SELECT	'ART_DEF_UNIT_MEMBER_' || UnitKey || Var, EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, 
 			MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation
-	FROM ArtDefine_UnitMemberCombats JOIN UnitConfiguration ON  (UnitMemberType = 'ART_DEF_UNIT_MEMBER_' || UnitConfiguration.Template);
+	FROM ArtDefine_UnitMemberCombats JOIN UnitConfiguration ON  (UnitMemberType = 'ART_DEF_UNIT_MEMBER_' || UnitConfiguration.Template AND Var <> '_LTD');
 	
+-- Last to die (var = '_LTD')
+INSERT OR REPLACE INTO ArtDefine_UnitMemberCombats (UnitMemberType, EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax, TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale, TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack, HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance, OnlyTurnInMovementActions, RushAttackFormation, LastToDie)
+	SELECT	'ART_DEF_UNIT_MEMBER_' || UnitKey || Var, EnableActions, DisableActions, MoveRadius, ShortMoveRadius, ChargeRadius, AttackRadius, RangedAttackRadius, MoveRate, ShortMoveRate, TurnRateMin, TurnRateMax,
+			TurnFacingRateMin, TurnFacingRateMax, RollRateMin, RollRateMax, PitchRateMin, PitchRateMax, LOSRadiusScale,	TargetRadius, TargetHeight, HasShortRangedAttack, HasLongRangedAttack, HasLeftRightAttack,
+			HasStationaryMelee, HasStationaryRangedAttack, HasRefaceAfterCombat, ReformBeforeCombat, HasIndependentWeaponFacing, HasOpponentTracking, HasCollisionAttack, AttackAltitude, AltitudeDecelerationDistance,
+			OnlyTurnInMovementActions, RushAttackFormation, 1
+	FROM ArtDefine_UnitMemberCombats JOIN UnitConfiguration ON  (UnitMemberType = 'ART_DEF_UNIT_MEMBER_' || UnitConfiguration.Template AND Var = '_LTD');
 
 -----------------------------------------------
 -- Make ArtDefine_UnitMemberCombatWeapons 
@@ -70,11 +77,11 @@ INSERT INTO ArtDefine_UnitInfoMemberInfos (UnitInfoType, UnitMemberInfoType, Num
 
 
 ---------------------------------------------------------
--- Keep only the first entry in config table for each unit type
+-- Keep only the entry pointing to the template's statistic in config table for each unit type
 ---------------------------------------------------------
 
 DELETE FROM UnitConfiguration
-	WHERE   var <> '';
+	WHERE   Var <> '';
 
 
 
@@ -220,6 +227,40 @@ INSERT INTO ArtDefine_StrategicView (StrategicViewType, TileType, Asset)
 INSERT INTO Civilization_UnitClassOverrides (CivilizationType, UnitClassType, UnitType)
 	SELECT 'CIVILIZATION_' || CivKey, Units.Class, 'UNIT_' || UnitKey
 	FROM Units INNER JOIN UnitConfiguration ON Type = 'UNIT_' || UnitConfiguration.UnitKey AND UnitConfiguration.CivKey NOT NULL;
+
+	
+-----------------------------------------------
+-- Fill Projects table 
+-----------------------------------------------
+
+-- Cost based on unit's cost and English text exist
+INSERT OR REPLACE INTO Projects (Type, Description, Help, Civilopedia, Strategy, MaxGlobalInstances, MaxTeamInstances, Cost, IconAtlas, PortraitIndex)
+	SELECT 'PROJECT_' || UnitKey, 'TXT_KEY_PROJECT_' || UnitKey, 'TXT_KEY_PROJECT_' || UnitKey || '_DESC', Units.Civilopedia, Units.Strategy, -1, 1, ROUND(Units.Cost*0.75), Units.IconAtlas, Units.PortraitIndex
+	FROM Units INNER JOIN UnitConfiguration ON (Units.Type = 'UNIT_' || UnitConfiguration.UnitKey AND UnitConfiguration.ProjCst ISNULL)
+	WHERE EXISTS (SELECT Tag FROM Language_en_US WHERE 'TXT_KEY_PROJECT_' || UnitConfiguration.UnitKey  = Tag);
+	
+-- Cost based on unit's cost and English text does not exist
+INSERT OR REPLACE INTO Projects (Type, Description, Help, Civilopedia, Strategy, MaxGlobalInstances, MaxTeamInstances, Cost, IconAtlas, PortraitIndex)
+	SELECT 'PROJECT_' || UnitKey, Units.Description || ' design', 'Allow the construction of ' || Units.Description || '.[NEWLINE]----------------[NEWLINE]{'|| Units.Help ||'}', Units.Civilopedia, Units.Strategy, -1, 1, ROUND(Units.Cost*0.75), Units.IconAtlas, Units.PortraitIndex
+	FROM Units INNER JOIN UnitConfiguration ON (Units.Type = 'UNIT_' || UnitConfiguration.UnitKey AND UnitConfiguration.ProjCst ISNULL)
+	WHERE NOT EXISTS (SELECT Tag FROM Language_en_US WHERE 'TXT_KEY_PROJECT_' || UnitConfiguration.UnitKey  = Tag);
+
+-- Specific cost factor and English text exist
+INSERT OR REPLACE INTO Projects (Type, Description, Help, Civilopedia, Strategy, MaxGlobalInstances, MaxTeamInstances, Cost, IconAtlas, PortraitIndex)
+	SELECT 'PROJECT_' || UnitKey, 'TXT_KEY_PROJECT_' || UnitKey, 'TXT_KEY_PROJECT_' || UnitKey || '_DESC', Units.Civilopedia, Units.Strategy, -1, 1, ROUND(Units.Cost*UnitConfiguration.ProjCst), Units.IconAtlas, Units.PortraitIndex
+	FROM Units INNER JOIN UnitConfiguration ON (Units.Type = 'UNIT_' || UnitConfiguration.UnitKey AND UnitConfiguration.ProjCst NOT NULL)
+	WHERE EXISTS (SELECT Tag FROM Language_en_US WHERE 'TXT_KEY_PROJECT_' || UnitConfiguration.UnitKey  = Tag);
+
+-- Specific cost factor and English text does not exist
+INSERT OR REPLACE INTO Projects (Type, Description, Help, Civilopedia, Strategy, MaxGlobalInstances, MaxTeamInstances, Cost, IconAtlas, PortraitIndex)
+	SELECT 'PROJECT_' || UnitKey, Units.Description || ' design', 'Allow the construction of ' || Units.Description || '.[NEWLINE]----------------[NEWLINE]{'|| Units.Help ||'}', Units.Civilopedia, Units.Strategy, -1, 1, ROUND(Units.Cost*UnitConfiguration.ProjCst), Units.IconAtlas, Units.PortraitIndex
+	FROM Units INNER JOIN UnitConfiguration ON (Units.Type = 'UNIT_' || UnitConfiguration.UnitKey AND UnitConfiguration.ProjCst NOT NULL)
+	WHERE NOT EXISTS (SELECT Tag FROM Language_en_US WHERE 'TXT_KEY_PROJECT_' || UnitConfiguration.UnitKey  = Tag);
+
+
+INSERT OR REPLACE INTO Project_Flavors (ProjectType, FlavorType, Flavor)
+	SELECT 'PROJECT_' || UnitKey, Unit_Flavors.FlavorType, Unit_Flavors.Flavor
+	FROM Unit_Flavors INNER JOIN UnitConfiguration ON Unit_Flavors.UnitType = 'UNIT_' || UnitConfiguration.UnitKey;
 
 
 -----------------------------------------------

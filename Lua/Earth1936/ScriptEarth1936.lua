@@ -621,7 +621,7 @@ function ConvertToFreeFrance (iAttackingPlayer, iAttackingUnit, iAttackingUnitDa
 			local attUnit = attPlayer:GetUnitByID( iAttackingUnit )
 			local defUnit = defPlayer:GetUnitByID( iDefendingUnit )
 			local defUnitKey =  GetUnitKey(defUnit)
-			local defUnitData = g_UnitData[defUnitKey]
+			local defUnitData = MapModData.RED.UnitData[defUnitKey]
 
 			if (attUnit:GetDomainType() == DomainTypes.DOMAIN_LAND and defUnit:GetDomainType() == DomainTypes.DOMAIN_LAND and defUnitData) then
 				if defUnitData.BuilderID == iAttackingPlayer then -- old french unit, try to convert

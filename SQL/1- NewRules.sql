@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------
 -- New rules for R.E.D. WWII edition
--- Must be loaded before adding/moddifying other game items, only exception being ResetUnits to load first.
+-- Must be loaded before adding/moddifying other game items.
 --------------------------------------------------------------------------------------------
 
 
@@ -71,6 +71,7 @@ UPDATE Buildings SET GoldMaintenance = 2	WHERE Type='BUILDING_BARRACKS';
 UPDATE Buildings SET Defense = 2400		WHERE Type='BUILDING_MILITARY_BASE';
 UPDATE Buildings SET Defense = 1600		WHERE Type='BUILDING_ARSENAL';
 UPDATE Buildings SET Defense = 600		WHERE Type='BUILDING_BARRACKS';
+
 
 --------------------------------------------------------------------------------------------
 -- Units
@@ -165,18 +166,21 @@ UPDATE Leaders SET Chattiness = -10;
 --------------------------------------------------------------------------------------------
 -- Game AI defines
 --------------------------------------------------------------------------------------------
-UPDATE Leader_Flavors SET Flavor = -30 WHERE FlavorType='FLAVOR_EXPANSION';
+--UPDATE Leader_Flavors SET Flavor = -30 WHERE FlavorType='FLAVOR_EXPANSION';
 --DELETE FROM AIEconomicStrategy_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
-DELETE FROM AICityStrategy_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
-DELETE FROM CitySpecialization_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
-UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_PERCENT_CONTINENT_UNOWNED';
-UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_EARLY_EXPANSION'; 
+--DELETE FROM AICityStrategy_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
+--DELETE FROM CitySpecialization_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
+--UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_PERCENT_CONTINENT_UNOWNED';
+--UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_EARLY_EXPANSION'; 
 UPDATE Defines SET Value = 15	WHERE Name = 'AI_STRATEGY_MILITARY_RESERVE_PERCENTAGE'; -- default 35
 
-DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_RESERVE_SEA';
-DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_ESCORT_SEA';
-DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_EXPLORE_SEA';
-DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_EXPLORE';
+UPDATE AIMilitaryStrategies SET TechPrereq = NULL;
+UPDATE AIMilitaryStrategies SET FirstTurnExecuted = 0;
+
+--DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_RESERVE_SEA';
+--DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_ESCORT_SEA';
+--DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_EXPLORE_SEA';
+--DELETE FROM Unit_AITypes WHERE UnitAIType='UNITAI_EXPLORE';
 
 
 --------------------------------------------------------------------------------------------
@@ -195,13 +199,13 @@ UPDATE Defines SET Value = 100		WHERE Name = 'GAME_THREAT_MINOR_THRESHOLD'; -- 1
 --------------------------------------------------------------------------------------------
 UPDATE Controls SET HotKey = NULL WHERE Type = 'CONTROL_QUICK_SAVE'; -- To allow saving of table before quicksaving game
 UPDATE Controls SET HotKey = NULL WHERE Type = 'CONTROL_SAVE_GROUP' or Type = 'CONTROL_SAVE_NORMAL'; -- To allow saving of table before saving game
---UPDATE Controls SET HotKey = NULL WHERE Type = 'CONTROL_TOGGLE_STRATEGIC_VIEW'; -- Disable strategic view
+UPDATE Controls SET HotKey = NULL WHERE Type = 'CONTROL_TOGGLE_STRATEGIC_VIEW'; -- Disable strategic view
 
 --------------------------------------------------------------------------------------------
 -- Process
 --------------------------------------------------------------------------------------------
 UPDATE Processes SET TechPrereq = 'TECH_FUTURE_TECH' WHERE Type = 'PROCESS_RESEARCH';
-UPDATE Process_ProductionYields SET Yield = 50 WHERE ProcessType = 'PROCESS_WEALTH';
+UPDATE Process_ProductionYields SET Yield = 100 WHERE ProcessType = 'PROCESS_WEALTH';
 
 --------------------------------------------------------------------------------------------
 -- Terrains
@@ -221,10 +225,10 @@ UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_CITY_RUIN
 -- Unit Supply Production Modifier
 --------------------------------------------------------------------------------------------
 UPDATE HandicapInfos SET ProductionFreeUnits = 5;
-UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 1;
-UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 25;
-UPDATE Defines SET Value = 90 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
-INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 4); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
+UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 0;
+UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 40;
+UPDATE Defines SET Value = 96 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
+INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 6); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
 
 --------------------------------------------------------------------------------------------
 -- Game hidden options checked in DLL code...
@@ -234,4 +238,3 @@ INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_FREE_PLO
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_NO_MINOR_DIPLO_SPAM', 1, 0 );					-- prevent minor civs to send "please gift units message". (and fix a crash that can occur when the minor try to send the message)
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_STACK_IN_CITY', 1, 0 );						-- allow unit stacking in cities.
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_ENTER_FOREIGN_CITY', 1, 0 );				-- allow units to enter in foreign cities.
-INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_UNIT_LIMIT_FIX', 1, 0 );						-- allow the map loader to use the hack to allow more than 255 unit types.

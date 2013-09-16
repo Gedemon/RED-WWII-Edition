@@ -65,13 +65,13 @@ SCENARIO_PERSONNEL_PER_TURN = 350 -- / ((HANDICAP + 2 ) /2) = personnel for rein
 
 CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will close neutral territories unless for civs which have reached the allied treshold
 
-CHECK_FOR_ORPHAN_TILE	= true -- if true will flip back captured tiles that are not linked to a close city or unit 
-MAX_PLOT_CONTROL_RANGE	= 6 -- distance at which a unit or city can control an enemy orphan plot
+CHECK_FOR_ORPHAN_TILE	= true	-- if true will flip back captured tiles that are not linked to a close city or unit 
+MAX_PLOT_CONTROL_RANGE	= 6		-- distance at which a unit or city can control an enemy orphan plot
 
 NUM_BUILDINGS_IMPORTANT_CITY = 1 -- city with at least NUM_BUILDINGS_IMPORTANT_CITY number of buildings are flagged important and won't be on auto-wealth at start
 
 USE_TACTICAL_RANGE	= false -- +3 range to artillery, +6 range to aircraft (to do : make it +6 for light planes, +12 for other)
-USE_FAST_OCEAN_MOVE = true -- x2 moves on ocean (all units)
+USE_FAST_OCEAN_MOVE = true	-- x2 moves on ocean (all units)
 USE_FAST_NAVAL_MOVE = false -- +2 moves on sea (doesn't work with embarked units)
 
 MIN_HP_LEFT_BEFORE_ESCAPING_CITY	= 4 -- under that value of predicted HP left to a city after a combat that is starting, units will try to escape a city
@@ -87,11 +87,11 @@ IMPROVEMENT_DAMAGED_THRESHOLD		= 10
 IMPROVEMENT_MAX_DAMAGE				= 20
 
 -- not implemented yet
-ALLOW_CITY_UNIT_DAMAGE			= true -- damage done above MAX_CITY_BOMBARD_DAMAGE are converted to damage to garisoned unit if any
-MAX_UNIT_IN_CITY_BOMBARD_DAMAGE = 50 -- Maximum damage made to unit garisoned in cities if ALLOW_CITY_UNIT_DAMAGE is true, in percent
+ALLOW_CITY_UNIT_DAMAGE			= true	-- damage done above MAX_CITY_BOMBARD_DAMAGE are converted to damage to garisoned unit if any
+MAX_UNIT_IN_CITY_BOMBARD_DAMAGE = 50	-- Maximum damage made to unit garisoned in cities if ALLOW_CITY_UNIT_DAMAGE is true, in percent
 BEACHHEAD_DAMAGE				= false -- Amphibious assault on an empty tile owned by enemy civ will cause damage to the landing unit
-AIRCRAFT_CAP					= 2 -- relative to city number, player can build (number_of_cities * AIRCRAFT_CAP) aircrafts
-LAND_CAP_RATIO					= 10 -- relative to territory owned, player can build (number_tiles_owned / LAND_CAP_RATIO) land units
+AIRCRAFT_CAP					= 2		-- relative to city number, player can build (number_of_cities * AIRCRAFT_CAP) aircrafts
+LAND_CAP_RATIO					= 10	-- relative to territory owned, player can build (number_tiles_owned / LAND_CAP_RATIO) land units
 -- / not implemented
 
 
@@ -102,6 +102,11 @@ LAND_CAP_RATIO					= 10 -- relative to territory owned, player can build (number
 RED_AI_HANDICAP = 3 -- handicap value for computer player (specific to R.E.D. function, not linked to vanilla handicap tables)
 
 ALLOW_AI_CONTROL = true -- Allow the use of functions to (try to) control the AI units and build list
+
+USE_UNIT_RATIO_FOR_AI = true	-- Allow limitation of AI military unit using ratio by classes (g_Max_Armor_SubClass_Percent and g_Max_Air_SubClass_Percent must be defined in scenario files)
+ALLOW_AI_UNITS_LIMIT = false	-- Allow limitation of max number of AI military unit
+MAX_AI_UNITS = 75				-- Max number of units for the AI when ALLOW_AI_UNITS_LIMIT = true
+
 
 TRACK_COMBATS_MAX_TURNS						= 5 -- Number of previous turns entries keeped in the TrackCombat table
 DESTROYER_SUB_HUNTING_MAX_TURNS_ATTACK		= 2 -- Number of previous turns attacks entries destroyers look at for subhunting
@@ -117,11 +122,13 @@ MIN_HP_LEFT_REBASE_CITY = 20 -- under that value of HP, air units won't rebase t
 
 -- Suicide Attacks Prevention
 NO_SUICIDE_ATTACK				= false -- If set to true, try to prevent suicide attacks
-SUICIDE_DAMAGE_THRESHOLD		= 8 -- Above this level of damage let's call it a tentative of suicide, but check the below value too
-SUICIDE_DIFF_DAMAGE_THRESHOLD	= 5 -- Above this difference between damage dealed and damage received, consider that the attack is a large defeat
-SUICIDE_HP_RATIO				= 4.5 -- Under this ratio between HP left and damage received, call it suicidal 
+SUICIDE_DAMAGE_THRESHOLD		= 8		-- Above this level of damage let's call it a tentative of suicide, but check the below value too
+SUICIDE_DIFF_DAMAGE_THRESHOLD	= 5		-- Above this difference between damage dealed and damage received, consider that the attack is a large defeat
+SUICIDE_HP_RATIO				= 4.5	-- Under this ratio between HP left and damage received, call it suicidal 
 --
-NO_AI_EMBARKATION = false -- remove AI ability to embark (to do : take total control of AI unit to embark)
+NO_AI_EMBARKATION				= false -- remove AI ability to embark 
+NO_LAND_UNIT_BUILD_ON_ISLAND	= true	-- prevent the AI to build land units on cities on island when NO_AI_EMBARKATION = true
+NO_LAND_UNIT_ISLAND_MAX_AREA	= 10	-- prevent land units to be build in area under that size when NO_LAND_UNIT_BUILD_ON_ISLAND = true
 
 -- Orders types for AI override
 RED_CONVOY						= 1

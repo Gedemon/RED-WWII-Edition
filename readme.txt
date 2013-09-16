@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.38
+v.39
 
 	-- Presentation --
 
@@ -14,15 +14,16 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
-	
-v.38 (Xxx xx, 2013):
-- 
 
-v.37.b (Jul 09, 2013):
-- DLL: Update to patch 1.0.3.18
+v.39 (xxx xx, 2013):
+-
+
+v.38 (Aug 24, 2013):
+- DLL : Update source code to patch 1.0.3.18
+- DLL : Use DLL linking as allowed by patch 1.0.3.70 (no additional installation step for Vanilla Civ5 users)
 
 v.37 (Jan 06, 2013):
-- UI : show current and next turn values for reinfocements, planned values are updated in real time (for example after combat or after changing city specialization/production)
+- UI : show current and next turn values for reinforcements, planned values are updated in real time (for example after combat or after changing city specialization/production)
 - UI : add local reinforcement data in city screen.
 - UI : change the fonticon for personnel.
 - UI : add color-coding for damage to the aircraft list, add the current aircraft mission to the tooltip.
@@ -32,7 +33,7 @@ v.37 (Jan 06, 2013):
 - Bugfix: LuaEvents.OnCityCaptured fire for all city capture.
 - Bugfix: the new code to check ratio restriction for the AI failed for armor units on a few scenarios and was crashing the AI override script.
 - Bugfix: the diplomacy AreSameside function was sometime crashing, causing the AI override script to fail when searching for a city to heal its ships.
-- Optimization: archiving of the combat log can be deactivated, while cleaning remains active (archiving could take up to 2-3 mn every 10-15 turns in late games with more than 10.000 combats)
+- Optimization: archiving of the combat log can be deactivated, while cleaning remains active (archiving could take up to 2-3 mn every 10-15 turns in late games with more than 10 000 combats)
 - Balance : "buy war bonds" process has been buffed, it now converts 75% of city gold+production to materiel (was 50%)
 - Balance : Hospital truly heals wounded soldiers. Each turn the game calculate the number of "out of combat" men based on units damage and their personnel ratio (for units that have a supply line), then it applies another ratio to get a "pool of wounded" (men that are not dead or invalid), and finally each hospital can heal 3% of that pool with a maximum rate of 150 personnel / turn. 
 - Balance : Radio generate a number of recruits based on city size (x3) and provide a 50% bonus to all recruiting buildings (the radio itself, barracks, military academy and the "We need you" process).

@@ -565,9 +565,9 @@ function ConvertToFreeFrance (iAttackingPlayer, iAttackingUnit, attackerDamage, 
 				return
 			end
 			local attUnitKey =  GetUnitKey(attUnit)
-			local attUnitData = g_UnitData[attUnitKey]
+			local attUnitData = MapModData.RED.UnitData[attUnitKey]
 			local defUnitKey =  GetUnitKey(defUnit)
-			local defUnitData = g_UnitData[defUnitKey]
+			local defUnitData = MapModData.RED.UnitData[defUnitKey]
 			if not attUnitData then
 				Dprint ("ERROR : attUnitData is NIL in ConvertToFreeFrance, unit key = " .. tostring(attUnitKey)) -- how ?
 				return
@@ -2102,3 +2102,24 @@ g_Military_Project = {
 	},	
 	------------------------------------------------------------------------------------
 }
+
+
+function InitializeEuro1940Projects()
+
+	local bDebug = true
+
+	Dprint("-------------------------------------")
+	Dprint("Initializing specific projects for Europe 1939-1945 scenario...")
+
+	if not g_ProjectsTable then
+		return
+	end
+
+	local turn = Game.GetGameTurn()
+	local date = g_Calendar[turn]
+	if date.Number >= 19420101 and PROJECT_M3A1HT and not IsProjectDone(PROJECT_M3A1HT) then
+		local projectInfo = GameInfo.Projects[projectID]
+		MarkProjectDone(PROJECT_M3A1HT, AMERICA)
+		Events.GameplayAlertMessage(Locale.ConvertTextKey(projectInfo.Description) .." has been completed !")
+	end
+end

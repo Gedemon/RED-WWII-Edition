@@ -518,7 +518,10 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 		local pPlayer = Players[Game.GetActivePlayer()];
         local active_team = pPlayer:GetTeam();
         local team = self.m_Player:GetTeam();
-		local unitData = LoadUnitData()
+		local unitData = MapModData.RED.UnitData
+		if not unitData then
+			print("WARNING : unitData is nil for " .. tostring(pUnit:GetName()))
+		end
 		local unitKey = GetUnitKey(pUnit)
 
 		--[[
@@ -547,8 +550,12 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 
 		-- Convoy ? Transport ? Destination ?
 		local bIsConvoy = false
-		if unitData[unitKey] and unitData[unitKey].OrderType == RED_CONVOY then
+		
+		if pUnit:GetUnitClassType() == CLASS_CONVOY then
 			bIsConvoy = true
+		end
+
+		if unitData[unitKey] and unitData[unitKey].OrderType == RED_CONVOY then
 			local destination = unitData[unitKey].OrderObjective
 			local transportType = unitData[unitKey].TransportType
 			local transportReference = unitData[unitKey].TransportReference

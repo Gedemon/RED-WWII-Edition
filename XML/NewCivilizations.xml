@@ -74,7 +74,7 @@
 			<Set>
 				<Description>TXT_KEY_RED_WWII_UK</Description>
 				<ShortDescription>TXT_KEY_RED_WWII_UK_SHORT</ShortDescription>
-				<Adjective>British</Adjective>
+				<Adjective>TXT_KEY_RED_WWII_UK_ADJECTIVE</Adjective>
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_UK</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_RED_EURO1940_UK_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_uk.dds</DawnOfManImage>
@@ -89,7 +89,7 @@
 			<Set>
 				<Description>TXT_KEY_RED_WWII_ITALY</Description>
 				<ShortDescription>TXT_KEY_RED_WWII_ITALY_SHORT</ShortDescription>
-				<Adjective>Italian</Adjective>
+				<Adjective>TXT_KEY_RED_WWII_ITALY_ADJECTIVE</Adjective>
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_ITALY</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_RED_EURO1940_ITALY_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_italy.dds</DawnOfManImage>
@@ -104,7 +104,7 @@
 			<Set>
 				<Description>TXT_KEY_RED_WWII_USSR</Description>
 				<ShortDescription>TXT_KEY_RED_WWII_USSR_SHORT</ShortDescription>
-				<Adjective>Soviet</Adjective>
+				<Adjective>TXT_KEY_RED_WWII_USSR_ADJECTIVE</Adjective>
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_USSR</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_RED_EURO1940_USSR_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_ussr.dds</DawnOfManImage>
@@ -131,11 +131,10 @@
 		<Update>
 			<Where Type="CIVILIZATION_AMERICA"/>
 			<Set>
-				<Description>The United States of America</Description>
-				<ShortDescription>United States</ShortDescription>
-				<Adjective>American</Adjective>
+				<Description>TXT_KEY_RED_WWII_AMERICA</Description>
+				<ShortDescription>TXT_KEY_RED_WWII_AMERICA_SHORT</ShortDescription>
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_AMERICA</CivilopediaTag>
-				<DawnOfManQuote>"Mr. President, After the victory of World War I, we entered an economic boom becoming the largest economic country in the world. However our nation in the past decade has entered a Great Depression creating havoc for the American people and the American economy. They then elected you to lead them through the depression and hard economic times. You let them have a New Deal giving many Americans jobs and hope for a good future however the nation was still stung deeply by the Depression.[NEWLINE][NEWLINE]But The storm clouds in Europe are brewing once again and the American people have elected you to find away to stay out of the conflict. Can you Mr. President redeem the American economy, can you free the world of Facism and Communism, can you become a super power...?"[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]</DawnOfManQuote>
+				<DawnOfManQuote>TXT_KEY_RED_EURO1940_AMERICA_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_america.dds</DawnOfManImage>
 				<MapImage>mapUSA.dds</MapImage>
 				<PortraitIndex>3</PortraitIndex>
@@ -148,7 +147,6 @@
 			<Set>
 				<Description>The Empire of Japan</Description>
 				<ShortDescription>Japan</ShortDescription>
-				<Adjective>Japanese</Adjective>
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_JAPAN</CivilopediaTag>
 				<DawnOfManQuote>"Prime Minister, for years the Europeans have dominated the Asian world, but no longer. They have grown weak since World War I, and it is our right to take back Asia from the European and American plague. We are now a strong power, the Empire of the Rising Sun has already built one of the greatest navies in the world. We have already defeated the Chinese in Manchuria, and have taken islands in the Pacific.[NEWLINE][NEWLINE]We are at our golden age, the Empire of Japan is ready to achieve it's glory as a world power. Can you Prime Minister defeat the European and American plague and reunite the Asian lands...?"[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL]</DawnOfManQuote>
 				<DawnOfManImage>dom_japan.dds</DawnOfManImage>
@@ -163,7 +161,6 @@
 			<Set>
 				<Description>Nationalist China</Description>
 				<ShortDescription>China</ShortDescription>
-				<Adjective>Chinese</Adjective>
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_CHINA</CivilopediaTag>
 				<DawnOfManQuote>"Generalissimo, earlier in the centuary we broke away from Monarchy and formed our very own Republic. You Generalissimo assumed command and were able to force the other warlords to join your country creating a short lived united China. Only a couple years later our lands became englufed into a Civil War, against Communist China. To make things worse the militarists of Japan invade Manchuria forcing us to surrender the province of Machuria to them. With our military scattered and broken, with the Japanese to our northeast and the Communists lurking at our northwest we are under attack from enemies on all sides.[NEWLINE][NEWLINE]The people have look to you Generalissimo to fight against Communism and Militarism to put an end to violence in this country to bring peace and prosperity to the region. Can you bring peace to the people who havn't known peace for centuries, can you defeat Japan and Chinese Rebels, can you one again become the center of Asia...?"[NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]</DawnOfManQuote>
 				<DawnOfManImage>dom_china.dds</DawnOfManImage>
@@ -368,176 +365,883 @@
 			</Set>
 		</Update>
 	</Leaders>
+
+	<!-- LEADERS FLAVORS -->
 	<Leader_Flavors>
-		<Update>
-			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_DEFENSE"/>
-			<Set>
-				<Flavor>20</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ELIZABETH" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_OFFENSE"/>
-			<Set>
-				<Flavor>50</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_BISMARCK" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_OFFENSE"/>
-			<Set>
-				<Flavor>10</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_NAPOLEON" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_OFFENSE"/>
-			<Set>
-				<Flavor>10</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ALEXANDER" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_DEFENSE"/>
-			<Set>
-				<Flavor>10</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WU_ZETIAN" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_OFFENSE"/>
-			<Set>
-				<Flavor>50</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_ODA_NOBUNAGA" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_OFFENSE"/>
-			<Set>
-				<Flavor>10</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_HAPPINESS"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_SCIENCE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
-		<Update>
-			<Where LeaderType="LEADER_WASHINGTON" FlavorType="FLAVOR_CULTURE"/>
-			<Set>
-				<Flavor>0</Flavor>
-			</Set>
-		</Update>
+
+		<Delete />
+		
+		<!-- 
+		<Delete FlavorType="FLAVOR_NAVAL_GROWTH"/>
+		<Delete FlavorType="FLAVOR_NAVAL_TILE_IMPROVEMENT"/>
+		<Delete FlavorType="FLAVOR_TILE_IMPROVEMENT"/>
+		<Delete FlavorType="FLAVOR_GROWTH"/>
+		<Delete FlavorType="FLAVOR_SCIENCE"/>
+		<Delete FlavorType="FLAVOR_CULTURE"/>
+		<Delete FlavorType="FLAVOR_HAPPINESS"/>
+		<Delete FlavorType="FLAVOR_GREAT_PEOPLE"/>
+		<Delete FlavorType="FLAVOR_WONDER"/>
+		<Delete FlavorType="FLAVOR_RELIGION"/>
+		<Delete FlavorType="FLAVOR_DIPLOMACY"/>
+		<Delete FlavorType="FLAVOR_SPACESHIP"/>
+		<Delete FlavorType="FLAVOR_WATER_CONNECTION"/>
+		<Delete FlavorType="FLAVOR_ESPIONAGE"/>
+
+		<Delete LeaderType="LEADER_ASKIA"/>
+		<Delete LeaderType="LEADER_DARIUS"/>
+		<Delete LeaderType="LEADER_GANDHI"/>
+		<Delete LeaderType="LEADER_HARUN_AL_RASHID"/>
+		<Delete LeaderType="LEADER_HIAWATHA"/>
+		<Delete LeaderType="LEADER_MONTEZUMA"/>
+		<Delete LeaderType="LEADER_RAMESSES"/>
+		<Delete LeaderType="LEADER_RAMKHAMHAENG"/>
+		<Delete LeaderType="LEADER_SULEIMAN"/>
+		-->
 	</Leader_Flavors>
+	<!-- HITLER -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>18</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>9</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>12</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>25</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_BISMARCK</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- CHURCHILL -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>2</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_WATER_CONNECTION</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ELIZABETH</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- DE GAULLE -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>1</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>1</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_NAPOLEON</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- STALIN -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>16</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_CATHERINE</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- MUSSOLINI -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>2</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>15</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_AUGUSTUS</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- METAXAS -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>9</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>2</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ALEXANDER</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- CHIANG -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>2</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>1</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>2</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WU_ZETIAN</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- ROOSEVELT -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>1</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>9</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_WASHINGTON</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+	</Leader_Flavors>
+	<!-- TOJO -->
+	<Leader_Flavors>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_CITY_DEFENSE</FlavorType>
+			<Flavor>3</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_MILITARY_TRAINING</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_RANGED</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_MOBILE</FlavorType>
+			<Flavor>4</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_NAVAL</FlavorType>
+			<Flavor>7</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_NAVAL_RECON</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_AIR</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_EXPANSION</FlavorType>
+			<Flavor>18</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_INFRASTRUCTURE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_GOLD</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_NUKE</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_USE_NUKE</FlavorType>
+			<Flavor>5</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_ANTIAIR</FlavorType>
+			<Flavor>6</Flavor>
+		</Replace>
+		<Replace>
+			<LeaderType>LEADER_ODA_NOBUNAGA</LeaderType>
+			<FlavorType>FLAVOR_AIR_CARRIER</FlavorType>
+			<Flavor>8</Flavor>
+		</Replace>
+	</Leader_Flavors>
+
+
 	<Leader_Traits>
 		<Update>
 			<Where LeaderType="LEADER_GENGHIS_KHAN"/>

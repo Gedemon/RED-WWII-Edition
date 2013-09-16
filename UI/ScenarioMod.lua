@@ -19,8 +19,9 @@ function OnBack()
 	fileListRefreshed = false;
 	g_ModList = nil;
 	--UIManager:DequeuePopup( ContextPtr );	
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModsMenuGrid/"):SetHide(false)
+	--ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModsMenuGrid/"):SetHide(false)
 	ContextPtr:SetHide(true)
+	ContextPtr:LookUpControl("../ModsMenuGrid/"):SetHide(false)
 end
 
 ----------------------------------------------------------------        
@@ -121,7 +122,7 @@ function SetupFileButtonList()
     g_InstanceList = {};
     
     -- build a table of all save file names that we found
-	for row in Modding.GetActivatedModEntryPoints("Custom") do
+	for row in Modding.GetActivatedModEntryPoints("CustomRED") do
 		table.insert(g_ModList, {
 			Name = row.Name,
 			Description = row.Description,

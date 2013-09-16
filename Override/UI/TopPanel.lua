@@ -6,6 +6,29 @@
 -- R.E.D. WW II edition
 -------------------------------------------------------------------------------------------------------
 include ("RedOverrideInclude")
+
+local reinforcementDisplayFormat = modUserData.GetValue("ReinforcementDisplayFormat") or 1
+local bOnlySupplied = (reinforcementDisplayFormat == 1)
+
+function ToggleReinforcementDisplayFormat()
+	local reinforcementDisplayFormat = modUserData.GetValue("ReinforcementDisplayFormat") or 1
+	if (reinforcementDisplayFormat == 0) then
+		reinforcementDisplayFormat = 1
+	else
+		reinforcementDisplayFormat = 0
+	end
+	modUserData.SetValue("ReinforcementDisplayFormat", reinforcementDisplayFormat)
+	bOnlySupplied = (reinforcementDisplayFormat == 1)
+
+	UpdateData()
+
+	Controls.MaterielPerTurn:SetToolTipString(GetMaterielTTString())
+	Controls.PersonnelPerTurn:SetToolTipString(GetPersonnelTTString())
+end
+
+Controls.PersonnelPerTurn:RegisterCallback( Mouse.eLClick, ToggleReinforcementDisplayFormat )
+Controls.MaterielPerTurn:RegisterCallback( Mouse.eLClick, ToggleReinforcementDisplayFormat )
+
 -------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------
 
@@ -58,7 +81,7 @@ function UpdateData()
 			local strPersonnelText = ""
 			local strMaterielText = ""
 
-			local reinforcementData = g_ReinforcementData --LoadReinforcementData()
+			local reinforcementData = MapModData.RED.ReinforcementData
 			local iPlayerID = Game.GetActivePlayer()
 			local pPlayer = Players[iPlayerID]
 			local data
@@ -71,7 +94,7 @@ function UpdateData()
 
 				local personnelReinforcement	= GetPersonnelReinforcement(iPlayerID) 
 				local materielReinforcement		= GetMaterielReinforcement(iPlayerID) 
-				local neededReinforcement		= GetNeededReinforcementForUnits(iPlayerID)
+				local neededReinforcement		= GetNeededReinforcementForUnits(iPlayerID, bOnlySupplied)
 
 				local fluxPersonnel = Round(personnelReinforcement.total - neededReinforcement.nextTurnPers)
 				local fluxMateriel = Round(materielReinforcement.total - neededReinforcement.nextTurnMat) -- - matToUpgrade -- check that...
@@ -234,20 +257,39 @@ function DoInitTooltips()
 	Controls.ResourceString:SetToolTipCallback( ResourcesTipHandler );
 end
 
--- Personnel Tooltip
 local tipControlTable = {};
 TTManager:GetTypeControlTable( "TooltipTypeTopPanel", tipControlTable );
+
+-- Personnel Tooltip
 function PersonnelTipHandler( control )
 
-	local strText = "";
+	local strText = GetPersonnelTTString()
+	
+	tipControlTable.TooltipLabel:SetText( strText );
+	tipControlTable.TopPanelMouseover:SetHide(false);
+    
+    -- Autosize tooltip
+    tipControlTable.TopPanelMouseover:DoAutoSize();
+	
+end
+function GetPersonnelTTString()
+
+	local strText = ""
 	
 	local playerID = Game.GetActivePlayer()
 	local player = Players[playerID]
 	
+	if bOnlySupplied then
+		strText = strText .. "[ICON_PERSONNEL] for units with a supply line (click to toggle all units)"
+	else
+		strText = strText .. "[ICON_PERSONNEL] for all units (click to toggle supply lines only)"
+	end
+	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE]"
+
 	strText = strText .. "[ICON_PERSONNEL] Personnel maximum reserve : " .. tostring(GetMaxPersonnel (playerID))
 	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE][NEWLINE]"
 
-	local reinforcementData = g_ReinforcementData
+	local reinforcementData = MapModData.RED.ReinforcementData
 	local currentPersFromSupplyRoutes = 0 -- need to be passed to current turn string, but is from reinforcementData table, so initialize here...
 	if reinforcementData and reinforcementData[playerID] then
 	
@@ -315,11 +357,11 @@ function PersonnelTipHandler( control )
 		if personnelReinforcement.fromHospital		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from hospitals (healed) : "  .. personnelReinforcement.fromHospital; end
 		if personnelReinforcement.fromNeedYou		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from cities recruiting (we need you) : "  .. personnelReinforcement.fromNeedYou; end
 		if personnelReinforcement.fromMinor			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from other nations (Friends, Allies) : "  .. personnelReinforcement.fromMinor; end
-		if currentPersFromSupplyRoutes				> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. persFromSupplyRoutes; end
+		if currentPersFromSupplyRoutes				> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. currentPersFromSupplyRoutes; end
 		if personnelReinforcement.fromScenario		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. personnelReinforcement.fromScenario; end
 		if personnelReinforcement.fromTrait			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from trait (Great Patriotic War) : "  .. personnelReinforcement.fromTrait; end
 		
-		local neededReinforcement = GetNeededReinforcementForUnits(playerID)
+		local neededReinforcement = GetNeededReinforcementForUnits(playerID, bOnlySupplied)
 		
 		for k,v in pairs(neededReinforcement) do neededReinforcement[k] = Round(v); end
 
@@ -345,6 +387,13 @@ function PersonnelTipHandler( control )
 		strText = strText .. "Please wait for first turn to allow data initialization..."
 	end
 
+	return strText
+end
+
+-- Materiel Tooltip
+function MaterielTipHandler( control )
+
+	local strText = GetMaterielTTString()
 	
 	tipControlTable.TooltipLabel:SetText( strText );
 	tipControlTable.TopPanelMouseover:SetHide(false);
@@ -353,19 +402,25 @@ function PersonnelTipHandler( control )
     tipControlTable.TopPanelMouseover:DoAutoSize();
 	
 end
+function GetMaterielTTString()
 
-
-function MaterielTipHandler( control )
-
-	local strText = "";
+	local strText = ""
 	
 	local playerID = Game.GetActivePlayer()
 	local player = Players[playerID]
 	
+	
+	if bOnlySupplied then
+		strText = strText .. "[ICON_MATERIEL] for units with a supply line (click to toggle all units)"
+	else
+		strText = strText .. "[ICON_MATERIEL] for all units (click to toggle supply lines only)"
+	end
+	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE]"
+
 	strText = strText .. "[ICON_MATERIEL] Materiel maximum stock : " .. tostring(GetMaxMateriel (playerID))
 	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE][NEWLINE]"
 
-	local reinforcementData = g_ReinforcementData 
+	local reinforcementData = MapModData.RED.ReinforcementData 
 	
 	local currentMatFromSupplyRoutes = 0
 
@@ -434,7 +489,7 @@ function MaterielTipHandler( control )
 		if currentMatFromSupplyRoutes			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. currentMatFromSupplyRoutes; end
 		if materielReinforcement.fromScenario	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. materielReinforcement.fromScenario; end
 		
-		local neededReinforcement = GetNeededReinforcementForUnits(playerID)
+		local neededReinforcement = GetNeededReinforcementForUnits(playerID, bOnlySupplied)
 
 		for k,v in pairs(neededReinforcement) do neededReinforcement[k] = Round(v); end
 
@@ -460,13 +515,7 @@ function MaterielTipHandler( control )
 	else
 		strText = strText .. "Please wait for first turn to allow data initialization..."
 	end
-	
-	tipControlTable.TooltipLabel:SetText( strText );
-	tipControlTable.TopPanelMouseover:SetHide(false);
-    
-    -- Autosize tooltip
-    tipControlTable.TopPanelMouseover:DoAutoSize();
-	
+	return strText
 end
 
 -- Gold Tooltip
@@ -629,10 +678,42 @@ end
 --end
 
 
+
+function UpdateReinforcementDataOnMove(iPlayer, unitID, x, y)
+	
+	local bDebug = true
+
+	--Dprint("- Unit Moving at " .. x .. "," .. y , bDebug)
+
+	local player = Players[iPlayer]	
+	if (not player:IsHuman()) then	
+		return	
+	end
+
+	local unit = player:GetUnitByID(unitID)	
+	if (unit == nil or unit:IsDelayedDeath()) then	
+		return	
+	end	
+	local plot = GetPlot(x, y)	
+	local missionPlot = unit:LastMissionPlot()
+	--local endPathPlot = unit:GetPathEndTurnPlot()
+	
+	--Dprint("- missionPlot = " .. tostring(missionPlot), bDebug)
+	--Dprint("- endPathPlot = " .. tostring(endPathPlot), bDebug)
+	
+	--Dprint("- Unit at (" .. x .. "," .. y .. "), Mission Plot at ("..missionPlot:GetX()..","..missionPlot:GetY()..")", bDebug)
+	--Dprint("- Unit at (" .. x .. "," .. y .. "), Mission Plot at ("..missionPlot:GetX()..","..missionPlot:GetY().."), End Path Plot at ("..endPathPlot:GetX()..","..endPathPlot:GetY()..")", bDebug)
+	
+	if plot == missionPlot then
+		UpdateData()
+	end
+end
+
 -- Register Events
 Events.SerialEventGameDataDirty.Add(OnTopPanelDirty);
 Events.SerialEventTurnTimerDirty.Add(OnTopPanelDirty);
 Events.SerialEventCityInfoDirty.Add(OnTopPanelDirty);
+GameEvents.UnitSetXY.Add(UpdateReinforcementDataOnMove);
 
 -- Update data at initialization
 UpdateData();

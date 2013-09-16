@@ -140,6 +140,7 @@ end
 function OnEnterGame ()
 	CommonOnEnterGame()
 	ScenarioOnEnterGame()
+	g_IsGameFullyInitialized = true
 	WARN_NOT_SHARED = true -- saveutils should have shared it's cache at this point.
 end
 
@@ -174,7 +175,7 @@ print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ R.E.D. World Wa
 print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
 ----------------------------------------------------------------------------------------------------------------------------
--- Test Functions
+-- Temp Debug/Test Functions
 ----------------------------------------------------------------------------------------------------------------------------
 function GameCoreUpdateEnd()
 	if PRINT_DLL_DEBUG then
@@ -182,7 +183,7 @@ function GameCoreUpdateEnd()
 		Dprint ("-----------")
 	end
 end
-GameEvents.GameCoreUpdateEnd.Add(GameCoreUpdateEnd)
+--GameEvents.GameCoreUpdateEnd.Add(GameCoreUpdateEnd)
 
 function GameCoreUpdateBegin()
 	if PRINT_DLL_DEBUG then
@@ -190,4 +191,131 @@ function GameCoreUpdateBegin()
 		Dprint ("-----------")
 	end
 end
-GameEvents.GameCoreUpdateBegin.Add(GameCoreUpdateBegin)
+--GameEvents.GameCoreUpdateBegin.Add(GameCoreUpdateBegin)
+
+---[[
+-- Pazyryk code for City graphic (need fix)
+g_cityUpdateInfo = {}
+g_cityUpdateNum = 0
+
+function ListenerSerialEventCityCreated(vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
+	print("ListenerSerialEventCityCreated: ", vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
+	g_cityUpdateNum = g_cityUpdateNum + 1
+	g_cityUpdateInfo[g_cityUpdateNum] = g_cityUpdateInfo[g_cityUpdateNum] or {}
+	local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
+	updateInfo[1] = {x = vHexPos.x, y = vHexPos.y, z = vHexPos.z}
+	updateInfo[2] = iPlayer
+	updateInfo[3] = iCity
+	updateInfo[4] = artStyleType
+	updateInfo[5] = eraType
+	updateInfo[6] = continent
+	updateInfo[7] = populationSize
+	updateInfo[8] = size
+	updateInfo[9] = fogState
+
+	--Warning! Infinite loop if new updateInfo causes an update!
+	if g_IsGameFullyInitialized then
+		local x, y = ToGridFromHex( updateInfo[1].x, updateInfo[1].y )
+		local plot = GetPlot(x,y)
+		local iOriginalOwner = GetPlotFirstOwner(GetPlotKey(plot))
+		local originalOwner = Players[iOriginalOwner]
+		local originalCiv = GetCivIDFromPlayerID (iOriginalOwner)
+
+		local originalArtStyle = "ARTSTYLE_EUROPEAN" -- default	
+		if originalOwner:IsMinorCiv() then
+			originalArtStyle = GameInfo.MinorCivilizations[originalCiv].ArtStyleType
+		else
+			originalArtStyle = GameInfo.Civilizations[originalCiv].ArtStyleType
+		end			
+		local cityArtstyleID = GameInfo.ArtStyleTypes[originalArtStyle].ID
+		if cityArtstyleID ~= artStyleType then
+			UpdateCityGraphic(plot:GetPlotCity())
+		end
+	end
+end
+Events.SerialEventCityCreated.Add(ListenerSerialEventCityCreated)
+
+function UpdateCitiesGraphicsOnLoad()
+	if g_cityUpdateNum == 0 then return end
+	print("Running UpdateCityGraphics; number cached = ", g_cityUpdateNum)
+	while 0 < g_cityUpdateNum do
+		local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
+		g_cityUpdateNum = g_cityUpdateNum - 1
+		--local iCurrentOwner = updateInfo[2]
+		--local currentOwner =  Players[iCurrentOwner]
+		--local city = currentOwner:GetCityByID(updateInfo[3])
+		local x, y = ToGridFromHex( updateInfo[1].x, updateInfo[1].y )
+		local plot = GetPlot(x,y)
+		local city = plot:GetPlotCity()
+		if city then
+			local iCurrentOwner = city:GetOwner()
+			local currentOwner =  Players[iCurrentOwner]
+			local iOriginalOwner = city:GetOriginalOwner()
+			local originalOwner = Players[iOriginalOwner]
+
+			local originalCiv = GetCivIDFromPlayerID (iOriginalOwner)
+			local currentCiv = GetCivIDFromPlayerID (iCurrentOwner)
+
+			local originalArtStyle = "ARTSTYLE_EUROPEAN" -- default	
+			if originalOwner:IsMinorCiv() then
+				originalArtStyle = GameInfo.MinorCivilizations[originalCiv].ArtStyleType
+			else
+				originalArtStyle = GameInfo.Civilizations[originalCiv].ArtStyleType
+			end
+			
+			local cityArtstyleID = GameInfo.ArtStyleTypes[originalArtStyle].ID
+			if cityArtstyleID ~= updateInfo[4] then
+				Events.SerialEventCityCreated(updateInfo[1], updateInfo[2], updateInfo[3], cityArtstyleID, updateInfo[5], updateInfo[6], updateInfo[7], updateInfo[8], updateInfo[9])
+			end
+		end
+	end
+end
+
+function UpdateCityGraphic(city)
+	if city then
+		local plot = city:Plot()
+		Dprint ("-----------")
+		Dprint("Update city graphic on plot ".. tostring(plot:GetX()) ..",".. tostring(plot:GetY()))
+
+		local iCurrentOwner = city:GetOwner()
+		local currentOwner =  Players[iCurrentOwner]		
+		Dprint("Current owner: ".. tostring(currentOwner:GetName()))
+
+		local iOriginalOwner = city:GetOriginalOwner() --GetPlotFirstOwner(GetPlotKey(plot))
+		local originalOwner = Players[iOriginalOwner]
+		Dprint("Original owner: ".. tostring(originalOwner:GetName()))
+
+		local originalCiv = GetCivIDFromPlayerID (iOriginalOwner)
+		local currentCiv = GetCivIDFromPlayerID (iCurrentOwner)
+
+		local originalArtStyle = "ARTSTYLE_EUROPEAN" -- default	
+		--local currentArtStyle = city:GetArtStyleType()
+		--Dprint("Default Arstyle = ".. tostring(originalArtStyle))
+		--Dprint("Current Arstyle = ".. tostring(currentArtStyle))
+
+		if originalOwner:IsMinorCiv() then
+			originalArtStyle = GameInfo.MinorCivilizations[originalCiv].ArtStyleType
+			Dprint("Original Arstyle = ".. tostring(originalArtStyle))
+		else
+			originalArtStyle = GameInfo.Civilizations[originalCiv].ArtStyleType
+			Dprint("Original Arstyle = ".. tostring(originalArtStyle))
+		end
+			
+		local cityArtstyleID = GameInfo.ArtStyleTypes[originalArtStyle].ID
+		local currentArtstyleID = city:GetArtStyleType() --GameInfo.ArtStyleTypes[currentArtStyle].ID
+		Dprint("Original Arstyle ID = ".. tostring(cityArtstyleID))
+		Dprint("Current Arstyle ID = ".. tostring(currentArtstyleID))
+		Dprint ("-----------")
+		--if cityArtstyleID ~= currentArtstyleID then
+			Events.SerialEventCityCreated(ToHexFromGrid( Vector2( plot:GetX(), plot:GetY() ) ), iCurrentOwner, city:GetID(), cityArtstyleID, 2 --[[originalOwner:GetCurrentEra()--]], plot:GetContinentArtType(), city:GetPopulation(), math.floor(city:GetPopulation()/2), 2)
+			--FixCityGraphicBug(plot)
+		--end
+	end
+end
+
+
+--Events.SerialEventGameDataDirty.Add(UpdateCitiesGraphicsOnLoad)
+Events.SequenceGameInitComplete.Add(UpdateCitiesGraphicsOnLoad)
+--Events.SerialEventCityCaptured.Add(UpdateCitiesGraphicsOnLoad)
+--GameEvents.CityCaptureComplete.Add(UpdateCitiesGraphicsOnLoad)
+--]]

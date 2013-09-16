@@ -131,18 +131,18 @@ function InitConvoyUnit(playerID, x, y, routeID)
 		local player = Players[playerID]
 		local unit = player:InitUnit(CONVOY, x, y)
 		if unit then
-			RegisterNewUnit(player:GetID(), unit) -- force immediate registration to allow change in g_UnitData 
+			RegisterNewUnit(player:GetID(), unit) -- force immediate registration to allow change in MapModData.RED.UnitData 
 			local unitKey = GetUnitKey(unit)
-			g_UnitData[unitKey].TotalControl = true
-			g_UnitData[unitKey].OrderType = RED_CONVOY
+			MapModData.RED.UnitData[unitKey].TotalControl = true
+			MapModData.RED.UnitData[unitKey].OrderType = RED_CONVOY
 
 			local objective = GetConvoyDestination(routeID)
 			if not objective then
 				Dprint("      - Can't get a destination...", bDebug)
 				return false
 			end
-			g_UnitData[unitKey].OrderObjective = objective
-			g_UnitData[unitKey].OrderReference = routeID
+			MapModData.RED.UnitData[unitKey].OrderObjective = objective
+			MapModData.RED.UnitData[unitKey].OrderReference = routeID
 
 			local plot = GetPlot(objective.X,objective.Y)
 			local strDestination = ""
@@ -154,8 +154,8 @@ function InitConvoyUnit(playerID, x, y, routeID)
 			end
 
 			local transport = GetConvoyTransport(routeID)
-			g_UnitData[unitKey].TransportType = transport.Type
-			g_UnitData[unitKey].TransportReference = transport.Reference
+			MapModData.RED.UnitData[unitKey].TransportType = transport.Type
+			MapModData.RED.UnitData[unitKey].TransportReference = transport.Reference
 
 			local strTransport = ""
 			if transport.Type == TRANSPORT_MATERIEL then
@@ -191,8 +191,8 @@ function UnloadConvoy(unit, playerID, x, y)
 	Dprint("  - Unloading convoy...", bDebug)
 	
 	local unitKey = GetUnitKey(unit)
-	local transportType = g_UnitData[unitKey].TransportType
-	local transportReference = g_UnitData[unitKey].TransportReference
+	local transportType = MapModData.RED.UnitData[unitKey].TransportType
+	local transportReference = MapModData.RED.UnitData[unitKey].TransportReference
 	local player = Players[playerID]
 	local healthRatio = unit:GetCurrHitPoints() / unit:GetMaxHitPoints()
 
@@ -209,13 +209,13 @@ function UnloadConvoy(unit, playerID, x, y)
 		local amount = math.ceil(transportReference * healthRatio)
 		player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Convoy has reached " .. strDestination .. ", delivering " .. amount .." materiel (" .. transportReference .." were loaded)", "Convoy unloading at " .. strDestination .." !", x, y)
 		Dprint("      - was transporting ".. transportReference .." materiel, has delivered " .. amount , bDebug)
-		g_ReinforcementData[playerID].MatFromSupplyRoute = g_ReinforcementData[playerID].MatFromSupplyRoute + amount
+		MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute + amount
 
 	elseif transportType == TRANSPORT_PERSONNEL then
 		local amount = math.ceil(transportReference * healthRatio)
 		player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Convoy has reached " .. strDestination .. ", delivering " .. amount .." personnel (" .. transportReference .." were loaded)", "Convoy unloading at " .. strDestination .." !", x, y)
 		Dprint("      - was transporting ".. transportReference .." personnel, has delivered " .. amount, bDebug)
-		g_ReinforcementData[playerID].PersFromSupplyRoute = g_ReinforcementData[playerID].PersFromSupplyRoute + amount
+		MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute + amount
 
 	elseif transportType == TRANSPORT_UNIT then 
 		player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Convoy has reached " .. strDestination .. ", delivering an equiped unit", "Convoy unloading at " .. strDestination .." !", x, y)

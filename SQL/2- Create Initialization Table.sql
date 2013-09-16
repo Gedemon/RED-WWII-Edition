@@ -10,6 +10,12 @@
 */
 
 -----------------------------------------------
+-- Add column for effects from G+K / BNW
+-----------------------------------------------
+ALTER TABLE ArtDefine_UnitMemberCombats		ADD COLUMN LastToDie INTEGER;
+--ALTER TABLE UnitPromotions					ADD COLUMN IgnoreZOC BOOLEAN; -- Need DLL modification -> Must port the mod to BNW to use it.
+
+-----------------------------------------------
 -- Create UnitConfiguration table
 -----------------------------------------------
 
@@ -22,19 +28,21 @@ CREATE TABLE UnitConfiguration (		id INTEGER PRIMARY KEY AUTOINCREMENT,
 										Name TEXT,
 										fxsxml TEXT,
 										Template TEXT,
-										Nb INT default NULL,
+										Nb INTEGER default NULL,
 										Form TEXT default NULL,
 										Scl FLOAT default NULL,
-										Cbt INT default NULL,
-										Rgcbt INT default NULL,
-										Cst INT default NULL,
-										Mvt INT default NULL,
-										Imb INT default NULL,
-										Rng INT default NULL,
-										Mat INT default NULL,
-										Pers INT default NULL,
-										Flag INT default NULL,
-										Icon INT default NULL,
+										Cbt INTEGER default NULL,
+										Rgcbt INTEGER default NULL,
+										Cst INTEGER default NULL,
+										Mvt INTEGER default NULL,
+										Imb INTEGER default NULL,
+										Rng INTEGER default NULL,
+										Mat INTEGER default NULL,
+										Pers INTEGER default NULL,
+										Flav INTEGER default NULL,
+										ProjCst FLOAT default NULL,
+										Flag INTEGER default NULL,
+										Icon INTEGER default NULL,
 										IcAtl TEXT default NULL,
 										FlagAtl TEXT default NULL,
 										Sv TEXT default NULL,
@@ -58,6 +66,8 @@ CREATE TABLE UnitConfiguration (		id INTEGER PRIMARY KEY AUTOINCREMENT,
 	Rng			= range
 	Mat			= reinforcement materiel / HP
 	Pers		= reinforcement personnel / HP
+	Flav		= bonus applied to each flavor of this unit
+	ProjCst		= cost factor of this project relative to unit's cost (NULL means unit's cost * 0.75)
 	Flag		= flag index
 	Icon		= icon idex
 	IcAtl		= icon atlas

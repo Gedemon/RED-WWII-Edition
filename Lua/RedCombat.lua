@@ -160,7 +160,7 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 		local bCity = ( pDefendingCity ~= nil )
 		
 		AttackerUnitKey = GetUnitKey(pAttackingUnit)
-		AttackerUniqueID = g_UnitData[AttackerUnitKey].UniqueID
+		AttackerUniqueID = MapModData.RED.UnitData[AttackerUnitKey].UniqueID
 		AttackerPlayerID = iAttackingPlayer
 		AttackerCivType = GetCivTypeFromPlayerID(iAttackingPlayer)
 		AttackerUnitType = GameInfo.Units[pAttackingUnit:GetUnitType()].Type
@@ -170,13 +170,13 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 		
 		if pDefendingUnit then
 			DefenderUnitKey = GetUnitKey(pDefendingUnit)
-			DefenderUniqueID = g_UnitData[DefenderUnitKey].UniqueID
+			DefenderUniqueID = MapModData.RED.UnitData[DefenderUnitKey].UniqueID
 			DefenderUnitType = GameInfo.Units[pDefendingUnit:GetUnitType()].Type
 		end
 
 		if pInterceptingUnit then
 			InterceptorUnitKey = GetUnitKey(pInterceptingUnit)
-			InterceptorUniqueID = g_UnitData[InterceptorUnitKey].UniqueID
+			InterceptorUniqueID = MapModData.RED.UnitData[InterceptorUnitKey].UniqueID
 			InterceptorPlayerID = iInterceptingPlayer
 			InterceptorCivType = GetCivTypeFromPlayerID(InterceptorPlayerID)
 			InterceptorUnitType = GameInfo.Units[pInterceptingUnit:GetUnitType()].Type
@@ -241,14 +241,14 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 		end
 
 		-- update damage in unit table
-		g_UnitData[AttackerUnitKey].Damage = attackerFinalDamage
+		MapModData.RED.UnitData[AttackerUnitKey].Damage = attackerFinalDamage
 
 		if pDefendingUnit then
-			g_UnitData[DefenderUnitKey].Damage = defenderFinalDamage
+			MapModData.RED.UnitData[DefenderUnitKey].Damage = defenderFinalDamage
 		end
 
 		--if pInterceptingUnit then
-		--	g_UnitData[InterceptorUnitKey].Damage = attackerFinalDamage
+		--	MapModData.RED.UnitData[InterceptorUnitKey].Damage = attackerFinalDamage
 		--end
 	
 		-- update combatXP for involved units
@@ -258,12 +258,12 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 		
 		Dprint ("-----------------", g_DebugCombat)
 		Dprint ("Updating Combat Log...", g_DebugCombat);
-		table.insert(g_CombatsLog, {
+		table.insert(MapModData.RED.CombatsLog, {
 			Turn = Game.GetGameTurn(), 
 			PlotKey = defendingPlotKey,
 			CombatType = combatType,
 			DefenderIsCity = bCity,
-			AttackerUniqueID = AttackerUniqueID,			-- uniqueID from g_UnitData
+			AttackerUniqueID = AttackerUniqueID,			-- uniqueID from MapModData.RED.UnitData
 			DefenderUniqueID = DefenderUniqueID,
 			InterceptorUniqueID = InterceptorUniqueID,
 			AttackerToDefender = AttackerToDefender,
@@ -486,7 +486,7 @@ function CombatEnded (iAttackingPlayer, iAttackingUnit, attackerDamage, attacker
 		local bCity = ( pDefendingCity ~= nil )
 		
 		AttackerUnitKey = GetUnitKey(pAttackingUnit)
-		AttackerUniqueID = g_UnitData[AttackerUnitKey].UniqueID
+		AttackerUniqueID = MapModData.RED.UnitData[AttackerUnitKey].UniqueID
 		AttackerPlayerID = iAttackingPlayer
 		AttackerCivType = GetCivTypeFromPlayerID(iAttackingPlayer)
 		AttackerUnitType = GameInfo.Units[pAttackingUnit:GetUnitType()].Type
@@ -496,13 +496,13 @@ function CombatEnded (iAttackingPlayer, iAttackingUnit, attackerDamage, attacker
 
 		if pDefendingUnit then
 			DefenderUnitKey = GetUnitKey(pDefendingUnit)
-			DefenderUniqueID = g_UnitData[DefenderUnitKey].UniqueID
+			DefenderUniqueID = MapModData.RED.UnitData[DefenderUnitKey].UniqueID
 			DefenderUnitType = GameInfo.Units[pDefendingUnit:GetUnitType()].Type
 		end
 
 		if pInterceptingUnit then
 			InterceptorUnitKey = GetUnitKey(pInterceptingUnit)
-			InterceptorUniqueID = g_UnitData[InterceptorUnitKey].UniqueID
+			InterceptorUniqueID = MapModData.RED.UnitData[InterceptorUnitKey].UniqueID
 			InterceptorPlayerID = iInterceptingPlayer
 			InterceptorCivType = GetCivTypeFromPlayerID(InterceptorPlayerID)
 			InterceptorUnitType = GameInfo.Units[pInterceptingUnit:GetUnitType()].Type
@@ -778,8 +778,8 @@ function CounterFire(iAttackingPlayer, iAttackingUnit, attackerDamage, attackerF
 			if attackerPlot:IsCity() then -- no counter attack on city...
 				return
 			end
-			local counterFireUnit = GetCounterFireUnit(plot)
-			if (counterFireUnit ~= DefendingUnit) or (defenderFinalDamage < iDefendingUnitMaxHP) then -- defender must be alive to ripost !
+			local counterFireUnit = GetCounterFireUnit(plot, AttackingUnit)
+			if counterFireUnit and ((counterFireUnit ~= DefendingUnit) or (defenderFinalDamage < iDefendingUnitMaxHP)) then -- defender must be alive to ripost !
 				--We're in business.  Let's launch a counter-fire.
 				Dprint("--------------------------", g_DebugCombat)
 				Dprint("Counter-fire", g_DebugCombat)
@@ -823,16 +823,32 @@ function CounterFire(iAttackingPlayer, iAttackingUnit, attackerDamage, attackerF
 end
 --GameEvents.CombatResult.Add( CounterFire )
 
-function GetCounterFireUnit(plot)
+function GetCounterFireUnit(plot, AttackingUnit)
 	local unitCount = plot:GetNumUnits()
 	local counterFireUnit = nil
 	for i = 0, unitCount - 1, 1 do	
     	local testUnit = plot:GetUnit(i)
-		if testUnit and g_CounterFire[testUnit:GetUnitType()] then
+		if testUnit and IsCounterFire(testUnit, AttackingUnit) then
 			counterFireUnit = testUnit
 		end
 	end
 	return counterFireUnit
+end
+
+function IsCounterFire(unit, AttackingUnit)
+	if not unit:IsRanged() then 
+		return false
+	end
+	if unit:IsHasPromotion(PROMOTION_ARTILLERY) then
+		if unit:CanRangeStrikeAt( AttackingUnit:GetX(), AttackingUnit:GetY() ) then
+			return true
+		end
+	end
+	if unit:IsHasPromotion(PROMOTION_FIELD_GUN) and AttackingUnit:IsHasPromotion(PROMOTION_FIELD_GUN) then
+		if unit:CanRangeStrikeAt( AttackingUnit:GetX(), AttackingUnit:GetY() ) then
+			return true
+		end
+	end
 end
 
 --------------------------------------------------------------
@@ -928,7 +944,7 @@ function FirstStrike(iPlayer, iUnit, x, y, iMission)
 		-- Defensive strike		
 		if not attackerPlot:IsCity() then -- no defensive strike against city...
 
-			DefensiveFirstStrikeUnit = GetDefensiveFirstStrikeUnit(defenderPlot)
+			DefensiveFirstStrikeUnit = GetDefensiveFirstStrikeUnit(defenderPlot, attackingUnit)
 			if DefensiveFirstStrikeUnit and not g_DefensiveFirstStrike[DefensiveFirstStrikeUnit] then -- Support one defense per turn
 	
 				Dprint("--------------------------", g_DebugCombat)
@@ -950,11 +966,13 @@ function FirstStrike(iPlayer, iUnit, x, y, iMission)
 			
 				local movesLeft = DefensiveFirstStrikeUnit:MovesLeft()				-- save unit moves
 				local bNoAttackLeft = DefensiveFirstStrikeUnit:IsOutOfAttacks()		-- save attack status
+				DefensiveFirstStrikeUnit:SetHasPromotion(RANGE_BONUS, true)			-- give temporary promotion so that units can strike even when attacking from further away...
 				DefensiveFirstStrikeUnit:SetMoves(MOVE_DENOMINATOR)					-- Give one free move for attack
 				DefensiveFirstStrikeUnit:SetMadeAttack(false)						-- Make sure it can attack
 				SetTemporaryBestDefender(attackingUnit)								-- mark the attacking unit so it will be the one selected to defend against the support-fire...
 				DefensiveFirstStrikeUnit:RangeStrike(attX, attY)					-- Supporting-Fire !!!
 				RemoveTemporaryBestDefender(attackingUnit)							-- remove the "forced best defender" mark on the attacking unit
+				DefensiveFirstStrikeUnit:SetHasPromotion(RANGE_BONUS, false)		-- remove temporary promotion
 				DefensiveFirstStrikeUnit:SetMoves(movesLeft)						-- restore unit moves			
 				DefensiveFirstStrikeUnit:SetMadeAttack(bNoAttackLeft)				-- restore attack status	
 
@@ -973,23 +991,46 @@ function GetOffensiveFirstStrikeUnit(plot)
 	local firstStrikeUnit = nil
 	for i = 0, unitCount - 1, 1 do	
     	local testUnit = plot:GetUnit(i)
-		if testUnit and g_OffensiveSupport[testUnit:GetUnitType()] then
+		if testUnit and IsOffensiveFirstStrike(testUnit) then
 			firstStrikeUnit = testUnit
 		end
 	end
 	return firstStrikeUnit
 end
 
-function GetDefensiveFirstStrikeUnit(plot)
+function IsOffensiveFirstStrike(unit)
+	if unit:IsMustSetUpToRangedAttack() and not unit:IsSetUpForRangedAttack() then
+		return false
+	end
+	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FIELD_GUN) then
+		return true
+	end
+	return false
+end
+
+function GetDefensiveFirstStrikeUnit(plot, attackingUnit)
 	local unitCount = plot:GetNumUnits()
 	local firstStrikeUnit = nil
 	for i = 0, unitCount - 1, 1 do	
     	local testUnit = plot:GetUnit(i)
-		if testUnit and g_DefensiveSupport[testUnit:GetUnitType()] then
+		if testUnit and IsDefensiveFirstStrike(testUnit, attackingUnit) then
 			firstStrikeUnit = testUnit
 		end
 	end
 	return firstStrikeUnit
+end
+
+function IsDefensiveFirstStrike(unit, attackingUnit)
+	if unit:IsMustSetUpToRangedAttack() and not unit:IsSetUpForRangedAttack() then
+		return false
+	end
+	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FIELD_GUN) then
+		return true
+	end
+	if (IsTankDestroyer(unit)) and (GameInfo.UnitCombatInfos[attackingUnit:GetUnitCombatType()].Type == "UNITCOMBAT_ARMOR") then
+		return true
+	end
+	return false
 end
 
 --------------------------------------------------------------

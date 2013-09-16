@@ -142,23 +142,23 @@ g_Combat_Type_Ratio = {
 	-- Armor	<= land units / armor units
 	-- Artillery<= land units / artillery units
 	-- ( 1 = no limit )
-	[FRANCE]	= {Air = 5, Sea = 5, Armor = 2, Artillery = 8,},
-	[ENGLAND]	= {Air = 4, Sea = 3.5, Armor = 2, Artillery = 8,},
-	[USSR]		= {Air = 5, Sea = 7, Armor = 3, Artillery = 7.5,},
-	[GERMANY]	= {Air = 5, Sea = 5, Armor = 1.85, Artillery = 8,},
-	[ITALY]		= {Air = 5, Sea = 4, Armor = 3, Artillery = 8,},
-	[GREECE]	= {Air = 5, Sea = 5, Armor = 4, Artillery = 8,},
+	[FRANCE]	= {Air = 5,		Sea = 5,	Armor = 2,		Artillery = 6,},
+	[ENGLAND]	= {Air = 4,		Sea = 3.5,	Armor = 2,		Artillery = 6,},
+	[USSR]		= {Air = 5,		Sea = 7,	Armor = 3,		Artillery = 5,},
+	[GERMANY]	= {Air = 5,		Sea = 5,	Armor = 1.85,	Artillery = 6,},
+	[ITALY]		= {Air = 5,		Sea = 4,	Armor = 3,		Artillery = 6,},
+	[GREECE]	= {Air = 5,		Sea = 5,	Armor = 4,		Artillery = 6,},
 }
 
 -- Armor type ratio restriction used by AI
 g_Max_Armor_SubClass_Percent = {
 	-- max num	<= armor units / type units
-	[FRANCE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[ENGLAND]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[USSR]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[GERMANY]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[ITALY]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[GREECE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
+	[FRANCE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 25, [CLASS_ASSAULT_GUN] = 25, [CLASS_LIGHT_TANK_DESTROYER] = 30, [CLASS_TANK_DESTROYER] = 30,	},
+	[ENGLAND]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 60, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 25, [CLASS_ASSAULT_GUN] = 10, [CLASS_LIGHT_TANK_DESTROYER] = 25, [CLASS_TANK_DESTROYER] = 25,	},
+	[USSR]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 30, [CLASS_LIGHT_TANK_DESTROYER] = 25, [CLASS_TANK_DESTROYER] = 30,	},
+	[GERMANY]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 40, [CLASS_ASSAULT_GUN] = 30, [CLASS_LIGHT_TANK_DESTROYER] = 30, [CLASS_TANK_DESTROYER] = 30,	},
+	[ITALY]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, [CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
+	[GREECE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, [CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
 }	
 
 -- Air type ratio restriction used by AI
@@ -178,7 +178,7 @@ g_Max_Air_SubClass_Percent = {
 g_Initial_OOB = { 
 	{Name = "French north army", X = 33, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_AMR35, FR_B1, FR_S35} },
 	{Name = "French south army", X = 30, Y = 35, Domain = "Land", AI = true, CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_CHAR_D1} },
-	{Name = "French metr. aviation", X = 28, Y = 45, Domain = "Air", CivID = FRANCE, Group = {FR_MS406, FR_MS406 } },
+	{Name = "French metr. aviation", X = 28, Y = 45, Domain = "Air", CivID = FRANCE, Group = {FR_MS406, FR_MB152 } },
 	{Name = "French metr. aviation AI Bonus", X = 28, Y = 45, Domain = "Air", AI = true, CivID = FRANCE, Group = {FR_HAWK75, FR_HAWK75 } },
 	{Name = "French Mediteranean fleet", X = 28, Y = 30, Domain = "Sea", CivID = FRANCE, Group = {FR_FANTASQUE, FR_FANTASQUE, FR_SUBMARINE, FR_GALISSONIERE, FR_GALISSONIERE, FR_BATTLESHIP, FR_BATTLESHIP_2} },
 	{Name = "French North Africa", X = 16, Y = 18, Domain = "Land", CivID = FRANCE, Group = {FR_LEGION, FR_AMC35, FR_CHAR_D2} },
@@ -191,11 +191,11 @@ g_Initial_OOB = {
 	{Name = "England Exped. corp Netherlands", X = 26, Y = 52, Domain = "Land", AI = true, CivID = ENGLAND, Group = {UK_INFANTRY, UK_INFANTRY, UK_MATILDA_I, UK_MATILDA_II} },
 	{Name = "England Exped. corp Belgium", X = 24, Y = 53, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH} },
 	{Name = "England Exped. corp Egypt", X = 63, Y = 2, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_CRUISER_I, UK_VICKERS_MK6B} },
-	{Name = "England Metropole RAF", X = 27, Y = 52, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE, UK_SPITFIRE, UK_WELLINGTON, UK_WELLINGTON} },
-	{Name = "England Metropole RAF AI", X = 27, Y = 52, Domain = "Air", AI = true, CivID = ENGLAND, Group = {UK_SPITFIRE, UK_SPITFIRE,} },
-	{Name = "England Malta RAF", X = 41, Y = 14, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE} },
-	{Name = "England Nicosia RAF", X = 74, Y = 12, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE} },
-	{Name = "England Egypt RAF", X = 60, Y = 3, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE} },
+	{Name = "England Metropole RAF", X = 27, Y = 52, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE, UK_HURRICANE, UK_WELLINGTON, UK_WELLINGTON} },
+	{Name = "England Metropole RAF AI", X = 27, Y = 52, Domain = "Air", AI = true, CivID = ENGLAND, Group = {UK_SPITFIRE, UK_HURRICANE,} },
+	{Name = "England Malta RAF", X = 41, Y = 14, Domain = "Air", CivID = ENGLAND, Group = {UK_HURRICANE} },
+	{Name = "England Nicosia RAF", X = 74, Y = 12, Domain = "Air", CivID = ENGLAND, Group = {UK_HURRICANE} },
+	{Name = "England Egypt RAF", X = 60, Y = 3, Domain = "Air", CivID = ENGLAND, Group = {UK_HURRICANE} },
 	{Name = "England Home fleet", X = 10, Y = 46, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_BATTLESHIP, UK_BATTLESHIP_2, UK_ELIZABETH} },
 	{Name = "England Home fleet North", X = 34, Y = 59, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_DIDO, UK_BATTLESHIP_2} },
 	{Name = "England West Mediterranean fleet", X = 13, Y = 22, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_SUBMARINE, UK_ELIZABETH} },
@@ -530,11 +530,12 @@ g_Cities = {
 	-- UNITED KINGDOM
 	{X = 27, Y = 52, Key = true, Buildings = { FACTORY, HARBOR }, AIBuildings = {SHIPYARD}, }, -- LONDON
 	{X = 24, Y = 57, Key = true,  Buildings = { HARBOR }, AIBuildings = {LAND_FACTORY}, }, -- LIVERPOOL
-	{X = 26, Y = 62, Key = true,  Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
-	{X = 27, Y = 59, Key = true,  Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
+	{X = 26, Y = 61, Key = true,  Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
+	{X = 24, Y = 62, Key = true,  Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- GLASGOW
+	{X = 28, Y = 58, Key = true,  Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
 	{X = 21, Y = 62, Buildings = { HARBOR }, }, -- BELFAST
 	{X = 28, Y = 65, }, -- ABERDEEN
-	{X = 10, Y = 24, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
+	{X = 10, Y = 25, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
 	{X = 41, Y = 14, Buildings = { HARBOR, BASE }, AIBuildings = {ARSENAL}, }, -- MALTA
 	{X = 22, Y = 52, Buildings = { HARBOR }, }, -- PLYMOUTH
 	{X = 92, Y = 11, }, -- HABBANIYA
@@ -560,10 +561,10 @@ g_Cities = {
 	{X = 47, Y = 40, Buildings = { FACTORY }, }, -- VIENNA
 	{X = 40, Y = 40, Buildings = { FACTORY }, }, -- MUNICH
 	-- FRANCE
-	{X = 28, Y = 45, Key = true,  Buildings = { FACTORY, BANK, OPEN_CITY }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
+	{X = 28, Y = 45, Key = true,  Buildings = { FACTORY, BANK, OPEN_CITY, BARRACKS }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
 	{X = 29, Y = 34, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- MARSEILLE
-	{X = 30, Y = 38, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- LYON
-	{X = 25, Y = 36, Buildings = { FACTORY }, }, -- TOULOUSE
+	{X = 30, Y = 38, Buildings = { FACTORY }, }, -- LYON
+	{X = 25, Y = 36, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- TOULOUSE
 	{X = 25, Y = 46, Key = true,  }, -- CAEN
 	{X = 23, Y = 48, Buildings = { HARBOR }, }, -- CHERBOURG
 	{X = 16, Y = 18, Buildings = { BARRACKS, LEGION_HQ }, }, -- SIDI BEL ABBES

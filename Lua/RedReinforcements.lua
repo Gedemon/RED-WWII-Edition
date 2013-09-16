@@ -21,7 +21,7 @@ function GetNeededReinforcementForUnits(playerID, bOnlySupplied)
 
 	for unit in player:Units() do
 		-- Count only unit that have a supply line
-		if CanGetReinforcement(unit) or not bOnlySupplied then
+		if (not bOnlySupplied) or CanGetReinforcement(unit) then
 			local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unit:GetUnitType(), unit)
 			local damage = unit:GetDamage()
 			local addedMat = reqMateriel * damage
@@ -183,7 +183,7 @@ end
 
 function GetPersonnelReinforcement (playerID, bUpdate)
 	
-	local reinforcementData = g_ReinforcementData
+	local reinforcementData = MapModData.RED.ReinforcementData
 
 	local player = Players[playerID]
 	local personnelReinforcement = {}
@@ -219,7 +219,7 @@ function GetPersonnelReinforcement (playerID, bUpdate)
 				local favorite = minor:GetMinorCivFavoriteMajor()
 				local friendship = minor:GetMinorCivFriendshipWithMajor(playerID)
 				if friendship > 30 and reinforcementData[i] then
-				--if favorite == playerID and reinforcementData[i] then -- g_ReinforcementData not available in toppanel ?
+				--if favorite == playerID and reinforcementData[i] then -- MapModData.RED.ReinforcementData not available in toppanel ?
 					local flux = tonumber(reinforcementData[i].FluxPersonnel) or 0
 					local personnel = tonumber(reinforcementData[i].Personnel) or 0
 					local level = minor:GetMinorCivFriendshipLevelWithMajor(favorite)
@@ -231,10 +231,10 @@ function GetPersonnelReinforcement (playerID, bUpdate)
 					else
 						bonus = flux*ratio/100
 					end
-					-- apply change here only if g_ReinforcementData exist (redmain context, for calculation)
-					if g_ReinforcementData[i] then
-						--g_ReinforcementData[i].Personnel = personnel - bonus
-						--g_ReinforcementData[i].FluxPersonnel = flux - bonus
+					-- apply change here only if MapModData.RED.ReinforcementData exist (redmain context, for calculation)
+					if MapModData.RED.ReinforcementData[i] then
+						--MapModData.RED.ReinforcementData[i].Personnel = personnel - bonus
+						--MapModData.RED.ReinforcementData[i].FluxPersonnel = flux - bonus
 					end
 					personnelReinforcement.fromMinor = personnelReinforcement.fromMinor + bonus
 					--Dprint(" - " .. minor:GetName() .. " send " .. bonus .. " troops to reinforce " .. player:GetName() .. " (total reinforcements from allies is " .. fromMinor .. ")" )
@@ -382,7 +382,7 @@ end
 
 function GetMaterielReinforcement (playerID, bUpdate)
 
-	local reinforcementData = g_ReinforcementData
+	local reinforcementData = MapModData.RED.ReinforcementData
 
 	local player = Players[playerID]
 	local materielReinforcement = {}
@@ -478,8 +478,8 @@ function GetMaxMateriel (playerID)
 end
 
 function InitializeReinforcementTable()
-	-- We could use directly g_ReinforcementData, just a leftover from loading/saving data in function
-	--local reinforcementData = g_ReinforcementData
+	-- We could use directly MapModData.RED.ReinforcementData, just a leftover from loading/saving data in function
+	--local reinforcementData = MapModData.RED.ReinforcementData
 	local bDebug = true
 	Dprint("-------------------------------------", bDebug)
 	Dprint("Creating Reinforcements data table...", bDebug)
@@ -499,34 +499,34 @@ function InitializeReinforcementTable()
 			local fluxMateriel = materielReinforcement.total
 			local maxMateriel = GetMaxMateriel (playerID)
 
-			g_ReinforcementData[playerID] = {}
-			g_ReinforcementData[playerID].Personnel = INITIAL_PERSONNEL_VALUE
-			g_ReinforcementData[playerID].Materiel	= INITIAL_MATERIEL_VALUE
-			g_ReinforcementData[playerID].FluxPersonnel = fluxPersonnel
-			g_ReinforcementData[playerID].FluxMateriel	= fluxMateriel
-			g_ReinforcementData[playerID].MaxPersonnel	= maxPersonnel
-			g_ReinforcementData[playerID].MaxMateriel	= maxMateriel
+			MapModData.RED.ReinforcementData[playerID] = {}
+			MapModData.RED.ReinforcementData[playerID].Personnel = INITIAL_PERSONNEL_VALUE
+			MapModData.RED.ReinforcementData[playerID].Materiel	= INITIAL_MATERIEL_VALUE
+			MapModData.RED.ReinforcementData[playerID].FluxPersonnel = fluxPersonnel
+			MapModData.RED.ReinforcementData[playerID].FluxMateriel	= fluxMateriel
+			MapModData.RED.ReinforcementData[playerID].MaxPersonnel	= maxPersonnel
+			MapModData.RED.ReinforcementData[playerID].MaxMateriel	= maxMateriel
 		
-			g_ReinforcementData[playerID].ReceivedPers		= fluxPersonnel
-			g_ReinforcementData[playerID].ReceivedMat		= fluxMateriel
-			g_ReinforcementData[playerID].PersFromGlobal	= personnelReinforcement.fromGlobal
-			g_ReinforcementData[playerID].PersFromHospital	= personnelReinforcement.fromHospital
-			g_ReinforcementData[playerID].PersFromPropaganda= personnelReinforcement.fromPropaganda
-			g_ReinforcementData[playerID].PersFromRecruiting= personnelReinforcement.fromRecruiting
-			g_ReinforcementData[playerID].PersFromTrait		= personnelReinforcement.fromTrait
-			g_ReinforcementData[playerID].PersFromNeedYou	= personnelReinforcement.fromNeedYou
-			g_ReinforcementData[playerID].PersFromMinor		= personnelReinforcement.fromMinor
-			g_ReinforcementData[playerID].PersFromScenario	= personnelReinforcement.fromScenario
-			g_ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
-			g_ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
-			g_ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
-			g_ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
-			g_ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
-			g_ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
-			g_ReinforcementData[playerID].TotalMatFromSupplyRoute = 0
-			g_ReinforcementData[playerID].MatFromSupplyRoute = 0
-			g_ReinforcementData[playerID].TotalPersFromSupplyRoute = 0
-			g_ReinforcementData[playerID].PersFromSupplyRoute = 0
+			MapModData.RED.ReinforcementData[playerID].ReceivedPers		= fluxPersonnel
+			MapModData.RED.ReinforcementData[playerID].ReceivedMat		= fluxMateriel
+			MapModData.RED.ReinforcementData[playerID].PersFromGlobal	= personnelReinforcement.fromGlobal
+			MapModData.RED.ReinforcementData[playerID].PersFromHospital	= personnelReinforcement.fromHospital
+			MapModData.RED.ReinforcementData[playerID].PersFromPropaganda= personnelReinforcement.fromPropaganda
+			MapModData.RED.ReinforcementData[playerID].PersFromRecruiting= personnelReinforcement.fromRecruiting
+			MapModData.RED.ReinforcementData[playerID].PersFromTrait		= personnelReinforcement.fromTrait
+			MapModData.RED.ReinforcementData[playerID].PersFromNeedYou	= personnelReinforcement.fromNeedYou
+			MapModData.RED.ReinforcementData[playerID].PersFromMinor		= personnelReinforcement.fromMinor
+			MapModData.RED.ReinforcementData[playerID].PersFromScenario	= personnelReinforcement.fromScenario
+			MapModData.RED.ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
+			MapModData.RED.ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
+			MapModData.RED.ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
+			MapModData.RED.ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
+			MapModData.RED.ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
+			MapModData.RED.ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
+			MapModData.RED.ReinforcementData[playerID].TotalMatFromSupplyRoute = 0
+			MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute = 0
+			MapModData.RED.ReinforcementData[playerID].TotalPersFromSupplyRoute = 0
+			MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute = 0
 			
 			Dprint("- " .. player:GetName() .. " has: +" .. fluxPersonnel .."/"..maxPersonnel.." personnel and +".. fluxMateriel .."/"..maxMateriel.." materiel")
 						
@@ -542,7 +542,7 @@ function Reinforcements(playerID)
 	local player = Players[playerID]
 	if ( player:IsAlive() ) then
 			
-		local value = g_ReinforcementData[playerID]
+		local value = MapModData.RED.ReinforcementData[playerID]
 
 		if value == nil then
 			Dprint("-------------------------------------", bDebug)
@@ -568,35 +568,35 @@ function Reinforcements(playerID)
 		
 		-- Supply Routes
 		-- to do : include in GetPersonnelReinforcement / GetMateriellReinforcement ?
-		g_ReinforcementData[playerID].TotalPersFromSupplyRoute = g_ReinforcementData[playerID].PersFromSupplyRoute
-		g_ReinforcementData[playerID].PersFromSupplyRoute = 0
-		g_ReinforcementData[playerID].TotalMatFromSupplyRoute = g_ReinforcementData[playerID].MatFromSupplyRoute
-		g_ReinforcementData[playerID].MatFromSupplyRoute = 0
-		fluxPersonnel = fluxPersonnel + g_ReinforcementData[playerID].TotalPersFromSupplyRoute
-		fluxMateriel = fluxMateriel + g_ReinforcementData[playerID].TotalMatFromSupplyRoute
+		MapModData.RED.ReinforcementData[playerID].TotalPersFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute
+		MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute = 0
+		MapModData.RED.ReinforcementData[playerID].TotalMatFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute
+		MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute = 0
+		fluxPersonnel = fluxPersonnel + MapModData.RED.ReinforcementData[playerID].TotalPersFromSupplyRoute
+		fluxMateriel = fluxMateriel + MapModData.RED.ReinforcementData[playerID].TotalMatFromSupplyRoute
 
 		--
-		g_ReinforcementData[playerID].Personnel = personnel + fluxPersonnel -- check for max value after applying reinforcement to units
-		g_ReinforcementData[playerID].Materiel = materiel + fluxMateriel
-		g_ReinforcementData[playerID].MaxPersonnel = maxPersonnel
-		g_ReinforcementData[playerID].MaxMateriel = maxMateriel
+		MapModData.RED.ReinforcementData[playerID].Personnel = personnel + fluxPersonnel -- check for max value after applying reinforcement to units
+		MapModData.RED.ReinforcementData[playerID].Materiel = materiel + fluxMateriel
+		MapModData.RED.ReinforcementData[playerID].MaxPersonnel = maxPersonnel
+		MapModData.RED.ReinforcementData[playerID].MaxMateriel = maxMateriel
 		
-		g_ReinforcementData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower the flux
-		g_ReinforcementData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower the flux
-		g_ReinforcementData[playerID].PersFromGlobal = personnelReinforcement.fromGlobal
-		g_ReinforcementData[playerID].PersFromHospital = personnelReinforcement.fromHospital
-		g_ReinforcementData[playerID].PersFromPropaganda = personnelReinforcement.fromPropaganda
-		g_ReinforcementData[playerID].PersFromRecruiting = personnelReinforcement.fromRecruiting
-		g_ReinforcementData[playerID].PersFromTrait = personnelReinforcement.fromTrait
-		g_ReinforcementData[playerID].PersFromNeedYou = personnelReinforcement.fromNeedYou
-		g_ReinforcementData[playerID].PersFromMinor = personnelReinforcement.fromMinor
-		g_ReinforcementData[playerID].PersFromScenario = personnelReinforcement.fromScenario
-		g_ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
-		g_ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
-		g_ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
-		g_ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
-		g_ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
-		g_ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
+		MapModData.RED.ReinforcementData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower the flux
+		MapModData.RED.ReinforcementData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower the flux
+		MapModData.RED.ReinforcementData[playerID].PersFromGlobal = personnelReinforcement.fromGlobal
+		MapModData.RED.ReinforcementData[playerID].PersFromHospital = personnelReinforcement.fromHospital
+		MapModData.RED.ReinforcementData[playerID].PersFromPropaganda = personnelReinforcement.fromPropaganda
+		MapModData.RED.ReinforcementData[playerID].PersFromRecruiting = personnelReinforcement.fromRecruiting
+		MapModData.RED.ReinforcementData[playerID].PersFromTrait = personnelReinforcement.fromTrait
+		MapModData.RED.ReinforcementData[playerID].PersFromNeedYou = personnelReinforcement.fromNeedYou
+		MapModData.RED.ReinforcementData[playerID].PersFromMinor = personnelReinforcement.fromMinor
+		MapModData.RED.ReinforcementData[playerID].PersFromScenario = personnelReinforcement.fromScenario
+		MapModData.RED.ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
+		MapModData.RED.ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
+		MapModData.RED.ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
+		MapModData.RED.ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
+		MapModData.RED.ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
+		MapModData.RED.ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
 		
 		Dprint("-------------------------------------", bDebug)
 		Dprint("Sending Reinforcements to units...", bDebug)
@@ -652,13 +652,13 @@ function Reinforcements(playerID)
 						local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unitType, unit)
 
 						-- reinforce the units if the requested resources are available
-						if (reqMateriel <= g_ReinforcementData[playerID].Materiel) and (reqPersonnel <= g_ReinforcementData[playerID].Personnel) then
+						if (reqMateriel <= MapModData.RED.ReinforcementData[playerID].Materiel) and (reqPersonnel <= MapModData.RED.ReinforcementData[playerID].Personnel) then
 							Dprint("  - reinforcement pass num".. healHP .." in the [" .. n .. "hp row] : ".. unit:GetName() .. " get 1 hp from ".. reqPersonnel .." personnel and " .. reqMateriel .." materiel", bDebug)
 							healTable[key] = healTable[key] + 1 -- store +1 HP for this unit
 							fluxPersonnel = fluxPersonnel - reqPersonnel
 							fluxMateriel = fluxMateriel - reqMateriel
-							g_ReinforcementData[playerID].Materiel = g_ReinforcementData[playerID].Materiel - reqMateriel
-							g_ReinforcementData[playerID].Personnel = g_ReinforcementData[playerID].Personnel - reqPersonnel
+							MapModData.RED.ReinforcementData[playerID].Materiel = MapModData.RED.ReinforcementData[playerID].Materiel - reqMateriel
+							MapModData.RED.ReinforcementData[playerID].Personnel = MapModData.RED.ReinforcementData[playerID].Personnel - reqPersonnel
 						end
 					end
 				end
@@ -675,10 +675,10 @@ function Reinforcements(playerID)
 		end
 
 		-- round values, and check for maximum.
-		g_ReinforcementData[playerID].Materiel = math.min(Round(g_ReinforcementData[playerID].Materiel), maxMateriel) 
-		g_ReinforcementData[playerID].Personnel = math.min(Round(g_ReinforcementData[playerID].Personnel), maxPersonnel)
-		g_ReinforcementData[playerID].FluxMateriel = Round(fluxMateriel)
-		g_ReinforcementData[playerID].FluxPersonnel = Round(fluxPersonnel)
+		MapModData.RED.ReinforcementData[playerID].Materiel = math.min(Round(MapModData.RED.ReinforcementData[playerID].Materiel), maxMateriel) 
+		MapModData.RED.ReinforcementData[playerID].Personnel = math.min(Round(MapModData.RED.ReinforcementData[playerID].Personnel), maxPersonnel)
+		MapModData.RED.ReinforcementData[playerID].FluxMateriel = Round(fluxMateriel)
+		MapModData.RED.ReinforcementData[playerID].FluxPersonnel = Round(fluxPersonnel)
 
 	end
 end

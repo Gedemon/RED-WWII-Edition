@@ -9,8 +9,12 @@
 
 DROP TABLE IF EXISTS "Building_ResourceQuantity";
 
+--DELETE FROM Civilizations WHERE Type ='CIVILIZATION_GREECE';
+--DELETE FROM Civilizations WHERE Type ='CIVILIZATION_FRANCE';
+INSERT INTO Civilizations VALUES ("8","CIVILIZATION_GREECE","TXT_KEY_RED_WWII_GREECE",null,"TXT_KEY_WW2_SCENARIO_CIV_GREECE",null,"1","1","TXT_KEY_RED_WWII_GREECE_SHORT","TXT_KEY_CIV_GREECE_ADJECTIVE","PLAYERCOLOR_GREECE","ART_DEF_CIVILIZATION_GREECE","ARTSTYLE_GRECO_ROMAN","_MED","MEDITERRANEAN",null,"17","WW2_FLAGS","WW2_FLAGS","Earth1936startscreen.dds","TXT_KEY_RED_EURO1940_GREECE_BRIEFING","dom_greece.dds","AS2D_DOM_SPEECH_GREECE",null,null);
+--INSERT INTO Civilization_Leaders VALUES ("CIVILIZATION_GREECE2","LEADER_ALEXANDER");
 
--- Above should have been taken care by VanillaCiv5Database.sql
+-- What's below should have been taken care by VanillaCiv5Database.sql...
 /*
 
 --------------------------------------------------------------------------------------------

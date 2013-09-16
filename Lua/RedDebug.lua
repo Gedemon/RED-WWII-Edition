@@ -91,7 +91,7 @@ end
 -- show unit data
 function ShowUnitData()
 	--[[
-	local unitData = LoadUnitData()
+	local unitData = MapModData.RED.UnitData
 	Dprint("Unit Data Table (loaded) :")
 	Dprint("-------------------------------------")
 	for id, values in pairs (unitData) do
@@ -102,7 +102,7 @@ function ShowUnitData()
 	Dprint("-------------------------------------")
 	--]]
 
-	local unitData = g_UnitData
+	local unitData = MapModData.RED.UnitData
 	Dprint("Unit Data Table (Global) :")
 	for id, values in pairs (unitData) do
 		Dprint("-------------------------------------")
@@ -116,7 +116,7 @@ function ShowUnitData()
 end
 
 function ShowFullUnitData()
-	local unitData = g_UnitData
+	local unitData = MapModData.RED.UnitData
 	Dprint("Unit Data Table (Global) :")
 	for id, values in pairs (unitData) do		
 		print("-----------------")
@@ -146,7 +146,7 @@ end
 
 -- show reinforcement data
 function ShowReinforcementData()
-	local reinforcementData = LoadReinforcementData()
+	local reinforcementData = MapModData.RED.ReinforcementData
 	Dprint("Reinforcement Data Table (loaded) :")
 	Dprint("-------------------------------------")
 	for id, values in pairs (reinforcementData) do
@@ -154,7 +154,7 @@ function ShowReinforcementData()
 	end
 	Dprint("-------------------------------------")
 	
-	local reinforcementData = g_ReinforcementData
+	local reinforcementData = MapModData.RED.ReinforcementData
 	Dprint("Reinforcement Data Table (global) :")
 	Dprint("-------------------------------------")
 	for id, values in pairs (reinforcementData) do
@@ -252,10 +252,10 @@ end
 -- if need to update unit data in midgame after added/changed a row.
 -- of course the update must be what's changed here...
 function UpdateUnitData()
-	for key, values in pairs (g_UnitData) do
-		if values.UnitId and not values.UnitID then g_UnitData[key].UnitID = values.UnitId end
-		if not values.Alive then g_UnitData[key].Alive = true end
-		if not values.UniqueID then g_UnitData[key].UniqueID = values.UnitID.."-".. values.BuilderID .."-"..os.clock() end
+	for key, values in pairs (MapModData.RED.UnitData) do
+		if values.UnitId and not values.UnitID then MapModData.RED.UnitData[key].UnitID = values.UnitId end
+		if not values.Alive then MapModData.RED.UnitData[key].Alive = true end
+		if not values.UniqueID then MapModData.RED.UnitData[key].UniqueID = values.UnitID.."-".. values.BuilderID .."-"..os.clock() end
 	end
 end
 
@@ -302,8 +302,13 @@ end
 function ShowPlayerTrainingRestriction(iPlayer)
 	local player = Players[iPlayer]
 	Dprint("---------------------------------------------------------------------------------------------------------------")
-	Dprint("Units restrictions for " .. player:GetName() )
-	Dprint("---------------------------------------------------------------------------------------------------------------")
+	Dprint("Units restrictions for " .. tostring(player:GetName()) )
+	Dprint("---------------------------------------------------------------------------------------------------------------")	
+	Dprint("Total num. of units :	" .. tostring(player:GetNumUnits()) )
+	Dprint("Max number of units :	" .. tostring(player:GetNumUnitsSupplied()) )
+	Dprint("Supernumerary units :	" .. tostring(player:GetNumUnitsOutOfSupply()) )
+	Dprint("Production Modifier :	" .. tostring(player:GetUnitProductionMaintenanceMod()) .."%" )
+	Dprint("-------------------------------------")
 	for unitInfo in GameInfo.Units() do
 		local iUnitType = unitInfo.ID
 		local name = Locale.ConvertTextKey( unitInfo.Description )
@@ -352,7 +357,34 @@ function ShowPlayerTrainingRestriction(iPlayer)
 		end
 	end
 end
---GameEvents.PlayerDoTurn.Add(ShowPlayerTrainingRestriction)
+
+function ShowAITrainingRestriction(iPlayer)
+	if not DEBUG_AI_BUILD then
+		return
+	end
+	local player = Players[iPlayer]
+	if player:IsAlive() and (not player:IsMinorCiv()) and (not player:IsBarbarian()) and (not player:IsHuman()) then
+		ShowPlayerTrainingRestriction(iPlayer)
+	end
+end
+--GameEvents.PlayerDoTurn.Add(ShowAITrainingRestriction)
+
+function ListCitiesBuild(iPlayer)
+	if not DEBUG_AI_BUILD then
+		return
+	end
+	local player = Players[iPlayer]
+	if player:IsAlive() and (not player:IsMinorCiv()) and (not player:IsBarbarian()) and (not player:IsHuman()) then
+		print()
+		print ("----------------------------------------------------------- ")
+		print ("- Listing current cities build for " .. tostring(player:GetName()))
+		for city in player:Cities() do	
+			print ("  - " .. tostring(city:GetName()) .. " : " .. Locale.ConvertTextKey(city:GetProductionNameKey()) )
+		end
+	end
+
+end
+--GameEvents.PlayerDoTurn.Add(ShowAITrainingRestriction)
 
 function ClearUnitMission()
 	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
@@ -360,10 +392,10 @@ function ClearUnitMission()
 		if player and player:IsAlive() then
 			for unit in player:Units() do				
 				local unitKey = GetUnitKey(unit)
-				if g_UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
-					g_UnitData[unitKey].OrderType = nil
-					g_UnitData[unitKey].OrderReference = nil
-					g_UnitData[unitKey].OrderObjective = nil
+				if MapModData.RED.UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+					MapModData.RED.UnitData[unitKey].OrderObjective = nil
 				end
 			end
 		end
@@ -389,10 +421,10 @@ function ListUnitMoves(SpecificPlayerID)
 			for unit in player:Units() do				
 				local unitKey = GetUnitKey(unit)
 				--[[
-				if g_UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
-					g_UnitData[unitKey].OrderType = nil
-					g_UnitData[unitKey].OrderReference = nil
-					g_UnitData[unitKey].OrderObjective = nil
+				if MapModData.RED.UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+					MapModData.RED.UnitData[unitKey].OrderObjective = nil
 				end --]]
 				if unit:GetMoves() > 0 then				
 					Dprint(unit:GetName() .. " moves left = " .. unit:GetMoves() )
@@ -417,10 +449,10 @@ function SkipUnitsTurn(PlayerID)
 		for unit in player:Units() do				
 			local unitKey = GetUnitKey(unit)
 			--[[
-			if g_UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
-				g_UnitData[unitKey].OrderType = nil
-				g_UnitData[unitKey].OrderReference = nil
-				g_UnitData[unitKey].OrderObjective = nil
+			if MapModData.RED.UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
+				MapModData.RED.UnitData[unitKey].OrderType = nil
+				MapModData.RED.UnitData[unitKey].OrderReference = nil
+				MapModData.RED.UnitData[unitKey].OrderObjective = nil
 			end --]]
 			--if unit:GetMoves() > 0 then
 				unit:PopMission()
@@ -436,7 +468,7 @@ function ShowCombatLog()
 	Dprint ("-------------")
 	Dprint ("Combat Log :")
 	Dprint ("-------------")
-	for i, data in ipairs(g_CombatsLog) do		
+	for i, data in ipairs(MapModData.RED.CombatsLog) do		
 		for k, v in pairs(data) do
 			print(k, v, "Type = " .. type( v ))
 		end		
@@ -487,11 +519,11 @@ function CheckUnitData()
 					print("unitKey = " .. unitKey)	
 					print("Name = " .. tostring(unit:GetName()))
 					print("Turn created = ".. tostring(unit:GetGameTurnCreated()))				
-					if g_UnitData[unitKey]  then
+					if MapModData.RED.UnitData[unitKey]  then
 						print("unitData[unitKey]")						
-						if g_UnitData[unitKey].OrderType then
-							print("unitData[unitKey].OrderType = " .. g_UnitData[unitKey].OrderType)							
-							if unit:GetUnitType() == CONVOY and g_UnitData[unitKey].OrderType == RED_CONVOY then
+						if MapModData.RED.UnitData[unitKey].OrderType then
+							print("unitData[unitKey].OrderType = " .. MapModData.RED.UnitData[unitKey].OrderType)							
+							if unit:GetUnitType() == CONVOY and MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then
 								print("Unit is convoy with order type 'RED_CONVOY'")
 							else
 								print("ERROR : convoy without unitData[unitKey].OrderType == RED_CONVOY")
@@ -503,7 +535,7 @@ function CheckUnitData()
 						print("ERROR : no unitData[unitKey]")
 						print("Forcing Registration NOW...")
 						RegisterNewUnit(iPlayer, unit)
-						g_UnitData[unitKey].TurnCreated = unit:GetGameTurnCreated()
+						MapModData.RED.UnitData[unitKey].TurnCreated = unit:GetGameTurnCreated()
 					end 
 				else
 					print("ERROR : no unitKey")
@@ -513,7 +545,7 @@ function CheckUnitData()
 			print ("------------------------------------------------------")
 		end
 	end
-	SaveData("Unit", g_UnitData, UNIT_SAVE_SLOT)
+	SaveData("Unit", MapModData.RED.UnitData, UNIT_SAVE_SLOT)
 end
 
 -- Debug DLL event

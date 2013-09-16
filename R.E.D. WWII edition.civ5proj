@@ -48,22 +48,26 @@
         <Name>Custom_Background_TXT_KEY_RED_EARTH1936_SCENARIO_TITLE</Name>
         <Description>Art/Earth1936startscreen.dds</Description>
       </Property>
+      <Property>
+        <Name>Custom_Background_TXT_KEY_RED_MOD_DESC</Name>
+        <Description>Art/Earth1936startscreen.dds</Description>
+      </Property>
     </ModProperties>
     <ModContent>
       <Content>
-        <Type>Custom</Type>
+        <Type>CustomRED</Type>
         <Name>TXT_KEY_RED_EURO1940_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_EURO1940_SCENARIO_DESC</Description>
         <FileName>GameSetup/RedEuro1940Setup.xml</FileName>
       </Content>
       <Content>
-        <Type>Custom</Type>
+        <Type>CustomRED</Type>
         <Name>TXT_KEY_RED_EARTH1942_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_EARTH1942_SCENARIO_DESC</Description>
         <FileName>GameSetup/Earth1941Setup.xml</FileName>
       </Content>
       <Content>
-        <Type>Custom</Type>
+        <Type>CustomRED</Type>
         <Name>TXT_KEY_RED_AMERICAEURO1936_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_AMERICAEURO1936_SCENARIO_DESC</Description>
         <FileName>GameSetup/RedAmericaEuro1936Setup.xml</FileName>
@@ -87,19 +91,19 @@
         <FileName>UI/FlagPromotions/MiniMapPanel_addin.lua</FileName>
       </Content>
       <Content>
-        <Type>Custom</Type>
+        <Type>CustomRED</Type>
         <Name>TXT_KEY_RED_STALINGRAD_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_STALINGRAD_SCENARIO_DESC</Description>
         <FileName>GameSetup/StalingradSetup.xml</FileName>
       </Content>
       <Content>
-        <Type>Custom</Type>
+        <Type>CustomRED</Type>
         <Name>TXT_KEY_RED_EARTH1936_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_EARTH1936_SCENARIO_DESC</Description>
         <FileName>GameSetup/Earth1936Setup.xml</FileName>
       </Content>
       <Content>
-        <Type>Custom</Type>
+        <Type>CustomRED</Type>
         <Name>TXT_KEY_RED_SMALL_EURO1940_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_SMALL_EURO1940_SCENARIO_DESC</Description>
         <FileName>GameSetup/RedSmallEuro1940Setup.xml</FileName>
@@ -109,6 +113,12 @@
         <Name>OptionsScreen</Name>
         <Description>Option screen for flag promotions</Description>
         <FileName>UI/FlagPromotions/OptionsScreen.lua</FileName>
+      </Content>
+      <Content>
+        <Type>Custom</Type>
+        <Name>TXT_KEY_RED_MOD_DESC</Name>
+        <Description>TXT_KEY_RED_MOD_PRESENTATION</Description>
+        <FileName>GameSetup/REDModsMenu.xml</FileName>
       </Content>
     </ModContent>
     <ModActions>
@@ -125,7 +135,7 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/NewRules.sql</FileName>
+        <FileName>SQL/1- NewRules.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
@@ -140,32 +150,22 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>XML/Texts.xml</FileName>
+        <FileName>XML/Texts_En_US.xml</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>XML/TextsBuildings.xml</FileName>
+        <FileName>XML/Texts_French.xml</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>XML/TextsCivilizations.xml</FileName>
+        <FileName>XML/Texts_Deutsch.xml</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>XML/TextsPedia.xml</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>XML/TextsUnits.xml</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>SQL/DeleteDefaultCityState.sql</FileName>
+        <FileName>SQL/1- DeleteDefaultCityState.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
@@ -186,11 +186,6 @@
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
         <FileName>XML/NewColors.xml</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>XML/NewProjects.xml</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
@@ -240,22 +235,22 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/6-Define New Units.sql</FileName>
+        <FileName>SQL/6- Define New Units.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>SQL/9- Update New Units Table.sql</FileName>
+        <FileName>SQL/7- Update New Units Table.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>XML/99- NewProjects.xml</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
         <FileName>SQL/999- FinalizeRules.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>XML/Texts_French.xml</FileName>
       </Action>
       <Action>
         <Set>OnGetDLLPath</Set>
@@ -264,16 +259,20 @@
       </Action>
     </ModActions>
     <ModReferences>
-      <Association>
-        <Type>Mod</Type>
-        <Name />
-        <Id>544d699d-1c84-4606-b22f-a1b009af9471</Id>
-        <MinVersion>3</MinVersion>
-        <MaxVersion>999</MaxVersion>
-      </Association>
     </ModReferences>
     <ReloadLandmarkSystem>true</ReloadLandmarkSystem>
     <ReloadStrategicViewSystem>true</ReloadStrategicViewSystem>
+    <ModBlockers>
+    </ModBlockers>
+    <ModDependencies>
+      <Association xmlns="">
+        <Type>Mod</Type>
+        <Name>R.E.D. WWII Data Files</Name>
+        <Id>544d699d-1c84-4606-b22f-a1b009af9471</Id>
+        <MinVersion>0</MinVersion>
+        <MaxVersion>999</MaxVersion>
+      </Association>
+    </ModDependencies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
     <OutputPath>.</OutputPath>
@@ -291,7 +290,6 @@
     <Folder Include="Art\FontIcons\" />
     <Folder Include="Art\Maps" />
     <Folder Include="Art\SV_icons" />
-    <Folder Include="Art\Temp" />
     <Folder Include="GameSetup\" />
     <Folder Include="Lua\" />
     <Folder Include="Lua\AmericaEuro1936\" />
@@ -303,6 +301,7 @@
     <Folder Include="Lua\SmallEurope1940\" />
     <Folder Include="Lua\Stalingrad" />
     <Folder Include="Override\" />
+    <Folder Include="Override\BNW" />
     <Folder Include="Override\Vanilla" />
     <Folder Include="Override\UI\" />
     <Folder Include="Override\Vanilla\Civilopedia\" />
@@ -321,6 +320,10 @@
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Art\1936startscreen.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Background_3.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -352,10 +355,6 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\special.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
     <Content Include="Art\StalingradMap.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -364,19 +363,11 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Temp\_RED_WWII_Logo.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
     <Content Include="Art\ww21942startscreen.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\ww2europe1940.dds">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="Art\_background.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -405,6 +396,14 @@
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="GameSetup\Earth1936Setup.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="GameSetup\REDModsMenu.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="GameSetup\REDModsMenu.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -639,6 +638,10 @@
     <Content Include="Lua\TopPanel_Clock.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Override\BNW\DeclareWarPlunderTradeRoutePopup.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Override\UI\CityBannerManager.lua">
       <SubType>Lua</SubType>
@@ -1540,11 +1543,11 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\9- Update New Units Table.sql">
+    <Content Include="SQL\7- Update New Units Table.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\6-Define New Units.sql">
+    <Content Include="SQL\6- Define New Units.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -1552,7 +1555,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\DeleteDefaultCityState.sql">
+    <Content Include="SQL\1- DeleteDefaultCityState.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -1560,51 +1563,11 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\NewUnitsArt.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitsAssaultGuns.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
     <Content Include="SQL\3- Define Original Units.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="SQL\NewRules.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnits.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitsBombers.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitsFighters.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitsInfantries.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitsNaval.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\NewUnitsTanks.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\ResetClassesUpgrade.sql">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="SQL\ResetUnits.sql">
+    <Content Include="SQL\1- NewRules.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -1623,14 +1586,6 @@
     <Content Include="UI\FlagPromotions\OptionsScreen.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="UI\PreLoading.lua">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
-    <Content Include="UI\PreLoading.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="UI\ScenarioMod.lua">
       <SubType>Lua</SubType>
@@ -1700,7 +1655,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="XML\NewProjects.xml">
+    <Content Include="XML\99- NewProjects.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -1752,23 +1707,11 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="XML\Texts.xml">
+    <Content Include="XML\Texts_En_US.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="XML\TextsBuildings.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="XML\TextsCivilizations.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="XML\TextsPedia.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="XML\TextsUnits.xml">
+    <Content Include="XML\Texts_Deutsch.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

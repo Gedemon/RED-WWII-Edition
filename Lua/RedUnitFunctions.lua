@@ -101,7 +101,7 @@ end
 -- Units renaming
 -- to do : make it scenario dependant ? allow defined strings ?
 --------------------------------------------------------------
-function UnitName(playerID, unitID, num) -- num = number of unit of this kind
+function UnitName(playerID, unitID, num) -- num = number of unit of this type
 	
 	local bDebug = false
 	local player = Players[ playerID ]
@@ -116,7 +116,7 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 
 	--------------------------------------------- France ---------------------------------------------
 	if ( GetCivIDFromPlayerID (playerID) == FRANCE ) then		
-		if ( unitType == FR_INFANTRY ) then
+		if ( numType == CLASS_INFANTRY ) then
 			if (num == 1) then
 				str = "1ere "
 			else			
@@ -125,13 +125,40 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = str .. "Division d'infanterie"
 			unit:SetName(str)
 		end	
-		if ( unitType == FR_LEGION ) then
+		if ( numType == CLASS_INFANTRY_2 ) then
 			if (num == 1) then
 				str = "1er "
 			else			
 				str = num .. "eme "
 			end
 			str = str .. "Regiment etranger d'infanterie"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_PARATROOPER ) then
+			if (num == 1) then
+				str = "1er "
+			else			
+				str = num .. "eme "
+			end
+			str = str .. "Regiment de Chasseurs Parachutistes"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_SPECIAL_FORCES ) then
+			if (num == 1) then
+				str = "1ere "
+			else			
+				str = num .. "eme "
+			end
+			str = str .. "Compagnie d'Infanterie de l'Air"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_MECHANIZED_INFANTRY ) then
+			if (num == 1) then
+				str = "1ere "
+			else			
+				str = num .. "eme "
+			end
+			str = str .. "Division d'Infantrie Motorisee"
 			unit:SetName(str)
 		end
 		if IsArmorClass( numType ) then
@@ -143,9 +170,9 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = str .. "Division blindee"
 			unit:SetName(str)
 		end
-		if ( numType == ARTILLERY ) then
+		if ( numType == CLASS_ARTILLERY ) then
 			if (num == 1) then
-				str = "1ere "
+				str = "1er "
 			else			
 				str = num .. "eme "
 			end
@@ -195,20 +222,38 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 	--------------------------------------------- Germany ---------------------------------------------
 	elseif ( GetCivIDFromPlayerID (playerID) == GERMANY ) then
  		
-		if ( unitType == GE_INFANTRY ) then
+		if ( numType == CLASS_INFANTRY ) then
 			str = num .. ". Infanterie-Division"
 			unit:SetName(str)
-		end	
-		if ( unitType == GE_PARATROOPER ) then
-			str = num .. ". Fallschirmjagerdivision"
+		end
+		if ( numType == CLASS_INFANTRY_2 ) then
+			str = num .. ". Waffen-Grenadier-Division der SS"
 			unit:SetName(str)
+		end	
+		if ( numType == CLASS_PARATROOPER ) then
+			str = num .. ". Fallschirm-Jager-Division"
+			unit:SetName(str)
+		end	
+		if ( numType == CLASS_SPECIAL_FORCES ) then
+			local name = { "Brandenburg", "Munstereifel", "Niederrhein"}
+			if (num <= # name) then
+				str = name[num]
+				str = "Fallschirm-Jager-Bataillon '".. name[num] .."'"
+				unit:SetName(str)
+			else
+				str = num .. ". Fallschirm-Jager-Bataillon"
+			end
 		end	
 		if IsArmorClass( numType ) then
 			str = num .. ". Panzer-Division"
 			unit:SetName(str)
 		end
-		if ( numType == ARTILLERY ) then
+		if ( numType == CLASS_ARTILLERY ) then
 			str = num .. ". Artillerie-Regiment"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_MECHANIZED_INFANTRY ) then
+			str = num .. ". Panzergrenadier-Division"
 			unit:SetName(str)
 		end
 		if IsFighterClass( numType  ) then
@@ -259,7 +304,7 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = num .. "a Divisione corazzata"
 			unit:SetName(str)
 		end
-		if ( numType == ARTILLERY ) then
+		if ( numType == CLASS_ARTILLERY ) then
 			str = num .. "a Reggimento Artiglieria"
 			unit:SetName(str)
 		end
@@ -322,7 +367,7 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = str .. "Tank Corps"
 			unit:SetName(str)
 		end
-		if ( numType == ARTILLERY ) then
+		if ( numType == CLASS_ARTILLERY ) then
 			if (num == 1) then
 				str = "1st "
 			elseif (num == 2) then			
@@ -393,7 +438,7 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = num .. "i Merarchia Tethorakismenon"
 			unit:SetName(str)
 		end
-		if ( numType == ARTILLERY ) then
+		if ( numType == CLASS_ARTILLERY ) then
 			str = num .. "i Merarchia Pirobolikou"
 			unit:SetName(str)
 		end
@@ -413,11 +458,11 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			end
 		end
 
-	--------------------------------------------- other ---------------------------------------------
+	--------------------------------------------- U.K. ---------------------------------------------
 
-	else
- 		
-		if ( numType == INFANTRY ) then
+	elseif (GetCivIDFromPlayerID (playerID) == ENGLAND) then	
+		
+		if ( numType == CLASS_INFANTRY ) then
 			if (num == 1) then
 				str = "1st "
 			elseif (num == 2) then			
@@ -430,6 +475,46 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = str .. "Infantry Division"
 			unit:SetName(str)
 		end	
+		if ( numType == CLASS_PARATROOPER ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Airborn Division"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_SPECIAL_FORCES ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "SAS Regiment"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_MECHANIZED_INFANTRY ) then
+
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Mechanized Infantry Division"
+			unit:SetName(str)
+		end
 		if IsArmorClass( numType ) then
 			if (num == 1) then
 				str = "1st "
@@ -443,7 +528,7 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = str .. "Armored Division"
 			unit:SetName(str)
 		end
-		if ( numType == ARTILLERY ) then
+		if ( numType == CLASS_ARTILLERY ) then
 			if (num == 1) then
 				str = "1st "
 			elseif (num == 2) then			
@@ -482,6 +567,7 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 			str = str .. "Bomber Squadron"
 			unit:SetName(str)
 		end
+		
 		if ( unitType == UK_BATTLESHIP ) then
 			local name = { "HMS Hood", "HMS Rodney"}
 			if (num <= # name) then
@@ -511,6 +597,115 @@ function UnitName(playerID, unitID, num) -- num = number of unit of this kind
 				str = name[num]
 				unit:SetName(str)
 			end
+		end
+
+	--------------------------------------------- other ---------------------------------------------
+
+	else
+		if ( numType == CLASS_INFANTRY ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Infantry Division"
+			unit:SetName(str)
+		end	
+		if ( numType == CLASS_PARATROOPER ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Airborn Division"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_SPECIAL_FORCES ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. " Special Forces Regiment"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_MECHANIZED_INFANTRY ) then
+
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Mechanized Infantry Division"
+			unit:SetName(str)
+		end
+		if IsArmorClass( numType ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Armored Division"
+			unit:SetName(str)
+		end
+		if ( numType == CLASS_ARTILLERY ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Artillery Regiment"
+			unit:SetName(str)
+		end
+		if IsFighterClass( numType  ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Fighter Squadron"
+			unit:SetName(str)
+		end
+		if IsBomberClass( numType  ) then
+			if (num == 1) then
+				str = "1st "
+			elseif (num == 2) then			
+				str = "2nd "
+			elseif (num == 3) then			
+				str = "3rd "
+			else
+				str = num .. "th "
+			end
+			str = str .. "Bomber Squadron"
+			unit:SetName(str)
 		end
 	end
 	if str then
@@ -735,7 +930,7 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 
 	local unitKey = GetUnitKey(unit)
 
-	g_UnitData[unitKey] = { 
+	MapModData.RED.UnitData[unitKey] = { 
 		UniqueID = unitID.."-"..playerID.."-"..os.clock(), -- for linked statistics
 		UnitID = unitID,
 		BuilderID = playerID,
@@ -779,6 +974,11 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 		end
 	end
 
+	-- tank destroyers can only fight in defense
+	if IsTankDestroyer(unit) then
+		unit:SetMadeAttack(true)
+	end
+
 	-- Place fort under airport
 	if unitType == AIRFIELD then
 		local plot = unit:GetPlot()
@@ -812,9 +1012,9 @@ function InitializeUnit(playerID, unitID)
 			return
 		end
 	
-		if g_UnitData[unitKey] then
+		if MapModData.RED.UnitData[unitKey] then
 			-- unit already registered, don't add it again...
-			Dprint("  - ".. unit:GetName() .." is already registered as " .. g_UnitData[unitKey].Type, bDebug) 
+			Dprint("  - ".. unit:GetName() .." is already registered as " .. MapModData.RED.UnitData[unitKey].Type, bDebug) 
 			return
 		end
 
@@ -999,9 +1199,9 @@ function RegisterScenarioUnits()
 			for unit in player:Units() do
 				if (unit:GetUnitType() ~= SETTLER) then
 					local unitKey = GetUnitKey(unit)
-					if g_UnitData[unitKey] then
+					if MapModData.RED.UnitData[unitKey] then
 						-- unit already registered, don't add it again...
-						Dprint("  - ".. unit:GetName() .." is already registered as " .. g_UnitData[unitKey].Type, bDebug) 
+						Dprint("  - ".. unit:GetName() .." is already registered as " .. MapModData.RED.UnitData[unitKey].Type, bDebug) 
 						return
 					end
 					Dprint ("Initializing scenario unit ".. unit:GetName() .. " for ".. player:GetName() .."...", bDebug)
@@ -1154,7 +1354,7 @@ function LaunchUnits(militaryOperation)
 					end
 					if bCanPlaceUnit then
 						local unit = player:InitUnit(unitType, unitPlot:GetX(), unitPlot:GetY())
-						RegisterNewUnit(playerID, unit) -- force immediate registration to allow change in g_UnitData
+						RegisterNewUnit(playerID, unit) -- force immediate registration to allow change in MapModData.RED.UnitData
 						local unitKey = GetUnitKey(unit)
 						FinalizeUnitFromOOB(unit, oob, i)
 						placedUnits = placedUnits + 1
@@ -1165,19 +1365,19 @@ function LaunchUnits(militaryOperation)
 							
 							local routeID = oob.RouteID
 
-							g_UnitData[unitKey].OrderReference = routeID
-							g_UnitData[unitKey].TotalControl = true
+							MapModData.RED.UnitData[unitKey].OrderReference = routeID
+							MapModData.RED.UnitData[unitKey].TotalControl = true
 
 							local newWaypoint = GetFirstWaypoint(playerID, routeID)
 
 							if newWaypoint then
-								g_UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARKED_WAYPOINT
-								g_UnitData[unitKey].OrderObjective = newWaypoint
+								MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARKED_WAYPOINT
+								MapModData.RED.UnitData[unitKey].OrderObjective = newWaypoint
 								MoveUnitTo (unit, GetPlot (newWaypoint.X, newWaypoint.Y ))
 							else
 								local newDestination = GetDestinationToDisembark(playerID, routeID)
-								g_UnitData[unitKey].OrderType = RED_MOVE_TO_DISEMBARK
-								g_UnitData[unitKey].OrderObjective = newDestination
+								MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_DISEMBARK
+								MapModData.RED.UnitData[unitKey].OrderObjective = newDestination
 								MoveUnitTo (unit, GetPlot (newDestination.X, newDestination.Y ))
 							end
 						end
@@ -1391,10 +1591,10 @@ function UpgradingUnits(playerID)
 		table.sort(upgradeTable, function(a,b) return a.XP > b.XP end) -- upgrade higher XP first...
 		for i, data in ipairs(upgradeTable) do
 			local reqMateriel = GetUnitUpgradeCost(data.Unit:GetUnitType(), data.UpgradeType)
-			if (reqMateriel <= g_ReinforcementData[playerID].Materiel) then
+			if (reqMateriel <= MapModData.RED.ReinforcementData[playerID].Materiel) then
 				Dprint("Upgrade ".. data.Unit:GetName() .." to " .. Locale.ConvertTextKey(GameInfo.Units[data.UpgradeType].Description), bDebug)
-				g_ReinforcementData[playerID].Materiel = g_ReinforcementData[playerID].Materiel - reqMateriel
-				g_ReinforcementData[playerID].MatToUpgrade = reqMateriel
+				MapModData.RED.ReinforcementData[playerID].Materiel = MapModData.RED.ReinforcementData[playerID].Materiel - reqMateriel
+				MapModData.RED.ReinforcementData[playerID].MatToUpgrade = reqMateriel
 				local oldType = data.Unit:GetUnitType()
 				local plot = data.Unit:GetPlot()
 				local newUnit = ChangeUnitType (data.Unit, data.UpgradeType)
@@ -1403,7 +1603,7 @@ function UpgradingUnits(playerID)
 			end
 		end		
 		Dprint("No upgrade made (not enought materiel, or no upgradable units available)", bDebug)
-		g_ReinforcementData[playerID].MatToUpgrade = nil
+		MapModData.RED.ReinforcementData[playerID].MatToUpgrade = nil
 	end
 end
 -- add to GameEvents.PlayerDoTurn
@@ -1553,8 +1753,8 @@ function CheckEmbarkedPromotion(unit)
 	
 		local unitKey = GetUnitKey(unit)
 		local specialCase = false
-		if g_UnitData[unitKey] then -- don't test before initialisation of g_UnitData
-			if g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK or g_UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then
+		if MapModData.RED.UnitData[unitKey] then -- don't test before initialisation of MapModData.RED.UnitData
+			if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK or MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then
 				specialCase = true
 			end
 		end
@@ -1664,16 +1864,16 @@ end
 function GetPreviousDamage(self)
 	local unitKey = GetUnitKey(self)
 	local damage = 0
-	if g_UnitData[unitKey] then
-		damage = g_UnitData[unitKey].Damage
+	if MapModData.RED.UnitData[unitKey] then
+		damage = MapModData.RED.UnitData[unitKey].Damage
 	end
 	return damage
 end
 
 function NewUnitSetDamage(self, damage)
 	local unitKey = GetUnitKey(self)
-	if g_UnitData[unitKey] then
-		g_UnitData[unitKey].Damage = damage
+	if MapModData.RED.UnitData[unitKey] then
+		MapModData.RED.UnitData[unitKey].Damage = damage
 	end
 	self:OldSetDamage(damage)
 end
@@ -1727,6 +1927,10 @@ function CanRangeStrike(iPlayer, iUnit, x, y)
 	local unitDomain = unit:GetDomainType()
 	local unitPlot = unit:GetPlot()
 
+	if g_NoRangeAttack and g_NoRangeAttack[unit:GetUnitType()] then -- some ranged units can't range attack (ex: the Me-262 can only intercept or air sweep)		
+		return false 
+	end
+
 	if unitDomain == DomainTypes.DOMAIN_SEA and unitPlot:IsCity() then -- naval units can't fire from harbors
 		return false
 	end
@@ -1752,7 +1956,7 @@ function CanRangeStrike(iPlayer, iUnit, x, y)
 		--Dprint("attackernumtype = " .. tostring(numType))
 		-- to attack submarines we can't be land based or large bomber
 		-- to do : change that check to depth charge or torpedoes promotions
-		if IsSubmarineClass(defenderNumType) and (unitDomain == DomainTypes.DOMAIN_LAND or (unitDomain == DomainTypes.DOMAIN_AIR and not IsSmallBomberClass(numType))) then
+		if IsSubmarineClass(defenderNumType) and (unitDomain == DomainTypes.DOMAIN_LAND or (unitDomain == DomainTypes.DOMAIN_AIR --[[and not IsSmallBomberClass(numType)--]])) then
 			return false
 		end
 	end

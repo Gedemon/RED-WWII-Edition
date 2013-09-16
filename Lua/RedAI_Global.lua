@@ -62,7 +62,7 @@ function AIUnitControl(playerID)
 	
 	g_AirBombing = {} -- reset table
 	local numInterception = 0
-	for i, data in ipairs(g_CombatsLog) do
+	for i, data in ipairs(MapModData.RED.CombatsLog) do
 
 		if AreAtWar( playerID, data.AttackerPlayerID) 
 		and (data.CombatType == AIRBOMB or data.CombatType == INTERCEPT or data.CombatType == CITYBOMB)
@@ -82,7 +82,7 @@ function AIUnitControl(playerID)
 	Dprint("--------------------------------------------------------------------------", bDebug)
 
 	g_AirInterception = {}  -- reset table
-	for i, data in ipairs(g_CombatsLog) do
+	for i, data in ipairs(MapModData.RED.CombatsLog) do
 		if AreAtWar( playerID, data.DefenderPlayerID) 
 		and data.CombatType == INTERCEPT
 		and (turn - data.Turn <= AIRSWEEP_MAX_TURNS_ATTACK)
@@ -102,26 +102,26 @@ function AIUnitControl(playerID)
 		local unitType = unit:GetUnitType()
 		Dprint("")
 		Dprint("- " .. unit:GetName() .. ", key = " .. tostring(unitKey).. ", unit #" .. tostring(i) .."/" .. tostring(#armyForce), bDebug)
-		if g_UnitData[unitKey] 
-		and (ALLOW_AI_CONTROL or g_UnitData[unitKey].TotalControl)
-		and ((not player:IsHuman()) or g_UnitData[unitKey].TotalControl) then
+		if MapModData.RED.UnitData[unitKey] 
+		and (ALLOW_AI_CONTROL or MapModData.RED.UnitData[unitKey].TotalControl)
+		and ((not player:IsHuman()) or MapModData.RED.UnitData[unitKey].TotalControl) then
 		
-			if g_UnitData[unitKey].OrderType then
-				if g_UnitData[unitKey].OrderType == RED_CONVOY then
+			if MapModData.RED.UnitData[unitKey].OrderType then
+				if MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then
 					MoveConvoy(unit)
-				elseif g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
+				elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
 					MoveToEmbark(unit) -- reinforcement en route
 				end
-				if g_UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then 
+				if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then 
 					MoveToDisembark(unit)
 				end
-				if g_UnitData[unitKey].OrderType == RED_MOVE or g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT then 
-					MoveUnitTo (unit, GetPlot (g_UnitData[unitKey].OrderObjective.X, g_UnitData[unitKey].OrderObjective.Y )) -- moving...
+				if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE or MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT then 
+					MoveUnitTo (unit, GetPlot (MapModData.RED.UnitData[unitKey].OrderObjective.X, MapModData.RED.UnitData[unitKey].OrderObjective.Y )) -- moving...
 				end
 			end			
 			
 			-- Try to force healing only when we have not reach the max limit for that type of unit (or if the unit is last of a limited type)
-			if not IsLimitedByRatio(unitType, playerID, civID, totalUnits, land) or IsMaxNumber(unitType) then
+			if (not IsLimitedByRatio(unitType, playerID, civID, totalUnits, land)) or (IsMaxNumber(unitType)) then
 				ForceHealing(unit)
 			else
 				Dprint("Max ratio reached for this unit type, force heal deactivated...")
@@ -142,20 +142,20 @@ function AIUnitControl(playerID)
 		local unitType = unit:GetUnitType()
 		Dprint("")
 		Dprint("- " .. unit:GetName() .. ", key = " .. tostring(unitKey).. ", unit #" .. tostring(i) .."/" .. tostring(#navalForce), bDebug)
-		if g_UnitData[unitKey] 
-		and (ALLOW_AI_CONTROL or g_UnitData[unitKey].TotalControl)
-		and ((not player:IsHuman()) or g_UnitData[unitKey].TotalControl) then
-			if g_UnitData[unitKey].OrderType then
-				if g_UnitData[unitKey].OrderType == RED_CONVOY then
+		if MapModData.RED.UnitData[unitKey] 
+		and (ALLOW_AI_CONTROL or MapModData.RED.UnitData[unitKey].TotalControl)
+		and ((not player:IsHuman()) or MapModData.RED.UnitData[unitKey].TotalControl) then
+			if MapModData.RED.UnitData[unitKey].OrderType then
+				if MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then
 					MoveConvoy(unit)
-				elseif g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
+				elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
 					MoveToEmbark(unit) -- reinforcement en route
 				end
-				if g_UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then 
+				if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then 
 					MoveToDisembark(unit)
 				end
-				if g_UnitData[unitKey].OrderType == RED_MOVE or g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT then 
-					MoveUnitTo (unit, GetPlot (g_UnitData[unitKey].OrderObjective.X, g_UnitData[unitKey].OrderObjective.Y )) -- moving...
+				if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE or MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT then 
+					MoveUnitTo (unit, GetPlot (MapModData.RED.UnitData[unitKey].OrderObjective.X, MapModData.RED.UnitData[unitKey].OrderObjective.Y )) -- moving...
 				end
 			end
 			-- Try to force healing only when we have not reach the max limit for that type of unit (or if the unit is last of a limited type)
@@ -181,9 +181,9 @@ function AIUnitControl(playerID)
 		local unitType = unit:GetUnitType()
 		Dprint("")
 		Dprint("- " .. unit:GetName() .. ", key = " .. tostring(unitKey).. ", unit #" .. tostring(i) .."/" .. tostring(#airForce), bDebug)
-		if g_UnitData[unitKey] 
-		and (ALLOW_AI_CONTROL or g_UnitData[unitKey].TotalControl)
-		and ((not player:IsHuman()) or g_UnitData[unitKey].TotalControl) then
+		if MapModData.RED.UnitData[unitKey] 
+		and (ALLOW_AI_CONTROL or MapModData.RED.UnitData[unitKey].TotalControl)
+		and ((not player:IsHuman()) or MapModData.RED.UnitData[unitKey].TotalControl) then
 
 			CheckRebasing(unit) -- Air unit in transit should continue to objective before anything else...
 
@@ -367,8 +367,8 @@ function RebaseUnitTo (unit, plot)
 			unit:PopMission()
 			unit:PushMission(MissionTypes.MISSION_REBASE, plot:GetX(), plot:GetY(), 0, 0, 1, MissionTypes.MISSION_REBASE, unit:GetPlot(), unit)
 
-			g_UnitData[unitKey].OrderType = nil
-			g_UnitData[unitKey].OrderReference = nil
+			MapModData.RED.UnitData[unitKey].OrderType = nil
+			MapModData.RED.UnitData[unitKey].OrderReference = nil
 
 			Dprint("----------", g_bAIDebug)
 			return true -- mission acomplished
@@ -385,8 +385,8 @@ function RebaseUnitTo (unit, plot)
 				unit:PopMission()
 				unit:PushMission(MissionTypes.MISSION_REBASE, newPlot:GetX(), newPlot:GetY(), 0, 0, 1, MissionTypes.MISSION_REBASE, unit:GetPlot(), unit)
 				g_AI_UnitPreviousPositions[unit] = newPlot -- mark previous plot as current one so unit can move directly to next node on route if not needed in intermediate city
-				g_UnitData[unitKey].OrderType = RED_REBASE
-				g_UnitData[unitKey].OrderReference = GetPlotKey ( plot )
+				MapModData.RED.UnitData[unitKey].OrderType = RED_REBASE
+				MapModData.RED.UnitData[unitKey].OrderReference = GetPlotKey ( plot )
 				Dprint("----------", g_bAIDebug)
 				return true -- mission acomplished
 			end
@@ -396,16 +396,16 @@ function RebaseUnitTo (unit, plot)
 		Dprint("WARNING ! Trying to rebase to nil city or city is no more owned !", g_bAIDebug)
 	end
 	-- remove order if no destination found...
-	g_UnitData[unitKey].OrderType = nil
-	g_UnitData[unitKey].OrderReference = nil
+	MapModData.RED.UnitData[unitKey].OrderType = nil
+	MapModData.RED.UnitData[unitKey].OrderReference = nil
 	return false
 end
 function CheckRebasing(unit)
 	local unitKey = GetUnitKey(unit)
-	if g_UnitData[unitKey] and g_UnitData[unitKey].OrderType == RED_REBASE then
+	if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_REBASE then
 
 		Dprint("Current order is rebasing...", bDebug)
-		local plotKey = g_UnitData[unitKey].OrderReference
+		local plotKey = MapModData.RED.UnitData[unitKey].OrderReference
 		local plot = GetPlotFromKey(plotKey)
 		RebaseUnitTo (unit, plot)
 
@@ -422,16 +422,16 @@ function IsAtDestination(playerID, UnitID, x, y)
 	local unitType = unit:GetUnitType()
 	local unitKey = GetUnitKey(unit)
 
-	if not g_UnitData[unitKey] then -- don't test before initialisation of g_UnitData
+	if not MapModData.RED.UnitData[unitKey] then -- don't test before initialisation of MapModData.RED.UnitData
 		return
 	end
 	if (plot) then
-		if g_UnitData[unitKey].OrderType == RED_CONVOY then 
+		if MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then 
 			Dprint("-------------------------------------", bDebug)
 			Dprint("Check if ".. unit:GetName() .." (id=".. unit:GetID() ..") has reached a destination near (".. x ..",".. y ..")", bDebug)
 
 			--
-			local routeID = g_UnitData[unitKey].OrderReference
+			local routeID = MapModData.RED.UnitData[unitKey].OrderReference
 			if not routeID then -- shouldn't happen anymore, but to be safe, sabord convoy that were spawned without a routeID
 				Dprint("  - WARNING : Convoy unit has no route set, sabording...")
 				unit:Kill(true, -1)
@@ -453,7 +453,7 @@ function IsAtDestination(playerID, UnitID, x, y)
 						if condition then
 							Dprint("  - Unloading...", bDebug)
 							UnloadConvoy(unit, playerID, destination.X, destination.Y, routeID)
-							g_UnitData[unitKey].OrderType = nil -- prevent double unloading
+							MapModData.RED.UnitData[unitKey].OrderType = nil -- prevent double unloading
 						else
 							Dprint("  - Can't unload !", bDebug)
 						end
@@ -461,11 +461,11 @@ function IsAtDestination(playerID, UnitID, x, y)
 				end
 			end
 
-		elseif g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
+		elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
 			Dprint("-------------------------------------", bDebug)
 			Dprint("Check if ".. unit:GetName() .." (id=".. unit:GetID() ..") has reached it's destination", bDebug)
-			local routeID = g_UnitData[unitKey].OrderReference
-			local destination = g_UnitData[unitKey].OrderObjective
+			local routeID = MapModData.RED.UnitData[unitKey].OrderReference
+			local destination = MapModData.RED.UnitData[unitKey].OrderObjective
 			if destination.X == x and destination.Y == y then
 				Dprint("  - arrived at embarkement plot !", bDebug)
 				if CanEmbarkFrom(plot, unit) then
@@ -476,48 +476,48 @@ function IsAtDestination(playerID, UnitID, x, y)
 					local newWaypoint = GetFirstWaypoint(playerID, routeID)
 
 					if newWaypoint then
-						g_UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARKED_WAYPOINT
-						g_UnitData[unitKey].OrderObjective = newWaypoint
+						MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARKED_WAYPOINT
+						MapModData.RED.UnitData[unitKey].OrderObjective = newWaypoint
 						MoveUnitTo (unit, GetPlot (newWaypoint.X, newWaypoint.Y ))
 					else
 						local newDestination = GetDestinationToDisembark(playerID, routeID)
-						g_UnitData[unitKey].OrderType = RED_MOVE_TO_DISEMBARK
-						g_UnitData[unitKey].OrderObjective = newDestination
+						MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_DISEMBARK
+						MapModData.RED.UnitData[unitKey].OrderObjective = newDestination
 						MoveUnitTo (unit, GetPlot (newDestination.X, newDestination.Y ))
 					end
 				else				
 					Dprint("  - WARNING : can't embark, removing orders !!!", bDebug)
 					unit:PopMission()
-					g_UnitData[unitKey].OrderType = nil
-					g_UnitData[unitKey].OrderReference = nil
-					g_UnitData[unitKey].OrderObjective = nil
-					g_UnitData[unitKey].TotalControl = nil
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+					MapModData.RED.UnitData[unitKey].OrderObjective = nil
+					MapModData.RED.UnitData[unitKey].TotalControl = nil
 				end
 			end
 
-		elseif g_UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then
+		elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then
 			Dprint("-------------------------------------", bDebug)
 			Dprint("Check if ".. unit:GetName() .." (id=".. unit:GetID() ..") has reached it's landing plot", bDebug)
-			local routeID = g_UnitData[unitKey].OrderReference
-			local destination = g_UnitData[unitKey].OrderObjective
+			local routeID = MapModData.RED.UnitData[unitKey].OrderReference
+			local destination = MapModData.RED.UnitData[unitKey].OrderObjective
 			if destination.X == x and destination.Y == y then
 				Dprint("  - arrived at destination plot, removing orders (and embarkation promotion if NO_AI_EMBARKATION)...", bDebug)
 				if unit:IsHasPromotion(PROMOTION_EMBARKATION) and NO_AI_EMBARKATION then
 					unit:SetHasPromotion(PROMOTION_EMBARKATION, false)
 				end
 				unit:PopMission()
-				g_UnitData[unitKey].OrderType = nil
-				g_UnitData[unitKey].OrderReference = nil
-				g_UnitData[unitKey].OrderObjective = nil
-				g_UnitData[unitKey].TotalControl = nil
+				MapModData.RED.UnitData[unitKey].OrderType = nil
+				MapModData.RED.UnitData[unitKey].OrderReference = nil
+				MapModData.RED.UnitData[unitKey].OrderObjective = nil
+				MapModData.RED.UnitData[unitKey].TotalControl = nil
 
 			end
 
-		elseif g_UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT  then
+		elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT  then
 			Dprint("-------------------------------------", bDebug)
 			Dprint("Check if ".. unit:GetName() .." (id=".. unit:GetID() ..") has reached it's waypoint", bDebug)
-			local routeID = g_UnitData[unitKey].OrderReference
-			local destination = g_UnitData[unitKey].OrderObjective
+			local routeID = MapModData.RED.UnitData[unitKey].OrderReference
+			local destination = MapModData.RED.UnitData[unitKey].OrderObjective
 			
 			local plotList = GetAdjacentPlots(plot, true) -- include central plot in list
 			for i, adjacentPlot in pairs(plotList) do
@@ -528,31 +528,31 @@ function IsAtDestination(playerID, UnitID, x, y)
 					local newWaypoint = GetNextWaypoint(playerID, routeID, destination)
 
 					if newWaypoint then
-						g_UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARKED_WAYPOINT
-						g_UnitData[unitKey].OrderObjective = newWaypoint
+						MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARKED_WAYPOINT
+						MapModData.RED.UnitData[unitKey].OrderObjective = newWaypoint
 						MoveUnitTo (unit, GetPlot (newWaypoint.X, newWaypoint.Y ))
 					else
 						local newDestination = GetDestinationToDisembark(playerID, routeID)
-						g_UnitData[unitKey].OrderType = RED_MOVE_TO_DISEMBARK
-						g_UnitData[unitKey].OrderObjective = newDestination
+						MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_DISEMBARK
+						MapModData.RED.UnitData[unitKey].OrderObjective = newDestination
 						MoveUnitTo (unit, GetPlot (newDestination.X, newDestination.Y ))
 					end
 				end
 
 			end
 		
-		elseif g_UnitData[unitKey].OrderType == RED_MOVE  then
+		elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE  then
 			Dprint("-------------------------------------", bDebug)
 			Dprint("Check if ".. unit:GetName() .." (id=".. unit:GetID() ..") has reached it's destination", bDebug)
-			local routeID = g_UnitData[unitKey].OrderReference
-			local destination = g_UnitData[unitKey].OrderObjective
+			local routeID = MapModData.RED.UnitData[unitKey].OrderReference
+			local destination = MapModData.RED.UnitData[unitKey].OrderObjective
 			if destination.X == x and destination.Y == y then
 				Dprint("  - arrived at destination plot, removing orders...", bDebug)
 				unit:PopMission()
-				g_UnitData[unitKey].OrderType = nil
-				g_UnitData[unitKey].OrderReference = nil
-				g_UnitData[unitKey].OrderObjective = nil
-				g_UnitData[unitKey].TotalControl = nil
+				MapModData.RED.UnitData[unitKey].OrderType = nil
+				MapModData.RED.UnitData[unitKey].OrderReference = nil
+				MapModData.RED.UnitData[unitKey].OrderObjective = nil
+				MapModData.RED.UnitData[unitKey].TotalControl = nil
 
 			end
 		end
@@ -568,7 +568,7 @@ g_AI_SubHunters = {}
 
 -- go to last sub attack area
 function GoSubHunting(unit)
-	if unit:GetDomainType() == DomainTypes.DOMAIN_SEA and (unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ANTI_SUBMARINE_II.ID ) or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ANTI_SUBMARINE_I.ID ) ) then
+	if unit:GetDomainType() == DomainTypes.DOMAIN_SEA and (unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_DESTROYER.ID ) or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_CRUISER.ID ) ) then
 	
 		-- first check adjacent plots before moving...
 		local unitPlot = unit:GetPlot()
@@ -576,7 +576,7 @@ function GoSubHunting(unit)
 
 		local turn = Game.GetGameTurn()
 		local maxTurnAttack, maxTurnTarget = 0, 0
-		if unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ANTI_SUBMARINE_II.ID ) then -- destroyer
+		if unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_DESTROYER.ID ) then -- destroyer
 			maxTurnAttack = DESTROYER_SUB_HUNTING_MAX_TURNS_ATTACK
 			maxTurnTarget = DESTROYER_SUB_HUNTING_MAX_TURNS_TO_TARGET
 		else -- cruiser
@@ -600,7 +600,7 @@ function GoSubHunting(unit)
 			local moveDenominator = GameDefines["MOVE_DENOMINATOR"]
 			local maxMoves = math.floor(unit:MaxMoves() / moveDenominator)
 			Dprint("Looking for subs to hunt for " .. unit:GetName() .. " (id = ".. unit:GetID() ..")", g_bAIDebug)
-			for i, data in ipairs(g_CombatsLog) do
+			for i, data in ipairs(MapModData.RED.CombatsLog) do
 				if ((AreAtWar( unit:GetOwner(), data.AttackerPlayerID) and data.CombatType == SUBATTACK)
 				or (AreAtWar( unit:GetOwner(), data.DefenderPlayerID) and data.CombatType == SUBHUNT))
 				and (turn - data.Turn <= maxTurnAttack) -- don't look too many turns back
@@ -658,7 +658,7 @@ function SubHunting(playerID, UnitID, x, y)
 			end
 			bSubHunter = true
 		elseif unit:GetDomainType() == DomainTypes.DOMAIN_SEA 
-		  and (unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ANTI_SUBMARINE_II.ID ) or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ANTI_SUBMARINE_I.ID ))
+		  and (unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_DESTROYER.ID ) or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_CRUISER.ID ))
 		  --and unit:GetNumEnemyUnitsAdjacent() > 0
 		  and not player:IsHuman()
 		  then
@@ -758,22 +758,23 @@ function ForceHealing(unit)
 	
 	local bDebug = true
 
-	Dprint("Check if units need to be healed...", bDebug)
+	Dprint("Check if unit need to be healed...", bDebug)
 
 	local unitKey = GetUnitKey(unit)
 
-	if g_UnitData[unitKey] and g_UnitData[unitKey].OrderType == RED_CONVOY then -- don't try to heal convoy...
+	if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then -- don't try to heal convoy...
+		Dprint(" - Convoy don't heal...", bDebug)
 		return
 	end
 
-	if g_UnitData[unitKey] and g_UnitData[unitKey].OrderType == RED_HEALING then -- already healing...
+	if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then -- already healing...
 		Dprint(" - Unit is currently healing...", bDebug)
 		local healthRatio = unit:GetCurrHitPoints() / unit:GetMaxHitPoints()		
 
-		if healthRatio > g_UnitData[unitKey].OrderReference then
+		if healthRatio > MapModData.RED.UnitData[unitKey].OrderReference then
 			Dprint("  - Unit healed, remove forced healing ! (health ratio = " .. healthRatio ..")", bDebug)
-			g_UnitData[unitKey].OrderType = nil
-			g_UnitData[unitKey].OrderReference = nil
+			MapModData.RED.UnitData[unitKey].OrderType = nil
+			MapModData.RED.UnitData[unitKey].OrderReference = nil
 		else
 			Dprint("  - Unit not healed, check for safe plot or don't move... (health ratio = " .. healthRatio ..")", bDebug)
 			GoHealing(unit)
@@ -794,10 +795,12 @@ function ForceHealing(unit)
 		end
 
 		if healthRatio < minHealthRatio then
-			g_UnitData[unitKey].OrderType = RED_HEALING
-			g_UnitData[unitKey].OrderReference = optimalHealthRatio			
-			Dprint("  - Unit need to be healed, check for safe plot or don't move... (health ratio = " .. healthRatio ..")", bDebug)
+			MapModData.RED.UnitData[unitKey].OrderType = RED_HEALING
+			MapModData.RED.UnitData[unitKey].OrderReference = optimalHealthRatio			
+			Dprint("  - Need to be healed, check for safe plot or don't move... (health ratio = " .. healthRatio ..")", bDebug)
 			GoHealing(unit)
+		else			
+			Dprint("  - Don't need to be healed... (health ratio = " .. healthRatio ..")", bDebug)
 		end
 	end
 end
@@ -852,20 +855,20 @@ function MoveConvoy(unit)
 
 	local unitKey = GetUnitKey(unit)
 
-	local destination = g_UnitData[unitKey].OrderObjective
-	local routeID = g_UnitData[unitKey].OrderReference
+	local destination = MapModData.RED.UnitData[unitKey].OrderObjective
+	local routeID = MapModData.RED.UnitData[unitKey].OrderReference
 
 	if not destination then -- todo : how can it happens ?
 		Dprint("  - WARNING : convoy " .. unit:GetName() .. " has no destination trying to set a new one...", bDebug)
 		destination = GetConvoyDestination(routeID)
-		g_UnitData[unitKey].OrderObjective = destination
+		MapModData.RED.UnitData[unitKey].OrderObjective = destination
 	end
 
 	if destination then
 		if (not TestConvoyDestination(destination, g_Convoy[routeID].CivID, g_Convoy[routeID].IsMinor)) 
 		or (not MoveUnitTo (unit, GetPlot (destination.X, destination.Y ))) then -- change route if destination is not valid anymore or unit can't reach it
 			Dprint("  - Can't find destination, try other route...", bDebug)
-			newDestination = GetConvoyDestination(g_UnitData[unitKey].OrderReference, true)
+			newDestination = GetConvoyDestination(MapModData.RED.UnitData[unitKey].OrderReference, true)
 			if newDestination then
 				MoveUnitTo (unit, GetPlot (newDestination.X, newDestination.Y ))
 			else
@@ -875,7 +878,7 @@ function MoveConvoy(unit)
 			end
 		end
 	else
-		Dprint("  - WARNING : no destination for convoy " .. unit:GetName() .. " on routeID = " .. g_UnitData[unitKey].OrderReference)						
+		Dprint("  - WARNING : no destination for convoy " .. unit:GetName() .. " on routeID = " .. MapModData.RED.UnitData[unitKey].OrderReference)						
 	end
 end
 
@@ -934,9 +937,9 @@ function SendTroops(playerID)
 				local unit = availableUnits[i]
 				local unitKey = GetUnitKey(unit)	
 				Dprint ("  - marking unit to send : " .. unit:GetName(), bDebug)
-				g_UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARK
-				g_UnitData[unitKey].OrderReference = routeID
-				g_UnitData[unitKey].OrderObjective = GetDestinationToEmbark(playerID, routeID)
+				MapModData.RED.UnitData[unitKey].OrderType = RED_MOVE_TO_EMBARK
+				MapModData.RED.UnitData[unitKey].OrderReference = routeID
+				MapModData.RED.UnitData[unitKey].OrderObjective = GetDestinationToEmbark(playerID, routeID)
 			end
 		end		
 		Dprint ("-------------------------------------", bDebug)
@@ -951,25 +954,25 @@ function MoveToEmbark(unit)
 
 	Dprint("Automoving unit to embark plot...", bDebug)
 
-	destination = g_UnitData[unitKey].OrderObjective
+	destination = MapModData.RED.UnitData[unitKey].OrderObjective
 
 	if not destination then -- todo : how can it happens ?
 		Dprint("  - WARNING : " .. unit:GetName() .. " set to embark plot has no destination trying to set a new one...", bDebug)
-		local routeID = g_UnitData[unitKey].OrderReference
+		local routeID = MapModData.RED.UnitData[unitKey].OrderReference
 		destination = GetDestinationToEmbark(unit:GetOwner(), routeID)
-		g_UnitData[unitKey].OrderObjective = destination
+		MapModData.RED.UnitData[unitKey].OrderObjective = destination
 	end
 
 	if destination then
 		if not MoveUnitTo (unit, GetPlot (destination.X, destination.Y )) then -- change route if can't move to actual destination
 			Dprint("  - Can't find destination, try other route...", bDebug)
-			newDestination = GetDestinationToEmbark(unit:GetOwner(), g_UnitData[unitKey].OrderReference, true)
+			newDestination = GetDestinationToEmbark(unit:GetOwner(), MapModData.RED.UnitData[unitKey].OrderReference, true)
 			if newDestination then
 				MoveUnitTo (unit, GetPlot (newDestination.X, newDestination.Y ))
 			end
 		end
 	else
-		Dprint("  - WARNING : no destination to embark plot for " .. unit:GetName() .. " on routeID = " .. g_UnitData[unitKey].OrderReference)						
+		Dprint("  - WARNING : no destination to embark plot for " .. unit:GetName() .. " on routeID = " .. MapModData.RED.UnitData[unitKey].OrderReference)						
 	end
 end
 
@@ -981,25 +984,25 @@ function MoveToDisembark(unit)
 
 	Dprint("Automoving unit to disembark plot...", bDebug)
 
-	destination = g_UnitData[unitKey].OrderObjective
+	destination = MapModData.RED.UnitData[unitKey].OrderObjective
 
 	if not destination then -- todo : how can it happens ?
 		Dprint("  - WARNING : " .. unit:GetName() .. " set to disembark plot has no destination, trying to set a new one...", bDebug)
-		local routeID = g_UnitData[unitKey].OrderReference
+		local routeID = MapModData.RED.UnitData[unitKey].OrderReference
 		destination = GetDestinationToDisembark(unit:GetOwner(), routeID)
-		g_UnitData[unitKey].OrderObjective = destination
+		MapModData.RED.UnitData[unitKey].OrderObjective = destination
 	end
 
 	if destination then
 		if not MoveUnitTo (unit, GetPlot (destination.X, destination.Y )) then -- change route if can't move to actual destination
 			Dprint("  - Can't find destination, try other route...", bDebug)
-			newDestination = GetDestinationToDisembark(unit:GetOwner(), g_UnitData[unitKey].OrderReference, true)
+			newDestination = GetDestinationToDisembark(unit:GetOwner(), MapModData.RED.UnitData[unitKey].OrderReference, true)
 			if newDestination then
 				MoveUnitTo (unit, GetPlot (newDestination.X, newDestination.Y ))
 			end
 		end
 	else
-		Dprint("  - WARNING : no destination to disembark plot for " .. unit:GetName() .. " on routeID = " .. g_UnitData[unitKey].OrderReference)						
+		Dprint("  - WARNING : no destination to disembark plot for " .. unit:GetName() .. " on routeID = " .. MapModData.RED.UnitData[unitKey].OrderReference)						
 	end
 end
 

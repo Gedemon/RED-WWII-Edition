@@ -1,0 +1,3 @@
+
+-- Empty file for BNW Compatibility, preventing false error report in Lua.log...
+

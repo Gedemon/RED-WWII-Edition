@@ -775,5 +775,45 @@
 		<YBlockSpacingCount>0</YBlockSpacingCount>
 		<CenterWidth>0</CenterWidth>
 	</Formation>
+	<!-- 3 rows 4-6-4
+	<Formation>
+		<Name>MechInfantry</Name>
+		<SpacingX>11</SpacingX>
+		<SpacingY>19</SpacingY>
+		<SpacingMultiplier>1</SpacingMultiplier>
+		<PerRowInc>0</PerRowInc>
+		<YOffsetInc>1</YOffsetInc>
+		<YOffsetCurved>1</YOffsetCurved>
+		<Stagger>2</Stagger>
+		<UnitRandomness>0.2</UnitRandomness>
+		<BlockRandomness>1</BlockRandomness>
+		<TotalWidth>4</TotalWidth>
+		<XBlockSize>0</XBlockSize>
+		<XBlockSpacingCount>0</XBlockSpacingCount>
+		<YBlockSize>0</YBlockSize>
+		<YBlockSpacingCount>0</YBlockSpacingCount>
+		<CenterWidth>0</CenterWidth>
+	</Formation>
+	-->
+
+	<Formation>
+		<!-- 2 rows 5/7 -->
+		<Name>MechInfantry</Name>
+		<SpacingX>11</SpacingX>
+		<SpacingY>19</SpacingY>
+		<SpacingMultiplier>1</SpacingMultiplier>
+		<PerRowInc>0</PerRowInc>
+		<YOffsetInc>1</YOffsetInc>
+		<YOffsetCurved>1</YOffsetCurved>
+		<Stagger>2</Stagger>
+		<UnitRandomness>0.2</UnitRandomness>
+		<BlockRandomness>1</BlockRandomness>
+		<TotalWidth>5</TotalWidth>
+		<XBlockSize>0</XBlockSize>
+		<XBlockSpacingCount>0</XBlockSpacingCount>
+		<YBlockSize>0</YBlockSize>
+		<YBlockSpacingCount>0</YBlockSpacingCount>
+		<CenterWidth>0</CenterWidth>
+	</Formation>
 </Formations>
 

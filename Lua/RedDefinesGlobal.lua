@@ -35,6 +35,7 @@ PRINT_DLL_DEBUG =		false	-- use DLL_Debug GameEvent to show some values from the
 DEBUG_SHOW_PLOT_XY =	false	-- show plot X,Y on mouse over plot
 DEBUG_SHOW_UNIT_KEY =	false	-- show unitkey on mouse over flag
 DEBUG_PERFORMANCE =		false	-- always show loading/save time of tables
+DEBUG_AI_BUILD =		true	-- Show AI build restrictions and current cities productions
 USE_CUSTOM_OPTION =		true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
 DEBUG_ORPHAN_TILE =		false	-- orphan tile function output debug text to firetuner ON/OFF
 
@@ -63,19 +64,22 @@ g_Scenario_Name = savedData.GetValue("RedScenario") or modUserData.GetValue("Red
 
 
 ----------------------------------------------------------------------------------------------------------------------------
--- Global Data Tables
+-- Global Data
 ----------------------------------------------------------------------------------------------------------------------------
-
--- Saved
-g_UnitData = {}
-g_ReinforcementData = {}
-g_ProjectsDone = {}
-g_CombatsLog = {}
-g_DynamicMap = {}
 
 -- Cached 
 g_FixedPlots = {}
 g_Wounded = {}
+g_IsGameFullyInitialized = false
+
+-- Saved & Shared
+MapModData.RED = MapModData.RED or {}
+MapModData.RED.UnitData = MapModData.RED.UnitData or {}
+MapModData.RED.ReinforcementData = MapModData.RED.ReinforcementData or {}
+MapModData.RED.ProjectsDone = MapModData.RED.ProjectsDone or {}
+MapModData.RED.CombatsLog = MapModData.RED.CombatsLog or {}
+MapModData.RED.DynamicMap = MapModData.RED.DynamicMap or {}
+--
 
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -269,6 +273,7 @@ g_Buildings_Exclusion = {
 	[ARSENAL] =				{OPEN_CITY}, 
 	[BARRACKS] =			{OPEN_CITY}, 
 	[BARRICADE] =			{OPEN_CITY},
+	[BASE] =				{OPEN_CITY},
 }
 
 -- Available buildings for minor civs
@@ -316,6 +321,12 @@ PROMOTION_FIGHTER =						GameInfo.UnitPromotions.PROMOTION_FIGHTER.ID
 PROMOTION_HEAVY_FIGHTER =				GameInfo.UnitPromotions.PROMOTION_HEAVY_FIGHTER.ID
 PROMOTION_SORTIE =						GameInfo.UnitPromotions.PROMOTION_SORTIE.ID
 PROMOTION_AIR_RECON =					GameInfo.UnitPromotions.PROMOTION_AIR_RECON.ID
+FIRST_STRIKE_RANGE_BONUS =				GameInfo.UnitPromotions.PROMOTION_FIRST_STRIKE_RANGE_BONUS.ID
+PROMOTION_ARTILLERY =					GameInfo.UnitPromotions.PROMOTION_ARTILLERY.ID
+PROMOTION_FIELD_GUN =					GameInfo.UnitPromotions.PROMOTION_FIELD_GUN.ID
+PROMOTION_LIGHT_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID
+PROMOTION_TANK_DESTROYER =				GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID
+PROMOTION_HEAVY_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Units

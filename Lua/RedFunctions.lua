@@ -20,7 +20,8 @@ function CheckCultureChange(iHexX, iHexY, iPlayerID, bUnknown)
 			Dprint("Culture was set on water plot ("..x..","..y.."), removing it ...")
 			plot:SetOwner(-1, -1)
 		elseif plot:IsCity() then
-			FixCityGraphicBug(plot)
+			--FixCityGraphicBug(plot)
+			--UpdateCityGraphic(plot:GetPlotCity())
 		end		
 	end
 end
@@ -119,7 +120,7 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		return -- the function is recalled with the old player acquisition, no need to do it twice
 	end
 
-	city:ChangeResistanceTurns(-Round(city:GetResistanceTurns()/2)) -- half the normal resistance
+	city:ChangeResistanceTurns(-Round(city:GetResistanceTurns()*0.75)) -- lower the number of resistance turns by 75%
 
 	for i = 0, city:GetNumCityPlots() - 1, 1 do
 		local plot = city:GetCityIndexPlot( i )
@@ -142,7 +143,7 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 
 	Dprint ("-------------------------------------", bDebugOutput)
 end
--- add to Events.SerialEventCityCaptured
+-- add to GameEvents.CityCaptureComplete
 
 -- function FixCityGraphicBug(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefendingPlayer)
 function FixCityGraphicBug(plot)
@@ -222,6 +223,8 @@ end
 -----------------------------------------
 function PlayerBuildingRestriction(iPlayer, iBuildingType)
 	--Dprint ("Check if player.".. iPlayer .." can construct building.".. iBuildingType)
+	local player = Players[iPlayer]
+
 	local civID = GetCivIDFromPlayerID(iPlayer, false)
 	local allowedTable = g_Major_Buildings[civID]
 	if (allowedTable) then
@@ -231,7 +234,6 @@ function PlayerBuildingRestriction(iPlayer, iBuildingType)
 			end
 		end
 	else
-		local player = Players[iPlayer]
 		if not (player:IsMinorCiv()) then
 			return false
 		end
@@ -243,16 +245,32 @@ function PlayerBuildingRestriction(iPlayer, iBuildingType)
 	end
 	return false
 end
+
 function PlayerTrainingRestriction(iPlayer, iUnitType)
+
 
 	g_UnitRestrictionString = ""
 
 	local player = Players[iPlayer]
 	local civID = GetCivIDFromPlayerID(iPlayer)
 
+	-- Don't build units when border are closed (that's for CS only)
+	if Teams[player:GetTeam()]:IsClosedBorder() then 
+		return false
+	end
+	
+	--
+	if ALLOW_AI_UNITS_LIMIT and (not player:IsBarbarian()) and (not player:IsHuman()) then
+		local totalUnits = player:GetNumMilitaryUnits()
+		if totalUnits > (MAX_AI_UNITS) then
+			g_UnitRestrictionString = "Max number of units for the AI reached (" .. tostring(totalUnits) .."/".. tostring(MAX_AI_UNITS) ..")"
+			return false
+		end
+	end
+
 	if g_UnitsProject[iUnitType] then
 		local projectID = g_UnitsProject[iUnitType]
-		if not IsProjectDone(projectID, civID) then
+		if not IsProjectDone(projectID) then
 			g_UnitRestrictionString = "required project is missing."
 			return false
 		end
@@ -266,7 +284,7 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 	if g_Unit_Classes[unitClass] then -- bugfix : some unused classes are not defined (Settler, Worker...), just don't test them...
 
 		-- restriction ratio for AI player
-		if not player:IsMinorCiv() and not player:IsBarbarian() and not player:IsHuman() then
+		if not player:IsMinorCiv() and not player:IsBarbarian() and not player:IsHuman() and USE_UNIT_RATIO_FOR_AI then
 			local totalUnits = player:GetNumMilitaryUnits()
 			local numDomain = CountDomainUnits (iPlayer, iUnitType)			
 
@@ -308,14 +326,14 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 	if (allowedTable) then
 		for i, allowedType in pairs (allowedTable) do
 			if (allowedType == iUnitType) then
-				g_UnitRestrictionString = "found in allowed table for major civs."
+				g_UnitRestrictionString = "No restriction, found in allowed table for major civs."
 				return true
 			end
 		end
 	else	
 		for i, allowedType in pairs (g_Minor_Units) do
 			if (allowedType == iUnitType) then
-				g_UnitRestrictionString = "found in allowed table for minor civs."
+				g_UnitRestrictionString = "No restriction, found in allowed table for minor civs."
 				return true
 			end
 		end
@@ -323,12 +341,13 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 
 	return false
 end
+
 function PlayerCreateRestriction (iPlayer, iProjectType)
 
 	local civID = GetCivIDFromPlayerID(iPlayer, false)
 
 	if IsProjectDone(iProjectType, civID) then
-		return false -- don't allow project marked as done
+		return false -- don't allow project marked as done for this civ
 	end
 
 	-- project available for this player ?
@@ -353,6 +372,7 @@ function PlayerCreateRestriction (iPlayer, iProjectType)
 
 	return false
 end
+
 function CityBuildingRestriction (iPlayer, iCity, iBuildingType)
 	local civID = GetCivIDFromPlayerID(iPlayer, false)
 	local player = Players [ iPlayer ]
@@ -385,15 +405,24 @@ function CityBuildingRestriction (iPlayer, iCity, iBuildingType)
 	
 	return bAllow -- there was a request table or an exclusive table (or both), return the test result
 end
+
 function CityTrainingRestriction (iPlayer, iCity, iUnitType)
 	bDebug = false
 	local player = Players [ iPlayer ]
 	local city = player:GetCityByID(iCity)
-
 	
 	Dprint("- Check training restriction for " .. player:GetName() .. " in  " .. city:GetName() .. " for unitType = " .. iUnitType, bDebug)
 
 	bAllow = true
+
+	if NO_AI_EMBARKATION and NO_LAND_UNIT_BUILD_ON_ISLAND and (not player:IsHuman()) then
+		local area = city:Area()
+		if area:GetNumTiles() < NO_LAND_UNIT_ISLAND_MAX_AREA then
+			if GameInfo["Units"][iUnitType]["Domain"] =="DOMAIN_LAND" then 
+				return false
+			end
+		end
+	end
 
 	if (city:IsOccupied() and not CAN_BUILD_UNIT_IN_OCCUPIED_CITY) then
 		if not (city:IsHasBuilding(COURTHOUSE) and city:IsHasBuilding(RADIO) ) then
@@ -431,6 +460,7 @@ function CityTrainingRestriction (iPlayer, iCity, iUnitType)
 
 	return bAllow
 end
+
 function CityCreateRestriction (iPlayer, iCity, iProjectType)
 	local civID = GetCivIDFromPlayerID(iPlayer, false)
 	local player = Players [ iPlayer ]
@@ -455,6 +485,7 @@ function CityCreateRestriction (iPlayer, iCity, iProjectType)
 	return bCanCreate
 
 end
+
 function CityMaintainingRestriction (iPlayer, iCity, iProcessType)
 	local civID = GetCivIDFromPlayerID(iPlayer, false)
 	local player = Players [ iPlayer ]
@@ -538,11 +569,6 @@ function InitializeProjects()
 			for civID, projects in pairs(g_ProjectsAvailableAtStart) do
 				for n, projectID in pairs(projects) do
 					local projectInfo = GameInfo.Projects[projectID]
-					--[[ -- old code
-					local player = Players[GetPlayerIDFromCivID( civID )]
-					local team = Teams[ player:GetTeam() ]
-					team:ChangeProjectCount(projectID, 1)
-					--]]
 					MarkProjectDone(projectID, civID) -- new code
 					local saveStr = "Project-"..projectID
 					savedData.SetValue(saveStr, 1) -- mark as triggered !
@@ -570,7 +596,7 @@ function InitializeProjects()
 			local projectInfo = GameInfo.Projects[id]
 			if allowedTable then -- don't check if there is no project prerequested
 				for i, projectID in ipairs (allowedTable) do
-					if (not g_ProjectsDone[projectID]) then -- not looking for a specific civs here
+					if (not IsProjectDone(projectID)) then -- not looking for a specific civs here
 						Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." lacks pre-required project.", debug )
 						bMissingProject = true
 					end
@@ -881,7 +907,6 @@ function CommonOnGameInit()
 	-- calling order is important ! 
 	InitializeGameOption()								-- before everything else !
 	LoadAllTable()										-- before any change on tables...
-	ValidateData()
 	RegisterScenarioUnits()
 	Events.SerialEventUnitCreated.Add( InitializeUnit ) -- before initializing Order Of Battle
 	CreateTerritoryMap()
@@ -894,7 +919,7 @@ function CommonOnGameInit()
 	InitializeOOB()
 	InitializeReinforcementTable()	
 	InitializeHotseat()
-	ShareGlobalTables() -- Before UI initialization, after any table initialization (Reinforcements, projects, etc...)
+	ShareGlobalTables()									-- Before UI initialization, after any table initialization (Reinforcements, projects, etc...)
 end
 
 -- functions to call after game initialization (DoM screen button "Continue your journey" appears) after loading a saved game
@@ -927,7 +952,9 @@ function CommonOnEnterGame()
 	GameEvents.TurnComplete.Add( REDAutoSave )
 	GameEvents.PlayerEndTurnInitiated.Add( REDAutoSaveEachPlayer )
 	GameEvents.PlayerDoTurn.Add( ShowPlayerInfo )
-	GameEvents.PlayerDoTurn.Add( FinalizeNextPlayerProjects )
+	GameEvents.PlayerDoTurn.Add( FinalizeNextPlayerProjects )	
+	GameEvents.PlayerDoTurn.Add( ShowAITrainingRestriction )
+	GameEvents.PlayerDoTurn.Add( ListCitiesBuild )
 	GameEvents.PlayerDoTurn.Add( DynamicUnitPromotion )						-- DynamicUnitPromotion: before calling reinforcements
 	GameEvents.PlayerDoTurn.Add( Reinforcements )
 	GameEvents.PlayerDoTurn.Add( UpgradingUnits )							-- UpgradingUnits: after calling reinforcement
@@ -961,6 +988,7 @@ function CommonOnEnterGame()
 	GameEvents.GameCoreUpdateBegin.Add( InitializeUnitFunctions )
 	InitializeClosedBorders()
 	UpdateGlobalData()
+	ValidateData()											
 	InitializeUI()															-- InitializeUI: Last to call
 end
 
@@ -1023,28 +1051,28 @@ function TransfertDamage( city, damage)
 		local rand = math.random( 1, #list )
 		local plot = list[rand]
 		local plotKey = GetPlotKey ( plot )
-		if g_DynamicMap[plotKey] then
-			g_DynamicMap[plotKey].ImprovementDamage = g_DynamicMap[plotKey].ImprovementDamage + damage
+		if MapModData.RED.DynamicMap[plotKey] then
+			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = MapModData.RED.DynamicMap[plotKey].ImprovementDamage + damage
 		else
-			g_DynamicMap[plotKey] = { ImprovementDamage = damage, RouteDamage = 0  }
+			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = damage, RouteDamage = 0  }
 		end
 
-		if g_DynamicMap[plotKey].ImprovementDamage >= IMPROVEMENT_DAMAGED_THRESHOLD and not plot:IsImprovementPillaged() then
+		if MapModData.RED.DynamicMap[plotKey].ImprovementDamage >= IMPROVEMENT_DAMAGED_THRESHOLD and not plot:IsImprovementPillaged() then
 			plot:SetImprovementPillaged( true )
 		end
 
-		if g_DynamicMap[plotKey].ImprovementDamage > IMPROVEMENT_MAX_DAMAGE then
-			g_DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
+		if MapModData.RED.DynamicMap[plotKey].ImprovementDamage > IMPROVEMENT_MAX_DAMAGE then
+			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
 		end
 	end
 end
 
 function RepairImprovements()
-	for plotKey, data in pairs(g_DynamicMap) do
-		if g_DynamicMap[plotKey] then
-			g_DynamicMap[plotKey].ImprovementDamage = math.max(0, g_DynamicMap[plotKey].ImprovementDamage - IMPROVEMENT_REPAIR_PER_TURN)
+	for plotKey, data in pairs(MapModData.RED.DynamicMap) do
+		if MapModData.RED.DynamicMap[plotKey] then
+			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = math.max(0, MapModData.RED.DynamicMap[plotKey].ImprovementDamage - IMPROVEMENT_REPAIR_PER_TURN)
 
-			if g_DynamicMap[plotKey].ImprovementDamage < IMPROVEMENT_DAMAGED_THRESHOLD then
+			if MapModData.RED.DynamicMap[plotKey].ImprovementDamage < IMPROVEMENT_DAMAGED_THRESHOLD then
 				local plot = GetPlotFromKey ( plotKey )
 				if plot:IsImprovementPillaged() then
 					plot:SetImprovementPillaged( false )
@@ -1087,7 +1115,7 @@ end
 
 function InitializeUI()
 	Dprint("Initializing User Interface...")
-	--ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):SetHide(true) 	
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):SetHide(true) 	
 	ContextPtr:LookUpControl("/InGame/WorldView/DiploCorner/SocialPoliciesButton"):SetHide(true) 	
 	ContextPtr:LookUpControl("/InGame/WorldView/DiploCorner/AdvisorButton"):SetHide(true)	
 	ContextPtr:LookUpControl("/InGame/WorldView/InfoCorner"):SetHide(true)
@@ -1289,10 +1317,10 @@ function UpdatePlayerData(playerID)
 end
 
 function UpdateGlobalData()
-	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
-		local player = Players[playerID]
+	for iPlayer = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
+		local player = Players[iPlayer]
 		if player and player:IsAlive() and not player:IsBarbarian() then
-			UpdatePlayerData(playerID)
+			UpdatePlayerData(iPlayer)
 		end
 	end
 end

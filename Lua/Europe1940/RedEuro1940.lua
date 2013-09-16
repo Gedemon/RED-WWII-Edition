@@ -13,7 +13,8 @@ print("-------------------------------------")
 
 -- functions to call at beginning of each turn
 function ScenarioOnNewTurn()
-	SetAIStrategicValues()
+	SetAIStrategicValues()	
+	InitializeEuro1940Projects()
 	PrepareForWar(5) -- alert 5 turns before declaring war
 	PrepareForWar(1) -- alert 1 turn before declaring war
 end

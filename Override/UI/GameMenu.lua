@@ -140,7 +140,7 @@ function OnShowHide( isHide, isInit )
 	Controls.QuickSaveButton:SetHide(bDisableQuickSave);
 	Controls.SaveGameButton:SetHide(bHideSaveGameOption);
 
-	-- returning to main menu does not unload VFS override files, allows only retunr to windows...
+	-- returning to main menu does not unload VFS override files (and crash anyway), so allows only return to windows...
 	Controls.MainMenuButton:SetHide(true);
 	
     if( not isInit ) then

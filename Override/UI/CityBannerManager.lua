@@ -569,12 +569,12 @@ end
 -------------------------------------------------
 function OnCityCreated( hexPos, playerID, cityID, cultureType, eraType, continent, populationSize, size, fowState )
 
-	-- RED <<<<<
+	--[[ RED <<<<<
 	print (tostring(cityID))
 	if not cityID or cityID < 1 then 
 		return
 	end
-	-- RED >>>>> 
+	-- RED >>>>> --]]
 
 	local controlTable = {};
 	local svStrikeButton = {};
