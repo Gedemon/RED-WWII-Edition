@@ -8,7 +8,7 @@
     <ModVersion>39</ModVersion>
     <Stability>Beta</Stability>
     <Teaser>R.E.D. WWII Edition</Teaser>
-    <Description>R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine.[NEWLINE]Features :[NEWLINE][ICON_BULLET]Frontline: units can capture tiles (or liberate your allied/friends tiles)[NEWLINE][ICON_BULLET]Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat[NEWLINE][ICON_BULLET]Reinforcements: personnel and materiel are needed to "heal" your units.[NEWLINE][ICON_BULLET]National units: each great power have it's own set of units models[NEWLINE][NEWLINE][COLOR_RED]The[/COLOR] [COLOR_YELLOW]R.E.D. WWII Data Files (V.4)[/COLOR][COLOR_RED] mod must be activated to play this mod[/COLOR]</Description>
+    <Description>R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine.[NEWLINE]Features :[NEWLINE][ICON_BULLET]Frontline: units can capture tiles (or liberate your allied/friends tiles)[NEWLINE][ICON_BULLET]Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat[NEWLINE][ICON_BULLET]Reinforcements: personnel and materiel are needed to "heal" your units.[NEWLINE][ICON_BULLET]National units: each great power have it's own set of units models[NEWLINE][NEWLINE][COLOR_RED]The[/COLOR] [COLOR_YELLOW]R.E.D. WWII Data Files (V.5)[/COLOR][COLOR_RED] mod must be activated to play this mod[/COLOR]</Description>
     <Authors>Gedemon</Authors>
     <SpecialThanks>danrell, T_KCommanderbly, FouR_Pharao, JanBoruta, Whys, whoward69, Hulfgar, Achille44, Putmalk, NiRv4n4, pap1723, csebal, Hulfgar, Putmalk, smellymummy, NwabudikeMorgan, rhettrongun, Mylon, Redox, PAVLOS_GR300</SpecialThanks>
     <Categories>$Categories$</Categories>
@@ -50,7 +50,7 @@
       </Property>
       <Property>
         <Name>Custom_Background_TXT_KEY_RED_MOD_DESC</Name>
-        <Description>Art/Earth1936startscreen.dds</Description>
+        <Description>Art/RED_WWII_SetupScreen.dds</Description>
       </Property>
     </ModProperties>
     <ModContent>
@@ -352,6 +352,10 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Maps\mapUSA.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\RED_WWII_SetupScreen.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

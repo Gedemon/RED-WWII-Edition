@@ -1267,7 +1267,7 @@ function LaunchMilitaryOperation(playerID)
 		local savedData = Modding.OpenSaveData()
 		local saveStr = "Operation-"..id
 		local triggered = savedData.GetValue(saveStr)
-		if triggered ~= 1 then -- not triggered yet, do it !
+		if triggered ~= 1 then -- not triggered yet, test it !
 		
 			Dprint(" - Testing condition for Operation ID = " .. id, bDebug)
 			-- check if required project is done
@@ -1288,8 +1288,15 @@ function LaunchMilitaryOperation(playerID)
 					end
 					LaunchUnits(militaryOperation)
 
-					local saveStr = "Operation-"..id
-					savedData.SetValue(saveStr, 1) -- mark as triggered !
+					if (not CanRepeatProject(projectID)) then
+						Dprint(" - Marking Operation done...", bDebug)
+						local saveStr = "Operation-"..id
+						savedData.SetValue(saveStr, 1) -- mark as triggered !
+					else
+						Dprint(" - Operation can be repeated, mark project as not completed so it can be launched again...", bDebug)
+						MarkProjectNotCompleted(id, civID) -- now that Civ can build this project again...
+					end
+					LuaEvents.MilitaryOperationLaunched(id, civID) -- can use LuaEvents.MilitaryOperationLaunched.Add(anyScenarioFunction) in the scenarios Lua to do additional stuff...
 					
 					--PauseGame(3)
 				end

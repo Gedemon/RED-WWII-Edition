@@ -359,6 +359,8 @@ SELECT	'TANK_DESTROYER_NA_TO',			'JAPAN',	'',		'Type 5 Na-To',						'Type5_Na-To
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
 
+SELECT	'ARTILLERY_ML20',				'RUSSIA',	'',		'ML-20 152mm Howitzer',				'ML-20',								'ARTILLERY',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+
 SELECT	'MOBILE_AA_GUN_HOTCHKISS',		'FRANCE',	'',		'Hotchkiss 25mm AA Half-Track',		'Hotchkiss_25mm_AA_Half-Track',			'MOBILE_AA_GUN_B',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 SELECT	'MOBILE_AA_GUN_FLK_PZI',		'GERMANY',	'',		'Flakpanzer I',						'Flakpanzer_I',							'MOBILE_AA_GUN',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL

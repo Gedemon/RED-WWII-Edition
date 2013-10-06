@@ -147,7 +147,6 @@ end
 -- On Open Player Deal Screen
 -------------------------------------------------
 function OnOpenPlayerDealScreen( iOtherPlayer )
-    print( "here" );
 
     -- any time we're legitimately opening the pvp deal screen, make sure we hide the diplolist.
     local iOtherTeam = Players[iOtherPlayer]:GetTeam();

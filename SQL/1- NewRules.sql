@@ -50,16 +50,14 @@ UPDATE Buildings SET PrereqTech =		NULL;
 DELETE FROM Building_ResourceQuantityRequirements;
 
 DELETE FROM Building_ClassesNeededInCity;
-INSERT INTO Building_ClassesNeededInCity (BuildingType, BuildingClassType) VALUES ('BUILDING_MILITARY_ACADEMY', 'BUILDINGCLASS_BARRACKS'); -- todo: add to lua request table for code consistency ?
-INSERT INTO Building_ClassesNeededInCity (BuildingType, BuildingClassType) VALUES ('BUILDING_MILITARY_BASE', 'BUILDINGCLASS_BARRACKS');
 
 DELETE FROM Building_DomainFreeExperiences WHERE BuildingType='BUILDING_BARRACKS' and DomainType='DOMAIN_SEA';
 DELETE FROM Building_DomainFreeExperiences WHERE BuildingType='BUILDING_BARRACKS' and DomainType='DOMAIN_AIR';
 UPDATE Building_DomainFreeExperiences SET Experience = 10 WHERE BuildingType='BUILDING_BARRACKS';
-UPDATE Building_DomainFreeExperiences SET Experience = 20 WHERE BuildingType='BUILDING_MILITARY_ACADEMY';
-INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience) VALUES ('BUILDING_MILITARY_BASE', 'DOMAIN_SEA', 15);
-INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience) VALUES ('BUILDING_MILITARY_BASE', 'DOMAIN_AIR', 15);
-INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience) VALUES ('BUILDING_MILITARY_BASE', 'DOMAIN_LAND', 15);
+UPDATE Building_DomainFreeExperiences SET Experience = 25 WHERE BuildingType='BUILDING_MILITARY_ACADEMY';
+INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience) VALUES ('BUILDING_MILITARY_BASE', 'DOMAIN_SEA', 25);
+INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience) VALUES ('BUILDING_MILITARY_BASE', 'DOMAIN_AIR', 25);
+INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience) VALUES ('BUILDING_MILITARY_BASE', 'DOMAIN_LAND', 25);
 
 INSERT INTO Building_YieldChanges (BuildingType, YieldType, Yield) VALUES ('BUILDING_BANK', 'YIELD_GOLD', 4);
 
@@ -112,7 +110,7 @@ UPDATE Defines SET Value = 0		WHERE Name = 'NEUTRAL_HEAL_RATE';
 UPDATE Defines SET Value = 0		WHERE Name = 'FRIENDLY_HEAL_RATE';
 UPDATE Defines SET Value = 0		WHERE Name = 'CITY_HEAL_RATE';
 UPDATE Defines SET Value = 1		WHERE Name = 'BUY_PLOTS_DISABLED';
-UPDATE Defines SET Value = 100000	WHERE Name = 'GREAT_GENERALS_THRESHOLD';
+UPDATE Defines SET Value = 900000	WHERE Name = 'GREAT_GENERALS_THRESHOLD';
 UPDATE Defines SET Value = 0		WHERE Name LIKE 'LAND_DISPUTE_%';
 --UPDATE Defines SET Value = -10000 WHERE Name LIKE 'PEACE_WILLINGNESS_ACCEPT_PROJECTION_%';
 --UPDATE Defines SET Value = -10000 WHERE Name LIKE 'PEACE_WILLINGNESS_OFFER_PROJECTION_%';
@@ -217,9 +215,44 @@ UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_SNOW';
 --------------------------------------------------------------------------------------------
 -- Improvements
 --------------------------------------------------------------------------------------------
-UPDATE Improvements SET DefenseModifier = 15 WHERE Type = 'IMPROVEMENT_TRADING_POST';
-UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
-UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
+UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_TRADING_POST';
+UPDATE Improvements SET DefenseModifier = 45 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
+UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
+
+INSERT INTO Improvement_Yields (ImprovementType, YieldType, Yield) VALUES ('IMPROVEMENT_TRADING_POST', 'YIELD_PRODUCTION', 1);
+UPDATE Improvement_Yields SET Yield = 2 WHERE ImprovementType = 'IMPROVEMENT_MINE';
+
+UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale 
+	WHERE ResourceType = 'ART_DEF_RESOURCE_ALUMINUM'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_ALUMINUM_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL_HEAVY_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON_HEAVY_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_OIL'
+		OR ResourceType = 'ART_DEF_RESOURCE_OIL_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_HEAVY_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM';
+
+UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale
+	WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_MANUFACTORY'
+		OR ImprovementType = 'ART_DEF_IMPROVEMENT_QUARRY';
+	
+UPDATE Builds SET PrereqTech = NULL;
+
+
+--------------------------------------------------------------------------------------------
+-- Resources
+--------------------------------------------------------------------------------------------
+DELETE FROM Resource_YieldChanges;
+UPDATE Resources SET TechCityTrade = NULL;
+UPDATE Resources SET TechReveal = NULL;
 
 --------------------------------------------------------------------------------------------
 -- Unit Supply Production Modifier

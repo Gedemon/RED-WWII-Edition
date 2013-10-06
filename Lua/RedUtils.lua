@@ -848,6 +848,27 @@ function IsProjectDone(iProjectType, civID)
 	return false
 end
 
+function CanRepeatProject(iProjectType)
+	return g_ProjectsTable[iProjectType].Repeat
+end
+
+function IsMilitaryOperationProject(iProjectType, civID)
+	if not g_Military_Project then
+		return false
+	end
+	if not g_Military_Project[civID] then
+		return false
+	end
+	if not g_Military_Project[civID][iProjectType] then
+		return false
+	end
+	return true
+end
+
+function MarkProjectNotCompleted(iProjectType, civID)
+	MapModData.RED.ProjectsDone[iProjectType] = { [civID] = false}
+end
+
 function MarkProjectDone(iProjectType, civID)
 	MapModData.RED.ProjectsDone[iProjectType] = { [civID] = true}
 end
@@ -871,13 +892,16 @@ function FinalizeNextPlayerProjects(CurrentPlayerID)
 					Dprint ("     - Removing project from build list and mark it as done...", bDebug)
 					city:PopOrder()
 					local civID = GetCivIDFromPlayerID(playerID)
-					MarkProjectDone(projectID, civID)
+					if (not CanRepeatProject(projectID)) or (IsMilitaryOperationProject(projectID, civID)) then -- Military operation are marked available again in RedUnitFunctions if they can be produced multiple time
+						MarkProjectDone(projectID, civID)
+					end
 					-- todo : alert all player for some projects only...
 					if g_ProjectsTable[projectID].TopSecret then
 						player:AddNotification(NotificationTypes.NOTIFICATION_PROJECT_COMPLETED, str .. " is finished", "Project done !", city:GetX(), city:GetY(), projectID, playerID)
 					else
 						BroadcastNotification(NotificationTypes.NOTIFICATION_PROJECT_COMPLETED, str .. " is finished", "Project done !", city:GetX(), city:GetY(), projectID, playerID )
 					end
+					LuaEvents.ProjectDone(projectID, civID) -- can use LuaEvents.ProjectDone.Add(anyScenarioFunction) in the scenarios Lua to do special stuff...
 				end
 			end
 		end

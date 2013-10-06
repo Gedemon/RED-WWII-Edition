@@ -186,87 +186,89 @@ g_ProjectsTable = {
 		-- Type define when the project is available
 		-- xp = another unit (set in Reference) must have gain this amount of XP during combat (XP from buildings are not counted)
 		-- date = when starting date is reached (yyyymmdd), each turn the project have ProbPerTur % of chance of being made available
-	
+	-- Repeat : project can be done again (example: for calling reinforcement)
+	-- AIOnly : reserved for AI
 
 	---------------------------------------------------------------------
 	-- France
 	---------------------------------------------------------------------
 	[PROJECT_H39] =  {
 		Buildings = {ACADEMY, FACTORY},
-		Trigger = {Type = "xp", Value = 150, Reference = FR_H35 },
+		Trigger = {Type = TRIGGER_XP, XP = 150, Reference = FR_H35 },
+		Repeat = false,
 	},
 	[PROJECT_R40] =  {
 		Buildings = {ACADEMY, FACTORY},
-		Trigger = {Type = "xp", Value = 150, Reference = FR_R35 },
+		Trigger = {Type = TRIGGER_XP, XP = 150, Reference = FR_R35 },
 	},
 	[PROJECT_ARL_44] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19440101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_W15_TCC] = {
 		Buildings = {ACADEMY, FACTORY},
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 20},
 	},
 	[PROJECT_AMR35_ZT3] = {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 10},
 	},
 	[PROJECT_37L] = {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19400501, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400501, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_SAU40] = {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_HOTCHKISS] = {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
 	},
 	[PROJECT_MB152] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19370701, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19370701, ProbPerTurn = 25},
 	},
 	[PROJECT_MS406] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19380101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19380101, ProbPerTurn = 15},
 	},
 	[PROJECT_D520] = {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
 	},
 	[PROJECT_BR690] = {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
 	},
 	[PROJECT_JOFFRE] = {
 		Buildings = {SHIPYARD},
 		Projects = {PROJECT_D520, PROJECT_BR690},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 25},
 	},
 	---------------------------------------------------------------------
 	-- USSR
 	---------------------------------------------------------------------
 	[PROJECT_T34] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19400601, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400601, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_T34_76] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},	
-		Trigger = {Type = "xp", Value = 100, Reference = RU_T34},
+		Trigger = {Type = TRIGGER_XP, XP = 100, Reference = RU_T34},
 		TopSecret = true,
 	},
 	[PROJECT_T34_85] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "xp", Value = 300, Reference = RU_T34_76},
+		Trigger = {Type = TRIGGER_XP, XP = 300, Reference = RU_T34_76},
 	},
 	[PROJECT_KV1] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_KV2] =  {
@@ -275,49 +277,49 @@ g_ProjectsTable = {
 	},
 	[PROJECT_IS_1] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19430101, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430101, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_IS_2] =  {
 		Buildings = {ACADEMY},	
 		Projects = {PROJECT_IS_1},	
-		Trigger = {Type = "date", Value = 19430601, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430601, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_LAGG3] =  {
 		Buildings = {ACADEMY},		
-		Trigger = {Type = "date", Value = 19401101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19401101, ProbPerTurn = 15},
 		TopSecret = true,
 	},	
 	[PROJECT_LA5] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
-		Trigger = {Type = "xp", Value = 150, Reference = RU_LAGG3},
+		Trigger = {Type = TRIGGER_XP, XP = 150, Reference = RU_LAGG3},
 	},		
 	[PROJECT_LA5_V2] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
-		Trigger = {Type = "xp", Value = 250, Reference = RU_LA5},
+		Trigger = {Type = TRIGGER_XP, XP = 250, Reference = RU_LA5},
 	},
 	[PROJECT_LA7] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
-		Trigger = {Type = "xp", Value = 500, Reference = RU_LA5_V2},
+		Trigger = {Type = TRIGGER_XP, XP = 500, Reference = RU_LA5_V2},
 	},	
 	[PROJECT_YAK7] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19410901, ProbPerTurn = 35},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410901, ProbPerTurn = 35},
 		TopSecret = true,
 	},
 	[PROJECT_IL2] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19401115, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19401115, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_TU2] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19410101, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410101, ProbPerTurn = 10},
 	},
 	[PROJECT_IL4] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 8},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 8},
 	},
 	[PROJECT_SOYUZ] =  {
 		Buildings = {ACADEMY},
@@ -328,97 +330,97 @@ g_ProjectsTable = {
 	---------------------------------------------------------------------
 	[PROJECT_PANZER_II_L] =  {
 		Buildings = {ACADEMY, FACTORY},
-		Trigger = {Type = "xp", Value = 500, Reference = GE_PANZER_II },
+		Trigger = {Type = TRIGGER_XP, XP = 500, Reference = GE_PANZER_II },
 	},
 	[PROJECT_PANZER_III] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19360701, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19360701, ProbPerTurn = 100},
 		TopSecret = true,
 	},
 	[PROJECT_PANZER_III_J] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 750, Reference = GE_PANZER_III },
+		Trigger = {Type = TRIGGER_XP, XP = 750, Reference = GE_PANZER_III },
 	},
 	[PROJECT_PANZER_IV] =  {
 		Buildings = {ACADEMY},		
 		Projects = {PROJECT_PANZER_III},	
-		Trigger = {Type = "date", Value = 19370701, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19370701, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_PANZER_IV_G] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 250, Reference = GE_PANZER_IV },
+		Trigger = {Type = TRIGGER_XP, XP = 250, Reference = GE_PANZER_IV },
 	},
 	[PROJECT_PANZER_IV_H] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 750, Reference = GE_PANZER_IV_G },
+		Trigger = {Type = TRIGGER_XP, XP = 750, Reference = GE_PANZER_IV_G },
 	},
 	[PROJECT_PANZER_V] =  {
 		Buildings = {ACADEMY},	
 		Projects = {PROJECT_PANZER_IV},
-		Trigger = {Type = "date", Value = 19420901, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19420901, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_PANZER_VI] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19420301, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19420301, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_PANZER_VIB] =  {
 		Buildings = {ACADEMY},
 		Projects = {PROJECT_PANZER_VI},
-		Trigger = {Type = "date", Value = 19431101, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19431101, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_PANZER_VIII] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19440501, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440501, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_STUG_III] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_STUG_IV] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19431001, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19431001, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_BF109F] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},
-		Trigger = {Type = "xp", Value = 250, Reference = GE_BF109 },
+		Trigger = {Type = TRIGGER_XP, XP = 250, Reference = GE_BF109 },
 	},
 	[PROJECT_BF109G] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},
-		Trigger = {Type = "xp", Value = 750, Reference = GE_BF109_F },
+		Trigger = {Type = TRIGGER_XP, XP = 750, Reference = GE_BF109_F },
 	},
 	[PROJECT_BF110] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19360701, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19360701, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_BF110F4] =  {
 		Buildings = {ACADEMY, MEDIUM_AIR_FACTORY},
-		Trigger = {Type = "xp", Value = 250, Reference = GE_BF110 },
+		Trigger = {Type = TRIGGER_XP, XP = 250, Reference = GE_BF110 },
 	},
 	[PROJECT_FW190] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19410501, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410501, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_JU88C] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 15},
 	},
 	[PROJECT_HE219] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19430501, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430501, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_HE177] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19410601, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410601, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	---------------------------------------------------------------------
@@ -426,79 +428,79 @@ g_ProjectsTable = {
 	---------------------------------------------------------------------	
 	[PROJECT_TETRARCH] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19380101, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19380101, ProbPerTurn = 25},
 	},	
 	[PROJECT_MATILDAI] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19360701, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19360701, ProbPerTurn = 15},
 	},
 	[PROJECT_MATILDAII] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19370101, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19370101, ProbPerTurn = 10},
 	},
 	[PROJECT_VALENTINE] =  {
 		Buildings = {ACADEMY},	
 		Projects = {PROJECT_CRUISER_IV},
-		Trigger = {Type = "date", Value = 19380210, ProbPerTurn = 35},
+		Trigger = {Type = TRIGGER_DATE, Date = 19380210, ProbPerTurn = 35},
 		TopSecret = true,
 	},
 	[PROJECT_A13] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_A15] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19391201, ProbPerTurn = 35},
+		Trigger = {Type = TRIGGER_DATE, Date = 19391201, ProbPerTurn = 35},
 		TopSecret = true,
 	},
 	[PROJECT_A15_MKIII] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},	
-		Trigger = {Type = "xp", Value = 75, Reference = UK_A15_CRUSADER},
+		Trigger = {Type = TRIGGER_XP, XP = 75, Reference = UK_A15_CRUSADER},
 	},
 	[PROJECT_CRUISER_III] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19370101, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19370101, ProbPerTurn = 20},
 	},
 	[PROJECT_CRUISER_IV] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 50, Reference = UK_CRUISER_III },
+		Trigger = {Type = TRIGGER_XP, XP = 50, Reference = UK_CRUISER_III },
 	},
 	[PROJECT_M4_FIREFLY] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19431201, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19431201, ProbPerTurn = 15},
 	},
 	[PROJECT_CHURCHILL] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19410401, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410401, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_SPITFIRE_V] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},
-		Trigger = {Type = "xp", Value = 250, Reference = UK_SPITFIRE },
+		Trigger = {Type = TRIGGER_XP, XP = 250, Reference = UK_SPITFIRE },
 	},
 	[PROJECT_SPITFIRE_IX] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},
-		Trigger = {Type = "xp", Value = 750, Reference = UK_SPITFIRE_V },
+		Trigger = {Type = TRIGGER_XP, XP = 750, Reference = UK_SPITFIRE_V },
 	},
 	[PROJECT_WHIRLWIND] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19391001, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19391001, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_BEAUFIGHTER] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19400601, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400601, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_MOSQUITO] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19410101, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410101, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_LANCASTER] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 35},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 35},
 		TopSecret = true,
 	},
 	---------------------------------------------------------------------
@@ -506,145 +508,145 @@ g_ProjectsTable = {
 	---------------------------------------------------------------------
 	[PROJECT_L6_40] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 25},
 	},
 	[PROJECT_M11_39] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 25},
 	},
 	[PROJECT_M13_40] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19390801, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390801, ProbPerTurn = 10},
 	},
 	[PROJECT_M14_41] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 350, Reference = IT_M13_40 },
+		Trigger = {Type = TRIGGER_XP, XP = 350, Reference = IT_M13_40 },
 	},
 	[PROJECT_M15_42] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 700, Reference = IT_M14_41 },
+		Trigger = {Type = TRIGGER_XP, XP = 700, Reference = IT_M14_41 },
 	},
 	[PROJECT_P26_40] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19430401, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430401, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_G50] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19370201, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19370201, ProbPerTurn = 25},
 		TopSecret = true,
 	},
 	[PROJECT_G55] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19430301, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430301, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_MC202] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19410401, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410401, ProbPerTurn = 25},
 		TopSecret = true,
 	},
 	[PROJECT_SM84] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19400601, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400601, ProbPerTurn = 15},
 	},
 	---------------------------------------------------------------------
 	-- USA
 	---------------------------------------------------------------------	
 	[PROJECT_M3A1HT] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19410501, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410501, ProbPerTurn = 15},
 	},
 	[PROJECT_M3GRANT] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
 	},
 	[PROJECT_M5STUART] =  {
 		Buildings = {ACADEMY, FACTORY},
-		Trigger = {Type = "xp", Value = 50, Reference = US_M3STUART },
+		Trigger = {Type = TRIGGER_XP, XP = 50, Reference = US_M3STUART },
 	},
 	[PROJECT_M4SHERMAN] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19400801, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400801, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_M4A1SHERMANIIA] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19420901, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19420901, ProbPerTurn = 20},
 	},
 	[PROJECT_SHERMAN_III] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19430301, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430301, ProbPerTurn = 20},
 	},
 	[PROJECT_SHERMANIIIA] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},	
-		Trigger = {Type = "xp", Value = 75, Reference = US_SHERMAN_III},
+		Trigger = {Type = TRIGGER_XP, XP = 75, Reference = US_SHERMAN_III},
 	},
 	[PROJECT_SHERMAN_IV] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19440101, ProbPerTurn = 50},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 50},
 		TopSecret = true,
 	},
 	[PROJECT_JUMBO] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},	
-		Trigger = {Type = "xp", Value = 50, Reference = US_SHERMAN_IV},
+		Trigger = {Type = TRIGGER_XP, XP = 50, Reference = US_SHERMAN_IV},
 		TopSecret = true,
 	},
 	[PROJECT_EASYEIGHT] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},	
-		Trigger = {Type = "xp", Value = 50, Reference = US_SHERMAN_JUMBO},
+		Trigger = {Type = TRIGGER_XP, XP = 50, Reference = US_SHERMAN_JUMBO},
 		TopSecret = true,
 	},
 	[PROJECT_M26] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19440601, ProbPerTurn = 25},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440601, ProbPerTurn = 25},
 		TopSecret = true,
 	},
 	[PROJECT_P40] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19380601, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19380601, ProbPerTurn = 10},
 	},
 	[PROJECT_P38] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_P51] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19430101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_B17] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19360701, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19360701, ProbPerTurn = 100},
 	},
 	[PROJECT_B24] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19391220, ProbPerTurn = 50},
+		Trigger = {Type = TRIGGER_DATE, Date = 19391220, ProbPerTurn = 50},
 		TopSecret = true,
 	},
 	[PROJECT_B25] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19400701, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400701, ProbPerTurn = 20},
 	},
 	---------------------------------------------------------------------
 	-- Japan
 	---------------------------------------------------------------------
 	[PROJECT_TYPE3] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19440101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 15},
 	},
 	[PROJECT_TYPE4] =  {
 		Buildings = {FACTORY},	
-		Trigger = {Type = "date", Value = 19440101, ProbPerTurn = 35},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 35},
 	},
 	[PROJECT_TYPE4_CHITO] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19420601, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19420601, ProbPerTurn = 10},
 	},
 	[PROJECT_TYPE5] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = "date", Value = 19430301, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430301, ProbPerTurn = 10},
 		TopSecret = true,
 	},	
 	
@@ -654,57 +656,57 @@ g_ProjectsTable = {
 	[OPERATION_WESERUBUNG] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Euro1940", },	
-		Trigger = {Type = "date", Value = 19400101, ProbPerTurn = 33},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 33},
 		TopSecret = true,
 	},
 
 	[OPERATION_SEELOWE] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Euro1940", },	
-		Trigger = {Type = "date", Value = 19400401, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400401, ProbPerTurn = 20},
 		TopSecret = true,
 	},	
 	
 	[OPERATION_CHINA] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19370701, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19370701, ProbPerTurn = 100},
 		TopSecret = true,
 	},
 	[OPERATION_PACIFIC] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19411201, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19411201, ProbPerTurn = 100},
 		TopSecret = true,
 	},
 	[OPERATION_NORWAY] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19400401, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19400401, ProbPerTurn = 100},
 		TopSecret = true,
 	},
 	[OPERATION_MARITA] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19410101, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410101, ProbPerTurn = 100},
 		TopSecret = true,
 	},
 	[OPERATION_TWENTYFIVE] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19410101, ProbPerTurn = 100},
+		Trigger = {Type = TRIGGER_DATE, Date = 19410101, ProbPerTurn = 100},
 		TopSecret = true,
 	},
 	[OPERATION_SONNENBLUME] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19401110, ProbPerTurn = 20},
+		Trigger = {Type = TRIGGER_DATE, Date = 19401110, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[OPERATION_TORCH] =  {
 		Buildings = {BASE},	
 		Scenarios = {"Earth1936", },	
-		Trigger = {Type = "date", Value = 19420601, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19420601, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	

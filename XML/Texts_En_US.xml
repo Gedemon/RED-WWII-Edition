@@ -462,7 +462,7 @@
 		</Row>
 		<Row Tag="TXT_KEY_RED_MOD_PRESENTATION">
 			<Text>
-				R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine which features: Hundreds of new units, Frontlines, Supply lines, Reinforcements, Convoys...
+				A total conversion wargame based on the Civ5 game engine which features hundreds of new Units, Frontlines, Supply lines, Reinforcements, Convoys...
 			</Text>
 		</Row>
 
@@ -711,10 +711,10 @@
 		</Row>
 		<!-- GREECE -->
 		<Row Tag="TXT_KEY_RED_WWII_GREECE">
-			<Text>Greece WWII</Text>
+			<Text>Greece</Text>
 		</Row>
 		<Row Tag="TXT_KEY_RED_WWII_GREECE_SHORT">
-			<Text>Greece WWII</Text>
+			<Text>Greece</Text>
 		</Row>
 		<Row Tag="TXT_KEY_RED_EURO1940_GREECE_BRIEFING">
 			<Text>
@@ -2415,7 +2415,7 @@
 	<!-- +++++++++++++++++++++++++++++++ -->
 	<Language_en_US>
 		<!--HOOD-->
-		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_HOOD">
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_ADMIRAL">
 			<Text>
 				HMS Hood (pennant number 51) was the last battlecruiser built for the Royal Navy.[NEWLINE][NEWLINE]
 				One of four Admiral-class battlecruisers ordered in mid-1916, her design—although drastically revised after the Battle of Jutland and improved while she was under construction—still had serious limitations.[NEWLINE][NEWLINE]
@@ -2492,7 +2492,7 @@
 			</Text>
 		</Row>
 		<!--GANGUT-->
-		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_GANGUT">
+		<Row Tag="TXT_KEY_UNIT_PEDIA_DREADNOUGHT_GANGUT">
 			<Text>
 				Gangut was both the lead ship of the Gangut-class battleships of the Imperial Russian Navy built before World War I and the last of her class to be completed.[NEWLINE][NEWLINE]
 				The Ganguts were the first class of Russian dreadnoughts.[NEWLINE][NEWLINE]
@@ -2517,14 +2517,14 @@
 		</Row>
 
 		<!--SOUTH DAKOTA-->
-		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SOUTH_DAKOTA">
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_SOUTH_DAKOTA">
 			<Text>
 				The South Dakota-class was a group of four fast battleships built by the United States Navy. They were the second class of battleships to be named after the 40th State; the first class was designed in the 1920s and canceled under the terms of the Washington Naval Treaty. The class comprised four ships: South Dakota, Indiana, Massachusetts, and Alabama. They were more compact and better protected than the preceding North Carolina class, but had the same main battery, nine 16-inch (406 mm)/45-caliber guns in triple turrets. The ships can be visually distinguished from the earlier vessels by their single funnel, compared to twin funnels in the North Carolinas. According to authors William Garzke and Robert Dulin, the South Dakota design was the best "treaty battleship" ever built.[NEWLINE][NEWLINE]
 				Construction began shortly before World War II, with Fiscal Year (FY) 1939 appropriations. Commissioning through the summer of 1942, the four ships served in both the Atlantic, ready to intercept possible German capital ship sorties. As the U.S. went on the offensive in the Central Pacific, they joined in escorting the fast carrier task forces, a job for which their heavy anti-aircraft gun batteries were well-suited. They also employed their main battery guns in shore bombardment, and were kept ready to form battle line in case their Japanese opposite numbers should appear. All four ships were retired post-war; South Dakota and Indiana were scrapped, while Massachusetts and Alabama were retained as museum ships.
 			</Text>
 		</Row>
 		<!--SCHARNHORST-->
-		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SCHARNHORST">
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_SCHARNHORST">
 			<Text>
 				The Scharnhorst class were the first capital ships, alternatively referred to as battlecruisers or battleships, built for the German Navy (Kriegsmarine) after World War I. The class comprised two vessels: the lead ship Scharnhorst and Gneisenau.[NEWLINE]Scharnhorst was launched first, and so she is considered to be the lead ship by some sources; however, they are also referred to as the Gneisenau class in some other sources, as Gneisenau was the first to be laid down and commissioned. They marked the beginning of German naval rearmament after the Treaty of Versailles.[NEWLINE]The ships were armed with nine 28 cm (11 in) SK C/34 guns in three triple turrets, though there were plans to replace these weapons with six 38 cm (15 in) SK C/34 guns in twin turrets.[NEWLINE][NEWLINE]
 				The two ships were laid down in 1935, launched in late 1936, and commissioned into the German fleet by early 1939. Scharnhorst and Gneisenau operated together for much of the early portion of World War II, including sorties into the Atlantic to raid British merchant shipping. The two ships participated in Operation Weserübung, the German invasion of Norway. During operations off Norway, the two ships engaged the battlecruiser HMS Renown and sank the aircraft carrier HMS Glorious— in the engagement with Glorious, Scharnhorst achieved one of the longest-range naval gunfire hits in history. In early 1942, the two ships made a daylight dash up the English Channel from occupied France to Germany.[NEWLINE][NEWLINE]
@@ -2648,6 +2648,12 @@
 				The first models were infantry support tanks, armed with stubby 75mm KwK L/24. As the Panzer III became increasingly obsolete, the Wehrmacht needed a tank that could fight other tank effectively. The F2 and G models had not only Anti-tank guns (KwK L/43 on the F2, a KwK L/48 on the G) that had better armor penetration than the F-32 gun on the Soviet T-34/76, the armor was upgraded as well. A further variant, the H had side skirts to protect against small arms and explosives. Late in the war, the Panzer IVH was proven to be inferior to the Panther and Tiger, but still a capable adversary.[NEWLINE][NEWLINE]
 				While production was stopped in late 1944, they were used up until the very end of the war. The chassis was the base for many Tank Destroyers, SPGs, and Anti-Aircraft guns. The last known usage of the Panzer IV was during the Six-Day War (1967) by the Syrians.
 			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_PANZER_IV_G">
+			<Text>{TXT_KEY_UNIT_PEDIA_TANK_PANZER_IV}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_PANZER_IV_H">
+			<Text>{TXT_KEY_UNIT_PEDIA_TANK_PANZER_IV}</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_PANZER_VI_TIGER">
 			<Text>

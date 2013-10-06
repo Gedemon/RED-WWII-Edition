@@ -85,7 +85,6 @@ MapModData.RED.DynamicMap = MapModData.RED.DynamicMap or {}
 ----------------------------------------------------------------------------------------------------------------------------
 -- R.E.D. Rules
 ----------------------------------------------------------------------------------------------------------------------------
-
 include ("RedDefinesRules") -- Big file edition is too slow with ModBuddy...
 
 
@@ -104,16 +103,16 @@ JAPAN =		GameInfo.Civilizations.CIVILIZATION_JAPAN.ID
 CHINA =		GameInfo.Civilizations.CIVILIZATION_CHINA.ID
 GREECE =	GameInfo.Civilizations.CIVILIZATION_GREECE.ID
 
+
 ----------------------------------------------------------------------------------------------------------------------------
 -- Placeholder major civ used on hotseat scenario loading as player one, to be killed at game start.
 ----------------------------------------------------------------------------------------------------------------------------
-
 HOTSEAT_CIV_TO_KILL = GameInfo.Civilizations.CIVILIZATION_MONGOL.ID
+
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Diplomacy Enum
 ----------------------------------------------------------------------------------------------------------------------------
-
 DOF = 0 -- Declaration of Friendship
 DEN = 1 -- Denounciation
 DOW = 2 -- Declaration of War
@@ -124,7 +123,6 @@ SPT = 4 -- Signe Peace Treaty
 ----------------------------------------------------------------------------------------------------------------------------
 -- Combat types Enum
 ----------------------------------------------------------------------------------------------------------------------------
-
 MELEE =			0	-- normal combat
 RANGED =		1	-- ranged attack
 SUBATTACK =		2	-- submarines attacking
@@ -137,6 +135,13 @@ CITYASSAULT =	8	-- Melee attack on city
 NAVALCOUNTER =	9	-- Naval counter-attack
 GRDINTERCEPT =	10	-- Interception by ground (sea, land) unit
 
+----------------------------------------------------------------------------------------------------------------------------
+-- Project's Trigger types Enum
+----------------------------------------------------------------------------------------------------------------------------
+TRIGGER_XP =			0	-- Project is triggered by XP gained during combat by an unit type
+TRIGGER_DATE =			1	-- Project have a chance to be triggered each turns after a fixed Date
+TRIGGER_DATE_AND_XP =	3	-- Project is triggered if both Date and XP condition are checked
+TRIGGER_DATE_OR_XP =	4	-- Project is triggered if any of Date or XP condition is checked
 
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -248,7 +253,7 @@ g_Major_Buildings = {
 	[USSR] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
 	[GERMANY] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
 	[ITALY] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[GREECE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, LARGE_AIR_FACTORY,SHIPYARD}, -- MEDIUM_AIR_FACTORY, : no fast bombers/heavy fighters
+	[GREECE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, SHIPYARD}, -- LARGE_AIR_FACTORY, : no bombers or heavy bombers
 	[JAPAN] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
 	[AMERICA] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
 	[CHINA] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
@@ -256,6 +261,8 @@ g_Major_Buildings = {
 
 -- Buildings pre-request (need all building types listed)
 g_Buildings_Req = {
+	[ACADEMY] =				{BARRACKS},
+	[BASE] =				{BARRACKS},
 	[LAND_FACTORY] =		{FACTORY},
 	[SMALL_AIR_FACTORY] =	{FACTORY}, 
 	[MEDIUM_AIR_FACTORY] =	{FACTORY}, 

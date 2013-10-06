@@ -12,7 +12,7 @@
 -----------------------------------------------
 -- Add column for effects from G+K / BNW
 -----------------------------------------------
-ALTER TABLE ArtDefine_UnitMemberCombats		ADD COLUMN LastToDie INTEGER;
+--ALTER TABLE ArtDefine_UnitMemberCombats		ADD COLUMN LastToDie INTEGER;
 --ALTER TABLE UnitPromotions					ADD COLUMN IgnoreZOC BOOLEAN; -- Need DLL modification -> Must port the mod to BNW to use it.
 
 -----------------------------------------------

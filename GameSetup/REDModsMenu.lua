@@ -12,6 +12,8 @@ include( "InstanceManager" );
 g_InstanceManager = InstanceManager:new( "ModInstance", "Label", Controls.ModsStack );
 
 g_FirstInitialization = true
+g_TotalTime = 0
+g_PreviousSecond = 0
 
 g_NumBackground = 41 -- number of available background screens to chose from
 g_DLL_MinimumVersion = 3 -- DLL minimum version to be used
@@ -31,9 +33,11 @@ g_AuthorizedModList = {
 	"2896c6d4-0273-4527-813b-b9ab58f0b95e", -- R.E.D. DLL
 	"1f0a153b-26ae-4496-a2c0-a106d9b43c95", -- UI - Promotion Tree
 	"170c8ed1-b516-4fe2-b571-befeac39d220", -- I.G.E. - Ingame Editor
+	"8affec94-2588-4fe9-a87a-703a64bdf53c", -- Unit Tester
 }
 
 
+local bNeedUpdate = false
 
 --------------------------------------------------
 -- Navigation Routines (Installed,Online,Back)
@@ -96,7 +100,7 @@ Controls.BackButton:RegisterCallback(Mouse.eLClick, NavigateBack);
 ContextPtr:SetShowHideHandler(function(isHiding)
 	if(not isHiding) then
 
-		Initialize()
+		--Initialize()
 
 		local supportsSinglePlayer = Modding.AllEnabledModsContainPropertyValue("SupportsSinglePlayer", 1);
 		local supportsMultiplayer = Modding.AllEnabledModsContainPropertyValue("SupportsMultiplayer", 1);
@@ -110,21 +114,34 @@ ContextPtr:SetShowHideHandler(function(isHiding)
 			--OnMultiPlayerClick();
 		--end
 		
-		g_InstanceManager:ResetInstances();
+		if g_FirstInitialization then
+			g_InstanceManager:ResetInstances();
 		
-		local mods = Modding.GetEnabledModsByActivationOrder();
+			local mods = Modding.GetEnabledModsByActivationOrder();
 		
-		if(#mods == 0) then
-			Controls.ModsInUseLabel:SetHide(true);
-		else
-			Controls.ModsInUseLabel:SetHide(false);
-			for i,v in ipairs(mods) do
-				local displayName = Modding.GetModProperty(v.ModID, v.Version, "Name");
-				local displayNameVersion = string.format("[ICON_BULLET] %s (v. %i)", displayName, v.Version);			
-				local listing = g_InstanceManager:GetInstance();
-				listing.Label:SetText(displayNameVersion);
-				listing.Label:SetToolTipString(displayNameVersion);
+			if(#mods == 0) then
+				Controls.ModsInUseLabel:SetHide(true);
+			else
+				Controls.ModsInUseLabel:SetHide(false);
+				for i,v in ipairs(mods) do
+					local displayName = Modding.GetModProperty(v.ModID, v.Version, "Name");
+					local displayNameVersion = ""
+					local sToolTip = ""
+					if IsModAuthorized (v.ModID) then
+						displayNameVersion = string.format("[ICON_BULLET] %s (v. %i)", displayName, v.Version);
+						local modDetails = Modding.GetInstalledModDetails(v.ModID, v.Version)
+						sToolTip = string.format(modDetails.Teaser)
+					else
+						displayNameVersion = string.format("[ICON_BULLET][COLOR_RED] %s (v. %i)[ENDCOLOR]", displayName, v.Version)
+						sToolTip = "Not in the list of authorized mods."
+						Modding.DisableMod(v.ModID, v.Version)
+					end
+					local listing = g_InstanceManager:GetInstance();
+					listing.Label:SetText(displayNameVersion);
+					listing.Label:SetToolTipString(sToolTip);
+				end
 			end
+			g_FirstInitialization = false
 		end
 	end
 end);
@@ -188,7 +205,6 @@ function Initialize()
 	-- "back" button lead to exit game instead of returning to mod menu as it doesn't unload VFS override files...
 	--Controls.BackButton:LocalizeAndSetText("TXT_KEY_MENU_EXIT_TO_WINDOWS")
 
-	local bNeedUpdate = false
 	
 	print("- Initialize mandatory Game Option...") -- but maybe to soon for PreGame here ?
 	PreGame.SetGameOption("GAMEOPTION_DOUBLE_EMBARKED_DEFENSE_AGAINST_AIR", 1)
@@ -211,7 +227,7 @@ function Initialize()
 	
 	local RedWW2DataFilesModID = "544d699d-1c84-4606-b22f-a1b009af9471" -- R.E.D. WWII Datafile
 
-	local bExpansionActive = false--ContentManager.IsActive(ExpansionID, ContentType.GAMEPLAY)
+	local bExpansionActive = false--ContentManager.IsActive(ExpansionID, ContentType.GAMEPLAY) -- no need to check for that or DLL anymore, to do : cleaning !
 	local bMongolDlcActive = ContentManager.IsActive(MongolDlcID, ContentType.GAMEPLAY)
 	local bUnauthorizedModActive = false
 
@@ -240,6 +256,7 @@ function Initialize()
 	local bDataFile = false -- set to true if the data file is loaded
 	local bDataVersion = false -- set to true if the loaded datafile version is correct
 	local dataNumVersion = 0
+	local iNumUnauthorizedMods = 0
 
 	-- list mods
 	print("Active mods :")
@@ -250,7 +267,8 @@ function Initialize()
 				-- Don't allow another mod to be activated, let's help clean debugging
 				if not IsModAuthorized ( modInfo.ID ) then 				
 					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..") : Not authorised, marked for deactivation...")
-					Modding.DisableMod(modInfo.ID, modInfo.Version)
+					iNumUnauthorizedMods = iNumUnauthorizedMods + 1
+					--Modding.DisableMod(modInfo.ID, modInfo.Version)
 					bUnauthorizedModActive = true
 				else				
 					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..")")
@@ -318,24 +336,31 @@ function Initialize()
 	if bDataVersion then -- show logo only if correct version of data file is loaded
 		--ContextPtr:LookUpControl("/FrontEnd/MainMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
 		--ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/Civ5Logo"):SetTextureAndResize( "RED_WWII_Logo.dds" )
-		Controls.Civ5Logo:SetTextureAndResize( "RED_WWII_Logo.dds" )
+
+		--Controls.Civ5Logo:SetTextureAndResize( "RED_WWII_Logo.dds" )
+		Controls.Civ5Logo:SetHide( true ) -- Until we have a semi-transparent good-looking logo...
 	else
 		--ContextPtr:LookUpControl("/FrontEnd/MainMenu/Civ5Logo"):SetHide( true )
 		--ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/Civ5Logo"):SetHide( true )
+		Controls.Civ5Logo:SetHide( true ) 
 	end
-
+	
+	-- Check if all correct mod components are loaded
 	bNeedUpdate = bExpansionActive or (not bMongolDlcActive) or bUnauthorizedModActive
+	local bValid = true
+	local warningHelp = ''
+	local warningString = ''
 
-	if bNeedUpdate then
-		
-		print("-------------------------------------")
-		print("Update of Mods/DLC state is needed")
-		print("-------------------------------------")
-		UIManager:SetUICursor(1)
+	if bNeedUpdate then		
+		--print("-------------------------------------")
+		--print("Update of Mods/DLC state is needed !")
+		--print("-------------------------------------")
+		--UIManager:SetUICursor(1)
 		--print("- Activate/Deactivate DLC...")
 		--ContentManager.SetActive(packages)
-		print("- Activate/Deactivate MODs...")
-		Modding.ActivateEnabledMods()
+		--print("- Activate/Deactivate MODs...")
+		--Modding.DeactivateMods()
+		--Modding.ActivateEnabledMods()
 		--[[
 		print("- Deactivate/Activate R.E.D.WWII for DLL...")
 		local REDversion = Modding.GetActivatedModVersion("580c14eb-9799-4d31-8b14-c2a78931de89")
@@ -344,14 +369,13 @@ function Initialize()
 		Modding.EnableMod("580c14eb-9799-4d31-8b14-c2a78931de89", REDversion)
 		Modding.ActivateEnabledMods()
 		--]]
-		UIManager:SetUICursor(0)	
+		--UIManager:SetUICursor(0)
 
+		print("ERROR: Unauthorized Mod(s) !")
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]" .. tostring(iNumUnauthorizedMods) .." Unauthorized Mod(s) ![ENDCOLOR][NEWLINE]Marked for deactivation in mods menu.[NEWLINE]You need to exit R.E.D. for reinitialization."
+		warningString = "Click Here for Main Menu."
+		bValid = false
 	end
-
-	-- Check if all correct mod components are loaded
-	local bValid = true
-	local warningHelp = ''
-	local warningString = ''
 
 	if not GameDefines.DLL_RED_VANILLA then
 		print("ERROR: Custom DLL not found !")
@@ -381,7 +405,12 @@ function Initialize()
 		Controls.WarningTitle:SetText(warningHelp)
 		Controls.WarningButton:SetText(warningString)
 		Controls.WarningGrid:SetHide(false)
-		Controls.WarningButton:RegisterCallback(Mouse.eLClick, function()	Steam.ActivateGameOverlayToWebPage(g_WarningLink); end)
+		if bNeedUpdate then
+			Controls.WarningButton:RegisterCallback(Mouse.eLClick, OnDeactivateMods)
+			Controls.BackButton:RegisterCallback(Mouse.eLClick, OnDeactivateMods)
+		else
+			Controls.WarningButton:RegisterCallback(Mouse.eLClick, function()	Steam.ActivateGameOverlayToWebPage(g_WarningLink); end)
+		end
 		Controls.LoadSingleGameButton:SetDisabled(true)
 		Controls.LoadHotseatGameButton:SetDisabled(true)
 		Controls.SinglePlayerButton:SetDisabled(true)
@@ -390,7 +419,7 @@ function Initialize()
 	end
 
 	print("-------------------------------------")
-	g_FirstInitialization = false
+	--g_FirstInitialization = false
 end
 
 function IsModAuthorized (id)
@@ -402,3 +431,36 @@ function IsModAuthorized (id)
 	end
 	return bCheck
 end
+
+function OnDeactivateMods()
+	UIManager:SetUICursor(1)
+	Modding.DeactivateMods()
+	UIManager:SetUICursor(0)
+end
+
+function MenuTimer(tickCount, timeIncrement)
+	g_TotalTime = g_TotalTime + timeIncrement
+	local iWaitTime = 60
+	local iTimeLeft = iWaitTime
+	if g_TotalTime > g_PreviousSecond then
+		g_PreviousSecond = math.ceil(g_TotalTime)
+		iTimeLeft = iWaitTime - g_PreviousSecond		
+		if bNeedUpdate and iTimeLeft > 0 then		
+			print("- Need to deactivate mods...")
+			print("- Auto-Exit in ".. tostring(iTimeLeft) .. " seconds...")
+			Controls.BackButton:SetText("Auto-Exit in ".. tostring(iTimeLeft) .. " seconds...")
+		end
+	end
+	if g_TotalTime > iWaitTime then
+		-- Deactivate unauthorized mods if needed
+		if bNeedUpdate then		
+			print("- Deactivating MODs...")
+			UIManager:SetUICursor(1)
+			Modding.DeactivateMods()
+			UIManager:SetUICursor(0)
+		end
+	end
+end
+Events.LocalMachineAppUpdate.Add(MenuTimer)
+
+Initialize()

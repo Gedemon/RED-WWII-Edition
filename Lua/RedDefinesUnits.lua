@@ -172,6 +172,8 @@ HU_40M_TURAN			= GameInfo.Units.UNIT_TANK_40M_TURAN_I.ID
 RU_KV2					= GameInfo.Units.UNIT_ASSAULT_GUN_KV2.ID
 FR_SAU40				= GameInfo.Units.UNIT_ASSAULT_GUN_SAU40.ID
 GE_STUG_III				= GameInfo.Units.UNIT_ASSAULT_GUN_STUG_III.ID
+GE_STUG_III_F			= GameInfo.Units.UNIT_ASSAULT_GUN_STUG_III_F.ID
+GE_STUG_III_G			= GameInfo.Units.UNIT_ASSAULT_GUN_STUG_III_G.ID
 GE_STUG_IV				= GameInfo.Units.UNIT_ASSAULT_GUN_STUG_IV.ID
 
 -- Tank Destroyer -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -179,6 +181,8 @@ FR_W15_TCC				= GameInfo.Units.UNIT_TANK_DESTROYER_W15_TCC.ID
 FR_AMR35_ZT3			= GameInfo.Units.UNIT_TANK_DESTROYER_AMR35_ZT3.ID
 FR_37L					= GameInfo.Units.UNIT_TANK_DESTROYER_37L.ID
 GE_PZJAGER_I			= GameInfo.Units.UNIT_TANK_DESTROYER_PZJ_I.ID
+GE_MARDER_II			= GameInfo.Units.UNIT_TANK_DESTROYER_MARDER_II.ID
+GE_MARDER_III			= GameInfo.Units.UNIT_TANK_DESTROYER_MARDER_III.ID
 
 -- Artilleries ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ARTILLERY				= GameInfo.Units.UNIT_ARTILLERY.ID

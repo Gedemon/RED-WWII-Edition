@@ -354,6 +354,11 @@ function PlayerCreateRestriction (iPlayer, iProjectType)
 	if IsProjectOfCiv(iProjectType, civID) then
 		-- projects triggered ?
 		if g_ProjectsTable[iProjectType] then
+
+			if g_ProjectsTable[iProjectType].AIOnly and Players[iPlayer]:IsHuman() then -- some projects are available for the AI only
+				return false
+			end
+
 			local triggerData = g_ProjectsTable[iProjectType].Trigger
 			if triggerData then
 				local savedData = Modding.OpenSaveData()
@@ -621,35 +626,59 @@ function InitializeProjects()
 				data = projectData.Trigger
 				if not data then -- initialize immediatly
 					savedData.SetValue(saveStr, 1)
-					--local projectInfo = GameInfo.Projects[id]
 					Dprint ( " - No trigger data, " .. Locale.ConvertTextKey(projectInfo.Description) .." is immediatly available.", debug )
-				elseif data.Type == "date" then
-					local rand = math.random( 1, 100 )
-					local turn = Game.GetGameTurn()
-					local date = g_Calendar[turn] or " "
-					if data.ProbPerTurn >= rand and date.Number >= data.Value then
-						savedData.SetValue(saveStr, 1)
-						--local projectInfo = GameInfo.Projects[id]
-						local iActivePlayer = Game.GetActivePlayer()
-						local iActiveCiv = GetCivIDFromPlayerID(iActivePlayer, false)
-						if IsProjectOfCiv(id, iActiveCiv) then
-							Players[iActivePlayer]:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, Locale.ConvertTextKey(projectInfo.Description) .." is now available.", "New Project available !", -1, -1)
+				else
+					local bDateCheck = true
+					local bXPCheck = true
+					local sNotificationString = ""
+
+					local iActivePlayer = Game.GetActivePlayer()
+					local iActiveCiv = GetCivIDFromPlayerID(iActivePlayer, false)
+
+					if (data.Type == TRIGGER_DATE or data.Type == TRIGGER_DATE_AND_XP or data.Type == TRIGGER_DATE_OR_XP) then
+						if data.Date and data.ProbPerTurn then
+							local rand = math.random( 1, 100 )
+							local turn = Game.GetGameTurn()
+							local date = g_Calendar[turn] or " "
+							if data.ProbPerTurn >= rand and date.Number >= data.Date then
+								local sNotificationString = Locale.ConvertTextKey(projectInfo.Description) .." is now available."
+								Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." date = Checked ! ( >= ".. tostring(data.Date) .." and Prob ".. tostring(data.ProbPerTurn) .."% >= "..tostring(rand)..")", debug )
+							else
+								bDateCheck = false
+								Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." date = Fail ! ( < ".. tostring(data.Date) .." or Prob ".. tostring(data.ProbPerTurn) .."% < "..tostring(rand)..")", debug )
+							end
+						else						
+							Dprint ( " - ERROR: missing data.Date or data.ProbPerTurn for " .. Locale.ConvertTextKey(projectInfo.Description) .." whith Date triggering...", debug )
 						end
-						--Events.GameplayAlertMessage(Locale.ConvertTextKey(projectInfo.Description) .." is now available.") -- to do : add notification if player can make this project ?
-						Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available.", debug )
 					end
-				elseif data.Type == "xp" then
-					if GetTotalCombatXP(data.Reference) >= data.Value then
-						savedData.SetValue(saveStr, 1)
-						local projectInfo = GameInfo.Projects[id]
-						local unitInfo = GameInfo.Units[data.Reference]
-						local iActivePlayer = Game.GetActivePlayer()
-						local iActiveCiv = GetCivIDFromPlayerID(iActivePlayer, false)
-						if IsProjectOfCiv(id, iActiveCiv) then
-							Players[iActivePlayer]:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Based on combat experience with ".. Locale.ConvertTextKey(unitInfo.Description) ..", " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available.", "New Project available !", -1, -1)
+					if (data.Type == TRIGGER_XP or data.Type == TRIGGER_DATE_AND_XP or data.Type == TRIGGER_DATE_OR_XP) then
+						if data.Reference then
+							local unitInfo = GameInfo.Units[data.Reference]
+							if unitInfo then
+								local combatXP = GetTotalCombatXP(data.Reference)
+								if combatXP >= data.XP then
+									Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." Checked ! (XP = ".. tostring(combatXP) .." >= "..tostring(data.XP)..")", debug )							
+									local sNotificationString = "Based on combat experience with ".. Locale.ConvertTextKey(unitInfo.Description) ..", " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available."
+								else
+									Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." XP = Fail ! (XP = ".. tostring(combatXP) .." < "..tostring(data.XP)..")", debug )
+									bXPCheck = false
+								end							
+							else						
+								Dprint ( " - ERROR: no unitInfo found  with data.Reference = " .. tostring(data.Reference) .." for " .. Locale.ConvertTextKey(projectInfo.Description), debug )
+							end
+						else						
+							Dprint ( " - ERROR: no unit in data.Reference for " .. Locale.ConvertTextKey(projectInfo.Description) .." whith XP triggering...", debug )
 						end
-						--Events.GameplayAlertMessage("Based on combat experience with ".. Locale.ConvertTextKey(unitInfo.Description) ..", " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available.")
-						Dprint ( " - Based on combat experience with ".. Locale.ConvertTextKey(unitInfo.Description) ..", " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available.", debug )
+					end
+					if	((data.Type == TRIGGER_XP or data.Type == TRIGGER_DATE) and (bDateCheck and bXPCheck)) -- if data.Type is TRIGGER_XP then bDateCheck is always true and if data.Type is TRIGGER_DATE then bXPCheck is always true...
+					 or ((data.Type == TRIGGER_DATE_AND_XP) and (bDateCheck and bXPCheck))
+					 or ((data.Type == TRIGGER_DATE_OR_XP) and (bDateCheck or bXPCheck))
+					 then
+						savedData.SetValue(saveStr, 1)
+						if IsProjectOfCiv(id, iActiveCiv) then
+							Players[iActivePlayer]:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, sNotificationString, "New Project available !", -1, -1)
+						end
+						Dprint ( sNotificationString, debug )
 					end
 				end
 			end
