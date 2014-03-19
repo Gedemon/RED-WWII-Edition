@@ -946,9 +946,9 @@ function CommonOnGameInit()
 	SetMajorRelations()
 	GameEvents.UnitSetXY.Add( DynamicTilePromotion )	-- before initializing Order Of Battle
 	InitializeOOB()
-	InitializeReinforcementTable()	
+	InitializeResourceTable()	
 	InitializeHotseat()
-	ShareGlobalTables()									-- Before UI initialization, after any table initialization (Reinforcements, projects, etc...)
+	ShareGlobalTables()									-- Before UI initialization, after any table initialization (Resource, projects, etc...)
 end
 
 -- functions to call after game initialization (DoM screen button "Continue your journey" appears) after loading a saved game
@@ -985,7 +985,7 @@ function CommonOnEnterGame()
 	GameEvents.PlayerDoTurn.Add( ShowAITrainingRestriction )
 	GameEvents.PlayerDoTurn.Add( ListCitiesBuild )
 	GameEvents.PlayerDoTurn.Add( DynamicUnitPromotion )						-- DynamicUnitPromotion: before calling reinforcements
-	GameEvents.PlayerDoTurn.Add( Reinforcements )
+	GameEvents.PlayerDoTurn.Add( ManageResources )
 	GameEvents.PlayerDoTurn.Add( UpgradingUnits )							-- UpgradingUnits: after calling reinforcement
 	GameEvents.PlayerDoTurn.Add( CallReserveTroops )
 	GameEvents.PlayerDoTurn.Add( SpawnReinforcements )

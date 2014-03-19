@@ -20,7 +20,6 @@ INSERT INTO UnitConfiguration
 --								Nation Name			Unit Name											Template Unit				Formation					Combat			Cost			Immobile		Mat				FlagIndex		IconAtlas								SV Icon
 
 SELECT	'SPECIAL_FORCES',		NULL,		'',		'Special Forces',		'Paratrooper_Generic_v3',	'INFANTRY',			10,		NULL,				NULL,	32,		35,		500,	3,		NULL,	1,		1,		30,		12,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
---SELECT	'PARATROOPER',		NULL,		'',		'Paratrooper',			'Paratrooper_Generic_MG_v3','INFANTRY',			14,		NULL,				NULL,	42,		NULL,	375,	2,		NULL,	NULL,	2,		25,		4,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
 SELECT	'MECHANIZED_INFANTRY',	NULL,		'',		'Mechanized Infantry',	NULL,						'INFANTRY',			NULL,	'MechInfantry',		NULL,	38,		NULL,	300,	4,		NULL,	NULL,	7,		15,		2,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
 SELECT	'LIGHT_TANK',			NULL,		'',		'Light Tank',			'LightTank_Generic',		'TANK',				NULL,	NULL,				0.11,	40,		NULL,	300,	5,		NULL,	NULL,	12,		10,		1,		9,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
 SELECT	'CRUISER_TANK',			NULL,		'',		'Cruiser Tank',			'LightTank_Generic',		'TANK',				NULL,	NULL,				NULL,	40,		NULL,	375,	6,		NULL,	NULL,	15,		4,		1,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
@@ -148,11 +147,11 @@ INSERT OR REPLACE INTO ArtDefine_UnitInfos (Type,DamageStates,Formation)
 INSERT INTO Units (Type, Description, Civilopedia, Strategy, Help, Requirements,
 					 Combat, RangedCombat, Cost, Moves, Immobile, Range, BaseSightRange, Class, Special, Capture, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, Food, NoBadGoodies, RivalTerritory, MilitarySupport, MilitaryProduction, Pillage, Found, FoundAbroad, CultureBombRadius, GoldenAgeTurns, IgnoreBuildingDefense, PrereqResources, Mechanized, Suicide, CaptureWhileEmbarked, PrereqTech, ObsoleteTech, GoodyHutUpgradeUnitClass, HurryCostModifier, AdvancedStartCost, MinAreaSize, AirUnitCap, NukeDamageLevel, WorkRate, NumFreeTechs, RushBuilding, BaseHurry, HurryMultiplier, BaseGold, NumGoldPerEra, SpreadReligion, CombatLimit, RangeAttackOnlyInDomain, RangeAttackIgnoreLOS, RangedCombatLimit, XPValueAttack, XPValueDefense, SpecialCargo, DomainCargo, Conscription, ExtraMaintenanceCost, NoMaintenance, Unhappiness,
 					 UnitArtInfo, UnitArtInfoCulturalVariation, UnitArtInfoEraVariation, ProjectPrereq, SpaceshipProject, LeaderPromotion, LeaderExperience, DontShowYields, ShowInPedia, MoveRate, 
-					 UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, Materiel, Personnel, KeyName)
+					 UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, Materiel, Personnel, FuelConsumption, KeyName)
 	SELECT	'UNIT_' || UnitKey, Description, Civilopedia, Strategy, Help, Requirements,
 					 Combat, RangedCombat, Cost, Moves, Immobile, Range, BaseSightRange, Class, Special, Capture, CombatClass, Domain, CivilianAttackPriority, DefaultUnitAI, Food, NoBadGoodies, RivalTerritory, MilitarySupport, MilitaryProduction, Pillage, Found, FoundAbroad, CultureBombRadius, GoldenAgeTurns, IgnoreBuildingDefense, PrereqResources, Mechanized, Suicide, CaptureWhileEmbarked, PrereqTech, ObsoleteTech, GoodyHutUpgradeUnitClass, HurryCostModifier, AdvancedStartCost, MinAreaSize, AirUnitCap, NukeDamageLevel, WorkRate, NumFreeTechs, RushBuilding, BaseHurry, HurryMultiplier, BaseGold, NumGoldPerEra, SpreadReligion, CombatLimit, RangeAttackOnlyInDomain, RangeAttackIgnoreLOS, RangedCombatLimit, XPValueAttack, XPValueDefense, SpecialCargo, DomainCargo, Conscription, ExtraMaintenanceCost, NoMaintenance, Unhappiness,
 			'ART_DEF_UNIT_' || UnitKey, UnitArtInfoCulturalVariation, UnitArtInfoEraVariation, ProjectPrereq, SpaceshipProject, LeaderPromotion, LeaderExperience, DontShowYields, ShowInPedia, MoveRate, 
-					 UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, Materiel, Personnel, UnitKey
+					 UnitFlagIconOffset, PortraitIndex, IconAtlas, UnitFlagAtlas, Materiel, Personnel, FuelConsumption, UnitKey
 	FROM Units JOIN UnitConfiguration ON  (Type = 'UNIT_' || UnitConfiguration.Template);
 
 

@@ -24,6 +24,24 @@
 		</Row>
 	</UnitPromotions>
 	
+	<!-- NO SUPPLY FOR MECHANIZED (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_NO_SUPPLY_MECHANIZED</Type>
+			<Description>TXT_KEY_PROMOTION_NO_SUPPLY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_NO_SUPPLY_MECHANIZED_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_NO_SUPPLY_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<AttackMod>-33</AttackMod>
+			<CityAttack>-33</CityAttack>
+			<DefenseMod>-25</DefenseMod>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	
 	<!-- NO SUPPLY SPECIAL FORCES (use Lua for effect) -->
 	<UnitPromotions>
 		<Row>
@@ -33,6 +51,60 @@
 			<Help>TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC</Help>
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<CannotBeChosen>true</CannotBeChosen>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+
+	<!-- LIGHT RATIONING (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_LIGHT_RATIONING</Type>
+			<Description>TXT_KEY_PROMOTION_LIGHT_RATIONING</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_LIGHT_RATIONING_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_LIGHT_RATIONING_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<AttackMod>-10</AttackMod>
+			<CityAttack>-10</CityAttack>
+			<DefenseMod>-5</DefenseMod>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+
+	<!-- RATIONING (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_RATIONING</Type>
+			<Description>TXT_KEY_PROMOTION_RATIONING</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_RATIONING_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_RATIONING_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<AttackMod>-20</AttackMod>
+			<CityAttack>-20</CityAttack>
+			<DefenseMod>-10</DefenseMod>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+
+	<!-- HEAVY RATIONING (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_HEAVY_RATIONING</Type>
+			<Description>TXT_KEY_PROMOTION_HEAVY_RATIONING</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_HEAVY_RATIONING_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_HEAVY_RATIONING_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<AttackMod>-33</AttackMod>
+			<CityAttack>-33</CityAttack>
+			<DefenseMod>-20</DefenseMod>
 			<PortraitIndex>57</PortraitIndex>
 			<IconAtlas>ABILITY_ATLAS</IconAtlas>
 			<PediaType>NONE</PediaType>
@@ -215,6 +287,47 @@
 	<!-- ************************************** NEW PROMOTIONS ************************************* -->
 	<!-- ******************************************************************************************* -->
 
+
+	<!-- ELITE TROOPS (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ELITE</Type>
+			<Description>TXT_KEY_PROMOTION_ELITE</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ELITE_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ELITE_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<PromotionPrereqOr1>PROMOTION_SHOCK_3</PromotionPrereqOr1>
+			<PromotionPrereqOr2>PROMOTION_DRILL_3</PromotionPrereqOr2>
+			<PromotionPrereqOr3>PROMOTION_ACCURACY_3</PromotionPrereqOr3>
+			<PromotionPrereqOr4>PROMOTION_BARRAGE_3</PromotionPrereqOr4>
+			<OrderPriority>4</OrderPriority>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+
+	<!-- ACE SQUADRON (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_ACE</Type>
+			<Description>TXT_KEY_PROMOTION_ELITE</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_ELITE_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_ELITE_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<PromotionPrereqOr1>PROMOTION_INTERCEPTION_3</PromotionPrereqOr1>
+			<PromotionPrereqOr2>PROMOTION_DOGFIGHTING_3</PromotionPrereqOr2>
+			<PromotionPrereqOr3>PROMOTION_TARGETING_3</PromotionPrereqOr3>
+			<PromotionPrereqOr4>PROMOTION_BOMBARDMENT_3</PromotionPrereqOr4>
+			<OrderPriority>4</OrderPriority>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<!-- make it ignored by flag promotion -->
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	
 	<!-- DESERT MOVES x2 -->
 	<UnitPromotions>
 		<Row>

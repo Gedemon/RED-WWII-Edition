@@ -98,15 +98,15 @@ g_ProjectsAvailableAtStart = {
 ----------------------------------------------------------------------------------------------------------------------------
 g_Major_Units = {
 	[USSR] = {
-		RU_INFANTRY,
+		RU_INFANTRY, RU_NAVAL_INFANTRY,
 		RU_T26, RU_BT7,
 		RU_T34_76, 
 		RU_KV1, RU_KV2,
 		RU_I16, RU_LAGG3, RU_LA5, RU_YAK_7,
 		RU_IL2, RU_PE2, RU_IL4, RU_TB3, RU_PE8,
-		ARTILLERY, AA_GUN, AT_GUN},
+		RU_ARTILLERY, AA_GUN, AT_GUN},
 	[GERMANY] = {
-		GE_INFANTRY,
+		GE_INFANTRY, GE_MECH_INFANTRY,
 		GE_PANZER_II, 
 		GE_PANZER_III, GE_PANZER_III_J, GE_PANZER_IV, GE_PANZER_IV_G, GE_PANZER_IV_H, GE_PANZER_VI,
 		GE_BF109_F, GE_FW190, GE_BF110, GE_JU88_C, 
@@ -216,8 +216,8 @@ g_Initial_OOB = {
 		Group = {		RU_INFANTRY, RU_INFANTRY},
 	},
 	{	Name = "64th Army (2)", X = 32, Y = 24, Domain = "Land", CivID = USSR,
-		Group = {		RU_INFANTRY,	RU_INFANTRY,	RU_NAVAL_INFANTRY,	RU_T34,						RU_KV1,	},
-		Promotions = {	nil,			nil,			nil,			{PROMOTION_ARCTIC_POWER,},}
+		Group = {		RU_INFANTRY,	RU_INFANTRY,	RU_NAVAL_INFANTRY,	RU_T34,						RU_KV1, RU_ARTILLERY,},
+		Promotions = {	nil,			nil,			nil,				{PROMOTION_ARCTIC_POWER,},	nil,	nil,}
 	},
 	{	Name = "64th Army (2)", X = 34, Y = 26, Domain = "Land", CivID = USSR, AI = true,
 		Group = {		RU_INFANTRY,	RU_INFANTRY,	RU_INFANTRY,	RU_T34,						RU_KV1,			RU_KV2,		RU_INFANTRY},
@@ -285,7 +285,7 @@ g_Reinforcement_OOB = {
 	------------------------------------------------------------------------------------	
 		[19420915] = {	
 			{	Name = "URSS (0)", X = 46, Y = 22, Domain = "Land", CivID = USSR, AI = true,
-				Group = {		RU_INFANTRY, RU_INFANTRY, RU_T34, ARTILLERY},
+				Group = {		RU_INFANTRY, RU_INFANTRY, RU_T34, RU_ARTILLERY},
 			},
 		},
 		[19420925] = {
@@ -330,10 +330,10 @@ g_Reinforcement_OOB = {
 				Promotions = {	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	}
 			},
 			{	Name = "URSS (3)", X = 8, Y = 38, Domain = "Land", CivID = USSR,
-				Group = {		RU_INFANTRY, ARTILLERY, ARTILLERY, AT_GUN},
+				Group = {		RU_INFANTRY, RU_ARTILLERY, RU_ARTILLERY, AT_GUN},
 			},
 			{	Name = "URSS (3)", X = 11, Y = 37, Domain = "Land", CivID = USSR, AI = true,
-				Group = {		RU_INFANTRY, RU_INFANTRY, ARTILLERY, ARTILLERY, AT_GUN, AT_GUN},
+				Group = {		RU_INFANTRY, RU_INFANTRY, RU_ARTILLERY, v, AT_GUN, AT_GUN},
 			},
 			{	Name = "URSS (4)", X = 18, Y = 38, Domain = "Land", CivID = USSR,
 				Group = {		RU_INFANTRY,				RU_INFANTRY,				RU_INFANTRY,				RU_BT7,						RU_T26,						RU_T34_76,					RU_KV2},
@@ -358,12 +358,12 @@ g_Reinforcement_OOB = {
 		},
 		[19421125] = {
 			{	Name = "URSS (0)", X = 46, Y = 22, Domain = "Land", CivID = USSR,
-				Group = {		RU_INFANTRY, RU_NAVAL_INFANTRY, RU_INFANTRY, ARTILLERY},
+				Group = {		RU_INFANTRY, RU_NAVAL_INFANTRY, RU_INFANTRY, RU_ARTILLERY},
 			}, 
 		},
 		[19421210] = {	
 			{	Name = "URSS (0)", X = 46, Y = 22, Domain = "Land", CivID = USSR, AI = true,
-				Group = {		RU_INFANTRY, RU_NAVAL_INFANTRY, RU_T34, ARTILLERY},
+				Group = {		RU_INFANTRY, RU_NAVAL_INFANTRY, RU_T34, RU_ARTILLERY},
 			},
 		},
 		[19421225] = {
@@ -389,10 +389,10 @@ g_Reinforcement_OOB = {
 				Promotions = {	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	{PROMOTION_ARCTIC_POWER,},	}
 			},
 			{	Name = "URSS (3)", X = 8, Y = 38, Domain = "Land", CivID = USSR,
-				Group = {		RU_INFANTRY, ARTILLERY, ARTILLERY, AT_GUN},
+				Group = {		RU_INFANTRY, RU_ARTILLERY, RU_ARTILLERY, AT_GUN},
 			},
 			{	Name = "URSS (3)", X = 11, Y = 37, Domain = "Land", CivID = USSR, AI = true,
-				Group = {		RU_INFANTRY, RU_INFANTRY, ARTILLERY, ARTILLERY, AT_GUN, AT_GUN},
+				Group = {		RU_INFANTRY, RU_INFANTRY, RU_ARTILLERY, RU_ARTILLERY, AT_GUN, AT_GUN},
 			},
 			{	Name = "URSS (4)", X = 18, Y = 38, Domain = "Land", CivID = USSR,
 				Group = {		RU_INFANTRY,				RU_INFANTRY,				RU_INFANTRY,				RU_BT7,						RU_T26,						RU_T34_76,					RU_KV2},

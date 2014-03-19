@@ -541,9 +541,15 @@ function CanParadrop(unitTypeID)
 end
 
 -- test if this Unit type (ID) has no combat penalty from no supply line
-function HasNoSupplyPenalty(unitTypeID)
+function HasNoCombatPenaltyFromSupply(unitTypeID)
 	return g_NoSupplyPenalty[unitTypeID] or false
 end
+
+-- test if this Unit type (ID) has no combat penalty from no supply line
+function UseFuel(unitTypeID)
+	return (GameInfo.Units[unitTypeID].FuelConsumption > 0)
+end
+
 
 -- test if this Unit type (ID) is never retreating under attack
 function IsNeverRetreating(unitTypeID)

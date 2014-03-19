@@ -46,6 +46,7 @@ function GetHelpTextForUnit(iUnitID, bIncludeRequirementsInfo)
 	-- Reinforcements
 	--local unitClassID = GameInfo.UnitClasses[pUnitInfo.Class].ID
 	local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(iUnitID)
+	local reqOil = GameInfo.Units[iUnitID].FuelConsumption
 	if (reqMateriel ~= 0) then
 		strHelpText = strHelpText .. "[NEWLINE]"
 		strHelpText = strHelpText .. Locale.ConvertTextKey("TXT_KEY_PRODUCTION_MATERIEL", reqMateriel);
@@ -53,6 +54,10 @@ function GetHelpTextForUnit(iUnitID, bIncludeRequirementsInfo)
 	if (reqPersonnel ~= 0) then
 		strHelpText = strHelpText .. "[NEWLINE]"
 		strHelpText = strHelpText .. Locale.ConvertTextKey("TXT_KEY_PRODUCTION_PERSONNEL", reqPersonnel);
+	end
+	if (reqOil > 0) then
+		strHelpText = strHelpText .. "[NEWLINE]"
+		strHelpText = strHelpText .. Locale.ConvertTextKey("TXT_KEY_PRODUCTION_OIL", reqOil);
 	end
 
 

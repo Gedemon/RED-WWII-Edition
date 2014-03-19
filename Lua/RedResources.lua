@@ -1,47 +1,14 @@
--- Lua RedReinforcements
+-- Lua RedResources
 -- Author: Gedemon
 -- DateCreated: 7/19/2011 11:18:03 PM
 --------------------------------------------------------------
 
-print("Loading Red Reinforcements Functions...")
+print("Loading Red Resources Functions...")
 print("-------------------------------------")
 
-function GetNeededReinforcementForUnits(playerID, bOnlySupplied)
-
-	local player = Players[playerID]
-	if not player then
-		return
-	end
-
-	local neededReinforcement = {}
-	neededReinforcement.totalMat = 0
-	neededReinforcement.totalPers = 0
-	neededReinforcement.nextTurnMat = 0
-	neededReinforcement.nextTurnPers = 0
-
-	for unit in player:Units() do
-		-- Count only unit that have a supply line
-		if (not bOnlySupplied) or CanGetReinforcement(unit) then
-			local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unit:GetUnitType(), unit)
-			local damage = unit:GetDamage()
-			local addedMat = reqMateriel * damage
-			local addedPers = reqPersonnel * damage
-			neededReinforcement.totalMat	= neededReinforcement.totalMat + addedMat
-			neededReinforcement.totalPers	= neededReinforcement.totalPers + addedPers
-			if damage > MAX_HP_HEALED then			
-				neededReinforcement.nextTurnMat		= neededReinforcement.nextTurnMat + (reqMateriel * MAX_HP_HEALED)
-				neededReinforcement.nextTurnPers	= neededReinforcement.nextTurnPers + (reqPersonnel * MAX_HP_HEALED)
-			else
-				neededReinforcement.nextTurnMat		= neededReinforcement.nextTurnMat + addedMat
-				neededReinforcement.nextTurnPers	= neededReinforcement.nextTurnPers + addedPers
-			end
-		end
-	end
-
-
-	return neededReinforcement
-end
-
+--------------------------------------------------------------
+-- Personnel 
+--------------------------------------------------------------
 function GetHealedFromHospital(city, bUpdate)
 	local healed = 0
 	local playerID = city:GetOwner()
@@ -183,7 +150,7 @@ end
 
 function GetPersonnelReinforcement (playerID, bUpdate)
 	
-	local reinforcementData = MapModData.RED.ReinforcementData
+	local resourceData = MapModData.RED.ResourceData
 
 	local player = Players[playerID]
 	local personnelReinforcement = {}
@@ -218,10 +185,10 @@ function GetPersonnelReinforcement (playerID, bUpdate)
 			if minor:IsAlive() then
 				local favorite = minor:GetMinorCivFavoriteMajor()
 				local friendship = minor:GetMinorCivFriendshipWithMajor(playerID)
-				if friendship > 30 and reinforcementData[i] then
-				--if favorite == playerID and reinforcementData[i] then -- MapModData.RED.ReinforcementData not available in toppanel ?
-					local flux = tonumber(reinforcementData[i].FluxPersonnel) or 0
-					local personnel = tonumber(reinforcementData[i].Personnel) or 0
+				if friendship > 30 and resourceData[i] then
+				--if favorite == playerID and resourceData[i] then -- MapModData.RED.ResourceData not available in toppanel ?
+					local flux = tonumber(resourceData[i].FluxPersonnel) or 0
+					local personnel = tonumber(resourceData[i].Personnel) or 0
 					local level = minor:GetMinorCivFriendshipLevelWithMajor(favorite)
 					local ratio, bonus = 0, 0
 					if level == 2 then ratio = ALLY_REINFORCEMENT_PERCENT; end -- Allied
@@ -231,10 +198,10 @@ function GetPersonnelReinforcement (playerID, bUpdate)
 					else
 						bonus = flux*ratio/100
 					end
-					-- apply change here only if MapModData.RED.ReinforcementData exist (redmain context, for calculation)
-					if MapModData.RED.ReinforcementData[i] then
-						--MapModData.RED.ReinforcementData[i].Personnel = personnel - bonus
-						--MapModData.RED.ReinforcementData[i].FluxPersonnel = flux - bonus
+					-- apply change here only if MapModData.RED.ResourceData exist (redmain context, for calculation)
+					if MapModData.RED.ResourceData[i] then
+						--MapModData.RED.ResourceData[i].Personnel = personnel - bonus
+						--MapModData.RED.ResourceData[i].FluxPersonnel = flux - bonus
 					end
 					personnelReinforcement.fromMinor = personnelReinforcement.fromMinor + bonus
 					--Dprint(" - " .. minor:GetName() .. " send " .. bonus .. " troops to reinforce " .. player:GetName() .. " (total reinforcements from allies is " .. fromMinor .. ")" )
@@ -248,6 +215,28 @@ function GetPersonnelReinforcement (playerID, bUpdate)
 	--return Round(total), Round(fromGlobal), Round(fromHospital), Round(fromPropaganda), Round(fromRecruiting), Round(fromTrait), Round(fromNeedYou), Round(fromMinor), Round(fromScenario)
 	return personnelReinforcement
 end
+
+function GetMaxPersonnel (playerID)
+	local player = Players[playerID]
+	local realPopulation = player:GetRealPopulation()
+	-- GetTotalPopulation
+	local max = math.floor (realPopulation / 10000)
+	for city in player:Cities() do
+		-- +10 / city
+		max = max + 10 
+		if city:IsHasBuilding(BARRACKS) then max = max + 200; end
+		if city:IsHasBuilding(BASE) then max = max + 500; end
+	end
+	-- Bonus from scenario
+	if SCENARIO_MAX_PERSONNEL_BONUS then
+		max = max + SCENARIO_MAX_PERSONNEL_BONUS
+	end
+	return max
+end
+
+--------------------------------------------------------------
+-- Materiel 
+--------------------------------------------------------------
 
 function GetCityMateriel(city, bUpdate)
 	local cityMateriel = {}
@@ -382,7 +371,7 @@ end
 
 function GetMaterielReinforcement (playerID, bUpdate)
 
-	local reinforcementData = MapModData.RED.ReinforcementData
+	local resourceData = MapModData.RED.ResourceData
 
 	local player = Players[playerID]
 	local materielReinforcement = {}
@@ -413,9 +402,9 @@ function GetMaterielReinforcement (playerID, bUpdate)
 			if minor:IsAlive() then
 				local favorite = minor:GetMinorCivFavoriteMajor()
 				local friendship = minor:GetMinorCivFriendshipWithMajor(playerID)
-				if friendship > 30 and reinforcementData[i] then
-					local flux = tonumber(reinforcementData[i].FluxMateriel) or 0
-					local materiel = tonumber(reinforcementData[i].Materiel) or 0
+				if friendship > 30 and resourceData[i] then
+					local flux = tonumber(resourceData[i].FluxMateriel) or 0
+					local materiel = tonumber(resourceData[i].Materiel) or 0
 					local level = minor:GetMinorCivFriendshipLevelWithMajor(favorite)
 					local ratio, bonus = 0, 0
 					if level == 2 then ratio = 50; end -- Allied
@@ -434,24 +423,6 @@ function GetMaterielReinforcement (playerID, bUpdate)
 	materielReinforcement.total = materielReinforcement.fromGlobal + materielReinforcement.fromFactory + materielReinforcement.fromHarbor + materielReinforcement.fromWarBonds + materielReinforcement.fromMinor + materielReinforcement.fromScenario
 
 	return materielReinforcement
-end
-
-function GetMaxPersonnel (playerID)
-	local player = Players[playerID]
-	local realPopulation = player:GetRealPopulation()
-	-- GetTotalPopulation
-	local max = math.floor (realPopulation / 10000)
-	for city in player:Cities() do
-		-- +10 / city
-		max = max + 10 
-		if city:IsHasBuilding(BARRACKS) then max = max + 200; end
-		if city:IsHasBuilding(BASE) then max = max + 500; end
-	end
-	-- Bonus from scenario
-	if SCENARIO_MAX_PERSONNEL_BONUS then
-		max = max + SCENARIO_MAX_PERSONNEL_BONUS
-	end
-	return max
 end
 
 function GetMaxMateriel (playerID)
@@ -477,12 +448,104 @@ function GetMaxMateriel (playerID)
 	return max
 end
 
-function InitializeReinforcementTable()
-	-- We could use directly MapModData.RED.ReinforcementData, just a leftover from loading/saving data in function
-	--local reinforcementData = MapModData.RED.ReinforcementData
+
+--------------------------------------------------------------
+-- Oil 
+--------------------------------------------------------------
+
+function GetOilProcurement (playerID, bUpdate)
+
+	local resourceData = MapModData.RED.ResourceData
+
+	local player = Players[playerID]
+	local oilProcurement = {}
+
+	oilProcurement.fromGlobal, oilProcurement.fromScenario = 0, 0
+
+	-- Bonus from scenario
+	local handicap = GetHandicapForRED(player)
+	if SCENARIO_OIL_PER_TURN and not player:IsMinorCiv() then
+		oilProcurement.fromScenario = Round(SCENARIO_OIL_PER_TURN / ((handicap + 2 ) /2) )
+	end
+
+	for city in player:Cities() do
+		-- to do : link with city production
+		--[[
+		local cityMateriel = GetCityMateriel(city)
+		materielReinforcement.fromGlobal	= materielReinforcement.fromGlobal + cityMateriel.fromProdYield
+		materielReinforcement.fromFactory	= materielReinforcement.fromFactory + cityMateriel.fromFactory	
+		materielReinforcement.fromHarbor	= materielReinforcement.fromHarbor + cityMateriel.fromHarbor
+		materielReinforcement.fromWarBonds	= materielReinforcement.fromWarBonds + cityMateriel.fromWarBonds
+		--]]
+	end	
+
+	
+	oilProcurement.total = oilProcurement.fromGlobal + oilProcurement.fromScenario
+
+	return oilProcurement
+end
+
+function GetMaxOil (playerID)
+	local player = Players[playerID]
+	local max = 0
+	for city in player:Cities() do
+		-- +10 / city
+		max = max + 10 
+	end
+	-- Bonus from scenario
+	if SCENARIO_MAX_OIL_BONUS then
+		max = max + SCENARIO_MAX_OIL_BONUS
+	end
+	return max
+end
+
+
+--------------------------------------------------------------
+-- Resources assignement 
+--------------------------------------------------------------
+
+function GetNeededResourceForUnits(playerID, bOnlySupplied)
+
+	local player = Players[playerID]
+	if not player then
+		return
+	end
+
+	local neededResource = {}
+	neededResource.totalMat = 0
+	neededResource.totalPers = 0
+	neededResource.nextTurnMat = 0
+	neededResource.nextTurnPers = 0
+	neededResource.nextTurnOil = 0
+
+	for unit in player:Units() do
+		-- Count only unit that have a supply line for reinforcement...
+		if (not bOnlySupplied) or CanGetReinforcement(unit) then
+			local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unit:GetUnitType(), unit)
+			local damage = unit:GetDamage()
+			local addedMat = reqMateriel * damage
+			local addedPers = reqPersonnel * damage
+			neededResource.totalMat		= neededResource.totalMat + addedMat
+			neededResource.totalPers	= neededResource.totalPers + addedPers
+			if damage > MAX_HP_HEALED then -- we can't heal more than MAX_HP_HEALED each turn...			
+				neededResource.nextTurnMat	= neededResource.nextTurnMat + (reqMateriel * MAX_HP_HEALED)
+				neededResource.nextTurnPers	= neededResource.nextTurnPers + (reqPersonnel * MAX_HP_HEALED)
+			else
+				neededResource.nextTurnMat	= neededResource.nextTurnMat + addedMat
+				neededResource.nextTurnPers	= neededResource.nextTurnPers + addedPers
+			end
+		end
+		-- ... But Fuel Consumption is global.
+		neededResource.nextTurnOil = neededResource.nextTurnOil + GameInfo.Units[unit:GetUnitType()].FuelConsumption
+	end
+	return neededResource
+end
+
+function InitializeResourceTable()
+	local resourceData = MapModData.RED.ResourceData
 	local bDebug = true
 	Dprint("-------------------------------------", bDebug)
-	Dprint("Creating Reinforcements data table...", bDebug)
+	Dprint("Creating Resource data table...", bDebug)
 
 	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
 
@@ -491,62 +554,76 @@ function InitializeReinforcementTable()
 			
 			local civID = GetCivIDFromPlayerID ( playerID )
 
+			resourceData[playerID] = {}
+
+			-- Personnel
 			local personnelReinforcement = GetPersonnelReinforcement (playerID)
 			local fluxPersonnel = personnelReinforcement.total
 			local maxPersonnel = GetMaxPersonnel (playerID)
-
+			resourceData[playerID].Personnel				= INITIAL_PERSONNEL_VALUE
+			resourceData[playerID].FluxPersonnel			= fluxPersonnel
+			resourceData[playerID].MaxPersonnel				= maxPersonnel		
+			resourceData[playerID].ReceivedPers				= fluxPersonnel
+			resourceData[playerID].PersFromGlobal			= personnelReinforcement.fromGlobal
+			resourceData[playerID].PersFromHospital			= personnelReinforcement.fromHospital
+			resourceData[playerID].PersFromPropaganda		= personnelReinforcement.fromPropaganda
+			resourceData[playerID].PersFromRecruiting		= personnelReinforcement.fromRecruiting
+			resourceData[playerID].PersFromTrait			= personnelReinforcement.fromTrait
+			resourceData[playerID].PersFromNeedYou			= personnelReinforcement.fromNeedYou
+			resourceData[playerID].PersFromMinor			= personnelReinforcement.fromMinor
+			resourceData[playerID].PersFromScenario			= personnelReinforcement.fromScenario
+			resourceData[playerID].TotalPersFromSupplyRoute = 0
+			resourceData[playerID].PersFromSupplyRoute		= 0
+			
+			-- Materiel
 			local materielReinforcement = GetMaterielReinforcement (playerID)
 			local fluxMateriel = materielReinforcement.total
 			local maxMateriel = GetMaxMateriel (playerID)
+			resourceData[playerID].Materiel					= INITIAL_MATERIEL_VALUE
+			resourceData[playerID].FluxMateriel				= fluxMateriel
+			resourceData[playerID].MaxMateriel				= maxMateriel
+			resourceData[playerID].ReceivedMat				= fluxMateriel
+			resourceData[playerID].MatFromGlobal			= materielReinforcement.fromGlobal
+			resourceData[playerID].MatFromFactory			= materielReinforcement.fromFactory
+			resourceData[playerID].MatFromHarbor			= materielReinforcement.fromHarbor
+			resourceData[playerID].MatFromWarBonds			= materielReinforcement.fromWarBonds
+			resourceData[playerID].MatFromMinor				= materielReinforcement.fromMinor
+			resourceData[playerID].MatFromScenario			= materielReinforcement.fromScenario
+			resourceData[playerID].TotalMatFromSupplyRoute	= 0
+			resourceData[playerID].MatFromSupplyRoute		= 0
 
-			MapModData.RED.ReinforcementData[playerID] = {}
-			MapModData.RED.ReinforcementData[playerID].Personnel = INITIAL_PERSONNEL_VALUE
-			MapModData.RED.ReinforcementData[playerID].Materiel	= INITIAL_MATERIEL_VALUE
-			MapModData.RED.ReinforcementData[playerID].FluxPersonnel = fluxPersonnel
-			MapModData.RED.ReinforcementData[playerID].FluxMateriel	= fluxMateriel
-			MapModData.RED.ReinforcementData[playerID].MaxPersonnel	= maxPersonnel
-			MapModData.RED.ReinforcementData[playerID].MaxMateriel	= maxMateriel
-		
-			MapModData.RED.ReinforcementData[playerID].ReceivedPers		= fluxPersonnel
-			MapModData.RED.ReinforcementData[playerID].ReceivedMat		= fluxMateriel
-			MapModData.RED.ReinforcementData[playerID].PersFromGlobal	= personnelReinforcement.fromGlobal
-			MapModData.RED.ReinforcementData[playerID].PersFromHospital	= personnelReinforcement.fromHospital
-			MapModData.RED.ReinforcementData[playerID].PersFromPropaganda= personnelReinforcement.fromPropaganda
-			MapModData.RED.ReinforcementData[playerID].PersFromRecruiting= personnelReinforcement.fromRecruiting
-			MapModData.RED.ReinforcementData[playerID].PersFromTrait		= personnelReinforcement.fromTrait
-			MapModData.RED.ReinforcementData[playerID].PersFromNeedYou	= personnelReinforcement.fromNeedYou
-			MapModData.RED.ReinforcementData[playerID].PersFromMinor		= personnelReinforcement.fromMinor
-			MapModData.RED.ReinforcementData[playerID].PersFromScenario	= personnelReinforcement.fromScenario
-			MapModData.RED.ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
-			MapModData.RED.ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
-			MapModData.RED.ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
-			MapModData.RED.ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
-			MapModData.RED.ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
-			MapModData.RED.ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
-			MapModData.RED.ReinforcementData[playerID].TotalMatFromSupplyRoute = 0
-			MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute = 0
-			MapModData.RED.ReinforcementData[playerID].TotalPersFromSupplyRoute = 0
-			MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute = 0
+			-- Oil
+			local oilProcurement = GetOilProcurement (playerID)
+			local fluxOil = oilProcurement.total
+			local maxOil = GetMaxOil (playerID)
+			resourceData[playerID].Oil						= INITIAL_OIL_VALUE
+			resourceData[playerID].FluxOil					= fluxOil
+			resourceData[playerID].MaxOil					= maxOil
+			resourceData[playerID].ReceivedOil				= fluxOil
+			resourceData[playerID].OilFromScenario			= oilProcurement.fromScenario
+			resourceData[playerID].TotalOilFromSupplyRoute	= 0
+			resourceData[playerID].OilFromSupplyRoute		= 0
 			
-			Dprint("- " .. player:GetName() .. " has: +" .. fluxPersonnel .."/"..maxPersonnel.." personnel and +".. fluxMateriel .."/"..maxMateriel.." materiel")
+			Dprint("- " .. player:GetName() .. " | +" .. fluxPersonnel .."/"..maxPersonnel.." personnel | +".. fluxMateriel .."/"..maxMateriel.." materiel | +".. fluxOil .."/"..maxOil.." oil")
 						
 		end
 	end	
 	Dprint("-------------------------------------", bDebug)
+	MapModData.RED.ResourceData = resourceData
 	SaveAllTable()
 end
 
-function Reinforcements(playerID) 
+function ManageResources(playerID) 
 
 	local bDebug = true
 	local player = Players[playerID]
 	if ( player:IsAlive() ) then
 			
-		local value = MapModData.RED.ReinforcementData[playerID]
+		local value = MapModData.RED.ResourceData[playerID]
 
 		if value == nil then
 			Dprint("-------------------------------------", bDebug)
-			Dprint("WARNING, no reinforcement data for "..player:GetName()..", skipping Reinforcement()...", bDebug)
+			Dprint("WARNING, no resource data for "..player:GetName()..", skipping ManageResources()...", bDebug)
 			return
 		end
 
@@ -554,7 +631,7 @@ function Reinforcements(playerID)
 		local materiel = tonumber(value.Materiel) or 0
 
 		Dprint("-------------------------------------", bDebug)
-		Dprint("Receving Global Reinforcements for "..player:GetName().."...", bDebug)
+		Dprint("Receving Global Resources for "..player:GetName().."...", bDebug)
 
 		local civID = GetCivIDFromPlayerID ( playerID )
 
@@ -568,38 +645,40 @@ function Reinforcements(playerID)
 		
 		-- Supply Routes
 		-- to do : include in GetPersonnelReinforcement / GetMateriellReinforcement ?
-		MapModData.RED.ReinforcementData[playerID].TotalPersFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute
-		MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute = 0
-		MapModData.RED.ReinforcementData[playerID].TotalMatFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute
-		MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute = 0
-		fluxPersonnel = fluxPersonnel + MapModData.RED.ReinforcementData[playerID].TotalPersFromSupplyRoute
-		fluxMateriel = fluxMateriel + MapModData.RED.ReinforcementData[playerID].TotalMatFromSupplyRoute
+		MapModData.RED.ResourceData[playerID].TotalPersFromSupplyRoute = MapModData.RED.ResourceData[playerID].PersFromSupplyRoute
+		MapModData.RED.ResourceData[playerID].PersFromSupplyRoute = 0
+		MapModData.RED.ResourceData[playerID].TotalMatFromSupplyRoute = MapModData.RED.ResourceData[playerID].MatFromSupplyRoute
+		MapModData.RED.ResourceData[playerID].MatFromSupplyRoute = 0
+		fluxPersonnel = fluxPersonnel + MapModData.RED.ResourceData[playerID].TotalPersFromSupplyRoute
+		fluxMateriel = fluxMateriel + MapModData.RED.ResourceData[playerID].TotalMatFromSupplyRoute
 
 		--
-		MapModData.RED.ReinforcementData[playerID].Personnel = personnel + fluxPersonnel -- check for max value after applying reinforcement to units
-		MapModData.RED.ReinforcementData[playerID].Materiel = materiel + fluxMateriel
-		MapModData.RED.ReinforcementData[playerID].MaxPersonnel = maxPersonnel
-		MapModData.RED.ReinforcementData[playerID].MaxMateriel = maxMateriel
+		MapModData.RED.ResourceData[playerID].Personnel = personnel + fluxPersonnel -- check for max value AFTER applying reinforcement to units
+		MapModData.RED.ResourceData[playerID].Materiel = materiel + fluxMateriel
+
+		MapModData.RED.ResourceData[playerID].MaxPersonnel = maxPersonnel
+		MapModData.RED.ResourceData[playerID].MaxMateriel = maxMateriel
 		
-		MapModData.RED.ReinforcementData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower the flux
-		MapModData.RED.ReinforcementData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower the flux
-		MapModData.RED.ReinforcementData[playerID].PersFromGlobal = personnelReinforcement.fromGlobal
-		MapModData.RED.ReinforcementData[playerID].PersFromHospital = personnelReinforcement.fromHospital
-		MapModData.RED.ReinforcementData[playerID].PersFromPropaganda = personnelReinforcement.fromPropaganda
-		MapModData.RED.ReinforcementData[playerID].PersFromRecruiting = personnelReinforcement.fromRecruiting
-		MapModData.RED.ReinforcementData[playerID].PersFromTrait = personnelReinforcement.fromTrait
-		MapModData.RED.ReinforcementData[playerID].PersFromNeedYou = personnelReinforcement.fromNeedYou
-		MapModData.RED.ReinforcementData[playerID].PersFromMinor = personnelReinforcement.fromMinor
-		MapModData.RED.ReinforcementData[playerID].PersFromScenario = personnelReinforcement.fromScenario
-		MapModData.RED.ReinforcementData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
-		MapModData.RED.ReinforcementData[playerID].MatFromFactory	= materielReinforcement.fromFactory
-		MapModData.RED.ReinforcementData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
-		MapModData.RED.ReinforcementData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
-		MapModData.RED.ReinforcementData[playerID].MatFromMinor		= materielReinforcement.fromMinor
-		MapModData.RED.ReinforcementData[playerID].MatFromScenario	= materielReinforcement.fromScenario
+		MapModData.RED.ResourceData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower the flux
+		MapModData.RED.ResourceData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower the flux
+		MapModData.RED.ResourceData[playerID].PersFromGlobal = personnelReinforcement.fromGlobal
+		MapModData.RED.ResourceData[playerID].PersFromHospital = personnelReinforcement.fromHospital
+		MapModData.RED.ResourceData[playerID].PersFromPropaganda = personnelReinforcement.fromPropaganda
+		MapModData.RED.ResourceData[playerID].PersFromRecruiting = personnelReinforcement.fromRecruiting
+		MapModData.RED.ResourceData[playerID].PersFromTrait = personnelReinforcement.fromTrait
+		MapModData.RED.ResourceData[playerID].PersFromNeedYou = personnelReinforcement.fromNeedYou
+		MapModData.RED.ResourceData[playerID].PersFromMinor = personnelReinforcement.fromMinor
+		MapModData.RED.ResourceData[playerID].PersFromScenario = personnelReinforcement.fromScenario
+
+		MapModData.RED.ResourceData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
+		MapModData.RED.ResourceData[playerID].MatFromFactory	= materielReinforcement.fromFactory
+		MapModData.RED.ResourceData[playerID].MatFromHarbor		= materielReinforcement.fromHarbor
+		MapModData.RED.ResourceData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
+		MapModData.RED.ResourceData[playerID].MatFromMinor		= materielReinforcement.fromMinor
+		MapModData.RED.ResourceData[playerID].MatFromScenario	= materielReinforcement.fromScenario
 		
 		Dprint("-------------------------------------", bDebug)
-		Dprint("Sending Reinforcements to units...", bDebug)
+		Dprint("Assigning Resources to units...", bDebug)
 
 		-- stock units in a table from higher damage to lower
 		local damaged = {}	-- List of damaged units needing reinforcements, ordered by healt left	
@@ -652,13 +731,13 @@ function Reinforcements(playerID)
 						local reqMateriel, reqPersonnel = RequestedReinforcementsPerHP(unitType, unit)
 
 						-- reinforce the units if the requested resources are available
-						if (reqMateriel <= MapModData.RED.ReinforcementData[playerID].Materiel) and (reqPersonnel <= MapModData.RED.ReinforcementData[playerID].Personnel) then
+						if (reqMateriel <= MapModData.RED.ResourceData[playerID].Materiel) and (reqPersonnel <= MapModData.RED.ResourceData[playerID].Personnel) then
 							Dprint("  - reinforcement pass num".. healHP .." in the [" .. n .. "hp row] : ".. unit:GetName() .. " get 1 hp from ".. reqPersonnel .." personnel and " .. reqMateriel .." materiel", bDebug)
 							healTable[key] = healTable[key] + 1 -- store +1 HP for this unit
 							fluxPersonnel = fluxPersonnel - reqPersonnel
 							fluxMateriel = fluxMateriel - reqMateriel
-							MapModData.RED.ReinforcementData[playerID].Materiel = MapModData.RED.ReinforcementData[playerID].Materiel - reqMateriel
-							MapModData.RED.ReinforcementData[playerID].Personnel = MapModData.RED.ReinforcementData[playerID].Personnel - reqPersonnel
+							MapModData.RED.ResourceData[playerID].Materiel = MapModData.RED.ResourceData[playerID].Materiel - reqMateriel
+							MapModData.RED.ResourceData[playerID].Personnel = MapModData.RED.ResourceData[playerID].Personnel - reqPersonnel
 						end
 					end
 				end
@@ -675,10 +754,10 @@ function Reinforcements(playerID)
 		end
 
 		-- round values, and check for maximum.
-		MapModData.RED.ReinforcementData[playerID].Materiel = math.min(Round(MapModData.RED.ReinforcementData[playerID].Materiel), maxMateriel) 
-		MapModData.RED.ReinforcementData[playerID].Personnel = math.min(Round(MapModData.RED.ReinforcementData[playerID].Personnel), maxPersonnel)
-		MapModData.RED.ReinforcementData[playerID].FluxMateriel = Round(fluxMateriel)
-		MapModData.RED.ReinforcementData[playerID].FluxPersonnel = Round(fluxPersonnel)
+		MapModData.RED.ResourceData[playerID].Materiel = math.min(Round(MapModData.RED.ResourceData[playerID].Materiel), maxMateriel) 
+		MapModData.RED.ResourceData[playerID].Personnel = math.min(Round(MapModData.RED.ResourceData[playerID].Personnel), maxPersonnel)
+		MapModData.RED.ResourceData[playerID].FluxMateriel = Round(fluxMateriel)
+		MapModData.RED.ResourceData[playerID].FluxPersonnel = Round(fluxPersonnel)
 
 	end
 end

@@ -508,7 +508,7 @@ function LoadAllTable()
 	local t1 = os.clock()
 
 	MapModData.RED.UnitData = LoadData("Unit", {}, UNIT_SAVE_SLOT)
-	MapModData.RED.ReinforcementData = LoadData("Reinforcement", {}, REINFORCEMENT_SAVE_SLOT)
+	MapModData.RED.ResourceData = LoadData("Resource", {}, RESOURCE_SAVE_SLOT)
 	MapModData.RED.ProjectsDone = LoadData("ProjectsDone", {}, PROJECTS_SAVE_SLOT)
 	MapModData.RED.CombatsLog = LoadData("CombatsLog", {}, COMBATLOG_SAVE_SLOT)
 	MapModData.RED.DynamicMap = LoadData("DynamicMap", {}, DYNAMICMAP_SAVE_SLOT)
@@ -544,7 +544,7 @@ function SaveAllTable()
 	
 	SaveData("CombatsLog", MapModData.RED.CombatsLog, COMBATLOG_SAVE_SLOT)
 	SaveData("Unit", MapModData.RED.UnitData, UNIT_SAVE_SLOT)
-	SaveData("Reinforcement", MapModData.RED.ReinforcementData, REINFORCEMENT_SAVE_SLOT)
+	SaveData("Resource", MapModData.RED.ResourceData, RESOURCE_SAVE_SLOT)
 	SaveData("ProjectsDone", MapModData.RED.ProjectsDone, PROJECTS_SAVE_SLOT)
 	SaveData("DynamicMap", MapModData.RED.DynamicMap, DYNAMICMAP_SAVE_SLOT)
 

@@ -145,22 +145,14 @@ function ShowMajorUnits()
 end
 
 -- show reinforcement data
-function ShowReinforcementData()
-	local reinforcementData = MapModData.RED.ReinforcementData
-	Dprint("Reinforcement Data Table (loaded) :")
+function ShowResourceData()
+	local resourceData = MapModData.RED.ResourceData
+	Dprint("Resource Data Table (loaded) :")
 	Dprint("-------------------------------------")
-	for id, values in pairs (reinforcementData) do
+	for id, values in pairs (resourceData) do
 		Dprint(Players [ id ]:GetName() .. " (id=" .. id.. ")  personnel = ".. values.Personnel .. "/".. values.MaxPersonnel ..", materiel = ".. values.Materiel .. "/".. values.MaxMateriel ..", Flux = " .. values.FluxPersonnel .." pers., "..values.FluxMateriel .. " mat.")
 	end
-	Dprint("-------------------------------------")
-	
-	local reinforcementData = MapModData.RED.ReinforcementData
-	Dprint("Reinforcement Data Table (global) :")
-	Dprint("-------------------------------------")
-	for id, values in pairs (reinforcementData) do
-		Dprint(Players [ id ]:GetName() .. " (id=" .. id.. ")  personnel = ".. values.Personnel .. "/".. values.MaxPersonnel ..", materiel = ".. values.Materiel .. "/".. values.MaxMateriel ..", Flux = " .. values.FluxPersonnel .." pers., "..values.FluxMateriel .. " mat.")
-	end
-	Dprint("-------------------------------------")
+	Dprint("-------------------------------------")	
 
 end
 

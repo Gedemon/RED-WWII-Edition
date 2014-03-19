@@ -8,10 +8,10 @@
 		<TextButton Anchor="C,T" Offset="0,0" String="000 Turn" Color0="Food.255" Color1="0.0.0.128" Color2="255.255.200.255" ID="PersonnelPerTurn" ToolTipType="TooltipTypeTopPanel" />
 		
 		<TextButton Anchor="C,T" Offset="0,0" String="000 Turn" Color0="Production.255" Color1="0.0.0.128" Color2="255.255.200.255" ID="MaterielPerTurn" ToolTipType="TooltipTypeTopPanel" />
+		
+		<TextButton Anchor="C,T" Offset="0,0" String="000 Turn" Color0="Production.255" Color1="0.0.0.128" Color2="255.255.200.255" ID="OilPerTurn" ToolTipType="TooltipTypeTopPanel" />
 
 		<TextButton Anchor="C,T" Offset="-0,0" String="000,000 Turn: Total 000,000" ColorLayer0="255,235,0,255"  ID="GoldPerTurn" ToolTipType="TooltipTypeTopPanel" />
-
-		<TextButton Anchor="C,T" String="RESOURCES!" ColorLayer0="255,0,255,255"  ID="ResourceString" ToolTipType="TooltipTypeTopPanel"/>
 
 		<TextButton Anchor="C,C" String="SUPPLY!" ID="UnitSupplyString"/>
 		

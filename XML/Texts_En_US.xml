@@ -380,6 +380,9 @@
 		<Row Tag="TXT_KEY_PRODUCTION_PERSONNEL">
 			<Text>[ICON_PERSONNEL] Personnel: {1_Num} for 1 HitPoint.</Text>
 		</Row>
+		<Row Tag="TXT_KEY_PRODUCTION_OIL">
+			<Text>[ICON_RES_OIL] Fuel Consumption: {1_Num} per Turn</Text>
+		</Row>
 
 		<Row Tag="TXT_KEY_MATERIEL">
 			<Text>Materiel</Text>
@@ -1309,10 +1312,39 @@
 			<Text>Supply line is cut</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_DESC">
-			<Text>-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get reinforcements.</Text>
+			<Text>-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_MECHANIZED_DESC">
+			<Text>-33% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].[NEWLINE]Reduced [COLOR_NEGATIVE_TEXT]movement[ENDCOLOR] points.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC">
-			<Text>Can't get reinforcements.</Text>
+			<Text>Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_RATIONING">
+			<Text>Light Fuel Rationing</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_RATIONING_DESC">
+			<Text>-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-5% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Reduced [COLOR_NEGATIVE_TEXT]movement[ENDCOLOR] points.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RATIONING">
+			<Text>Fuel Rationing</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_RATIONING_DESC">
+			<Text>-20% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Reduced [COLOR_NEGATIVE_TEXT]movement[ENDCOLOR] points.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_RATIONING">
+			<Text>Heavy Fuel Rationing</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_RATIONING_DESC">
+			<Text>-33% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-20% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Reduced [COLOR_NEGATIVE_TEXT]movement[ENDCOLOR] points.</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_PROMOTION_ELITE">
+			<Text>Elite</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ELITE_DESC">
+			<Text>This unit will get priority for [COLOR_POSITIVE_TEXT]Reinforcements[ENDCOLOR] and [COLOR_POSITIVE_TEXT]Fuel[ENDCOLOR].[NEWLINE]Elite units with the more XP are served first.[NEWLINE]When resources are low, this could lead to a critical shortage for the rest of the army.</Text>
 		</Row>
 			
 		<Row Tag="TXT_KEY_PROMOTION_HEAVY">
@@ -2750,7 +2782,7 @@
 		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_CRUISER_MKIV">
 			<Text>
 				The Tank, Cruiser, Mk IV (A13 Mk II) was a British cruiser tank of the Second World War. The culmination of the early, unnamed cruiser tanks it was essentially the Mk III with some additional armour fitted and a new machine gun.[NEWLINE][NEWLINE]
-				Several hundred were produced, making up the majority or early British cruiser tanks. It saw limited action in France, though its rushed delivery meant it suffered numerous mechanical issues. It largely saw service in the early stages of North Africa where it was largely praised by troops though, like many tanks in that theatre, it proved vulnerable to german anti-tank guns.
+				Several hundred were produced, making up the majority of the early British cruiser tanks. It saw limited action in France, though its rushed delivery meant it suffered numerous mechanical issues. Most of its service was in the early stages of North Africa where it was largely praised by troops, but like many tanks in that theatre it proved vulnerable to german anti-tank guns.
 			</Text>
 		</Row>
 		<!--A13 MK III COVENANTER-->
@@ -2925,6 +2957,9 @@
 				The LN.401 was used in ground attacks against German motorized columns, but losses were heavy. The production rate was insufficient to replace losses, and in about a month the two equipped squadrons lost two-third of their strength. The LN.401 was retired from service directly after the armistice.[NEWLINE][NEWLINE]
 			</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_HURRICANE_FR">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_HURRICANE}</Text>
+		</Row>
 		
 		<!-- American -->
 		<Row Tag="TXT_KEY_UNIT_PEDIA_BOMBER_B17">
@@ -2973,6 +3008,9 @@
 				When the Battle of France began, Battles were called upon to perform unescorted attacks against the advancing German army, and suffered heavy losses (99 lost between 10 and 16 May). This aircraft was also used by the UK's allies, and the Hellenic Air Force received 12 Fairey Battle. [NEWLINE][NEWLINE]
 			</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE_GREECE">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE}</Text>
+		</Row>
 
 		<!-- Japan -->
 		<Row Tag="TXT_KEY_UNIT_PEDIA_BOMBER_KI21">
@@ -3016,6 +3054,34 @@
 		</Row>
 
 		<!-- U.K. -->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_HURRICANE">
+			<Text>
+				The Hawker Hurricane was a single-seat fighter that served with the Royal Air Force during World War Two. It was largely overshadowed by the Supermarine Spitfire, which was percieved by the British public as the RAF's main fighter. Contrary to this perception it was the RAF's workhorse during the earlier years of the war, serving in all major theatres and playing a decisive role in the Battle of Britain. A highly vesatile fighter it would serve the RAF in multiple roles, as interceptor, fighter-bomber, and ground support aircraft.[NEWLINE][NEWLINE]
+				When the Hawker Hurricane was first proposed in the mid 1930's the RAF was in a poor state. Its thirteen squadrons was filled with biplane designs, clearly obselete in the face of advanced German designs. The Hurricane was designed to help the RAF match other modern design. However even as it began production it was obselete, using outdated construction methods and fabric wings. The fabric wings were quickly replaced with a metal covered wings, though some fabric winged aircraft were still in use through the Battle of Britain.[NEWLINE][NEWLINE]
+				With production starting in June 1936, the Hawker proved relatively easy to construct and manufacture. It was cheaper to produce than the Spitfire, requiring 10,300 man hours to the Spitfire's 15,200. Thanks its easy construction the RAF managed to equip itself with eighteen operational squadrons of Hurricanes by the start of the war, almost 500 aircraft. Around 14,000 Hawer Hurricanes were produced overall, including the Sea Hurricane and other variants. The Hurricane served with numerous Air forces around the world, including allied countries, neutral, and even some Axis forces. Nearly three thousand aircraft were sent to the Soviet Union as part of the land lease program, though they were largely dissapointed with the aircraft, considering them inferior to both German aircraft and their own.[NEWLINE][NEWLINE]
+				The Hurricane is generally considered an inferior fighter to the Spitfire and Messerschmitt Bf 109, being far slower than both designs. Its thick wings also reduced its acceleration but allowed it to out-turn both aircraft. It was still capable of defeating the Messerschmitt, performing best in lower altitudes, though duing the Battle of Britain a common tactic was to leave enemy fighters to the Spitfire while the Hurrican went for the Bombers. A Mk II variant was introduced in September 1940, with a more powerful engine and arnament, though the aging fighter was still unable to match other designs.[NEWLINE][NEWLINE]
+				The Hurricane served across the world, though its most famous engagement was during the Battle of Britain. Despite the Spitfire being percieved as the main RAF fighter it was actually the Hurricane that was fielded in larger numbers. It accounted for 55% of German losses during the battle, though the Spitfire had a much higher victory-to-loss ratio. It would also serve in North Africa, notably in the defense of Malta where they relieved the legendary Gloster Gladiator aircraft that had defended the island against far superior forces. In Egypt it proved capable of defeating early Italian fighters, though by late 1941 German reinforcements had relegated the Hurricane to a fighter-bomber role, with impressive results. This switch from fighter to fighter-bomber was repeated in all theatres as more advanced enemy fighters appeared and new British designs were produced in large enough numbers to replace them. By 1944 the Hurricane was no longer used in front line operations.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_HURRICANE_MKII">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_HURRICANE}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE">
+			<Text>
+				The Spitfire Submarine was a single-seat fighter that served with the Royal Air Force and many other nations during World War Two. It was produced in greater numbers than any other British aircraft, becoming the only British aircraft in continuous production throughout the war and served as a front line aircraft into the 1950's. Designed as a high speed interceptor, it was used in multiple roles as interceptor, photo-reconnaissance, fighter-bomber, carrier aircraft and trainer.[NEWLINE][NEWLINE]
+				Although the first aircraft were ordered back in June 1936, and a prototype aircraft flew at an airshow a few days later, the first production aircraft was not ready until mid 1938. This was largely because the Spitfire factories that were to produce the aircraft were already at full production fulfilling orders for Walrus and Stanraer flying boats. Other factories faced delays as well, largely because Vickers-Armstrong, the parent company, was reluctant to release the blueprint to outsiders. The kinks in the production process were eventually ironed out, though by the time the Battle of Britain was fought the Hawker Hurricane was still the more numerous aircraft. Soon after the battle had concluded it replaced the Hurricane as the backbone of the RAF and saw action in theatres across the globe.[NEWLINE][NEWLINE]
+				The aircraft itself was a highly advanced design, able to compete with contemporary aircraft and found to excel at high altitudes. It was comparable to the Messerchmitt Bf 109, both being advanced, high speed, high performance aircraft that went through numerous variants throughout the war. New variants of the Spitfire largely played catch up with German designs: when the new F variants of the 109 was introduced it exceeded Spitfire Mk I and II's, with the Mk V restoring parity. When the Focke-Wulf Fw-190 was introduced it inflicted high losses on the Mk V aircraft, with the Mk IX restoring parity. The Spitfire was continuously improved throughout the war and new variants were created even after the war had ended.[NEWLINE][NEWLINE]
+				The Spitfire was used in multiple theatres around the world. Its first action was during the "phoney" war, where nine Junkers 88's attempted to attack a pair of cruisers in the Firth of Forth. Two of the 88's were destroyed and another was heavily damaged. During this time Spitfires were kept in Britain for "Home" defense, despite a request for reinforcemnts by the French government, and instead four squadrons of Hurricanes were sent. It would soon see major action in the Battle of France, providing fighter support to the beleaguered low land countries and aiding in the evacuation of Dunkirk. It played a pivotal role in the Battle of Britain, fighting alongside the more numerous Hurricanes. Being the more powerful fighter of the two the Spitfire was generally used to intercept enemy fighters while the Hurricane attacked enemy bombers. Despite this tactic the Spitfire was responsible for over 40% of German losses and had a highter victory-to-loss ratio than the Hurricane.[NEWLINE][NEWLINE]
+				After the Battle of Britain it largely suplanted the Hurricane as RAF's primary fighter. It took part in RAF offensives in North West Europe post Battle of Britain, performing fighter sweeps and escorting bombing missions. These had limited successes, with the Spitfires encountering the same difficulties the Messersmchmitt faced in the Battle of Britain. As the American strategic bombing campaigns gathered pace in Europe the Spitfire was found to have an insufficient combat range to escort the bombers, so while American aircraft such as the P-51 Mustang escorted the long range bombers into Germany the Spitfire largely continued its interceptor role, as well as escorting several short range bombing missions into France and the Netherlands. During and after the Normandy landing the Spitfire returned to prominence, helping allied air forces establish air supremacy over the continent.[NEWLINE][NEWLINE]
+				The Spitfire first saw overseas combat in 1942 as reinforcements in the Siege of Malta, an action which finally began to ease the island's perilous situation. Soon after they became available to forces in North Africa and later in Italy. In the Pacific theatre the Spitfire was used by commonwealth forces against the Japanese, fielding their Zero fighters. The Spitfire found the Zero to be a dangerous opponent and was unable to compete in a prolonged dogfight. Pilots had to adopt a "slash and run" tactic using their superior speed to dive at the Zero and then speed away to avoid attack. Post war the Spitfire saw combat in the Greek civil war, the 1948 Arab-Israeli war, the 1947 Indo-Pakistan war and the Malayan Emergency.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE_MKV">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE_MKIX">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_SPITFIRE}</Text>
+		</Row>
 		<Row Tag="TXT_KEY_UNIT_PEDIA_BOMBER_WELLINGTON">
 			<Text>
 				The Vickers Wellington was a British twin-engine, long range medium bomber designed in the mid-1930s in response to specification B.9/32, which called for a twin-engined day bomber of perceptibly higher performance than any previous designs. It could reach 235 mph (378 km/h), had a range of 2,550 miles (4,106 km) and could carry up to 4,500 lb (2,041 kg). [NEWLINE][NEWLINE]
@@ -3023,12 +3089,40 @@
 				As a consequence it was widely used as a night bomber in the early years of the Second World War, before being replaced byt the Heavy bomber Avro Lancaster. The Wellington was popularly known as the Wimpy by service personnel, after J. Wellington Wimpy from the Popeye cartoons. [NEWLINE][NEWLINE]
 			</Text>
 		</Row>
-	</Language_en_US>
-	
-<!-- Spanish -->
-	<Language_ES_ES>
-	</Language_ES_ES>
-<!-- Italian -->
-	<Language_IT_IT>
-	</Language_IT_IT>  
+
+		<!-- Germany -->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_BF109">
+			<Text>
+				The Messerschmitt Bf 109 was a single-seat German World War II fighter aircraft. First produced in the early 1930's it was the most advanced aircraft of its time, leading the way in aircraft development. Despite being introduced several years before the war started it remained in production and in service right up until Nazi Germany's defeat in 1945. With over 33,000 produced it became the most produced fighter aircraft in history.[NEWLINE][NEWLINE]
+				As the fledgling Nazi regime began the rearmament of Germany it announced a competetion to produce a single seat fighter that would act as a high speed interceptor. After a close competition with the Heinkel He 112 the 109 was awarded the contract. The Bf 109 was one of the most advanced aircraft created at the time, with a closed canopy, retractable landing gear and a powerful, liquid cooled engine. Numerous other design features lead to a simplified construction process as well as excellent handling characteristics and a top speed that exceeded many of its contemporaries.[NEWLINE][NEWLINE]
+				The Messerschmitt Bf 109 went through serveral variants that allowed it to remain a competitive fighter throughout the war. Early A/B/C/D variants were used in the Spanish civil war and were largely withdrawn before the war started, though a few were used in the opening stages of the Poland campaign. The E variant was a major redesign of the Bf 109, gifting the aircraft with a more powerful engine as well as a major redesign of the airframe. This was the main variant used during the early stages of the war. It was replaced by the F variant, which again incorporated a new engine, as well as being found far more aerodynamic. The G series, the final variant of the Bf 109, was a less radical redesign than previous variants though included numerous improvements over the F series. A naval variant was also considered for a time, the Bf 109T, with the Kriegsmarine recognising the potential of aircraft carriers. Several 109T's were produced and used in tests, though the aircraft carrier it was to serve on was never finished and the 109T was releagated to training aircraft.[NEWLINE][NEWLINE]
+				The Bf 109 first saw action in the Spanish civil war. They served with the Condor Legion, a groud of Luftwaffe volunteers, who fought with Nationalists forces against the Soviet aircraft of the Republican forces. This pre war combat proved vital in giving combat experience to German pilots as well as providing a testing ground for the early variants of the 109. The E variant saw combat in Germany's early victories, like Poland and France. It was also the main fighter used in the Battle of Britain, where the Luftwaffe attempted to gain air superiority over the British mainland in preparation for a full scale land invasion. Numerous factors led to Germany's defeat in the battle, chief among them was the inability of the Luftwaffe to suppress British fighters. Although the Bf 109 was superior to the majority of British fighters (with the possible exception of the Spitfire) the need to escort bombers and its small operating range meant it was unable to realise its full potential.[NEWLINE][NEWLINE]
+				The introduction of the Focke-Wulf Fw-190 meant the 109 was largely replaced in Western Europe, though it continued to be the prominent fighter in other theatres, such as the Eastern Front, the Balkans, and as part of the Afrikan Korps. In the Eastern Front the 109 was vital in establishing air superiority against the Soviets, inflicting massive losses against the Soviet Air Force. Even as the invasion came to a grinding halt the 109 still ruled the skies. However a lack of resources and the collapsing German Army meant the 109's effectivness was reduced and was unable to maintain air superiority.[NEWLINE][NEWLINE]
+				In the later stages of the war it led the Defence of the Reich, the defensive aerial campaign aimed to protect German military and civil industries from allied strategic bombing. As the war reached its conclusion reduced resources and the loss of trained pilots meant the Luftwaffe and the 109 ceased to have any noticable effect on the course of the war.[NEWLINE][NEWLINE]
+				After the war the 109 remained in service with numerous air forces in Europe, mostly with neutral air forces that had recieved the fighter before the fall Nazi Germany. Ironically a small number of 109's served with the newly formed Israeli Air Force for a time and fought against the Spitfires of the assembled Arab forces during the 1948 Arab-Israeli, the last time these two rival aircraft would ever face each other on the battlefield.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_BF109_F">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_BF109}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_BF109_G">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_BF109}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_FW190">
+			<Text>
+				The Focke-Wulf Fw 190 was a single-seat German World War II fighter aircraft. First introduced in mid-1941 it proved superior to existing fighter aircraft, including Germany's own Messerschmitt Bf 109. It was largely used as a low altitude interceptor and as a ground attack aircraft, a role in which it was highly successful. Despite being regarded as superior to the 109 in several key areas it never managed to replace the 109 as Germany's sole fighter, instead both aircraft forming the backbone of the Luftwaffe's fighter force.[NEWLINE][NEWLINE]
+				It was designed to be a backup to the Messerschmitt Bf 109 from the beggining, with the German government concerned that future rival aircraft could outclass the 109. It was designed to be fast and durable, compared to a "cavalry horse" in contrast to the 109 "racehorse". In this case it was largely successful. Its small wing platform meant it suffered less drag and was able to acheieve higher speed and range, but it also meant that the 190 had difficulty generating lift and was unable to compete at high altitudes, meaning it was mostly used as a low altitude fighter. Later variants attempted to create a high altitude version. The development process of the 190 was plagued with engine problems, with the enire progrma threatened with closure several time. However it succeeded in producing the 190, and by the end of the war over 20,000 aircraft had been produced.[NEWLINE][NEWLINE]
+				There were several main series of variants. The A series continually built on the 190's success as a low altitude fighter and fighter-bomber. With over 13,000 built it formed the majority of 190's. Attempts to turn the 190 into a viable high altitude aircraft that could counter American heavy bombers culminated in the D series. The F and G series turned the 190 into a more dedicated ground attack aircraft, with thicker armor and wing mounted arnament. Later design and production deteriorated as Germany's war effort faltered.[NEWLINE][NEWLINE]
+				It first saw combat in August 1941 in France, in an effort to counter RAF attacks in the area. It proved so advanced that it managed to wrest air superiority from the RAF for almost a year until the improved Mk IX variant of the Spitfire appeared and restored parity. It would continue to provide fighter support in this and also attack shipping in the channel until the D-day landings. After that it saw heavy action, utilised in both air superiority and ground attack roles. However losses were heavy, and with insufficient replacements the Luftwaffe lost air supremacy to the allied air forces.[NEWLINE][NEWLINE]
+				It was unable to play a major role in the Eastern Front, instead being sent west to counter the British and American air forces. The Eastern front was largely left to the Messerschmitt Bf 109, though several hundred 190's did see service in Russia. Their first appearance was in September 1942, during the Battle of Stalingrad. However Soviet forces considered the 190 to be the inferior aircraft of the two, contrary to the opinions of both Western and German air forces. As the Soviets began their long campaign to drive the German's back new Soviet fighter designs, as well as the inability of German forces to replace losses, meant that the Luftwaffe began to lose the air superiority it had enjoyed since the beginning of the campaign. Despite these losses the 190 was able to resist the Soviet advance up until the very last days of the Third Reich, attacking the bridgeheads on the River Oder.[NEWLINE][NEWLINE]
+				The 190 also fought in the last months of the North African front and served throughout the Italian campaign. Postwar the aircraft served with several foriegn air forces, though in small numbers and never seeing combat.
+			</Text>
+		</Row>
+
+		<!-- Spain -->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_FIGHTER_BF109_SPAIN">
+			<Text>{TXT_KEY_UNIT_PEDIA_FIGHTER_BF109}</Text>
+		</Row>
+	</Language_en_US>	
+
 </GameData>

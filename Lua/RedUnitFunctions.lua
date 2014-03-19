@@ -1598,10 +1598,10 @@ function UpgradingUnits(playerID)
 		table.sort(upgradeTable, function(a,b) return a.XP > b.XP end) -- upgrade higher XP first...
 		for i, data in ipairs(upgradeTable) do
 			local reqMateriel = GetUnitUpgradeCost(data.Unit:GetUnitType(), data.UpgradeType)
-			if (reqMateriel <= MapModData.RED.ReinforcementData[playerID].Materiel) then
+			if (reqMateriel <= MapModData.RED.ResourceData[playerID].Materiel) then
 				Dprint("Upgrade ".. data.Unit:GetName() .." to " .. Locale.ConvertTextKey(GameInfo.Units[data.UpgradeType].Description), bDebug)
-				MapModData.RED.ReinforcementData[playerID].Materiel = MapModData.RED.ReinforcementData[playerID].Materiel - reqMateriel
-				MapModData.RED.ReinforcementData[playerID].MatToUpgrade = reqMateriel
+				MapModData.RED.ResourceData[playerID].Materiel = MapModData.RED.ResourceData[playerID].Materiel - reqMateriel
+				MapModData.RED.ResourceData[playerID].MatToUpgrade = reqMateriel
 				local oldType = data.Unit:GetUnitType()
 				local plot = data.Unit:GetPlot()
 				local newUnit = ChangeUnitType (data.Unit, data.UpgradeType)
@@ -1610,7 +1610,7 @@ function UpgradingUnits(playerID)
 			end
 		end		
 		Dprint("No upgrade made (not enought materiel, or no upgradable units available)", bDebug)
-		MapModData.RED.ReinforcementData[playerID].MatToUpgrade = nil
+		MapModData.RED.ResourceData[playerID].MatToUpgrade = nil
 	end
 end
 -- add to GameEvents.PlayerDoTurn
@@ -1632,8 +1632,10 @@ function DynamicUnitPromotion(playerID)
 			-- Supply line ?
 			local unitType = unit:GetUnitType()
 			local noSupply
-			if HasNoSupplyPenalty(unitType) then
+			if HasNoCombatPenaltyFromSupply(unitType) then
 				noSupply = PROMOTION_NO_SUPPLY_SPECIAL_FORCES
+			elseif UseFuel(unitType) then
+				noSupply = PROMOTION_NO_SUPPLY_MECHANIZED
 			else
 				noSupply = PROMOTION_NO_SUPPLY
 			end
@@ -1646,8 +1648,14 @@ function DynamicUnitPromotion(playerID)
 			elseif not (unit:IsHasPromotion(noSupply)) then
 				Dprint("   - Marking " .. unit:GetName() .. " (unitID =".. unit:GetID() ..", playerID =".. playerID .."), has no supply line", bDebug)
 				unit:SetHasPromotion(noSupply, true)
+				if UseFuel(unitType) then
+					unit:SetMoves(Round(unit:MovesLeft() * (NO_SUPPLY_LINE_INITIAL_MOVEMENT_LEFT/100)))
+				end
 			else
 				Dprint("   - " .. unit:GetName() .. " (unitID =".. unit:GetID() ..", playerID =".. playerID .."), has still no supply line but is already marked", bDebug)
+				if UseFuel(unitType) then
+					unit:SetMoves(Round(unit:MovesLeft() * (NO_SUPPLY_LINE_MOVEMENT_LEFT/100)))
+				end
 			end
 		end
 	end

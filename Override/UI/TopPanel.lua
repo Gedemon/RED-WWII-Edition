@@ -76,31 +76,35 @@ function UpdateData()
 				Controls.MenuButton:SetToolTipString(Locale.ConvertTextKey("TXT_KEY_MENU_TOOLTIP"));
 			end
 			-----------------------------
-			-- Update personnel stats
+			-- Update resource stats
 			-----------------------------
 			local strPersonnelText = ""
 			local strMaterielText = ""
+			local strOilText = ""
 
-			local reinforcementData = MapModData.RED.ReinforcementData
+			local resourceData = MapModData.RED.ResourceData
 			local iPlayerID = Game.GetActivePlayer()
 			local pPlayer = Players[iPlayerID]
 			local data
-			if reinforcementData then
-				data = reinforcementData[iPlayerID]
+			if resourceData then
+				data = resourceData[iPlayerID]
 			end
 			if data then
-				local strFluxPersonnel, strFluxMateriel = "", ""
+				local strFluxPersonnel, strFluxMateriel, strFluxOil = "", "", ""
 				--local matToUpgrade = data.MatToUpgrade or 0
 
 				local personnelReinforcement	= GetPersonnelReinforcement(iPlayerID) 
 				local materielReinforcement		= GetMaterielReinforcement(iPlayerID) 
-				local neededReinforcement		= GetNeededReinforcementForUnits(iPlayerID, bOnlySupplied)
+				local OilProcurement			= GetOilProcurement(iPlayerID)
 
-				local fluxPersonnel = Round(personnelReinforcement.total - neededReinforcement.nextTurnPers)
-				local fluxMateriel = Round(materielReinforcement.total - neededReinforcement.nextTurnMat) -- - matToUpgrade -- check that...
+				local neededResource			= GetNeededResourceForUnits(iPlayerID, bOnlySupplied)
+
+				local fluxPersonnel = Round(personnelReinforcement.total - neededResource.nextTurnPers)
+				local fluxMateriel = Round(materielReinforcement.total - neededResource.nextTurnMat) -- - matToUpgrade -- check that...
+				local fluxOil = Round(OilProcurement.total - neededResource.nextTurnOil)
 
 				if fluxPersonnel >= 0 then
-					strFluxPersonnel = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", fluxPersonnel)..")" -- Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", fluxMateriel)
+					strFluxPersonnel = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", fluxPersonnel)..")" 
 				else
 					strFluxPersonnel = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE", fluxPersonnel)..")"
 				end
@@ -109,52 +113,31 @@ function UpdateData()
 				else
 					strFluxMateriel = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE", fluxMateriel)..")"
 				end
-				-- reinforcementData[civID] = { Personnel = fluxPersonnel, Materiel = fluxMateriel, MaxPersonnel = maxPersonnel, MaxMateriel = maxMateriel, FluxPersonnel = fluxPersonnel, FluxMateriel = fluxMateriel}
+				if fluxOil >= 0 then
+					strFluxOil = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", fluxOil)..")"
+				else
+					strFluxOil = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE", fluxOil)..")"
+				end
 				strPersonnelText	= "[ICON_PERSONNEL] "..data.Personnel.." ".. strFluxPersonnel
 				strMaterielText		= "[ICON_MATERIEL] "..data.Materiel.." ".. strFluxMateriel
+				strOilText			= "[ICON_RES_OIL] "..data.Oil.." ".. strFluxOil
 			else
 				strPersonnelText	= "[ICON_PERSONNEL] 0 (+0)"
 				strMaterielText		= "[ICON_MATERIEL] 0 (+0)"
+				strOilText			= "[ICON_RES_OIL] 0 (+0)"
 			end
 			
 			Controls.PersonnelPerTurn:SetText(strPersonnelText);			
 			Controls.MaterielPerTurn:SetText(strMaterielText);
+			Controls.OilPerTurn:SetText(strOilText);
 			
 			-----------------------------
 			-- Update gold stats
 			-----------------------------
 			local iTotalGold = pPlayer:GetGold();
 			local iGoldPerTurn = pPlayer:CalculateGoldRate();
-			
-			-- Accounting for positive or negative GPT - there's obviously a better way to do this.  If you see this comment and know how, it's up to you ;)
-			-- Text is White when you can buy a Plot
-			--if (iTotalGold >= pPlayer:GetBuyPlotCost(-1,-1)) then
-				--if (iGoldPerTurn >= 0) then
-					--strGoldStr = string.format("[COLOR:255:255:255:255]%i (+%i)[/COLOR]", iTotalGold, iGoldPerTurn)
-				--else
-					--strGoldStr = string.format("[COLOR:255:255:255:255]%i (%i)[/COLOR]", iTotalGold, iGoldPerTurn)
-				--end
-			---- Text is Yellow or Red when you can't buy a Plot
-			--else
-			local strGoldStr = Locale.ConvertTextKey("TXT_KEY_TOP_PANEL_GOLD", iTotalGold, iGoldPerTurn);
-			--end
-			
+			local strGoldStr = Locale.ConvertTextKey("TXT_KEY_TOP_PANEL_GOLD", iTotalGold, iGoldPerTurn);			
 			Controls.GoldPerTurn:SetText(strGoldStr);
-			
-			-----------------------------
-			-- Update Resources
-			-----------------------------
-			local pResource;
-			local bShowResource;
-			local iNumAvailable;
-			local iNumUsed;
-			local iNumTotal;
-			
-			local strResourceText = "";
-			local strTempText = "";		
-
-			
-			Controls.ResourceString:SetText(strResourceText);
 			
 		-- No Cities, so hide everything
 		else
@@ -253,8 +236,8 @@ Controls.MenuButton:RegisterCallback( Mouse.eLClick, OnMenu );
 function DoInitTooltips()
 	Controls.PersonnelPerTurn:SetToolTipCallback( PersonnelTipHandler );
 	Controls.MaterielPerTurn:SetToolTipCallback( MaterielTipHandler );
+	Controls.OilPerTurn:SetToolTipCallback( OilTipHandler );
 	Controls.GoldPerTurn:SetToolTipCallback( GoldTipHandler );
-	Controls.ResourceString:SetToolTipCallback( ResourcesTipHandler );
 end
 
 local tipControlTable = {};
@@ -289,26 +272,26 @@ function GetPersonnelTTString()
 	strText = strText .. "[ICON_PERSONNEL] Personnel maximum reserve : " .. tostring(GetMaxPersonnel (playerID))
 	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE][NEWLINE]"
 
-	local reinforcementData = MapModData.RED.ReinforcementData
-	local currentPersFromSupplyRoutes = 0 -- need to be passed to current turn string, but is from reinforcementData table, so initialize here...
-	if reinforcementData and reinforcementData[playerID] then
+	local resourceData = MapModData.RED.ResourceData
+	local currentPersFromSupplyRoutes = 0 -- need to be passed to current turn string, but is from resourceData table, so initialize here...
+	if resourceData and resourceData[playerID] then
 	
-		for k,v in pairs(reinforcementData[playerID]) do reinforcementData[playerID][k] = Round(v); end
+		for k,v in pairs(resourceData[playerID]) do resourceData[playerID][k] = Round(v); end
 
-		local totalPers = reinforcementData[playerID].ReceivedPers
-		local persFromGlobal = reinforcementData[playerID].PersFromGlobal
-		local persFromHospital = reinforcementData[playerID].PersFromHospital
-		local persFromPropaganda = reinforcementData[playerID].PersFromPropaganda
-		local persFromRecruiting = reinforcementData[playerID].PersFromRecruiting
-		local persFromTrait = reinforcementData[playerID].PersFromTrait
-		local persFromNeedYou = reinforcementData[playerID].PersFromNeedYou
-		local persFromMinor = reinforcementData[playerID].PersFromMinor
-		local persFromScenario = reinforcementData[playerID].PersFromScenario
+		local totalPers = resourceData[playerID].ReceivedPers
+		local persFromGlobal = resourceData[playerID].PersFromGlobal
+		local persFromHospital = resourceData[playerID].PersFromHospital
+		local persFromPropaganda = resourceData[playerID].PersFromPropaganda
+		local persFromRecruiting = resourceData[playerID].PersFromRecruiting
+		local persFromTrait = resourceData[playerID].PersFromTrait
+		local persFromNeedYou = resourceData[playerID].PersFromNeedYou
+		local persFromMinor = resourceData[playerID].PersFromMinor
+		local persFromScenario = resourceData[playerID].PersFromScenario
 
-		local persFromSupplyRoutes = reinforcementData[playerID].TotalPersFromSupplyRoute
-		currentPersFromSupplyRoutes = reinforcementData[playerID].PersFromSupplyRoute
+		local persFromSupplyRoutes = resourceData[playerID].TotalPersFromSupplyRoute
+		currentPersFromSupplyRoutes = resourceData[playerID].PersFromSupplyRoute
 
-		local reinfPers = reinforcementData[playerID].FluxPersonnel - totalPers
+		local reinfPers = resourceData[playerID].FluxPersonnel - totalPers
 		
 		strText = strText .. "[ICON_PERSONNEL] Personnel received this turn : " .. totalPers
 		strText = strText .. "[NEWLINE][ICON_BULLET] from nation (population growth) : "  .. persFromGlobal
@@ -361,11 +344,11 @@ function GetPersonnelTTString()
 		if personnelReinforcement.fromScenario		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. personnelReinforcement.fromScenario; end
 		if personnelReinforcement.fromTrait			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from trait (Great Patriotic War) : "  .. personnelReinforcement.fromTrait; end
 		
-		local neededReinforcement = GetNeededReinforcementForUnits(playerID, bOnlySupplied)
+		local neededResource = GetNeededResourceForUnits(playerID, bOnlySupplied)
 		
-		for k,v in pairs(neededReinforcement) do neededReinforcement[k] = Round(v); end
+		for k,v in pairs(neededResource) do neededResource[k] = Round(v); end
 
-		local reinfPers = - neededReinforcement.nextTurnPers
+		local reinfPers = - neededResource.nextTurnPers
 		
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_PERSONNEL] Personnel requirement for next turn : " .. reinfPers
 		if reinfPers ~= 0 then strText = strText .. "[NEWLINE][ICON_BULLET] to reinforce troops : "  .. reinfPers; end
@@ -381,7 +364,7 @@ function GetPersonnelTTString()
 
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_PERSONNEL] Personnel planned reserve variation : " .. strDifference	
 		strText = strText .. "[NEWLINE][NEWLINE]----------------------------------------------------------------"
-		strText = strText .. "[NEWLINE][ICON_PERSONNEL] Personnel total requirement : " .. neededReinforcement.totalPers
+		strText = strText .. "[NEWLINE][ICON_PERSONNEL] Personnel total requirement : " .. neededResource.totalPers
 
 	else
 		strText = strText .. "Please wait for first turn to allow data initialization..."
@@ -420,28 +403,28 @@ function GetMaterielTTString()
 	strText = strText .. "[ICON_MATERIEL] Materiel maximum stock : " .. tostring(GetMaxMateriel (playerID))
 	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE][NEWLINE]"
 
-	local reinforcementData = MapModData.RED.ReinforcementData 
+	local resourceData = MapModData.RED.ResourceData 
 	
 	local currentMatFromSupplyRoutes = 0
 
-	if reinforcementData and reinforcementData[playerID] then
+	if resourceData and resourceData[playerID] then
 	
-		for k,v in pairs(reinforcementData[playerID]) do reinforcementData[playerID][k] = Round(v); end
+		for k,v in pairs(resourceData[playerID]) do resourceData[playerID][k] = Round(v); end
 
-		local totalMat = reinforcementData[playerID].ReceivedMat
-		local matFromGlobal = reinforcementData[playerID].MatFromGlobal
-		local matFromFactory = reinforcementData[playerID].MatFromFactory
-		local matFromHarbor = reinforcementData[playerID].MatFromHarbor
-		local matFromWarBonds = reinforcementData[playerID].MatFromWarBonds
-		local matFromMinor = reinforcementData[playerID].MatFromMinor
-		local matFromScenario = reinforcementData[playerID].MatFromScenario
+		local totalMat = resourceData[playerID].ReceivedMat
+		local matFromGlobal = resourceData[playerID].MatFromGlobal
+		local matFromFactory = resourceData[playerID].MatFromFactory
+		local matFromHarbor = resourceData[playerID].MatFromHarbor
+		local matFromWarBonds = resourceData[playerID].MatFromWarBonds
+		local matFromMinor = resourceData[playerID].MatFromMinor
+		local matFromScenario = resourceData[playerID].MatFromScenario
 
-		local matToUpgrade = reinforcementData[playerID].MatToUpgrade or 0
+		local matToUpgrade = resourceData[playerID].MatToUpgrade or 0
 
-		local matFromSupplyRoutes = reinforcementData[playerID].TotalMatFromSupplyRoute
-		currentMatFromSupplyRoutes = reinforcementData[playerID].MatFromSupplyRoute
+		local matFromSupplyRoutes = resourceData[playerID].TotalMatFromSupplyRoute
+		currentMatFromSupplyRoutes = resourceData[playerID].MatFromSupplyRoute
 
-		local reinfMat = reinforcementData[playerID].FluxMateriel - totalMat
+		local reinfMat = resourceData[playerID].FluxMateriel - totalMat
 		
 		strText = strText .. "[ICON_MATERIEL] Materiel produced this turn : " .. totalMat
 		strText = strText .. "[NEWLINE][ICON_BULLET] from nation (global production) : "  .. matFromGlobal
@@ -489,11 +472,11 @@ function GetMaterielTTString()
 		if currentMatFromSupplyRoutes			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. currentMatFromSupplyRoutes; end
 		if materielReinforcement.fromScenario	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. materielReinforcement.fromScenario; end
 		
-		local neededReinforcement = GetNeededReinforcementForUnits(playerID, bOnlySupplied)
+		local neededResource = GetNeededResourceForUnits(playerID, bOnlySupplied)
 
-		for k,v in pairs(neededReinforcement) do neededReinforcement[k] = Round(v); end
+		for k,v in pairs(neededResource) do neededResource[k] = Round(v); end
 
-		local reinfMat = - neededReinforcement.nextTurnMat
+		local reinfMat = - neededResource.nextTurnMat
 		
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_MATERIEL] Materiel requirement for next turn : " .. reinfMat
 		if reinfMat ~= 0 then strText = strText .. "[NEWLINE][ICON_BULLET] to reinforce troops : "  .. reinfMat; end
@@ -510,11 +493,131 @@ function GetMaterielTTString()
 
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_MATERIEL] Materiel planned stock variation : " .. strDifference
 		strText = strText .. "[NEWLINE][NEWLINE]----------------------------------------------------------------"
-		strText = strText .. "[NEWLINE][ICON_MATERIEL] Materiel total requirement : " .. neededReinforcement.totalMat
+		strText = strText .. "[NEWLINE][ICON_MATERIEL] Materiel total requirement : " .. neededResource.totalMat
 
 	else
 		strText = strText .. "Please wait for first turn to allow data initialization..."
 	end
+	return strText
+end
+
+-- Oil Tooltip
+function OilTipHandler( control )
+
+	local strText = GetOilTTString()
+	
+	tipControlTable.TooltipLabel:SetText( strText );
+	tipControlTable.TopPanelMouseover:SetHide(false);
+    
+    -- Autosize tooltip
+    tipControlTable.TopPanelMouseover:DoAutoSize();
+	
+end
+function GetOilTTString()
+
+	local strText = ""
+	
+	local playerID = Game.GetActivePlayer()
+	local player = Players[playerID]
+	
+	--[[
+	if bOnlySupplied then
+		strText = strText .. "[ICON_MATERIEL] for units with a supply line (click to toggle all units)"
+	else
+		strText = strText .. "[ICON_MATERIEL] for all units (click to toggle supply lines only)"
+	end
+	--]]
+	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE]"
+
+	strText = strText .. "[ICON_RES_OIL] Oil maximum stock : " .. tostring(GetMaxOil (playerID))
+	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE][NEWLINE]"
+
+	local resourceData = MapModData.RED.ResourceData 
+	
+	local currentOilFromSupplyRoutes = 0
+
+	if resourceData and resourceData[playerID] then
+	
+		for k,v in pairs(resourceData[playerID]) do resourceData[playerID][k] = Round(v); end
+
+		local totalOil = resourceData[playerID].ReceivedOil
+		local oilFromGlobal = resourceData[playerID].OilFromGlobal
+		local oilFromScenario = resourceData[playerID].OilFromScenario
+
+		local oilFromSupplyRoutes  = resourceData[playerID].TotalOilFromSupplyRoute
+		currentOilFromSupplyRoutes = resourceData[playerID].OilFromSupplyRoute
+
+		local unitsFuelConsumption, buildingFuelConsumption = 0, 0
+		local fuelConsumption = resourceData[playerID].FluxOil - totalOil
+		
+		strText = strText .. "[ICON_RES_OIL] Oil procured this turn : " .. totalOil
+		--strText = strText .. "[NEWLINE][ICON_BULLET] from nation (global production) : "  .. oilFromGlobal
+		if oilFromSupplyRoutes	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. oilFromSupplyRoutes; end
+		if oilFromScenario		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. oilFromScenario; end
+
+		strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Fuel Consumption this turn : " .. fuelConsumption
+		if unitsFuelConsumption > 0 then strText = strText .. "[NEWLINE][ICON_BULLET] by mechanized units : " .. unitsFuelConsumption; end
+		if buildingFuelConsumption > 0 then strText = strText .. "[NEWLINE][ICON_BULLET] by buildings (power grid) : " .. buildingFuelConsumption; end
+		
+		local difference = totalOil + fuelConsumption -- fuelConsumption is a negative value !
+		local strDifference = ""
+		
+		if difference >= 0 then
+			strDifference = Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", difference)
+		else
+			strDifference = Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE", difference)
+		end
+
+		strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Oil stock variation : " .. strDifference	
+
+	else
+		strText = strText .. "Please wait for first turn to allow data initialization..."
+	end
+	--[[
+	local materielReinforcement = GetMaterielReinforcement (playerID) 
+	if materielReinforcement then
+
+		for k,v in pairs(materielReinforcement) do materielReinforcement[k] = Round(v); end -- no digit please.
+
+		local totalMat = materielReinforcement.total + currentMatFromSupplyRoutes -- count extra reinforcement (not in per turn calculations)
+		
+		strText = strText .. "[NEWLINE][NEWLINE]----------------------------------------------------------------[NEWLINE]"
+		strText = strText .. "[NEWLINE][ICON_MATERIEL] Materiel planned for next turn : " .. totalMat
+
+		strText = strText .. "[NEWLINE][ICON_BULLET] from nation (global production) : "  .. materielReinforcement.fromGlobal
+		if materielReinforcement.fromFactory	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from factories (local production bonus) : "  .. materielReinforcement.fromFactory; end
+		if materielReinforcement.fromHarbor		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from harbors (imports) : "  .. materielReinforcement.fromHarbor; end
+		if materielReinforcement.fromWarBonds	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from war bonds (materiel bought) : "  .. materielReinforcement.fromWarBonds; end
+		if materielReinforcement.fromMinor		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from other nations (friends, allies) : "  .. materielReinforcement.fromMinor; end
+		if currentMatFromSupplyRoutes			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. currentMatFromSupplyRoutes; end
+		if materielReinforcement.fromScenario	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. materielReinforcement.fromScenario; end
+		
+		local neededResource = GetNeededResourceForUnits(playerID, bOnlySupplied)
+
+		for k,v in pairs(neededResource) do neededResource[k] = Round(v); end
+
+		local reinfMat = - neededResource.nextTurnMat
+		
+		strText = strText .. "[NEWLINE][NEWLINE][ICON_MATERIEL] Materiel requirement for next turn : " .. reinfMat
+		if reinfMat ~= 0 then strText = strText .. "[NEWLINE][ICON_BULLET] to reinforce troops : "  .. reinfMat; end
+		-- to do: add function for upgrade
+
+		local difference = totalMat + reinfMat -- reinfMat is a negative value ! todo = change that.
+		local strDifference = ""
+		
+		if difference >= 0 then
+			strDifference = Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", difference)
+		else
+			strDifference = Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE", difference)
+		end
+
+		strText = strText .. "[NEWLINE][NEWLINE][ICON_MATERIEL] Materiel planned stock variation : " .. strDifference
+		strText = strText .. "[NEWLINE][NEWLINE]----------------------------------------------------------------"
+		strText = strText .. "[NEWLINE][ICON_MATERIEL] Materiel total requirement : " .. neededResource.totalMat
+
+	else
+		strText = strText .. "Please wait for first turn to allow data initialization..."
+	end --]]
 	return strText
 end
 
@@ -600,74 +703,6 @@ function GoldTipHandler( control )
 	
 end
 
--- Resources Tooltip
-function ResourcesTipHandler( control )
-
-	local strText;
-	local iPlayerID = Game.GetActivePlayer();
-	local pPlayer = Players[iPlayerID];
-	local pTeam = Teams[pPlayer:GetTeam()];
-	local pCity = UI.GetHeadSelectedCity();
-	
-	strText = "";
-	
-	local pResource;
-	local bShowResource;
-	local bThisIsFirstResourceShown = true;
-	local iNumAvailable;
-	local iNumUsed;
-	local iNumTotal;
-	
-	for pResource in GameInfo.Resources() do
-		local iResourceLoop = pResource.ID;
-		
-		if (Game.GetResourceUsageType(iResourceLoop) == ResourceUsageTypes.RESOURCEUSAGE_STRATEGIC) then
-			
-			bShowResource = false;
-			
-			if (pTeam:GetTeamTechs():HasTech(GameInfoTypes[pResource.TechReveal])) then
-				if (pTeam:GetTeamTechs():HasTech(GameInfoTypes[pResource.TechCityTrade])) then
-					bShowResource = true;
-				end
-			end
-			
-			if (bShowResource) then
-				iNumAvailable = pPlayer:GetNumResourceAvailable(iResourceLoop, true);
-				iNumUsed = pPlayer:GetNumResourceUsed(iResourceLoop);
-				iNumTotal = pPlayer:GetNumResourceTotal(iResourceLoop, true);
-				
-				-- Add newline to the front of all entries that AREN'T the first
-				if (bThisIsFirstResourceShown) then
-					strText = "";
-					bThisIsFirstResourceShown = false;
-				else
-					strText = strText .. "[NEWLINE]";
-				end
-				
-				strText = strText .. iNumAvailable .. " " .. pResource.IconString .. " " .. Locale.ConvertTextKey(pResource.Description);
-				
-				-- Details
-				if (iNumUsed ~= 0 or iNumTotal ~= 0) then
-					strText = strText .. ": ";
-					strText = strText .. Locale.ConvertTextKey("TXT_KEY_TP_RESOURCE_INFO", iNumTotal, iNumUsed);
-				end
-				
-			end
-		end
-	end
-	
-	print(strText);
-	if(strText ~= "") then
-		tipControlTable.TopPanelMouseover:SetHide(false);
-		tipControlTable.TooltipLabel:SetText( strText );
-	else
-		tipControlTable.TopPanelMouseover:SetHide(true);
-	end
-    
-    -- Autosize tooltip
-    tipControlTable.TopPanelMouseover:DoAutoSize();
-	
-end
 
 -------------------------------------------------
 -- On Top Panel mouseover exited
@@ -679,12 +714,8 @@ end
 
 
 
-function UpdateReinforcementDataOnMove(iPlayer, unitID, x, y)
+function UpdateResourceDataOnMove(iPlayer, unitID, x, y)
 	
-	local bDebug = true
-
-	--Dprint("- Unit Moving at " .. x .. "," .. y , bDebug)
-
 	local player = Players[iPlayer]	
 	if (not player:IsHuman()) then	
 		return	
@@ -696,13 +727,6 @@ function UpdateReinforcementDataOnMove(iPlayer, unitID, x, y)
 	end	
 	local plot = GetPlot(x, y)	
 	local missionPlot = unit:LastMissionPlot()
-	--local endPathPlot = unit:GetPathEndTurnPlot()
-	
-	--Dprint("- missionPlot = " .. tostring(missionPlot), bDebug)
-	--Dprint("- endPathPlot = " .. tostring(endPathPlot), bDebug)
-	
-	--Dprint("- Unit at (" .. x .. "," .. y .. "), Mission Plot at ("..missionPlot:GetX()..","..missionPlot:GetY()..")", bDebug)
-	--Dprint("- Unit at (" .. x .. "," .. y .. "), Mission Plot at ("..missionPlot:GetX()..","..missionPlot:GetY().."), End Path Plot at ("..endPathPlot:GetX()..","..endPathPlot:GetY()..")", bDebug)
 	
 	if plot == missionPlot then
 		UpdateData()
@@ -713,7 +737,7 @@ end
 Events.SerialEventGameDataDirty.Add(OnTopPanelDirty);
 Events.SerialEventTurnTimerDirty.Add(OnTopPanelDirty);
 Events.SerialEventCityInfoDirty.Add(OnTopPanelDirty);
-GameEvents.UnitSetXY.Add(UpdateReinforcementDataOnMove);
+GameEvents.UnitSetXY.Add(UpdateResourceDataOnMove);
 
 -- Update data at initialization
 UpdateData();

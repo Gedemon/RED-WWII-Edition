@@ -30,9 +30,10 @@ LIBERATE_MINOR_TERRITORY_BONUS	= 5		-- bonus for liberating minor civ territory
 LIBERATE_MINOR_CITY_BONUS		= 30	-- bonus for liberating minor civ city
 NO_DIPLO_STATEMENT				= true	-- no diplo contact
 
--- Reinforcements
+-- Resources
 INITIAL_MATERIEL_VALUE				= 0		-- Materiel reserve at start
 INITIAL_PERSONNEL_VALUE				= 0		-- Personnel reserve at start
+INITIAL_OIL_VALUE					= 5000	-- Oil reserve at start
 REINFORCEMENT_RATIO					= 5		-- 1 = 100 personnel+materiel needed for 1 HP, 5 = 20 personnel+materiel, 10 = 10 personnel+materiel ...
 REINFORCEMENT_BASE					= 100 / REINFORCEMENT_RATIO
 MAX_HP_HEALED						= 5		-- Max number of HP healed each turn
@@ -62,6 +63,11 @@ ALLOW_ALTERNATE_HISTORY = true -- allow declarations of war outside the historic
 
 SCENARIO_MATERIEL_PER_TURN	= 500 -- / ((HANDICAP + 2 ) /2) = materiel for reinforcement bonus each turn
 SCENARIO_PERSONNEL_PER_TURN = 350 -- / ((HANDICAP + 2 ) /2) = personnel for reinforcement bonus each turn
+SCENARIO_OIL_PER_TURN		= 100 -- / ((HANDICAP + 2 ) /2) = oil for resource bonus each turn
+
+SCENARIO_MAX_MATERIEL_BONUS		= 0
+SCENARIO_MAX_OIL_BONUS			= 5000
+SCENARIO_MAX_PERSONNEL_BONUS	= 0
 
 CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will close neutral territories unless for civs which have reached the allied treshold
 
@@ -85,6 +91,13 @@ ALLOW_CITY_IMPROVEMENT_DAMAGE		= true -- damage done above MAX_CITY_BOMBARD_DAMA
 IMPROVEMENT_REPAIR_PER_TURN			= 2 -- HP restored to improvements each turn
 IMPROVEMENT_DAMAGED_THRESHOLD		= 10
 IMPROVEMENT_MAX_DAMAGE				= 20
+
+-- Resources
+NO_SUPPLY_LINE_INITIAL_MOVEMENT_LEFT	= 50 -- percentage of mechanized unit's movement points left when supply lines have just been cut
+NO_SUPPLY_LINE_MOVEMENT_LEFT			= 25 -- percentage of mechanized unit's movement points left when supply lines have been cut for more than 1 turn
+LIGHT_RATIONING_MOVEMENT_LEFT			= 80 -- percentage of mechanized unit's movement points left when fuel is lightly rationed
+MEDIUM_RATIONING_MOVEMENT_LEFT			= 60 -- percentage of mechanized unit's movement points left when fuel is rationed
+HEAVY_RATIONING_MOVEMENT_LEFT			= 30 -- percentage of mechanized unit's movement points left when fuel is heavily rationed
 
 -- not implemented yet
 ALLOW_CITY_UNIT_DAMAGE			= true	-- damage done above MAX_CITY_BOMBARD_DAMAGE are converted to damage to garisoned unit if any

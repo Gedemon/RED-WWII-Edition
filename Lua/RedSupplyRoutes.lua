@@ -209,13 +209,13 @@ function UnloadConvoy(unit, playerID, x, y)
 		local amount = math.ceil(transportReference * healthRatio)
 		player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Convoy has reached " .. strDestination .. ", delivering " .. amount .." materiel (" .. transportReference .." were loaded)", "Convoy unloading at " .. strDestination .." !", x, y)
 		Dprint("      - was transporting ".. transportReference .." materiel, has delivered " .. amount , bDebug)
-		MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].MatFromSupplyRoute + amount
+		MapModData.RED.ResourceData[playerID].MatFromSupplyRoute = MapModData.RED.ResourceData[playerID].MatFromSupplyRoute + amount
 
 	elseif transportType == TRANSPORT_PERSONNEL then
 		local amount = math.ceil(transportReference * healthRatio)
 		player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Convoy has reached " .. strDestination .. ", delivering " .. amount .." personnel (" .. transportReference .." were loaded)", "Convoy unloading at " .. strDestination .." !", x, y)
 		Dprint("      - was transporting ".. transportReference .." personnel, has delivered " .. amount, bDebug)
-		MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute = MapModData.RED.ReinforcementData[playerID].PersFromSupplyRoute + amount
+		MapModData.RED.ResourceData[playerID].PersFromSupplyRoute = MapModData.RED.ResourceData[playerID].PersFromSupplyRoute + amount
 
 	elseif transportType == TRANSPORT_UNIT then 
 		player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "Convoy has reached " .. strDestination .. ", delivering an equiped unit", "Convoy unloading at " .. strDestination .." !", x, y)
