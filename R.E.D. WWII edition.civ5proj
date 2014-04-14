@@ -67,7 +67,7 @@
         <FileName>GameSetup/Earth1941Setup.xml</FileName>
       </Content>
       <Content>
-        <Type>CustomRED</Type>
+        <Type>CustomRED_</Type>
         <Name>TXT_KEY_RED_AMERICAEURO1936_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_AMERICAEURO1936_SCENARIO_DESC</Description>
         <FileName>GameSetup/RedAmericaEuro1936Setup.xml</FileName>
@@ -97,7 +97,7 @@
         <FileName>GameSetup/StalingradSetup.xml</FileName>
       </Content>
       <Content>
-        <Type>CustomRED</Type>
+        <Type>CustomRED_</Type>
         <Name>TXT_KEY_RED_EARTH1936_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_EARTH1936_SCENARIO_DESC</Description>
         <FileName>GameSetup/Earth1936Setup.xml</FileName>
@@ -126,6 +126,11 @@
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
         <FileName>SQL/0- VanillaCiv5Database.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>SQL/0- ReplaceCivilizations.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
@@ -1547,6 +1552,10 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="readme.txt">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="SQL\0- ReplaceCivilizations.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

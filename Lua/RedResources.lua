@@ -691,6 +691,7 @@ function ManageResources(playerID)
 			-- don't reinforce units out of range or totally healed
 			if not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY))
 				and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY_SPECIAL_FORCES))
+				and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY_MECHANIZED))
 				and ( unit:GetCurrHitPoints() < unit:GetMaxHitPoints() )
 				and not unit:IsEmbarked() -- land unit won't heal on sea or near harbor...
 				and not unit:IsDead()
