@@ -244,8 +244,8 @@ g_ProjectsTable = {
 	-- Scenarios : available in all scenario listed, refer to ScenarioName of modUserData.SetValue("RedLoading", "ScenarioName") in setup lua file
 	-- triggering events for project availability : (if not set, project is immediatly available)
 		-- Type define when the project is available
-		-- xp = another unit (set in Reference) must have gain this amount of XP during combat (XP from buildings are not counted)
-		-- date = when starting date is reached (yyyymmdd), each turn the project have ProbPerTur % of chance of being made available
+		-- TRIGGER_XP = another unit (set in Reference) must have gain this amount of XP during combat (XP from buildings are not counted)
+		-- TRIGGER_DATE = when starting date is reached (yyyymmdd), each turn the project have ProbPerTur % of chance of being made available
 	-- Repeat : project can be done again (example: for calling reinforcement)
 	-- AIOnly : reserved for AI
 
@@ -683,25 +683,25 @@ g_ProjectsTable = {
 	},
 	[PROJECT_CAVALIER] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19420101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19420101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_CENTAUR] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 50, Reference = UK_A24 },
+		Trigger = {Type = TRIGGER_XP, XP = 50, Reference = UK_A24 },
 	},
 	[PROJECT_CROMWELL] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = "xp", Value = 150, Reference = UK_A27 },
+		Trigger = {Type = TRIGGER_XP, XP = 150, Reference = UK_A27 },
 	},
 	[PROJECT_CHALLENGER] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19421201, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19421201, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_COMET] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19440701, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19440701, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_M4_FIREFLY] =  {
@@ -715,12 +715,12 @@ g_ProjectsTable = {
 	},
 	[PROJECT_CENTURION] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19451001, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19451001, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_TORTOISE] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = "date", Value = 19450701, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19450701, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_ARCHER] =  {
