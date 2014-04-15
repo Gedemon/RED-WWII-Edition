@@ -26,13 +26,28 @@ PROJECT_BR810			= GameInfo.Projects.PROJECT_BOMBER_BR810.ID
 PROJECT_JOFFRE			= GameInfo.Projects.PROJECT_CARRIER_JOFFRE.ID
 
 -- RU
+PROJECT_T70				= GameInfo.Projects.PROJECT_TANK_T70.ID
 PROJECT_T34				= GameInfo.Projects.PROJECT_TANK_T34.ID
 PROJECT_T34_76			= GameInfo.Projects.PROJECT_TANK_T34_76.ID
 PROJECT_T34_85			= GameInfo.Projects.PROJECT_TANK_T34_85.ID
 PROJECT_KV1				= GameInfo.Projects.PROJECT_TANK_KV1.ID
 PROJECT_IS_1			= GameInfo.Projects.PROJECT_TANK_IS_1.ID
 PROJECT_IS_2			= GameInfo.Projects.PROJECT_TANK_IS_2.ID
+PROJECT_IS_3			= GameInfo.Projects.PROJECT_TANK_IS_3.ID
+PROJECT_IS_7			= GameInfo.Projects.PROJECT_TANK_IS_7.ID
+PROJECT_SU122			= GameInfo.Projects.PROJECT_ASSAULT_GUN_SU122.ID
+PROJECT_SU152			= GameInfo.Projects.PROJECT_ASSAULT_GUN_SU152.ID
 PROJECT_KV2				= GameInfo.Projects.PROJECT_ASSAULT_GUN_KV2.ID
+PROJECT_ISU122			= GameInfo.Projects.PROJECT_ASSAULT_GUN_ISU122.ID
+PROJECT_ISU152			= GameInfo.Projects.PROJECT_ASSAULT_GUN_ISU152.ID
+PROJECT_ZIS30			= GameInfo.Projects.PROJECT_TANK_DESTROYER_ZIS30.ID
+PROJECT_SU76			= GameInfo.Projects.PROJECT_TANK_DESTROYER_SU76.ID
+PROJECT_SU85			= GameInfo.Projects.PROJECT_TANK_DESTROYER_SU85.ID
+PROJECT_SU100			= GameInfo.Projects.PROJECT_TANK_DESTROYER_SU100.ID
+PROJECT_SU26			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_SU26.ID
+PROJECT_ZSU37			= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_ZSU37.ID
+PROJECT_BM13			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_BM13.ID
+PROJECT_BM13_16			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_BM13_16.ID
 PROJECT_LAGG3			= GameInfo.Projects.PROJECT_FIGHTER_LAGG3.ID
 PROJECT_LA5				= GameInfo.Projects.PROJECT_FIGHTER_LA5.ID
 PROJECT_LA5_V2			= GameInfo.Projects.PROJECT_FIGHTER_LA5_V2.ID
@@ -40,6 +55,9 @@ PROJECT_LA7				= GameInfo.Projects.PROJECT_FIGHTER_LA7.ID
 PROJECT_YAK7			= GameInfo.Projects.PROJECT_FIGHTER_YAK7.ID
 PROJECT_YAK9			= GameInfo.Projects.PROJECT_FIGHTER_YAK9.ID
 PROJECT_IL2				= GameInfo.Projects.PROJECT_BOMBER_IL2.ID
+PROJECT_IL2M3			= GameInfo.Projects.PROJECT_BOMBER_IL2M3.ID
+PROJECT_IL10			= GameInfo.Projects.PROJECT_BOMBER_IL10.ID
+PROJECT_PE2				= GameInfo.Projects.PROJECT_BOMBER_PE2.ID
 PROJECT_TU2				= GameInfo.Projects.PROJECT_BOMBER_TU2.ID
 PROJECT_IL4				= GameInfo.Projects.PROJECT_BOMBER_IL4.ID
 PROJECT_SOYUZ			= GameInfo.Projects.PROJECT_BATTLESHIP_SOYUZ.ID
@@ -73,6 +91,7 @@ PROJECT_PZJ_IV_L70		= GameInfo.Projects.PROJECT_TANK_DESTROYER_PZJ_IV_L70.ID
 PROJECT_JAGDPANTHER		= GameInfo.Projects.PROJECT_TANK_DESTROYER_JAGDPANTHER.ID
 PROJECT_FERDINAND		= GameInfo.Projects.PROJECT_TANK_DESTROYER_FERDINAND.ID
 PROJECT_JAGDTIGER		= GameInfo.Projects.PROJECT_TANK_DESTROYER_JAGDTIGER.ID
+PROJECT_FLK_PZI			= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_FLK_PZI.ID
 PROJECT_FLK_PZ38		= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_FLK_PZ38.ID
 PROJECT_MOBELWAGEN		= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_MOBELWAGEN.ID
 PROJECT_WIRBELWIND		= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_WIRBELWIND.ID
@@ -98,6 +117,7 @@ PROJECT_AR234			= GameInfo.Projects.PROJECT_BOMBER_AR234.ID
 PROJECT_HO229			= GameInfo.Projects.PROJECT_BOMBER_HO229.ID
 
 -- UK
+PROJECT_M3GRANT			= GameInfo.Projects.PROJECT_TANK_M3_GRANT.ID
 PROJECT_TETRARCH		= GameInfo.Projects.PROJECT_TANK_TETRARCH.ID
 PROJECT_MATILDAI		= GameInfo.Projects.PROJECT_TANK_MATILDA_I.ID
 PROJECT_MATILDAII		= GameInfo.Projects.PROJECT_TANK_MATILDA_II.ID
@@ -136,14 +156,22 @@ PROJECT_M13_40			= GameInfo.Projects.PROJECT_TANK_M13_40.ID
 PROJECT_M14_41			= GameInfo.Projects.PROJECT_TANK_M14_41.ID
 PROJECT_M15_42			= GameInfo.Projects.PROJECT_TANK_M15_42.ID
 PROJECT_P26_40			= GameInfo.Projects.PROJECT_TANK_P26_40.ID
+PROJECT_SM41			= GameInfo.Projects.PROJECT_ASSAULT_GUN_M41.ID
+PROJECT_L40				= GameInfo.Projects.PROJECT_TANK_DESTROYER_L40.ID
+PROJECT_M41				= GameInfo.Projects.PROJECT_TANK_DESTROYER_M41.ID
+PROJECT_M42M			= GameInfo.Projects.PROJECT_TANK_DESTROYER_M42M.ID
+PROJECT_M42T			= GameInfo.Projects.PROJECT_TANK_DESTROYER_M42T.ID
+PROJECT_M43				= GameInfo.Projects.PROJECT_TANK_DESTROYER_M43.ID
+PROJECT_AUTOCANNONE		= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_AUTOCANNONE.ID
 PROJECT_G50				= GameInfo.Projects.PROJECT_FIGHTER_G50.ID
 PROJECT_G55				= GameInfo.Projects.PROJECT_FIGHTER_G55.ID
+PROJECT_CAPRONI			= GameInfo.Projects.PROJECT_FIGHTER_CAPRONI.ID
 PROJECT_MC202			= GameInfo.Projects.PROJECT_FIGHTER_C202.ID
+PROJECT_MC205			= GameInfo.Projects.PROJECT_FIGHTER_C205.ID
 PROJECT_SM84			= GameInfo.Projects.PROJECT_BOMBER_SM84.ID
 
 -- US
 PROJECT_M3A1HT			= GameInfo.Projects.PROJECT_AMERICAN_MECH_INFANTRY.ID
-PROJECT_M3GRANT			= GameInfo.Projects.PROJECT_TANK_M3_GRANT.ID
 PROJECT_M5STUART		= GameInfo.Projects.PROJECT_TANK_M5_STUART.ID
 PROJECT_M24CHAFFEE		= GameInfo.Projects.PROJECT_TANK_M24_CHAFFEE.ID
 PROJECT_M4SHERMAN		= GameInfo.Projects.PROJECT_TANK_SHERMAN.ID
@@ -154,25 +182,53 @@ PROJECT_SHERMAN_IV		= GameInfo.Projects.PROJECT_TANK_SHERMAN_IV.ID
 PROJECT_JUMBO			= GameInfo.Projects.PROJECT_TANK_SHERMAN_JUMBO.ID
 PROJECT_EASYEIGHT		= GameInfo.Projects.PROJECT_TANK_SHERMAN_EASYEIGHT.ID
 PROJECT_M26 			= GameInfo.Projects.PROJECT_TANK_M26_PERSHING.ID
+PROJECT_T28_95			= GameInfo.Projects.PROJECT_TANK_T28_95.ID
+PROJECT_PRIEST			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_M7.ID
+PROJECT_M12				= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_M12.ID
+PROJECT_M40				= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_M40.ID
 PROJECT_ACHILLES		= GameInfo.Projects.PROJECT_TANK_DESTROYER_ACHILLES.ID
-PROJECT_PRIEST			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_PRIEST.ID
+PROJECT_M10				= GameInfo.Projects.PROJECT_TANK_DESTROYER_M10.ID
+PROJECT_M18				= GameInfo.Projects.PROJECT_TANK_DESTROYER_M18.ID
+PROJECT_M36				= GameInfo.Projects.PROJECT_TANK_DESTROYER_M36.ID
 PROJECT_SEXTON			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_SEXTON.ID
+PROJECT_M16A1			= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_M16A1.ID
+PROJECT_P47				= GameInfo.Projects.PROJECT_FIGHTER_P47.ID
 PROJECT_P38				= GameInfo.Projects.PROJECT_FIGHTER_P38.ID
 PROJECT_P40				= GameInfo.Projects.PROJECT_FIGHTER_P40.ID
 PROJECT_P51				= GameInfo.Projects.PROJECT_FIGHTER_P51.ID
 PROJECT_F6F				= GameInfo.Projects.PROJECT_FIGHTER_F6F.ID
 PROJECT_F4U				= GameInfo.Projects.PROJECT_FIGHTER_F4U.ID
+PROJECT_A20				= GameInfo.Projects.PROJECT_BOMBER_A20.ID
 PROJECT_B24				= GameInfo.Projects.PROJECT_BOMBER_B24.ID
 PROJECT_B25				= GameInfo.Projects.PROJECT_BOMBER_B25.ID
 PROJECT_B17				= GameInfo.Projects.PROJECT_BOMBER_B17.ID
+PROJECT_B29				= GameInfo.Projects.PROJECT_BOMBER_B29.ID
 
 -- JP
 PROJECT_TYPE3			= GameInfo.Projects.PROJECT_TANK_TYPE3_CHI_NU.ID
 PROJECT_TYPE4			= GameInfo.Projects.PROJECT_TANK_TYPE4_KE_NU.ID
 PROJECT_TYPE4_CHITO		= GameInfo.Projects.PROJECT_TANK_TYPE4_CHI_TO.ID
 PROJECT_TYPE5			= GameInfo.Projects.PROJECT_TANK_TYPE5_CHI_RI.ID
+PROJECT_TYPE100			= GameInfo.Projects.PROJECT_TANK_TYPE100.ID
+PROJECT_TYPE2			= GameInfo.Projects.PROJECT_ASSAULT_GUN_TYPE2.ID
+PROJECT_HO_NI_I			= GameInfo.Projects.PROJECT_TANK_DESTROYER_HO_NI_I.ID
+PROJECT_HO_NI_II		= GameInfo.Projects.PROJECT_TANK_DESTROYER_HO_NI_II.ID
+PROJECT_HO_NI_III		= GameInfo.Projects.PROJECT_TANK_DESTROYER_HO_NI_III.ID
+PROJECT_NA_TO			= GameInfo.Projects.PROJECT_TANK_DESTROYER_NA_TO.ID
+PROJECT_HO_RO			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_HO_RO.ID
+PROJECT_HA_TO			= GameInfo.Projects.PROJECT_MOBILE_ARTILLERY_HA_TO.ID
+PROJECT_TYPE98			= GameInfo.Projects.PROJECT_MOBILE_AA_GUN_TYPE98.ID
+PROJECT_A6M2			= GameInfo.Projects.PROJECT_FIGHTER_A6M2_ZERO.ID
 PROJECT_A6M5			= GameInfo.Projects.PROJECT_FIGHTER_A6M5_ZERO.ID
 PROJECT_A7M				= GameInfo.Projects.PROJECT_FIGHTER_A7M.ID
+PROJECT_KI43			= GameInfo.Projects.PROJECT_FIGHTER_KI43.ID
+PROJECT_KI44			= GameInfo.Projects.PROJECT_FIGHTER_KI44.ID
+PROJECT_KI84			= GameInfo.Projects.PROJECT_FIGHTER_KI84.ID
+PROJECT_KI61			= GameInfo.Projects.PROJECT_FIGHTER_KI61.ID
+PROJECT_KI100			= GameInfo.Projects.PROJECT_FIGHTER_KI100.ID
+PROJECT_KI100_II		= GameInfo.Projects.PROJECT_FIGHTER_KI100_II.ID
+PROJECT_N1K2			= GameInfo.Projects.PROJECT_FIGHTER_N1K2.ID
+PROJECT_J2M				= GameInfo.Projects.PROJECT_FIGHTER_J2M.ID
 PROJECT_G4M3			= GameInfo.Projects.PROJECT_BOMBER_G4M3.ID
 
 -- Military Operation
@@ -199,41 +255,56 @@ g_Major_Projects = {
 		PROJECT_LN401, PROJECT_BR690, PROJECT_BR810,
 		PROJECT_JOFFRE, },
 	[USSR] = {
-		PROJECT_T34, PROJECT_T34_76,  PROJECT_KV1, PROJECT_KV2,	PROJECT_IS_1, PROJECT_IS_2, PROJECT_T34_85,
+		PROJECT_T70, PROJECT_T34, PROJECT_T34_76, PROJECT_T34_85,
+		PROJECT_KV1, PROJECT_KV2, PROJECT_IS_1, PROJECT_IS_2, PROJECT_IS_3, PROJECT_IS_7,
+		PROJECT_SU122, PROJECT_SU152, PROJECT_ISU122, PROJECT_ISU152,
+		PROJECT_ZIS30, PROJECT_SU76, PROJECT_SU85, PROJECT_SU100, 
+		PROJECT_SU26, PROJECT_ZSU37, PROJECT_BM13, PROJECT_BM13_16,
 		PROJECT_LAGG3, PROJECT_LA5, PROJECT_LA5_V2, PROJECT_LA7, PROJECT_YAK7, PROJECT_YAK9,
-		PROJECT_IL2, PROJECT_IL4, PROJECT_TU2,
+		PROJECT_IL2, PROJECT_IL2M3, PROJECT_IL10, PROJECT_PE2, PROJECT_IL4, PROJECT_TU2,
 		PROJECT_SOYUZ, },
 	[GERMANY] = {
-		PROJECT_PANZER_II_L, PROJECT_PANZER_III, PROJECT_PANZER_III_J, PROJECT_PANZER_IV, PROJECT_PANZER_IV_G, PROJECT_PANZER_IV_H, PROJECT_PANZER_V, PROJECT_PANZER_VI, PROJECT_PANZER_VIB, PROJECT_PANZER_VIII,
+		PROJECT_PANZER_II_L, PROJECT_PANZER_III, PROJECT_PANZER_III_J, PROJECT_PANZER_IV, PROJECT_PANZER_IV_G, PROJECT_PANZER_IV_H,
+		PROJECT_PANZER_V, PROJECT_PANZER_VI, PROJECT_PANZER_VIB, PROJECT_PANZER_VIII,
 		PROJECT_MARDER_II, PROJECT_MARDER_II_D, PROJECT_MARDER_III, PROJECT_MARDER_III_H, PROJECT_MARDER_III_M,
 		PROJECT_HETZER, PROJECT_NASHORN, PROJECT_PZJ_IV, PROJECT_PZJ_IV_L70, PROJECT_JAGDPANTHER, PROJECT_FERDINAND, PROJECT_JAGDTIGER,
 		PROJECT_STUG_III, PROJECT_STUG_III_F, PROJECT_STUG_III_G, PROJECT_STUG_IV, PROJECT_BRUMMBAR, PROJECT_STURMTIGER,
-		PROJECT_FLK_PZ38, PROJECT_MOBELWAGEN, PROJECT_WIRBELWIND, PROJECT_OSTWIND, PROJECT_KUGELBLITZ, PROJECT_COELIAN,
+		PROJECT_FLK_PZI, PROJECT_FLK_PZ38, PROJECT_MOBELWAGEN, PROJECT_WIRBELWIND, PROJECT_OSTWIND, PROJECT_KUGELBLITZ, PROJECT_COELIAN,
 		PROJECT_BF109F, PROJECT_BF109G, PROJECT_BF109T, PROJECT_FW190, PROJECT_ME262, PROJECT_BF110, PROJECT_BF110F4, PROJECT_HE219, 
 		PROJECT_JU88C, PROJECT_HE177, PROJECT_JU87T, PROJECT_AR234, PROJECT_HO229,
 		OPERATION_WESERUBUNG, OPERATION_SEELOWE, OPERATION_NORWAY, OPERATION_FALLGELB, OPERATION_SONNENBLUME, OPERATION_TWENTYFIVE, OPERATION_MARITA, },
 	[ENGLAND] = {
-		PROJECT_TETRARCH, PROJECT_MATILDAI, PROJECT_MATILDAII, PROJECT_CRUISER_III, PROJECT_CRUISER_IV, PROJECT_CHURCHILL, PROJECT_M4_FIREFLY, PROJECT_VALENTINE, PROJECT_A15, PROJECT_A15_MKIII, PROJECT_A13,
-		PROJECT_CAVALIER, PROJECT_CENTAUR, PROJECT_CROMWELL, PROJECT_CHALLENGER, PROJECT_COMET, PROJECT_CENTURION, PROJECT_TORTOISE,
+		PROJECT_TETRARCH,  PROJECT_CRUISER_III, PROJECT_CRUISER_IV, PROJECT_A15, PROJECT_A15_MKIII, PROJECT_A13,
+		PROJECT_MATILDAI, PROJECT_MATILDAII, PROJECT_VALENTINE,
+		PROJECT_CAVALIER, PROJECT_CENTAUR, PROJECT_CROMWELL, PROJECT_CHALLENGER, PROJECT_COMET,
+		PROJECT_M4_FIREFLY, PROJECT_CHURCHILL, PROJECT_CENTURION, PROJECT_TORTOISE,
 		PROJECT_ARCHER, PROJECT_CRUSADER, PROJECT_BISHOP,
 		PROJECT_MOSQUITO, PROJECT_SPITFIRE_V, PROJECT_SPITFIRE_IX, PROJECT_TYPHOON, PROJECT_TEMPEST, PROJECT_METEOR,
 		PROJECT_HEAVY_BOMBER, PROJECT_BEAUFIGHTER, PROJECT_WHIRLWIND, PROJECT_LANCASTER, },
 	[ITALY] = {
 		PROJECT_M13_40, PROJECT_M14_41, PROJECT_M15_42,  PROJECT_P26_40, PROJECT_M11_39, PROJECT_L6_40,
-		PROJECT_G50, PROJECT_G55, PROJECT_MC202,
+		PROJECT_SM41, PROJECT_L40, PROJECT_M42M, PROJECT_M42T, PROJECT_43, PROJECT_AUTOCANNONE,
+		PROJECT_G50, PROJECT_G55, PROJECT_MC202, PROJECT_MC205, PROJECT_CAPRONI,
 		PROJECT_SM84, },
 	[GREECE] = {
 		},
 	[AMERICA] = {
 		PROJECT_M3A1HT,
-		PROJECT_M5STUART, PROJECT_M24CHAFFEE, PROJECT_M3GRANT, PROJECT_M4SHERMAN, PROJECT_M4A1SHERMANIIA, PROJECT_SHERMAN_III, PROJECT_M26, PROJECT_SHERMANIIIA, PROJECT_SHERMAN_IV, PROJECT_JUMBO, PROJECT_EASYEIGHT,
-		PROJECT_ACHILLES, PROJECT_PRIEST, PROJECT_SEXTON,
-		PROJECT_P51, PROJECT_P40, PROJECT_P38, PROJECT_F6F, PROJECT_F4U,
-		PROJECT_B17, PROJECT_B25, PROJECT_B24,
+		PROJECT_M5STUART, PROJECT_M24CHAFFEE,
+		PROJECT_M4SHERMAN, PROJECT_M4A1SHERMANIIA, PROJECT_SHERMAN_III, PROJECT_SHERMANIIIA, PROJECT_SHERMAN_IV, PROJECT_JUMBO, PROJECT_EASYEIGHT,
+		PROJECT_M26, PROJECT_T28_95,
+		PROJECT_ACHILLES, PROJECT_SEXTON, PROJECT_M7, PROJECT_M12, PROJECT_M40,
+		PROJECT_PRIEST, PROJECT_M10, PROJECT_M18, PROJECT_M36, PROJECT_M16A1,
+		PROJECT_P51, PROJECT_P40, PROJECT_P38, PROJECT_F6F, PROJECT_F4U, PROJECT_P47,
+		PROJECT_A20, PROJECT_B17, PROJECT_B25, PROJECT_B24, PROJECT_B29,
 		OPERATION_TORCH, },
 	[JAPAN] = {
-		PROJECT_TYPE3, PROJECT_TYPE4, PROJECT_TYPE4_CHITO, PROJECT_TYPE5,
-		PROJECT_A6M5, PROJECT_A7M, PROJECT_G4M3,
+		PROJECT_TYPE3, PROJECT_TYPE4, PROJECT_TYPE4_CHITO, PROJECT_TYPE5, PROJECT_TYPE100,
+		PROJECT_TYPE2, PROJECT_HO_NI_I, PROJECT_HO_NI_II, PROJECT_HO_NI_III, PROJECT_NA_TO, 
+		PROJECT_HO_RO, PROJECT_HA_TO, PROJECT_TYPE98,
+		PROJECT_A6M2, PROJECT_A6M5, PROJECT_A7M, PROJECT_KI43, PROJECT_KI44, PROJECT_KI84, PROJECT_KI61, PROJECT_KI100, PROJECT_KI100_II, 
+		PROJECT_N1K2, PROJECT_J2M,
+		PROJECT_G4M3,
 		OPERATION_CHINA, OPERATION_PACIFIC, },
 }
 
@@ -312,6 +383,11 @@ g_ProjectsTable = {
 	---------------------------------------------------------------------
 	-- USSR
 	---------------------------------------------------------------------
+	[PROJECT_T70] =  {
+		Buildings = {ACADEMY},
+		Trigger = {Type = "date", Value = 19420101, ProbPerTurn = 15},
+		TopSecret = true,
+	},
 	[PROJECT_T34] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19400601, ProbPerTurn = 15},
@@ -346,6 +422,79 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19430601, ProbPerTurn = 20},
 		TopSecret = true,
 	},
+	[PROJECT_IS_3] =  {
+		Buildings = {ACADEMY},		
+		Trigger = {Type = "date", Value = 19451201, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_IS_7] =  {
+		Buildings = {ACADEMY},		
+		Trigger = {Type = "date", Value = 19480101, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_SU26] =  {
+		Buildings = {ACADEMY},		
+		Trigger = {Type = "date", Value = 19410401, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_ZSU37] =  {
+		Buildings = {ACADEMY},		
+		Trigger = {Type = "date", Value = 19450101, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_BM13] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19390801, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_BM13_16] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "xp", Value = 150, Reference = RU_T34_76},
+	},
+	[PROJECT_SU122] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19421001, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_SU152] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_SU122},	
+		Trigger = {Type = "date", Value = 19430101, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_ISU122] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19431001, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_ISU152] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_ISU122},	
+		Trigger = {Type = "date", Value = 19440201, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_ZIS30] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19410801, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_SU76] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19421101, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_SU85] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_SU76},	
+		Trigger = {Type = "date", Value = 19430601, ProbPerTurn = 20},
+		TopSecret = true,
+	},
+	[PROJECT_SU100] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_SU85},	
+		Trigger = {Type = "date", Value = 19440701, ProbPerTurn = 20},
+		TopSecret = true,
+	},
 	[PROJECT_LAGG3] =  {
 		Buildings = {ACADEMY},		
 		Trigger = {Type = TRIGGER_DATE, Date = 19401101, ProbPerTurn = 15},
@@ -370,12 +519,27 @@ g_ProjectsTable = {
 	},
 	[PROJECT_YAK9] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_YAK7},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19420801, ProbPerTurn = 35},
 		TopSecret = true,
 	},
 	[PROJECT_IL2] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19401115, ProbPerTurn = 15},
+		TopSecret = true,
+	},
+	[PROJECT_IL2M3] =  {
+		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
+		Trigger = {Type = "xp", Value = 200, Reference = RU_IL2},
+	},
+	[PROJECT_IL10] =  {
+		Buildings = {ACADEMY},
+		Trigger = {Type = "date", Value = 19440415, ProbPerTurn = 15},
+		TopSecret = true,
+	},
+	[PROJECT_PE2] =  {
+		Buildings = {ACADEMY},
+		Trigger = {Type = "date", Value = 19410215, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_TU2] =  {
@@ -456,17 +620,20 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_XP, XP = 250, Reference = GE_STUG_III_F },
 	},
 	[PROJECT_STUG_IV] =  {
-		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19431001, ProbPerTurn = 15},
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_STUG_III},	
+		Trigger = {Type = TRIGGER_DATE, Date = 19411001, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_BRUMMBAR] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_STUG_IV},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19430101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_STURMTIGER] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_BRUMMBAR},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19440601, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -481,6 +648,7 @@ g_ProjectsTable = {
 	},
 	[PROJECT_MARDER_III] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_MARDER_II},
 		Trigger = {Type = TRIGGER_DATE, Date = 19420901, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -494,6 +662,7 @@ g_ProjectsTable = {
 	},
 	[PROJECT_HETZER] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_MARDER_III},
 		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -504,6 +673,7 @@ g_ProjectsTable = {
 	},
 	[PROJECT_PZJ_IV] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_NASHORN},
 		Trigger = {Type = TRIGGER_DATE, Date = 19430801, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -512,7 +682,8 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_XP, XP = 100, Reference = GE_PZJ_IV },
 	},
 	[PROJECT_JAGDPANTHER] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_PZJ_IV},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19431101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -522,57 +693,63 @@ g_ProjectsTable = {
 		TopSecret = true,
 	},
 	[PROJECT_JAGDTIGER] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_FERDINAND},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19440701, ProbPerTurn = 15},
 		TopSecret = true,
 	},
-	[PROJECT_FLK_PZ38] =  {
-		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19430901, ProbPerTurn = 15},
+	[PROJECT_FLK_PZI] =  {
+		Buildings = {ACADEMY},
+		Trigger = {Type = "date", Value = 19410201, ProbPerTurn = 15},
 		TopSecret = true,
+	},
+	[PROJECT_FLK_PZ38] =  {
+		Buildings = {ACADEMY, LAND_FACTORY},
+		Trigger = {Type = "xp", Value = 100, Reference = GE_MOBILE_AA_GUN },
 	},
 	[PROJECT_MOBELWAGEN] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 15},
+		Trigger = {Type = TRIGGER_DATE, Date = 19430801, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_WIRBELWIND] =  {
-		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19440401, ProbPerTurn = 15},
-		TopSecret = true,
+		Buildings = {ACADEMY, LAND_FACTORY},
+		Trigger = {Type = "xp", Value = 75, Reference = GE_MOBILE_AA_MOBEL },
 	},
 	[PROJECT_OSTWIND] =  {
-		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19441001, ProbPerTurn = 15},
-		TopSecret = true,
+		Buildings = {ACADEMY, LAND_FACTORY},
+		Trigger = {Type = "xp", Value = 150, Reference = GE_MOBILE_AA_WIRBEL },
 	},
 	[PROJECT_KUGELBLITZ] =  {
-		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19450601, ProbPerTurn = 15},
-		TopSecret = true,
+		Buildings = {ACADEMY, LAND_FACTORY},
+		Trigger = {Type = "xp", Value = 250, Reference = GE_MOBILE_AA_OST },
 	},
 	[PROJECT_COELIAN] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_MOBELWAGEN},
 		Trigger = {Type = TRIGGER_DATE, Date = 19451201, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_BISON] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},		
 		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_GRILLE] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19421201, ProbPerTurn = 15},
+		Projects = {PROJECT_BISON},
+		Trigger = {Type = TRIGGER_DATE, Date = 19411201, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_WESPE] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_GRILLE},
 		Trigger = {Type = TRIGGER_DATE, Date = 19421201, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_HUMMEL] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_WESPE},
 		Trigger = {Type = TRIGGER_DATE, Date = 19430201, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -659,13 +836,19 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19380210, ProbPerTurn = 35},
 		TopSecret = true,
 	},
-	[PROJECT_A13] =  {
+	[PROJECT_M3GRANT] =  {
 		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19390101, ProbPerTurn = 15},
+	},
+	[PROJECT_A13] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_CRUISER_III},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 20},
 		TopSecret = true,
 	},
 	[PROJECT_A15] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_A13},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19391201, ProbPerTurn = 35},
 		TopSecret = true,
 	},
@@ -683,6 +866,7 @@ g_ProjectsTable = {
 	},
 	[PROJECT_CAVALIER] =  {
 		Buildings = {ACADEMY},
+		Projects = {PROJECT_A15},
 		Trigger = {Type = TRIGGER_DATE, Date = 19420101, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -696,11 +880,13 @@ g_ProjectsTable = {
 	},
 	[PROJECT_CHALLENGER] =  {
 		Buildings = {ACADEMY},
+		Projects = {PROJECT_CAVALIER},
 		Trigger = {Type = TRIGGER_DATE, Date = 19421201, ProbPerTurn = 15},
 		TopSecret = true,
 	},
 	[PROJECT_COMET] =  {
 		Buildings = {ACADEMY},
+		Projects = {PROJECT_CHALLENGER},
 		Trigger = {Type = TRIGGER_DATE, Date = 19440701, ProbPerTurn = 15},
 		TopSecret = true,
 	},
@@ -809,6 +995,42 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19430401, ProbPerTurn = 10},
 		TopSecret = true,
 	},
+	[PROJECT_SM41] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19410901, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_L40] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19410701, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M41] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19420301, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M42M] =  {
+		Buildings = {ACADEMY},	
+		Projects = {PROJECT_M41},
+		Trigger = {Type = "date", Value = 19420401, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M42T] =  {
+		Buildings = {ACADEMY, LAND_FACTORY},
+		Trigger = {Type = "xp", Value = 150, Reference = IT_M42M },
+	},
+	[PROJECT_M43] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_M42M},	
+		Trigger = {Type = "date", Value = 19430501, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_AUTOCANNONE] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19391201, ProbPerTurn = 25},
+		TopSecret = true,
+	},
 	[PROJECT_G50] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19370201, ProbPerTurn = 25},
@@ -824,6 +1046,17 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19410401, ProbPerTurn = 25},
 		TopSecret = true,
 	},
+	[PROJECT_MC205] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_MC202},	
+		Trigger = {Type = "date", Value = 19421201, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_CAPRONI] =  {
+		Buildings = {ACADEMY},
+		Trigger = {Type = "date", Value = 19440801, ProbPerTurn = 15},
+		TopSecret = true,
+	},
 	[PROJECT_SM84] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19400601, ProbPerTurn = 15},
@@ -835,13 +1068,15 @@ g_ProjectsTable = {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19410501, ProbPerTurn = 15},
 	},
-	[PROJECT_M3GRANT] =  {
-		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
-	},
 	[PROJECT_M5STUART] =  {
 		Buildings = {ACADEMY, FACTORY},
 		Trigger = {Type = TRIGGER_XP, XP = 50, Reference = US_M3STUART },
+	},
+	[PROJECT_M24CHAFFEE] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_M5STUART},	
+		Trigger = {Type = "date", Value = 19420301, ProbPerTurn = 15},
+		TopSecret = true,
 	},
 	[PROJECT_M4SHERMAN] =  {
 		Buildings = {ACADEMY},	
@@ -850,10 +1085,12 @@ g_ProjectsTable = {
 	},
 	[PROJECT_M4A1SHERMANIIA] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_M4SHERMAN},
 		Trigger = {Type = TRIGGER_DATE, Date = 19420901, ProbPerTurn = 20},
 	},
 	[PROJECT_SHERMAN_III] =  {
 		Buildings = {ACADEMY},	
+		Projects = {PROJECT_M4A1SHERMANIIA},
 		Trigger = {Type = TRIGGER_DATE, Date = 19430301, ProbPerTurn = 20},
 	},
 	[PROJECT_SHERMANIIIA] =  {
@@ -861,7 +1098,8 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_XP, XP = 75, Reference = US_SHERMAN_III},
 	},
 	[PROJECT_SHERMAN_IV] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_SHERMANIII},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 50},
 		TopSecret = true,
 	},
@@ -880,6 +1118,11 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19440601, ProbPerTurn = 25},
 		TopSecret = true,
 	},
+	[PROJECT_T28_95] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19450401, ProbPerTurn = 25},
+		TopSecret = true,
+	},
 	[PROJECT_ACHILLES] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19420501, ProbPerTurn = 25},
@@ -890,9 +1133,44 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19420101, ProbPerTurn = 25},
 		TopSecret = true,
 	},
+	[PROJECT_M12] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19420501, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M40] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19450101, ProbPerTurn = 25},
+		TopSecret = true,
+	},
 	[PROJECT_SEXTON] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19430401, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M10] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19420401, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M18] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19430601, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M36] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19440401, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_M16A1] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19430501, ProbPerTurn = 25},
+		TopSecret = true,
+	},
+	[PROJECT_P47] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19420301, ProbPerTurn = 25},
 		TopSecret = true,
 	},
 	[PROJECT_P40] =  {
@@ -919,6 +1197,11 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19420401, ProbPerTurn = 15},
 		TopSecret = true,
 	},
+	[PROJECT_A20] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19401120, ProbPerTurn = 50},
+		TopSecret = true,
+	},
 	[PROJECT_B17] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19360701, ProbPerTurn = 100},
@@ -931,6 +1214,11 @@ g_ProjectsTable = {
 	[PROJECT_B25] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19400701, ProbPerTurn = 20},
+	},
+	[PROJECT_B29] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19440220, ProbPerTurn = 50},
+		TopSecret = true,
 	},
 	---------------------------------------------------------------------
 	-- Japan
@@ -951,6 +1239,56 @@ g_ProjectsTable = {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19430301, ProbPerTurn = 10},
 		TopSecret = true,
+	},
+	[PROJECT_TYPE100] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19450201, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_HO_RO] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19441201, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_HA_TO] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19450201, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_TYPE2] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19420301, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_HO_NI_I] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19410501, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_HO_NI_II] =  {
+		Buildings = {ACADEMY, LAND_FACTORY},	
+		Trigger = {Type = "xp", Value = 150, Reference = JP_HO_NI_I},
+		TopSecret = true,
+	},
+	[PROJECT_HO_NI_III] =  {
+		Buildings = {ACADEMY, LAND_FACTORY},	
+		Trigger = {Type = "xp", Value = 350, Reference = JP_HO_NI_I},
+		TopSecret = true,
+	},
+	[PROJECT_NA_TO] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19450301, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_TYPE98] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19420101, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_A6M2] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19400401, ProbPerTurn = 100},
+		TopSecret = true,
 	},	
 	[PROJECT_A6M5] =  {
 		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
@@ -958,8 +1296,52 @@ g_ProjectsTable = {
 		TopSecret = true,
 	},
 	[PROJECT_A7M] =  {
-		Buildings = {ACADEMY},	
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_A6M2},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19440101, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_KI43] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19401201, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_KI44] =  {
+		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
+		Trigger = {Type = "xp", Value = 250, Reference = JP_KI43},
+		TopSecret = true,
+	},
+	[PROJECT_KI84] =  {
+		Buildings = {ACADEMY},	
+		Projects = {PROJECT_KI43},
+		Trigger = {Type = "date", Value = 19430601, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_KI61] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_KI84},	
+		Trigger = {Type = "date", Value = 19430101, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_KI100] =  {
+		Buildings = {ACADEMY},
+		Projects = {PROJECT_KI61},	
+		Trigger = {Type = "date", Value = 19450101, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_KI100_II] =  {
+		Buildings = {ACADEMY, SMALL_AIR_FACTORY},	
+		Trigger = {Type = "xp", Value = 250, Reference = JP_KI100},
+		TopSecret = true,
+	},
+	[PROJECT_N1K2] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19431201, ProbPerTurn = 10},
+		TopSecret = true,
+	},
+	[PROJECT_J2M] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = "date", Value = 19431001, ProbPerTurn = 10},
 		TopSecret = true,
 	},
 	[PROJECT_G4M3] =  {
@@ -1046,17 +1428,20 @@ g_UnitsProject = {
 	[IT_M13_40] = PROJECT_M13_40,			
 	[IT_M14_41] = PROJECT_M14_41,			
 	[IT_M15_42] = PROJECT_M15_42,			
-	[IT_P26_40] = PROJECT_P26_40,				
+	[IT_P26_40] = PROJECT_P26_40,			
+	[RU_T70] = PROJECT_T70,						
 	[RU_T34] = PROJECT_T34,				
 	[RU_T34_76] = PROJECT_T34_76,
 	[RU_T34_85] = PROJECT_T34_85,
 	[RU_KV1] = PROJECT_KV1,
 	[RU_IS_1] = PROJECT_IS_1,
 	[RU_IS_2] = PROJECT_IS_2,
-	[RU_KV2] = PROJECT_KV2,				
+	[RU_IS_3] = PROJECT_IS_3,
+	[RU_IS_7] = PROJECT_IS_7,			
 	[UK_CRUISER_III] = PROJECT_CRUISER_III,	
 	[UK_CRUISER_IV] = PROJECT_CRUISER_IV,			
-	[UK_TETRARCH] = PROJECT_TETRARCH,			
+	[UK_TETRARCH] = PROJECT_TETRARCH,
+	[UK_M3_GRANT] = PROJECT_M3GRANT,				
 	[UK_MATILDA_I] = PROJECT_MATILDAI,			
 	[UK_MATILDA_II] = PROJECT_MATILDAII,
 	[UK_A10_VALENTINE] = PROJECT_VALENTINE,
@@ -1082,7 +1467,6 @@ g_UnitsProject = {
 	[GE_PANZER_VI] = PROJECT_PANZER_VI,
 	[GE_PANZER_VIB] = PROJECT_PANZER_VIB,
 	[GE_PANZER_VIII] = PROJECT_PANZER_VIII,
-	[US_M3GRANT] = PROJECT_M3GRANT,
 	[US_M5STUART] = PROJECT_M5STUART,
 	[US_M24CHAFFEE] = PROJECT_M24CHAFFEE,
 	[US_SHERMAN] = PROJECT_M4SHERMAN,			
@@ -1097,33 +1481,26 @@ g_UnitsProject = {
 	[JP_TYPE3] = PROJECT_TYPE3,			
 	[JP_TYPE4_CHI_TO] = PROJECT_TYPE4_CHITO,		
 	[JP_TYPE5] = PROJECT_TYPE5,	
-	-- Artillery	
-	[FR_MOBILE_AA_GUN] = PROJECT_HOTCHKISS,
-	[GE_MOBILE_AA_38] = PROJECT_FLK_PZ38,
-	[GE_MOBILE_AA_MOBEL] = PROJECT_MOBELWAGEN,
-	[GE_MOBILE_AA_WIRBEL] = PROJECT_WIRBELWIND,
-	[GE_MOBILE_AA_OST] = PROJECT_OSTWIND,
-	[GE_MOBILE_AA_KUGEL] = PROJECT_KUGELBLITZ,
-	[GE_MOBILE_AA_COELIAN] = PROJECT_COELIAN,
-	[GE_MOBILE_BISON] = PROJECT_BISON,
-	[GE_MOBILE_GRILLE] = PROJECT_GRILLE,
-	[GE_MOBILE_WESPE] = PROJECT_WESPE,
-	[GE_MOBILE_HUMMEL] = PROJECT_HUMMEL,
-	[UK_MOBILE_AA_GUN] = PROJECT_CRUSADER,
-	[UK_MOBILE_BISHOP] = PROJECT_BISHOP,
-	[US_PRIEST] = PROJECT_PRIEST,
-	[US_SEXTON] = PROJECT_SEXTON,	
-	-- SPG	
-	[FR_W15_TCC] = PROJECT_W15_TCC,
-	[FR_AMR35_ZT3] = PROJECT_AMR35_ZT3,
-	[FR_37L] = PROJECT_37L,
+	[JP_TYPE100] = PROJECT_TYPE100,	
+	--Assault gun
 	[FR_SAU40] = PROJECT_SAU40,
+	[RU_SU122] = PROJECT_SU122,
+	[RU_SU152] = PROJECT_SU152,
+	[RU_KV2] = PROJECT_KV2,	
+	[RU_ISU122] = PROJECT_ISU152,
+	[RU_ISU152] = PROJECT_ISU122,	
 	[GE_STUG_III] = PROJECT_STUG_III,
 	[GE_STUG_III_F] = PROJECT_STUG_III_F,
 	[GE_STUG_III_G] = PROJECT_STUG_III_G,
-	[GE_STUG_IV] = PROJECT_STUG_IV,
+	[GE_STUG_IV] = PROJECT_STUG_IV,	
 	[GE_BRUMMBAR] = PROJECT_BRUMMBAR,
 	[GE_STURMTIGER] = PROJECT_STURMTIGER,
+	[IT_M41] = PROJECT_SM41,
+	[JP_TYPE2] = PROJECT_TYPE2,
+	--Tank destroyer
+	[FR_W15_TCC] = PROJECT_W15_TCC,
+	[FR_AMR35_ZT3] = PROJECT_AMR35_ZT3,
+	[FR_37L] = PROJECT_37L,
 	[GE_MARDER_II] = PROJECT_MARDER_II,
 	[GE_MARDER_II_D] = PROJECT_MARDER_II_D,
 	[GE_MARDER_III] = PROJECT_MARDER_III,
@@ -1138,6 +1515,51 @@ g_UnitsProject = {
 	[GE_JAGDTIGER] = PROJECT_JAGDTIGER,
 	[UK_ARCHER] = PROJECT_ARCHER,
 	[US_ACHILLES] = PROJECT_ACHILLES,
+	[RU_ZIS30] = PROJECT_ZIS30,
+	[RU_SU76] = PROJECT_SU76,
+	[RU_SU85] = PROJECT_SU85,
+	[RU_SU100] = PROJECT_SU100,
+	[IT_L40] = PROJECT_L40,
+	[IT_M41] = PROJECT_M41,
+	[IT_M42M] = PROJECT_M42M,
+	[IT_M42T] = PROJECT_M42T,
+	[IT_M43] = PROJECT_M43,
+	[US_M10] = PROJECT_M10,
+	[US_M18] = PROJECT_M18,
+	[US_M36] = PROJECT_M36,
+	[JP_HO_NI_I] = PROJECT_HO_NI_I,
+	[JP_HO_NI_II] = PROJECT_HO_NI_II,
+	[JP_HO_NI_III] = PROJECT_HO_NI_III,
+	[JP_NA_TO] = PROJECT_NA_TO,
+	-- Anti-aircraft	
+	[FR_MOBILE_AA_GUN] = PROJECT_HOTCHKISS,
+	[GE_MOBILE_AA_GUN] = PROJECT_FLK_PZI,
+	[GE_MOBILE_AA_38] = PROJECT_FLK_PZ38,
+	[GE_MOBILE_AA_MOBEL] = PROJECT_MOBELWAGEN,
+	[GE_MOBILE_AA_WIRBEL] = PROJECT_WIRBELWIND,
+	[GE_MOBILE_AA_OST] = PROJECT_OSTWIND,
+	[GE_MOBILE_AA_KUGEL] = PROJECT_KUGELBLITZ,
+	[GE_MOBILE_AA_COELIAN] = PROJECT_COELIAN,
+	[RU_ZSU37] = PROJECT_ZSU37,
+	[UK_MOBILE_AA_GUN] = PROJECT_CRUSADER,
+	[IT_AUTOCANNONE] = PROJECT_AUTOCANNONE,
+	[US_M16A1] = PROJECT_M16A1,
+	[JP_TYPE98] = PROJECT_TYPE98,
+	-- SPG	
+	[RU_SU26] = PROJECT_SU26,
+	[RU_BM13] = PROJECT_BM13,
+	[RU_BM13_16] = PROJECT_BM13_16,
+	[GE_MOBILE_BISON] = PROJECT_BISON,
+	[GE_MOBILE_GRILLE] = PROJECT_GRILLE,
+	[GE_MOBILE_WESPE] = PROJECT_WESPE,
+	[GE_MOBILE_HUMMEL] = PROJECT_HUMMEL,
+	[UK_MOBILE_BISHOP] = PROJECT_BISHOP,
+	[US_M7] = PROJECT_PRIEST,
+	[US_M12] = PROJECT_M12,
+	[US_M40] = PROJECT_M40,
+	[US_SEXTON] = PROJECT_SEXTON,
+	[JP_HO_RO] = PROJECT_HO_RO,
+	[JP_HA_TO] = PROJECT_HA_TO,
 	-- Fighters
 	[FR_MS406] = PROJECT_MS406,			
 	[FR_MB152] = PROJECT_MB152,
@@ -1146,6 +1568,8 @@ g_UnitsProject = {
 	[IT_G50] = PROJECT_G50,
 	[IT_G55] = PROJECT_G55,
 	[IT_C202] = PROJECT_MC202,
+	[IT_C205] = PROJECT_MC205,
+	[IT_CAPRONI] = PROJECT_CAPRONI,
 	[RU_LAGG3] = PROJECT_LAGG3,
 	[RU_LA5] = PROJECT_LA5,
 	[RU_LA5_V2] = PROJECT_LA5_V2,
@@ -1162,12 +1586,22 @@ g_UnitsProject = {
 	--[GE_BF109_T] = PROJECT_BF109T,			
 	[GE_FW190] = PROJECT_FW190,
 	[GE_ME262] = PROJECT_ME262,
-	[US_P40] = PROJECT_P40,				
+	[US_P40] = PROJECT_P40,	
+	[US_P47] = PROJECT_P47,				
 	[US_P51] = PROJECT_P51,
 	[US_F6F] = PROJECT_F6F,
-	[US_F4U] = PROJECT_F4U,
+	[US_F4U] = PROJECT_F4U,	
+	[JP_A6M2] = PROJECT_A6M2,
 	[JP_A6M5] = PROJECT_A6M5,
 	[JP_A7M] = PROJECT_A7M,
+	[JP_KI43] = PROJECT_KI43,			
+	[JP_KI44] = PROJECT_KI44,		
+	[JP_KI84] = PROJECT_KI84,			
+	[JP_KI61] = PROJECT_KI61,		
+	[JP_KI100] = PROJECT_KI100,			
+	[JP_KI100_II] = PROJECT_KI100_II,		
+	[JP_N1K2] = PROJECT_N1K2,			
+	[JP_J2M] = PROJECT_J2M,	
 	-- Heavy Fighters			
 	[UK_WHIRLWIND] = PROJECT_WHIRLWIND,
 	[UK_BEAUFIGHTER] = PROJECT_BEAUFIGHTER,		
@@ -1179,7 +1613,9 @@ g_UnitsProject = {
 	-- Attack Aircrafts
 	[FR_LN401] = PROJECT_ATTACK_AIRCRAFT,			
 	[IT_BA65] = PROJECT_ATTACK_AIRCRAFT,		
-	[RU_IL2] = PROJECT_IL2,			
+	[RU_IL2] = PROJECT_IL2,	
+	[RU_IL2M3] = PROJECT_IL2M3,		
+	[RU_IL10] = PROJECT_IL10,			
 	[GR_FAIREY] = PROJECT_ATTACK_AIRCRAFT,
 	--[GE_JU87T] = PROJECT_JU87T,		
 	-- Fast/Light Bombers
@@ -1188,7 +1624,9 @@ g_UnitsProject = {
 	[GE_AR234] = PROJECT_AR234,
 	[GE_HO229] = PROJECT_HO229,
 	[UK_MOSQUITO] = PROJECT_MOSQUITO,			
-	[RU_TU2] = PROJECT_TU2,			
+	[RU_TU2] = PROJECT_TU2,	
+	[RU_PE2] = PROJECT_PE2,						
+	[US_A20] = PROJECT_A20,			
 	-- Medium Bombers
 	[IT_SM84] = PROJECT_SM84,		
 	[RU_IL4] = PROJECT_IL4,
@@ -1201,7 +1639,8 @@ g_UnitsProject = {
 	[GE_HE177] = PROJECT_HE177,			
 	[UK_HALIFAX] = PROJECT_HEAVY_BOMBER,
 	[UK_LANCASTER] = PROJECT_LANCASTER,			
-	[US_B17] = PROJECT_B17,
+	[US_B17] = PROJECT_B17,	
+	[US_B29] = PROJECT_B29,
 	-- Battleships
 	[RU_BATTLESHIP] = PROJECT_SOYUZ,
 	-- Carriers
