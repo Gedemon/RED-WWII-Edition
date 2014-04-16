@@ -1288,7 +1288,7 @@ function LaunchMilitaryOperation(playerID)
 					end
 					LaunchUnits(militaryOperation)
 
-					if (not CanRepeatProject(projectID)) then
+					if (not CanRepeatProject(id)) then
 						Dprint(" - Marking Operation done...", bDebug)
 						local saveStr = "Operation-"..id
 						savedData.SetValue(saveStr, 1) -- mark as triggered !
