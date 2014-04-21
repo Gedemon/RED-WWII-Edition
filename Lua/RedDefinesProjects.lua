@@ -1414,8 +1414,8 @@ g_ProjectsTable = {
 	[OPERATION_MOTHERLANDCALL] =  {
 		Buildings = {RADIO},	
 		Scenarios = {"Euro1940", },	
-		--Trigger = {Type = TRIGGER_DATE, Date = 19411204, ProbPerTurn = 25},
-		--Projects = {PROJECT_T34},
+		Trigger = {Type = TRIGGER_DATE, Date = 19411204, ProbPerTurn = 25},
+		Projects = {PROJECT_T34},
 		TopSecret = false,
 		Repeat = true,
 	},	

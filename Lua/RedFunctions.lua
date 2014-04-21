@@ -168,8 +168,8 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 
 	-- Get Materiel from city capture
 	gainMat = Round(MapModData.RED.ResourceData[originalCityOwner].Materiel * ratio)
-	MapModData.RED.ResourceData[newPlayerID].MaterielFromCityCapture		= MapModData.RED.ResourceData[newPlayerID].MaterielFromCityCapture			+ gainMat
-	MapModData.RED.ResourceData[originalCityOwner].MaterielFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MaterielFromCityCapture	- gainMat
+	MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			+ gainMat
+	MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	- gainMat
 
 	-- Get Oil from city capture
 	if RESOURCE_CONSUMPTION then
@@ -179,7 +179,7 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 	end
 			
 	if gainMat > 0 or gainOil > 0 then
-		Events.GameplayAlertMessage(Players[newPlayerID]:getName() .. " has gained " .. gainMat .. " [ICON_MATERIEL] Materiel and " .. gainOil .. " [ICON_RES_OIL] Oil from " .. city:GetName() .. " capture")
+		Events.GameplayAlertMessage(Players[newPlayerID]:GetName() .. " has gained " .. gainMat .. " [ICON_MATERIEL] Materiel and " .. gainOil .. " [ICON_RES_OIL] Oil from " .. city:GetName() .. " capture")
 	end
 
 	Dprint ("-------------------------------------", bDebugOutput)

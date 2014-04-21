@@ -1477,7 +1477,7 @@ g_Convoy = {
 		Name = "Finland to Germany",
 		SpawnList = { {X=57, Y=77}, }, -- adjacent to Oulu
 		RandomSpawn = false,
-		DestinationList = { {X=52, Y=53}, {X=46, Y=52}, {X=41, Y=54}, }, -- Konigsberg, Stettin, Kiel
+		DestinationList = { {X=52, Y=53}, {X=46, Y=52}, {X=40, Y=55}, }, -- Konigsberg, Stettin, Kiel
 		RandomDestination = false,
 		CivID = GERMANY,
 		MaxFleet = 1, 
@@ -1550,7 +1550,7 @@ g_Convoy = {
 		Name = "Norway to Germany",
 		SpawnList = { {X=50, Y=85}, }, -- adjacent to Narvik
 		RandomSpawn = false,
-		DestinationList = { {X=41, Y=54}, {X=46, Y=52}, }, -- Kiel, Stettin
+		DestinationList = { {X=40, Y=55}, {X=46, Y=52}, }, -- Kiel, Stettin
 		RandomDestination = false,
 		CivID = GERMANY,
 		MaxFleet = 1, 
@@ -1562,7 +1562,7 @@ g_Convoy = {
 		Name = "Sweden to Germany",
 		SpawnList = { {X=56, Y=78}, }, -- adjacent to Lulea
 		RandomSpawn = false,
-		DestinationList = { {X=52, Y=53}, {X=46, Y=52}, {X=41, Y=54}, }, -- Konigsberg, Stettin, Kiel
+		DestinationList = { {X=52, Y=53}, {X=46, Y=52}, {X=40, Y=55}, }, -- Konigsberg, Stettin, Kiel
 		RandomDestination = false,
 		CivID = GERMANY,
 		MaxFleet = 1, 
@@ -2069,7 +2069,7 @@ g_TroopsRoutes = {
 				CentralPlot = {X=41, Y=54},
 				MaxDistanceFromCentral = 6,
 				ReserveUnits = 5, -- minimum unit to keep in this area (ie : do not send those elsewhere)
-				EmbarkList = { {X=40, Y=54}, {X=40, Y=55}, {X=29, Y=33}, }, -- near Kiel (West of)
+				EmbarkList = { {X=40, Y=54}, {X=40, Y=55}, }, -- near Kiel (West of)
 				RandomEmbark = false, -- true : random choice in spawn list
 				WaypointList = { {X=38, Y=55}, {X=37, Y=60}, },
 				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
