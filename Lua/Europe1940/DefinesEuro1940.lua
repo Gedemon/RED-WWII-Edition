@@ -11,19 +11,20 @@ print("-------------------------------------")
 -- Scenario Specific Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
-WAR_MINIMUM_STARTING_TURN = 3
-REVEAL_ALL_CITIES = true -- cities tiles are always visible for every civs
-EMBARK_FROM_HARBOR = true -- allow embarking only from a city with a port (and adjacent tiles)
-BEACHHEAD_DAMAGE = true -- Amphibious assault on an empty tile owned by enemy civ will cause damage to the landing unit
-CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will place mountain on neutral territories to make them impassable
+WAR_MINIMUM_STARTING_TURN		= 3
+REVEAL_ALL_CITIES				= true	-- cities tiles are always visible for every civs
+EMBARK_FROM_HARBOR				= true	-- allow embarking only from a city with a port (and adjacent tiles)
+BEACHHEAD_DAMAGE				= true	-- Amphibious assault on an empty tile owned by enemy civ will cause damage to the landing unit (not implemented)
+CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true	-- if true neutral territories is impassable
+RESOURCE_CONSUMPTION			= true	-- Use resource consumption (fuel, ...)
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- AI Scenario Specific Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
-ALLOW_AI_CONTROL = true
-NO_AI_EMBARKATION = true -- remove AI ability to embark (to do : take total control of AI unit to embark)
-NO_SUICIDE_ATTACK = true -- If set to true, try to prevent suicide attacks
+ALLOW_AI_CONTROL	= true
+NO_AI_EMBARKATION	= true -- remove AI ability to embark (to do : take total control of AI unit to embark)
+NO_SUICIDE_ATTACK	= true -- If set to true, try to prevent suicide attacks
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Calendar
@@ -417,6 +418,7 @@ g_Minor_Relation = {
 		{Value = 50, Major = ENGLAND, Minor = YUGOSLAVIA},
 		{Value = 120, Major = GERMANY, Minor = SLOVAKIA},
 		{Value = 50, Major = GERMANY, Minor = HUNGARY},
+		{Value = 50, Major = GERMANY, Minor = ROMANIA},
 		{Value = 50, Major = GERMANY, Minor = LIBYA},
 		{Value = 50, Major = GERMANY, Minor = ALBANIA},
 		{Value = 50, Major = GERMANY, Minor = SWEDEN},
@@ -424,6 +426,7 @@ g_Minor_Relation = {
 		{Value = 120, Major = ITALY, Minor = ALBANIA},
 		{Value = 50, Major = ITALY, Minor = SLOVAKIA},
 		{Value = 50, Major = ITALY, Minor = HUNGARY},
+		{Value = 50, Major = ITALY, Minor = ROMANIA},
 		{Value = 50, Major = ITALY, Minor = SWEDEN},
 		{Value = 50, Major = USSR, Minor = IRAQ},
 		{Value = 50, Major = USSR, Minor = IRAN},
@@ -546,9 +549,9 @@ g_Cities = {
 	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- NICOSIA
 	-- GERMANY
 	{X = 44, Y = 50, Key = true,  Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE}, }, -- BERLIN
-	{X = 41, Y = 54, Key = true,  Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
-	{X = 38, Y = 52, Key = true,  Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY}, }, -- BREMEN
+	{X = 40, Y = 55, Key = true,  Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
 	{X = 39, Y = 46, Key = true,  Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
+	{X = 39, Y = 53, Key = true,  Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD}, }, -- HAMBURG
 	{X = 45, Y = 43, Buildings = { FACTORY }, }, -- PRAGUE
 	{X = 39, Y = 43, AIBuildings = {FACTORY}, }, -- NUREMBERG
 	{X = 52, Y = 53, Buildings = { HARBOR }, AIBuildings = {FACTORY}, }, -- KONIGSBERG

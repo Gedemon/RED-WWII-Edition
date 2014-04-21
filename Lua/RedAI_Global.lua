@@ -1195,4 +1195,22 @@ function GetTeamLandForceInArea( player, x1, y1, x2, y2 )
 	return teamForce
 end
 
+
+-- Return military strenght of same side players in specified rectangular area
+function GetSameSideLandForceInArea( player, x1, y1, x2, y2 ) 
+
+	local bDebug = true
+	local playerID = player:GetID()
+	local force = 0
+
+	for otherID = 0, GameDefines.MAX_PLAYERS - 1 do
+		local other = Players[otherID]
+		if other and other:IsAlive() and AreSameSide( playerID, otherID) then
+			force = force + GetLandForceInArea(other, x1, y1, x2, y2)
+		end
+	end
+	return force
+end
+
+
 -- Check

@@ -39,6 +39,7 @@ CREATE TABLE UnitConfiguration (		id INTEGER PRIMARY KEY AUTOINCREMENT,
 										Rng INTEGER default NULL,
 										Mat INTEGER default NULL,
 										Pers INTEGER default NULL,
+										Fuel INTEGER default NULL,
 										Flav INTEGER default NULL,
 										ProjCst FLOAT default NULL,
 										Flag INTEGER default NULL,
@@ -66,6 +67,7 @@ CREATE TABLE UnitConfiguration (		id INTEGER PRIMARY KEY AUTOINCREMENT,
 	Rng			= range
 	Mat			= reinforcement materiel / HP
 	Pers		= reinforcement personnel / HP
+	Fuel		= Fuel Consumption / turn
 	Flav		= bonus applied to each flavor of this unit
 	ProjCst		= cost factor of this project relative to unit's cost (NULL means unit's cost * 0.75)
 	Flag		= flag index

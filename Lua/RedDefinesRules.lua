@@ -34,7 +34,7 @@ NO_DIPLO_STATEMENT				= true	-- no diplo contact
 INITIAL_MATERIEL_VALUE				= 0		-- Materiel reserve at start
 INITIAL_PERSONNEL_VALUE				= 0		-- Personnel reserve at start
 INITIAL_OIL_VALUE					= 5000	-- Oil reserve at start
-REINFORCEMENT_RATIO					= 5		-- 1 = 100 personnel+materiel needed for 1 HP, 5 = 20 personnel+materiel, 10 = 10 personnel+materiel ...
+REINFORCEMENT_RATIO					= 5		-- 1 = 100 personnel+materiel needed for 1 HP, 5 = 20 personnel+materiel, 10 = 10 personnel+materiel... MUST be > 0 (see next value)
 REINFORCEMENT_BASE					= 100 / REINFORCEMENT_RATIO
 MAX_HP_HEALED						= 5		-- Max number of HP healed each turn
 RESISTANCE_REINFORCEMENT_PERCENT	= 0		-- ratio of reinforcement recieved from cities in resistance
@@ -49,6 +49,18 @@ RADIO_RECRUITING_FACTOR				= 3		-- Personnel recruited from radio, relative to c
 RADIO_PROPAGANDA_BONUS				= 50	-- percentage of additional recruit from radio propaganda in a city
 WAR_BONDS_PRODUCTION_PERCENT		= 75	-- percentage of production + gold converted to materiel when producing war bonds
 
+RESOURCE_PRODUCTION_FACTOR			= 10	-- each deposit produce (plot:GetNumResource() * RESOURCE_PRODUCTION_FACTOR) number of resource each turn
+RESOURCE_OIL_LIGHT_RATIONING		= 2500	-- when oil reserves are below this value, light rationning is applied
+RESOURCE_OIL_RATIONING				= 1000	-- when oil reserves are below this value, rationning is applied
+RESOURCE_OIL_HEAVY_RATIONING		= 500	-- when oil reserves are below this value, heavy rationning is applied
+
+RESOURCE_CONSUMPTION				= false						-- If true, use resources consumption (fuel, ...)
+RESOURCE_CONNECTION					= RESOURCE_ROAD_TO_ANY_CITY	-- Default connection type (can be overriden by scenario defines)
+RESOURCE_FROM_FRIENDS				= true						-- If true you get resources from friendly territory (friendly CS or major with open border), else only from your territory
+
+-- Convoy
+TRANSPORT_DEFAULT					= TRANSPORT_MATERIEL	-- default type (1 = materiel...)
+TRANSPORT_DEFAULT_REFERENCE			= 250					-- default value
 
 -- Senario
 WAR_MINIMUM_STARTING_TURN = 0 -- can't manually start war before this turn (but forced DOW via SetMajorRelations or SetMinorDOW are possible)
@@ -98,6 +110,9 @@ NO_SUPPLY_LINE_MOVEMENT_LEFT			= 25 -- percentage of mechanized unit's movement 
 LIGHT_RATIONING_MOVEMENT_LEFT			= 80 -- percentage of mechanized unit's movement points left when fuel is lightly rationed
 MEDIUM_RATIONING_MOVEMENT_LEFT			= 60 -- percentage of mechanized unit's movement points left when fuel is rationed
 HEAVY_RATIONING_MOVEMENT_LEFT			= 30 -- percentage of mechanized unit's movement points left when fuel is heavily rationed
+LIGHT_RATIONING_FUEL_CONSUMPTION		= 85 -- percentage of total planned consumption used when fuel is lightly rationed
+MEDIUM_RATIONING_FUEL_CONSUMPTION		= 65 -- percentage of total planned consumption used when fuel is rationed
+HEAVY_RATIONING_FUEL_CONSUMPTION		= 50 -- percentage of total planned consumption used when fuel is heavily rationed
 
 -- not implemented yet
 ALLOW_CITY_UNIT_DAMAGE			= true	-- damage done above MAX_CITY_BOMBARD_DAMAGE are converted to damage to garisoned unit if any

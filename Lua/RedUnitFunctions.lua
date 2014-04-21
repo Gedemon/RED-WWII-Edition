@@ -1657,6 +1657,13 @@ function DynamicUnitPromotion(playerID)
 					unit:SetMoves(Round(unit:MovesLeft() * (NO_SUPPLY_LINE_MOVEMENT_LEFT/100)))
 				end
 			end
+
+			if UseFuel(unitType) and not unit:IsHasPromotion(noSupply) then -- don't apply the penalty twice...
+				if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetMoves(Round(unit:MovesLeft() * (LIGHT_RATIONING_MOVEMENT_LEFT/100))) end
+				if (unit:IsHasPromotion(PROMOTION_RATIONING))		then unit:SetMoves(Round(unit:MovesLeft() * (MEDIUM_RATIONING_MOVEMENT_LEFT/100))) end
+				if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING)) then unit:SetMoves(Round(unit:MovesLeft() * (HEAVY_RATIONING_MOVEMENT_LEFT/100))) end
+			end
+
 		end
 	end
 end

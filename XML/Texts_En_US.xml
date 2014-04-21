@@ -338,6 +338,9 @@
 		<Row Tag="TXT_KEY_HOVERINFO_REQUIRED_REINFORCEMENT">
 			<Text>Requested reinforcements :[NEWLINE]{2_num} [ICON_MATERIEL] Materiel ({1_num}/HitPoint)[NEWLINE]{4_num} [ICON_PERSONNEL] Personnel ({3_num}/HitPoint)</Text>
 		</Row>
+		<Row Tag="TXT_KEY_HOVERINFO_OIL_CONSUMPTION">
+			<Text>Fuel Consumption per turn:[NEWLINE]{1_num} [ICON_RES_OIL] Oil</Text>
+		</Row>
 
 
 		<!-- Processes -->
@@ -1018,6 +1021,13 @@
 		</Row>
 		<Row Tag="TXT_KEY_BUILDING_SHIPYARD_HELP">
 			<Text>Allows construction of submarines, battleships and dreadnougth.[NEWLINE]+10% [ICON_PRODUCTION] Production when building Sea Units.[NEWLINE]+15 [ICON_MATERIEL] Materiel / turn.[NEWLINE]Can stock 50 [ICON_MATERIEL] Materiel.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT">
+			<Text>Synthetic Fuel Plant</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT_HELP">
+			<Text>Synthetic Fuel Plants provide 25 [ICON_RES_OIL] Oil / turn.</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_BUILDING_OPEN_CITY">
@@ -2439,6 +2449,14 @@
 		</Row>
 		<Row Tag="TXT_KEY_OPERATION_TORCH_DESC">
 			<Text>British Generals have suggested a plan to knock the Axis out of Africa, with the Allied army in the east we can crush the Italian, Vichy and German troops between our two armies. This plan will liberate many Vichy held cities and return them to Free France.</Text>
+		</Row>
+
+		<!-- Operation Motherland call (Defense of Russia) -->
+		<Row Tag="TXT_KEY_OPERATION_MOTHERLANDCALL">
+			<Text>The Motherland Calls</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_MOTHERLANDCALL_DESC">
+			<Text>Gather as much troops as possible from the eastern regions.</Text>
 		</Row>
 	</Language_en_US>
 	

@@ -3,14 +3,6 @@
 -- DateCreated: 5/6/2012 8:34:28 PM
 --------------------------------------------------------------
 
--- transported types
-TRANSPORT_MATERIEL = 1
-TRANSPORT_PERSONNEL = 2
-TRANSPORT_UNIT = 3
-TRANSPORT_GOLD = 4
-TRANSPORT_DEFAULT = 1 -- default type (1 = materiel...)
-TRANSPORT_DEFAULT_REFERENCE = 250 -- default value
-
 -- Units Type ID
 -----------------
 

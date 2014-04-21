@@ -95,13 +95,16 @@ function UpdateData()
 
 				local personnelReinforcement	= GetPersonnelReinforcement(iPlayerID) 
 				local materielReinforcement		= GetMaterielReinforcement(iPlayerID) 
-				local OilProcurement			= GetOilProcurement(iPlayerID)
+				local OilProcurement			= GetOilProcurement(iPlayerID, true) -- second argument set to true to prevent testing of routes to access resources (save time)
 
 				local neededResource			= GetNeededResourceForUnits(iPlayerID, bOnlySupplied)
 
 				local fluxPersonnel = Round(personnelReinforcement.total - neededResource.nextTurnPers)
 				local fluxMateriel = Round(materielReinforcement.total - neededResource.nextTurnMat) -- - matToUpgrade -- check that...
 				local fluxOil = Round(OilProcurement.total - neededResource.nextTurnOil)
+				if Game.GetGameTurn() == 0 then
+					fluxOil = 0
+				end
 
 				if fluxPersonnel >= 0 then
 					strFluxPersonnel = "("..Locale.ConvertTextKey("TXT_KEY_NUMBER_PERTURN_TEXT", fluxPersonnel)..")" 
@@ -120,7 +123,21 @@ function UpdateData()
 				end
 				strPersonnelText	= "[ICON_PERSONNEL] "..data.Personnel.." ".. strFluxPersonnel
 				strMaterielText		= "[ICON_MATERIEL] "..data.Materiel.." ".. strFluxMateriel
-				strOilText			= "[ICON_RES_OIL] "..data.Oil.." ".. strFluxOil
+
+				if data.Oil > RESOURCE_OIL_LIGHT_RATIONING then
+					strOilText		= "[ICON_RES_OIL] "..data.Oil.." ".. strFluxOil
+
+				elseif data.Oil > RESOURCE_OIL_RATIONING then
+					strOilText		= "[ICON_RES_OIL] [COLOR_YELLOW]"..data.Oil.."[ENDCOLOR] ".. strFluxOil
+
+				elseif data.Oil > RESOURCE_OIL_RATIONING then
+					strOilText		= "[ICON_RES_OIL] [COLOR_PLAYER_ORANGE_TEXT]"..data.Oil.."[ENDCOLOR] ".. strFluxOil
+
+				else
+					strOilText		= "[ICON_RES_OIL] [COLOR_WARNING_TEXT]"..data.Oil.."[ENDCOLOR] ".. strFluxOil
+
+				end
+
 			else
 				strPersonnelText	= "[ICON_PERSONNEL] 0 (+0)"
 				strMaterielText		= "[ICON_MATERIEL] 0 (+0)"
@@ -183,6 +200,10 @@ function UpdateData()
 			end
 		else
 			Controls.UnitSupplyString:SetHide(true);
+		end
+
+		if not RESOURCE_CONSUMPTION then
+			Controls.OilPerTurn:SetHide(true);
 		end
 		
 
@@ -406,6 +427,7 @@ function GetMaterielTTString()
 	local resourceData = MapModData.RED.ResourceData 
 	
 	local currentMatFromSupplyRoutes = 0
+	local currentMatFromCityCapture = 0
 
 	if resourceData and resourceData[playerID] then
 	
@@ -423,6 +445,9 @@ function GetMaterielTTString()
 
 		local matFromSupplyRoutes = resourceData[playerID].TotalMatFromSupplyRoute
 		currentMatFromSupplyRoutes = resourceData[playerID].MatFromSupplyRoute
+		
+		local matFromCityCapture = resourceData[playerID].TotalMatFromCityCapture
+		currentMatFromCityCapture = resourceData[playerID].MatFromCityCapture
 
 		local reinfMat = resourceData[playerID].FluxMateriel - totalMat
 		
@@ -434,6 +459,8 @@ function GetMaterielTTString()
 		if matFromMinor			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from other nations (Friends, Allies) : "  .. matFromMinor; end
 		if matFromSupplyRoutes	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. matFromSupplyRoutes; end
 		if matFromScenario		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. matFromScenario; end
+		if matFromCityCapture	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : "  .. matFromCityCapture; end
+		if matFromCityCapture	< 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : [COLOR_WARNING_TEXT]" .. matFromCityCapture .."[ENDCOLOR]"; end
 
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_MATERIEL] Materiel used this turn : " .. tostring(reinfMat - matToUpgrade)
 		if reinfMat ~= 0 then strText = strText .. "[NEWLINE][ICON_BULLET] to reinforce troops : " .. reinfMat; end
@@ -470,6 +497,8 @@ function GetMaterielTTString()
 		if materielReinforcement.fromWarBonds	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from war bonds (materiel bought) : "  .. materielReinforcement.fromWarBonds; end
 		if materielReinforcement.fromMinor		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from other nations (friends, allies) : "  .. materielReinforcement.fromMinor; end
 		if currentMatFromSupplyRoutes			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. currentMatFromSupplyRoutes; end
+		if currentMatFromCityCapture			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : "  .. currentMatFromCityCapture; end
+		if currentMatFromCityCapture			< 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : [COLOR_WARNING_TEXT]"  .. currentMatFromCityCapture .."[ENDCOLOR]"; end
 		if materielReinforcement.fromScenario	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. materielReinforcement.fromScenario; end
 		
 		local neededResource = GetNeededResourceForUnits(playerID, bOnlySupplied)
@@ -535,6 +564,7 @@ function GetOilTTString()
 	local resourceData = MapModData.RED.ResourceData 
 	
 	local currentOilFromSupplyRoutes = 0
+	local currentOilFromCityCapture = 0
 
 	if resourceData and resourceData[playerID] then
 	
@@ -543,23 +573,41 @@ function GetOilTTString()
 		local totalOil = resourceData[playerID].ReceivedOil
 		local oilFromGlobal = resourceData[playerID].OilFromGlobal
 		local oilFromScenario = resourceData[playerID].OilFromScenario
+		local oilFromMap = resourceData[playerID].OilFromMap
+		local oilFromBuildings = resourceData[playerID].OilFromBuildings
 
 		local oilFromSupplyRoutes  = resourceData[playerID].TotalOilFromSupplyRoute
 		currentOilFromSupplyRoutes = resourceData[playerID].OilFromSupplyRoute
+		
+		local oilFromCityCapture = resourceData[playerID].TotalOilFromCityCapture
+		currentOilFromCityCapture = resourceData[playerID].OilFromCityCapture
 
-		local unitsFuelConsumption, buildingFuelConsumption = 0, 0
+		local unitsFuelConsumption = 0 --GetUnitsFuelConsumption(playerID)
+		local buildingFuelConsumption = 0
 		local fuelConsumption = resourceData[playerID].FluxOil - totalOil
 		
 		strText = strText .. "[ICON_RES_OIL] Oil procured this turn : " .. totalOil
 		--strText = strText .. "[NEWLINE][ICON_BULLET] from nation (global production) : "  .. oilFromGlobal
-		if oilFromSupplyRoutes	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes (convoy, railsroad) : "  .. oilFromSupplyRoutes; end
+		if oilFromSupplyRoutes	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes : "  .. oilFromSupplyRoutes; end
+		if oilFromMap			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from deposits : "  .. oilFromMap; end
+		if oilFromBuildings		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from synthetic fuel plants : "  .. oilFromBuildings; end
 		if oilFromScenario		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. oilFromScenario; end
+		if oilFromCityCapture	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : "  .. oilFromCityCapture; end
+		if oilFromCityCapture	< 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : [COLOR_WARNING_TEXT]"  .. oilFromCityCapture .."[ENDCOLOR]"; end
 
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Fuel Consumption this turn : " .. fuelConsumption
 		if unitsFuelConsumption > 0 then strText = strText .. "[NEWLINE][ICON_BULLET] by mechanized units : " .. unitsFuelConsumption; end
 		if buildingFuelConsumption > 0 then strText = strText .. "[NEWLINE][ICON_BULLET] by buildings (power grid) : " .. buildingFuelConsumption; end
+
+		local savedByRationing = 0
+		if		IsLightRationing(playerID)	then savedByRationing = Round(fuelConsumption - (fuelConsumption * LIGHT_RATIONING_FUEL_CONSUMPTION / 100))
+		elseif	IsRationing(playerID)		then savedByRationing = Round(fuelConsumption - (fuelConsumption * MEDIUM_RATIONING_FUEL_CONSUMPTION / 100))
+		elseif	IsHeavyRationing(playerID)	then savedByRationing = Round(fuelConsumption - (fuelConsumption * HEAVY_RATIONING_FUEL_CONSUMPTION / 100))
+		end
 		
-		local difference = totalOil + fuelConsumption -- fuelConsumption is a negative value !
+		if savedByRationing > 0 then strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Saved by rationing : " .. savedByRationing; end
+		
+		local difference = totalOil + fuelConsumption + savedByRationing -- fuelConsumption is a negative value !
 		local strDifference = ""
 		
 		if difference >= 0 then
@@ -569,6 +617,11 @@ function GetOilTTString()
 		end
 
 		strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Oil stock variation : " .. strDifference	
+		strText = strText .. "[NEWLINE][NEWLINE]----------------------------------------------------------------"
+		strText = strText .. "[NEWLINE]Minimum reserve to prevent rationing of fuel usage:"
+		strText = strText .. "[NEWLINE][ICON_BULLET] < [COLOR_YELLOW]" .. RESOURCE_OIL_LIGHT_RATIONING .. " [ENDCOLOR] = light rationing."
+		strText = strText .. "[NEWLINE][ICON_BULLET] < [COLOR_PLAYER_ORANGE_TEXT]" .. RESOURCE_OIL_RATIONING .. " [ENDCOLOR] = medium rationing"
+		strText = strText .. "[NEWLINE][ICON_BULLET] < [COLOR_WARNING_TEXT]" .. RESOURCE_OIL_HEAVY_RATIONING .. " [ENDCOLOR] = heavy rationing"
 
 	else
 		strText = strText .. "Please wait for first turn to allow data initialization..."

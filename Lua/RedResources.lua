@@ -453,14 +453,14 @@ end
 -- Oil 
 --------------------------------------------------------------
 
-function GetOilProcurement (playerID, bUpdate)
+function GetOilProcurement (playerID, bNoUpdate)
 
 	local resourceData = MapModData.RED.ResourceData
 
 	local player = Players[playerID]
 	local oilProcurement = {}
 
-	oilProcurement.fromGlobal, oilProcurement.fromScenario = 0, 0
+	oilProcurement.fromGlobal, oilProcurement.fromScenario, oilProcurement.fromMap, oilProcurement.fromBuildings = 0, 0, 0, 0
 
 	-- Bonus from scenario
 	local handicap = GetHandicapForRED(player)
@@ -468,19 +468,17 @@ function GetOilProcurement (playerID, bUpdate)
 		oilProcurement.fromScenario = Round(SCENARIO_OIL_PER_TURN / ((handicap + 2 ) /2) )
 	end
 
-	for city in player:Cities() do
-		-- to do : link with city production
-		--[[
-		local cityMateriel = GetCityMateriel(city)
-		materielReinforcement.fromGlobal	= materielReinforcement.fromGlobal + cityMateriel.fromProdYield
-		materielReinforcement.fromFactory	= materielReinforcement.fromFactory + cityMateriel.fromFactory	
-		materielReinforcement.fromHarbor	= materielReinforcement.fromHarbor + cityMateriel.fromHarbor
-		materielReinforcement.fromWarBonds	= materielReinforcement.fromWarBonds + cityMateriel.fromWarBonds
-		--]]
-	end	
+	if bNoUpdate then
+		oilProcurement.fromMap = resourceData[playerID].OilFromMap
+	else
+		oilProcurement.fromMap = GetNumResourceTypeForPlayer(RESOURCE_OIL, playerID)
+	end
 
+	for city in player:Cities() do
+		if city:IsHasBuilding(SYNTHETIC_FUEL_PLANT) then oilProcurement.fromBuildings	= oilProcurement.fromBuildings + 25; end
+	end	
 	
-	oilProcurement.total = oilProcurement.fromGlobal + oilProcurement.fromScenario
+	oilProcurement.total = oilProcurement.fromGlobal + oilProcurement.fromScenario + oilProcurement.fromMap + oilProcurement.fromBuildings
 
 	return oilProcurement
 end
@@ -489,8 +487,8 @@ function GetMaxOil (playerID)
 	local player = Players[playerID]
 	local max = 0
 	for city in player:Cities() do
-		-- +10 / city
-		max = max + 10 
+		-- +250 / city
+		max = max + 250 
 	end
 	-- Bonus from scenario
 	if SCENARIO_MAX_OIL_BONUS then
@@ -540,6 +538,20 @@ function GetNeededResourceForUnits(playerID, bOnlySupplied)
 	end
 	return neededResource
 end
+
+function GetUnitsFuelConsumption(playerID)
+	local consumption = 0
+	local player = Players[playerID]
+	if not player then
+		return
+	end
+
+	for unit in player:Units() do
+		consumption = consumption + GameInfo.Units[unit:GetUnitType()].FuelConsumption
+	end
+	return consumption
+end
+
 
 function InitializeResourceTable()
 	local resourceData = MapModData.RED.ResourceData
@@ -591,6 +603,8 @@ function InitializeResourceTable()
 			resourceData[playerID].MatFromScenario			= materielReinforcement.fromScenario
 			resourceData[playerID].TotalMatFromSupplyRoute	= 0
 			resourceData[playerID].MatFromSupplyRoute		= 0
+			resourceData[playerID].TotalMatFromCityCapture	= 0
+			resourceData[playerID].MatFromCityCapture		= 0
 
 			-- Oil
 			local oilProcurement = GetOilProcurement (playerID)
@@ -601,8 +615,12 @@ function InitializeResourceTable()
 			resourceData[playerID].MaxOil					= maxOil
 			resourceData[playerID].ReceivedOil				= fluxOil
 			resourceData[playerID].OilFromScenario			= oilProcurement.fromScenario
+			resourceData[playerID].OilFromMap				= oilProcurement.fromMap
+			resourceData[playerID].OilFromBuildings			= oilProcurement.fromBuildings
 			resourceData[playerID].TotalOilFromSupplyRoute	= 0
 			resourceData[playerID].OilFromSupplyRoute		= 0
+			resourceData[playerID].TotalOilFromCityCapture	= 0
+			resourceData[playerID].OilFromCityCapture		= 0
 			
 			Dprint("- " .. player:GetName() .. " | +" .. fluxPersonnel .."/"..maxPersonnel.." personnel | +".. fluxMateriel .."/"..maxMateriel.." materiel | +".. fluxOil .."/"..maxOil.." oil")
 						
@@ -629,6 +647,7 @@ function ManageResources(playerID)
 
 		local personnel = tonumber(value.Personnel) or 0
 		local materiel = tonumber(value.Materiel) or 0
+		local oil = tonumber(value.Oil) or 0
 
 		Dprint("-------------------------------------", bDebug)
 		Dprint("Receving Global Resources for "..player:GetName().."...", bDebug)
@@ -642,6 +661,10 @@ function ManageResources(playerID)
 		local materielReinforcement = GetMaterielReinforcement (playerID, true)
 		local fluxMateriel = materielReinforcement.total
 		local maxMateriel = GetMaxMateriel (playerID)
+
+		local oilProcurement = GetOilProcurement (playerID)
+		local fluxOil = oilProcurement.total
+		local maxOil = GetMaxOil (playerID)
 		
 		-- Supply Routes
 		-- to do : include in GetPersonnelReinforcement / GetMateriellReinforcement ?
@@ -649,26 +672,41 @@ function ManageResources(playerID)
 		MapModData.RED.ResourceData[playerID].PersFromSupplyRoute = 0
 		MapModData.RED.ResourceData[playerID].TotalMatFromSupplyRoute = MapModData.RED.ResourceData[playerID].MatFromSupplyRoute
 		MapModData.RED.ResourceData[playerID].MatFromSupplyRoute = 0
+		MapModData.RED.ResourceData[playerID].TotalOilFromSupplyRoute = MapModData.RED.ResourceData[playerID].OilFromSupplyRoute
+		MapModData.RED.ResourceData[playerID].OilFromSupplyRoute = 0
 		fluxPersonnel = fluxPersonnel + MapModData.RED.ResourceData[playerID].TotalPersFromSupplyRoute
 		fluxMateriel = fluxMateriel + MapModData.RED.ResourceData[playerID].TotalMatFromSupplyRoute
+		fluxOil = fluxOil + MapModData.RED.ResourceData[playerID].TotalOilFromSupplyRoute
+
+		-- Cities Capture		
+		MapModData.RED.ResourceData[playerID].TotalMatFromCityCapture = MapModData.RED.ResourceData[playerID].MatFromCityCapture
+		MapModData.RED.ResourceData[playerID].MatFromCityCapture = 0
+		MapModData.RED.ResourceData[playerID].TotalOilFromCityCapture = MapModData.RED.ResourceData[playerID].OilFromCityCapture
+		MapModData.RED.ResourceData[playerID].OilFromCityCapture = 0
+		fluxMateriel = fluxMateriel + MapModData.RED.ResourceData[playerID].TotalMatFromCityCapture
+		fluxOil = fluxOil + MapModData.RED.ResourceData[playerID].TotalOilFromCityCapture
 
 		--
 		MapModData.RED.ResourceData[playerID].Personnel = personnel + fluxPersonnel -- check for max value AFTER applying reinforcement to units
-		MapModData.RED.ResourceData[playerID].Materiel = materiel + fluxMateriel
+		MapModData.RED.ResourceData[playerID].Materiel	= materiel + fluxMateriel
+		MapModData.RED.ResourceData[playerID].Oil		= oil + fluxOil
 
-		MapModData.RED.ResourceData[playerID].MaxPersonnel = maxPersonnel
-		MapModData.RED.ResourceData[playerID].MaxMateriel = maxMateriel
+		MapModData.RED.ResourceData[playerID].MaxPersonnel	= maxPersonnel
+		MapModData.RED.ResourceData[playerID].MaxMateriel	= maxMateriel
+		MapModData.RED.ResourceData[playerID].MaxOil		= maxOil
 		
-		MapModData.RED.ResourceData[playerID].ReceivedPers = fluxPersonnel -- before reinforcements lower the flux
-		MapModData.RED.ResourceData[playerID].ReceivedMat = fluxMateriel -- before reinforcements lower the flux
-		MapModData.RED.ResourceData[playerID].PersFromGlobal = personnelReinforcement.fromGlobal
-		MapModData.RED.ResourceData[playerID].PersFromHospital = personnelReinforcement.fromHospital
-		MapModData.RED.ResourceData[playerID].PersFromPropaganda = personnelReinforcement.fromPropaganda
-		MapModData.RED.ResourceData[playerID].PersFromRecruiting = personnelReinforcement.fromRecruiting
-		MapModData.RED.ResourceData[playerID].PersFromTrait = personnelReinforcement.fromTrait
-		MapModData.RED.ResourceData[playerID].PersFromNeedYou = personnelReinforcement.fromNeedYou
-		MapModData.RED.ResourceData[playerID].PersFromMinor = personnelReinforcement.fromMinor
-		MapModData.RED.ResourceData[playerID].PersFromScenario = personnelReinforcement.fromScenario
+		MapModData.RED.ResourceData[playerID].ReceivedPers	= fluxPersonnel	-- before reinforcements lower the flux
+		MapModData.RED.ResourceData[playerID].ReceivedMat	= fluxMateriel	-- before reinforcements lower the flux
+		MapModData.RED.ResourceData[playerID].ReceivedOil	= fluxOil		-- before consumption lower the flux
+
+		MapModData.RED.ResourceData[playerID].PersFromGlobal		= personnelReinforcement.fromGlobal
+		MapModData.RED.ResourceData[playerID].PersFromHospital		= personnelReinforcement.fromHospital
+		MapModData.RED.ResourceData[playerID].PersFromPropaganda	= personnelReinforcement.fromPropaganda
+		MapModData.RED.ResourceData[playerID].PersFromRecruiting	= personnelReinforcement.fromRecruiting
+		MapModData.RED.ResourceData[playerID].PersFromTrait			= personnelReinforcement.fromTrait
+		MapModData.RED.ResourceData[playerID].PersFromNeedYou		= personnelReinforcement.fromNeedYou
+		MapModData.RED.ResourceData[playerID].PersFromMinor			= personnelReinforcement.fromMinor
+		MapModData.RED.ResourceData[playerID].PersFromScenario		= personnelReinforcement.fromScenario
 
 		MapModData.RED.ResourceData[playerID].MatFromGlobal		= materielReinforcement.fromGlobal
 		MapModData.RED.ResourceData[playerID].MatFromFactory	= materielReinforcement.fromFactory
@@ -676,6 +714,10 @@ function ManageResources(playerID)
 		MapModData.RED.ResourceData[playerID].MatFromWarBonds	= materielReinforcement.fromWarBonds
 		MapModData.RED.ResourceData[playerID].MatFromMinor		= materielReinforcement.fromMinor
 		MapModData.RED.ResourceData[playerID].MatFromScenario	= materielReinforcement.fromScenario
+		
+		MapModData.RED.ResourceData[playerID].OilFromScenario	= oilProcurement.fromScenario
+		MapModData.RED.ResourceData[playerID].OilFromBuildings	= oilProcurement.fromBuildings
+		MapModData.RED.ResourceData[playerID].OilFromMap		= oilProcurement.fromMap
 		
 		Dprint("-------------------------------------", bDebug)
 		Dprint("Assigning Resources to units...", bDebug)
@@ -754,11 +796,35 @@ function ManageResources(playerID)
 			end
 		end
 
+		-- Apply fuel consumption
+		local fuelConsumption = GetUnitsFuelConsumption(playerID)
+
+		if		IsLightRationing(playerID)	then fuelConsumption = fuelConsumption * LIGHT_RATIONING_FUEL_CONSUMPTION / 100
+		elseif	IsRationing(playerID)		then fuelConsumption = fuelConsumption * MEDIUM_RATIONING_FUEL_CONSUMPTION / 100
+		elseif	IsHeavyRationing(playerID)	then fuelConsumption = fuelConsumption * HEAVY_RATIONING_FUEL_CONSUMPTION / 100
+		end
+
+		local reqOil = math.min(MapModData.RED.ResourceData[playerID].Oil, fuelConsumption)
+		MapModData.RED.ResourceData[playerID].Oil = MapModData.RED.ResourceData[playerID].Oil - reqOil
+		fluxOil = fluxOil - reqOil
+
 		-- round values, and check for maximum.
 		MapModData.RED.ResourceData[playerID].Materiel = math.min(Round(MapModData.RED.ResourceData[playerID].Materiel), maxMateriel) 
 		MapModData.RED.ResourceData[playerID].Personnel = math.min(Round(MapModData.RED.ResourceData[playerID].Personnel), maxPersonnel)
+		MapModData.RED.ResourceData[playerID].Oil = math.min(Round(MapModData.RED.ResourceData[playerID].Oil), maxOil)
+
 		MapModData.RED.ResourceData[playerID].FluxMateriel = Round(fluxMateriel)
 		MapModData.RED.ResourceData[playerID].FluxPersonnel = Round(fluxPersonnel)
+		MapModData.RED.ResourceData[playerID].FluxOil = Round(fluxOil)
+
+		if RESOURCE_CONSUMPTION then
+			local oilReserve = MapModData.RED.ResourceData[playerID].Oil
+			if		IsNoRationing(playerID)		then RemoveRationing(playerID)
+			elseif	IsLightRationing(playerID)	then ApplyLightRationing(playerID)
+			elseif	IsRationing(playerID)		then ApplyRationing(playerID)
+			elseif	IsHeavyRationing(playerID)	then ApplyHeavyRationing(playerID)
+			end
+		end
 
 	end
 end
@@ -766,3 +832,203 @@ end
 
 -- will need this one ?
 --Events.SerialEventUnitSetDamage.Add( OnChangeEvent )
+
+
+function InitializeResourceMap() 
+	Dprint("-------------------------------------")
+	Dprint("Initializing resource map ...")		
+	local t1 = os.clock()
+	for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
+		local plot = Map.GetPlotByIndex(iPlotLoop)
+		local x = plot:GetX()
+		local y = plot:GetY()
+		local ownerID = plot:GetOwner()
+		local plotKey = GetPlotKey ( plot )
+
+		if plot:GetResourceType(-1) ~= -1 then -- there is a resource here
+			MapModData.RED.ResourceMap[plotKey] = { Type = plot:GetResourceType(-1), Num = plot:GetNumResource()  }
+		end
+	end
+	local t2 = os.clock()
+	Dprint("  - Total time to initialize resource map :		" .. t2 - t1 .. " s")
+	Dprint("-------------------------------------")
+end
+
+function GetNumResourceTypeForPlayer(resourceID, playerID)
+
+	if not RESOURCE_CONSUMPTION then
+		return 0
+	end
+
+	Dprint("-------------------------------------")
+	Dprint("Getting Number of resource type ID=".. tostring(resourceID) .." available for player ID=" .. tostring(playerID))
+	local numResource = 0
+	for plotKey, data in pairs(MapModData.RED.ResourceMap) do
+		if MapModData.RED.ResourceMap[plotKey].Type == resourceID then
+			local plot = GetPlotFromKey ( plotKey )
+			if plot:IsImprovementPillaged() then
+				-- we can't get resource from a pillaged plot...
+				-- to do: check for the resource corresponding improvement too ? I don't plan to make scenario where we search for resource and improve land, but...
+				Dprint("- Improvement pillaged at " .. plotKey)
+				break
+			end
+			local ownerID = plot:GetOwner()
+
+			if not RESOURCE_FROM_FRIENDS and ownerID ~= playerID then
+				-- Don't check for relation if we already know that resources are not shared
+				Dprint("- Can't access resource at " .. plotKey .. " (not in player territory and no access to friend resources from scenario setting)")
+				break
+			else
+				local bOnFriendlyTerritory = (ownerID == playerID)
+				if not bOnFriendlyTerritory then
+					if AreSameSide( ownerID, playerID) then
+						bOnFriendlyTerritory = true
+					end
+				end
+				
+				if bOnFriendlyTerritory then
+					Dprint("- Resource is on friendly territory at " .. plotKey .. " check for possible route")
+
+					local bCanGetRessource = false
+
+					if RESOURCE_CONNECTION == RESOURCE_OWNED_PLOTS then
+						Dprint("   - No connection required from scenario settings...")
+						-- that's the simpliest case !
+						bCanGetRessource = true
+
+					elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_CAPITAL then
+						-- check road connection between the resource plot and the capital...
+						Dprint("   - Looking for route to capital...")
+						local player = Players[playerID]
+						local capital = player:GetCapitalCity()
+						if capital then
+							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Road", false, nil , PathBlocked)
+						end
+
+					elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_CAPITAL then
+						-- check rails connection between the resource plot and the capital...
+						Dprint("   - Looking for rails to capital...")
+						local player = Players[playerID]
+						local capital = player:GetCapitalCity()
+						if capital then
+							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Railroad", false, nil , PathBlocked)
+						end
+
+					elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_ANY_CITY then
+						-- check road connection between the resource plot and any city...
+						Dprint("   - Looking for route to any city...")
+						local player = Players[playerID]
+						-- first check closest own cities
+						local closeCity = GetCloseCity ( playerID, plot )
+						if closeCity then
+							local cityPlot = closeCity:Plot()
+							-- first check the area, no need to calculate land path if not in the same land... 
+							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , PathBlocked) ) 
+						end	
+						-- then all own cities
+						if not bCanGetRessource then
+							for city in player:Cities() do
+								local cityPlot = city:Plot()
+								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , PathBlocked) ) then
+									bCanGetRessource = true
+									break
+								end	
+							end
+						end
+
+					elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_ANY_CITY then
+						-- check rails connection between the resource plot and any city...
+						Dprint("   - Looking for rails to any city...")
+						local player = Players[playerID]
+						-- first check closest own cities
+						local closeCity = GetCloseCity ( playerID, plot )
+						if closeCity then
+							local cityPlot = closeCity:Plot()
+							-- first check the area, no need to calculate land path if not in the same land... 
+							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , PathBlocked) ) 
+						end	
+						-- then all own cities
+						if not bCanGetRessource then
+							for city in player:Cities() do
+								local cityPlot = city:Plot()
+								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , PathBlocked) ) then
+									bCanGetRessource = true
+									break
+								end	
+							end
+						end
+					end
+				
+					if bCanGetRessource then
+						Dprint("   - Resource is connected, added to pool...")
+						numResource = numResource + (MapModData.RED.ResourceMap[plotKey].Num * RESOURCE_PRODUCTION_FACTOR)
+					end
+
+				end				
+			end
+		end
+	end
+	Dprint("-------------------------------------")
+	return numResource	
+end
+
+function IsNoRationing(playerID)
+	return (MapModData.RED.ResourceData[playerID].Oil >= RESOURCE_OIL_LIGHT_RATIONING)
+end
+function IsLightRationing(playerID)
+	return (MapModData.RED.ResourceData[playerID].Oil < RESOURCE_OIL_LIGHT_RATIONING and MapModData.RED.ResourceData[playerID].Oil >= RESOURCE_OIL_RATIONING)
+end
+function IsRationing(playerID)
+	return (MapModData.RED.ResourceData[playerID].Oil < RESOURCE_OIL_RATIONING and MapModData.RED.ResourceData[playerID].Oil >= RESOURCE_OIL_HEAVY_RATIONING)
+end
+function IsHeavyRationing(playerID)
+	return (MapModData.RED.ResourceData[playerID].Oil < RESOURCE_OIL_HEAVY_RATIONING)
+end
+
+function RemoveRationing(playerID)
+	local player = Players[playerID]
+	for unit in player:Units() do
+		local unitType = unit:GetUnitType()
+		if UseFuel(unitType) then
+			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false) end
+			if (unit:IsHasPromotion(PROMOTION_RATIONING))		then unit:SetHasPromotion(PROMOTION_RATIONING,			false) end
+			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING)) then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false) end
+		end
+	end
+end
+
+function ApplyLightRationing(playerID)
+	local player = Players[playerID]
+	for unit in player:Units() do
+		local unitType = unit:GetUnitType()
+		if UseFuel(unitType) then
+			if (not unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	true)	end
+			if (unit:IsHasPromotion(PROMOTION_RATIONING))			then unit:SetHasPromotion(PROMOTION_RATIONING,			false)	end
+			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))		then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false)	end
+		end
+	end
+end
+
+function ApplyRationing(playerID)
+	local player = Players[playerID]
+	for unit in player:Units() do
+		local unitType = unit:GetUnitType()
+		if UseFuel(unitType) then
+			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false)	end
+			if (not unit:IsHasPromotion(PROMOTION_RATIONING))	then unit:SetHasPromotion(PROMOTION_RATIONING,			true)	end
+			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false)	end
+		end
+	end
+end
+
+function ApplyHeavyRationing(playerID)
+	local player = Players[playerID]
+	for unit in player:Units() do
+		local unitType = unit:GetUnitType()
+		if UseFuel(unitType) then
+			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING))		then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false)	end
+			if (unit:IsHasPromotion(PROMOTION_RATIONING))			then unit:SetHasPromotion(PROMOTION_RATIONING,			false)	end
+			if (not unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	true)	end
+		end
+	end
+end

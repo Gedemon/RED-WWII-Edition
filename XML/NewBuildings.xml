@@ -236,6 +236,31 @@
 		</Row>
 	</Building_DomainProductionModifiers>
 
+	<!-- Synthetic Fuel Plant -->
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_SYNTHETIC_FUEL_PLANT</Type>
+			<DefaultBuilding>BUILDING_SYNTHETIC_FUEL_PLANT</DefaultBuilding>
+			<Description>TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT</Description>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_SYNTHETIC_FUEL_PLANT</Type>
+			<BuildingClass>BUILDINGCLASS_SYNTHETIC_FUEL_PLANT</BuildingClass>
+			<Cost>360</Cost>
+			<GoldMaintenance>25</GoldMaintenance>
+			<Help>TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT_HELP</Help>
+			<Description>TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT</Description>
+			<Civilopedia>TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT_HELP</Civilopedia>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>66</ConquestProb>
+			<HurryCostModifier>0</HurryCostModifier>
+			<IconAtlas>RESOURCE_ATLAS</IconAtlas>
+			<PortraitIndex>3</PortraitIndex>
+		</Row>
+	</Buildings>
 
 	<!-- Open City -->
 	<BuildingClasses>

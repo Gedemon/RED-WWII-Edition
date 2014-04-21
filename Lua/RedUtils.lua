@@ -512,6 +512,7 @@ function LoadAllTable()
 	MapModData.RED.ProjectsDone = LoadData("ProjectsDone", {}, PROJECTS_SAVE_SLOT)
 	MapModData.RED.CombatsLog = LoadData("CombatsLog", {}, COMBATLOG_SAVE_SLOT)
 	MapModData.RED.DynamicMap = LoadData("DynamicMap", {}, DYNAMICMAP_SAVE_SLOT)
+	MapModData.RED.ResourceMap = LoadData("ResourceMap", {}, DYNAMICMAP_SAVE_SLOT)
 
 	local t2 = os.clock()
 	Dprint("  - Total time for all tables :		" .. t2 - t1 .. " s")
@@ -547,6 +548,7 @@ function SaveAllTable()
 	SaveData("Resource", MapModData.RED.ResourceData, RESOURCE_SAVE_SLOT)
 	SaveData("ProjectsDone", MapModData.RED.ProjectsDone, PROJECTS_SAVE_SLOT)
 	SaveData("DynamicMap", MapModData.RED.DynamicMap, DYNAMICMAP_SAVE_SLOT)
+	SaveData("ResourceMap", MapModData.RED.ResourceMap, DYNAMICMAP_SAVE_SLOT)
 
 	local t2 = os.clock()
 	Dprint("  - Total time for all tables :		" .. t2 - t1 .. " s")
@@ -890,6 +892,7 @@ function FinalizeNextPlayerProjects(CurrentPlayerID)
 				Dprint ("     - Turn(s) left = " .. turnLeft, bDebug)
 				if turnLeft < 2 then
 					Dprint ("     - Removing project from build list and mark it as done...", bDebug)
+					city:SetProduction(0) -- in case the project is allowed to be build again...
 					city:PopOrder()
 					local civID = GetCivIDFromPlayerID(playerID)
 					if (not CanRepeatProject(projectID)) or (IsMilitaryOperationProject(projectID, civID)) then -- Military operation are marked available again in RedUnitFunctions if they can be produced multiple time

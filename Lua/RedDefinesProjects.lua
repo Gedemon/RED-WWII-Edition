@@ -242,7 +242,7 @@ OPERATION_SONNENBLUME		= GameInfo.Projects.OPERATION_SONNENBLUME.ID
 OPERATION_TWENTYFIVE		= GameInfo.Projects.OPERATION_TWENTYFIVE.ID
 OPERATION_MARITA			= GameInfo.Projects.OPERATION_MARITA.ID
 OPERATION_TORCH				= GameInfo.Projects.OPERATION_TORCH.ID
-
+OPERATION_MOTHERLANDCALL	= GameInfo.Projects.OPERATION_MOTHERLANDCALL.ID
 
 -- Available projects per nation
 g_Major_Projects = {
@@ -251,8 +251,8 @@ g_Major_Projects = {
 		PROJECT_W15_TCC, PROJECT_AMR35_ZT3, PROJECT_37L,
 		PROJECT_SAU40,
 		PROJECT_HOTCHKISS,
-		PROJECT_MB152, PROJECT_MS406, PROJECT_D520, PROJECT_D790,
-		PROJECT_LN401, PROJECT_BR690, PROJECT_BR810,
+		PROJECT_MB152, PROJECT_MS406, PROJECT_D520,
+		PROJECT_LN401, PROJECT_BR690, 
 		PROJECT_JOFFRE, },
 	[USSR] = {
 		PROJECT_T70, PROJECT_T34, PROJECT_T34_76, PROJECT_T34_85,
@@ -262,7 +262,8 @@ g_Major_Projects = {
 		PROJECT_SU26, PROJECT_ZSU37, PROJECT_BM13, PROJECT_BM13_16,
 		PROJECT_LAGG3, PROJECT_LA5, PROJECT_LA5_V2, PROJECT_LA7, PROJECT_YAK7, PROJECT_YAK9,
 		PROJECT_IL2, PROJECT_IL2M3, PROJECT_IL10, PROJECT_PE2, PROJECT_IL4, PROJECT_TU2,
-		PROJECT_SOYUZ, },
+		PROJECT_SOYUZ,
+		OPERATION_MOTHERLANDCALL, },
 	[GERMANY] = {
 		PROJECT_PANZER_II_L, PROJECT_PANZER_III, PROJECT_PANZER_III_J, PROJECT_PANZER_IV, PROJECT_PANZER_IV_G, PROJECT_PANZER_IV_H,
 		PROJECT_PANZER_V, PROJECT_PANZER_VI, PROJECT_PANZER_VIB, PROJECT_PANZER_VIII,
@@ -318,7 +319,7 @@ g_ProjectsTable = {
 		-- TRIGGER_XP = another unit (set in Reference) must have gain this amount of XP during combat (XP from buildings are not counted)
 		-- TRIGGER_DATE = when starting date is reached (yyyymmdd), each turn the project have ProbPerTur % of chance of being made available
 	-- Repeat : project can be done again (example: for calling reinforcement)
-	-- AIOnly : reserved for AI
+	-- AIOnly : project can be produced only by the AI (It can be use for balance)
 
 	---------------------------------------------------------------------
 	-- France
@@ -1408,8 +1409,16 @@ g_ProjectsTable = {
 		Scenarios = {"Earth1936", },	
 		Trigger = {Type = TRIGGER_DATE, Date = 19420601, ProbPerTurn = 15},
 		TopSecret = true,
-	},
-	
+	},	
+
+	[OPERATION_MOTHERLANDCALL] =  {
+		Buildings = {RADIO},	
+		Scenarios = {"Euro1940", },	
+		--Trigger = {Type = TRIGGER_DATE, Date = 19411204, ProbPerTurn = 25},
+		--Projects = {PROJECT_T34},
+		TopSecret = false,
+		Repeat = true,
+	},	
 }
 
 -- Units needing a project done before being build...

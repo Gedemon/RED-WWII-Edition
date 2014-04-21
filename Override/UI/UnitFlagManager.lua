@@ -625,6 +625,10 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 			end
 		end
 
+		-- Oil Consumption
+		local reqOil = GameInfo.Units[pUnit:GetUnitType()].FuelConsumption
+		string = string .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_HOVERINFO_OIL_CONSUMPTION", reqOil );
+
 		local buildType = pUnit:GetBuildType();			
 		if buildType ~= -1 then
 			string = string .. "[NEWLINE]";

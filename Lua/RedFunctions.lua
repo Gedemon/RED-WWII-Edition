@@ -38,10 +38,32 @@ function MapUpdate() -- to do : check culture tile consistency. for example, a c
 		local x = plot:GetX()
 		local y = plot:GetY()
 		local ownerID = plot:GetOwner()
+		local plotKey = GetPlotKey ( plot )
+
+		-- Set timer to auto-repair plots that have been pillaged by units (like Special Forces)...
+		if plot:IsImprovementPillaged() then
+			if not MapModData.RED.DynamicMap[plotKey] then
+				Dprint("Improvement pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
+				MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = IMPROVEMENT_MAX_DAMAGE, RouteDamage = 0  }
+							
+			elseif MapModData.RED.DynamicMap[plotKey].ImprovementDamage == 0 then
+				Dprint("Improvement pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
+				MapModData.RED.DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
+			end
+		end		
+		if plot:IsRoutePillaged() then
+			if not MapModData.RED.DynamicMap[plotKey] then
+				Dprint("Route pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
+				MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = 0, RouteDamage = IMPROVEMENT_MAX_DAMAGE  }
+
+			elseif MapModData.RED.DynamicMap[plotKey].RouteDamage == 0 then
+				Dprint("Route pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
+				MapModData.RED.DynamicMap[plotKey].RouteDamage = IMPROVEMENT_MAX_DAMAGE
+			end
+		end
 
 		-- check only owned plot...
 		if (ownerID ~= -1) then
-			local plotKey = GetPlotKey ( plot )
 			local originalOwner = GetPlotFirstOwner(plotKey)
 			local bCapturedPlot = ownerID ~= originalOwner
 
@@ -139,7 +161,26 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 			end
 			
 		end
-	end	
+	end
+	
+	local ratio = city:GetRealPopulation() / Players[originalCityOwner]:GetRealPopulation()
+	local gainMat, gainOil = 0, 0
+
+	-- Get Materiel from city capture
+	gainMat = Round(MapModData.RED.ResourceData[originalCityOwner].Materiel * ratio)
+	MapModData.RED.ResourceData[newPlayerID].MaterielFromCityCapture		= MapModData.RED.ResourceData[newPlayerID].MaterielFromCityCapture			+ gainMat
+	MapModData.RED.ResourceData[originalCityOwner].MaterielFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MaterielFromCityCapture	- gainMat
+
+	-- Get Oil from city capture
+	if RESOURCE_CONSUMPTION then
+		gainOil = Round(MapModData.RED.ResourceData[originalCityOwner].Oil * ratio)
+		MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture		+ gainOil
+		MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture - gainOil
+	end
+			
+	if gainMat > 0 or gainOil > 0 then
+		Events.GameplayAlertMessage(Players[newPlayerID]:getName() .. " has gained " .. gainMat .. " [ICON_MATERIEL] Materiel and " .. gainOil .. " [ICON_RES_OIL] Oil from " .. city:GetName() .. " capture")
+	end
 
 	Dprint ("-------------------------------------", bDebugOutput)
 end
@@ -946,7 +987,8 @@ function CommonOnGameInit()
 	SetMajorRelations()
 	GameEvents.UnitSetXY.Add( DynamicTilePromotion )	-- before initializing Order Of Battle
 	InitializeOOB()
-	InitializeResourceTable()	
+	InitializeResourceTable()
+	InitializeResourceMap()
 	InitializeHotseat()
 	ShareGlobalTables()									-- Before UI initialization, after any table initialization (Resource, projects, etc...)
 end
@@ -1097,16 +1139,28 @@ function TransfertDamage( city, damage)
 end
 
 function RepairImprovements()
+	Dprint("Check for Improvements to repair...")
 	for plotKey, data in pairs(MapModData.RED.DynamicMap) do
 		if MapModData.RED.DynamicMap[plotKey] then
 			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = math.max(0, MapModData.RED.DynamicMap[plotKey].ImprovementDamage - IMPROVEMENT_REPAIR_PER_TURN)
+			MapModData.RED.DynamicMap[plotKey].RouteDamage = math.max(0, MapModData.RED.DynamicMap[plotKey].RouteDamage - IMPROVEMENT_REPAIR_PER_TURN)
 
 			if MapModData.RED.DynamicMap[plotKey].ImprovementDamage < IMPROVEMENT_DAMAGED_THRESHOLD then
 				local plot = GetPlotFromKey ( plotKey )
 				if plot:IsImprovementPillaged() then
+					Dprint("Repairing improvement at " .. plotKey)
 					plot:SetImprovementPillaged( false )
 				end
 			end
+			
+			if MapModData.RED.DynamicMap[plotKey].RouteDamage < IMPROVEMENT_DAMAGED_THRESHOLD then
+				local plot = GetPlotFromKey ( plotKey )
+				if plot:IsRoutePillaged() then
+					Dprint("Repairing route at " .. plotKey)
+					plot:SetRouteType( plot:GetRouteType() ) -- seems that hacky way to say plot:SetImprovementPillaged( false )
+				end
+			end
+
 		end
 	end 
 end

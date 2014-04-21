@@ -282,6 +282,33 @@
 			<Flavor>80</Flavor>
 		</Row>
 	</Project_Flavors>
-	
+
+	<!-- Operation Motherland call (Defense of Russia) -->
+	<Projects>
+		<Row>
+			<Type>OPERATION_MOTHERLANDCALL</Type>
+			<Description>TXT_KEY_OPERATION_MOTHERLANDCALL</Description>
+			<Help>TXT_KEY_OPERATION_MOTHERLANDCALL_DESC</Help>
+			<Civilopedia>TXT_KEY_OPERATION_MOTHERLANDCALL_DESC</Civilopedia>
+			<Strategy>TXT_KEY_OPERATION_MOTHERLANDCALL_DESC</Strategy>
+			<MaxGlobalInstances>-1</MaxGlobalInstances>
+			<MaxTeamInstances>1</MaxTeamInstances>
+			<Cost>200</Cost>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>10</PortraitIndex>
+		</Row>
+	</Projects>
+	<Project_Flavors>
+		<Row>
+			<ProjectType>OPERATION_MOTHERLANDCALL</ProjectType>
+			<FlavorType>FLAVOR_DEFENSE</FlavorType>
+			<Flavor>80</Flavor>
+		</Row>
+		<Row>
+			<ProjectType>OPERATION_MOTHERLANDCALL</ProjectType>
+			<FlavorType>FLAVOR_OFFENSE</FlavorType>
+			<Flavor>10</Flavor>
+		</Row>
+	</Project_Flavors>
 	
 </GameData>

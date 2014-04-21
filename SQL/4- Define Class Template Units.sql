@@ -15,41 +15,41 @@
 -----------------------------------------------
 
 INSERT INTO UnitConfiguration
-	(		UnitKey,			CivKey,		Var,	Name,					fxsxml,						Template,			Nb,		Form,				Scl,	Cbt,	Rgcbt,	Cst,	Mvt,	Imb,	Rng,	Mat,	Pers,	Flag,	Icon,	IcAtl,				FlagAtl,			Sv,				Embark  	)
---		Key Name							Variation						Model file										Figures						Scale			RangedCombat	Move			Range			Pers			IconIndex					FlagAtlas							Embarked 
---								Nation Name			Unit Name											Template Unit				Formation					Combat			Cost			Immobile		Mat				FlagIndex		IconAtlas								SV Icon
+	(		UnitKey,			CivKey,		Var,	Name,					fxsxml,						Template,			Nb,		Form,				Scl,	Cbt,	Rgcbt,	Cst,	Mvt,	Imb,	Rng,	Mat,	Pers,	Fuel,	Flag,	Icon,	IcAtl,				FlagAtl,			Sv,				Embark  	)
+--		Key Name							Variation						Model file										Figures						Scale			RangedCombat	Move			Range			Pers	FuelCons.		IconIndex					FlagAtlas							Embarked 
+--								Nation Name			Unit Name											Template Unit				Formation					Combat			Cost			Immobile		Mat						FlagIndex		IconAtlas								SV Icon
 
-SELECT	'SPECIAL_FORCES',		NULL,		'',		'Special Forces',		'Paratrooper_Generic_v3',	'INFANTRY',			10,		NULL,				NULL,	32,		35,		500,	3,		NULL,	1,		1,		30,		12,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'MECHANIZED_INFANTRY',	NULL,		'',		'Mechanized Infantry',	NULL,						'INFANTRY',			NULL,	'MechInfantry',		NULL,	38,		NULL,	300,	4,		NULL,	NULL,	7,		15,		2,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'LIGHT_TANK',			NULL,		'',		'Light Tank',			'LightTank_Generic',		'TANK',				NULL,	NULL,				0.11,	40,		NULL,	300,	5,		NULL,	NULL,	12,		10,		1,		9,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'CRUISER_TANK',			NULL,		'',		'Cruiser Tank',			'LightTank_Generic',		'TANK',				NULL,	NULL,				NULL,	40,		NULL,	375,	6,		NULL,	NULL,	15,		4,		1,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'LIGHT_INFANTRY_TANK',	NULL,		'',		'Light Infantry Tank',	'LightTank_Generic',		'TANK',				NULL,	NULL,				NULL,	42,		NULL,	300,	3,		NULL,	NULL,	14,		8,		1,		9,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'INFANTRY_TANK',		NULL,		'',		'Infantry Tank',		NULL,						'TANK',				NULL,	NULL,				NULL,	60,		NULL,	375,	2,		NULL,	NULL,	18,		4,		NULL,	NULL,	NULL,				NULL,				NULL,			NULL	UNION ALL
-SELECT	'HEAVY_TANK',			NULL,		'',		'Heavy Tank',			'HeavyTank_Generic',		'TANK',				2,		'TwoBigGuns',		NULL,	65,		NULL,	600,	3,		NULL,	NULL,	35,		2,		1,		39,		NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'MAIN_BATTLE_TANK',		NULL,		'',		'Main Battle Tank',		'HeavyTank_Generic',		'TANK',				NULL,	NULL,				NULL,	85,		NULL,	420,	6,		NULL,	NULL,	20,		2,		1,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'SUPER_HEAVY_TANK',		NULL,		'',		'Super Heavy Tank',		'HeavyTank_Generic',		'TANK',				1,		'TwoBigGuns',		0.16,	120,	NULL,	950,	2,		NULL,	NULL,	50,		2,		1,		39,		NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'LIGHT_TANK_DESTROYER',	NULL,		'',		'Light Tank Destroyer',	'TankDestroyer_Generic',	'TANK',				NULL,	NULL,				NULL,	35,		45,		270,	4,		NULL,	1,		7,		10,		13,		4,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'TANK_DESTROYER',		NULL,		'',		'Tank Destroyer',		'TankDestroyer_Generic',	'TANK',				NULL,	NULL,				NULL,	50,		65,		375,	3,		NULL,	NULL,	12,		4,		13,		0,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'HEAVY_TANK_DESTROYER',	NULL,		'',		'Heavy Tank Destroyer',	'TankDestroyer_Generic',	'TANK',				2,		'TwoBigGuns',		NULL,	85,		105,	650,	2,		NULL,	NULL,	28,		2,		13,		0,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'ASSAULT_GUN',			NULL,		'',		'Assault Gun',			'TankDestroyer_Generic',	'TANK',				NULL,	NULL,				NULL,	50,		NULL,	375,	3,		NULL,	NULL,	18,		2,		29,		0,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'HEAVY_ASSAULT_GUN',	NULL,		'',		'Heavy Assault Gun',	'TankDestroyer_Generic',	'TANK',				2,		'TwoBigGuns',		NULL,	80,		NULL,	660,	2,		NULL,	NULL,	38,		2,		29,		2,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'MOBILE_ARTILLERY',		NULL,		'',		'Mobile Artillery',		NULL,						'TANK',				NULL,	NULL,				0.11,	16,		30,		340,	4,		NULL,	1,		14,		10,		14,		4,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'MOBILE_AA_GUN',		NULL,		'',		'Mobile AA Gun',		'AntiAircraftGun_Generic',	'ANTI_AIRCRAFT_GUN',NULL,	NULL,				NULL,	16,		40,		325,	4,		NULL,	NULL,	14,		10,		23,		14,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
-SELECT	'NAVY_FIGHTER',			NULL,		'',		'Navy Fighter',			NULL,						'FIGHTER',			NULL,	NULL,				NULL,	NULL,	36,		395,	NULL,	NULL,	10,		NULL,	NULL,	NULL,	NULL,	NULL,				NULL,				NULL,			1		UNION ALL
-SELECT	'FIGHTER_BOMBER',		NULL,		'',		'Fighter-Bomber',		'Fighter_Generic',			'FIGHTER',			NULL,	NULL,				NULL,	NULL,	40,		375,	NULL,	NULL,	10,		NULL,	NULL,	NULL,	8,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'HEAVY_FIGHTER',		NULL,		'',		'Heavy Fighter',		NULL,						'FIGHTER',			3,		'HeavyFighterWing',	NULL,	NULL,	45,		390,	NULL,	NULL,	12,		19,		NULL,	NULL,	3,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'JET_FIGHTER',			NULL,		'',		'Jet Fighter',			NULL,						'FIGHTER',			NULL,	NULL,				NULL,	NULL,	70,		450,	NULL,	NULL,	12,		20,		NULL,	NULL,	NULL,	NULL,				NULL,				NULL,			NULL	UNION ALL
-SELECT	'ATTACK_AIRCRAFT',		NULL,		'',		'Attack Aircraft',		'AttackAircraft_Generic',	'BOMBER',			6,		'FighterDiamond',	0.07,	NULL,	30,		350,	NULL,	NULL,	8,		12,		NULL,	NULL,	5,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'LIGHT_BOMBER',			NULL,		'',		'Light Bomber',			NULL,						'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		400,	NULL,	NULL,	12,		20,		NULL,	NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'NAVY_BOMBER',			NULL,		'',		'Navy Bomber',			'AttackAircraft_Generic',	'BOMBER',			6,		'FighterDiamond',	0.07,	NULL,	30,		370,	NULL,	NULL,	8,		14,		NULL,	NULL,	5,		'WW2_UNIT_ICONS',	NULL,				NULL,			1		UNION ALL
-SELECT	'NAVY_LIGHT_BOMBER',	NULL,		'',		'Navy Light Bomber',	'AttackAircraft_Generic',	'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		465,	NULL,	NULL,	12,		21,		NULL,	NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			1		UNION ALL
-SELECT	'TORPEDO_BOMBER',		NULL,		'',		'Torpedo Bomber',		'AttackAircraft_Generic',	'BOMBER',			6,		'FighterDiamond',	0.07,	NULL,	30,		375,	NULL,	NULL,	8,		14,		NULL,	NULL,	5,		'WW2_UNIT_ICONS',	NULL,				NULL,			1		UNION ALL
-SELECT	'FAST_BOMBER',			NULL,		'',		'Fast Bomber',			NULL,						'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		420,	NULL,	NULL,	12,		20,		NULL,	NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'JET_BOMBER',			NULL,		'',		'Jet Bomber',			NULL,						'BOMBER',			NULL,	NULL,				NULL,	NULL,	45,		525,	NULL,	NULL,	14,		25,		NULL,	NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'HEAVY_BOMBER',			NULL,		'',		'Heavy Bomber',			'Bomber_Generic',			'BOMBER',			NULL,	NULL,				NULL,	NULL,	70,		500,	NULL,	NULL,	16,		30,		NULL,	NULL,	42,		NULL,				NULL,				NULL,			NULL	UNION ALL
-SELECT	'CRUISER',				NULL,		'',		'Cruiser',				'Cruiser_Generic',			'BATTLESHIP',		NULL,	NULL,				0.11,	45,		30,		435,	6,		NULL,	NULL,	18,		5,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'HEAVY_CRUISER',		NULL,		'',		'Heavy Cruiser',		NULL,						'BATTLESHIP',		NULL,	NULL,				NULL,	50,		36,		485,	5,		NULL,	NULL,	20,		6,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
-SELECT	'DREADNOUGHT',			NULL,		'',		'Dreadnought',			'Dreadnought_Generic',		'BATTLESHIP',		NULL,	NULL,				0.10,	50,		36,		525,	4,		NULL,	NULL,	25,		8,		NULL,	10,		NULL,				NULL,				NULL,			NULL;--	UNION ALL
+SELECT	'SPECIAL_FORCES',		NULL,		'',		'Special Forces',		'Paratrooper_Generic_v3',	'INFANTRY',			10,		NULL,				NULL,	32,		35,		500,	3,		NULL,	1,		1,		30,		0,		12,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'MECHANIZED_INFANTRY',	NULL,		'',		'Mechanized Infantry',	NULL,						'INFANTRY',			NULL,	'MechInfantry',		NULL,	38,		NULL,	300,	4,		NULL,	NULL,	7,		15,		2,		2,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'LIGHT_TANK',			NULL,		'',		'Light Tank',			'LightTank_Generic',		'TANK',				NULL,	NULL,				0.11,	40,		NULL,	300,	5,		NULL,	NULL,	12,		10,		3,		1,		9,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'CRUISER_TANK',			NULL,		'',		'Cruiser Tank',			'LightTank_Generic',		'TANK',				NULL,	NULL,				NULL,	40,		NULL,	375,	6,		NULL,	NULL,	15,		4,		4,		1,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'LIGHT_INFANTRY_TANK',	NULL,		'',		'Light Infantry Tank',	'LightTank_Generic',		'TANK',				NULL,	NULL,				NULL,	42,		NULL,	300,	3,		NULL,	NULL,	14,		8,		4,		1,		9,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'INFANTRY_TANK',		NULL,		'',		'Infantry Tank',		NULL,						'TANK',				NULL,	NULL,				NULL,	60,		NULL,	375,	2,		NULL,	NULL,	18,		4,		6,		NULL,	NULL,	NULL,				NULL,				NULL,			NULL	UNION ALL
+SELECT	'HEAVY_TANK',			NULL,		'',		'Heavy Tank',			'HeavyTank_Generic',		'TANK',				2,		'TwoBigGuns',		NULL,	65,		NULL,	600,	3,		NULL,	NULL,	35,		2,		10,		1,		39,		NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'MAIN_BATTLE_TANK',		NULL,		'',		'Main Battle Tank',		'HeavyTank_Generic',		'TANK',				NULL,	NULL,				NULL,	85,		NULL,	420,	6,		NULL,	NULL,	20,		2,		8,		1,		NULL,	NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'SUPER_HEAVY_TANK',		NULL,		'',		'Super Heavy Tank',		'HeavyTank_Generic',		'TANK',				1,		'TwoBigGuns',		0.16,	120,	NULL,	950,	2,		NULL,	NULL,	50,		2,		25,		1,		39,		NULL,				'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'LIGHT_TANK_DESTROYER',	NULL,		'',		'Light Tank Destroyer',	'TankDestroyer_Generic',	'TANK',				NULL,	NULL,				NULL,	35,		45,		270,	4,		NULL,	1,		7,		10,		3,		13,		4,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'TANK_DESTROYER',		NULL,		'',		'Tank Destroyer',		'TankDestroyer_Generic',	'TANK',				NULL,	NULL,				NULL,	50,		65,		375,	3,		NULL,	NULL,	12,		4,		5,		13,		0,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'HEAVY_TANK_DESTROYER',	NULL,		'',		'Heavy Tank Destroyer',	'TankDestroyer_Generic',	'TANK',				2,		'TwoBigGuns',		NULL,	85,		105,	650,	2,		NULL,	NULL,	28,		2,		10,		13,		0,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'ASSAULT_GUN',			NULL,		'',		'Assault Gun',			'TankDestroyer_Generic',	'TANK',				NULL,	NULL,				NULL,	50,		NULL,	375,	3,		NULL,	NULL,	18,		2,		5,		29,		0,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'HEAVY_ASSAULT_GUN',	NULL,		'',		'Heavy Assault Gun',	'TankDestroyer_Generic',	'TANK',				2,		'TwoBigGuns',		NULL,	80,		NULL,	660,	2,		NULL,	NULL,	38,		2,		10,		29,		2,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'MOBILE_ARTILLERY',		NULL,		'',		'Mobile Artillery',		NULL,						'TANK',				NULL,	NULL,				0.11,	16,		30,		340,	4,		NULL,	1,		14,		10,		3,		14,		4,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'MOBILE_AA_GUN',		NULL,		'',		'Mobile AA Gun',		'AntiAircraftGun_Generic',	'ANTI_AIRCRAFT_GUN',NULL,	NULL,				NULL,	16,		40,		325,	4,		NULL,	NULL,	14,		10,		3,		23,		14,		'WW2_UNIT_ICONS',	'WW2_UNIT_FLAGS',	NULL,			NULL	UNION ALL
+SELECT	'NAVY_FIGHTER',			NULL,		'',		'Navy Fighter',			NULL,						'FIGHTER',			NULL,	NULL,				NULL,	NULL,	36,		395,	NULL,	NULL,	10,		NULL,	NULL,	NULL,	NULL,	NULL,	NULL,				NULL,				NULL,			1		UNION ALL
+SELECT	'FIGHTER_BOMBER',		NULL,		'',		'Fighter-Bomber',		'Fighter_Generic',			'FIGHTER',			NULL,	NULL,				NULL,	NULL,	40,		375,	NULL,	NULL,	10,		NULL,	NULL,	NULL,	NULL,	8,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'HEAVY_FIGHTER',		NULL,		'',		'Heavy Fighter',		NULL,						'FIGHTER',			3,		'HeavyFighterWing',	NULL,	NULL,	45,		390,	NULL,	NULL,	12,		19,		NULL,	8,		NULL,	3,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'JET_FIGHTER',			NULL,		'',		'Jet Fighter',			NULL,						'FIGHTER',			NULL,	NULL,				NULL,	NULL,	70,		450,	NULL,	NULL,	12,		20,		NULL,	12,		NULL,	NULL,	NULL,				NULL,				NULL,			NULL	UNION ALL
+SELECT	'ATTACK_AIRCRAFT',		NULL,		'',		'Attack Aircraft',		'AttackAircraft_Generic',	'BOMBER',			6,		'FighterDiamond',	0.07,	NULL,	30,		350,	NULL,	NULL,	8,		12,		NULL,	5,		NULL,	5,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'LIGHT_BOMBER',			NULL,		'',		'Light Bomber',			NULL,						'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		400,	NULL,	NULL,	12,		20,		NULL,	8,		NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'NAVY_BOMBER',			NULL,		'',		'Navy Bomber',			'AttackAircraft_Generic',	'BOMBER',			6,		'FighterDiamond',	0.07,	NULL,	30,		370,	NULL,	NULL,	8,		14,		NULL,	5,		NULL,	5,		'WW2_UNIT_ICONS',	NULL,				NULL,			1		UNION ALL
+SELECT	'NAVY_LIGHT_BOMBER',	NULL,		'',		'Navy Light Bomber',	'AttackAircraft_Generic',	'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		465,	NULL,	NULL,	12,		21,		NULL,	8,		NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			1		UNION ALL
+SELECT	'TORPEDO_BOMBER',		NULL,		'',		'Torpedo Bomber',		'AttackAircraft_Generic',	'BOMBER',			6,		'FighterDiamond',	0.07,	NULL,	30,		375,	NULL,	NULL,	8,		14,		NULL,	5,		NULL,	5,		'WW2_UNIT_ICONS',	NULL,				NULL,			1		UNION ALL
+SELECT	'FAST_BOMBER',			NULL,		'',		'Fast Bomber',			NULL,						'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		420,	NULL,	NULL,	12,		20,		NULL,	8,		NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'JET_BOMBER',			NULL,		'',		'Jet Bomber',			NULL,						'BOMBER',			NULL,	NULL,				NULL,	NULL,	45,		525,	NULL,	NULL,	14,		25,		NULL,	15,		NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'HEAVY_BOMBER',			NULL,		'',		'Heavy Bomber',			'Bomber_Generic',			'BOMBER',			NULL,	NULL,				NULL,	NULL,	70,		500,	NULL,	NULL,	16,		30,		NULL,	15,		NULL,	42,		NULL,				NULL,				NULL,			NULL	UNION ALL
+SELECT	'CRUISER',				NULL,		'',		'Cruiser',				'Cruiser_Generic',			'BATTLESHIP',		NULL,	NULL,				0.11,	45,		30,		435,	6,		NULL,	NULL,	18,		5,		8,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'HEAVY_CRUISER',		NULL,		'',		'Heavy Cruiser',		NULL,						'BATTLESHIP',		NULL,	NULL,				NULL,	50,		36,		485,	5,		NULL,	NULL,	20,		6,		10,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'DREADNOUGHT',			NULL,		'',		'Dreadnought',			'Dreadnought_Generic',		'BATTLESHIP',		NULL,	NULL,				0.10,	50,		36,		525,	4,		NULL,	NULL,	25,		8,		15,		NULL,	10,		NULL,				NULL,				NULL,			NULL;--	UNION ALL
 
 
 -----------------------------------------------
@@ -226,6 +226,10 @@ UPDATE Units SET Materiel = (SELECT Mat FROM UnitConfiguration WHERE 'UNIT_' || 
 -- Personnel / HP
 UPDATE Units SET Personnel = (SELECT Pers FROM UnitConfiguration WHERE 'UNIT_' || UnitConfiguration.UnitKey = Units.Type AND UnitConfiguration.Pers  NOT NULL)
 			WHERE EXISTS	 (SELECT Pers FROM UnitConfiguration WHERE 'UNIT_' || UnitConfiguration.UnitKey = Units.Type AND UnitConfiguration.Pers  NOT NULL);
+			
+-- Fuel consumption
+UPDATE Units SET FuelConsumption = (SELECT Fuel FROM UnitConfiguration WHERE 'UNIT_' || UnitConfiguration.UnitKey = Units.Type AND UnitConfiguration.Fuel  NOT NULL)
+			WHERE EXISTS	 (SELECT Fuel FROM UnitConfiguration WHERE 'UNIT_' || UnitConfiguration.UnitKey = Units.Type AND UnitConfiguration.Fuel  NOT NULL);
 
 -- Description
 UPDATE Units SET Description = (SELECT Tag FROM Language_en_US WHERE 'TXT_KEY_UNIT_' || Units.KeyName = Tag)

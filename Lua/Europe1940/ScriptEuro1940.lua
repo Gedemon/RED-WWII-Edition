@@ -16,6 +16,7 @@ g_Libya_Land_Ratio = 1
 g_Albania_Land_Ratio = 1
 g_NAfrica_Land_Ratio = 1
 g_France_Land_Ratio = 1
+g_USSR_Land_Ratio = 1
 
 function SetAIStrategicValues()
 
@@ -38,8 +39,11 @@ function SetAIStrategicValues()
 	
 	local initialFrance = 0
 	local actualFrance = 0
+	local initialUSSR = 0
+	local actualUSSR = 0
 
 	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
 
 	local territoryMap = LoadTerritoryMap()
 
@@ -62,6 +66,9 @@ function SetAIStrategicValues()
 			
 		elseif originalOwner == iFrance then
 			initialFrance = initialFrance + 1
+			
+		elseif originalOwner == iUSSR then
+			initialUSSR = initialUSSR + 1
 		end
 	end
 
@@ -86,6 +93,9 @@ function SetAIStrategicValues()
 
 		elseif owner == iFrance then
 			actualFrance = actualFrance + 1
+			
+		elseif owner == iUSSR then
+			actualUSSR = actualUSSR + 1
 		end
 	end
 	g_Norway_Land_Ratio = actualNorway / initialNorway
@@ -95,6 +105,7 @@ function SetAIStrategicValues()
 	g_Albania_Land_Ratio = actualAlbania / initialAlbania
 
 	g_France_Land_Ratio = actualFrance / initialFrance
+	g_USSR_Land_Ratio = actualUSSR / initialUSSR
 end
 
 -----------------------------------------
@@ -1275,7 +1286,7 @@ function GetUStoUKTransport()
 	return transport
 end
 function GetSueztoUKTransport()
-	local rand = math.random( 1, 4 )
+	local rand = math.random( 1, 6 )
 	local transport
 	if rand == 1 then
 		transport = {Type = TRANSPORT_MATERIEL, Reference = 350} 
@@ -1285,12 +1296,14 @@ function GetSueztoUKTransport()
 		transport = {Type = TRANSPORT_UNIT, Reference = UK_INFANTRY}
 	elseif rand == 4 then 
 		transport = {Type = TRANSPORT_GOLD, Reference = 500}
+	elseif rand > 4 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 500}
 	end
 	
 	return transport
 end
 function GetSueztoFranceTransport()
-	local rand = math.random( 1, 4 )
+	local rand = math.random( 1, 6 )
 	local transport
 	if rand == 1 then
 		transport = {Type = TRANSPORT_MATERIEL, Reference = 250} 
@@ -1300,6 +1313,21 @@ function GetSueztoFranceTransport()
 		transport = {Type = TRANSPORT_UNIT, Reference = FR_INFANTRY}
 	elseif rand == 4 then 
 		transport = {Type = TRANSPORT_GOLD, Reference = 300}
+	elseif rand > 4 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 500}
+	end
+	
+	return transport
+end
+function GetSueztoItalyTransport()
+	local rand = math.random( 1, 4 )
+	local transport
+	if rand == 1 then
+		transport = {Type = TRANSPORT_MATERIEL, Reference = 250} 
+	elseif rand == 2 then 
+		transport = {Type = TRANSPORT_GOLD, Reference = 300}
+	elseif rand > 2 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 500}
 	end
 	
 	return transport
@@ -1342,23 +1370,57 @@ function GetUStoUSSRTransport()
 	end	
 	return transport
 end
+function GetCaraibOilTransport()
+	local rand = math.random( 1, 4 )
+	local transport
+	if rand == 1 then
+		transport = {Type = TRANSPORT_OIL, Reference = 400} 
+	elseif rand == 2 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 600}
+	elseif rand == 3 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 800}
+	elseif rand == 4 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 1000}
+	end
+	
+	return transport
+end
+function GetSueztoGreeceTransport()
+	local rand = math.random( 1, 5 )
+	local transport
+	if rand == 1 then
+		transport = {Type = TRANSPORT_MATERIEL, Reference = 300} 
+	elseif rand == 2 then 
+		transport = {Type = TRANSPORT_PERSONNEL, Reference = 250}
+	elseif rand == 3 then 
+		transport = {Type = TRANSPORT_GOLD, Reference = 300}
+	elseif rand > 3 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 350}
+	end
+	
+	return transport
+end
 
 -- ... then define the convoys table
 -- don't move those define from this files, they must be set AFTER the functions definition...
 
 -- Route list
-US_TO_FRANCE = 1
-US_TO_UK = 2
-AFRICA_TO_FRANCE = 3
-AFRICA_TO_ITALY = 4
-FINLAND_TO_GERMANY = 5
-SUEZ_TO_UK = 6
-SUEZ_TO_FRANCE = 7
-SUEZ_TO_ITALY = 8
-SUEZ_TO_USSR = 9
-US_TO_USSR = 10
-NORWAY_TO_GERMANY = 11
-SWEDEN_TO_GERMANY = 12
+US_TO_FRANCE		= 1
+US_TO_UK			= 2
+AFRICA_TO_FRANCE	= 3
+AFRICA_TO_ITALY		= 4
+FINLAND_TO_GERMANY	= 5
+SUEZ_TO_UK			= 6
+SUEZ_TO_FRANCE		= 7
+SUEZ_TO_ITALY		= 8
+SUEZ_TO_USSR		= 9
+US_TO_USSR			= 10
+NORWAY_TO_GERMANY	= 11
+SWEDEN_TO_GERMANY	= 12
+SUEZ_TO_GREECE		= 13
+CARAIB_TO_FRANCE	= 14
+CARAIB_TO_UK		= 15
+CARAIB_TO_GREECE	= 16
 
 -- Convoy table
 g_Convoy = { 
@@ -1507,6 +1569,52 @@ g_Convoy = {
 		Frequency = 25,
 		Condition = IsRouteOpenSwedentoGermany, 
 		Transport = GetFinlandtoGermanyTransport, -- re-use Finland values...
+	},
+	[SUEZ_TO_GREECE] = {
+		Name = "Suez to Greece",
+		SpawnList = { {X=73, Y=5}, },
+		RandomSpawn = false, -- true : random choice in spawn list
+		DestinationList = { {X=56, Y=17}, {X=56, Y=21}, {X=59, Y=24}, }, -- Athens, near Thessaloniki, Kavala
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = GREECE,
+		MaxFleet = 1,
+		Frequency = 15, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsSuezAlly,
+		Transport = GetSueztoGreeceTransport,
+	},
+	[CARAIB_TO_FRANCE] = {
+		Name = "Caraib to France",
+		SpawnList = { {X=0, Y=18}, {X=0, Y=21}, {X=0, Y=24}, {X=0, Y=32}, {X=0, Y=36}, {X=0, Y=40}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=21, Y=42}, {X=21, Y=45}, {X=29, Y=50}, {X=29, Y=34}, }, -- La Rochelle, St Nazaire, Dunkerque, Marseille
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = FRANCE,
+		MaxFleet = 1, -- how many convoy can use that route at the same time (not implemented)
+		Frequency = 25, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsFranceStanding, -- Must refer to a function, remove this line to use the default condition (true)
+		Transport = GetCaraibOilTransport, -- Must refer to a function, remove this line to use the default function
+	},
+	[CARAIB_TO_UK] = {
+		Name = "Caraib to UK",
+		SpawnList = { {X=0, Y=18}, {X=0, Y=21}, {X=0, Y=24}, {X=0, Y=32}, {X=0, Y=36}, {X=0, Y=40}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=22, Y=52}, {X=24, Y=57}, {X=27, Y=52}, {X=28, Y=65}, }, -- Plymouth, Liverpool, London, Aberdeen
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = ENGLAND,
+		MaxFleet = 1,
+		Frequency = 25, -- probability (in percent) of convoy spawning at each turn
+		Transport = GetCaraibOilTransport,
+	},
+	[CARAIB_TO_GREECE] = {
+		Name = "Caraib to UK",
+		SpawnList = { {X=0, Y=18}, {X=0, Y=21}, {X=0, Y=24}, {X=0, Y=32}, {X=0, Y=36}, {X=0, Y=40}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=56, Y=17}, {X=56, Y=21}, {X=59, Y=24}, }, -- Athens, near Thessaloniki, Kavala
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = GREECE,
+		MaxFleet = 1,
+		Frequency = 15, -- probability (in percent) of convoy spawning at each turn
+		Transport = GetCaraibOilTransport,
 	},
 }
 
@@ -1897,8 +2005,8 @@ g_TroopsRoutes = {
 				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use waypoint to waypoint movement.
 				LandingList = { {X=21, Y=47}, {X=22, Y=47}, {X=23, Y=47}, {X=24, Y=47}, {X=25, Y=47}, {X=26, Y=47}, }, -- Between Brest and Caen
 				RandomLanding = true, -- false : sequential try in landing list
-				MinUnits = 8,
-				MaxUnits = 12, -- Maximum number of units on the route at the same time
+				MinUnits = 16,
+				MaxUnits = 20, -- Maximum number of units on the route at the same time
 				Priority = 50, 
 				Condition = UKtryDDay, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2033,6 +2141,35 @@ function IsGermanyAtWarWithNorway()
 	return true
 end
 
+function IsUSSRLosingWar()
+
+	local bDebug = true
+	
+	Dprint ("  - Checking if USSR is losing war...", bDebug)
+
+	if g_USSR_Land_Ratio >= 0.85 then
+		Dprint ("   - Land ratio is high enough (".. tostring(g_USSR_Land_Ratio) .. " >= 0.85)", bDebug)
+		return false
+	end
+
+	Dprint ("   - Land ratio is low (".. tostring(g_USSR_Land_Ratio) .. " < 0.85)", bDebug)
+
+	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
+	local pUSSR = Players[iUSSR]
+
+	local enemyForces = GetEnemyLandForceInArea( pUSSR, 59, 31, 107, 83 )
+	local allyForces = GetSameSideLandForceInArea( pUSSR, 59, 31, 107, 83 )
+
+	if (allyForces * 75/100) >= enemyForces then	-- if our ally doesn't have less than 75% of the ennemy forces, we are not losing	
+		Dprint ("   - Ally Forces are high enough: ".. tostring(allyForces) .. " > 75% of enemy forces (" .. tostring(enemyForces) ..")", bDebug)
+		return false
+	end
+	
+	Dprint ("   - Ally Forces are low: ".. tostring(allyForces) .. " < 75% of enemy forces (" .. tostring(enemyForces) ..")", bDebug)
+
+	return true
+end
+
 g_Military_Project = {
 	------------------------------------------------------------------------------------
 	[GERMANY] = {
@@ -2101,6 +2238,30 @@ g_Military_Project = {
 		},
 	},	
 	------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------
+	[USSR] = {
+	------------------------------------------------------------------------------------
+		[OPERATION_MOTHERLANDCALL] =  { -- projectID as index !
+			Name = "TXT_KEY_OPERATION_MOTHERLANDCALL",
+			OrderOfBattle = {
+				{	Name = "Army Group 1", X = 105, Y = 59, Domain = "Land", CivID = USSR, -- spawn near Tobolsk
+					Group = {		RU_NAVAL_INFANTRY,	RU_T34, RU_T34, RU_T34, RU_INFANTRY, RU_INFANTRY, RU_INFANTRY,	},
+					UnitsXP = {		35,					15,	}, 
+				},
+				{	Name = "Support Group 1", X = 105, Y = 59, Domain = "Land", CivID = USSR, -- spawn near Tobolsk
+					Group = {		RU_ZIS30,	RU_ZIS30, RU_ZIS30, RU_ARTILLERY, RU_ARTILLERY, RU_ARTILLERY, RU_ARTILLERY,	},
+				},
+				{	Name = "Army Group 2", X = 106, Y = 70, Domain = "Land", CivID = USSR, AI = true, -- spawn near Berezovo
+					Group = {		RU_NAVAL_INFANTRY,	RU_T34, RU_T34, RU_T34, RU_INFANTRY, RU_INFANTRY, RU_INFANTRY,	},
+					UnitsXP = {		45,					30,	}, 
+				},
+				{	Name = "Support Group 2", X = 106, Y = 70, Domain = "Land", CivID = USSR, AI = true, -- spawn near Berezovo
+					Group = {		RU_ZIS30,	RU_ZIS30, RU_ZIS30, RU_ARTILLERY, RU_ARTILLERY, RU_ARTILLERY, RU_ARTILLERY,	},
+				},
+			},			
+			Condition = IsUSSRLosingWar, -- Must refer to a function, remove this line to use the default condition (always true)
+		},
+	},	
 }
 
 

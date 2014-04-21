@@ -79,14 +79,8 @@ MapModData.RED.ResourceData = MapModData.RED.ResourceData or {}
 MapModData.RED.ProjectsDone = MapModData.RED.ProjectsDone or {}
 MapModData.RED.CombatsLog = MapModData.RED.CombatsLog or {}
 MapModData.RED.DynamicMap = MapModData.RED.DynamicMap or {}
+MapModData.RED.ResourceMap = MapModData.RED.ResourceMap or {}
 --
-
-
-----------------------------------------------------------------------------------------------------------------------------
--- R.E.D. Rules
-----------------------------------------------------------------------------------------------------------------------------
-include ("RedDefinesRules") -- Big file edition is too slow with ModBuddy...
-
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Civilizations Type ID
@@ -119,6 +113,14 @@ DOW = 2 -- Declaration of War
 PEA = 3 -- Permanent Alliance
 SPT = 4 -- Signe Peace Treaty
 
+----------------------------------------------------------------------------------------------------------------------------
+-- Transported types enum
+----------------------------------------------------------------------------------------------------------------------------
+TRANSPORT_MATERIEL	= 1
+TRANSPORT_PERSONNEL = 2
+TRANSPORT_UNIT		= 3
+TRANSPORT_GOLD		= 4
+TRANSPORT_OIL		= 5
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Combat types Enum
@@ -143,6 +145,19 @@ TRIGGER_DATE =			1	-- Project have a chance to be triggered each turns after a f
 TRIGGER_DATE_AND_XP =	3	-- Project is triggered if both Date and XP condition are checked
 TRIGGER_DATE_OR_XP =	4	-- Project is triggered if any of Date or XP condition is checked
 
+----------------------------------------------------------------------------------------------------------------------------
+-- Resource Connection types Enum
+----------------------------------------------------------------------------------------------------------------------------
+RESOURCE_OWNED_PLOTS =			0	-- Resource is connected when you own the plot (no road or rails connection required)
+RESOURCE_ROAD_TO_CAPITAL =		1	-- Resource is connected when linked by road (or rails) to the capital
+RESOURCE_RAILS_TO_CAPITAL =		2	-- Resource is connected when linked by rails to the capital
+RESOURCE_ROAD_TO_ANY_CITY =		3	-- Resource is connected when linked by road (or rails) to any owned city
+RESOURCE_RAILS_TO_ANY_CITY =	4	-- Resource is connected when linked by rails to any owned city
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Resources Type ID
+----------------------------------------------------------------------------------------------------------------------------
+RESOURCE_OIL =	GameInfo.Resources.RESOURCE_OIL.ID
 
 ----------------------------------------------------------------------------------------------------------------------------
 --Moves
@@ -244,6 +259,7 @@ COMINTERNCITY =			GameInfo.Buildings.BUILDING_COMINTERNCITY.ID
 NODRAFT =				GameInfo.Buildings.BUILDING_NODRAFT.ID
 LIMITEDDRAFT =			GameInfo.Buildings.BUILDING_LIMITEDDRAFT.ID
 LEGION_HQ =				GameInfo.Buildings.BUILDING_LEGION_HQ.ID
+SYNTHETIC_FUEL_PLANT =	GameInfo.Buildings.BUILDING_SYNTHETIC_FUEL_PLANT.ID
 
 
 -- Available buildings for major civs
@@ -251,7 +267,7 @@ g_Major_Buildings = {
 	[FRANCE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, SHIPYARD}, -- LARGE_AIR_FACTORY, : no bombers or heavy bombers
 	[ENGLAND] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
 	[USSR] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[GERMANY] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
+	[GERMANY] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, SYNTHETIC_FUEL_PLANT},
 	[ITALY] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
 	[GREECE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, SHIPYARD}, -- LARGE_AIR_FACTORY, : no bombers or heavy bombers
 	[JAPAN] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
@@ -340,6 +356,13 @@ PROMOTION_FIELD_GUN =					GameInfo.UnitPromotions.PROMOTION_FIELD_GUN.ID
 PROMOTION_LIGHT_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID
 PROMOTION_TANK_DESTROYER =				GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID
 PROMOTION_HEAVY_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID
+
+
+----------------------------------------------------------------------------------------------------------------------------
+-- R.E.D. Rules
+----------------------------------------------------------------------------------------------------------------------------
+include ("RedDefinesRules") -- Big file edition is too slow with ModBuddy...
+
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Units
