@@ -586,7 +586,7 @@ function GetOilTTString()
 		local buildingFuelConsumption = 0
 		local fuelConsumption = resourceData[playerID].FluxOil - totalOil
 		
-		strText = strText .. "[ICON_RES_OIL] Oil procured this turn : " .. totalOil
+		strText = strText .. "[ICON_RES_OIL] Oil procured last turn : " .. totalOil
 		--strText = strText .. "[NEWLINE][ICON_BULLET] from nation (global production) : "  .. oilFromGlobal
 		if oilFromSupplyRoutes	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes : "  .. oilFromSupplyRoutes; end
 		if oilFromMap			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from deposits : "  .. oilFromMap; end
@@ -595,7 +595,7 @@ function GetOilTTString()
 		if oilFromCityCapture	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : "  .. oilFromCityCapture; end
 		if oilFromCityCapture	< 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : [COLOR_WARNING_TEXT]"  .. oilFromCityCapture .."[ENDCOLOR]"; end
 
-		strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Fuel Consumption this turn : " .. fuelConsumption
+		strText = strText .. "[NEWLINE][NEWLINE][ICON_RES_OIL] Fuel Consumption last turn : " .. fuelConsumption
 		if unitsFuelConsumption > 0 then strText = strText .. "[NEWLINE][ICON_BULLET] by mechanized units : " .. unitsFuelConsumption; end
 		if buildingFuelConsumption > 0 then strText = strText .. "[NEWLINE][ICON_BULLET] by buildings (power grid) : " .. buildingFuelConsumption; end
 
