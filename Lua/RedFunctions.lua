@@ -163,29 +163,31 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		end
 	end
 	
-	local ratio = city:GetRealPopulation() / (Players[originalCityOwner]:GetRealPopulation() + city:GetRealPopulation()) -- to use value from before the city capture...	
-	Dprint ("   ratio = cityRealPopulation / playerRealPopulation = " .. city:GetRealPopulation() .. "/" .. (Players[originalCityOwner]:GetRealPopulation() + city:GetRealPopulation()) .." = " .. ratio, bDebugOutput)
+	if AreAtWar( originalCityOwner, newPlayerID) then -- do not pillage someone that may have just liberated one of your cities...
+		local ratio = city:GetRealPopulation() / (Players[originalCityOwner]:GetRealPopulation() + city:GetRealPopulation()) -- to use value from before the city capture...	
+		Dprint ("   ratio = cityRealPopulation / playerRealPopulation = " .. city:GetRealPopulation() .. "/" .. (Players[originalCityOwner]:GetRealPopulation() + city:GetRealPopulation()) .." = " .. ratio, bDebugOutput)
 
-	local gainMat, gainOil = 0, 0
+		local gainMat, gainOil = 0, 0
 
-	-- Get Materiel from city capture
-	local currentMateriel = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Materiel + MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture)
-	gainMat = Round(currentMateriel * ratio)
-	Dprint ("      gainMat = currentMateriel * ratio = " .. gainMat .. ", currentMateriel = Materiel + MatFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Materiel .. " + ".. MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture, bDebugOutput)
-	MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture		+ gainMat
-	MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	- gainMat
+		-- Get Materiel from city capture
+		local currentMateriel = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Materiel + MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture)
+		gainMat = Round(currentMateriel * ratio)
+		Dprint ("      gainMat = currentMateriel * ratio = " .. gainMat .. ", currentMateriel = Materiel + MatFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Materiel .. " + ".. MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture, bDebugOutput)
+		MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture		+ gainMat
+		MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	- gainMat
 
-	-- Get Oil from city capture
-	if RESOURCE_CONSUMPTION then
-		local currentOil = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Oil + MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture)
-		gainOil = Round(currentOil * ratio)
-		Dprint ("      gainOil = currentOil * ratio = " .. gainOil .. ", currentOil = Oil + OilFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Oil .. " + ".. MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture, bDebugOutput)
-		MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture		+ gainOil
-		MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture - gainOil
-	end
+		-- Get Oil from city capture
+		if RESOURCE_CONSUMPTION then
+			local currentOil = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Oil + MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture)
+			gainOil = Round(currentOil * ratio)
+			Dprint ("      gainOil = currentOil * ratio = " .. gainOil .. ", currentOil = Oil + OilFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Oil .. " + ".. MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture, bDebugOutput)
+			MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture		+ gainOil
+			MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture - gainOil
+		end
 			
-	if gainMat > 0 or gainOil > 0 then
-		Events.GameplayAlertMessage(Players[newPlayerID]:GetName() .. " has gained " .. gainMat .. " [ICON_MATERIEL] Materiel and " .. gainOil .. " [ICON_RES_OIL] Oil from " .. city:GetName() .. " capture")
+		if gainMat > 0 or gainOil > 0 then
+			Events.GameplayAlertMessage(Players[newPlayerID]:GetName() .. " has gained " .. gainMat .. " [ICON_MATERIEL] Materiel and " .. gainOil .. " [ICON_RES_OIL] Oil from " .. city:GetName() .. " capture")
+		end
 	end
 
 	Dprint ("-------------------------------------", bDebugOutput)
