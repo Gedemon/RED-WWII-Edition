@@ -549,13 +549,13 @@ function GetOilTTString()
 	local playerID = Game.GetActivePlayer()
 	local player = Players[playerID]
 	
-	--[[
-	if bOnlySupplied then
-		strText = strText .. "[ICON_MATERIEL] for units with a supply line (click to toggle all units)"
-	else
-		strText = strText .. "[ICON_MATERIEL] for all units (click to toggle supply lines only)"
+	strText = strText .. "[ICON_RES_OIL] Actual Rationing:"
+	if		IsLightRationing(playerID)	then strText = strText .. " [COLOR_YELLOW]Light[ENDCOLOR]"
+	elseif	IsRationing(playerID)		then strText = strText .. " [COLOR_PLAYER_ORANGE_TEXT]Medium[ENDCOLOR]"
+	elseif	IsHeavyRationing(playerID)	then strText = strText .. " [COLOR_WARNING_TEXT]Heavy[ENDCOLOR]"
+	else									 strText = strText .. " [COLOR_POSITIVE_TEXT]None[ENDCOLOR]"
 	end
-	--]]
+
 	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE]"
 
 	strText = strText .. "[ICON_RES_OIL] Oil maximum stock : " .. tostring(GetMaxOil (playerID))

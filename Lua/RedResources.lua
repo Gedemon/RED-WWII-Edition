@@ -429,22 +429,30 @@ function GetMaxMateriel (playerID)
 	local player = Players[playerID]
 	local max = 0
 	for city in player:Cities() do
-		-- +10 / city
-		max = max + 10 
-		if city:IsHasBuilding(FACTORY) then max = max + 50; end
-		if city:IsHasBuilding(LAND_FACTORY) then max = max + 50; end
-		if city:IsHasBuilding(HARBOR) then max = max + 50; end
-		if city:IsHasBuilding(BASE) then max = max + 100; end
-		if city:IsHasBuilding(ARSENAL) then max = max + 500; end
-		if city:IsHasBuilding(SMALL_AIR_FACTORY) then max = max + 20; end
-		if city:IsHasBuilding(MEDIUM_AIR_FACTORY) then max = max + 20; end
-		if city:IsHasBuilding(LARGE_AIR_FACTORY) then max = max + 20; end
-		if city:IsHasBuilding(SHIPYARD) then max = max + 50; end
+		max = max  + GetCityMaxMateriel (city)
 	end
 	-- Bonus from scenario
 	if SCENARIO_MAX_MATERIEL_BONUS then
 		max = max + SCENARIO_MAX_MATERIEL_BONUS
 	end
+	return max
+end
+
+
+function GetCityMaxMateriel (city)
+	-- 10 / city
+	local max =  10
+
+	if city:IsHasBuilding(FACTORY) then max = max + 50; end
+	if city:IsHasBuilding(LAND_FACTORY) then max = max + 50; end
+	if city:IsHasBuilding(HARBOR) then max = max + 50; end
+	if city:IsHasBuilding(BASE) then max = max + 1000; end
+	if city:IsHasBuilding(ARSENAL) then max = max + 500; end
+	if city:IsHasBuilding(SMALL_AIR_FACTORY) then max = max + 20; end
+	if city:IsHasBuilding(MEDIUM_AIR_FACTORY) then max = max + 20; end
+	if city:IsHasBuilding(LARGE_AIR_FACTORY) then max = max + 20; end
+	if city:IsHasBuilding(SHIPYARD) then max = max + 50; end
+
 	return max
 end
 
@@ -487,13 +495,19 @@ function GetMaxOil (playerID)
 	local player = Players[playerID]
 	local max = 0
 	for city in player:Cities() do
-		-- +250 / city
-		max = max + 250 
+		max = max + GetCityMaxOil (city)
 	end
 	-- Bonus from scenario
 	if SCENARIO_MAX_OIL_BONUS then
 		max = max + SCENARIO_MAX_OIL_BONUS
 	end
+	return max
+end
+
+function GetCityMaxOil (city)
+	-- 25 * city size
+	local max = 25 * city:GetPopulation() 
+	if city:IsHasBuilding(OIL_REFINERY) then max = max + 1000; end
 	return max
 end
 
@@ -902,7 +916,7 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						local player = Players[playerID]
 						local capital = player:GetCapitalCity()
 						if capital then
-							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Road", false, nil , PathBlocked)
+							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Road", false, nil , NoResourcePath)
 						end
 
 					elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_CAPITAL then
@@ -911,7 +925,7 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						local player = Players[playerID]
 						local capital = player:GetCapitalCity()
 						if capital then
-							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Railroad", false, nil , PathBlocked)
+							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Railroad", false, nil , NoResourcePath)
 						end
 
 					elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_ANY_CITY then
@@ -923,13 +937,13 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						if closeCity then
 							local cityPlot = closeCity:Plot()
 							-- first check the area, no need to calculate land path if not in the same land... 
-							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , PathBlocked) ) 
+							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , NoResourcePath) ) 
 						end	
 						-- then all own cities
 						if not bCanGetRessource then
 							for city in player:Cities() do
 								local cityPlot = city:Plot()
-								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , PathBlocked) ) then
+								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , NoResourcePath) ) then
 									bCanGetRessource = true
 									break
 								end	
@@ -945,13 +959,13 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						if closeCity then
 							local cityPlot = closeCity:Plot()
 							-- first check the area, no need to calculate land path if not in the same land... 
-							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , PathBlocked) ) 
+							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , NoResourcePath) ) 
 						end	
 						-- then all own cities
 						if not bCanGetRessource then
 							for city in player:Cities() do
 								local cityPlot = city:Plot()
-								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , PathBlocked) ) then
+								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , NoResourcePath) ) then
 									bCanGetRessource = true
 									break
 								end	
@@ -1032,3 +1046,23 @@ function ApplyHeavyRationing(playerID)
 		end
 	end
 end
+
+-- Check if a plot block a path to a resources deposit for a player in function isPlotConnected
+function NoResourcePath(pPlot, pPlayer)
+	if ( pPlot == nil or pPlayer == nil) then
+		Dprint ("WARNING : NoResourcePath() called with a nil argument")
+		return true
+	end
+
+	local ownerID = pPlot:GetOwner()
+	local playerID = pPlayer:GetID()
+
+	if  AreSameSide(ownerID, playerID) then
+		return false -- path is not bloked
+	end
+
+	return true -- return true if the path is blocked...
+end
+
+-- Update required tooltips when this file is loaded...
+LuaEvents.WWIITest()

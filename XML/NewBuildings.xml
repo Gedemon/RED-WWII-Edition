@@ -257,6 +257,38 @@
 			<MinAreaSize>-1</MinAreaSize>
 			<ConquestProb>66</ConquestProb>
 			<HurryCostModifier>0</HurryCostModifier>
+			<IconAtlas>BW_ATLAS_1</IconAtlas>
+			<PortraitIndex>15</PortraitIndex>
+		</Row>
+	</Buildings>
+	<Building_LocalResourceAnds>
+		<Row>
+			<BuildingType>BUILDING_SYNTHETIC_FUEL_PLANT</BuildingType>
+			<ResourceType>RESOURCE_COAL</ResourceType>
+		</Row>
+	</Building_LocalResourceAnds>
+
+	<!-- Oil Refinery -->
+	<BuildingClasses>
+		<Row>
+			<Type>BUILDINGCLASS_OIL_REFINERY</Type>
+			<DefaultBuilding>BUILDING_OIL_REFINERY</DefaultBuilding>
+			<Description>TXT_KEY_BUILDING_OIL_REFINERY</Description>
+		</Row>
+	</BuildingClasses>
+	<Buildings>
+		<Row>
+			<Type>BUILDING_OIL_REFINERY</Type>
+			<BuildingClass>BUILDINGCLASS_OIL_REFINERY</BuildingClass>
+			<Cost>320</Cost>
+			<GoldMaintenance>5</GoldMaintenance>
+			<Help>TXT_KEY_BUILDING_OIL_REFINERY_HELP</Help>
+			<Description>TXT_KEY_BUILDING_OIL_REFINERY</Description>
+			<Civilopedia>TXT_KEY_BUILDING_OIL_REFINERY_HELP</Civilopedia>
+			<!-- <ArtDefineTag>ART_DEF_BUILDING_FACTORY</ArtDefineTag> -->
+			<MinAreaSize>-1</MinAreaSize>
+			<ConquestProb>66</ConquestProb>
+			<HurryCostModifier>0</HurryCostModifier>
 			<IconAtlas>RESOURCE_ATLAS</IconAtlas>
 			<PortraitIndex>3</PortraitIndex>
 		</Row>

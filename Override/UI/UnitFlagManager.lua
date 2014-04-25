@@ -563,15 +563,19 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 			if transportReference and transportType then
 				local strTransport = ""
 				if transportType == TRANSPORT_MATERIEL then
-					strTransport = transportReference .. " materiel"
+					strTransport = transportReference .. " [ICON_MATERIEL] materiel"
 				elseif transportType == TRANSPORT_PERSONNEL then
-					strTransport = transportReference .. " personnel"
+					strTransport = transportReference .. " [ICON_PERSONNEL] personnel"
 				elseif transportType == TRANSPORT_UNIT then 
 					local unitInfo = GameInfo.Units[transportReference]
 					local unitName = Locale.ConvertTextKey( unitInfo.Description ) .. " (" .. Locale.ToUpper(Locale.ConvertTextKey(GameInfo.UnitClasses[unitInfo.Class].Description)) .. ")"
 					strTransport = "" .. unitName
+				elseif transportType == TRANSPORT_OIL then
+					strTransport = transportReference .. " [ICON_RES_OIL] oil"
+				elseif transportType == TRANSPORT_GOLD then
+					strTransport = transportReference .. " [ICON_GOLD] gold"
 				else -- gold then 
-					strTransport = transportReference .. " gold"
+					strTransport = transportReference .. " unknown cargo"
 				end
 				string = string .. "[NEWLINE]Cargo : ".. strTransport
 			end
@@ -1889,3 +1893,25 @@ Events.GameplaySetActivePlayer.Add(OnActivePlayerChanged);
 -- Added by Erendir
 include"UnitFlagManager_addin"
 -- End Add
+
+function UpdateAllFlags()
+	print ("Updating all units flag...")
+	local iActivePlayerID = Game.GetActivePlayer();
+	
+	-- Rebuild all the tool tip strings.
+	for playerID,playerTable in pairs( g_MasterList ) 
+	do
+		local pPlayer = Players[ playerID ]		
+		for unitID, pFlag in pairs( playerTable ) 
+		do
+			local pUnit = pPlayer:GetUnitByID( unitID )
+			if ( pUnit ~= nil ) then        	
+				pFlag:UpdateVisibility()
+				pFlag:UpdateTooltip()
+			end
+		end
+	end
+end
+--Events.SequenceGameInitComplete.Add( UpdateAllFlags )
+Events.LoadScreenClose.Add(UpdateAllFlags)
+LuaEvents.WWIITest.Add(UpdateAllFlags)

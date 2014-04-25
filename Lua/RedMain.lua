@@ -77,6 +77,7 @@ end
 function OnNewTurn ()
 	CommonOnNewTurn()
 	ScenarioOnNewTurn()
+	LuaEvents.WWIITest()
 	SaveAllTable() -- must be last before NewTurnSummary
 	NewTurnSummary() -- after other functions to get benchmark...
 end

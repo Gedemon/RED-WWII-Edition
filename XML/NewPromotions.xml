@@ -617,6 +617,8 @@
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<CannotBeChosen>true</CannotBeChosen>
 			<IgnoreTerrainCost>true</IgnoreTerrainCost>
+			<AllowsEmbarkation>true</AllowsEmbarkation>
+			<EmbarkedAllWater>true</EmbarkedAllWater>
 			<!-- <IgnoreZOC>true</IgnoreZOC> Need DLL modification -> Must port the mod to BNW to use it. -->
 			<OnlyDefensive>true</OnlyDefensive>
 			<!--<RivalTerritory>true</RivalTerritory>-->

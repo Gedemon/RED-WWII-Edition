@@ -957,7 +957,7 @@
 			<Text>+20 XP for all Units.[NEWLINE]+25 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]City must have Barracks. Allows the creation of new weapon designs.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_MILITARY_BASE_HELP">
-			<Text>Can stock 100 [ICON_MATERIEL] Materiel.[NEWLINE]Can house 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP for all Units.[NEWLINE]City must have Barracks. May allow the preparation of military operations.</Text>
+			<Text>Can stock 1000 [ICON_MATERIEL] Materiel.[NEWLINE]Can house 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP for all Units.[NEWLINE]City must have Barracks. May allow the preparation of military operations.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_ARSENAL_HELP">
 			<Text>Can stock 500 [ICON_MATERIEL] Materiel.</Text>
@@ -1027,7 +1027,14 @@
 			<Text>Synthetic Fuel Plant</Text>
 		</Row>
 		<Row Tag="TXT_KEY_BUILDING_SYNTHETIC_FUEL_PLANT_HELP">
-			<Text>Synthetic Fuel Plants provide 25 [ICON_RES_OIL] Oil / turn.</Text>
+			<Text>Synthetic Fuel Plants provide 25 [ICON_RES_OIL] Oil / turn.[NEWLINE]City must have a [ICON_RES_COAL] Coal mine nearby.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_OIL_REFINERY">
+			<Text>Oil Refinery</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_OIL_REFINERY_HELP">
+			<Text>Can stock 1000 [ICON_RES_OIL] Oil.</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_BUILDING_OPEN_CITY">

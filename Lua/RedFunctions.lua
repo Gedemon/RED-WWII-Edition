@@ -163,15 +163,16 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		end
 	end
 	
-	if AreAtWar( originalCityOwner, newPlayerID) then -- do not pillage someone that may have just liberated one of your cities...
-		local ratio = city:GetRealPopulation() / (Players[originalCityOwner]:GetRealPopulation() + city:GetRealPopulation()) -- to use value from before the city capture...	
-		Dprint ("   ratio = cityRealPopulation / playerRealPopulation = " .. city:GetRealPopulation() .. "/" .. (Players[originalCityOwner]:GetRealPopulation() + city:GetRealPopulation()) .." = " .. ratio, bDebugOutput)
+	if AreAtWar( originalCityOwner, newPlayerID) or not Players[originalCityOwner]:IsAlive() then -- do not pillage someone that may have just liberated one of your cities...
 
 		local gainMat, gainOil = 0, 0
 
 		-- Get Materiel from city capture
 		local currentMateriel = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Materiel + MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture)
-		gainMat = Round(currentMateriel * ratio)
+		local materielRatio = GetCityMaxMateriel (city) / (GetMaxMateriel (originalCityOwner) + GetCityMaxMateriel (city)) -- to use value from before the city capture...	
+		Dprint ("   Materiel ratio = GetCityMaxMateriel / GetMaxMateriel = " .. GetCityMaxMateriel (city) .. "/" .. (GetMaxMateriel (originalCityOwner) + GetCityMaxMateriel (city)) .." = " .. materielRatio, bDebugOutput)
+
+		gainMat = Round(currentMateriel * materielRatio)
 		Dprint ("      gainMat = currentMateriel * ratio = " .. gainMat .. ", currentMateriel = Materiel + MatFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Materiel .. " + ".. MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture, bDebugOutput)
 		MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture		+ gainMat
 		MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	- gainMat
@@ -179,7 +180,10 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		-- Get Oil from city capture
 		if RESOURCE_CONSUMPTION then
 			local currentOil = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Oil + MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture)
-			gainOil = Round(currentOil * ratio)
+			local oilRatio = GetCityMaxOil (city) / (GetMaxOil (originalCityOwner) + GetCityMaxOil (city))
+			Dprint ("   Oil ratio = GetCityMaxOil / GetMaxOil = " .. GetCityMaxOil (city) .. "/" .. (GetMaxOil (originalCityOwner) + GetCityMaxOil (city)) .." = " .. oilRatio, bDebugOutput)
+
+			gainOil = Round(currentOil * oilRatio)
 			Dprint ("      gainOil = currentOil * ratio = " .. gainOil .. ", currentOil = Oil + OilFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Oil .. " + ".. MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture, bDebugOutput)
 			MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture		+ gainOil
 			MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture - gainOil
@@ -1299,7 +1303,8 @@ function IsUnderControl ( plot, bCapturedPlot )
 			end
 		end
 	end
-
+	
+	Dprint ("   - No path found !", bDebug )
 	return false
 end
 
