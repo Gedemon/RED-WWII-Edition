@@ -532,10 +532,10 @@ g_Minor_Major_DoW = {
 g_Cities = {
 	-- UNITED KINGDOM
 	{X = 27, Y = 52, Key = true, Buildings = { FACTORY, HARBOR }, AIBuildings = {SHIPYARD}, }, -- LONDON
-	{X = 24, Y = 57, Key = true,  Buildings = { HARBOR }, AIBuildings = {LAND_FACTORY}, }, -- LIVERPOOL
-	{X = 26, Y = 61, Key = true,  Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
-	{X = 24, Y = 62, Key = true,  Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- GLASGOW
-	{X = 28, Y = 58, Key = true,  Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
+	{X = 24, Y = 57, Key = true, Buildings = { HARBOR }, AIBuildings = {LAND_FACTORY}, }, -- LIVERPOOL
+	{X = 26, Y = 61, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
+	{X = 24, Y = 62, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- GLASGOW
+	{X = 28, Y = 58, Key = true, Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
 	{X = 21, Y = 62, Buildings = { HARBOR }, }, -- BELFAST
 	{X = 28, Y = 65, }, -- ABERDEEN
 	{X = 10, Y = 25, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
@@ -548,11 +548,12 @@ g_Cities = {
 	{X = 25, Y = 54, }, -- BIRMINGHAM
 	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- NICOSIA
 	-- GERMANY
-	{X = 44, Y = 50, Key = true,  Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE}, }, -- BERLIN
-	{X = 40, Y = 55, Key = true,  Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
-	{X = 39, Y = 46, Key = true,  Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
-	{X = 39, Y = 53, Key = true,  Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD}, }, -- HAMBURG
+	{X = 44, Y = 50, Key = true, Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE}, }, -- BERLIN
+	{X = 39, Y = 46, Key = true, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
+	{X = 39, Y = 53, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD, BASE}, }, -- HAMBURG
+	{X = 40, Y = 40, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LAND_FACTORY, ARSENAL, BASE}, }, -- MUNICH
 	{X = 45, Y = 43, Buildings = { FACTORY }, }, -- PRAGUE
+	{X = 40, Y = 55, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
 	{X = 39, Y = 43, AIBuildings = {FACTORY}, }, -- NUREMBERG
 	{X = 52, Y = 53, Buildings = { HARBOR }, AIBuildings = {FACTORY}, }, -- KONIGSBERG
 	{X = 42, Y = 41, AIBuildings = {FACTORY}, }, -- PASSAU
@@ -562,9 +563,8 @@ g_Cities = {
 	{X = 45, Y = 46, AIBuildings = {FACTORY}, }, -- DRESDEN
 	{X = 41, Y = 48, AIBuildings = {FACTORY}, }, -- MAGDEBURG
 	{X = 47, Y = 40, Buildings = { FACTORY }, }, -- VIENNA
-	{X = 40, Y = 40, Buildings = { FACTORY }, }, -- MUNICH
 	-- FRANCE
-	{X = 28, Y = 45, Key = true,  Buildings = { FACTORY, BANK, OPEN_CITY, BARRACKS }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
+	{X = 28, Y = 45, Key = true, Buildings = { FACTORY, BANK, OPEN_CITY, BARRACKS }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
 	{X = 29, Y = 34, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- MARSEILLE
 	{X = 30, Y = 38, Buildings = { FACTORY }, }, -- LYON
 	{X = 25, Y = 36, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- TOULOUSE
@@ -643,7 +643,7 @@ g_Cities = {
 	{X = 83, Y = 54, }, -- PENZA
 	{X = 101, Y = 55, }, -- CHELYABINSK
 	{X = 61, Y = 60, }, -- PSKOV
-	{X = 80, Y = 60, }, -- NOVGOROD
+	{X = 80, Y = 60, AIBuildings = {SMALL_AIR_FACTORY, LARGE_AIR_FACTORY, MEDIUM_AIR_FACTORY},}, -- NOVGOROD
 	{X = 66, Y = 55, }, -- SMOLENSK
 	{X = 105, Y = 59, }, -- TOBOL'SK
 	{X = 87, Y = 59, }, -- KAZAN

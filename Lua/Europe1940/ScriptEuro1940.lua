@@ -1325,7 +1325,7 @@ function GetSueztoItalyTransport()
 	if rand == 1 then
 		transport = {Type = TRANSPORT_MATERIEL, Reference = 250} 
 	elseif rand == 2 then 
-		transport = {Type = TRANSPORT_GOLD, Reference = 300}
+		transport = {Type = TRANSPORT_OIL, Reference = 750}
 	elseif rand > 2 then 
 		transport = {Type = TRANSPORT_OIL, Reference = 500}
 	end
@@ -2147,6 +2147,34 @@ function IsUSSRLosingWar()
 	
 	Dprint ("  - Checking if USSR is losing war...", bDebug)
 
+	if g_Cities then
+	
+		Dprint("  - Looking for captured key cities...", bDebug)
+		local numKeyCityLost = 0
+		for i, data in ipairs(g_Cities) do
+			if data.Key then
+				local plot = GetPlot(data.X, data.Y)
+				local city = plot:GetPlotCity()	
+				if city then
+					local firstOwnerID = GetPlotFirstOwner(GetPlotKey(plot))
+					local firstCivID = GetCivIDFromPlayerID(firstOwnerID, false)
+					Dprint("    - Check if " .. city:GetName() .. " was USSR and if capturing player is axis...", bDebug)
+					if firstCivID == USSR and city:IsOccupied() and g_Axis[GetCivIDFromPlayerID(city:GetOwner(), false)] then -- check if a key cities of newPlayerID opponent is free
+						Dprint("       - Occupied by Axis power", bDebug)
+						numKeyCityLost = numKeyCityLost + 1
+					end
+				else
+					Dprint("WARNING : plot at ("..tostring(data.X)..","..tostring(data.Y) ..") is not city, but is in g_Cities table !", bDebug)
+				end
+			end
+		end
+		if numKeyCityLost > 1 and g_USSR_Land_Ratio < 0.95 then 
+			Dprint("  - At least 2 key cities captured, and g_USSR_Land_Ratio < 0.95 returning true...", bDebug)
+			return true
+		end
+		Dprint("  - Less than 2 key cities captured or g_USSR_Land_Ratio >= 0.95...", bDebug)
+	end
+
 	if g_USSR_Land_Ratio >= 0.85 then
 		Dprint ("   - Land ratio is high enough (".. tostring(g_USSR_Land_Ratio) .. " >= 0.85)", bDebug)
 		return false
@@ -2279,8 +2307,162 @@ function InitializeEuro1940Projects()
 	local turn = Game.GetGameTurn()
 	local date = g_Calendar[turn]
 	if date.Number >= 19420101 and PROJECT_M3A1HT and not IsProjectDone(PROJECT_M3A1HT) then
-		local projectInfo = GameInfo.Projects[projectID]
+		local projectInfo = GameInfo.Projects[PROJECT_M3A1HT]
 		MarkProjectDone(PROJECT_M3A1HT, AMERICA)
 		Events.GameplayAlertMessage(Locale.ConvertTextKey(projectInfo.Description) .." has been completed !")
 	end
+end
+
+--------------------------------------------------------------
+-- UI functions
+--------------------------------------------------------------
+include("InstanceManager")
+
+-- Tooltip init
+function DoInitEuro1940UI()
+	ContextPtr:LookUpControl("/InGame/TopPanel/REDScore"):SetToolTipCallback( ToolTipEuro1940Score )
+	UpdateEuro1940ScoreString()
+end
+
+local tipControlTable = {};
+TTManager:GetTypeControlTable( "TooltipTypeTopPanel", tipControlTable );
+
+-- Score Tooltip for Europe 39-45
+function ToolTipEuro1940Score( control )
+
+	local playerID = Game:GetActivePlayer()
+	local player = Players[playerID]
+
+	local strText = "[ICON_MEDAL] Objective :[NEWLINE][NEWLINE]All key cities of your opponents must have been captured by you or your allies while all of your cities (and those of your allies) must still be under your control.[NEWLINE]";
+	
+	local strAlliedColor = "[COLOR_POSITIVE_TEXT]"
+	local strAxisColor = "[COLOR_NEGATIVE_TEXT]"
+	if IsAxis(playerID) then	
+		strAlliedColor = "[COLOR_NEGATIVE_TEXT]"
+		strAxisColor = "[COLOR_POSITIVE_TEXT]"
+	end
+
+	-- Allied cities
+	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE]"
+	strText = strText .. "[NEWLINE]Allied cities: "
+
+	for i, city in ipairs(GetAlliedKeyCities()) do
+		local playerID = city:GetOwner()
+		local player = Players[playerID]
+		if IsAxis(playerID) then
+			strText = strText .. "[NEWLINE][ICON_BULLET] ".. strAxisColor .. city:GetName() .."[ENDCOLOR] controlled by ".. strAxisColor .. player:GetName() .. "[ENDCOLOR]"
+		else
+			strText = strText .. "[NEWLINE][ICON_BULLET] ".. strAlliedColor .. city:GetName() .."[ENDCOLOR] controlled by ".. strAlliedColor .. player:GetName() .. "[ENDCOLOR]"
+		end
+	end
+	strText = strText .. "[NEWLINE]----------------------------------------------------------------[NEWLINE]"
+	strText = strText .. "[NEWLINE]Axis cities: "
+
+	-- Axis cities
+	for i, city in ipairs(GetAxisKeyCities()) do
+		local playerID = city:GetOwner()
+		local player = Players[playerID]
+		if IsAxis(playerID) then
+			strText = strText .. "[NEWLINE][ICON_BULLET] ".. strAxisColor .. city:GetName().."[ENDCOLOR] controlled by ".. strAxisColor .. player:GetName() .. "[ENDCOLOR]"
+		else
+			strText = strText .. "[NEWLINE][ICON_BULLET] ".. strAlliedColor .. city:GetName().."[ENDCOLOR] controlled by ".. strAlliedColor .. player:GetName() .. "[ENDCOLOR]"
+		end
+	end
+
+	
+	tipControlTable.TooltipLabel:SetText( strText );
+	tipControlTable.TopPanelMouseover:SetHide(false);
+    
+    -- Autosize tooltip
+    tipControlTable.TopPanelMouseover:DoAutoSize();
+	
+end
+
+function UpdateEuro1940ScoreString()
+
+	local playerID = Game:GetActivePlayer()
+	--local player = Players[playerID]
+
+	local scoreString = "[ICON_MEDAL] Captured cities: "
+
+	if g_Axis[civID] then	
+		strAlliedColor = "[COLOR_NEGATIVE_TEXT]"
+		strAxisColor = "[COLOR_POSITIVE_TEXT]"
+	end
+
+	local capturedAllied = 0
+	local totalAllied = 0
+	for i, city in ipairs(GetAlliedKeyCities()) do
+		totalAllied = totalAllied + 1
+		if IsAxis(city:GetOwner()) then
+			capturedAllied = capturedAllied + 1
+		end
+	end
+	
+	local capturedAxis = 0
+	local totalAxis = 0
+	for i, city in ipairs(GetAxisKeyCities()) do
+		totalAxis = totalAxis + 1
+		if IsAllied(city:GetOwner()) then
+			capturedAxis = capturedAxis + 1
+		end
+	end
+	
+	local strAlliedColor = "[COLOR_NEGATIVE_TEXT]"
+	local strAxisColor = "[COLOR_POSITIVE_TEXT]"
+
+	if capturedAllied > 0 and IsAxis(playerID) then
+		strAlliedColor = "[COLOR_POSITIVE_TEXT]"
+	end
+	
+	if capturedAxis > 0 and IsAxis(playerID) then
+		strAxisColor = "[COLOR_NEGATIVE_TEXT]"
+	end
+
+	scoreString = scoreString .. "Allied = " .. strAlliedColor .. capturedAllied .. "[ENDCOLOR]/" .. totalAllied .. ", Axis = " .. strAxisColor .. capturedAxis .. "[ENDCOLOR]/" .. totalAxis
+
+	ContextPtr:LookUpControl("/InGame/TopPanel/REDScore"):SetText( scoreString )
+	ContextPtr:LookUpControl("/InGame/TopPanel/REDScore"):SetHide( false )
+end
+
+function GetAlliedKeyCities()	
+	local cities = {}
+
+	if not g_Cities then
+		return cities
+	end
+
+	for i, data in ipairs(g_Cities) do
+		if data.Key then
+
+			local plot = GetPlot(data.X, data.Y)
+			local city = plot:GetPlotCity()	
+			if city and IsAllied(GetPlotFirstOwner(GetPlotKey(plot))) then
+				table.insert(cities, city)
+			end
+		end
+	end
+
+	return cities
+end
+
+function GetAxisKeyCities()	
+	local cities = {}
+
+	if not g_Cities then
+		return cities
+	end
+
+	for i, data in ipairs(g_Cities) do
+		if data.Key then
+
+			local plot = GetPlot(data.X, data.Y)
+			local city = plot:GetPlotCity()	
+			if city and IsAxis(GetPlotFirstOwner(GetPlotKey(plot))) then
+				table.insert(cities, city)
+			end
+		end
+	end
+
+	return cities
 end

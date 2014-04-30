@@ -271,6 +271,16 @@ function IsNeutral(playerID)
 	return true	
 end
 
+function IsAllied(playerID)
+	local civID = GetCivIDFromPlayerID(playerID)
+	return g_Allied[civID]
+end
+
+function IsAxis(playerID)
+	local civID = GetCivIDFromPlayerID(playerID)
+	return g_Axis[civID]
+end
+
 
 --------------------------------------------------------------
 -- Forced diplomacy

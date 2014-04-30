@@ -619,6 +619,7 @@
 			<IgnoreTerrainCost>true</IgnoreTerrainCost>
 			<AllowsEmbarkation>true</AllowsEmbarkation>
 			<EmbarkedAllWater>true</EmbarkedAllWater>
+			<CanMoveAfterAttacking>true</CanMoveAfterAttacking>
 			<!-- <IgnoreZOC>true</IgnoreZOC> Need DLL modification -> Must port the mod to BNW to use it. -->
 			<OnlyDefensive>true</OnlyDefensive>
 			<!--<RivalTerritory>true</RivalTerritory>-->

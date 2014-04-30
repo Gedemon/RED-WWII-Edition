@@ -163,30 +163,30 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		end
 	end
 	
-	if AreAtWar( originalCityOwner, newPlayerID) or not Players[originalCityOwner]:IsAlive() then -- do not pillage someone that may have just liberated one of your cities...
+	if AreAtWar( playerID, newPlayerID) or not Players[playerID]:IsAlive() then -- do not pillage someone that may have just liberated one of your cities...
 
 		local gainMat, gainOil = 0, 0
 
 		-- Get Materiel from city capture
-		local currentMateriel = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Materiel + MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture)
-		local materielRatio = GetCityMaxMateriel (city) / (GetMaxMateriel (originalCityOwner) + GetCityMaxMateriel (city)) -- to use value from before the city capture...	
-		Dprint ("   Materiel ratio = GetCityMaxMateriel / GetMaxMateriel = " .. GetCityMaxMateriel (city) .. "/" .. (GetMaxMateriel (originalCityOwner) + GetCityMaxMateriel (city)) .." = " .. materielRatio, bDebugOutput)
+		local currentMateriel = math.max(0, MapModData.RED.ResourceData[playerID].Materiel + MapModData.RED.ResourceData[playerID].MatFromCityCapture)
+		local materielRatio = GetCityMaxMateriel (city) / (GetMaxMateriel (playerID) + GetCityMaxMateriel (city)) -- to use value from before the city capture...	
+		Dprint ("   Materiel ratio = GetCityMaxMateriel / GetMaxMateriel = " .. GetCityMaxMateriel (city) .. "/" .. (GetMaxMateriel (playerID) + GetCityMaxMateriel (city)) .." = " .. materielRatio, bDebugOutput)
 
 		gainMat = Round(currentMateriel * materielRatio)
-		Dprint ("      gainMat = currentMateriel * ratio = " .. gainMat .. ", currentMateriel = Materiel + MatFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Materiel .. " + ".. MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture, bDebugOutput)
-		MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture		+ gainMat
-		MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].MatFromCityCapture	- gainMat
+		Dprint ("      gainMat = currentMateriel * ratio = " .. gainMat .. ", currentMateriel = Materiel + MatFromCityCapture = " ..  MapModData.RED.ResourceData[playerID].Materiel .. " + ".. MapModData.RED.ResourceData[playerID].MatFromCityCapture, bDebugOutput)
+		MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].MatFromCityCapture	+ gainMat
+		MapModData.RED.ResourceData[playerID].MatFromCityCapture			= MapModData.RED.ResourceData[playerID].MatFromCityCapture		- gainMat
 
 		-- Get Oil from city capture
 		if RESOURCE_CONSUMPTION then
-			local currentOil = math.max(0, MapModData.RED.ResourceData[originalCityOwner].Oil + MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture)
-			local oilRatio = GetCityMaxOil (city) / (GetMaxOil (originalCityOwner) + GetCityMaxOil (city))
-			Dprint ("   Oil ratio = GetCityMaxOil / GetMaxOil = " .. GetCityMaxOil (city) .. "/" .. (GetMaxOil (originalCityOwner) + GetCityMaxOil (city)) .." = " .. oilRatio, bDebugOutput)
+			local currentOil = math.max(0, MapModData.RED.ResourceData[playerID].Oil + MapModData.RED.ResourceData[playerID].OilFromCityCapture)
+			local oilRatio = GetCityMaxOil (city) / (GetMaxOil (playerID) + GetCityMaxOil (city))
+			Dprint ("   Oil ratio = GetCityMaxOil / GetMaxOil = " .. GetCityMaxOil (city) .. "/" .. (GetMaxOil (playerID) + GetCityMaxOil (city)) .." = " .. oilRatio, bDebugOutput)
 
 			gainOil = Round(currentOil * oilRatio)
-			Dprint ("      gainOil = currentOil * ratio = " .. gainOil .. ", currentOil = Oil + OilFromCityCapture = " ..  MapModData.RED.ResourceData[originalCityOwner].Oil .. " + ".. MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture, bDebugOutput)
-			MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture		+ gainOil
-			MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture	= MapModData.RED.ResourceData[originalCityOwner].OilFromCityCapture - gainOil
+			Dprint ("      gainOil = currentOil * ratio = " .. gainOil .. ", currentOil = Oil + OilFromCityCapture = " ..  MapModData.RED.ResourceData[playerID].Oil .. " + ".. MapModData.RED.ResourceData[playerID].OilFromCityCapture, bDebugOutput)
+			MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture			= MapModData.RED.ResourceData[newPlayerID].OilFromCityCapture	+ gainOil
+			MapModData.RED.ResourceData[playerID].OilFromCityCapture			= MapModData.RED.ResourceData[playerID].OilFromCityCapture		- gainOil
 		end
 			
 		if gainMat > 0 or gainOil > 0 then
@@ -230,13 +230,22 @@ function VictoryCheck (hexPos, playerID, cityID, newPlayerID)
 			local plot = GetPlot(data.X, data.Y)
 			local city = plot:GetPlotCity()	
 			if city then
-				Dprint("- Check if " .. city:GetName() .. " is occupied and if capturing player is an opponent of original owner, or if owner is allied...", bDebug)
+				Dprint("- Check if " .. city:GetName() .. " is occupied and if capturing player is an opponent of original owner, or if owner is an ally...", bDebug)
 				if not city:IsOccupied() and not AreSameSide(newPlayerID, GetPlotFirstOwner(GetPlotKey(plot)) ) then -- check if a key cities of newPlayerID opponent is free
 					Dprint("     - Checked false, either not occupied, or occupant is not allied", bDebug)
 					bVictory = false
 				else
 					Dprint("     - Checked true !", bDebug)
 				end
+				
+				Dprint("- Check if " .. city:GetName() .. " is occupied and if original owner is an ally...", bDebug)
+				if city:IsOccupied() and AreSameSide(newPlayerID, GetPlotFirstOwner(GetPlotKey(plot)) ) then -- check if a key cities of newPlayerID is occupied
+					Dprint("     - Checked true, one of our cities is occupied, victory denied", bDebug)
+					bVictory = false
+				else
+					Dprint("     - Checked false, victory condition still true !", bDebug)
+				end
+
 			else
 				Dprint("WARNING : plot at ("..tostring(data.X)..","..tostring(data.Y) ..") is not city, but is in g_Cities table !", bDebug)
 			end

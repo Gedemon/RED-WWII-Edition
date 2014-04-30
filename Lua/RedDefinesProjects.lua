@@ -372,6 +372,10 @@ g_ProjectsTable = {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
 	},
+	[PROJECT_LN401] = {
+		Buildings = {ACADEMY},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
+	},
 	[PROJECT_BR690] = {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 15},
@@ -706,7 +710,7 @@ g_ProjectsTable = {
 	},
 	[PROJECT_FLK_PZ38] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
-		Trigger = {Type = TRIGGER_XP, XP = 100, Reference = GE_MOBILE_AA_GUN },
+		Trigger = {Type = TRIGGER_DATE, Date = 19431001, ProbPerTurn = 15},
 	},
 	[PROJECT_MOBELWAGEN] =  {
 		Buildings = {ACADEMY},	

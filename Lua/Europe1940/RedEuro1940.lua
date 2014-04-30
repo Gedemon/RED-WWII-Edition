@@ -60,4 +60,6 @@ end
 
 -- functions to call after entering game (DoM screen button pushed for a new game or reloading)
 function ScenarioOnEnterGame()
+	DoInitEuro1940UI()
+	GameEvents.CityCaptureComplete.Add(	UpdateEuro1940ScoreString )
 end
