@@ -125,6 +125,10 @@ function AIUnitControl(playerID)
 				ForceHealing(unit)
 			else
 				Dprint("Max ratio reached for this unit type, force heal deactivated...")
+				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+				end
 			end
 
 		end
@@ -163,6 +167,10 @@ function AIUnitControl(playerID)
 				ForceHealing(unit)
 			else
 				Dprint("Max ratio reached for this unit type, force heal deactivated...")
+				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+				end
 			end
 			GoSubHunting(unit) -- launch destroyers/cruisers against reported subs
 
@@ -192,6 +200,10 @@ function AIUnitControl(playerID)
 				ForceHealing(unit) -- force unit to heal
 			else
 				Dprint("Max ratio reached for this unit type, force heal deactivated...")
+				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+				end
 			end
 			
 			SetAIInterceptors(unit) -- set Fighters on interception mission
