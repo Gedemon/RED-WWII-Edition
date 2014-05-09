@@ -1810,7 +1810,7 @@ g_Convoy = {
 	},
 	[SWEDEN_TO_GERMANY] = {
 		Name = "Sweden to Germany",
-		SpawnList = { {X=26, Y=89}, }, -- adjacent to Lulea
+		SpawnList = { {X=29, Y=86}, }, -- adjacent to Lulea
 		RandomSpawn = false,
 		DestinationList = { {X=19, Y=71}, }, -- Hamburg
 		RandomDestination = false,
@@ -2522,7 +2522,7 @@ g_Military_Project = {
 	[GERMANY] = {
 	------------------------------------------------------------------------------------
 		[OPERATION_NORWAY] =  { -- projectID as index !
-			Name = "Operation Weserübung",
+			Name = "Operation Weserï¿½bung",
 			OrderOfBattle = {
 				{	Name = "North Norway Airborne Group", X = 21, Y = 70, Domain = "Land", CivID = GERMANY,
 					Group = {		GE_PARATROOPER,	GE_PARATROOPER,	},
@@ -2591,7 +2591,7 @@ g_Military_Project = {
 		[OPERATION_SONNENBLUME] =  { -- projectID as index !
 			Name = "Operation Sonnenblume",
 			OrderOfBattle = {
-				{	Name = "Afrika Korps", X = 85, Y = 45, Domain = "Land", CivID = GERMANY,
+				{	Name = "Afrika Korps", X = 22, Y = 49, Domain = "Land", CivID = GERMANY,
 					Group = {		GE_INFANTRY, GE_INFANTRY,	GE_PANZER_III,	GE_INFANTRY,	GE_PANZER_III,	},
 					UnitsXP = {		15,				15,				15,			15,				10,	}, 
 					InitialObjective = nil, 
