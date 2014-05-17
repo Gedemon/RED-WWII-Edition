@@ -736,6 +736,7 @@ function NavalCounterAttack(iAttackingPlayer, iAttackingUnit, attackerDamage, at
 				if not g_NavalCounterAttack[DefendingUnit] then -- The defending unit couldn't have already attacked
 					Dprint("- defender had " .. DefendingUnit:MovesLeft() .. " moves left.", g_DebugCombat)
 					local movesLeft = DefendingUnit:MovesLeft() -- save defending unit moves
+					g_NavalCounterAttack[AttackingUnit] = true -- mark the attacking unit so it can't counter-attack
 					DefendingUnit:SetHasPromotion(GameInfo.UnitPromotions.PROMOTION_RANGED_PENALTY_20.ID, true)
 					DefendingUnit:RangeStrike( AttackingUnit:GetX(), AttackingUnit:GetY() )
 					--Now that the attack has been made, let's reset the defender's attack flag so it may defend from another attack.
@@ -743,7 +744,6 @@ function NavalCounterAttack(iAttackingPlayer, iAttackingUnit, attackerDamage, at
 					DefendingUnit:SetHasPromotion(GameInfo.UnitPromotions.PROMOTION_RANGED_PENALTY_20.ID, false)
 					DefendingUnit:SetMoves(movesLeft) -- restore defending unit moves
 
-					g_NavalCounterAttack[AttackingUnit] = true -- mark the attacking unit so it can't counter-attack
 					g_NavalCounterAttack[DefendingUnit] = false -- mark the defending unit so it it may defend from another attack.
 				else
 					-- Dprint(DefendingUnit:GetName() .. " is in active turn, unable to counter-attack.", g_DebugCombat)
