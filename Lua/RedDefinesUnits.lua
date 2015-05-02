@@ -8,6 +8,7 @@
 
 SETTLER				= GameInfo.Units.UNIT_SETTLER.ID
 AIRFIELD			= GameInfo.Units.UNIT_AIRFIELD.ID
+FORTIFIED_GUN		= GameInfo.Units.UNIT_FORTIFIED_GUN.ID
 
 -- Infantries -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 INFANTRY				= GameInfo.Units.UNIT_INFANTRY.ID -- NumType for unit naming...

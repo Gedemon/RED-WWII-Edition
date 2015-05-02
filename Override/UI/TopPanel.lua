@@ -575,6 +575,7 @@ function GetOilTTString()
 		local oilFromScenario = resourceData[playerID].OilFromScenario
 		local oilFromMap = resourceData[playerID].OilFromMap
 		local oilFromBuildings = resourceData[playerID].OilFromBuildings
+		local oilNationDetail = MapModData.RED.OilNationDetail
 
 		local oilFromSupplyRoutes  = resourceData[playerID].TotalOilFromSupplyRoute
 		currentOilFromSupplyRoutes = resourceData[playerID].OilFromSupplyRoute
@@ -589,7 +590,12 @@ function GetOilTTString()
 		strText = strText .. "[ICON_RES_OIL] Oil procured last turn : " .. totalOil
 		--strText = strText .. "[NEWLINE][ICON_BULLET] from nation (global production) : "  .. oilFromGlobal
 		if oilFromSupplyRoutes	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from supply routes : "  .. oilFromSupplyRoutes; end
-		if oilFromMap			> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from deposits : "  .. oilFromMap; end
+		if oilFromMap			> 0 then
+			strText = strText .. "[NEWLINE][ICON_BULLET] from deposits : "  .. oilFromMap
+			for key, value in pairs (oilNationDetail) do			
+				strText = strText .. "[NEWLINE]          [ICON_BULLET] "  .. key .. " : " .. value
+			end
+		end
 		if oilFromBuildings		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from synthetic fuel plants : "  .. oilFromBuildings; end
 		if oilFromScenario		> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from base production : "  .. oilFromScenario; end
 		if oilFromCityCapture	> 0 then strText = strText .. "[NEWLINE][ICON_BULLET] from captured cities : "  .. oilFromCityCapture; end

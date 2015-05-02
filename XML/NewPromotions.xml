@@ -1108,6 +1108,7 @@
 			<Help>TXT_KEY_PROMOTION_SUPER_HEAVY_TANK_DESC</Help>
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<CannotBeChosen>true</CannotBeChosen>
+			<AttackFortifiedMod>50</AttackFortifiedMod>
 			<CityAttack>-33</CityAttack>
 			<NoDefensiveBonus>true</NoDefensiveBonus>
 			<PortraitIndex>58</PortraitIndex>
@@ -1122,6 +1123,13 @@
 			<Modifier>-66</Modifier>
 		</Row>
 	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_SUPER_HEAVY_TANK</PromotionType>
+			<UnitClassType>UNITCLASS_FORTIFIED_GUN</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
 
 	<!-- LIGHT TANK DESTROYER -->
 	<UnitPromotions>
@@ -1250,6 +1258,13 @@
 			<Modifier>-25</Modifier>
 		</Row>
 	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_ASSAULT_GUN</PromotionType>
+			<UnitClassType>UNITCLASS_FORTIFIED_GUN</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
 
 	<!-- HEAVY ASSAULT GUN -->
 	<UnitPromotions>
@@ -1288,6 +1303,13 @@
 			<Modifier>-25</Modifier>
 		</Row>
 	</UnitPromotions_Domains>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_ASSAULT_GUN</PromotionType>
+			<UnitClassType>UNITCLASS_FORTIFIED_GUN</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
 
 	<!-- OLD FIGHTER -->
 	<UnitPromotions>
@@ -2283,6 +2305,13 @@
 			<Modifier>-25</Modifier>
 		</Row>
 	</UnitPromotions_UnitClasses>
+	<UnitPromotions_UnitClasses>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_FORTIFIED_GUN</UnitClassType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_UnitClasses>
 
 	<!-- BATTLESHIP -->
 	<UnitPromotions>
@@ -2469,5 +2498,20 @@
 		</Row>
 	</UnitPromotions>
 
+	<!-- FORTIFIED GUN -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_FORTIFIED_GUN</Type>
+			<Description>TXT_KEY_PROMOTION_FORTIFIED_GUN</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_FORTIFIED_GUN</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_FORTIFIED_GUN_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<OnlyDefensive>1</OnlyDefensive>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
 	
 </GameData>

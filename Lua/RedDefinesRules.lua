@@ -63,7 +63,8 @@ TRANSPORT_DEFAULT					= TRANSPORT_MATERIEL	-- default type (1 = materiel...)
 TRANSPORT_DEFAULT_REFERENCE			= 250					-- default value
 
 -- Senario
-WAR_MINIMUM_STARTING_TURN = 0 -- can't manually start war before this turn (but forced DOW via SetMajorRelations or SetMinorDOW are possible)
+WAR_MINIMUM_STARTING_TURN		= 0		-- can't manually start war before this turn (but forced DOW via SetMajorRelations or SetMinorDOW are possible)
+PERMANENT_WAR_DECLARATION		= true	-- can't make peace once a war is declared (but forced peace via scenario event is still possible)
 
 CAN_BUILD_UNIT_IN_OCCUPIED_CITY = false -- need special building to build unit in occupied cities
 REVEAL_ALL_CITIES				= false -- cities tiles are always visible for every civs
@@ -178,5 +179,6 @@ MIN_SEA_HEALTH_PERCENT		= 50
 OPTIMAL_SEA_HEALTH_PERCENT	= 65
 
 -- AI Distances decisions
-CLOSE_LAND_DISTANCE = 8 -- to do : convert to max turn to reach / unit...
-CLOSE_SEA_DISTANCE	= 24
+CLOSE_LAND_DISTANCE			= 8		-- to do : convert to max turn to reach / unit...
+CLOSE_SEA_DISTANCE			= 24
+MAX_LANDING_PLOT_DISTANCE	= 5		-- consider landing plot reached when disembarking at this distance of the destination

@@ -234,6 +234,26 @@ g_Initial_OOB = {
 
 }
 
+-- Options
+if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 1", X = 35, Y = 42, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 2", X = 35, Y = 43, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 3", X = 36, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 4", X = 35, Y = 45, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 5", X = 35, Y = 46, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+end
+
+if(PreGame.GetGameOption("Westwall") ~= nil) and (PreGame.GetGameOption("Westwall") >  0) then
+	table.insert (g_Initial_OOB,	{Name = "Westwall 1", X = 36, Y = 42, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 2", X = 37, Y = 44, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 3", X = 37, Y = 46, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+																																	 
+	table.insert (g_Initial_OOB,	{Name = "Westwall 4", X = 35, Y = 47, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 5", X = 35, Y = 49, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 6", X = 35, Y = 51, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 7", X = 36, Y = 53, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+end
+
 
 g_MinorMobilization_OOB = { 
 	{Name = "Poland army", X = 53, Y = 46, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
@@ -574,7 +594,7 @@ g_Cities = {
 	{X = 33, Y = 27, Buildings = { HARBOR }, }, -- AJACCIO
 	{X = 21, Y = 45, Buildings = { HARBOR }, }, -- SAINT NAZAIRE
 	{X = 19, Y = 48, }, -- BREST
-	{X = 36, Y = 45, }, -- STRASBOURG
+	{X = 36, Y = 45, AIBuildings = {BARRACKS, ARSENAL, BASE},}, -- STRASBOURG
 	{X = 33, Y = 34, }, -- NICE
 	{X = 22, Y = 39, Key = true,  }, -- BORDEAUX
 	{X = 21, Y = 42, Buildings = { HARBOR }, }, -- LA ROCHELLE

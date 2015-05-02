@@ -520,6 +520,11 @@ function WarConsequences( iTeam1, iTeam2, bWar ) -- Check for declaration of war
 
 	local bDebug = false
 
+	if PERMANENT_WAR_DECLARATION then	
+		Teams[iTeam1]:SetPermanentWarPeace( iTeam2, true)
+		Teams[iTeam2]:SetPermanentWarPeace( iTeam1, true)
+	end
+
 	if (bWar) then
 		local minorCiv = GetMinorFromTeam(iTeam1)
 		if minorCiv and g_MinorProtector then

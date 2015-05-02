@@ -21,6 +21,9 @@ end
 --------------------------------------------------------------
 
 function Round(num)
+	if type(num) ~= "number" then -- only try to round number...
+		return num 
+	end
     under = math.floor(num)
     upper = math.floor(num) + 1
     underV = -(under - num)

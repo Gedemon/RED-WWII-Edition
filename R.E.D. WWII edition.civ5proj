@@ -61,7 +61,7 @@
         <FileName>GameSetup/RedEuro1940Setup.xml</FileName>
       </Content>
       <Content>
-        <Type>CustomRED</Type>
+        <Type>CustomRED_</Type>
         <Name>TXT_KEY_RED_EARTH1942_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_EARTH1942_SCENARIO_DESC</Description>
         <FileName>GameSetup/Earth1941Setup.xml</FileName>
@@ -103,7 +103,7 @@
         <FileName>GameSetup/Earth1936Setup.xml</FileName>
       </Content>
       <Content>
-        <Type>CustomRED</Type>
+        <Type>CustomRED_</Type>
         <Name>TXT_KEY_RED_SMALL_EURO1940_SCENARIO_TITLE</Name>
         <Description>TXT_KEY_RED_SMALL_EURO1940_SCENARIO_DESC</Description>
         <FileName>GameSetup/RedSmallEuro1940Setup.xml</FileName>

@@ -80,7 +80,9 @@ MapModData.RED.ProjectsDone = MapModData.RED.ProjectsDone or {}
 MapModData.RED.CombatsLog = MapModData.RED.CombatsLog or {}
 MapModData.RED.DynamicMap = MapModData.RED.DynamicMap or {}
 MapModData.RED.ResourceMap = MapModData.RED.ResourceMap or {}
---
+
+-- Cached & Shared
+MapModData.RED.OilNationDetail = MapModData.RED.OilNationDetail or {}
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Civilizations Type ID
@@ -354,6 +356,7 @@ PROMOTION_AIR_RECON =					GameInfo.UnitPromotions.PROMOTION_AIR_RECON.ID
 FIRST_STRIKE_RANGE_BONUS =				GameInfo.UnitPromotions.PROMOTION_FIRST_STRIKE_RANGE_BONUS.ID
 PROMOTION_ARTILLERY =					GameInfo.UnitPromotions.PROMOTION_ARTILLERY.ID
 PROMOTION_FIELD_GUN =					GameInfo.UnitPromotions.PROMOTION_FIELD_GUN.ID
+PROMOTION_FORTIFIED_GUN =				GameInfo.UnitPromotions.PROMOTION_FORTIFIED_GUN.ID
 PROMOTION_LIGHT_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID
 PROMOTION_TANK_DESTROYER =				GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID
 PROMOTION_HEAVY_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID

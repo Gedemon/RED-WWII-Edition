@@ -438,7 +438,7 @@ function EscapeUnitsFromPlot(plot, bRetreat, damageToTransfert, iAttackingPlayer
 				for i, escapePlot in pairs(escapeList) do					
 
 					if (escapePlot:GetArea() == plot:GetArea() or escapePlot:Area():GetNumTiles() > 15) -- same area or not a lake/island
-					   and escapePlot:GetNumUnits() == 0 -- no other unit here
+					   and CanSharePlot(unit, escapePlot) -- no other unit here
 					   and ((escapePlot:IsWater() and bSeaUnit) or (not escapePlot:IsWater() and bLandUnit)) -- same domain
 					   and not escapePlot:IsMountain() -- no alpinist here
 					   and not escapePlot:IsImpassable() -- do we need to chack the mountain if we check this one ?
@@ -766,4 +766,16 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 	-- No limit found
 	return false
 
+end
+
+function CanSharePlot(unit, plot)
+	local numUnits = plot:GetNumUnits();
+	for i = 0, numUnits do
+		
+		local plotUnit = plot:GetUnit(i)
+		if plotUnit ~= nil and ((unit:GetOwner() ~= plotUnit:GetOwner()) or (unit:IsSpecialType() and plotUnit:IsSpecialType()) or (not unit:IsSpecialType() and not plotUnit:IsSpecialType())) then
+			return false
+		end
+	end
+	return true
 end

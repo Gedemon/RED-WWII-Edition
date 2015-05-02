@@ -512,7 +512,16 @@ function IsAtDestination(playerID, UnitID, x, y)
 			Dprint("Check if ".. unit:GetName() .." (id=".. unit:GetID() ..") has reached it's landing plot", bDebug)
 			local routeID = MapModData.RED.UnitData[unitKey].OrderReference
 			local destination = MapModData.RED.UnitData[unitKey].OrderObjective
-			if destination.X == x and destination.Y == y then
+
+			local bReachedLandingPlot = false
+			if not unit:IsEmbarked() then -- the unit should be set to disembarked before this is called			
+				local destinationDistance = distanceBetween(plot, GetPlot(destination.X,destination.Y))
+				if destinationDistance < MAX_LANDING_PLOT_DISTANCE then
+					bReachedLandingPlot = true -- close enough
+				end
+			end
+
+			if bReachedLandingPlot then -- for exact destination we'd use (destination.X == x and destination.Y == y) but that may be problemetic to remove the promotion of an embarked unit if the destination plot is set on water by mistake in the route table 
 				Dprint("  - arrived at destination plot, removing orders (and embarkation promotion if NO_AI_EMBARKATION)...", bDebug)
 				if unit:IsHasPromotion(PROMOTION_EMBARKATION) and NO_AI_EMBARKATION then
 					unit:SetHasPromotion(PROMOTION_EMBARKATION, false)

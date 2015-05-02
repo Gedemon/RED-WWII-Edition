@@ -469,6 +469,7 @@ function GetOilProcurement (playerID, bNoUpdate)
 	local oilProcurement = {}
 
 	oilProcurement.fromGlobal, oilProcurement.fromScenario, oilProcurement.fromMap, oilProcurement.fromBuildings = 0, 0, 0, 0
+	oilProcurement.detail = {}
 
 	-- Bonus from scenario
 	local handicap = GetHandicapForRED(player)
@@ -479,7 +480,7 @@ function GetOilProcurement (playerID, bNoUpdate)
 	if bNoUpdate then
 		oilProcurement.fromMap = resourceData[playerID].OilFromMap
 	else
-		oilProcurement.fromMap = GetNumResourceTypeForPlayer(RESOURCE_OIL, playerID)
+		oilProcurement.fromMap = GetNumResourceTypeForPlayer(RESOURCE_OIL, playerID) -- OilNationDetail is not saved, just cached & shared for toppanel
 	end
 
 	for city in player:Cities() do
@@ -877,6 +878,7 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 	Dprint("-------------------------------------")
 	Dprint("Getting Number of resource type ID=".. tostring(resourceID) .." available for player ID=" .. tostring(playerID))
 	local numResource = 0
+	local procurementDetail = {}
 	for plotKey, data in pairs(MapModData.RED.ResourceMap) do
 		if MapModData.RED.ResourceMap[plotKey].Type == resourceID then
 			local plot = GetPlotFromKey ( plotKey )
@@ -975,7 +977,14 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 				
 					if bCanGetRessource then
 						Dprint("   - Resource is connected, added to pool...")
-						numResource = numResource + (MapModData.RED.ResourceMap[plotKey].Num * RESOURCE_PRODUCTION_FACTOR)
+						local numAdded = MapModData.RED.ResourceMap[plotKey].Num * RESOURCE_PRODUCTION_FACTOR
+						numResource = numResource + numAdded
+						local source = Players[ownerID]:GetCivilizationShortDescription()
+						if procurementDetail[source] then
+							procurementDetail[source]= procurementDetail[source] + numAdded
+						else
+							procurementDetail[source]= numAdded
+						end
 					end
 
 				end				
@@ -983,6 +992,9 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 		end
 	end
 	Dprint("-------------------------------------")
+
+	if resourceID == RESOURCE_OIL then MapModData.RED.OilNationDetail = procurementDetail; end
+
 	return numResource	
 end
 

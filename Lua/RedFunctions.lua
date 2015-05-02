@@ -1428,4 +1428,6 @@ function UpdateGlobalData()
 			UpdatePlayerData(iPlayer)
 		end
 	end
+	-- local player data
+	GetNumResourceTypeForPlayer(RESOURCE_OIL, Game.GetActivePlayer()) -- update procurement detail for local player, todo: change that, multiplayer ?
 end

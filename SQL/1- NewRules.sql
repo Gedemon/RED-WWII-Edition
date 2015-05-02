@@ -88,6 +88,22 @@ UPDATE Defines SET Value = -500		WHERE Name = 'DEFICIT_UNIT_DISBANDING_THRESHOLD
 
 
 --------------------------------------------------------------------------------------------
+-- Promotions
+--------------------------------------------------------------------------------------------
+
+UPDATE UnitPromotions SET AttackWoundedMod = 10 WHERE Type = 'PROMOTION_CHARGE';
+UPDATE UnitPromotions SET OpenAttack = 15, OpenDefense = 5 WHERE Type = 'PROMOTION_SHOCK_1';
+UPDATE UnitPromotions SET OpenAttack = 10, OpenDefense = 10 WHERE Type = 'PROMOTION_SHOCK_2';
+UPDATE UnitPromotions SET OpenAttack = 5, OpenDefense = 15 WHERE Type = 'PROMOTION_SHOCK_3';
+UPDATE UnitPromotions SET RoughAttack = 5, RoughDefense = 15 WHERE Type = 'PROMOTION_DRILL_1';
+UPDATE UnitPromotions SET RoughAttack = 10, RoughDefense = 10 WHERE Type = 'PROMOTION_DRILL_2';
+UPDATE UnitPromotions SET RoughAttack = 15, RoughDefense = 5 WHERE Type = 'PROMOTION_DRILL_3';
+UPDATE UnitPromotions_Domains SET Modifier = 15 WHERE PromotionType = 'PROMOTION_TARGETING_1';
+UPDATE UnitPromotions_Domains SET Modifier = 10 WHERE PromotionType = 'PROMOTION_TARGETING_2';
+UPDATE UnitPromotions_Domains SET Modifier = 5  WHERE PromotionType = 'PROMOTION_TARGETING_3';
+
+
+--------------------------------------------------------------------------------------------
 -- Game Defines
 --------------------------------------------------------------------------------------------
 --UPDATE Defines SET Value = 2		WHERE Name = 'PLOT_UNIT_LIMIT';
@@ -103,6 +119,7 @@ UPDATE Defines SET Value = 0		WHERE Name = 'FOOD_CONSUMPTION_PER_POPULATION';
 UPDATE Defines SET Value = 100		WHERE Name = 'CITY_CAPTURE_POPULATION_PERCENT';
 UPDATE Defines SET Value = 1500		WHERE Name = 'CULTURE_COST_FIRST_PLOT';
 UPDATE Defines SET Value = 2500		WHERE Name = 'PLOT_BASE_COST';
+UPDATE Defines SET Value = 3		WHERE Name = 'BONUS_PER_ADJACENT_FRIEND'; -- flancking bonus (default 10)
 UPDATE Defines SET Value = 75		WHERE Name = 'MAX_HIT_POINTS'; -- Absolute MaxHP to set at 100 if per units maxHP could be achieved
 UPDATE Defines SET Value = 50		WHERE Name = 'MAX_CITY_HIT_POINTS';
 UPDATE Defines SET Value = 0		WHERE Name = 'ENEMY_HEAL_RATE';
@@ -218,6 +235,7 @@ UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_SNOW';
 UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_TRADING_POST';
 UPDATE Improvements SET DefenseModifier = 45 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
 UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
+UPDATE Improvements SET DefenseModifier = 75 WHERE Type = 'IMPROVEMENT_FORT';
 
 INSERT INTO Improvement_Yields (ImprovementType, YieldType, Yield) VALUES ('IMPROVEMENT_TRADING_POST', 'YIELD_PRODUCTION', 1);
 UPDATE Improvement_Yields SET Yield = 2 WHERE ImprovementType = 'IMPROVEMENT_MINE';

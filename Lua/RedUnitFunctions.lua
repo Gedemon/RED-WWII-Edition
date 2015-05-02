@@ -974,9 +974,9 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 		end
 	end
 
-	-- tank destroyers can only fight in defense
-	if IsTankDestroyer(unit) then
-		unit:SetMadeAttack(true)
+	-- some units can only fight in defense
+	if IsTankDestroyer(unit) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) then
+		unit:SetMadeAttack(true) -- will be set to false when needed in counter-fire / first strike functions in RedCombat.lua
 	end
 
 	-- Place fort under airport
@@ -985,6 +985,16 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 		local fortType = GameInfoTypes["IMPROVEMENT_FORT"]
 		if (plot:GetImprovementType() ~= fortType) then
 			plot:SetImprovementType(fortType)
+		end
+	end
+
+	-- Place citadel under fortified guns
+	if unitType == FORTIFIED_GUN then
+		local plot = unit:GetPlot()
+		--local citadelType = GameInfoTypes["IMPROVEMENT_CITADEL"]
+		local citadelType = GameInfoTypes["IMPROVEMENT_FORT"] -- to do: resize citadel ? use fort
+		if (plot:GetImprovementType() ~= citadelType) then
+			plot:SetImprovementType(citadelType)
 		end
 	end
 end
@@ -1684,10 +1694,10 @@ function DynamicTilePromotion(playerID, UnitID, x, y)
 
 		-- Embarked promotion...
 
-		CheckEmbarkedPromotion(unit) -- Remove embarked promotion for AI units if required by scenario
+		CheckEmbarkedPromotion(unit) -- Remove/Add embarked promotion for AI units if required by scenario (like reinforcement routes)
 
-		if EMBARK_FROM_HARBOR and not (NO_AI_EMBARKATION and not player:IsHuman()) then
-			if not ( GameInfo.Units[unitType].Domain == "DOMAIN_SEA" or GameInfo.Units[unitType].Domain == "DOMAIN_AIR" or unit:IsEmbarked() ) then -- don't test those
+		if EMBARK_FROM_HARBOR and not (NO_AI_EMBARKATION and not player:IsHuman()) then -- here we check the AI only if it's allowed to embark at will
+			if not ( GameInfo.Units[unitType].Domain == "DOMAIN_SEA" or GameInfo.Units[unitType].Domain == "DOMAIN_AIR" or unit:IsEmbarked() ) then -- don't test those -- 
 				if CanEmbarkFrom(plot, unit) then
 					if not (unit:IsHasPromotion(PROMOTION_EMBARKATION)) then
 						Dprint("   - Marking " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() ..", can Embark", bDebug)
@@ -1734,31 +1744,6 @@ function DynamicTilePromotion(playerID, UnitID, x, y)
 			end
 		end
 
-
-		-- Embarked land units get BIG penalty against sea units to compensate higher strength (to protect from one shoot air raid)
-		--[[
-		if ( plot:IsWater() and unit:IsEmbarked() ) then			
-			if (not unit:IsHasPromotion(PROMOTION_EMBARKED_FIX)) and (not unit:IsRanged())  then
-				Dprint("   - Marking " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() ..", Sea Penalty for embarked unit", bDebug)
-				unit:SetHasPromotion(PROMOTION_EMBARKED_FIX, true)
-				RemoveFreePromotions(unit)
-			elseif (not unit:IsHasPromotion(PROMOTION_EMBARKED_ARTILLERY_FIX)) and (unit:IsRanged())  then
-				Dprint("   - Marking " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() ..", Sea Penalty for embarked artillery unit", bDebug)
-				unit:SetHasPromotion(PROMOTION_EMBARKED_ARTILLERY_FIX, true)
-				RemoveFreePromotions(unit)			
-			else		
-				Dprint("   - " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() ..", is still embarked but is already marked", bDebug)
-			end
-		elseif (unit:IsHasPromotion(PROMOTION_EMBARKED_FIX)) then
-			Dprint("   - Removing embarked mark, " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() .." has debarked", bDebug)
-			unit:SetHasPromotion(PROMOTION_EMBARKED_FIX, false)
-			RestoreFreePromotions(unit)
-		elseif (unit:IsHasPromotion(PROMOTION_EMBARKED_ARTILLERY_FIX)) then
-			Dprint("   - Removing embarked artilley mark, " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() .." has debarked", bDebug)
-			unit:SetHasPromotion(PROMOTION_EMBARKED_ARTILLERY_FIX, false)
-			RestoreFreePromotions(unit)
-		end	
-		--]]
 		-- Scenarios may specify custom promotions...
 		SetScenarioPromotion(unit)
 
@@ -1767,26 +1752,32 @@ end
 -- add to GameEvents.UnitSetXY on loading and reloading game (this event is also fired when unit is created)
 
 function CheckEmbarkedPromotion(unit)
-	local bDebug = false
+	local bDebug = true
 	local player = Players[unit:GetOwner()]
 	local unitType = unit:GetUnitType()
 
 	if NO_AI_EMBARKATION and not player:IsHuman() then
+
+		if not unit:GetDomainType() == DomainTypes.DOMAIN_LAND then
+			return
+		end
 	
 		local unitKey = GetUnitKey(unit)
 		local specialCase = false
-		if MapModData.RED.UnitData[unitKey] then -- don't test before initialisation of MapModData.RED.UnitData
+		if MapModData.RED.UnitData[unitKey] then -- don't test new units before initialisation of MapModData.RED.UnitData
 			if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK or MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then
 				specialCase = true
 			end
-		end
 
-		if (unit:IsHasPromotion(PROMOTION_EMBARKATION))		  
-		  and not unit:IsEmbarked()
-		  and not unit:GetPlot():IsWater()
-		  and not specialCase then
-			Dprint("   - Removing embarkation promotion from " .. unit:GetName() .. " (unitID =".. unit:GetID(), bDebug)
-			unit:SetHasPromotion(PROMOTION_EMBARKATION, false)
+			if (unit:IsHasPromotion(PROMOTION_EMBARKATION))	and not specialCase then -- as the AI is not allowed to use embarkation, only allow units embark/disembark from a scenario specific event
+				Dprint("   - Removing embarkation promotion from " .. unit:GetName() .. " (unitID =".. unit:GetID(), bDebug)
+				unit:SetHasPromotion(PROMOTION_EMBARKATION, false)
+			end
+
+			if (not unit:IsHasPromotion(PROMOTION_EMBARKATION))	and MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK and unit:IsEmbarked() then -- allow unit to disembark, but do not give back to unit that have disembarked near their disembark plot (maybe redondant with the check for landing code, but should handle the cases when MAX_LANDING_PLOT_DISTANCE is too low for the sea front scale)
+				Dprint("   - Adding embarkation promotion to " .. unit:GetName() .. " (unitID =".. unit:GetID(), bDebug)
+				unit:SetHasPromotion(PROMOTION_EMBARKATION, true)
+			end
 		end
 
 	elseif not EMBARK_FROM_HARBOR and not (unit:IsHasPromotion(PROMOTION_EMBARKATION)) and not ( GameInfo.Units[unitType].Domain == "DOMAIN_SEA" or GameInfo.Units[unitType].Domain == "DOMAIN_AIR" ) then

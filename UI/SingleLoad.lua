@@ -30,7 +30,6 @@ function OnStartButton()
 	print("Clicked on Load Game button...")
 	ContextPtr:SetHide(true)
 	UIManager:DequeuePopup( ContextPtr )
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/PreLoading/"):SetHide(false)
 
 	if g_GameType == GameTypes.GAME_SINGLE_PLAYER or g_GameType == GameTypes.GAME_HOTSEAT_MULTIPLAYER then
 		UIManager:SetUICursor( 1 );

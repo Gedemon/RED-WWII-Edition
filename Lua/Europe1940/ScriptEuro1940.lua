@@ -201,9 +201,6 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 				local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
 				local pEngland = Players[iEngland]
 
-				-- todo :
-				-- save from units for UK, auto-send some units in Africa and give unit ownership to colony
-				-- this will allow war and unit flipping side in colony whithout needing to make Vichy France enter war...
 				Dprint("- Change french units ownership ...", bDebug)
 				local palmyraPlot = GetPlot (84,12)
 				local palmyra = palmyraPlot:GetPlotCity()

@@ -91,10 +91,17 @@
 		</Row>
 
 		<Row Tag="TXT_KEY_YOU_UNIT_EXTRA_DAMAGE_NO_RETREAT">
-			<Text>Your {@1_UnitName} was routed and have no retreating position ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] extra damage!)</Text>
+			<Text>Your {@1_UnitName} was routed and can not retreat ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] extra damage!)</Text>
 		</Row>
 		<Row Tag="TXT_KEY_YOU_GIVE_EXTRA_DAMAGE_NO_RETREAT">
-			<Text>An enemy {@1_UnitName} was routed and have no retreating position ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] extra damage!)</Text>
+			<Text>An enemy {@1_UnitName} was routed and can not retreat ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] extra damage!)</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_YOU_UNIT_GIVE_EXTRA_DAMAGE_FORCED_RETREAT">
+			<Text>Your {@1_UnitName} was forced to retreat under heavy assault, but the enemy has taken ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] extra damage!)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_YOU_TAKE_EXTRA_DAMAGE_FORCING_RETREAT">
+			<Text>An enemy {@1_UnitName} was forced to retreat under our heavy assault, but we have taken ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] extra damage!)</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_RETREAT">
@@ -1190,6 +1197,9 @@
 		<Row Tag="TXT_KEY_UNIT_FORTIFICATION">
 			<Text>Fortification</Text>
 		</Row>
+		<Row Tag="TXT_KEY_UNIT_FORTIFIED_GUN">
+			<Text>Fortification</Text>
+		</Row>
 		<Row Tag="TXT_KEY_UNIT_MOBILE_HQ">
 			<Text>Mobile HQ</Text>
 		</Row>
@@ -1321,6 +1331,40 @@
 		</Replace>
 		<Replace Tag="TXT_KEY_PROMOTION_CITY_SIEGE">
 			<Text>Bonus vs Cities (20)</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_PROMOTION_SHOCK_1_HELP">
+			<Text>+15% [ICON_STRENGTH] when attacking in [COLOR_POSITIVE_TEXT]Open[ENDCOLOR] Terrain.[NEWLINE]+5% [ICON_STRENGTH] when defending in [COLOR_POSITIVE_TEXT]Open[ENDCOLOR] Terrain.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_SHOCK_2_HELP">
+			<Text>+10% [ICON_STRENGTH] when attacking in [COLOR_POSITIVE_TEXT]Open[ENDCOLOR] Terrain.[NEWLINE]+10% [ICON_STRENGTH] when defending in [COLOR_POSITIVE_TEXT]Open[ENDCOLOR] Terrain.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_SHOCK_3_HELP">
+			<Text>+5% [ICON_STRENGTH] when attacking in [COLOR_POSITIVE_TEXT]Open[ENDCOLOR] Terrain.[NEWLINE]+15% [ICON_STRENGTH] when defending in [COLOR_POSITIVE_TEXT]Open[ENDCOLOR] Terrain.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_DRILL_1_HELP">
+			<Text>+5% [ICON_STRENGTH] when attacking in [COLOR_POSITIVE_TEXT]Rough[ENDCOLOR] Terrain.[NEWLINE]+15% [ICON_STRENGTH] when defending in [COLOR_POSITIVE_TEXT]Rough[ENDCOLOR] Terrain.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_DRILL_2_HELP">
+			<Text>+10% [ICON_STRENGTH] when attacking in [COLOR_POSITIVE_TEXT]Rough[ENDCOLOR] Terrain.[NEWLINE]+10% [ICON_STRENGTH] when defending in [COLOR_POSITIVE_TEXT]Rough[ENDCOLOR] Terrain.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_DRILL_3_HELP">
+			<Text>+15% [ICON_STRENGTH] when attacking in [COLOR_POSITIVE_TEXT]Rough[ENDCOLOR] Terrain.[NEWLINE]+5% [ICON_STRENGTH] when defending in [COLOR_POSITIVE_TEXT]Rough[ENDCOLOR] Terrain.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_TARGETING_1_HELP">
+			<Text>+15% [ICON_STRENGTH] Combat Strength against [COLOR_POSITIVE_TEXT]Naval Units[ENDCOLOR].</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_TARGETING_2_HELP">
+			<Text>+10% [ICON_STRENGTH] Combat Strength against [COLOR_POSITIVE_TEXT]Naval Units[ENDCOLOR].</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_TARGETING_3_HELP">
+			<Text>+5% [ICON_STRENGTH] Combat Strength against [COLOR_POSITIVE_TEXT]Naval Units[ENDCOLOR].</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_CHARGE_HELP">
+			<Text>+10% [ICON_STRENGTH] Combat Strength VS [COLOR_POSITIVE_TEXT]Wounded Units[ENDCOLOR].</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_BLITZ_HELP">
+			<Text>Multiple attacks per turn.</Text>
 		</Replace>
 
 		<!-- New Texts -->
@@ -1537,14 +1581,14 @@
 			<Text>Howitzer-Guns</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_ARTILLERY_DESC">
-			<Text>Can fire over obstacles.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Gun units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea units[ENDCOLOR].[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines units[ENDCOLOR].[NEWLINE]May not melee attack, limited visibility.[NEWLINE]Can't capture [COLOR_NEGATIVE_TEXT]Enemy territory[ENDCOLOR].</Text>
+			<Text>Can fire over obstacles.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Gun units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea units[ENDCOLOR].[NEWLINE]Can provide [COLOR_POSITIVE_TEXT]support Fire[ENDCOLOR].[NEWLINE]Can use [COLOR_POSITIVE_TEXT]Defensive First Strike[ENDCOLOR].[NEWLINE]Can use [COLOR_POSITIVE_TEXT]Counter-Fire[ENDCOLOR].[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines units[ENDCOLOR].[NEWLINE]May not melee attack, limited visibility.[NEWLINE]Can't capture [COLOR_NEGATIVE_TEXT]Enemy territory[ENDCOLOR].</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN">
 			<Text>Field Guns</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN_DESC">
-			<Text>Direct fire only.[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor Units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea units[ENDCOLOR].[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines units[ENDCOLOR].[NEWLINE]May not melee attack, limited visibility.[NEWLINE]Can't capture [COLOR_NEGATIVE_TEXT]Enemy territory[ENDCOLOR].</Text>
+			<Text>Direct fire only.[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Armor Units[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea units[ENDCOLOR].[NEWLINE]Can provide [COLOR_POSITIVE_TEXT]support Fire[ENDCOLOR].[NEWLINE]Can use [COLOR_POSITIVE_TEXT]Defensive First Strike[ENDCOLOR].[NEWLINE]Can use [COLOR_POSITIVE_TEXT]Counter-Fire[ENDCOLOR] against other Field Gun.[NEWLINE]Can't attack [COLOR_NEGATIVE_TEXT]Submarines units[ENDCOLOR].[NEWLINE]May not melee attack, limited visibility.[NEWLINE]Can't capture [COLOR_NEGATIVE_TEXT]Enemy territory[ENDCOLOR].</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN">
@@ -1614,7 +1658,7 @@
 			<Text>Super Heavy Tank</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_SUPER_HEAVY_TANK_DESC">
-			<Text>- 33% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 66% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Air[ENDCOLOR] units.[NEWLINE]No [COLOR_NEGATIVE_TEXT]terrain[ENDCOLOR] defensive bonus.[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]move[ENDCOLOR] after attacking.</Text>
+			<Text>+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]- 33% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 66% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Air[ENDCOLOR] units.[NEWLINE]No [COLOR_NEGATIVE_TEXT]terrain[ENDCOLOR] defensive bonus.[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]move[ENDCOLOR] after attacking.</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_PROMOTION_LIGHT_TANK_DESTROYER">
@@ -1751,7 +1795,7 @@
 			<Text>Heavy Bomber</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_HEAVY_BOMBER_DESC">
-			<Text>+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]- 35% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Gun[ENDCOLOR] units.[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Land[ENDCOLOR] units.[NEWLINE]- 70% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]- 75% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Armor[ENDCOLOR] units.[NEWLINE]- 95% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.</Text>
+			<Text>+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]- 35% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Gun[ENDCOLOR] units.[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Land[ENDCOLOR] units.[NEWLINE]- 70% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sea[ENDCOLOR] units.[NEWLINE]- 75% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Armor[ENDCOLOR] units.[NEWLINE]- 95% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Submarines[ENDCOLOR] units.</Text>
 		</Row>
 
 		<Row Tag="TXT_KEY_PROMOTION_LIGHT_BOMBER">
@@ -1822,6 +1866,14 @@
 		<Row Tag="TXT_KEY_PROMOTION_CONVOY_DESC">
 			<Text>Limited [COLOR_NEGATIVE_TEXT]visibility[ENDCOLOR].[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].</Text>
 		</Row>
+
+		<Row Tag="TXT_KEY_PROMOTION_FORTIFIED_GUN">
+			<Text>Fortification</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FORTIFIED_GUN_DESC">
+			<Text>Can use [COLOR_POSITIVE_TEXT]Defensive first strike[ENDCOLOR].[NEWLINE]Can use [COLOR_POSITIVE_TEXT]Counter-Fire[ENDCOLOR].[NEWLINE]Limited [COLOR_NEGATIVE_TEXT]visibility[ENDCOLOR].[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]Move[ENDCOLOR].</Text>
+		</Row>
+		
 	</Language_en_US>
 	
 	<!-- ++++++++++++++++++++ -->
