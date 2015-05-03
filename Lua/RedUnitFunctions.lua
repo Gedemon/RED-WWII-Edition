@@ -969,7 +969,7 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 
 	-- apply germany trait
 	if GetCivIDFromPlayerID (playerID) == GERMANY then		
-		if IsArmorClass(value.NumType) then
+		if IsArmorClass(value.NumType) and not (IsAssaultGun(unit) or IsTankDestroyer(unit)) then
 			unit:SetHasPromotion(PROMOTION_BLITZ, true)
 		end
 	end

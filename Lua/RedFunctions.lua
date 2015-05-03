@@ -1416,8 +1416,9 @@ function UpdatePlayerData(playerID)
 		end
 	end
 	g_Wounded[playerID] = Round(wounded)
-	---
 
+	-- update procurement detail
+	GetNumResourceTypeForPlayer(RESOURCE_OIL, playerID)
 
 end
 
@@ -1427,7 +1428,5 @@ function UpdateGlobalData()
 		if player and player:IsAlive() and not player:IsBarbarian() then
 			UpdatePlayerData(iPlayer)
 		end
-	end
-	-- local player data
-	GetNumResourceTypeForPlayer(RESOURCE_OIL, Game.GetActivePlayer()) -- update procurement detail for local player, todo: change that, multiplayer ?
+	end	
 end

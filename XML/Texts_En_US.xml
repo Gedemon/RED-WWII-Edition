@@ -1366,6 +1366,9 @@
 		<Replace Tag="TXT_KEY_PROMOTION_BLITZ_HELP">
 			<Text>Multiple attacks per turn.</Text>
 		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_SIEGE_HELP">
+			<Text>+25% [ICON_STRENGTH] Combat Strength VS [COLOR_POSITIVE_TEXT]Cities[ENDCOLOR].</Text>
+		</Replace>
 
 		<!-- New Texts -->
 
@@ -1630,14 +1633,14 @@
 			<Text>Light Infantry Tank</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_LIGHT_INFANTRY_TANK_DESC">
-			<Text>+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 30% [ICON_STRENGTH] Combat in [COLOR_POSITIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]- 15% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]No [COLOR_NEGATIVE_TEXT]terrain[ENDCOLOR] defensive bonus.[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]move[ENDCOLOR] after attacking.</Text>
+			<Text>+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 20% [ICON_STRENGTH] Combat in [COLOR_POSITIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]- 15% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]No [COLOR_NEGATIVE_TEXT]terrain[ENDCOLOR] defensive bonus.[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]move[ENDCOLOR] after attacking.</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_PROMOTION_INFANTRY_TANK">
 			<Text>Infantry Tank</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_INFANTRY_TANK_DESC">
-			<Text>+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 30% [ICON_STRENGTH] Combat in [COLOR_POSITIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]- 15% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]No [COLOR_NEGATIVE_TEXT]terrain[ENDCOLOR] defensive bonus.[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]move[ENDCOLOR] after attacking.</Text>
+			<Text>+ 33% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Fortified Units[ENDCOLOR].[NEWLINE]+ 20% [ICON_STRENGTH] Combat in [COLOR_POSITIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]- 15% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Cities[ENDCOLOR].[NEWLINE]No [COLOR_NEGATIVE_TEXT]terrain[ENDCOLOR] defensive bonus.[NEWLINE]Can not [COLOR_NEGATIVE_TEXT]move[ENDCOLOR] after attacking.</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_PROMOTION_TANK">

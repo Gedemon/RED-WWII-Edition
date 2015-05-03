@@ -628,7 +628,8 @@ function CanRetreat(unit, retreatPlot)
 	 and not retreatPlot:IsImpassable()
 	 and not retreatPlot:IsWater()
 	 and not retreatPlot:IsCity()
-	 and (unit:CanEnterTerritory() or retreatPlot:GetOwner() == unit:GetOwner()) -- CanEnterTerritory is false for CS units on their own territory ???
+	 --and (unit:CanEnterTerritory() or retreatPlot:GetOwner() == unit:GetOwner()) -- CanEnterTerritory is false for CS units on their own territory ???
+	 and AreSameSide( retreatPlot:GetOwner(), unit:GetOwner())
 	 then
 		return true
 	else

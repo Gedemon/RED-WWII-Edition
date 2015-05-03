@@ -575,7 +575,7 @@ function GetOilTTString()
 		local oilFromScenario = resourceData[playerID].OilFromScenario
 		local oilFromMap = resourceData[playerID].OilFromMap
 		local oilFromBuildings = resourceData[playerID].OilFromBuildings
-		local oilNationDetail = MapModData.RED.OilNationDetail
+		local oilNationDetail = MapModData.RED.OilNationDetail[playerID]
 
 		local oilFromSupplyRoutes  = resourceData[playerID].TotalOilFromSupplyRoute
 		currentOilFromSupplyRoutes = resourceData[playerID].OilFromSupplyRoute

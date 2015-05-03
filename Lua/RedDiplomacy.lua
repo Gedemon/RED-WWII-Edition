@@ -131,16 +131,7 @@ function AreSameSide( player1ID, player2ID)
 
 	if not player:IsMinorCiv() and not player2:IsMinorCiv() then	
 		Dprint ("Both are major...", bDebug )
-		if ( civ1ID == GERMANY and civ2ID == USSR ) then -- todo : not safe for scenario specific cases, but needed...
-			if not team:IsAtWar( player2:GetTeam() ) then
-				return true
-			end
-		end
-		if ( civ1ID ==  USSR and civ2ID == GERMANY) then
-			if not team:IsAtWar( player2:GetTeam() ) then
-				return true
-			end
-		end
+
 		if ( g_Allied[civ1ID] and g_Allied[civ2ID] ) then
 			if not team:IsAtWar( player2:GetTeam() ) then
 				return true

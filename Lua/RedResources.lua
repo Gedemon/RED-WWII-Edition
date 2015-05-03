@@ -993,7 +993,7 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 	end
 	Dprint("-------------------------------------")
 
-	if resourceID == RESOURCE_OIL then MapModData.RED.OilNationDetail = procurementDetail; end
+	if resourceID == RESOURCE_OIL then MapModData.RED.OilNationDetail[playerID] = procurementDetail; end -- shared for toppanel.lua
 
 	return numResource	
 end

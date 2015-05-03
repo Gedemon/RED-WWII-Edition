@@ -443,6 +443,8 @@ function EscapeUnitsFromPlot(plot, bRetreat, damageToTransfert, iAttackingPlayer
 					   and not escapePlot:IsMountain() -- no alpinist here
 					   and not escapePlot:IsImpassable() -- do we need to chack the mountain if we check this one ?
 					   and not bEscaped -- don't jump around, escape once !
+					   --and (unit:CanEnterTerritory() or escapePlot:GetOwner() == unit:GetOwner()) -- CanEnterTerritory is false for CS units on their own territory ???
+					   and AreSameSide( escapePlot:GetOwner(), unit:GetOwner())
 					   then 						
 						Dprint(" -- " .. unit:GetName() .." transfered to plot ".. escapePlot:GetX() .."," .. escapePlot:GetY(), bDebug)
 						unit:SetXY( escapePlot:GetX() , escapePlot:GetY())
@@ -545,7 +547,7 @@ function HasNoCombatPenaltyFromSupply(unitTypeID)
 	return g_NoSupplyPenalty[unitTypeID] or false
 end
 
--- test if this Unit type (ID) has no combat penalty from no supply line
+-- test if this Unit type (ID) has fuel
 function UseFuel(unitTypeID)
 	return (GameInfo.Units[unitTypeID].FuelConsumption > 0)
 end
@@ -591,6 +593,12 @@ function IsTankDestroyer(unit)
 	return (    unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID )
 			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID )
 			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID )
+			)
+end
+
+function IsAssaultGun(unit)
+	return (    unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ASSAULT_GUN.ID )
+			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_HEAVY_ASSAULT_GUN.ID )
 			)
 end
 
@@ -654,7 +662,7 @@ function ReinitUnits(playerID)
 				unit:SetIsSpecialType(true)
 			end
 			-- tank destroyers can only fight in defense
-			if IsTankDestroyer(unit) then
+			if IsTankDestroyer(unit) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) then
 				unit:SetMadeAttack(true)
 			end
 		end
@@ -778,4 +786,17 @@ function CanSharePlot(unit, plot)
 		end
 	end
 	return true
+end
+
+function CleanOrdersRED (unit)
+	local bDebug = true
+	local unitKey = GetUnitKey(unit)
+	if not MapModData.RED.UnitData[unitKey] then -- Units that are not initialized can't have custom orders...
+		return
+	end
+	unit:PopMission()
+	MapModData.RED.UnitData[unitKey].OrderType = nil
+	MapModData.RED.UnitData[unitKey].OrderReference = nil
+	MapModData.RED.UnitData[unitKey].OrderObjective = nil
+	MapModData.RED.UnitData[unitKey].TotalControl = nil
 end
