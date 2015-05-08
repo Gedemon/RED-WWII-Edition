@@ -249,7 +249,8 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 			if (iValue ~= 1) then
 				Dprint("- First occurence, launching script ...")
 
-				StartCoroutine( CoCallOfFrance )
+				local co = StartCoroutine( CoCallOfFrance )
+				coroutine.resume(co) -- pass vatiable here
 
 			end
 		end

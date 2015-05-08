@@ -1291,4 +1291,5 @@ end
 function StartCoroutine(func)
 	local co = coroutine.create(func)
 	table.insert(g_RunningCoroutines, co)
+	return co
 end
