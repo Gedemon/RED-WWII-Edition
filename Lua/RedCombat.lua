@@ -219,7 +219,7 @@ function CombatResult (iAttackingPlayer, iAttackingUnit, attackerDamage, attacke
 			if diffDamage > 0 then				
 				local ratioHitPoint = defenderHealth / diffDamage;
 				Dprint  ("ratioHitPoint: " .. ratioHitPoint, g_DebugCombat);
-				if ratioHitPoint < 5 and defenderHealth > 0 then				
+				if (ratioHitPoint < 5 or defenderDamage >= (MAX_HP / 5)) and defenderHealth > 0 then -- Max received damage is now hardcoded in the DLL to be GameDefines.MAX_HIT_POINTS / 5, but check for >= anyway.		
 					if pDefendingUnit then -- cities can't retreat...
 						if not IsNeverRetreating(pDefendingUnit:GetUnitType()) then
 							Dprint ("RETREAT !!!", g_DebugCombat);

@@ -1009,7 +1009,7 @@
 			<NoDefensiveBonus>true</NoDefensiveBonus>
 			<CanMoveAfterAttacking>false</CanMoveAfterAttacking>
 			<CityAttack>-15</CityAttack>
-			<DefenseMod>30</DefenseMod>
+			<DefenseMod>20</DefenseMod>
 			<AttackFortifiedMod>33</AttackFortifiedMod>
 			<PortraitIndex>58</PortraitIndex>
 			<IconAtlas>ABILITY_ATLAS</IconAtlas>

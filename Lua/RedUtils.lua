@@ -1062,6 +1062,14 @@ end
 -- W.I.P.
 --------------------------------------------------------------
 
+local Clock = os.clock
+function Pause(n)  -- seconds
+	Dprint ("PAUSING for " .. n .. " seconds")
+   local t0 = Clock()
+   while Clock() - t0 <= n do
+   end
+end
+
 function TurnToMonth()
 	local bDebug = true
 	local turn = Game.GetGameTurn()
@@ -1263,3 +1271,24 @@ Events.SequenceGameInitComplete.Add(UpdateCityGraphics)
 Events.SerialEventCityCaptured.Add(UpdateCityGraphics)	--not sure if this happens before or after city art change
 
 --]]
+
+
+function ResumeCoroutines()
+	for i, co in ipairs( g_RunningCoroutines ) do
+		if coroutine.status(co) == "dead" then
+			g_RunningCoroutines[i] = nil
+		else
+			local result, err = coroutine.resume(co)
+			if not result then
+				Dprint("*********** Coroutine ERROR ***********");
+				Dprint(err);
+				Dprint("***************************************");
+			end
+		end
+	end
+end
+
+function StartCoroutine(func)
+	local co = coroutine.create(func)
+	table.insert(g_RunningCoroutines, co)
+end

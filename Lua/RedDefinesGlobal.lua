@@ -70,6 +70,7 @@ g_Scenario_Name = savedData.GetValue("RedScenario") or modUserData.GetValue("Red
 -- Cached 
 g_FixedPlots = {}
 g_Wounded = {}
+g_RunningCoroutines = {}
 g_IsGameFullyInitialized = false
 
 -- Saved & Shared

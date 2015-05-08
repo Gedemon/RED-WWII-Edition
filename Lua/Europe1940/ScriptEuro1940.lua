@@ -208,8 +208,10 @@ function IsFranceStanding()
 	end
 end
 
+g_CapturingPlayer = nil
+
 function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
-	local bDebug = true
+	local bDebug = true	
 
 	if  not ALLOW_SCRIPTED_EVENTS then
 		return
@@ -234,7 +236,7 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 	
 	local x, y = ToGridFromHex( hexPos.x, hexPos.y )
 	local civID = GetCivIDFromPlayerID(newPlayerID, false)
-	local pAxis = Players[newPlayerID]
+	g_CapturingPlayer = Players[newPlayerID]
 	if x == 28 and y == 45 then -- city of Paris
 	
 		Dprint ("-------------------------------------")
@@ -247,445 +249,490 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 			if (iValue ~= 1) then
 				Dprint("- First occurence, launching script ...")
 
-				local iVichy = GetPlayerIDFromCivID (VICHY, true, true)
-				local pVichy = Players[iVichy]
+				StartCoroutine( CoCallOfFrance )
 
-				local iAlgeria = GetPlayerIDFromCivID (ALGERIA, true, true)
-				local pAlgeria = Players[iAlgeria]
-				local iMorocco = GetPlayerIDFromCivID (MOROCCO, true, true)
-				local pMorocco = Players[iMorocco]
-				local iSyria = GetPlayerIDFromCivID (SYRIA, true, true)
-				local pSyria = Players[iSyria]
-				local iTunisia = GetPlayerIDFromCivID (TUNISIA, true, true)
-				local pTunisia = Players[iTunisia]
-				local iLebanon = GetPlayerIDFromCivID (LEBANON, true, true)
-				local pLebanon = Players[iLebanon]
-
-				local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
-				local pItaly = Players[iItaly]
-
-				local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
-				local pGermany = Players[iGermany]
-				
-				local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
-				local pFrance = Players[iFrance]
-
-				local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
-				local pEngland = Players[iEngland]
-
-				-- save processor time, only get one city by nation (capital or closest from Paris) and send all units there				
-				local EnglandCity = pEngland:GetCapitalCity()
-				if not EnglandCity then
-					EnglandCity = GetCloseCity ( iEngland, cityPlot , true)
-				end
-				local iEnglandCityX = EnglandCity:GetX()
-				local iEnglandCityY = EnglandCity:GetY()
-
-				local AlgeriaCity = Players[iAlgeria]:GetCapitalCity()
-				if not AlgeriaCity then
-					AlgeriaCity = GetCloseCity ( iAlgeria, cityPlot , true)
-				end
-				local iAlgeriaCityX = AlgeriaCity:GetX()
-				local iAlgeriaCityY = AlgeriaCity:GetY()
-
-				local TunisiaCity = Players[iTunisia]:GetCapitalCity()
-				if not TunisiaCity then
-					TunisiaCity = GetCloseCity ( iTunisia, cityPlot , true)
-				end
-				local iTunisiaCityX = TunisiaCity:GetX()
-				local iTunisiaCityY = TunisiaCity:GetY()
-
-				local MoroccoCity = Players[iMorocco]:GetCapitalCity()
-				if not MoroccoCity then
-					MoroccoCity = GetCloseCity ( iMorocco, cityPlot , true)
-				end
-				local iMoroccoCityX = MoroccoCity:GetX()
-				local iMoroccoCityY = MoroccoCity:GetY()
-
-				local SyriaCity	= Players[iSyria]:GetCapitalCity()
-				if not SyriaCity then
-					SyriaCity = GetCloseCity ( iSyria, cityPlot , true)
-				end				
-				local iSyriaCityX = SyriaCity:GetX()
-				local iSyriaCityY = SyriaCity:GetY()
-
-				local LebanonCity = Players[iLebanon]:GetCapitalCity()
-				if not LebanonCity then
-					LebanonCity = GetCloseCity ( iLebanon, cityPlot , true)
-				end
-				local iLebanonCityX = LebanonCity:GetX()
-				local iLebanonCityY = LebanonCity:GetY()
-				
-				Dprint("- Each U.K. unit on french territory get 50% chance to go back to London (or die trying)", bDebug)
-				for unit in pEngland:Units() do 
-					if unit:GetPlot():GetOwner() == iFrance then
-						if math.random( 1, 100 ) > 50 or unit:GetDomainType() == DomainTypes.DOMAIN_SEA then
-							Dprint("  Killed : " .. unit:GetName(), bDebug)
-							unit:Kill(false, -1)
-						else
-							Dprint("  Escape : " .. unit:GetName(), bDebug)
-							CleanOrdersRED (unit)
-							unit:SetXY(iEnglandCityX, iEnglandCityY)
-						end
-					end
-				end
-
-				Dprint("- Change french units ownership ...", bDebug)
-				local palmyraPlot = GetPlot (84,12)
-				local palmyra = palmyraPlot:GetPlotCity()
-				if palmyra:GetOwner() ~= iFrance then -- give back Palmyra to France
-					EscapeUnitsFromPlot(palmyraPlot)
-					Players[iFrance]:AcquireCity(palmyra, false, true)
-					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, palmyra:GetName() .. " has revolted and is joigning Free France.", palmyra:GetName() .. " has revolted !", -1, -1)
-				end
-				
-				local Air = {}
-				local Sea = {}
-				local Land = {}
-				-- fill table (remove convoy and fortifications)
-				for unit in pFrance:Units() do 
-					--local newUnit = ChangeUnitOwner (unit, iVichy)
-					if (unit:GetUnitType() == CONVOY or unit:GetUnitType() == FORTIFIED_GUN) then
-						Dprint(" - Killing " .. unit:GetName(), bDebug)
-						unit:Kill(false, -1)
-					elseif not unit:IsDead() then
-						if unit:GetDomainType() == DomainTypes.DOMAIN_AIR then
-							table.insert(Air, { Unit = unit, XP = unit:GetExperience() })
-						elseif unit:GetDomainType() == DomainTypes.DOMAIN_SEA then
-							table.insert(Sea, { Unit = unit, XP = unit:GetExperience() })
-						else
-							table.insert(Land, { Unit = unit, XP = unit:GetExperience() })
-						end
-					end
-				end
-				table.sort(Air, function(a,b) return a.XP < b.XP end)
-				table.sort(Sea, function(a,b) return a.XP < b.XP end)
-				table.sort(Land, function(a,b) return a.XP < b.XP end)
-
-				-- Air Units
-				Dprint("   - Air units ...", bDebug)
-				local countUnit = 0
-				for i, data in ipairs(Air) do
-					countUnit = countUnit + 1					
-					Dprint("     - " .. data.Unit:GetName(), bDebug )
-					if data.Unit:IsFighting() then
-						Dprint("       - Is Fighting, can't be transfered, leave alone...", bDebug )
-						
-					elseif data.Unit:IsDead() then
-						Dprint("       - Is Dead, can't be transfered, leave alone...", bDebug )
-
-					elseif countUnit > 10 then -- military restriction
-						Dprint("       - Can't have more than 10 units, disbanded...", bDebug )
-						data.Unit:Kill(false, -1)
-
-					elseif i == 1 then -- save the best for the player
-						data.Unit:SetXY(84,12) -- PALMYRA
-					else
-						local rand = math.random( 1, 100 )
-						CleanOrdersRED (data.Unit)					
-						if rand <= 5 and EnglandCity then -- 5% chance to flew to England							
-							Dprint("       - goes to England ", bDebug )
-							data.Unit:SetXY(iEnglandCityX, iEnglandCityY)
-							local newUnit = ChangeUnitOwner (data.Unit, iEngland)
-						elseif rand <= 30 and AlgeriaCity then -- 25% to Algeria
-							Dprint("       - goes to Algeria ", bDebug )
-							data.Unit:SetXY(iAlgeriaCityX, iAlgeriaCityY)
-							local newUnit = ChangeUnitOwner (data.Unit, iAlgeria)
-						elseif rand <= 50 and TunisiaCity then -- 20% to Tunisia
-							Dprint("       - goes to Tunisia ", bDebug )
-							data.Unit:SetXY(iTunisiaCityX, iTunisiaCityY)
-							local newUnit = ChangeUnitOwner (data.Unit, iTunisia)
-						elseif rand <= 70 and MoroccoCity then -- 20% to Morocco
-							Dprint("       - goes to Morocco ", bDebug )
-							data.Unit:SetXY(iMoroccoCityX, iMoroccoCityY)
-							local newUnit = ChangeUnitOwner (data.Unit, iMorocco)
-						elseif rand <= 95 and SyriaCity then -- 25% to Syria
-							Dprint("       - goes to Syria ", bDebug )
-							data.Unit:SetXY(iSyriaCityX, iSyriaCityY)
-							local newUnit = ChangeUnitOwner (data.Unit, iSyria)
-						elseif LebanonCity then -- 5% to Lebanon
-							Dprint("       - goes to Lebanon ", bDebug )
-							data.Unit:SetXY(iLebanonCityX, iLebanonCityY)
-							local newUnit = ChangeUnitOwner (data.Unit, iLebanon)
-						end
-					end
-					
-					Dprint("      - done for " .. data.Unit:GetName(), bDebug )
-				end
-				
-				-- Land Units
-				Dprint("   - Land units ...", bDebug)
-				countUnit = 0 -- reset counter
-				for i, data in ipairs(Land) do
-					countUnit = countUnit + 1					
-					Dprint("     - " .. data.Unit:GetName(), bDebug )
-					if data.Unit:IsFighting() then
-						Dprint("       - Is Fighting, can't be transfered, leave alone...", bDebug )
-						
-					elseif data.Unit:IsDead() then
-						Dprint("       - Is Dead, can't be transfered, leave alone...", bDebug )
-
-					elseif countUnit > 10 then -- military restriction
-						Dprint("       - Can't have more than 10 units, disbanded...", bDebug )
-						data.Unit:Kill(false, -1)
-
-					elseif i == 1 then -- save the best for the player
-						data.Unit:SetXY(84,12) -- PALMYRA
-					elseif data.Unit:GetUnitType() == FR_LEGION then -- Special treatment for Legion
-						local rand = math.random( 1, 100 )
-						CleanOrdersRED (data.Unit)
-						if rand <= 25 then
-							Dprint("       - goes to Algeria ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iAlgeria)
-							newUnit:SetXY(iAlgeriaCityX, iAlgeriaCityY)
-						elseif rand <= 50 then
-							Dprint("       - goes to Syria ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iSyria)
-							newUnit:SetXY(iSyriaCityX, iSyriaCityY)
-						else
-							data.Unit:SetXY(84,12) -- PALMYRA
-						end
-					else
-						local rand = math.random( 1, 100 )
-					
-						if rand <= 5 and EnglandCity then -- 5% chance to flew to England
-							Dprint("       - goes to England ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iEngland)
-							Dprint("       - owner changed ", bDebug )
-							newUnit:SetXY(iEnglandCityX, iEnglandCityY)
-							Dprint("       - teleportation done ", bDebug )
-						elseif rand <= 30 and AlgeriaCity then -- 25% to Algeria
-							Dprint("       - goes to Algeria ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iAlgeria)
-							newUnit:SetXY(iAlgeriaCityX, iAlgeriaCityY)
-						elseif rand <= 50 and TunisiaCity then -- 20% to Tunisia
-							Dprint("       - goes to Tunisia ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iTunisia)
-							newUnit:SetXY(iTunisiaCityX, iTunisiaCityY)
-						elseif rand <= 70 and MoroccoCity then -- 20% to Morocco
-							Dprint("       - goes to Morocco ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iMorocco)
-							newUnit:SetXY(iMoroccoCityX, iMoroccoCityY)
-						elseif rand <= 95 and SyriaCity then -- 25% to Syria
-							Dprint("       - goes to Syria ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iSyria)
-							newUnit:SetXY(iSyriaCityX, iSyriaCityY)
-						elseif LebanonCity then -- 5% to Lebanon
-							Dprint("       - goes to Lebanon ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iLebanon)
-							newUnit:SetXY(iLebanonCityX, iLebanonCityY)
-						--else -- Vichy metropole force
-							--local newUnit = ChangeUnitOwner (data.Unit, iVichy)
-							--newUnit:SetXY(27, 39) -- VICHY
-						end
-					end
-					Dprint("      - done for " .. data.Unit:GetName(), bDebug )
-				end
-				
-				-- Fleet is simply split in 2	
-				Dprint("   - Sea units ...", bDebug)		
-				for i, data in ipairs(Sea) do
-					Dprint("     - " .. data.Unit:GetName() , bDebug)	
-					CleanOrdersRED (data.Unit)
-					-- save the best for the player
-					if data.Unit:IsFighting() then
-						Dprint("       - Is Fighting, can't be transfered, leave alone...", bDebug )
-						
-					elseif data.Unit:IsDead() then
-						Dprint("       - Is Dead, can't be transfered, leave alone...", bDebug )
-
-					elseif i == 1 then
-						-- do nothing, become Free France
-					else
-						local rand = math.random( 1, 100 )					
-						if rand <= 75 then -- 75% chance to follow governement in Vichy
-							Dprint("       - goes to Vichy ", bDebug )
-							local newUnit = ChangeUnitOwner (data.Unit, iVichy)
-						end
-					end
-					
-					Dprint("      - done for " .. data.Unit:GetName(), bDebug )
-				end
-
-
-				Dprint("- Change french cities ownership ...", bDebug)	
-				for city in pFrance:Cities() do  -- todo : handle french owned cities in colonies
-					local plot = city:Plot()
-					local plotKey = GetPlotKey ( plot )
-					local originalOwner = GetPlotFirstOwner(plotKey)
-					if originalOwner ~= iFrance then -- liberate cities captured by France
-						Dprint(" - liberate city captured by France: " .. city:GetName(), bDebug )
-						local originalPlayer = Players[originalOwner]
-						EscapeUnitsFromPlot(plot)
-						originalPlayer:AcquireCity(city, false, true)
-						--city:SetOccupied(false) -- needed in this case ?
-					else
-						local x, y = city:GetX(), city:GetY()
-						if ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
-							Dprint("   - " .. city:GetName() .. " in occupied territory at (".. x ..",".. y ..")", bDebug)
-							if city:GetOwner() ~= newPlayerID then 
-								EscapeUnitsFromPlot(plot)
-								pAxis:AcquireCity(city, false, true)
-								city:SetPuppet(false)
-								city:ChangeResistanceTurns(-city:GetResistanceTurns())
-							else -- just remove resistance if city was already occupied
-								city:ChangeResistanceTurns(-city:GetResistanceTurns())
-							end
-						elseif (y > 32 and x < 32) then -- Vichy territory
-							Dprint("   - " .. city:GetName() .. " in Vichy territory at (".. x ..",".. y ..")", bDebug)
-							EscapeUnitsFromPlot(plot)
-							pVichy:AcquireCity(city, false, true)
-							--city:SetOccupied(false)
-							city:SetPuppet(false)
-							city:SetNumRealBuilding(COURTHOUSE, 1) -- above won't work, try workaround...
-							city:ChangeResistanceTurns(-city:GetResistanceTurns())
-						elseif (y > 26 and x > 32 and y < 35 and x < 34) then -- Nice, Ajaccio to Italy
-							Dprint("   - " .. city:GetName() .. " in Italy occupied territory at (".. x ..",".. y ..")", bDebug)
-							if city:GetOwner() ~= iItaly then
-								EscapeUnitsFromPlot(plot)
-								pItaly:AcquireCity(city, false, true)
-								city:SetPuppet(false)
-								city:ChangeResistanceTurns(-city:GetResistanceTurns())
-							end
-						elseif (y > 44 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg to Germany
-							Dprint("   - " .. city:GetName() .. " in Germany occupied territory at (".. x ..",".. y ..")", bDebug)
-							if city:GetOwner() ~= iGermany then
-								EscapeUnitsFromPlot(plot)
-								pGermany:AcquireCity(city, false, true)
-								city:SetPuppet(false)
-								city:ChangeResistanceTurns(-city:GetResistanceTurns())
-							end
-						end					
-					end
-				end
-
-				Dprint("Updating territory map ...", bDebug)	
-				for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
-					local plot = Map.GetPlotByIndex(iPlotLoop)
-					local x = plot:GetX()
-					local y = plot:GetY()
-					local ownerID = plot:GetOwner()
-					-- check only owned plot...
-					if (ownerID ~= -1) then
-						local plotKey = GetPlotKey ( plot )
-						local originalOwner = GetPlotFirstOwner(plotKey)
-
-						if (originalOwner ~= ownerID) and (originalOwner == iAlgeria or originalOwner == iMorocco or originalOwner == iSyria or originalOwner == iTunisia or originalOwner == iLebanon) then -- restore french colonies territory
-							plot:SetOwner(originalOwner, -1 )
-							if plot:IsCity() then
-								local city = plot:GetPlotCity()
-								EscapeUnitsFromPlot(plot)
-								Players[originalOwner]:AcquireCity(city, false, true)
-							end
-						elseif originalOwner ~= iFrance and ownerID == iFrance then -- liberate plot captured by France
-							plot:SetOwner(originalOwner, -1 ) 
-
-						elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
-							--Dprint("(".. x ..",".. y ..") = Plot in occupied territory")
-							if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
-								local city = plot:GetPlotCity()
-								EscapeUnitsFromPlot(plot)
-								Players[newPlayerID]:AcquireCity(city, false, true)
-							else
-								plot:SetOwner(newPlayerID, -1 ) 
-							end
-						elseif originalOwner == iFrance and ((y > 32 and x < 32))  then -- Vichy territory
-							--Dprint("(".. x ..",".. y ..") = Plot in Vichy territory")
-							if plot:IsCity() and ownerID ~= iVichy then
-								local city = plot:GetPlotCity()
-								EscapeUnitsFromPlot(plot)
-								Players[iVichy]:AcquireCity(city, false, true)
-							else
-								plot:SetOwner(iVichy, -1 ) 
-							end
-						elseif originalOwner == iFrance and (y > 26 and x > 31 and y < 38 and x < 36) then -- Nice, Ajaccio region to Italy
-							--Dprint("(".. x ..",".. y ..") = Plot in Italy occupied territory")
-							if plot:IsCity() and ownerID ~= iItaly then
-								local city = plot:GetPlotCity()
-								EscapeUnitsFromPlot(plot)
-								Players[iItaly]:AcquireCity(city, false, true)
-							else
-								plot:SetOwner(iItaly, -1 ) 
-							end
-						elseif originalOwner == iFrance and (y > 40 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg region to Germany
-							--Dprint("(".. x ..",".. y ..") = Plot in Germany occupied territory")
-							if plot:IsCity() and ownerID ~= iGermany then
-								local city = plot:GetPlotCity()
-								EscapeUnitsFromPlot(plot)
-								Players[iGermany]:AcquireCity(city, false, true)
-							else
-								plot:SetOwner(iGermany, -1 ) 
-							end
-						end
-					end
-				end
-
-				-- change minor diplomacy
-				local teamGermany = Teams[ pGermany:GetTeam() ]
-				local teamItaly = Teams[ pItaly:GetTeam() ]
-				local teamFrance = Teams[ pFrance:GetTeam() ]
-
-				-- Change relation before declaring war or after peace !
-
-				pVichy:ChangeMinorCivFriendshipWithMajor( iGermany, 50 )
-				pVichy:ChangeMinorCivFriendshipWithMajor( iItaly, 50 )
-				
-				pAlgeria:ChangeMinorCivFriendshipWithMajor( iFrance, - pAlgeria:GetMinorCivFriendshipWithMajor(iFrance) )
-				pAlgeria:ChangeMinorCivFriendshipWithMajor( iEngland, - pAlgeria:GetMinorCivFriendshipWithMajor(iEngland) )
-				pMorocco:ChangeMinorCivFriendshipWithMajor( iFrance, - pMorocco:GetMinorCivFriendshipWithMajor(iFrance) )
-				pMorocco:ChangeMinorCivFriendshipWithMajor( iEngland, - pMorocco:GetMinorCivFriendshipWithMajor(iEngland) )
-				pSyria:ChangeMinorCivFriendshipWithMajor( iFrance, - pSyria:GetMinorCivFriendshipWithMajor(iFrance) )
-				pSyria:ChangeMinorCivFriendshipWithMajor( iEngland, - pSyria:GetMinorCivFriendshipWithMajor(iEngland) )
-				pTunisia:ChangeMinorCivFriendshipWithMajor( iFrance, - pTunisia:GetMinorCivFriendshipWithMajor(iFrance) )
-				pTunisia:ChangeMinorCivFriendshipWithMajor( iEngland, - pTunisia:GetMinorCivFriendshipWithMajor(iEngland) )
-				pLebanon:ChangeMinorCivFriendshipWithMajor( iFrance, - pLebanon:GetMinorCivFriendshipWithMajor(iFrance) )
-				pLebanon:ChangeMinorCivFriendshipWithMajor( iEngland, - pLebanon:GetMinorCivFriendshipWithMajor(iEngland) )
-
-				--DeclarePermanentWar(iFrance, iAlgeria) -- wait for Operation Torch
-				teamGermany:MakePeace( pAlgeria:GetTeam() )
-				teamItaly:MakePeace( pAlgeria:GetTeam() )
-				pAlgeria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iGermany) )
-				pAlgeria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iItaly) )
-				
-				--DeclarePermanentWar(iFrance, iMorocco) -- wait for Operation Torch
-				teamGermany:MakePeace( pMorocco:GetTeam() )
-				teamItaly:MakePeace( pMorocco:GetTeam() )
-				pMorocco:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iGermany) )
-				pMorocco:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iItaly) )
-				
-				DeclarePermanentWar(iFrance, iSyria)
-				teamGermany:MakePeace( pSyria:GetTeam() )
-				teamItaly:MakePeace( pSyria:GetTeam() )
-				pSyria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pSyria:GetMinorCivFriendshipWithMajor(iGermany) )
-				pSyria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pSyria:GetMinorCivFriendshipWithMajor(iItaly) )
-				
-				--DeclarePermanentWar(iFrance, iTunisia) -- wait for Operation Torch
-				teamGermany:MakePeace( pTunisia:GetTeam() )
-				teamItaly:MakePeace( pTunisia:GetTeam() )
-				pTunisia:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iGermany) )
-				pTunisia:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iItaly) )	
-
-				--DeclarePermanentWar(iFrance, iLebanon) -- wait for Operation Torch
-				teamGermany:MakePeace( pLebanon:GetTeam() )
-				teamItaly:MakePeace( pLebanon:GetTeam() )
-				pLebanon:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iGermany) )
-				pLebanon:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iItaly) )			
-
-				-- remove resistance from Paris
-				pParis:ChangeResistanceTurns(-pParis:GetResistanceTurns())
-
-				-- french may try to restart...
-				if Game.GetActivePlayer() ~= iFrance then
-					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, pFrance:GetName() .. " has fled from Paris with all the gold of France promising to continue the fight from french colonies.", pFrance:GetName() .. " in exil !", -1, -1)
-				end
-				pFrance:SetGold(pFrance:GetGold() + 5000)
-
-				savedData.SetValue("FranceHasFallen", 1)
 			end
 		end
 	end
 end
 -- add to Events.SerialEventCityCaptured in main scenario Lua
+
+function CoCallOfFrance()
+	
+	-- todo: learn how to pass those to the coroutine...
+	local savedData = Modding.OpenSaveData()
+	local cityPlot = GetPlot (28,45)
+	local pParis = cityPlot:GetPlotCity()
+	local pAxis = g_CapturingPlayer
+	g_CapturingPlayer = nil
+	----
+
+	local iVichy = GetPlayerIDFromCivID (VICHY, true, true)
+	local pVichy = Players[iVichy]
+
+	local iAlgeria = GetPlayerIDFromCivID (ALGERIA, true, true)
+	local pAlgeria = Players[iAlgeria]
+	local iMorocco = GetPlayerIDFromCivID (MOROCCO, true, true)
+	local pMorocco = Players[iMorocco]
+	local iSyria = GetPlayerIDFromCivID (SYRIA, true, true)
+	local pSyria = Players[iSyria]
+	local iTunisia = GetPlayerIDFromCivID (TUNISIA, true, true)
+	local pTunisia = Players[iTunisia]
+	local iLebanon = GetPlayerIDFromCivID (LEBANON, true, true)
+	local pLebanon = Players[iLebanon]
+
+	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
+	local pItaly = Players[iItaly]
+
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+				
+	local iFrance = GetPlayerIDFromCivID (FRANCE, false, true)
+	local pFrance = Players[iFrance]
+
+	local iEngland = GetPlayerIDFromCivID (ENGLAND, false, true)
+	local pEngland = Players[iEngland]
+
+	-- save processor time, only get one city by nation (capital or closest from Paris) and send all units there				
+	local EnglandCity = pEngland:GetCapitalCity()
+	if not EnglandCity then
+		EnglandCity = GetCloseCity ( iEngland, cityPlot , true)
+	end
+	local iEnglandCityX = EnglandCity:GetX()
+	local iEnglandCityY = EnglandCity:GetY()
+
+	local AlgeriaCity = Players[iAlgeria]:GetCapitalCity()
+	if not AlgeriaCity then
+		AlgeriaCity = GetCloseCity ( iAlgeria, cityPlot , true)
+	end
+	local iAlgeriaCityX = AlgeriaCity:GetX()
+	local iAlgeriaCityY = AlgeriaCity:GetY()
+
+	local TunisiaCity = Players[iTunisia]:GetCapitalCity()
+	if not TunisiaCity then
+		TunisiaCity = GetCloseCity ( iTunisia, cityPlot , true)
+	end
+	local iTunisiaCityX = TunisiaCity:GetX()
+	local iTunisiaCityY = TunisiaCity:GetY()
+
+	local MoroccoCity = Players[iMorocco]:GetCapitalCity()
+	if not MoroccoCity then
+		MoroccoCity = GetCloseCity ( iMorocco, cityPlot , true)
+	end
+	local iMoroccoCityX = MoroccoCity:GetX()
+	local iMoroccoCityY = MoroccoCity:GetY()
+
+	local SyriaCity	= Players[iSyria]:GetCapitalCity()
+	if not SyriaCity then
+		SyriaCity = GetCloseCity ( iSyria, cityPlot , true)
+	end				
+	local iSyriaCityX = SyriaCity:GetX()
+	local iSyriaCityY = SyriaCity:GetY()
+
+	local LebanonCity = Players[iLebanon]:GetCapitalCity()
+	if not LebanonCity then
+		LebanonCity = GetCloseCity ( iLebanon, cityPlot , true)
+	end
+	local iLebanonCityX = LebanonCity:GetX()
+	local iLebanonCityY = LebanonCity:GetY()
+				
+	Dprint("- Each U.K. unit on french territory get 50% chance to go back to London (or die trying)", bDebug)
+	for unit in pEngland:Units() do 
+		if unit:GetPlot():GetOwner() == iFrance then
+			if math.random( 1, 100 ) > 50 or unit:GetDomainType() == DomainTypes.DOMAIN_SEA then
+				Dprint("  Killed : " .. unit:GetName(), bDebug)
+				unit:Kill(false, -1)
+			else
+				Dprint("  Escape : " .. unit:GetName(), bDebug)
+				CleanOrdersRED (unit)
+				unit:SetXY(iEnglandCityX, iEnglandCityY)
+			end
+		end
+	end
+
+	--Pause(1)
+	coroutine.yield()
+
+	Dprint("- Change french units ownership ...", bDebug)
+	local palmyraPlot = GetPlot (84,12)
+	local palmyra = palmyraPlot:GetPlotCity()
+	if palmyra:GetOwner() ~= iFrance then -- give back Palmyra to France
+		EscapeUnitsFromPlot(palmyraPlot)
+		Players[iFrance]:AcquireCity(palmyra, false, true)
+		Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, palmyra:GetName() .. " has revolted and is joigning Free France.", palmyra:GetName() .. " has revolted !", -1, -1)
+	end
+				
+	local Air = {}
+	local Sea = {}
+	local Land = {}
+	-- fill table (remove convoy and fortifications)
+	for unit in pFrance:Units() do 
+		--local newUnit = ChangeUnitOwner (unit, iVichy)
+		if (unit:GetUnitType() == CONVOY or unit:GetUnitType() == FORTIFIED_GUN) then
+			Dprint(" - Killing " .. unit:GetName(), bDebug)
+			unit:Kill(false, -1)
+		elseif not unit:IsDead() then
+			if unit:GetDomainType() == DomainTypes.DOMAIN_AIR then
+				table.insert(Air, { Unit = unit, XP = unit:GetExperience() })
+			elseif unit:GetDomainType() == DomainTypes.DOMAIN_SEA then
+				table.insert(Sea, { Unit = unit, XP = unit:GetExperience() })
+			else
+				table.insert(Land, { Unit = unit, XP = unit:GetExperience() })
+			end
+		end
+	end
+	table.sort(Air, function(a,b) return a.XP < b.XP end)
+	table.sort(Sea, function(a,b) return a.XP < b.XP end)
+	table.sort(Land, function(a,b) return a.XP < b.XP end)
+
+	-- Air Units
+	Dprint("   - Air units ...", bDebug)
+	local countUnit = 0
+	for i, data in ipairs(Air) do
+		countUnit = countUnit + 1					
+		Dprint("     - " .. data.Unit:GetName(), bDebug )
+		if data.Unit:IsFighting() then
+			Dprint("       - Is Fighting, can't be transfered, leave alone...", bDebug )
+						
+		elseif data.Unit:IsDead() then
+			Dprint("       - Is Dead, can't be transfered, leave alone...", bDebug )
+
+		elseif countUnit > 10 then -- military restriction
+			Dprint("       - Can't have more than 10 units, disbanded...", bDebug )
+			data.Unit:Kill(false, -1)
+
+		elseif i == 1 then -- save the best for the player
+			data.Unit:SetXY(84,12) -- PALMYRA
+		else
+			local rand = math.random( 1, 100 )
+			CleanOrdersRED (data.Unit)					
+			if rand <= 5 and EnglandCity then -- 5% chance to flew to England							
+				Dprint("       - goes to England ", bDebug )
+				data.Unit:SetXY(iEnglandCityX, iEnglandCityY)
+				local newUnit = ChangeUnitOwner (data.Unit, iEngland)
+			elseif rand <= 30 and AlgeriaCity then -- 25% to Algeria
+				Dprint("       - goes to Algeria ", bDebug )
+				data.Unit:SetXY(iAlgeriaCityX, iAlgeriaCityY)
+				local newUnit = ChangeUnitOwner (data.Unit, iAlgeria)
+			elseif rand <= 50 and TunisiaCity then -- 20% to Tunisia
+				Dprint("       - goes to Tunisia ", bDebug )
+				data.Unit:SetXY(iTunisiaCityX, iTunisiaCityY)
+				local newUnit = ChangeUnitOwner (data.Unit, iTunisia)
+			elseif rand <= 70 and MoroccoCity then -- 20% to Morocco
+				Dprint("       - goes to Morocco ", bDebug )
+				data.Unit:SetXY(iMoroccoCityX, iMoroccoCityY)
+				local newUnit = ChangeUnitOwner (data.Unit, iMorocco)
+			elseif rand <= 95 and SyriaCity then -- 25% to Syria
+				Dprint("       - goes to Syria ", bDebug )
+				data.Unit:SetXY(iSyriaCityX, iSyriaCityY)
+				local newUnit = ChangeUnitOwner (data.Unit, iSyria)
+			elseif LebanonCity then -- 5% to Lebanon
+				Dprint("       - goes to Lebanon ", bDebug )
+				data.Unit:SetXY(iLebanonCityX, iLebanonCityY)
+				local newUnit = ChangeUnitOwner (data.Unit, iLebanon)
+			end
+		end
+					
+		Dprint("      - done for " .. data.Unit:GetName(), bDebug )
+	end
+				
+	--Pause(1)
+	coroutine.yield()
+				
+	-- Land Units
+	Dprint("   - Land units ...", bDebug)
+	countUnit = 0 -- reset counter
+	for i, data in ipairs(Land) do
+		countUnit = countUnit + 1					
+		Dprint("     - " .. data.Unit:GetName(), bDebug )
+		if data.Unit:IsFighting() then
+			Dprint("       - Is Fighting, can't be transfered, leave alone...", bDebug )
+						
+		elseif data.Unit:IsDead() then
+			Dprint("       - Is Dead, can't be transfered, leave alone...", bDebug )
+
+		elseif countUnit > 10 then -- military restriction
+			Dprint("       - Can't have more than 10 units, disbanded...", bDebug )
+			data.Unit:Kill(false, -1)
+
+		elseif i == 1 then -- save the best for the player
+			data.Unit:SetXY(84,12) -- PALMYRA
+		elseif data.Unit:GetUnitType() == FR_LEGION then -- Special treatment for Legion
+			local rand = math.random( 1, 100 )
+			CleanOrdersRED (data.Unit)
+			if rand <= 25 then
+				Dprint("       - goes to Algeria ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iAlgeria)
+				newUnit:SetXY(iAlgeriaCityX, iAlgeriaCityY)
+			elseif rand <= 50 then
+				Dprint("       - goes to Syria ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iSyria)
+				newUnit:SetXY(iSyriaCityX, iSyriaCityY)
+			else
+				data.Unit:SetXY(84,12) -- PALMYRA
+			end
+		else
+			local rand = math.random( 1, 100 )
+					
+			if rand <= 5 and EnglandCity then -- 5% chance to flew to England
+				Dprint("       - goes to England ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iEngland)
+				Dprint("       - owner changed ", bDebug )
+				newUnit:SetXY(iEnglandCityX, iEnglandCityY)
+				Dprint("       - teleportation done ", bDebug )
+			elseif rand <= 30 and AlgeriaCity then -- 25% to Algeria
+				Dprint("       - goes to Algeria ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iAlgeria)
+				newUnit:SetXY(iAlgeriaCityX, iAlgeriaCityY)
+			elseif rand <= 50 and TunisiaCity then -- 20% to Tunisia
+				Dprint("       - goes to Tunisia ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iTunisia)
+				newUnit:SetXY(iTunisiaCityX, iTunisiaCityY)
+			elseif rand <= 70 and MoroccoCity then -- 20% to Morocco
+				Dprint("       - goes to Morocco ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iMorocco)
+				newUnit:SetXY(iMoroccoCityX, iMoroccoCityY)
+			elseif rand <= 95 and SyriaCity then -- 25% to Syria
+				Dprint("       - goes to Syria ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iSyria)
+				newUnit:SetXY(iSyriaCityX, iSyriaCityY)
+			elseif LebanonCity then -- 5% to Lebanon
+				Dprint("       - goes to Lebanon ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iLebanon)
+				newUnit:SetXY(iLebanonCityX, iLebanonCityY)
+			--else -- Vichy metropole force
+				--local newUnit = ChangeUnitOwner (data.Unit, iVichy)
+				--newUnit:SetXY(27, 39) -- VICHY
+			end
+		end
+		Dprint("      - done for " .. data.Unit:GetName(), bDebug )
+	end
+				
+	--Pause(1)
+	coroutine.yield()
+
+	-- Fleet is simply split in 2	
+	Dprint("   - Sea units ...", bDebug)		
+	for i, data in ipairs(Sea) do
+		Dprint("     - " .. data.Unit:GetName() , bDebug)	
+		CleanOrdersRED (data.Unit)
+		-- save the best for the player
+		if data.Unit:IsFighting() then
+			Dprint("       - Is Fighting, can't be transfered, leave alone...", bDebug )
+						
+		elseif data.Unit:IsDead() then
+			Dprint("       - Is Dead, can't be transfered, leave alone...", bDebug )
+
+		elseif i == 1 then
+			-- do nothing, become Free France
+		else
+			local rand = math.random( 1, 100 )					
+			if rand <= 75 then -- 75% chance to follow governement in Vichy
+				Dprint("       - goes to Vichy ", bDebug )
+				local newUnit = ChangeUnitOwner (data.Unit, iVichy)
+			end
+		end
+					
+		Dprint("      - done for " .. data.Unit:GetName(), bDebug )
+	end
+				
+	--Pause(1)
+	coroutine.yield()
+
+	Dprint("- Change french cities ownership ...", bDebug)	
+	for city in pFrance:Cities() do  -- todo : handle french owned cities in colonies
+		local plot = city:Plot()
+		local plotKey = GetPlotKey ( plot )
+		local originalOwner = GetPlotFirstOwner(plotKey)
+		if originalOwner ~= iFrance then -- liberate cities captured by France
+			Dprint(" - liberate city captured by France: " .. city:GetName(), bDebug )
+			local originalPlayer = Players[originalOwner]
+			EscapeUnitsFromPlot(plot)
+			originalPlayer:AcquireCity(city, false, true)
+			--city:SetOccupied(false) -- needed in this case ?
+		else
+			local x, y = city:GetX(), city:GetY()
+			if ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
+				Dprint("   - " .. city:GetName() .. " in occupied territory at (".. x ..",".. y ..")", bDebug)
+				if city:GetOwner() ~= newPlayerID then 
+					EscapeUnitsFromPlot(plot)
+					pAxis:AcquireCity(city, false, true)
+					city:SetPuppet(false)
+					city:ChangeResistanceTurns(-city:GetResistanceTurns())
+				else -- just remove resistance if city was already occupied
+					city:ChangeResistanceTurns(-city:GetResistanceTurns())
+				end
+			elseif (y > 32 and x < 32) then -- Vichy territory
+				Dprint("   - " .. city:GetName() .. " in Vichy territory at (".. x ..",".. y ..")", bDebug)
+				EscapeUnitsFromPlot(plot)
+				pVichy:AcquireCity(city, false, true)
+				--city:SetOccupied(false)
+				city:SetPuppet(false)
+				city:SetNumRealBuilding(COURTHOUSE, 1) -- above won't work, try workaround...
+				city:ChangeResistanceTurns(-city:GetResistanceTurns())
+			elseif (y > 26 and x > 32 and y < 35 and x < 34) then -- Nice, Ajaccio to Italy
+				Dprint("   - " .. city:GetName() .. " in Italy occupied territory at (".. x ..",".. y ..")", bDebug)
+				if city:GetOwner() ~= iItaly then
+					EscapeUnitsFromPlot(plot)
+					pItaly:AcquireCity(city, false, true)
+					city:SetPuppet(false)
+					city:ChangeResistanceTurns(-city:GetResistanceTurns())
+				end
+			elseif (y > 44 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg to Germany
+				Dprint("   - " .. city:GetName() .. " in Germany occupied territory at (".. x ..",".. y ..")", bDebug)
+				if city:GetOwner() ~= iGermany then
+					EscapeUnitsFromPlot(plot)
+					pGermany:AcquireCity(city, false, true)
+					city:SetPuppet(false)
+					city:ChangeResistanceTurns(-city:GetResistanceTurns())
+				end
+			end					
+		end
+	end
+				
+	--Pause(1)
+	coroutine.yield()
+
+	Dprint("Updating territory map ...", bDebug)	
+	for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
+		local plot = Map.GetPlotByIndex(iPlotLoop)
+		local x = plot:GetX()
+		local y = plot:GetY()
+		local ownerID = plot:GetOwner()
+		-- check only owned plot...
+		if (ownerID ~= -1) then
+			local plotKey = GetPlotKey ( plot )
+			local originalOwner = GetPlotFirstOwner(plotKey)
+
+			if (originalOwner ~= ownerID) and (originalOwner == iAlgeria or originalOwner == iMorocco or originalOwner == iSyria or originalOwner == iTunisia or originalOwner == iLebanon) then -- restore french colonies territory
+				plot:SetOwner(originalOwner, -1 )
+				if plot:IsCity() then
+					local city = plot:GetPlotCity()
+					EscapeUnitsFromPlot(plot)
+					Players[originalOwner]:AcquireCity(city, false, true)
+				end
+			elseif originalOwner ~= iFrance and ownerID == iFrance then -- liberate plot captured by France
+				plot:SetOwner(originalOwner, -1 ) 
+
+			elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
+				--Dprint("(".. x ..",".. y ..") = Plot in occupied territory")
+				if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
+					local city = plot:GetPlotCity()
+					EscapeUnitsFromPlot(plot)
+					pAxis:AcquireCity(city, false, true)
+				else
+					plot:SetOwner(newPlayerID, -1 ) 
+				end
+			elseif originalOwner == iFrance and ((y > 32 and x < 32))  then -- Vichy territory
+				--Dprint("(".. x ..",".. y ..") = Plot in Vichy territory")
+				if plot:IsCity() and ownerID ~= iVichy then
+					local city = plot:GetPlotCity()
+					EscapeUnitsFromPlot(plot)
+					Players[iVichy]:AcquireCity(city, false, true)
+				else
+					plot:SetOwner(iVichy, -1 ) 
+				end
+			elseif originalOwner == iFrance and (y > 26 and x > 31 and y < 38 and x < 36) then -- Nice, Ajaccio region to Italy
+				--Dprint("(".. x ..",".. y ..") = Plot in Italy occupied territory")
+				if plot:IsCity() and ownerID ~= iItaly then
+					local city = plot:GetPlotCity()
+					EscapeUnitsFromPlot(plot)
+					Players[iItaly]:AcquireCity(city, false, true)
+				else
+					plot:SetOwner(iItaly, -1 ) 
+				end
+			elseif originalOwner == iFrance and (y > 40 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg region to Germany
+				--Dprint("(".. x ..",".. y ..") = Plot in Germany occupied territory")
+				if plot:IsCity() and ownerID ~= iGermany then
+					local city = plot:GetPlotCity()
+					EscapeUnitsFromPlot(plot)
+					Players[iGermany]:AcquireCity(city, false, true)
+				else
+					plot:SetOwner(iGermany, -1 ) 
+				end
+			end
+		end
+	end
+				
+	--Pause(1)
+	coroutine.yield()
+				
+	-- change minor diplomacy
+	local teamGermany = Teams[ pGermany:GetTeam() ]
+	local teamItaly = Teams[ pItaly:GetTeam() ]
+	local teamFrance = Teams[ pFrance:GetTeam() ]
+
+	-- Change relation before declaring war or after peace !
+				
+	Dprint("Updating relations ...", bDebug)	
+
+	pVichy:ChangeMinorCivFriendshipWithMajor( iGermany, 50 )
+	pVichy:ChangeMinorCivFriendshipWithMajor( iItaly, 50 )
+				
+	pAlgeria:ChangeMinorCivFriendshipWithMajor( iFrance, - pAlgeria:GetMinorCivFriendshipWithMajor(iFrance) )
+	pAlgeria:ChangeMinorCivFriendshipWithMajor( iEngland, - pAlgeria:GetMinorCivFriendshipWithMajor(iEngland) )
+	pMorocco:ChangeMinorCivFriendshipWithMajor( iFrance, - pMorocco:GetMinorCivFriendshipWithMajor(iFrance) )
+	pMorocco:ChangeMinorCivFriendshipWithMajor( iEngland, - pMorocco:GetMinorCivFriendshipWithMajor(iEngland) )
+	pSyria:ChangeMinorCivFriendshipWithMajor( iFrance, - pSyria:GetMinorCivFriendshipWithMajor(iFrance) )
+	pSyria:ChangeMinorCivFriendshipWithMajor( iEngland, - pSyria:GetMinorCivFriendshipWithMajor(iEngland) )
+	pTunisia:ChangeMinorCivFriendshipWithMajor( iFrance, - pTunisia:GetMinorCivFriendshipWithMajor(iFrance) )
+	pTunisia:ChangeMinorCivFriendshipWithMajor( iEngland, - pTunisia:GetMinorCivFriendshipWithMajor(iEngland) )
+	pLebanon:ChangeMinorCivFriendshipWithMajor( iFrance, - pLebanon:GetMinorCivFriendshipWithMajor(iFrance) )
+	pLebanon:ChangeMinorCivFriendshipWithMajor( iEngland, - pLebanon:GetMinorCivFriendshipWithMajor(iEngland) )
+				
+	--Pause(1)
+	coroutine.yield()
+				
+	Dprint("Updating war/peace ...", bDebug)	
+
+	--DeclarePermanentWar(iFrance, iAlgeria) -- wait for Operation Torch
+	teamGermany:MakePeace( pAlgeria:GetTeam() )
+	teamItaly:MakePeace( pAlgeria:GetTeam() )
+	pAlgeria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iGermany) )
+	pAlgeria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iItaly) )
+				
+	--DeclarePermanentWar(iFrance, iMorocco) -- wait for Operation Torch
+	teamGermany:MakePeace( pMorocco:GetTeam() )
+	teamItaly:MakePeace( pMorocco:GetTeam() )
+	pMorocco:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iGermany) )
+	pMorocco:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iItaly) )
+				
+	DeclarePermanentWar(iFrance, iSyria)
+	teamGermany:MakePeace( pSyria:GetTeam() )
+	teamItaly:MakePeace( pSyria:GetTeam() )
+	pSyria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pSyria:GetMinorCivFriendshipWithMajor(iGermany) )
+	pSyria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pSyria:GetMinorCivFriendshipWithMajor(iItaly) )
+				
+	--DeclarePermanentWar(iFrance, iTunisia) -- wait for Operation Torch
+	teamGermany:MakePeace( pTunisia:GetTeam() )
+	teamItaly:MakePeace( pTunisia:GetTeam() )
+	pTunisia:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iGermany) )
+	pTunisia:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iItaly) )	
+
+	--DeclarePermanentWar(iFrance, iLebanon) -- wait for Operation Torch
+	teamGermany:MakePeace( pLebanon:GetTeam() )
+	teamItaly:MakePeace( pLebanon:GetTeam() )
+	pLebanon:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iGermany) )
+	pLebanon:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iItaly) )
+				
+	--Pause(1)
+	coroutine.yield()
+				
+	Dprint("Finalizing Fall of France ...", bDebug)	
+
+	-- remove resistance from Paris
+	pParis:ChangeResistanceTurns(-pParis:GetResistanceTurns())
+
+	-- french may try to restart...
+	if Game.GetActivePlayer() ~= iFrance then
+		Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, pFrance:GetName() .. " has fled from Paris with all the gold of France promising to continue the fight from french colonies.", pFrance:GetName() .. " in exil !", -1, -1)
+	end
+	pFrance:SetGold(pFrance:GetGold() + 5000)
+
+	savedData.SetValue("FranceHasFallen", 1)
+				
+	Dprint("Fall of France event completed...", bDebug)	
+end
 
 function ConvertToFreeFrance (iAttackingPlayer, iAttackingUnit, attackerDamage, attackerFinalDamage, attackerMaxHP, iDefendingPlayer, iDefendingUnit, defenderDamage, defenderFinalDamage, defenderMaxHP)
 
@@ -1675,7 +1722,7 @@ g_Convoy = {
 		Name = "Norway to Germany",
 		SpawnList = { {X=50, Y=85}, }, -- adjacent to Narvik
 		RandomSpawn = false,
-		DestinationList = { {X=40, Y=55}, {X=46, Y=52}, }, -- Kiel, Stettin
+		DestinationList = { {X=39, Y=53}, {X=40, Y=55}, {X=46, Y=52}, }, -- Hamburg, Kiel, Stettin
 		RandomDestination = false,
 		CivID = GERMANY,
 		MaxFleet = 1, 

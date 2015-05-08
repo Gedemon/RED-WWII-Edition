@@ -163,6 +163,7 @@ end
 Events.SequenceGameInitComplete.Add( OnGameInit )
 Events.LoadScreenClose.Add( OnEnterGame )
 GameEvents.DLL_Debug.Add( DLL_Debug )
+Events.LocalMachineAppUpdate.Add( ResumeCoroutines )
 
 ----------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
