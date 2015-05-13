@@ -250,8 +250,9 @@ function FallOfFrance(hexPos, playerID, cityID, newPlayerID)
 				Dprint("- First occurence, launching script ...")
 
 				local co = StartCoroutine( CoCallOfFrance )
-				coroutine.resume(co) -- pass vatiable here
-
+				coroutine.resume(co)
+			else
+				Dprint("- Duplicate event, script was not launched ...")
 			end
 		end
 	end
@@ -260,13 +261,16 @@ end
 
 function CoCallOfFrance()
 	
-	-- todo: learn how to pass those to the coroutine...
 	local savedData = Modding.OpenSaveData()
+
+	-- todo: learn how to pass those to the coroutine...
 	local cityPlot = GetPlot (28,45)
 	local pParis = cityPlot:GetPlotCity()
 	local pAxis = g_CapturingPlayer
 	g_CapturingPlayer = nil
-	----
+	--
+
+	savedData.SetValue("FranceHasFallen", 1) 
 
 	local iVichy = GetPlayerIDFromCivID (VICHY, true, true)
 	local pVichy = Players[iVichy]
@@ -548,16 +552,21 @@ function CoCallOfFrance()
 		if originalOwner ~= iFrance then -- liberate cities captured by France
 			Dprint(" - liberate city captured by France: " .. city:GetName(), bDebug )
 			local originalPlayer = Players[originalOwner]
-			EscapeUnitsFromPlot(plot)
+			EscapeUnitsFromPlot(plot)			
+			coroutine.yield()
 			originalPlayer:AcquireCity(city, false, true)
 			--city:SetOccupied(false) -- needed in this case ?
+			coroutine.yield()
+
 		else
 			local x, y = city:GetX(), city:GetY()
 			if ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
 				Dprint("   - " .. city:GetName() .. " in occupied territory at (".. x ..",".. y ..")", bDebug)
 				if city:GetOwner() ~= newPlayerID then 
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					pAxis:AcquireCity(city, false, true)
+					coroutine.yield()
 					city:SetPuppet(false)
 					city:ChangeResistanceTurns(-city:GetResistanceTurns())
 				else -- just remove resistance if city was already occupied
@@ -566,7 +575,9 @@ function CoCallOfFrance()
 			elseif (y > 32 and x < 32) then -- Vichy territory
 				Dprint("   - " .. city:GetName() .. " in Vichy territory at (".. x ..",".. y ..")", bDebug)
 				EscapeUnitsFromPlot(plot)
+				coroutine.yield()
 				pVichy:AcquireCity(city, false, true)
+				coroutine.yield()
 				--city:SetOccupied(false)
 				city:SetPuppet(false)
 				city:SetNumRealBuilding(COURTHOUSE, 1) -- above won't work, try workaround...
@@ -575,7 +586,9 @@ function CoCallOfFrance()
 				Dprint("   - " .. city:GetName() .. " in Italy occupied territory at (".. x ..",".. y ..")", bDebug)
 				if city:GetOwner() ~= iItaly then
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					pItaly:AcquireCity(city, false, true)
+					coroutine.yield()
 					city:SetPuppet(false)
 					city:ChangeResistanceTurns(-city:GetResistanceTurns())
 				end
@@ -583,7 +596,9 @@ function CoCallOfFrance()
 				Dprint("   - " .. city:GetName() .. " in Germany occupied territory at (".. x ..",".. y ..")", bDebug)
 				if city:GetOwner() ~= iGermany then
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					pGermany:AcquireCity(city, false, true)
+					coroutine.yield()
 					city:SetPuppet(false)
 					city:ChangeResistanceTurns(-city:GetResistanceTurns())
 				end
@@ -610,7 +625,9 @@ function CoCallOfFrance()
 				if plot:IsCity() then
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					Players[originalOwner]:AcquireCity(city, false, true)
+					coroutine.yield()
 				end
 			elseif originalOwner ~= iFrance and ownerID == iFrance then -- liberate plot captured by France
 				plot:SetOwner(originalOwner, -1 ) 
@@ -620,7 +637,9 @@ function CoCallOfFrance()
 				if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					pAxis:AcquireCity(city, false, true)
+					coroutine.yield()
 				else
 					plot:SetOwner(newPlayerID, -1 ) 
 				end
@@ -629,7 +648,9 @@ function CoCallOfFrance()
 				if plot:IsCity() and ownerID ~= iVichy then
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					Players[iVichy]:AcquireCity(city, false, true)
+					coroutine.yield()
 				else
 					plot:SetOwner(iVichy, -1 ) 
 				end
@@ -638,7 +659,9 @@ function CoCallOfFrance()
 				if plot:IsCity() and ownerID ~= iItaly then
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					Players[iItaly]:AcquireCity(city, false, true)
+					coroutine.yield()
 				else
 					plot:SetOwner(iItaly, -1 ) 
 				end
@@ -647,7 +670,9 @@ function CoCallOfFrance()
 				if plot:IsCity() and ownerID ~= iGermany then
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
+					coroutine.yield()
 					Players[iGermany]:AcquireCity(city, false, true)
+					coroutine.yield()
 				else
 					plot:SetOwner(iGermany, -1 ) 
 				end
@@ -688,31 +713,42 @@ function CoCallOfFrance()
 
 	--DeclarePermanentWar(iFrance, iAlgeria) -- wait for Operation Torch
 	teamGermany:MakePeace( pAlgeria:GetTeam() )
+	coroutine.yield()
 	teamItaly:MakePeace( pAlgeria:GetTeam() )
+	coroutine.yield()
 	pAlgeria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iGermany) )
 	pAlgeria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pAlgeria:GetMinorCivFriendshipWithMajor(iItaly) )
 				
 	--DeclarePermanentWar(iFrance, iMorocco) -- wait for Operation Torch
 	teamGermany:MakePeace( pMorocco:GetTeam() )
+	coroutine.yield()
 	teamItaly:MakePeace( pMorocco:GetTeam() )
+	coroutine.yield()
 	pMorocco:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iGermany) )
 	pMorocco:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pMorocco:GetMinorCivFriendshipWithMajor(iItaly) )
 				
 	DeclarePermanentWar(iFrance, iSyria)
+	coroutine.yield()
 	teamGermany:MakePeace( pSyria:GetTeam() )
+	coroutine.yield()
 	teamItaly:MakePeace( pSyria:GetTeam() )
+	coroutine.yield()
 	pSyria:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pSyria:GetMinorCivFriendshipWithMajor(iGermany) )
 	pSyria:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pSyria:GetMinorCivFriendshipWithMajor(iItaly) )
 				
 	--DeclarePermanentWar(iFrance, iTunisia) -- wait for Operation Torch
 	teamGermany:MakePeace( pTunisia:GetTeam() )
+	coroutine.yield()
 	teamItaly:MakePeace( pTunisia:GetTeam() )
+	coroutine.yield()
 	pTunisia:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iGermany) )
 	pTunisia:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pTunisia:GetMinorCivFriendshipWithMajor(iItaly) )	
 
 	--DeclarePermanentWar(iFrance, iLebanon) -- wait for Operation Torch
 	teamGermany:MakePeace( pLebanon:GetTeam() )
+	coroutine.yield()
 	teamItaly:MakePeace( pLebanon:GetTeam() )
+	coroutine.yield()
 	pLebanon:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iGermany) )
 	pLebanon:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iItaly) )
 				
@@ -730,7 +766,7 @@ function CoCallOfFrance()
 	end
 	pFrance:SetGold(pFrance:GetGold() + 5000)
 
-	savedData.SetValue("FranceHasFallen", 1)
+	--savedData.SetValue("FranceHasFallen", 1) -- at the begining of the script to prevent duplicate call now that we use coroutine
 				
 	Dprint("Fall of France event completed...", bDebug)	
 end
@@ -1249,17 +1285,19 @@ end
 
 function ItalyIsSafe()
 	local iItaly = GetPlayerIDFromCivID (ITALY, false, true)
-	local safe = true
+	local safe = 6
+	local lostPlot = 0
 	for x = 33, 48, 1 do
 		for y = 16, 38, 1 do
 			local plotKey = x..","..y
 			local plot = GetPlot(x,y)
 			if GetPlotFirstOwner(plotKey) == iItaly and plot:GetOwner() ~= iItaly then -- one of Italy plot has been conquered
-				safe = false 
+				lostPlot = lostPlot + 1 
 			end
 		end
 	end 
-	return safe
+	local bIsSafe = lostPlot < safe
+	return bIsSafe
 end
 
 
@@ -1269,17 +1307,20 @@ end
 
 function GermanyIsSafe()
 	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
-	local safe = true
+	local safe = 10
+	local lostPlot = 0
 	for x = 35, 79, 1 do
 		for y = 39, 55, 1 do
 			local plotKey = x..","..y
 			local plot = GetPlot(x,y)
 			if GetPlotFirstOwner(plotKey) == iGermany and plot:GetOwner() ~= iGermany then -- one of Germany plot has been conquered
-				safe = false 
+				lostPlot = lostPlot + 1 
 			end
 		end
 	end 
-	return safe
+	
+	local bIsSafe = lostPlot < safe
+	return bIsSafe
 end
 
 ----------------------------------------------------------------------------------------------------------------------------

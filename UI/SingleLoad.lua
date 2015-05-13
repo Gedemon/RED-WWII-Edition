@@ -436,7 +436,8 @@ function SetSelected( index )
 			end
 			
 			Controls.StartButton:SetToolTipString(tooltip);
-			Controls.StartButton:SetDisabled(canLoadSaveResult > 0 or header.GameType ~= g_GameType);  
+			Controls.StartButton:SetDisabled(canLoadSaveResult > 0 or header.GameType ~= g_GameType);
+			--Controls.StartButton:SetDisabled(canLoadSaveResult > 3 or header.GameType ~= g_GameType);  -- to load saves with any DLC (will crash !)
 			
 			Controls.Delete:SetDisabled(false); 
 			

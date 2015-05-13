@@ -175,7 +175,7 @@ function UpdateData()
 			local iUnitsTotal = pPlayer:GetNumUnits()
 			local iUnitsFromCities = pPlayer:GetNumUnitsSuppliedByCities()
 			local iUnitsFromPopulation = pPlayer:GetNumUnitsSuppliedByPopulation()
-			local iUnitsFromHandicap = pPlayer:GetNumUnitsSuppliedByHandicap()
+			local iUnitsFromHandicap = pPlayer:GetNumUnitsSuppliedByHandicap() + GetFreeUnitsFromScenario (iPlayerID)
 
 			if (iUnitSupplyMod ~= 0) then
 				local iUnitsOver = pPlayer:GetNumUnitsOutOfSupply();

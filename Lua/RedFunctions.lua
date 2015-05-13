@@ -965,7 +965,6 @@ end
 
 -- functions to call at beginning of each turn
 function CommonOnNewTurn()
-	InitializeActivePlayerTurn()
 	InitializeProjects()
 	MapUpdate() -- check for culture consistency
 	SetMinorRelations()
@@ -974,6 +973,12 @@ function CommonOnNewTurn()
 	SpawnConvoy()
 	ClearAIairSweep()
 	RepairImprovements()
+	LaunchMilitaryOperation()
+end
+
+-- functions to call at beginning of each active player turn
+function CommonOnActivePlayerTurn()
+	InitializeActivePlayerTurn()
 	LaunchMilitaryOperation()
 end
 
@@ -1078,6 +1083,7 @@ function CommonOnEnterGame()
 	GameEvents.TacticalAILaunchUnitAttack.Add(TacticalAILaunchUnitAttack )
 	GameEvents.PushingMissionTo.Add( PushingMissionTo )
 	GameEvents.GameCoreUpdateBegin.Add( InitializeUnitFunctions )
+	GameEvents.GetFreeUnitsFromScenario.Add( GetFreeUnitsFromScenario )
 	InitializeClosedBorders()
 	UpdateGlobalData()
 	ValidateData()											
@@ -1093,6 +1099,10 @@ end
 
 -- functions to call at beginning of each turn
 function ScenarioOnNewTurn()
+end
+
+-- functions to call at beginning of each active player turn
+function ScenarioOnActivePlayerTurn()
 end
 
 -- functions to call at end of each turn
@@ -1130,33 +1140,63 @@ end
 
 function TransfertDamage( city, damage)
 
-	local list = {}
-	for i = 0, city:GetNumCityPlots() - 1, 1 do
-		local plot = city:GetCityIndexPlot( i )
-		if (plot ~= nil) then				
-			if ( plot:GetOwner() == city:GetOwner() and plot:GetImprovementType() ~= -1 ) then
-				table.insert(list, plot)
-			end
-		end
-	end
-	if #list > 0 then
-		local rand = math.random( 1, #list )
-		local plot = list[rand]
-		local plotKey = GetPlotKey ( plot )
-		if MapModData.RED.DynamicMap[plotKey] then
-			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = MapModData.RED.DynamicMap[plotKey].ImprovementDamage + damage
-		else
-			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = damage, RouteDamage = 0  }
+	local bDebug = true
+	
+	Dprint("Transfering ".. tostring(damage).." damage from city to local improvements...", bDebug)
+	local sector = math.random( 1, 6 ) -- north, north-east, ...
+	local anticlock = (math.random( 1, 2 ) == 2)
+	local range = 2	
+	Dprint(" - Range = ".. tostring(range) ..", sector = ".. tostring(sector) ..", anticlock = ".. tostring(anticlock), bDebug)
+
+	for plot in PlotAreaSpiralIterator(city:Plot(), range, sector, anticlock, DIRECTION_OUTWARDS, false) do
+
+		local damageTotransfert = damageImprovements(city, damage, plot)
+
+		Dprint("     - damage left to transfert = ".. tostring(damageTotransfert), bDebug)
+		if damageTotransfert <= 0 then
+			return
 		end
 
+	end
+
+	-- todo: another pass at roads/rails if there are damage point left ?
+end
+
+function damageImprovements(city, damage, plot)
+
+	local improvementType = plot:GetImprovementType()
+	local fortType = GameInfoTypes["IMPROVEMENT_FORT"]
+	local citadelType = GameInfoTypes["IMPROVEMENT_CITADEL"]
+	local damageTotransfert = 0
+
+	if improvementType ~= -1 and improvementType ~= fortType and improvementType ~= citadelType and plot:GetOwner() == city:GetOwner() then			
+
+		local plotKey = GetPlotKey ( plot )
+		local improvementDamage = 0
+
+		Dprint(" - Found = ".. tostring(GameInfo.Improvements[improvementType].Type) .." at (".. tostring(plotKey) ..")", bDebug)
+		
+		if MapModData.RED.DynamicMap[plotKey] then
+			improvementDamage = MapModData.RED.DynamicMap[plotKey].ImprovementDamage or 0
+		else
+			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = 0, RouteDamage = 0  }
+		end
+		Dprint("     - current damage = ".. tostring(improvementDamage), bDebug)
+
+		local received = math.min (damage, IMPROVEMENT_MAX_DAMAGE - improvementDamage)
+		damageTotransfert = damage - received
+			
+		Dprint("     - received damage = ".. tostring(received) .." (IMPROVEMENT_MAX_DAMAGE - current damage = ".. tostring(IMPROVEMENT_MAX_DAMAGE - improvementDamage) ..")", bDebug)
+
+		MapModData.RED.DynamicMap[plotKey].ImprovementDamage = MapModData.RED.DynamicMap[plotKey].ImprovementDamage + received
+
 		if MapModData.RED.DynamicMap[plotKey].ImprovementDamage >= IMPROVEMENT_DAMAGED_THRESHOLD and not plot:IsImprovementPillaged() then
+			Dprint("     - total damage (".. tostring(received) ..") is >=  IMPROVEMENT_DAMAGED_THRESHOLD (".. tostring(IMPROVEMENT_DAMAGED_THRESHOLD) .."), pillaging improvement !", bDebug)
 			plot:SetImprovementPillaged( true )
 		end
 
-		if MapModData.RED.DynamicMap[plotKey].ImprovementDamage > IMPROVEMENT_MAX_DAMAGE then
-			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
-		end
 	end
+	return damageTotransfert
 end
 
 function RepairImprovements()

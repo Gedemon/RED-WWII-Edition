@@ -194,6 +194,31 @@ function GetAdjacentPlots(plot, bIncludeSelf)
 	return plotList
 end
 
+-- return list of adjacent plots
+function AreAdjacentPlots(plot, plot2)
+	local bDebug = false
+	
+	if not plot or not plot2 then
+		Dprint("- WARNING ! plot is nil for AreAdjacentPlots()")
+	end
+
+	local direction_types = {
+		DirectionTypes.DIRECTION_NORTHEAST,
+		DirectionTypes.DIRECTION_EAST,
+		DirectionTypes.DIRECTION_SOUTHEAST,
+		DirectionTypes.DIRECTION_SOUTHWEST,
+		DirectionTypes.DIRECTION_WEST,
+		DirectionTypes.DIRECTION_NORTHWEST
+	}
+	for loop, direction in ipairs(direction_types) do
+		local adjPlot = Map.PlotDirection( plot:GetX(), plot:GetY(), direction)
+		if ( adjPlot == plot2 ) then
+			return true
+		end
+	end
+	return false
+end
+
 -- return list of plots in a circle, Thanks to Thalassicus...
 function GetPlotsInCircle(plot, minRadius, maxRadius)
     local plotList    = {}
@@ -314,6 +339,20 @@ function IsNearNavalFriendlyCity(plot, playerID)
 		end
 	end
 	return bFriendlyCity
+end
+
+function IsInNavalFriendlyCity(plot, playerID)
+	if not plot then
+		Dprint ( "WARNING ! Plot is nil in IsInNavalFriendlyCity(plot, playerID)")
+		return false
+	end
+	if plot:IsCity() then
+		local city = plot:GetPlotCity()
+		if AreSameSide( playerID, city:GetOwner()) and city:GetNumBuilding(HARBOR) > 0 then
+			return true
+		end
+	end
+	return false
 end
 
 -- get closest friendly naval city from a plot (return city object)
@@ -1292,4 +1331,26 @@ function StartCoroutine(func)
 	local co = coroutine.create(func)
 	table.insert(g_RunningCoroutines, co)
 	return co
+end
+
+
+function GetFreeUnitsFromScenario (iPlayer)
+	
+	if not g_Units_Maintenance_Modifier then
+		return 0
+	end
+
+	local civID = GetCivIDFromPlayerID(iPlayer, false)
+	local numFreeUnitsFromScenario = g_Units_Maintenance_Modifier[civID] or 0
+
+	-- convoy are free from maintenance
+	local numConvoi = 0
+	for unit in Players[iPlayer]:Units() do
+		if (unit:GetUnitType() == CONVOY) then
+			numConvoi = numConvoi + 1
+		end
+	end
+
+	return numFreeUnitsFromScenario + numConvoi
+
 end

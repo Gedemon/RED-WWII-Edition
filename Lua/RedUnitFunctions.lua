@@ -1720,7 +1720,7 @@ function DynamicTilePromotion(playerID, UnitID, x, y)
 
 		-- Paradrop from cities only
 		if CanParadrop(unitType) then
-			if ( plot:IsCity() and plot:GetOwner() == playerID) then
+			if ( plot:IsCity() and AreSameSide( plot:GetOwner(), playerID)) then
 				if not (unit:IsHasPromotion(PROMOTION_PARADROP)) then
 					Dprint("   - Marking " .. unit:GetName() .. " (unitID =".. unit:GetID() ..") of ".. player:GetName() ..", can Paradrop", bDebug)
 					unit:SetHasPromotion(PROMOTION_PARADROP, true)
@@ -1969,7 +1969,7 @@ function CanRangeStrike(iPlayer, iUnit, x, y)
 		--Dprint("attackernumtype = " .. tostring(numType))
 		-- to attack submarines we can't be land based or large bomber
 		-- to do : change that check to depth charge or torpedoes promotions
-		if IsSubmarineClass(defenderNumType) and (unitDomain == DomainTypes.DOMAIN_LAND or (unitDomain == DomainTypes.DOMAIN_AIR --[[and not IsSmallBomberClass(numType)--]])) then
+		if not plot:IsCity() and IsSubmarineClass(defenderNumType) and (unitDomain == DomainTypes.DOMAIN_LAND or (unitDomain == DomainTypes.DOMAIN_AIR --[[and not IsSmallBomberClass(numType)--]])) then
 			return false
 		end
 	end

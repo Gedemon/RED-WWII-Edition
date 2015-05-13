@@ -102,6 +102,15 @@ YUGOSLAVIA = GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
 -- Units (see RedDefines.lua for IDs)
 ----------------------------------------------------------------------------------------------------------------------------
 
+-- Modifier for maintenance free units
+g_Units_Maintenance_Modifier = {
+	[FRANCE] = 0,
+	[ENGLAND] = 10,
+	[USSR] = 0,
+	[GERMANY] = 0,
+	[ITALY] = 5,
+}
+
 -- Available units for minor civs
 g_Minor_Units = {}
 

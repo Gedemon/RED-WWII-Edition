@@ -447,6 +447,10 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
+    <Content Include="RED_Version.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Lua\Earth1936\DefinesEarth1936.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>

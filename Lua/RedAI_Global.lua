@@ -709,12 +709,14 @@ function SubHunting(playerID, UnitID, x, y)
 							if AreAtWar(testUnit:GetOwner(), playerID) and testUnit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_SUBMARINE.ID ) then
 								-- found a sub, FIRE !
 								Dprint(unit:GetName() .. " (id = ".. unit:GetID() ..") has found an enemy sub at (" .. testUnit:GetX() ..",".. testUnit:GetY() .. "), and try to open fire", g_bAIDebug )								
-								
-								unit:PopMission()
-								--unit:FinishMoves()
-								--unit:RangeStrike( testUnit:GetX(), testUnit:GetY() )
-								unit:PushMission(MissionTypes.MISSION_MOVE_TO, plot:GetX(), plot:GetY(), 0, 1, 0, MissionTypes.MISSION_MOVE_TO, plot, unit)
-								unit:PushMission(MissionTypes.MISSION_RANGE_ATTACK, testUnit:GetX(), testUnit:GetY(), 0, 1, 0, MissionTypes.MISSION_RANGE_ATTACK, adjPlot, unit)
+								if CanSharePlot(unit, plot) then
+									Dprint ("   - Attacking sub !", g_bAIDebug)
+									unit:PopMission()
+									unit:PushMission(MissionTypes.MISSION_MOVE_TO, plot:GetX(), plot:GetY(), 0, 1, 0, MissionTypes.MISSION_MOVE_TO, plot, unit)
+									unit:PushMission(MissionTypes.MISSION_RANGE_ATTACK, testUnit:GetX(), testUnit:GetY(), 0, 1, 0, MissionTypes.MISSION_RANGE_ATTACK, adjPlot, unit)
+								else
+									Dprint ("   - but there is another unit on the attacker plot", g_bAIDebug)
+								end
 							end
 						end
 					end
@@ -837,7 +839,8 @@ function GoHealing(unit)
 	elseif unit:GetDomainType() == DomainTypes.DOMAIN_SEA then
 		local unitPlot = unit:GetPlot()
 		local playerID = unit:GetOwner()
-		if IsNearNavalFriendlyCity(unitPlot, playerID) then
+		--if IsNearNavalFriendlyCity(unitPlot, playerID) then
+		if IsInNavalFriendlyCity(unitPlot, playerID) then
 			Dprint("Naval friendly city nearby, try to heal...", g_bAIDebug)
 			unit:SetMoves(0)
 		else

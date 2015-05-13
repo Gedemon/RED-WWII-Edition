@@ -7,6 +7,7 @@ print("Loading Mods Menu...")
 print("-------------------------------------")
 
 include( "InstanceManager" );
+include ("RED_Version" )
 
 
 g_InstanceManager = InstanceManager:new( "ModInstance", "Label", Controls.ModsStack );
@@ -223,6 +224,7 @@ function Initialize()
 	
 	local gameVersion = UI.GetVersionInfo()
 	print ("game version : " .. gameVersion )
+	print ("mod version : " .. g_RED_Version)
 
 	local ExpansionID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
 	local MongolDlcID = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID

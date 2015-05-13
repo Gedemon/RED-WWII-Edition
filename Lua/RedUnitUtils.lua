@@ -781,7 +781,7 @@ function CanSharePlot(unit, plot)
 	for i = 0, numUnits do
 		
 		local plotUnit = plot:GetUnit(i)
-		if plotUnit ~= nil and ((unit:GetOwner() ~= plotUnit:GetOwner()) or (unit:IsSpecialType() and plotUnit:IsSpecialType()) or (not unit:IsSpecialType() and not plotUnit:IsSpecialType())) then
+		if plotUnit ~= nil and plotUnit ~= unit and ((unit:GetOwner() ~= plotUnit:GetOwner()) or (unit:IsSpecialType() and plotUnit:IsSpecialType()) or (not unit:IsSpecialType() and not plotUnit:IsSpecialType())) then
 			return false
 		end
 	end

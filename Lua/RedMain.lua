@@ -81,7 +81,15 @@ function OnNewTurn ()
 	SaveAllTable() -- must be last before NewTurnSummary
 	NewTurnSummary() -- after other functions to get benchmark...
 end
-Events.ActivePlayerTurnStart.Add( OnNewTurn )
+GameEvents.GameDoTurn.Add( OnNewTurn )
+--Events.ActivePlayerTurnStart.Add( OnNewTurn )
+
+-- functions to call at beginning of each active player (human) turn
+function OnActivePlayerNewTurn ()
+	CommonOnActivePlayerTurn()
+	ScenarioOnActivePlayerTurn()
+end
+Events.ActivePlayerTurnStart.Add( OnActivePlayerNewTurn )
 
 -- functions to call at end of each turn
 function OnEndTurn ()
