@@ -15,11 +15,13 @@ g_InstanceManager = InstanceManager:new( "ModInstance", "Label", Controls.ModsSt
 g_FirstInitialization = true
 g_TotalTime = 0
 g_PreviousSecond = 0
+g_Packages = {}
 
-g_NumBackground = 41 -- number of available background screens to chose from
-g_DLL_MinimumVersion = 3 -- DLL minimum version to be used
-g_Data_MinimumVersion = 5 -- DataFile minimum version to be used
-g_WarningLink = "http://forums.civfanatics.com/showthread.php?t=472345"
+g_BuildMinimumVersion	= 403694	-- minimal game build
+g_NumBackground			= 41		-- number of available background screens to chose from
+g_DLL_MinimumVersion	= 3			-- DLL minimum version to be used
+g_Data_MinimumVersion	= 5			-- DataFile minimum version to be used
+g_WarningLink			= "http://forums.civfanatics.com/showthread.php?t=472345"
 
 g_AuthorizedModList = {
 	"580c14eb-9799-4d31-8b14-c2a78931de89", -- R.E.D. WWII Edition
@@ -40,7 +42,8 @@ g_AuthorizedModList = {
 }
 
 
-local bNeedUpdate = false
+local bNeedModUpdate = false
+local bNeedDLCUpdate = false
 
 --------------------------------------------------
 -- Navigation Routines (Installed,Online,Back)
@@ -219,37 +222,69 @@ function Initialize()
 	PreGame.SetGameOption("GAMEOPTION_REBASE_IN_FRIENDLY_CITY", 1)
 
 	print("-------------------------------------")
-	print("Check DLC compatibility list...")
+	print("Game compatibility checks...")
 	print("-------------------------------------")
 	
 	local gameVersion = UI.GetVersionInfo()
 	print ("game version : " .. gameVersion )
+
+	local i1 = string.find( gameVersion, " " )
+	local i2 = string.find( gameVersion, ")" )
+	local buildVersion = tonumber(string.sub(gameVersion, i1+2, i2-1))
+	print ("build version : " .. buildVersion)
+
 	print ("mod version : " .. g_RED_Version)
 
-	local ExpansionID = "0E3751A1-F840-4e1b-9706-519BF484E59D" -- G&K ID
-	local MongolDlcID = "293C1EE3-1176-44f6-AC1F-59663826DE74" -- Mongol DLC ID
+	local bWrongGameVersion = false
+	if buildVersion < g_BuildMinimumVersion then
+		print (" - Game need to be updated...")
+		bWrongGameVersion = true
+	end
 	
+	print("-------------------------------------")
+	print("Check DLC compatibility list...")
+	print("-------------------------------------")
+
+	local MongolDlcID = "293C1EE3-1176-44F6-AC1F-59663826DE74" -- Mongol DLC ID	
 	local RedWW2DataFilesModID = "544d699d-1c84-4606-b22f-a1b009af9471" -- R.E.D. WWII Datafile
 
-	local bExpansionActive = false--ContentManager.IsActive(ExpansionID, ContentType.GAMEPLAY) -- no need to check for that or DLL anymore, to do : cleaning !
 	local bMongolDlcActive = ContentManager.IsActive(MongolDlcID, ContentType.GAMEPLAY)
-	local bUnauthorizedModActive = false
+	bNeedModUpdate = false
+	bNeedDLCUpdate = false
 
-	local packages = {}
 
-	--[[
-	if bExpansionActive then
-		print ("- G&K Expansion active, marked for deactivation...")
-		table.insert(packages, {ExpansionID, ContentType.GAMEPLAY, false})
-	else
-		print ("- G&K Expansion not active...")		
-	end
-	--]]	
+	-- remove all DLC that are not required (for savegame compatibility)
+	local packageIDs = ContentManager.GetAllPackageIDs()
+	g_Packages = {}
+	
+	print("Active DLCs :")
+	for i, id in ipairs(packageIDs) do
+		
+		local bActive = ContentManager.IsActive(id, ContentType.GAMEPLAY)
+		local sDescription = Locale.Lookup(ContentManager.GetPackageDescription(id))
+
+		if(not ContentManager.IsUpgrade(id)) then
+			if id ~= MongolDlcID then
+				if bActive then
+					print (" - " .. sDescription .. " : Not needed, marked for deactivation...")
+					table.insert(g_Packages, {
+						id,
+						ContentType.GAMEPLAY,
+						false
+					});
+				end		
+			end
+		elseif bActive then
+			print (" - " .. sDescription .. " : Active...")
+		end
+    end	    
+	bNeedDLCUpdate = (#g_Packages > 0)
+
+
 	if not bMongolDlcActive then
-		print ("- Mongol DLC inactive, marked for activation...")
-		table.insert(packages, {MongolDlcID, ContentType.GAMEPLAY, true})
-	else
-		print ("- Mongol DLC is active...")		
+		print (" - Mongol DLC inactive, marked for activation...")
+		table.insert(g_Packages, {MongolDlcID, ContentType.GAMEPLAY, true})
+		bNeedDLCUpdate = true
 	end
 	
 	print("-------------------------------------")
@@ -273,7 +308,7 @@ function Initialize()
 					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..") : Not authorised, marked for deactivation...")
 					iNumUnauthorizedMods = iNumUnauthorizedMods + 1
 					--Modding.DisableMod(modInfo.ID, modInfo.Version)
-					bUnauthorizedModActive = true
+					bNeedModUpdate = true
 				else				
 					print (" - " .. modInfo.Name .. " (v." .. modInfo.Version ..")")
 					if (modInfo.ID == RedWW2DataFilesModID) then
@@ -350,33 +385,27 @@ function Initialize()
 	end
 	
 	-- Check if all correct mod components are loaded
-	bNeedUpdate = bExpansionActive or (not bMongolDlcActive) or bUnauthorizedModActive
 	local bValid = true
 	local warningHelp = ''
-	local warningString = ''
+	local warningString = ''	
 
-	if bNeedUpdate then		
-		--print("-------------------------------------")
-		--print("Update of Mods/DLC state is needed !")
-		--print("-------------------------------------")
-		--UIManager:SetUICursor(1)
-		--print("- Activate/Deactivate DLC...")
-		--ContentManager.SetActive(packages)
-		--print("- Activate/Deactivate MODs...")
-		--Modding.DeactivateMods()
-		--Modding.ActivateEnabledMods()
-		--[[
-		print("- Deactivate/Activate R.E.D.WWII for DLL...")
-		local REDversion = Modding.GetActivatedModVersion("580c14eb-9799-4d31-8b14-c2a78931de89")
-		Modding.DisableMod("580c14eb-9799-4d31-8b14-c2a78931de89", REDversion)
-		Modding.ActivateEnabledMods()
-		Modding.EnableMod("580c14eb-9799-4d31-8b14-c2a78931de89", REDversion)
-		Modding.ActivateEnabledMods()
-		--]]
-		--UIManager:SetUICursor(0)
-
+	if bNeedModUpdate then		
 		print("ERROR: Unauthorized Mod(s) !")
-		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]" .. tostring(iNumUnauthorizedMods) .." Unauthorized Mod(s) ![ENDCOLOR][NEWLINE]Marked for deactivation in mods menu.[NEWLINE]You need to exit R.E.D. for reinitialization."
+		warningHelp = "[COLOR_RED]Configuration Error:[NEWLINE]" .. tostring(iNumUnauthorizedMods) .." Unauthorized Mod(s) ![ENDCOLOR][NEWLINE]Marked for deactivation in mods menu.[NEWLINE]You need to exit and reload R.E.D."
+		warningString = "Click Here for Main Menu."
+		bValid = false
+	end
+
+	if bNeedDLCUpdate then
+		print("ERROR: Need to update DLC !")
+		warningHelp = "[COLOR_RED]Configuration Error:[NEWLINE]Some DLCs are not needed[ENDCOLOR][NEWLINE]Marked for deactivation in main menu.[NEWLINE]You need to exit and reload R.E.D."
+		warningString = "Click Here for Main Menu."
+		bValid = false
+	end
+
+	if not bMongolDlcActive then
+		print("ERROR: Mongol's DLC is needed !")
+		warningHelp = "[COLOR_RED]Configuration Error:[NEWLINE]The Mongol DLC is required[ENDCOLOR][NEWLINE]Marked for reactivation in main menu.[NEWLINE]You need to exit and reload R.E.D."
 		warningString = "Click Here for Main Menu."
 		bValid = false
 	end
@@ -405,11 +434,21 @@ function Initialize()
 		bValid = false
 	end
 
+	if bWrongGameVersion then
+		print("ERROR: Wrong version of the game !")
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]Wrong game version ![ENDCOLOR][NEWLINE]Build #" .. tostring(buildVersion) .." detected.[NEWLINE]Minimal build #" .. tostring(g_BuildMinimumVersion) .." needed."
+		warningString = "Click for installation instructions."
+		bValid = false
+	end
+
 	if not bValid then
 		Controls.WarningTitle:SetText(warningHelp)
 		Controls.WarningButton:SetText(warningString)
 		Controls.WarningGrid:SetHide(false)
-		if bNeedUpdate then
+		if bNeedDLCUpdate then
+			Controls.WarningButton:RegisterCallback(Mouse.eLClick, OnDeactivateDLCs)
+			Controls.BackButton:RegisterCallback(Mouse.eLClick, OnDeactivateDLCs)
+		elseif bNeedModUpdate then
 			Controls.WarningButton:RegisterCallback(Mouse.eLClick, OnDeactivateMods)
 			Controls.BackButton:RegisterCallback(Mouse.eLClick, OnDeactivateMods)
 		else
@@ -437,9 +476,22 @@ function IsModAuthorized (id)
 end
 
 function OnDeactivateMods()
+	print("-------------------------------------")
+	print("Updating Mods...")
+	print("-------------------------------------")
 	UIManager:SetUICursor(1)
 	Modding.DeactivateMods()
 	UIManager:SetUICursor(0)
+end
+
+
+function OnDeactivateDLCs()
+	print("-------------------------------------")
+	print("Updating DLCs...")
+	print("-------------------------------------")
+	UIManager:SetUICursor(1);
+	ContentManager.SetActive(g_Packages);
+	UIManager:SetUICursor(0);
 end
 
 function MenuTimer(tickCount, timeIncrement)
@@ -449,16 +501,26 @@ function MenuTimer(tickCount, timeIncrement)
 	if g_TotalTime > g_PreviousSecond then
 		g_PreviousSecond = math.ceil(g_TotalTime)
 		iTimeLeft = iWaitTime - g_PreviousSecond		
-		if bNeedUpdate and iTimeLeft > 0 then		
-			print("- Need to deactivate mods...")
+		if (bNeedModUpdate or bNeedDLCUpdate) and iTimeLeft > 0 then
 			print("- Auto-Exit in ".. tostring(iTimeLeft) .. " seconds...")
 			Controls.BackButton:SetText("Auto-Exit in ".. tostring(iTimeLeft) .. " seconds...")
 		end
 	end
 	if g_TotalTime > iWaitTime then
-		-- Deactivate unauthorized mods if needed
-		if bNeedUpdate then		
-			print("- Deactivating MODs...")
+		-- Deactivate unauthorized mods or not needed DLCs
+
+		if bNeedDLCUpdate then
+			print("-------------------------------------")
+			print("Updating DLCs...")
+			print("-------------------------------------")
+			UIManager:SetUICursor(1);
+			ContentManager.SetActive(g_Packages);
+			UIManager:SetUICursor(0);
+
+		elseif bNeedModUpdate then		
+			print("-------------------------------------")
+			print("- Updating MODs...")
+			print("-------------------------------------")
 			UIManager:SetUICursor(1)
 			Modding.DeactivateMods()
 			UIManager:SetUICursor(0)

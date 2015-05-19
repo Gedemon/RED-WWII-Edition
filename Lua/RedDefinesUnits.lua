@@ -27,6 +27,9 @@ CH_INFANTRY				= GameInfo.Units.UNIT_CHINESE_INFANTRY.ID
 GR_INFANTRY				= GameInfo.Units.UNIT_GREEK_INFANTRY.ID
 PL_INFANTRY				= GameInfo.Units.UNIT_POLAND_INFANTRY.ID
 HU_INFANTRY				= GameInfo.Units.UNIT_HUNGARY_INFANTRY.ID
+DU_INFANTRY				= GameInfo.Units.UNIT_DUTCH_INFANTRY.ID
+SP_INFANTRY				= GameInfo.Units.UNIT_SPAIN_INFANTRY.ID
+SW_INFANTRY				= GameInfo.Units.UNIT_SWEDEN_INFANTRY.ID
 
 -- Mechanized Infantries ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MECHANIZED_INFANTRY 	= GameInfo.Units.UNIT_MECHANIZED_INFANTRY.ID -- NumType for unit naming...
@@ -171,6 +174,9 @@ CH_T26B					= GameInfo.Units.UNIT_TANK_T26B.ID
 -- Hungary
 HU_38M_TOLDI			= GameInfo.Units.UNIT_TANK_38M_TOLDI_I.ID
 HU_40M_TURAN			= GameInfo.Units.UNIT_TANK_40M_TURAN_I.ID
+-- Netherlands
+DU_VICKERS_M1936		= GameInfo.Units.UNIT_TANK_VICKERS_M1936.ID
+DU_MTSL					= GameInfo.Units.UNIT_TANK_MTSL.ID
 
 -- Assault Guns ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RU_SU122				= GameInfo.Units.UNIT_ASSAULT_GUN_SU122.ID
@@ -187,6 +193,7 @@ GE_BRUMMBAR				= GameInfo.Units.UNIT_ASSAULT_GUN_BRUMMBAR.ID
 GE_STURMTIGER			= GameInfo.Units.UNIT_ASSAULT_GUN_STURMTIGER.ID
 IT_SM41					= GameInfo.Units.UNIT_ASSAULT_GUN_M41.ID
 JP_TYPE2				= GameInfo.Units.UNIT_ASSAULT_GUN_TYPE2.ID
+FI_BT42					= GameInfo.Units.UNIT_ASSAULT_GUN_BT42.ID
 
 -- Tank Destroyer -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 FR_W15_TCC				= GameInfo.Units.UNIT_TANK_DESTROYER_W15_TCC.ID
@@ -224,6 +231,8 @@ JP_HO_NI_I				= GameInfo.Units.UNIT_TANK_DESTROYER_HO_NI_I.ID
 JP_HO_NI_II				= GameInfo.Units.UNIT_TANK_DESTROYER_HO_NI_II.ID
 JP_HO_NI_III			= GameInfo.Units.UNIT_TANK_DESTROYER_HO_NI_III.ID
 JP_NA_TO				= GameInfo.Units.UNIT_TANK_DESTROYER_NA_TO.ID
+YU_SKODA				= GameInfo.Units.UNIT_TANK_DESTROYER_SKODA.ID
+RO_TACAM				= GameInfo.Units.UNIT_TANK_DESTROYER_TACAM.ID
 
 -- Artilleries ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ARTILLERY				= GameInfo.Units.UNIT_ARTILLERY.ID
@@ -232,10 +241,10 @@ AT_GUN					= GameInfo.Units.UNIT_FIELD_GUN.ID
 AA_GUN					= GameInfo.Units.UNIT_ANTI_AIRCRAFT_GUN.ID
 -- Mobile Artilleries ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 FR_MOBILE_AA_GUN		= GameInfo.Units.UNIT_MOBILE_AA_GUN_HOTCHKISS.ID
-RU_ZSU37			= GameInfo.Units.UNIT_MOBILE_AA_GUN_ZSU37.ID
-RU_BM13				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_BM13.ID
-RU_BM13_16			= GameInfo.Units.UNIT_MOBILE_ARTILLERY_BM13_16.ID
-RU_SU26				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_SU26.ID
+RU_ZSU37				= GameInfo.Units.UNIT_MOBILE_AA_GUN_ZSU37.ID
+RU_BM13					= GameInfo.Units.UNIT_MOBILE_ARTILLERY_BM13.ID
+RU_BM13_16				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_BM13_16.ID
+RU_SU26					= GameInfo.Units.UNIT_MOBILE_ARTILLERY_SU26.ID
 GE_MOBILE_AA_GUN		= GameInfo.Units.UNIT_MOBILE_AA_GUN_FLK_PZI.ID
 GE_MOBILE_AA_38			= GameInfo.Units.UNIT_MOBILE_AA_GUN_FLK_PZ38.ID
 GE_MOBILE_AA_MOBEL		= GameInfo.Units.UNIT_MOBILE_AA_GUN_MOBELWAGEN.ID
@@ -248,16 +257,18 @@ GE_MOBILE_GRILLE		= GameInfo.Units.UNIT_MOBILE_ARTILLERY_GRILLE.ID
 GE_MOBILE_WESPE			= GameInfo.Units.UNIT_MOBILE_ARTILLERY_WESPE.ID
 GE_MOBILE_HUMMEL		= GameInfo.Units.UNIT_MOBILE_ARTILLERY_HUMMEL.ID
 UK_MOBILE_AA_GUN		= GameInfo.Units.UNIT_MOBILE_AA_GUN_CRUSADER.ID
+UK_MOBILE_AA_VICKERS	= GameInfo.Units.UNIT_MOBILE_AA_GUN_VICKERS_UK.ID
 UK_MOBILE_BISHOP		= GameInfo.Units.UNIT_MOBILE_ARTILLERY_BISHOP.ID
-US_M7				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_M7.ID
-US_M12				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_M12.ID
-US_M40				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_M40.ID
-US_SEXTON			= GameInfo.Units.UNIT_MOBILE_ARTILLERY_SEXTON.ID
+US_M7					= GameInfo.Units.UNIT_MOBILE_ARTILLERY_M7.ID
+US_M12					= GameInfo.Units.UNIT_MOBILE_ARTILLERY_M12.ID
+US_M40					= GameInfo.Units.UNIT_MOBILE_ARTILLERY_M40.ID
+US_SEXTON				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_SEXTON.ID
 US_M16A1				= GameInfo.Units.UNIT_MOBILE_AA_GUN_M16A1.ID
 IT_AUTOCANNONE			= GameInfo.Units.UNIT_MOBILE_AA_GUN_AUTOCANNONE.ID
 JP_TYPE98				= GameInfo.Units.UNIT_MOBILE_AA_GUN_TYPE98.ID
 JP_HO_RO				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_HO_RO.ID
 JP_HA_TO				= GameInfo.Units.UNIT_MOBILE_ARTILLERY_HA_TO.ID
+GR_MOBILE_AA_VICKERS	= GameInfo.Units.UNIT_MOBILE_AA_GUN_VICKERS_GR.ID
 
 -- FIGHTERS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 FIGHTER					= GameInfo.Units.UNIT_FIGHTER_CIV4.ID -- NumType for unit naming...
@@ -321,6 +332,8 @@ CH_P40N					= GameInfo.Units.UNIT_FIGHTER_P40N_CHINA.ID
 PL_P11					= GameInfo.Units.UNIT_FIGHTER_P11.ID
 GR_P24					= GameInfo.Units.UNIT_FIGHTER_P24.ID
 GR_SPITFIRE				= GameInfo.Units.UNIT_FIGHTER_SPITFIRE_GREECE.ID
+DU_FOKKER_DXXI			= GameInfo.Units.UNIT_FIGHTER_FOKKER_DXXI.ID
+HU_RE2000				= GameInfo.Units.UNIT_FIGHTER_RE2000.ID
 -- Heavy Fighters -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 FR_POTEZ630				= GameInfo.Units.UNIT_FIGHTER_POTEZ630.ID
 UK_WHIRLWIND			= GameInfo.Units.UNIT_FIGHTER_WHIRLWIND.ID
@@ -330,6 +343,7 @@ GE_BF110_F4				= GameInfo.Units.UNIT_FIGHTER_BF110_F4.ID
 GE_JU88_C				= GameInfo.Units.UNIT_FIGHTER_JU88_C.ID
 GE_HE219				= GameInfo.Units.UNIT_FIGHTER_HE219.ID
 US_P38					= GameInfo.Units.UNIT_FIGHTER_P38.ID
+DU_FOKKER_GI			= GameInfo.Units.UNIT_FIGHTER_FOKKER_GI.ID
 						
 -- BOMBERS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 BOMBER					= GameInfo.Units.UNIT_BOMBER.ID -- NumType for unit naming...
@@ -367,6 +381,8 @@ JP_KI21					= GameInfo.Units.UNIT_BOMBER_KI21.ID
 US_B25					= GameInfo.Units.UNIT_BOMBER_B25.ID
 CH_B25					= GameInfo.Units.UNIT_BOMBER_B25_CHINA.ID
 GR_BLENHEIM				= GameInfo.Units.UNIT_BOMBER_BLENHEIM_GREECE.ID
+DU_FOKKER_TV			= GameInfo.Units.UNIT_BOMBER_FOKKER_TV.ID
+HU_CA135				= GameInfo.Units.UNIT_BOMBER_CA135.ID
 -- Heavy Bombers --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 RU_TB3					= GameInfo.Units.UNIT_BOMBER_TB3.ID
 RU_PE8					= GameInfo.Units.UNIT_BOMBER_PE8.ID
@@ -571,6 +587,7 @@ g_UnitUpgrades = {
 	[UK_A15_CRUSADER] = UK_A15_CRUSADER_MKIII,
 	[UK_A24] = UK_A27,
 	[UK_A27] = UK_CROMWELL,
+	[UK_HURRICANE] = UK_HURRICANE_II,
 	[UK_SPITFIRE] = UK_SPITFIRE_V,
 	[UK_SPITFIRE_V] = UK_SPITFIRE_IX,
 	[RU_BT2] = RU_BT7,
@@ -688,7 +705,7 @@ g_UnitMaxNumber= {
 	[US_BATTLESHIP] = 4,
 	[US_BATTLESHIP_2] = 3,
 	[GR_PISA] = 1,
-	[FR_CHAR_2C] = 3,
+	[FR_CHAR_2C] = 2,
 }
 
 -- Units that are restricted by number of instance (dead unit can be rebuild)
@@ -720,9 +737,9 @@ g_UnitMaxInstance = {
 g_Unit_ReqBuildings = {
 	[FR_LEGION] =			{LEGION_HQ},
 	[RU_NAVAL_INFANTRY] =	{SHIPYARD},
-	[US_MARINES] =			{ACADEMY},
-	[GE_SS_INFANTRY] =		{ACADEMY},
+	[US_MARINES] =			{BASE},
+	[GE_SS_INFANTRY] =		{BASE},
 }
 
 -- Available units for minor civs
-g_Minor_Units = {INFANTRY, LIGHT_TANK, TANK, FIGHTER, DESTROYER, CRUISER, SUBMARINE}
+g_Minor_Units = {INFANTRY, ARTILLERY, AT_GUN, AA_GUN, PARATROOPER, LIGHT_TANK, TANK, FIGHTER, DESTROYER, CRUISER, SUBMARINE}

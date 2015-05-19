@@ -268,17 +268,19 @@ g_MinorMobilization_OOB = {
 	{Name = "Poland army", X = 53, Y = 46, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
 	{Name = "Poland air force", X = 53, Y = 48, Domain = "Air", CivID = POLAND, IsMinor = true, Group = {PL_PZL37, PL_P11, PL_P11, PL_P11} },
 	{Name = "Poland fleet", X = 51, Y = 56, Domain = "Sea", CivID = POLAND, IsMinor = true, Group = {PL_SUBMARINE} },
-	{Name = "Belgian army", X = 34, Y = 48, Domain = "Land", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY} },
-	{Name = "Netherlands army", X = 35, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {INFANTRY} },
-	{Name = "Finland army", X = 59, Y = 68, Domain = "Land", CivID = FINLAND, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Slovakia army", X = 53, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35} },
-	{Name = "Slovakia army 2", X = 50, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35} },
-	{Name = "Romania army", X = 59, Y = 36, Domain = "Land", CivID = ROMANIA, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Yugoslavia army", X = 53, Y = 30, Domain = "Land", CivID = YUGOSLAVIA, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Bulgaria army", X = 61, Y = 29, Domain = "Land", CivID = BULGARIA, IsMinor = true, Group = {INFANTRY, INFANTRY} },
-	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {HU_INFANTRY, HU_INFANTRY, HU_INFANTRY, HU_38M_TOLDI, HU_38M_TOLDI, HU_40M_TURAN} },
-	{Name = "Sweden army", X = 45, Y = 60, Domain = "Land", CivID = SWEDEN, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Spanish army", X = 13, Y = 30, Domain = "Land", CivID = SPAIN, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY} },
+	{Name = "Belgian army", X = 34, Y = 48, Domain = "Land", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
+	{Name = "Netherlands army", X = 35, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {DU_INFANTRY, AT_GUN, DU_VICKERS_M1936, DU_MTSL, ARTILLERY} },
+	{Name = "Netherlands air force", X = 34, Y = 52, Domain = "Air", CivID = NETHERLANDS, IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
+	{Name = "Finland army", X = 59, Y = 68, Domain = "Land", CivID = FINLAND, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
+	{Name = "Slovakia army", X = 53, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
+	{Name = "Slovakia army 2", X = 50, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, AT_GUN} },
+	{Name = "Romania army", X = 59, Y = 36, Domain = "Land", CivID = ROMANIA, IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, INFANTRY, RO_TACAM, ARTILLERY} },
+	{Name = "Yugoslavia army", X = 53, Y = 30, Domain = "Land", CivID = YUGOSLAVIA, IsMinor = true, Group = {INFANTRY, INFANTRY, AT_GUN, INFANTRY, YU_SKODA, YU_SKODA, ARTILLERY} },
+	{Name = "Bulgaria army", X = 61, Y = 29, Domain = "Land", CivID = BULGARIA, IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {HU_INFANTRY, HU_INFANTRY, HU_INFANTRY, HU_38M_TOLDI, HU_38M_TOLDI, HU_40M_TURAN, ARTILLERY} },
+	{Name = "Hungary air force", X = 51, Y = 38, Domain = "Air", CivID = HUNGARY, IsMinor = true, Group = {HU_RE2000, HU_RE2000, HU_CA135} },
+	{Name = "Sweden army", X = 45, Y = 60, Domain = "Land", CivID = SWEDEN, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, ARTILLERY} },
+	{Name = "Spanish army", X = 13, Y = 30, Domain = "Land", CivID = SPAIN, IsMinor = true, Group = {SP_INFANTRY, AT_GUN, SP_INFANTRY, AT_GUN, SP_INFANTRY, ARTILLERY} },
 }
 
 ---------------------------------------------------------------------------------------------------------------------------
@@ -575,7 +577,8 @@ g_Cities = {
 	{X = 73, Y = 2,  }, -- SUEZ
 	{X = 29, Y = 54, }, -- NORWICH
 	{X = 25, Y = 54, }, -- BIRMINGHAM
-	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- NICOSIA
+	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- KIRKWALL (Scapa Flow)
+	{X = 28, Y = 68, Buildings = { HARBOR }, }, -- NICOSIA
 	-- GERMANY
 	{X = 44, Y = 50, Key = true, Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE}, }, -- BERLIN
 	{X = 39, Y = 46, Key = true, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
@@ -614,6 +617,7 @@ g_Cities = {
 	{X = 29, Y = 50, Key = true, Buildings = { HARBOR }, }, -- DUNKERQUE
 	{X = 31, Y = 46, }, -- REIMS
 	{X = 30, Y = 41, }, -- DIJON
+	{X = 34, Y = 42, }, -- MULHOUSE
 	-- ITALY
 	{X = 39, Y = 28, Key = true, Buildings = { FACTORY, HARBOR }, AIBuildings = { SHIPYARD }, }, -- ROME
 	{X = 41, Y = 25, Key = true, Buildings = { HARBOR }, AIBuildings = { SMALL_AIR_FACTORY }, }, -- NAPLES

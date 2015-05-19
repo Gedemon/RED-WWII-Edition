@@ -869,6 +869,44 @@
 			<Modifier>300</Modifier>
 		</Row>
 	</UnitPromotions_Domains>
+
+
+	<!-- MOBILE ARTILLERY-->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_MOBILE_ARTILLERY</Type>
+			<Description>TXT_KEY_PROMOTION_MOBILE_ARTILLERY</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_MOBILE_ARTILLERY</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_MOBILE_ARTILLERY_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<CityAttack>75</CityAttack>
+			<AttackFortifiedMod>75</AttackFortifiedMod>
+			<RangeAttackIgnoreLOS>1</RangeAttackIgnoreLOS>
+			<OnlyDefensive>1</OnlyDefensive>
+			<NoDefensiveBonus>0</NoDefensiveBonus>
+			<!-- default = 1 -->
+			<InterceptChanceChange>0</InterceptChanceChange>
+			<VisibilityChange>-1</VisibilityChange>
+			<PortraitIndex>58</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>PEDIA_ATTRIBUTES</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_UnitCombatMods>
+		<Row>
+			<PromotionType>PROMOTION_ARTILLERY</PromotionType>
+			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
+			<Modifier>25</Modifier>
+		</Row>
+	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_ARTILLERY</PromotionType>
+			<DomainType>DOMAIN_SEA</DomainType>
+			<Modifier>-50</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
 	
 	<!-- MOBILE ANTI AIRCRAFT GUN -->
 	<UnitPromotions>
@@ -1942,6 +1980,11 @@
 			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
 			<Modifier>-25</Modifier>
 		</Row>
+		<Row>
+			<PromotionType>PROMOTION_BOMBER</PromotionType>
+			<UnitClassType>UNITCLASS_FORTIFIED_GUN</UnitClassType>
+			<Modifier>50</Modifier>
+		</Row>
 	</UnitPromotions_UnitClasses>
 
 	<!-- LIGHT BOMBER -->
@@ -2304,12 +2347,10 @@
 			<UnitClassType>UNITCLASS_SUBMARINE_3</UnitClassType>
 			<Modifier>-25</Modifier>
 		</Row>
-	</UnitPromotions_UnitClasses>
-	<UnitPromotions_UnitClasses>
 		<Row>
 			<PromotionType>PROMOTION_HEAVY_BOMBER</PromotionType>
 			<UnitClassType>UNITCLASS_FORTIFIED_GUN</UnitClassType>
-			<Modifier>25</Modifier>
+			<Modifier>75</Modifier>
 		</Row>
 	</UnitPromotions_UnitClasses>
 

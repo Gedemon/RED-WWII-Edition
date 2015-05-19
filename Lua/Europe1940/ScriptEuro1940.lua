@@ -2133,8 +2133,12 @@ function GermanyReinforcementToUK()
 	end
 	
 	local friendInUK = GetTeamLandForceInArea( pGermany, 19, 51, 30, 68 ) -- (19,51) -> (30,68) ~= UK rectangular area
-	local enemyInUK = GetEnemyLandForceInArea( pGermany, 19, 51, 30, 68 )
-	
+	if friendInUK == 0 then	
+		Dprint ("   - but Axis ("..friendInUK..") have no force left in UK and need another operation Seelowe...", bDebug)
+		return false
+	end
+
+	local enemyInUK = GetEnemyLandForceInArea( pGermany, 19, 51, 30, 68 )	
 	if friendInUK > enemyInUK then	
 		Dprint ("   - but Axis ("..friendInUK..") have more force than Allies ("..enemyInUK..") in UK, no need to reinforce them...", bDebug)
 		return false
@@ -2237,24 +2241,24 @@ g_TroopsRoutes = {
 				RandomWaypoint = true, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
 				LandingList = { {X=40, Y=7}, {X=41, Y=6}, {X=45, Y=3}, {X=46, Y=3}, {X=51, Y=4}, {X=52, Y=6}, }, -- near Triploli, Sirte, Benghazi
 				RandomLanding = false, -- false : sequential try in landing list
-				MinUnits = 2,
-				MaxUnits = 4, -- Maximum number of units on the route at the same time
+				MinUnits = 4,
+				MaxUnits = 12, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = ItalyReinforcementToAfrica, -- Must refer to a function, remove this line to use the default condition (true)
 			},
 			[TROOPS_ITALY_ALBANIA] = {
 				Name = "Italy to Albania",
-				CentralPlot = {X=39, Y=28},
+				CentralPlot = {X=41, Y=25},
 				MaxDistanceFromCentral = 7,
 				ReserveUnits = 6, -- minimum unit to keep in this area (ie : do not send those elsewhere)
-				EmbarkList = { {X=45, Y=25}, {X=46, Y=24}, {X=47, Y=24}, }, -- near Bari
+				EmbarkList = { {X=45, Y=25}, {X=46, Y=24}, {X=47, Y=24}, {X=41, Y=29}, {X=41, Y=30},  }, -- near Bari, Pescara
 				RandomEmbark = false, -- true : random choice in spawn list
-				WaypointList = { {X=48, Y=25},  }, -- Waypoints
-				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use waypoint to waypoint movement.
-				LandingList = { {X=50, Y=24}, {X=50, Y=23}, {X=50, Y=25}, }, -- near Tirana
+				WaypointList = { {X=47, Y=27}, {X=48, Y=26} }, -- Waypoints
+				RandomWaypoint = true, -- true : random choice in waypoint list (use 1 random waypoint), else use waypoint to waypoint movement.
+				LandingList = { {X=50, Y=24}, {X=50, Y=23}, {X=50, Y=25}, {X=50, Y=26}, {X=51, Y=22}, {X=51, Y=21}, }, -- near Tirana
 				RandomLanding = false, -- false : sequential try in landing list
-				MinUnits = 2,
-				MaxUnits = 2, -- Maximum number of units on the route at the same time
+				MinUnits = 3,
+				MaxUnits = 8, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = ItalyReinforcementToAlbania, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2271,8 +2275,8 @@ g_TroopsRoutes = {
 				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
 				LandingList = { {X=22, Y=20}, {X=23, Y=20}, {X=24, Y=20}, {X=24, Y=19}, {X=25, Y=19}, {X=26, Y=19}, {X=27, Y=19}, {X=28, Y=19}, {X=29, Y=19}, {X=30, Y=18}, {X=31, Y=18}, {X=32, Y=18}, {X=33, Y=18}, }, -- Between Alger and Tunis
 				RandomLanding = false, -- false : sequential try in landing list
-				MinUnits = 2,
-				MaxUnits = 6, -- Maximum number of units on the route at the same time
+				MinUnits = 3,
+				MaxUnits = 12, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = FranceReinforcementToAfrica, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2283,14 +2287,14 @@ g_TroopsRoutes = {
 				CentralPlot = {X=41, Y=54},
 				MaxDistanceFromCentral = 6,
 				ReserveUnits = 5, -- minimum unit to keep in this area (ie : do not send those elsewhere)
-				EmbarkList = { {X=40, Y=54}, {X=40, Y=55}, }, -- near Kiel (West of)
+				EmbarkList = { {X=40, Y=54}, {X=40, Y=55}, {X=39, Y=53}, {X=38, Y=53},}, -- near Kiel (West of)
 				RandomEmbark = false, -- true : random choice in spawn list
 				WaypointList = { {X=38, Y=55}, {X=37, Y=60}, },
 				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
 				LandingList = { {X=39, Y=64}, {X=39, Y=63}, {X=40, Y=63}, {X=41, Y=64}, {X=42, Y=64}, }, -- Between Bergen and Oslo
 				RandomLanding = true, -- false : sequential try in landing list
-				MinUnits = 2,
-				MaxUnits = 6, -- Maximum number of units on the route at the same time
+				MinUnits = 4,
+				MaxUnits = 8, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = GermanyReinforcementToNorway, -- Must refer to a function, remove this line to use the default condition (true)
 			},

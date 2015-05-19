@@ -43,6 +43,9 @@ SELECT	'RUSSIAN_NAVAL_INFANTRY',		'RUSSIA',	'',		'Naval Infantry',					'Naval_In
 
 SELECT	'POLAND_INFANTRY',				NULL,		'',		'Infantry',							'Infantry_Poland',						'INFANTRY',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'HUNGARY_INFANTRY',				NULL,		'',		'Infantry',							'Infantry_Hungary',						'INFANTRY',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'DUTCH_INFANTRY',				NULL,		'',		'Infantry',							'Infantry_Dutch',						'INFANTRY',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'SPAIN_INFANTRY',				NULL,		'',		'Infantry',							'Infantry_Spain',						'INFANTRY',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'SWEDEN_INFANTRY',				NULL,		'',		'Infantry',							'Infantry_Sweden_v2',					'INFANTRY',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
@@ -285,6 +288,8 @@ SELECT	'TANK_7TP',						'POLAND',	'',		'7TP',								'7TP',									'LIGHT_TANK'
 SELECT	'TANK_10TP',					'POLAND', 	'',		'10TP',								'10TP',									'TANK',						NULL,	NULL,	0.11,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'TANK_38M_TOLDI_I',				NULL,		'',		'38M Toldi I',						'38M_Toldi_I',							'LIGHT_TANK',				NULL,	NULL,	0.11,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'TANK_40M_TURAN_I',				NULL,		'',		'40M Turan I',						'40M_Turan_I',							'TANK',						NULL,	NULL,	0.11,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'TANK_VICKERS_M1936',			'NETHERLANDS','',	'Vickers M1936',					'Vickers_M1936',						'OLD_LIGHT_TANK',			NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'TANK_MTSL',					'NETHERLANDS','',	'MTSL-1GI4',						'MTSL-1GI4',							'OLD_TANK',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
@@ -307,6 +312,8 @@ SELECT	'ASSAULT_GUN_STURMTIGER',		'GERMANY',	'',		'Sturmpanzer VI Sturmtiger',		
 SELECT	'ASSAULT_GUN_M41',				'ROME',		'',		'Semovente M41-75/18',				'Semovente_M41-75-18',					'ASSAULT_GUN',				NULL,	NULL,	0.11,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 SELECT	'ASSAULT_GUN_TYPE2',			'JAPAN',	'',		'Type 2 Ho-I',						'Type2_Ho-I',							'ASSAULT_GUN',				NULL,	NULL,	0.11,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+
+SELECT	'ASSAULT_GUN_BT42',				'FINLAND',	'',		'BT-42',							'BT-42',								'ASSAULT_GUN',				NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
@@ -356,6 +363,9 @@ SELECT	'TANK_DESTROYER_HO_NI_II',		'JAPAN',	'',		'Type 1 Ho-Ni II',					'Type1_H
 SELECT	'TANK_DESTROYER_HO_NI_III',		'JAPAN',	'',		'Type 3 Ho-Ni III',					'Type3_Ho-Ni_III',						'LIGHT_TANK_DESTROYER_3',	NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'TANK_DESTROYER_NA_TO',			'JAPAN',	'',		'Type 5 Na-To',						'Type5_Na-To',							'LIGHT_TANK_DESTROYER_4',	NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
+SELECT	'TANK_DESTROYER_SKODA',			'YUGOSLAVIA','',	'Skoda T-32',						'Skoda_T-32',							'LIGHT_TANK_DESTROYER',		NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'TANK_DESTROYER_TACAM',			'ROMANIA',	'',		'TACAM R-2',						'TACAM_R-2',							'TANK_DESTROYER',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
 
@@ -371,6 +381,7 @@ SELECT	'MOBILE_AA_GUN_OSTWIND',		'GERMANY',	'',		'Flakpanzer IV Ostwind',			'Fla
 SELECT	'MOBILE_AA_GUN_KUGELBLITZ',		'GERMANY',	'',		'Flakpanzer IV Kugelblitz',			'Flakpanzer_IV_Kugelblitz',				'MOBILE_AA_GUN_2_D',		NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'MOBILE_AA_GUN_COELIAN',		'GERMANY',	'',		'Flakpanzer V Coelian',				'Flakpanzer_V_Coelian',					'MOBILE_AA_GUN_3',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
+SELECT	'MOBILE_AA_GUN_VICKERS_UK',		'ENGLAND',	'',		'Vickers MK VI AA',					'Vickers_MK_VI_AA',						'MOBILE_AA_GUN',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'MOBILE_AA_GUN_CRUSADER',		'ENGLAND',	'',		'Crusader III AA Mk II',			'Crusader_III_AA',						'MOBILE_AA_GUN_2_D',		NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 SELECT	'MOBILE_AA_GUN_ZSU37',			'RUSSIA',	'',		'ZSU-37',							'ZSU-37',								'MOBILE_AA_GUN_2_B',		NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
@@ -380,6 +391,8 @@ SELECT	'MOBILE_AA_GUN_AUTOCANNONE',	'ROME',		'',		'Autocannone 90/53',				'Autoc
 SELECT	'MOBILE_AA_GUN_M16A1',			'AMERICA',	'',		'M16A1 MGMC',						'M16A1_MGMC',							'MOBILE_AA_GUN_2',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 SELECT	'MOBILE_AA_GUN_TYPE98',			'JAPAN',	'',		'Type98 Ko-Hi AA Half-Track',		'Type98_Ko-Hi',							'MOBILE_AA_GUN_B',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+
+SELECT	'MOBILE_AA_GUN_VICKERS_GR',		'GREECE',	'',		'Vickers MK VI AA',					'Vickers_MK_VI_AA',						'MOBILE_AA_GUN',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
@@ -489,6 +502,9 @@ SELECT	'FIGHTER_CIV4',					NULL,		'',		'Fighter Generic',					'Fighter_Generic',
 SELECT	'FIGHTER_LAGG3_EGYPT',			NULL,		'',		'Fighter LaGG-3',					'Fighter_LaGG-3',						'FIGHTER',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'FIGHTER_BF109_SPAIN',			NULL,		'',		'Messerschmitt Bf-109J',			'Messerschmitt_Bf-109J',				'FIGHTER',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'FIGHTER_P11',					NULL,		'',		'PZL P.11',							'PZL_P.11',								'OLD_FIGHTER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'FIGHTER_FOKKER_DXXI',			'NETHERLANDS','',	'Fokker D.XXI',						'Fokker_D.XXI',							'OLD_FIGHTER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'FIGHTER_FOKKER_GI',			'NETHERLANDS','',	'Fokker G.I',						'Fokker_G.I',							'HEAVY_FIGHTER',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'FIGHTER_RE2000',				'HUNGARY',	'',		'Reggiane Re.2000 Heja-M',			'Reggiane_Re.2000_Heja-M',				'FIGHTER',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
@@ -543,10 +559,12 @@ SELECT	'BOMBER_IL4',					'RUSSIA',	'',		'Ilyushin IL-4',					'Ilyushin_IL-4',			
 SELECT	'BOMBER_TB3',					'RUSSIA',	'',		'Tupolev TB-3',						'Tupolev_TB-3',							'OLD_HEAVY_BOMBER',			NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'BOMBER_PE8',					'RUSSIA',	'',		'Petlyakov Pe-8',					'Petlyakov_Pe-8',						'HEAVY_BOMBER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
-SELECT	'BOMBER_B24_EGYPT',				NULL,		'',		'Bomber B-24 Egypt',				'Bomber_B-24_Egypt',					'BOMBER',					NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'BOMBER_B24_EGYPT',				NULL,		'',		'B-24 Egypt',						'Bomber_B-24_Egypt',					'BOMBER',					NULL,	NULL,	0.10,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'BOMBER_PZL37',					NULL,		'',		'PZL P.37 Los',						'PZL_P.37_Los',							'FAST_BOMBER',				NULL,	NULL,	0.075,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'BOMBER_CIV4',					NULL,		'',		'Bomber Generic',					'Bomber_Generic',						'BOMBER',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
-SELECT	'BOMBER_JU88_SPAIN',			NULL,		'',		'Bomber Ju-88 Spain',				'Bomber_Ju-88_Spain',					'FAST_BOMBER',				NULL,	NULL,	0.065,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'BOMBER_JU88_SPAIN',			NULL,		'',		'Ju-88 Spain',						'Bomber_Ju-88_Spain',					'FAST_BOMBER',				NULL,	NULL,	0.065,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'BOMBER_FOKKER_TV',				'NETHERLANDS','',	'Fokker T.V',						'Fokker_T.V',							'BOMBER',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'BOMBER_CA135',					'HUNGARY',	'',		'Caproni Ca.135',					'Caproni_Ca.135',						'BOMBER',					NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 
 --		Key Name									Variation									Model file															Figures			Scale			RangedCombat			Move			Range			Personnel		IconIndex						FlagAtlas							Embarked 
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon

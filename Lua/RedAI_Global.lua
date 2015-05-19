@@ -129,6 +129,14 @@ function AIUnitControl(playerID)
 					MapModData.RED.UnitData[unitKey].OrderType = nil
 					MapModData.RED.UnitData[unitKey].OrderReference = nil
 				end
+				-- so, disband ?
+				if unit:GetDamage() > (MAX_HP/2) then
+					Dprint("Unit is more than half damaged...")
+					if player:GetNumUnitsOutOfSupply() > 0 then
+						Dprint("And this player can't support this many units, disband it...")
+						Disband(unit)
+					end
+				end
 			end
 
 		end
@@ -171,6 +179,14 @@ function AIUnitControl(playerID)
 					MapModData.RED.UnitData[unitKey].OrderType = nil
 					MapModData.RED.UnitData[unitKey].OrderReference = nil
 				end
+				-- so, disband ?
+				if unit:GetDamage() > (MAX_HP/2) then
+					Dprint("Unit is more than half damaged...")
+					if player:GetNumUnitsOutOfSupply() > 0 then
+						Dprint("And this player can't support this many units, disband it...")
+						Disband(unit)
+					end
+				end
 			end
 			GoSubHunting(unit) -- launch destroyers/cruisers against reported subs
 
@@ -203,6 +219,14 @@ function AIUnitControl(playerID)
 				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
 					MapModData.RED.UnitData[unitKey].OrderType = nil
 					MapModData.RED.UnitData[unitKey].OrderReference = nil
+				end
+				-- so, disband ?
+				if unit:GetDamage() > (MAX_HP/2) then
+					Dprint("Unit is more than half damaged...")
+					if player:GetNumUnitsOutOfSupply() > 0 then
+						Dprint("And this player can't support this many units, disband it...")
+						Disband(unit)
+					end
 				end
 			end
 			

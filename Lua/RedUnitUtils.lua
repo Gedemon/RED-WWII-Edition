@@ -800,3 +800,10 @@ function CleanOrdersRED (unit)
 	MapModData.RED.UnitData[unitKey].OrderObjective = nil
 	MapModData.RED.UnitData[unitKey].TotalControl = nil
 end
+
+function Disband(unit)
+	local iGoldToScrap = unit:GetScrapGold()
+	local pPlayer = Players[unit:GetOwner()]
+	unit:Kill()
+	pPlayer:ChangeGold(iGoldToScrap)
+end

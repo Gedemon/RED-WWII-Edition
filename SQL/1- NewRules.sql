@@ -9,7 +9,7 @@
 --------------------------------------------------------------------------------------------
 DELETE FROM GameSpeed_Turns WHERE GameSpeedType='GAMESPEED_STANDARD';
 INSERT INTO GameSpeed_Turns (GameSpeedType, MonthIncrement,TurnsPerIncrement) VALUES ('GAMESPEED_STANDARD', '1', '360');
-UPDATE GameSpeeds SET DealDuration = 9999;
+UPDATE GameSpeeds SET DealDuration = 100;
 
 --------------------------------------------------------------------------------------------
 -- Cities
@@ -33,7 +33,7 @@ UPDATE Routes SET GoldMaintenance = 1;
 -- Buildings
 --------------------------------------------------------------------------------------------
 DELETE FROM Building_FreeUnits;
---UPDATE Buildings SET Culture =			0; -- No culture for G&K
+UPDATE Buildings SET Culture =			0;
 UPDATE Buildings SET SpecialistType =	NULL;
 UPDATE Buildings SET SpecialistCount =	0;
 UPDATE Buildings SET FreePolicies =		0;
@@ -45,7 +45,7 @@ UPDATE Buildings SET NeverCapture =		1		WHERE Type='BUILDING_WALLS';
 UPDATE Buildings SET NeverCapture =		1		WHERE Type='BUILDING_COURTHOUSE';
 UPDATE Buildings SET NeverCapture =		1		WHERE Type='BUILDING_BROADCAST_TOWER';
 UPDATE Buildings SET PrereqTech =		NULL;
---UPDATE Buildings SET ArtDefineTag =		NULL	WHERE Type='BUILDING_WALLS';
+UPDATE Buildings SET ArtDefineTag =		NULL	WHERE Type='BUILDING_WALLS';
 
 DELETE FROM Building_ResourceQuantityRequirements;
 
@@ -61,6 +61,8 @@ INSERT INTO Building_DomainFreeExperiences (BuildingType, DomainType, Experience
 
 INSERT INTO Building_YieldChanges (BuildingType, YieldType, Yield) VALUES ('BUILDING_BANK', 'YIELD_GOLD', 4);
 
+UPDATE Building_YieldChanges SET Yield = 0 WHERE YieldType = 'YIELD_SCIENCE' ;
+
 UPDATE Buildings SET GoldMaintenance = 18	WHERE Type='BUILDING_MILITARY_BASE';
 UPDATE Buildings SET GoldMaintenance = 10	WHERE Type='BUILDING_MILITARY_ACADEMY';
 UPDATE Buildings SET GoldMaintenance = 4	WHERE Type='BUILDING_ARSENAL';
@@ -74,30 +76,28 @@ UPDATE Buildings SET Defense = 600		WHERE Type='BUILDING_BARRACKS';
 --------------------------------------------------------------------------------------------
 -- Units
 --------------------------------------------------------------------------------------------
---UPDATE Units SET RangedCombatLimit = 75 WHERE RangedCombatLimit = 100; -- no effect ?
---UPDATE Technologies SET AllowsDefensiveEmbarking = "true";
---UPDATE Traits SET EmbarkedNotCivilian = "true";
---UPDATE Technologies SET AllowsEmbarking = "false";
+
 UPDATE Defines SET Value = 1250		WHERE Name = 'EMBARKED_UNIT_COMBAT_STRENGTH'; -- 1200
---UPDATE Defines SET Value = 1250		WHERE Name = 'EMBARKED_NOT_CIVILIAN_COMBAT_STRENGTH'; -- was 500, used with land vs sea penalty promotion to fix bug with air units attacking embarked units as land units
 UPDATE Defines SET Value = 150		WHERE Name = 'BASE_UNIT_UPGRADE_COST'; -- was 10
 UPDATE Defines SET Value = 10		WHERE Name = 'UNIT_UPGRADE_COST_PER_PRODUCTION'; -- was 2
 UPDATE Defines SET Value = 3		WHERE Name = 'EMBARKED_UNIT_MOVEMENT'; -- was 2, total is 4 with techs at scenario era
 UPDATE Defines SET Value = 300		WHERE Name = 'AIR_UNIT_REBASE_RANGE_MULTIPLIER';
-UPDATE Defines SET Value = -500		WHERE Name = 'DEFICIT_UNIT_DISBANDING_THRESHOLD'; -- no disbanding when negative income
+UPDATE Defines SET Value = -500		WHERE Name = 'DEFICIT_UNIT_DISBANDING_THRESHOLD'; -- prevent disbanding when negative income
 
 
 --------------------------------------------------------------------------------------------
 -- Promotions
 --------------------------------------------------------------------------------------------
 
-UPDATE UnitPromotions SET AttackWoundedMod = 10 WHERE Type = 'PROMOTION_CHARGE';
-UPDATE UnitPromotions SET OpenAttack = 15, OpenDefense = 5 WHERE Type = 'PROMOTION_SHOCK_1';
-UPDATE UnitPromotions SET OpenAttack = 10, OpenDefense = 10 WHERE Type = 'PROMOTION_SHOCK_2';
-UPDATE UnitPromotions SET OpenAttack = 5, OpenDefense = 15 WHERE Type = 'PROMOTION_SHOCK_3';
-UPDATE UnitPromotions SET RoughAttack = 5, RoughDefense = 15 WHERE Type = 'PROMOTION_DRILL_1';
-UPDATE UnitPromotions SET RoughAttack = 10, RoughDefense = 10 WHERE Type = 'PROMOTION_DRILL_2';
-UPDATE UnitPromotions SET RoughAttack = 15, RoughDefense = 5 WHERE Type = 'PROMOTION_DRILL_3';
+UPDATE UnitPromotions SET AttackWoundedMod	= 10	WHERE Type = 'PROMOTION_CHARGE';
+
+UPDATE UnitPromotions SET OpenAttack		= 15,	OpenDefense		= 5 WHERE Type	= 'PROMOTION_SHOCK_1';
+UPDATE UnitPromotions SET OpenAttack		= 10,	OpenDefense		= 10 WHERE Type = 'PROMOTION_SHOCK_2';
+UPDATE UnitPromotions SET OpenAttack		= 5,	OpenDefense		= 15 WHERE Type = 'PROMOTION_SHOCK_3';
+UPDATE UnitPromotions SET RoughAttack		= 5,	RoughDefense	= 15 WHERE Type = 'PROMOTION_DRILL_1';
+UPDATE UnitPromotions SET RoughAttack		= 10,	RoughDefense	= 10 WHERE Type = 'PROMOTION_DRILL_2';
+UPDATE UnitPromotions SET RoughAttack		= 15,	RoughDefense	= 5 WHERE Type	= 'PROMOTION_DRILL_3';
+
 UPDATE UnitPromotions_Domains SET Modifier = 15 WHERE PromotionType = 'PROMOTION_TARGETING_1';
 UPDATE UnitPromotions_Domains SET Modifier = 10 WHERE PromotionType = 'PROMOTION_TARGETING_2';
 UPDATE UnitPromotions_Domains SET Modifier = 5  WHERE PromotionType = 'PROMOTION_TARGETING_3';
@@ -106,12 +106,11 @@ UPDATE UnitPromotions_Domains SET Modifier = 5  WHERE PromotionType = 'PROMOTION
 --------------------------------------------------------------------------------------------
 -- Game Defines
 --------------------------------------------------------------------------------------------
---UPDATE Defines SET Value = 2		WHERE Name = 'PLOT_UNIT_LIMIT';
+
 UPDATE Defines SET Value = 0		WHERE Name = 'CITY_ATTACK_RANGE';
 UPDATE Defines SET Value = -33		WHERE Name = 'RIVER_ATTACK_MODIFIER'; -- default -20
 UPDATE Defines SET Value = -50		WHERE Name = 'AMPHIB_ATTACK_MODIFIER'; -- default -50
 UPDATE Defines SET Value = 1		WHERE Name = 'UNIT_MAINTENANCE_GAME_MULTIPLIER';
---UPDATE Defines SET Value = 1000	WHERE Name = 'UNIT_MAINTENANCE_GAME_EXPONENT_DIVISOR';
 UPDATE Defines SET Value = 3		WHERE Name = 'RECON_VISIBILITY_RANGE';
 UPDATE Defines SET Value = 15000	WHERE Name = 'BASE_CITY_GROWTH_THRESHOLD';
 UPDATE Defines SET Value = 80		WHERE Name = 'CITY_GROWTH_MULTIPLIER';
@@ -133,7 +132,7 @@ UPDATE Defines SET Value = 0		WHERE Name LIKE 'LAND_DISPUTE_%';
 --UPDATE Defines SET Value = -10000 WHERE Name LIKE 'PEACE_WILLINGNESS_OFFER_PROJECTION_%';
 UPDATE Defines SET Value = 1000		WHERE Name = 'PROGRESS_POPUP_TURN_FREQUENCY';
 UPDATE Defines SET Value = 6		WHERE Name = 'STANDARD_CALENDAR';
---UPDATE Defines SET Value = 200	WHERE Name = 'MILITARY_STRENGTH_CITY_MOD'; -- default = 33
+--UPDATE Defines SET Value = 200		WHERE Name = 'MILITARY_STRENGTH_CITY_MOD'; -- default = 33
 UPDATE Defines SET Value = 350		WHERE Name = 'CITY_STRENGTH_UNIT_DIVISOR'; -- default = 500 -- used 375
 UPDATE Defines SET Value = 50		WHERE Name = 'CITY_STRENGTH_POPULATION_CHANGE'; -- default = 25
 -- "CITY_STRENGTH_DEFAULT","600"
@@ -187,7 +186,7 @@ UPDATE Leaders SET Chattiness = -10;
 --DELETE FROM CitySpecialization_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
 --UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_PERCENT_CONTINENT_UNOWNED';
 --UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_EARLY_EXPANSION'; 
-UPDATE Defines SET Value = 15	WHERE Name = 'AI_STRATEGY_MILITARY_RESERVE_PERCENTAGE'; -- default 35
+UPDATE Defines SET Value = 5	WHERE Name = 'AI_STRATEGY_MILITARY_RESERVE_PERCENTAGE'; -- default 35
 
 UPDATE AIMilitaryStrategies SET TechPrereq = NULL;
 UPDATE AIMilitaryStrategies SET FirstTurnExecuted = 0;
@@ -232,9 +231,9 @@ UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_SNOW';
 --------------------------------------------------------------------------------------------
 -- Improvements
 --------------------------------------------------------------------------------------------
-UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_TRADING_POST';
-UPDATE Improvements SET DefenseModifier = 45 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
-UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
+UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_TRADING_POST';
+UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
+UPDATE Improvements SET DefenseModifier = 30 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
 UPDATE Improvements SET DefenseModifier = 75 WHERE Type = 'IMPROVEMENT_FORT';
 
 INSERT INTO Improvement_Yields (ImprovementType, YieldType, Yield) VALUES ('IMPROVEMENT_TRADING_POST', 'YIELD_PRODUCTION', 1);
@@ -275,11 +274,11 @@ UPDATE Resources SET TechReveal = NULL;
 --------------------------------------------------------------------------------------------
 -- Unit Supply Production Modifier
 --------------------------------------------------------------------------------------------
-UPDATE HandicapInfos SET ProductionFreeUnits = 5;
+--UPDATE HandicapInfos SET ProductionFreeUnits = 5;
 UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 0;
 UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 40;
 UPDATE Defines SET Value = 96 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
-INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 6); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
+INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 3); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
 
 --------------------------------------------------------------------------------------------
 -- Game hidden options checked in DLL code...

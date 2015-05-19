@@ -383,13 +383,15 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 
 	-- allowed unit ?
 	-- check last, as it returns "true"
-	local civID = GetCivIDFromPlayerID(iPlayer, false)
-	local allowedTable = g_Major_Units[civID]
-	if (allowedTable) then
-		for i, allowedType in pairs (allowedTable) do
-			if (allowedType == iUnitType) then
-				g_UnitRestrictionString = "No restriction, found in allowed table for major civs."
-				return true
+	if not player:IsMinorCiv() then
+		local civID = GetCivIDFromPlayerID(iPlayer, false)
+		local allowedTable = g_Major_Units[civID]
+		if (allowedTable) then
+			for i, allowedType in pairs (allowedTable) do
+				if (allowedType == iUnitType) then
+					g_UnitRestrictionString = "No restriction, found in allowed table for major civs."
+					return true
+				end
 			end
 		end
 	else	
@@ -506,7 +508,7 @@ function CityTrainingRestriction (iPlayer, iCity, iUnitType)
 	local unitClass = GameInfo.UnitClasses[unitClassType]
 
 	if (g_Unit_Classes and g_Unit_Classes[unitClass.ID]) then
-		local allowedTable = g_Unit_Classes[unitClass.ID].Buildings
+		local allowedTable = g_Unit_Classes[unitClass.ID].Buildings or {}
 		for i, reqBuilding in ipairs (allowedTable) do
 			if (not city:IsHasBuilding(reqBuilding)) then
 				bAllow = false
