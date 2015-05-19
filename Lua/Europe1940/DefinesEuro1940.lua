@@ -340,11 +340,14 @@ g_MinorProtector = {
 	[ALBANIA] = {ITALY, },
 	[LIBYA] = {ITALY, }, 
 	[ROMANIA] = {GERMANY, ITALY},
+	[BULGARIA] = {GERMANY, ITALY},
 	[SPAIN] = {GERMANY, ITALY},
 	[SLOVAKIA] = {GERMANY, }, 
 	[HUNGARY] = {GERMANY, }, 
 	[YUGOSLAVIA] = {GREECE, },
 	[SWEDEN] = {FRANCE, ENGLAND, GERMANY, }, 
+	[TURKEY] = {FRANCE, ENGLAND, GERMANY, ITALY, USSR, GREECE }, 
+	[BALTIC] = {USSR}, 
 }
 
 -- Victory types
@@ -568,7 +571,7 @@ g_Cities = {
 	{X = 24, Y = 62, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- GLASGOW
 	{X = 28, Y = 58, Key = true, Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
 	{X = 21, Y = 62, Buildings = { HARBOR }, }, -- BELFAST
-	{X = 28, Y = 65, }, -- ABERDEEN
+	{X = 28, Y = 65, AIBuildings = { HARBOR }, }, -- ABERDEEN
 	{X = 10, Y = 25, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
 	{X = 41, Y = 14, Buildings = { HARBOR, BASE }, AIBuildings = {ARSENAL}, }, -- MALTA
 	{X = 22, Y = 52, Buildings = { HARBOR }, }, -- PLYMOUTH

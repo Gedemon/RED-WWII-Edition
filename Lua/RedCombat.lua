@@ -812,6 +812,10 @@ function CounterFire(iAttackingPlayer, iAttackingUnit, attackerDamage, attackerF
 			if attackerPlot:IsCity() then -- no counter attack on city...
 				return
 			end
+			if AttackingUnit:IsHasPromotion(PROMOTION_MOBILE_ARTILLERY) then
+				--return -- uncomment here to make Mobile artillery immune to counter-fire
+			end
+
 			local counterFireUnit = GetCounterFireUnit(plot, AttackingUnit)
 			if counterFireUnit and ((counterFireUnit ~= DefendingUnit) or (defenderFinalDamage < iDefendingUnitMaxHP)) then -- defender must be alive to ripost !
 				--We're in business.  Let's launch a counter-fire.
@@ -873,7 +877,7 @@ function IsCounterFire(unit, AttackingUnit)
 	if not unit:IsRanged() then 
 		return false
 	end
-	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) then
+	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) or unit:IsHasPromotion(PROMOTION_MOBILE_ARTILLERY) then
 		if unit:CanRangeStrikeAt( AttackingUnit:GetX(), AttackingUnit:GetY() ) then
 			return true
 		end
@@ -1036,7 +1040,7 @@ function IsOffensiveFirstStrike(unit)
 	if unit:IsMustSetUpToRangedAttack() and not unit:IsSetUpForRangedAttack() then
 		return false
 	end
-	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FIELD_GUN) then
+	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FIELD_GUN) or unit:IsHasPromotion(PROMOTION_MOBILE_ARTILLERY) then
 		return true
 	end
 	return false
@@ -1061,7 +1065,7 @@ function IsDefensiveFirstStrike(unit, attackingUnit)
 		Dprint("- Not set up for ranged attack !", g_DebugCombat)
 		return false
 	end
-	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FIELD_GUN) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) then
+	if unit:IsHasPromotion(PROMOTION_ARTILLERY) or unit:IsHasPromotion(PROMOTION_FIELD_GUN) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) or unit:IsHasPromotion(PROMOTION_MOBILE_ARTILLERY) then
 		return true
 	end
 	Dprint("- No promotion detected !", g_DebugCombat)

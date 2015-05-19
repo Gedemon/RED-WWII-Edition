@@ -320,6 +320,7 @@
     <Folder Include="Lua\FlagPromotions\" />
     <Folder Include="Lua\SmallEurope1940\" />
     <Folder Include="Lua\Stalingrad" />
+    <Folder Include="RED_WWII" />
     <Folder Include="Override\" />
     <Folder Include="Override\BNW" />
     <Folder Include="Override\Vanilla" />
@@ -327,6 +328,7 @@
     <Folder Include="Override\Vanilla\Civilopedia\" />
     <Folder Include="Override\Vanilla\InGame" />
     <Folder Include="Override\XML\" />
+    <Folder Include="RED_WWII\Mods\" />
     <Folder Include="SQL\" />
     <Folder Include="UI\" />
     <Folder Include="UI\FlagPromotions\" />
@@ -1560,6 +1562,30 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="readme.txt">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="RED_WWII\Mods\CustomMod.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="RED_WWII\Mods\ModsMenu.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="RED_WWII\Mods\ModsSinglePlayer.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="RED_WWII\RED_WWII_BNW.Civ5Pkg">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="RED_WWII\RED_WWII_GK.Civ5Pkg">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="RED_WWII\RED_WWII_Vanilla.Civ5Pkg">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

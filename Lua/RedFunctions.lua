@@ -1019,6 +1019,7 @@ function CommonOnGameInit()
 	InitializeResourceMap()
 	InitializeHotseat()
 	ShareGlobalTables()									-- Before UI initialization, after any table initialization (Resource, projects, etc...)
+	UpdateREDLoadingFix()
 end
 
 -- functions to call after game initialization (DoM screen button "Continue your journey" appears) after loading a saved game
@@ -1471,4 +1472,18 @@ function UpdateGlobalData()
 			UpdatePlayerData(iPlayer)
 		end
 	end	
+end
+
+function UpdateREDLoadingFix()
+	local activatedMods = Modding.GetActivatedMods()
+	for i,v in ipairs(activatedMods) do
+		if v.ID == g_RED_WWII_ModID then
+			local folder = Modding.GetModProperty(v.ID, v.Version, "Name");
+			folder = tostring(folder) .. " (v ".. tostring(v.Version) .. ")"
+			Dprint("-------------------------------------")
+			Dprint("Updating R.E.D. Loading Fix in Assets folder, the mod's folder should be: ".. tostring(folder))	
+			Dprint("-------------------------------------")
+			Game.UpdateREDLoadingFix(folder)
+		end
+	end
 end

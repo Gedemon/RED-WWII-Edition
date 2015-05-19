@@ -6,18 +6,20 @@
 print("Loading Red Defines...")
 print("-------------------------------------")
 
+g_RED_WWII_ModID = "580c14eb-9799-4d31-8b14-c2a78931de89"
+
 -------------------------------------------------------------------------------------------------------
 -- Initialize for SaveUtils
 -------------------------------------------------------------------------------------------------------
 WARN_NOT_SHARED = false
 include( "ShareData.lua" )
 include( "SaveUtils" )
-MY_MOD_NAME = "580c14eb-9799-4d31-8b14-c2a78931de89"
+MY_MOD_NAME = g_RED_WWII_ModID
 
 PLAYER_SAVE_SLOT =			0		-- player slot for saveutils (used by culture map)
 DEFAULT_SAVE_KEY =			"0,0"	-- default plot for saveutils
 UNIT_SAVE_SLOT =			"0,1"
-RESOURCE_SAVE_SLOT =	"1,0"
+RESOURCE_SAVE_SLOT =		"1,0"
 PROJECTS_SAVE_SLOT =		"1,1"
 COMBATLOG_SAVE_SLOT =		"0,2"
 DYNAMICMAP_SAVE_SLOT =		"1,2"
@@ -55,7 +57,7 @@ SHOW_UNIT_SUPPLY_THRESHOLD = 20		-- don't show unit supply left until this numbe
 -------------------------------------------------------------------------------------------------------
 -- use mod data to save / load value between game initialisation phases
 -------------------------------------------------------------------------------------------------------
-myModId = "580c14eb-9799-4d31-8b14-c2a78931de89"
+myModId = g_RED_WWII_ModID
 myModVersion = Modding.GetActivatedModVersion(myModId)
 modUserData = Modding.OpenUserData(myModId, myModVersion)
 -- Selected Scenario
@@ -361,6 +363,7 @@ PROMOTION_FORTIFIED_GUN =				GameInfo.UnitPromotions.PROMOTION_FORTIFIED_GUN.ID
 PROMOTION_LIGHT_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID
 PROMOTION_TANK_DESTROYER =				GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID
 PROMOTION_HEAVY_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID
+PROMOTION_MOBILE_ARTILLERY =			GameInfo.UnitPromotions.PROMOTION_MOBILE_ARTILLERY.ID
 
 
 ----------------------------------------------------------------------------------------------------------------------------

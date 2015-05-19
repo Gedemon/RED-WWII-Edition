@@ -49,15 +49,20 @@ local bNeedDLCUpdate = false
 -- Navigation Routines (Installed,Online,Back)
 --------------------------------------------------
 function NavigateBack()
-	-- Exit game instead of returning to mod menu as it doesn't unload VFS override files...
-	---[[
+	--[[
 	ContextPtr:LookUpControl("/FrontEnd/AtlasLogo"):SetTextureAndResize( "CivilzationVAtlas.dds" ) -- restore civ5 background
-	--UIManager:SetUICursor( 1 );
-	--Modding.DeactivateMods();
 	UIManager:DequeuePopup( ContextPtr );
-	--UIManager:SetUICursor( 0 );
 	--]]
+	-- Exit game instead of returning to mod menu as it doesn't unload VFS override files...
     --Events.UserRequestClose();
+
+
+	UIManager:SetUICursor( 1 );
+	Modding.DeactivateMods();
+	UIManager:DequeuePopup( ContextPtr );
+	UIManager:SetUICursor( 0 );
+	
+	Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "ModsBrowserReset" );
 end
 
 ----------------------------------------------------

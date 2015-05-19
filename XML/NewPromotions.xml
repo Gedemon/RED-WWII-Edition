@@ -895,14 +895,14 @@
 	</UnitPromotions>
 	<UnitPromotions_UnitCombatMods>
 		<Row>
-			<PromotionType>PROMOTION_ARTILLERY</PromotionType>
+			<PromotionType>PROMOTION_MOBILE_ARTILLERY</PromotionType>
 			<UnitCombatType>UNITCOMBAT_GUN</UnitCombatType>
 			<Modifier>25</Modifier>
 		</Row>
 	</UnitPromotions_UnitCombatMods>
 	<UnitPromotions_Domains>
 		<Row>
-			<PromotionType>PROMOTION_ARTILLERY</PromotionType>
+			<PromotionType>PROMOTION_MOBILE_ARTILLERY</PromotionType>
 			<DomainType>DOMAIN_SEA</DomainType>
 			<Modifier>-50</Modifier>
 		</Row>

@@ -483,7 +483,8 @@
 			<Text>Select Scenario</Text>
 		</Row>
 		<Row Tag="TXT_KEY_RED_MENU_BACK">
-			<Text>Back to Custom Game Menu</Text>
+			<!--<Text>Back to Custom Game Menu</Text>-->
+			<Text>Back to Main Menu</Text>
 		</Row>
 		
 		<Row Tag="TXT_KEY_LOADING_SP_GAME">
