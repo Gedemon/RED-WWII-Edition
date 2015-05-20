@@ -699,7 +699,7 @@ function IsRegiment(unit)
 end
 
 -- Check if this unit class is limited by ratio for the AI
-function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDebug )
+function CacheIsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDebug )
 
 	local unitClassType = GameInfo["Units"][unitType]["Class"]
 	local unitClass = GameInfo.UnitClasses[unitClassType].ID
@@ -774,6 +774,34 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 	-- No limit found
 	return false
 
+end
+
+
+-- Check if this unit class is limited by ratio for the AI
+function IsLimitedByRatio(unitType, playerID, bDebug )
+	if g_LimitedByRatio then
+		if g_LimitedByRatio[unitType] then
+			return g_LimitedByRatio[unitType][playerID]
+		end
+	end
+	return false
+end
+
+function FillCacheIsLimitedByRatio()
+	for iPlayer = 0, GameDefines.MAX_PLAYERS-1 do
+		local player = Players[iPlayer]
+		if player ~= nil and player:IsAlive() and (not player:IsBarbarian()) then
+
+			local civID = GetCivIDFromPlayerID(iPlayer)
+			local totalUnits = player:GetNumMilitaryUnits()
+			for unitInfo in GameInfo.Units() do
+				local iUnitType = unitInfo.ID
+				local numDomain = CountDomainUnits (iPlayer, iUnitType)
+				g_LimitedByRatio[iUnitType] = g_LimitedByRatio[iUnitType] or {} -- initialize this entry if not already filled	
+				g_LimitedByRatio[iUnitType][iPlayer] = CacheIsLimitedByRatio(iUnitType, iPlayer, civID, totalUnits, numDomain, true )
+			end
+		end
+	end
 end
 
 function CanSharePlot(unit, plot)

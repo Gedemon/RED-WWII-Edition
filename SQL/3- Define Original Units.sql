@@ -220,7 +220,7 @@ UPDATE ArtDefine_UnitMemberInfos SET Scale = 0.085 WHERE Type = 'ART_DEF_UNIT_ME
 UPDATE ArtDefine_UnitInfoMemberInfos SET NumMembers = 7 WHERE UnitMemberInfoType = 'ART_DEF_UNIT_MEMBER_CAVALRY';
 
 -- DESTROYER
-UPDATE ArtDefine_UnitMemberInfos SET Scale = 0.10 WHERE Type = 'ART_DEF_UNIT_MEMBER_DESTROYER';
+UPDATE ArtDefine_UnitMemberInfos SET Scale = 0.08 WHERE Type = 'ART_DEF_UNIT_MEMBER_DESTROYER';
 UPDATE ArtDefine_UnitInfoMemberInfos SET NumMembers = 2 WHERE UnitMemberInfoType = 'ART_DEF_UNIT_MEMBER_DESTROYER';
 UPDATE ArtDefine_UnitInfos SET Formation = 'Nelson' WHERE Type = 'ART_DEF_UNIT_DESTROYER';
 UPDATE ArtDefine_UnitMemberInfos SET Model = 'Destroyer_Generic.fxsxml' WHERE Type = 'ART_DEF_UNIT_MEMBER_DESTROYER';
@@ -283,7 +283,7 @@ UPDATE ArtDefine_UnitMemberInfos SET Model = 'Submarine_Generic.fxsxml' WHERE Ty
 UPDATE ArtDefine_UnitMemberInfos SET Scale = 0.12 WHERE Type = 'ART_DEF_UNIT_MEMBER_TANK';
 
 -- TRANSPORT
-UPDATE ArtDefine_UnitMemberInfos SET Scale = 0.065 WHERE Type = 'ART_DEF_UNIT_MEMBER_TRANSPORT';
+UPDATE ArtDefine_UnitMemberInfos SET Scale = 0.060 WHERE Type = 'ART_DEF_UNIT_MEMBER_TRANSPORT';
 UPDATE ArtDefine_UnitInfoMemberInfos SET NumMembers = 3 WHERE UnitMemberInfoType = 'ART_DEF_UNIT_MEMBER_TRANSPORT';
 UPDATE ArtDefine_UnitInfos SET Formation = 'Flotilla' WHERE Type = 'ART_DEF_UNIT_TRANSPORT';
 

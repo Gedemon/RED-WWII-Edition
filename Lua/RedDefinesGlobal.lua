@@ -76,6 +76,7 @@ g_FixedPlots = {}
 g_Wounded = {}
 g_RunningCoroutines = {}
 g_IsGameFullyInitialized = false
+g_LimitedByRatio = {}
 
 -- Saved & Shared
 MapModData.RED = MapModData.RED or {}

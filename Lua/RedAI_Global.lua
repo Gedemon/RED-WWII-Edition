@@ -120,23 +120,9 @@ function AIUnitControl(playerID)
 				end
 			end			
 			
-			-- Try to force healing only when we have not reach the max limit for that type of unit (or if the unit is last of a limited type)
-			if (not IsLimitedByRatio(unitType, playerID, civID, totalUnits, land)) or (IsMaxNumber(unitType)) then
-				ForceHealing(unit)
-			else
-				Dprint("Max ratio reached for this unit type, force heal deactivated...")
-				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
-					MapModData.RED.UnitData[unitKey].OrderType = nil
-					MapModData.RED.UnitData[unitKey].OrderReference = nil
-				end
-				-- so, disband ?
-				if unit:GetDamage() > (MAX_HP/2) then
-					Dprint("Unit is more than half damaged...")
-					if player:GetNumUnitsOutOfSupply() > 0 then
-						Dprint("And this player can't support this many units, disband it...")
-						Disband(unit)
-					end
-				end
+			-- Try to force healing or do more action
+			if not ForceHealing(unit) then
+				-- nothig more for land units
 			end
 
 		end
@@ -170,25 +156,11 @@ function AIUnitControl(playerID)
 					MoveUnitTo (unit, GetPlot (MapModData.RED.UnitData[unitKey].OrderObjective.X, MapModData.RED.UnitData[unitKey].OrderObjective.Y )) -- moving...
 				end
 			end
-			-- Try to force healing only when we have not reach the max limit for that type of unit (or if the unit is last of a limited type)
-			if not IsLimitedByRatio(unitType, playerID, civID, totalUnits, sea) or IsMaxNumber(unitType) then
-				ForceHealing(unit)
-			else
-				Dprint("Max ratio reached for this unit type, force heal deactivated...")
-				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
-					MapModData.RED.UnitData[unitKey].OrderType = nil
-					MapModData.RED.UnitData[unitKey].OrderReference = nil
-				end
-				-- so, disband ?
-				if unit:GetDamage() > (MAX_HP/2) then
-					Dprint("Unit is more than half damaged...")
-					if player:GetNumUnitsOutOfSupply() > 0 then
-						Dprint("And this player can't support this many units, disband it...")
-						Disband(unit)
-					end
-				end
+
+			-- Try to force healing or do more action
+			if not ForceHealing(unit) then
+				GoSubHunting(unit) -- launch destroyers/cruisers against reported subs
 			end
-			GoSubHunting(unit) -- launch destroyers/cruisers against reported subs
 
 		end
 		Dprint("")
@@ -211,27 +183,11 @@ function AIUnitControl(playerID)
 
 			CheckRebasing(unit) -- Air unit in transit should continue to objective before anything else...
 
-			-- Force healing only when we have not reach the max limit for that type of unit (or if the unit is last of a limited type)
-			if not IsLimitedByRatio(unitType, playerID, civID, totalUnits, air) or IsMaxNumber(unitType) then
-				ForceHealing(unit) -- force unit to heal
-			else
-				Dprint("Max ratio reached for this unit type, force heal deactivated...")
-				if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then
-					MapModData.RED.UnitData[unitKey].OrderType = nil
-					MapModData.RED.UnitData[unitKey].OrderReference = nil
-				end
-				-- so, disband ?
-				if unit:GetDamage() > (MAX_HP/2) then
-					Dprint("Unit is more than half damaged...")
-					if player:GetNumUnitsOutOfSupply() > 0 then
-						Dprint("And this player can't support this many units, disband it...")
-						Disband(unit)
-					end
-				end
+			-- Try to force healing or do more action
+			if not ForceHealing(unit) then			
+				SetAIInterceptors(unit) -- set Fighters on interception mission
+				GoAirSweep(unit) -- set Fighters on sweeping mission
 			end
-			
-			SetAIInterceptors(unit) -- set Fighters on interception mission
-			GoAirSweep(unit) -- set Fighters on sweeping mission
 
 		end
 		Dprint("")
@@ -811,7 +767,7 @@ function ForceHealing(unit)
 
 	if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then -- don't try to heal convoy...
 		Dprint(" - Convoy don't heal...", bDebug)
-		return
+		return false
 	end
 
 	if MapModData.RED.UnitData[unitKey] and MapModData.RED.UnitData[unitKey].OrderType == RED_HEALING then -- already healing...
@@ -824,7 +780,10 @@ function ForceHealing(unit)
 			MapModData.RED.UnitData[unitKey].OrderReference = nil
 		else
 			Dprint("  - Unit not healed, check for safe plot or don't move... (health ratio = " .. healthRatio ..")", bDebug)
-			GoHealing(unit)
+			if not disbandingWoundedUnit(unit) then 
+				GoHealing(unit)
+			end
+			return true -- unit need to heal (or has been disbanded)
 		end
 
 	else
@@ -845,14 +804,19 @@ function ForceHealing(unit)
 			MapModData.RED.UnitData[unitKey].OrderType = RED_HEALING
 			MapModData.RED.UnitData[unitKey].OrderReference = optimalHealthRatio			
 			Dprint("  - Need to be healed, check for safe plot or don't move... (health ratio = " .. healthRatio ..")", bDebug)
-			GoHealing(unit)
+			if not disbandingWoundedUnit(unit) then 
+				GoHealing(unit)
+			end
+			return true -- unit need to heal (or has been disbanded)
 		else			
 			Dprint("  - Don't need to be healed... (health ratio = " .. healthRatio ..")", bDebug)
 		end
 	end
+	return false -- unit did not need to heal
 end
 
 function GoHealing(unit)
+
 	if unit:GetDomainType() == DomainTypes.DOMAIN_AIR then
 		-- to do : remove from menaced cities		
 		Dprint("Pop mission and skip turn for air unit...", g_bAIDebug)
@@ -1261,4 +1225,33 @@ function GetSameSideLandForceInArea( player, x1, y1, x2, y2 )
 end
 
 
--- Check
+-- 
+function disbandingWoundedUnit(unit)
+	-- to do : cache this calculation each turn
+	local iPlayer = unit:GetOwner()
+	local pPlayer = Players[iPlayer]
+	local iUnitsSupplied = pPlayer:GetNumUnitsSupplied();
+	local iUnitsTotal = pPlayer:GetNumUnits()
+	local iUnitsLeft = iUnitsSupplied - iUnitsTotal
+
+	local iUnitType = unit:GetUnitType()
+
+	local bLimitedSupply = false
+	
+	if (iUnitsLeft <= AI_UNIT_SUPPLY_THRESHOLD and iUnitsTotal > AI_MINIMAL_RESERVE)
+	or (IsLimitedByRatio(iUnitType, iPlayer)) -- Disband when we have reach the max limit for that type of unit
+	then 
+		bLimitedSupply = true
+	end
+
+	--
+	-- to do: check for experience above average, materiel/personnel/oil reserves and consumption
+	--
+
+	if UNIT_SUPPORT_LIMIT_FOR_AI and bLimitedSupply and (not IsLimitedNumber(iUnitType)) then
+		Dprint("This player can't support this unit, disband it...")
+		Disband(unit)
+		return true
+	end
+	return false
+end

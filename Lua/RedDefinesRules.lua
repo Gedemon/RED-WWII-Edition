@@ -131,10 +131,13 @@ RED_AI_HANDICAP = 3 -- handicap value for computer player (specific to R.E.D. fu
 
 ALLOW_AI_CONTROL = true -- Allow the use of functions to (try to) control the AI units and build list
 
-USE_UNIT_RATIO_FOR_AI = true	-- Allow limitation of AI military unit using ratio by classes (g_Max_Armor_SubClass_Percent and g_Max_Air_SubClass_Percent must be defined in scenario files)
-ALLOW_AI_UNITS_LIMIT = false	-- Allow limitation of max number of AI military unit
-MAX_AI_UNITS = 75				-- Max number of units for the AI when ALLOW_AI_UNITS_LIMIT = true
+USE_UNIT_RATIO_FOR_AI		= true	-- Allow limitation of AI military unit using ratio by classes (g_Max_Armor_SubClass_Percent and g_Max_Air_SubClass_Percent must be defined in scenario files)
+ALLOW_AI_UNITS_LIMIT		= false	-- Allow limitation of max number of AI military unit
+MAX_AI_UNITS				= 75	-- Max number of units for the AI when ALLOW_AI_UNITS_LIMIT = true
 
+UNIT_SUPPORT_LIMIT_FOR_AI	= false -- Allow limitation of max number of AI units based on number of supported units
+AI_UNIT_SUPPLY_THRESHOLD	= 10	-- if UNIT_SUPPORT_LIMIT_FOR_AI is true, AI start disbanding wounded units when close to this threshold
+AI_MINIMAL_RESERVE			= 30	-- Do not disband units if we have less than AI_MINIMAL_RESERVE left
 
 TRACK_COMBATS_MAX_TURNS						= 5 -- Number of previous turns entries keeped in the TrackCombat table
 DESTROYER_SUB_HUNTING_MAX_TURNS_ATTACK		= 2 -- Number of previous turns attacks entries destroyers look at for subhunting

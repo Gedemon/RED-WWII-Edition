@@ -59,6 +59,7 @@ PROJECT_IL2				= GameInfo.Projects.PROJECT_BOMBER_IL2.ID
 PROJECT_IL2M3			= GameInfo.Projects.PROJECT_BOMBER_IL2M3.ID
 PROJECT_IL10			= GameInfo.Projects.PROJECT_BOMBER_IL10.ID
 PROJECT_PE2				= GameInfo.Projects.PROJECT_BOMBER_PE2.ID
+PROJECT_PE8				= GameInfo.Projects.PROJECT_BOMBER_PE8.ID
 PROJECT_TU2				= GameInfo.Projects.PROJECT_BOMBER_TU2.ID
 PROJECT_IL4				= GameInfo.Projects.PROJECT_BOMBER_IL4.ID
 PROJECT_SOYUZ			= GameInfo.Projects.PROJECT_BATTLESHIP_SOYUZ.ID
@@ -150,6 +151,7 @@ PROJECT_BEAUFIGHTER		= GameInfo.Projects.PROJECT_FIGHTER_BEAUFIGHTER.ID
 PROJECT_METEOR			= GameInfo.Projects.PROJECT_FIGHTER_METEOR.ID
 PROJECT_MOSQUITO		= GameInfo.Projects.PROJECT_BOMBER_MOSQUITO.ID
 PROJECT_LANCASTER		= GameInfo.Projects.PROJECT_BOMBER_LANCASTER.ID
+PROJECT_HALIFAX			= GameInfo.Projects.PROJECT_BOMBER_HALIFAX.ID
 
 -- IT
 PROJECT_L6_40			= GameInfo.Projects.PROJECT_TANK_L6_40.ID
@@ -263,7 +265,7 @@ g_Major_Projects = {
 		PROJECT_ZIS30, PROJECT_SU76, PROJECT_SU85, PROJECT_SU100, 
 		PROJECT_SU26, PROJECT_ZSU37, PROJECT_BM13, PROJECT_BM13_16,
 		PROJECT_LAGG3, PROJECT_LA5, PROJECT_LA5_V2, PROJECT_LA7, PROJECT_YAK7, PROJECT_YAK9,
-		PROJECT_IL2, PROJECT_IL2M3, PROJECT_IL10, PROJECT_PE2, PROJECT_IL4, PROJECT_TU2,
+		PROJECT_IL2, PROJECT_IL2M3, PROJECT_IL10, PROJECT_PE2, PROJECT_IL4, PROJECT_TU2, PROJECT_PE8,
 		PROJECT_SOYUZ,
 		OPERATION_MOTHERLANDCALL, },
 	[GERMANY] = {
@@ -283,7 +285,7 @@ g_Major_Projects = {
 		PROJECT_M4_FIREFLY, PROJECT_CHURCHILL, PROJECT_CENTURION, PROJECT_TORTOISE,
 		PROJECT_ARCHER, PROJECT_CRUSADER, PROJECT_BISHOP,
 		PROJECT_MOSQUITO, PROJECT_HURRICANE_II, PROJECT_SPITFIRE_V, PROJECT_SPITFIRE_IX, PROJECT_TYPHOON, PROJECT_TEMPEST, PROJECT_METEOR,
-		PROJECT_HEAVY_BOMBER, PROJECT_BEAUFIGHTER, PROJECT_WHIRLWIND, PROJECT_LANCASTER, },
+		PROJECT_HEAVY_BOMBER, PROJECT_BEAUFIGHTER, PROJECT_WHIRLWIND, PROJECT_LANCASTER, PROJECT_HALIFAX,},
 	[ITALY] = {
 		PROJECT_M13_40, PROJECT_M14_41, PROJECT_M15_42,  PROJECT_P26_40, PROJECT_M11_39, PROJECT_L6_40,
 		PROJECT_SM41, PROJECT_L40, PROJECT_M42M, PROJECT_M42T, PROJECT_43, PROJECT_AUTOCANNONE,
@@ -552,6 +554,11 @@ g_ProjectsTable = {
 		Trigger = {Type = TRIGGER_DATE, Date = 19410215, ProbPerTurn = 15},
 		TopSecret = true,
 	},
+	[PROJECT_PE8] =  {
+		Buildings = {ACADEMY},
+		Trigger = {Type = TRIGGER_DATE, Date = 19390101, ProbPerTurn = 3},
+		TopSecret = true,
+	},
 	[PROJECT_TU2] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19410101, ProbPerTurn = 10},
@@ -619,7 +626,6 @@ g_ProjectsTable = {
 	[PROJECT_STUG_III] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 15},
-		TopSecret = true,
 	},
 	[PROJECT_STUG_III_F] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
@@ -743,13 +749,11 @@ g_ProjectsTable = {
 	[PROJECT_BISON] =  {
 		Buildings = {ACADEMY},		
 		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 15},
-		TopSecret = true,
 	},
 	[PROJECT_GRILLE] =  {
 		Buildings = {ACADEMY},	
 		Projects = {PROJECT_BISON},
 		Trigger = {Type = TRIGGER_DATE, Date = 19411201, ProbPerTurn = 15},
-		TopSecret = true,
 	},
 	[PROJECT_WESPE] =  {
 		Buildings = {ACADEMY},	
@@ -780,7 +784,6 @@ g_ProjectsTable = {
 	[PROJECT_BF110] =  {
 		Buildings = {ACADEMY},	
 		Trigger = {Type = TRIGGER_DATE, Date = 19360701, ProbPerTurn = 15},
-		TopSecret = true,
 	},
 	[PROJECT_BF110F4] =  {
 		Buildings = {ACADEMY, MEDIUM_AIR_FACTORY},
@@ -789,7 +792,6 @@ g_ProjectsTable = {
 	[PROJECT_FW190] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19410501, ProbPerTurn = 20},
-		TopSecret = true,
 	},
 	[PROJECT_ME262] =  {
 		Buildings = {ACADEMY},
@@ -922,12 +924,10 @@ g_ProjectsTable = {
 	[PROJECT_ARCHER] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19440601, ProbPerTurn = 15},
-		TopSecret = true,
 	},
 	[PROJECT_CRUSADER] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19440201, ProbPerTurn = 15},
-		TopSecret = true,
 	},
 	[PROJECT_BISHOP] =  {
 		Buildings = {ACADEMY},
@@ -969,7 +969,6 @@ g_ProjectsTable = {
 	[PROJECT_BEAUFIGHTER] =  {
 		Buildings = {ACADEMY},
 		Trigger = {Type = TRIGGER_DATE, Date = 19400601, ProbPerTurn = 10},
-		TopSecret = true,
 	},
 	[PROJECT_MOSQUITO] =  {
 		Buildings = {ACADEMY},
@@ -978,8 +977,11 @@ g_ProjectsTable = {
 	},
 	[PROJECT_LANCASTER] =  {
 		Buildings = {ACADEMY},	
-		Trigger = {Type = TRIGGER_DATE, Date = 19400101, ProbPerTurn = 35},
-		TopSecret = true,
+		Trigger = {Type = TRIGGER_DATE, Date = 19411201, ProbPerTurn = 35},
+	},
+	[PROJECT_HALIFAX] =  {
+		Buildings = {ACADEMY},	
+		Trigger = {Type = TRIGGER_DATE, Date = 19401001, ProbPerTurn = 25},
 	},
 	---------------------------------------------------------------------
 	-- Italy
@@ -1660,9 +1662,9 @@ g_UnitsProject = {
 	[CH_B25] = PROJECT_B25,
 	[JP_G4M3] = PROJECT_G4M3,
 	-- Heavy Bombers				
-	[RU_PE8] = PROJECT_HEAVY_BOMBER,				
+	[RU_PE8] = PROJECT_PE8,				
 	[GE_HE177] = PROJECT_HE177,			
-	[UK_HALIFAX] = PROJECT_HEAVY_BOMBER,
+	[UK_HALIFAX] = PROJECT_HALIFAX,
 	[UK_LANCASTER] = PROJECT_LANCASTER,			
 	[US_B17] = PROJECT_B17,	
 	[US_B29] = PROJECT_B29,

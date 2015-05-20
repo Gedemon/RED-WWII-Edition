@@ -314,13 +314,18 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 	g_UnitRestrictionString = ""
 
 	local player = Players[iPlayer]
-	local civID = GetCivIDFromPlayerID(iPlayer)
 
 	-- Don't build units when border are closed (that's for CS only)
 	if Teams[player:GetTeam()]:IsClosedBorder() then 
 		return false
 	end
 	
+	if UNIT_SUPPORT_LIMIT_FOR_AI and (not player:IsBarbarian()) and (not player:IsHuman()) then
+		if  player:GetNumUnitsOutOfSupply() > 0 then
+			return false
+		end
+	end
+
 	--
 	if ALLOW_AI_UNITS_LIMIT and (not player:IsBarbarian()) and (not player:IsHuman()) then
 		local totalUnits = player:GetNumMilitaryUnits()
@@ -347,10 +352,9 @@ function PlayerTrainingRestriction(iPlayer, iUnitType)
 
 		-- restriction ratio for AI player
 		if not player:IsMinorCiv() and not player:IsBarbarian() and not player:IsHuman() and USE_UNIT_RATIO_FOR_AI then
-			local totalUnits = player:GetNumMilitaryUnits()
-			local numDomain = CountDomainUnits (iPlayer, iUnitType)			
 
-			if IsLimitedByRatio(iUnitType, iPlayer, civID, totalUnits, numDomain) then
+			if IsLimitedByRatio(iUnitType, iPlayer) then
+				g_UnitRestrictionString = "limited by classe ratio."
 				return false
 			end
 		end
@@ -976,6 +980,7 @@ function CommonOnNewTurn()
 	ClearAIairSweep()
 	RepairImprovements()
 	LaunchMilitaryOperation()
+	SetGlobalAIStrategicValues()
 end
 
 -- functions to call at beginning of each active player turn
@@ -1020,6 +1025,7 @@ function CommonOnGameInit()
 	InitializeHotseat()
 	ShareGlobalTables()									-- Before UI initialization, after any table initialization (Resource, projects, etc...)
 	UpdateREDLoadingFix()
+	SetGlobalAIStrategicValues()
 end
 
 -- functions to call after game initialization (DoM screen button "Continue your journey" appears) after loading a saved game
@@ -1033,7 +1039,8 @@ function CommonOnGameInitReloaded()
 	ReinitUnitsOnLoad()
 	InitializeHotseat()
 	ShareGlobalTables() -- Before UI initialization
-	UpdateREDLoadingFix()
+	UpdateREDLoadingFix()	
+	SetGlobalAIStrategicValues()
 end
 
 -- functions to call after entering game (DoM screen button pushed)
@@ -1261,9 +1268,30 @@ function InitializeHotseat()
 end
 --Events.SequenceGameInitComplete.Add( InitializeHotseat )
 
+function SetQuickCombat()
+	PreGame.SetQuickCombat( true );
+	PreGame.SetQuickMovement( true );
+	Events.GameplayAlertMessage("Quick Combat/Movement = ON")
+end
+
+function RemoveQuickCombat()
+	PreGame.SetQuickCombat( false );
+	PreGame.SetQuickMovement( false );
+	Events.GameplayAlertMessage("Quick Combat/Movement = OFF")
+end
+
 function InitializeUI()
 	Dprint("Initializing User Interface...")
-	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):SetHide(true) 	
+
+	-- Override StrategicViewButton to set quick combat/movement on left/right click
+	--ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):SetHide(true)	
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):SetTexture( "assets/UI/Art/Icons/MainUnitButton.dds" );
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicMO"):SetTexture( "assets/UI/Art/Icons/MainUnitButton.dds" );
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicHL"):SetTexture( "assets/UI/Art/Icons/MainUnitButtonHL.dds" );	
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):RegisterCallback( Mouse.eLClick, SetQuickCombat );
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):RegisterCallback( Mouse.eRClick, RemoveQuickCombat );
+	ContextPtr:LookUpControl("/InGame/WorldView/MiniMapPanel/StrategicViewButton"):SetToolTipString("Configure Quick Combat/Movement[NEWLINE]left click = ON[NEWLINE]right click = OFF")
+		
 	ContextPtr:LookUpControl("/InGame/WorldView/DiploCorner/SocialPoliciesButton"):SetHide(true) 	
 	ContextPtr:LookUpControl("/InGame/WorldView/DiploCorner/AdvisorButton"):SetHide(true)	
 	ContextPtr:LookUpControl("/InGame/WorldView/InfoCorner"):SetHide(true)
@@ -1487,4 +1515,12 @@ function UpdateREDLoadingFix()
 			Game.UpdateREDLoadingFix(folder)
 		end
 	end
+end
+
+function SetGlobalAIStrategicValues()
+	Dprint("-------------------------------------")
+	Dprint("Set Global AI Strategic Values...")
+
+	FillCacheIsLimitedByRatio()
+
 end

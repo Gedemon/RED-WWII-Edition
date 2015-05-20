@@ -807,6 +807,7 @@ function ValidateData()
 						Dprint("  - Ok ! (total = ".. totalPercent .."%)")
 					else
 						Dprint("WARNING: Validating Armor SubClass Restriction failed for ".. tostring(player:GetName()) .." (total = ".. tostring(totalPercent) .."%)")
+						Dprint("-> this could mean that this player is restricted by number of units already build and is not relevant mid-game")
 					end
 				end
 				Dprint("")
@@ -849,6 +850,7 @@ function ValidateData()
 						Dprint("  - Ok ! (total = ".. totalPercent .."%)")
 					else
 						Dprint("WARNING: Validating Air SubClass Restriction Failed ! for ".. tostring(player:GetName()) .." (total = ".. tostring(totalPercent) .."%)")
+						Dprint("-> this could mean that this player is restricted by number of units already build and is not relevant mid-game")
 					end
 				end
 				Dprint("")

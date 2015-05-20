@@ -22,9 +22,10 @@ RESOURCE_CONSUMPTION			= true	-- Use resource consumption (fuel, ...)
 -- AI Scenario Specific Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
-ALLOW_AI_CONTROL	= true
-NO_AI_EMBARKATION	= true -- remove AI ability to embark (to do : take total control of AI unit to embark)
-NO_SUICIDE_ATTACK	= true -- If set to true, try to prevent suicide attacks
+ALLOW_AI_CONTROL			= true
+NO_AI_EMBARKATION			= true -- remove AI ability to embark (to do : take total control of AI unit to embark)
+NO_SUICIDE_ATTACK			= true -- If set to true, try to prevent suicide attacks
+UNIT_SUPPORT_LIMIT_FOR_AI	= true -- Allow limitation of max number of AI units based on number of supported units
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Calendar
@@ -112,7 +113,7 @@ g_Units_Maintenance_Modifier = {
 }
 
 -- Available units for minor civs
-g_Minor_Units = {}
+g_Minor_Units = {INFANTRY, ARTILLERY, AT_GUN, AA_GUN, PARATROOPER, LIGHT_TANK, TANK}
 
 -- unit type called when AI need reserve troops
 g_Reserve_Unit = {
