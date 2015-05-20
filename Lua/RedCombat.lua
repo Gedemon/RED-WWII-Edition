@@ -813,16 +813,6 @@ function CounterFire(iAttackingPlayer, iAttackingUnit, attackerDamage, attackerF
 				return
 			end
 
-			-- do not anticipate combat !
-			if AttackingUnit:IsOutOfAttacks() then
-				Dprint("don't test for Counter-Fire, attacker is out of attack", g_DebugCombat)
-				return
-			end
-			if not (AttackingUnit:MovesLeft() > 0) then 
-				Dprint("don't test for Counter-Fire, attacker is out of moves", g_DebugCombat)
-				return
-			end
-
 			if AttackingUnit:IsHasPromotion(PROMOTION_MOBILE_ARTILLERY) then
 				--return -- uncomment here to make Mobile artillery immune to counter-fire
 			end
