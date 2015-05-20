@@ -705,7 +705,7 @@ function InitializeProjects()
 							local turn = Game.GetGameTurn()
 							local date = g_Calendar[turn] or " "
 							if data.ProbPerTurn >= rand and date.Number >= data.Date then
-								local sNotificationString = Locale.ConvertTextKey(projectInfo.Description) .." is now available."
+								sNotificationString = Locale.ConvertTextKey(projectInfo.Description) .." is now available."
 								Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." date = Checked ! ( >= ".. tostring(data.Date) .." and Prob ".. tostring(data.ProbPerTurn) .."% >= "..tostring(rand)..")", debug )
 							else
 								bDateCheck = false
@@ -722,7 +722,7 @@ function InitializeProjects()
 								local combatXP = GetTotalCombatXP(data.Reference)
 								if combatXP >= data.XP then
 									Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." Checked ! (XP = ".. tostring(combatXP) .." >= "..tostring(data.XP)..")", debug )							
-									local sNotificationString = "Based on combat experience with ".. Locale.ConvertTextKey(unitInfo.Description) ..", " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available."
+									sNotificationString = "Based on combat experience with ".. Locale.ConvertTextKey(unitInfo.Description) ..", " .. Locale.ConvertTextKey(projectInfo.Description) .." is now available."
 								else
 									Dprint ( " - " .. Locale.ConvertTextKey(projectInfo.Description) .." XP = Fail ! (XP = ".. tostring(combatXP) .." < "..tostring(data.XP)..")", debug )
 									bXPCheck = false
@@ -1033,6 +1033,7 @@ function CommonOnGameInitReloaded()
 	ReinitUnitsOnLoad()
 	InitializeHotseat()
 	ShareGlobalTables() -- Before UI initialization
+	UpdateREDLoadingFix()
 end
 
 -- functions to call after entering game (DoM screen button pushed)

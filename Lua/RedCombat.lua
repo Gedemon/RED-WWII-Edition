@@ -812,6 +812,17 @@ function CounterFire(iAttackingPlayer, iAttackingUnit, attackerDamage, attackerF
 			if attackerPlot:IsCity() then -- no counter attack on city...
 				return
 			end
+
+			-- do not anticipate combat !
+			if AttackingUnit:IsOutOfAttacks() then
+				Dprint("don't test for Counter-Fire, attacker is out of attack", g_DebugCombat)
+				return
+			end
+			if not (AttackingUnit:MovesLeft() > 0) then 
+				Dprint("don't test for Counter-Fire, attacker is out of moves", g_DebugCombat)
+				return
+			end
+
 			if AttackingUnit:IsHasPromotion(PROMOTION_MOBILE_ARTILLERY) then
 				--return -- uncomment here to make Mobile artillery immune to counter-fire
 			end
@@ -942,6 +953,17 @@ function FirstStrike(iPlayer, iUnit, x, y, iMission)
 	local offensiveFirstStrikeUnit = nil
 	local DefensiveFirstStrikeUnit = nil
 	if not attackingUnit:IsRanged() and attackingUnit:GetDomainType() == DomainTypes.DOMAIN_LAND then -- this is a land melee attack
+	
+		-- do not anticipate combat !
+		if attackingUnit:IsOutOfAttacks() then
+			Dprint("don't test for Offensive/Defensive support strike, attacker is out of attack", g_DebugCombat)
+			return
+		end
+		if not (attackingUnit:MovesLeft() > 0) then
+			Dprint("don't test for Offensive/Defensive support strike, attacker is out of moves", g_DebugCombat)
+			return
+		end
+
 		-- Offensive strike
 		offensiveFirstStrikeUnit = GetOffensiveFirstStrikeUnit(attackerPlot)
 		if offensiveFirstStrikeUnit and not g_OffensiveFirstStrike[offensiveFirstStrikeUnit] then -- Support one attack per turn

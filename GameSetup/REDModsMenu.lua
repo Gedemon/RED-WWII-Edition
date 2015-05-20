@@ -45,6 +45,11 @@ g_AuthorizedModList = {
 local bNeedModUpdate = false
 local bNeedDLCUpdate = false
 
+local RED_WWII_ID = "580c14eb-9799-4d31-8b14-c2a78931de89";
+local latestREDVersion = Modding.GetLatestInstalledModVersion(RED_WWII_ID);
+local modUserData = Modding.OpenUserData(RED_WWII_ID, latestREDVersion);
+modUserData.SetValue("forceModActivation", 0); -- make sure this is not set to 1 BEFORE the override files are installed, it could force mods loading without asking (once)
+
 --------------------------------------------------
 -- Navigation Routines (Installed,Online,Back)
 --------------------------------------------------
@@ -62,7 +67,7 @@ function NavigateBack()
 	UIManager:DequeuePopup( ContextPtr );
 	UIManager:SetUICursor( 0 );
 	
-	Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "ModsBrowserReset" );
+	Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "MainMenu" );
 end
 
 ----------------------------------------------------
@@ -112,6 +117,7 @@ ContextPtr:SetShowHideHandler(function(isHiding)
 	if(not isHiding) then
 
 		--Initialize()
+		modUserData.SetValue("forceModActivation", 0);
 
 		local supportsSinglePlayer = Modding.AllEnabledModsContainPropertyValue("SupportsSinglePlayer", 1);
 		local supportsMultiplayer = Modding.AllEnabledModsContainPropertyValue("SupportsMultiplayer", 1);
@@ -212,7 +218,8 @@ end
 
 function Initialize()
 
-	
+	modUserData.SetValue("forceModActivation", 0);
+
 	-- "back" button lead to exit game instead of returning to mod menu as it doesn't unload VFS override files...
 	--Controls.BackButton:LocalizeAndSetText("TXT_KEY_MENU_EXIT_TO_WINDOWS")
 
@@ -290,6 +297,8 @@ function Initialize()
 		print (" - Mongol DLC inactive, marked for activation...")
 		table.insert(g_Packages, {MongolDlcID, ContentType.GAMEPLAY, true})
 		bNeedDLCUpdate = true
+	else		
+		print (" - Mongol DLC is loaded")
 	end
 	
 	print("-------------------------------------")
@@ -484,9 +493,11 @@ function OnDeactivateMods()
 	print("-------------------------------------")
 	print("Updating Mods...")
 	print("-------------------------------------")
+	modUserData.SetValue("forceModActivation", 1);
 	UIManager:SetUICursor(1)
 	Modding.DeactivateMods()
 	UIManager:SetUICursor(0)
+	Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "MainMenu" );
 end
 
 
@@ -494,9 +505,11 @@ function OnDeactivateDLCs()
 	print("-------------------------------------")
 	print("Updating DLCs...")
 	print("-------------------------------------")
+	modUserData.SetValue("forceModActivation", 1);
 	UIManager:SetUICursor(1);
 	ContentManager.SetActive(g_Packages);
 	UIManager:SetUICursor(0);
+	Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "MainMenu" );
 end
 
 function MenuTimer(tickCount, timeIncrement)
@@ -518,17 +531,21 @@ function MenuTimer(tickCount, timeIncrement)
 			print("-------------------------------------")
 			print("Updating DLCs...")
 			print("-------------------------------------")
+			modUserData.SetValue("forceModActivation", 1);
 			UIManager:SetUICursor(1);
 			ContentManager.SetActive(g_Packages);
 			UIManager:SetUICursor(0);
+			Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "MainMenu" );
 
 		elseif bNeedModUpdate then		
 			print("-------------------------------------")
 			print("- Updating MODs...")
 			print("-------------------------------------")
+			modUserData.SetValue("forceModActivation", 1);
 			UIManager:SetUICursor(1)
 			Modding.DeactivateMods()
 			UIManager:SetUICursor(0)
+			Events.SystemUpdateUI( SystemUpdateUIType.RestoreUI, "MainMenu" );
 		end
 	end
 end

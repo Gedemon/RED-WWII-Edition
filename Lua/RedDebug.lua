@@ -366,7 +366,7 @@ function ListCitiesBuild(iPlayer)
 		return
 	end
 	local player = Players[iPlayer]
-	if player:IsAlive() and (not player:IsMinorCiv()) and (not player:IsBarbarian()) and (not player:IsHuman()) then
+	if player:IsAlive() and  (not player:IsBarbarian()) and (not player:IsHuman()) then --(not player:IsMinorCiv()) and
 		print()
 		print ("----------------------------------------------------------- ")
 		print ("- Listing current cities build for " .. tostring(player:GetName()))

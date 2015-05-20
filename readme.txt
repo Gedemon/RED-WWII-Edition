@@ -15,7 +15,7 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 	-- version history --
 
-v.39 (xxx xx, 2013):
+v.39 (xxx xx, 2015):
 -
 
 v.38 (Aug 24, 2013):

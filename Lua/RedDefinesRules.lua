@@ -20,7 +20,6 @@ They are defined here to be used as default values for any "blank" scenario.
 ----------------------------------------------------------------------------------------------------------------------------
 
 -- Global
-MAX_HP									= GameDefines.MAX_HIT_POINTS
 EXPERIENCE_INTERCEPTING_UNIT_AIR		= 1
 FORCE_UNIT_SPAWNING_ON_OCCUPIED_PLOT	= true -- will try to place an unit (Order of Battle initialization, Reinforcement spawning) even if spawning plot is occupied
 NO_AUTO_NAMING							= false -- if set to true, units won't be automatically named

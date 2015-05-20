@@ -69,6 +69,8 @@ g_Scenario_Name = savedData.GetValue("RedScenario") or modUserData.GetValue("Red
 -- Global Data
 ----------------------------------------------------------------------------------------------------------------------------
 
+MAX_HP = GameDefines.MAX_HIT_POINTS
+
 -- Cached 
 g_FixedPlots = {}
 g_Wounded = {}
