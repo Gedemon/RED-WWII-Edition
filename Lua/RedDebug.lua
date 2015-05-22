@@ -324,7 +324,7 @@ function ShowPlayerTrainingRestriction(iPlayer)
 		if bTest then
 			local aliveUnitType = CountUnitTypeAlive (iUnitType, iPlayer)
 			line1 = line1 .. ", num alive = "..aliveUnitType
-			PlayerTrainingRestriction(iPlayer, iUnitType) -- g_UnitRestrictionString is set here
+			CachePlayerTrainingRestriction(iPlayer, iUnitType) -- g_UnitRestrictionString is set here
 		end
 
 		-- allowed unit ?
@@ -355,7 +355,7 @@ function ShowAITrainingRestriction(iPlayer)
 		return
 	end
 	local player = Players[iPlayer]
-	if player:IsAlive() and (not player:IsMinorCiv()) and (not player:IsBarbarian()) and (not player:IsHuman()) then
+	if player:IsAlive() and (not player:IsBarbarian()) and (not player:IsHuman()) then -- and (not player:IsMinorCiv()) 
 		ShowPlayerTrainingRestriction(iPlayer)
 	end
 end

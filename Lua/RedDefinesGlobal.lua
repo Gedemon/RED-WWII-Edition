@@ -32,14 +32,15 @@ USE_ARCHIVE				= false	-- If true, archive the old entries, else delete them. Ar
 -------------------------------------------------------------------------------------------------------
 -- DEBUG Output
 -------------------------------------------------------------------------------------------------------
-PRINT_DEBUG =			true	-- Dprint Lua output to firetuner ON/OFF
-PRINT_DLL_DEBUG =		false	-- use DLL_Debug GameEvent to show some values from the C++ code in Firetuner
-DEBUG_SHOW_PLOT_XY =	false	-- show plot X,Y on mouse over plot
-DEBUG_SHOW_UNIT_KEY =	false	-- show unitkey on mouse over flag
-DEBUG_PERFORMANCE =		false	-- always show loading/save time of tables
-DEBUG_AI_BUILD =		true	-- Show AI build restrictions and current cities productions
-USE_CUSTOM_OPTION =		true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
-DEBUG_ORPHAN_TILE =		false	-- orphan tile function output debug text to firetuner ON/OFF
+PRINT_DEBUG				= true	-- Dprint Lua output to firetuner ON/OFF
+PRINT_DLL_DEBUG			= false	-- use DLL_Debug GameEvent to show some values from the C++ code in Firetuner
+DEBUG_SHOW_PLOT_XY		= true	-- show plot X,Y on mouse over plot
+DEBUG_SHOW_UNIT_KEY		= false	-- show unitkey on mouse over flag
+DEBUG_SHOW_RED_ORDER	= true	-- show RED current order (if any) on mouse over flag
+DEBUG_PERFORMANCE		= false	-- always show loading/save time of tables
+DEBUG_AI_BUILD			= true	-- Show AI build restrictions and current cities productions
+USE_CUSTOM_OPTION		= true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
+DEBUG_ORPHAN_TILE		= false	-- orphan tile function output debug text to firetuner ON/OFF
 
 g_UnitRestrictionString = ""
 
@@ -77,6 +78,7 @@ g_Wounded = {}
 g_RunningCoroutines = {}
 g_IsGameFullyInitialized = false
 g_LimitedByRatio = {}
+g_TrainingRestriction = {}
 
 -- Saved & Shared
 MapModData.RED = MapModData.RED or {}
@@ -105,6 +107,7 @@ JAPAN =		GameInfo.Civilizations.CIVILIZATION_JAPAN.ID
 CHINA =		GameInfo.Civilizations.CIVILIZATION_CHINA.ID
 GREECE =	GameInfo.Civilizations.CIVILIZATION_GREECE.ID
 
+MINOR =		99 -- can be used in shared tables like g_Combat_Type_Ratio... 
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Placeholder major civ used on hotseat scenario loading as player one, to be killed at game start.
@@ -144,6 +147,19 @@ CITYBOMB =		7	-- Ranged attack on city
 CITYASSAULT =	8	-- Melee attack on city
 NAVALCOUNTER =	9	-- Naval counter-attack
 GRDINTERCEPT =	10	-- Interception by ground (sea, land) unit
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Orders types for AI override
+----------------------------------------------------------------------------------------------------------------------------
+RED_CONVOY						= 1
+RED_HEALING						= 2
+RED_INTERCEPTION				= 3
+RED_AIRSWEEP					= 4
+RED_REBASE						= 5
+RED_MOVE						= 6
+RED_MOVE_TO_EMBARK				= 7
+RED_MOVE_TO_DISEMBARK			= 8
+RED_MOVE_TO_EMBARKED_WAYPOINT	= 9
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Project's Trigger types Enum

@@ -159,7 +159,7 @@ function GetPersonnelReinforcement (playerID, bUpdate)
 	local handicap = GetHandicapForRED(player)
 
 	-- Bonus from scenario
-	if SCENARIO_PERSONNEL_PER_TURN and not player:IsMinorCiv() then
+	if SCENARIO_PERSONNEL_PER_TURN then -- and not player:IsMinorCiv() <- if we allow CS to receive this bonus, this will also raise the bonuses from CS given to the player, may need rebalance 
 		personnelReinforcement.fromScenario = Round(SCENARIO_PERSONNEL_PER_TURN / ((handicap + 2 ) /2) )
 	end
 
@@ -380,7 +380,7 @@ function GetMaterielReinforcement (playerID, bUpdate)
 
 	-- Bonus from scenario
 	local handicap = GetHandicapForRED(player)
-	if SCENARIO_MATERIEL_PER_TURN and not player:IsMinorCiv() then
+	if SCENARIO_MATERIEL_PER_TURN then -- and not player:IsMinorCiv() <- if we allow CS to receive this bonus, this will also raise the bonuses from CS given to the player, may need rebalance 
 		materielReinforcement.fromScenario = Round(SCENARIO_MATERIEL_PER_TURN / ((handicap + 2 ) /2) )
 	end
 
@@ -1074,6 +1074,22 @@ function NoResourcePath(pPlot, pPlayer)
 	end
 
 	return true -- return true if the path is blocked...
+end
+
+function IsNearMaterielShortage(iPlayer)
+	return (MapModData.RED.ResourceData[iPlayer].Materiel + (MapModData.RED.ResourceData[iPlayer].FluxMateriel * AI_TURNS_BEFORE_SHORTAGE) <= 0)
+end
+
+function IsMaterielShortage(iPlayer)
+	return (MapModData.RED.ResourceData[iPlayer].Materiel + MapModData.RED.ResourceData[iPlayer].FluxMateriel <= 0)
+end
+
+function IsNearPersonnelShortage(iPlayer)
+	return (MapModData.RED.ResourceData[iPlayer].Personnel + (MapModData.RED.ResourceData[iPlayer].FluxPersonnel * AI_TURNS_BEFORE_SHORTAGE) <= 0)
+end
+
+function IsPersonnelShortage(iPlayer)
+	return (MapModData.RED.ResourceData[iPlayer].Personnel + MapModData.RED.ResourceData[iPlayer].FluxPersonnel <= 0)
 end
 
 -- Update required tooltips when this file is loaded...

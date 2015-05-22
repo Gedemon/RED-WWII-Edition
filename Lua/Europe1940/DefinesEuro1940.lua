@@ -26,6 +26,10 @@ ALLOW_AI_CONTROL			= true
 NO_AI_EMBARKATION			= true -- remove AI ability to embark (to do : take total control of AI unit to embark)
 NO_SUICIDE_ATTACK			= true -- If set to true, try to prevent suicide attacks
 UNIT_SUPPORT_LIMIT_FOR_AI	= true -- Allow limitation of max number of AI units based on number of supported units
+	
+AI_LAND_MINIMAL_RESERVE		= 15	
+AI_AIR_MINIMAL_RESERVE		= 10	
+AI_SEA_MINIMAL_RESERVE		= 8	
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Calendar
@@ -109,7 +113,8 @@ g_Units_Maintenance_Modifier = {
 	[ENGLAND] = 10,
 	[USSR] = 0,
 	[GERMANY] = 0,
-	[ITALY] = 5,
+	[ITALY] = 7,
+	[GREECE] = 5,
 }
 
 -- Available units for minor civs
@@ -159,6 +164,7 @@ g_Combat_Type_Ratio = {
 	[GERMANY]	= {Air = 5,		Sea = 5,	Armor = 1.85,	Artillery = 6,},
 	[ITALY]		= {Air = 5,		Sea = 4,	Armor = 3,		Artillery = 6,},
 	[GREECE]	= {Air = 5,		Sea = 5,	Armor = 4,		Artillery = 6,},
+	[MINOR]		= {Air = 7,		Sea = 7,	Armor = 6,		Artillery = 6,},
 }
 
 -- Armor type ratio restriction used by AI
@@ -177,7 +183,7 @@ g_Max_Air_SubClass_Percent = {
 	-- max num	<= armor units / type units
 	[FRANCE]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
 	[ENGLAND]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
-	[USSR]		= {	[CLASS_FIGHTER] = 55, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 50, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 35, [CLASS_HEAVY_BOMBER] = 15,	},
+	[USSR]		= {	[CLASS_FIGHTER] = 55, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 50, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 45, [CLASS_HEAVY_BOMBER] = 15,	},
 	[GERMANY]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 20, [CLASS_HEAVY_BOMBER] = 15,	},
 	[ITALY]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
 	[GREECE]	= {	[CLASS_FIGHTER] = 60, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 45, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},

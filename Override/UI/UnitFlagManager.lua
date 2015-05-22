@@ -536,6 +536,12 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 		if DEBUG_SHOW_UNIT_KEY then
 			string = string .. "[NEWLINE]Debug: UnitKey = ".. tostring(unitKey);
 		end
+		if DEBUG_SHOW_RED_ORDER then
+			if unitData[unitKey] then
+				if unitData[unitKey].OrderType then string = string .. "[NEWLINE]Debug: OrderType = ".. tostring(unitData[unitKey].OrderType); end
+				if unitData[unitKey].OrderObjective then string = string .. "[NEWLINE]Debug: OrderObjective = ".. tostring(unitData[unitKey].OrderObjective.X) .. "," .. tostring(unitData[unitKey].OrderObjective.Y); end
+			end
+		end
 
 		-- Unit Class
 		local unitClassType = Locale.ConvertTextKey(GameInfo.UnitClasses[pUnit:GetUnitClassType()].Description)
@@ -574,7 +580,7 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 					strTransport = transportReference .. " [ICON_RES_OIL] oil"
 				elseif transportType == TRANSPORT_GOLD then
 					strTransport = transportReference .. " [ICON_GOLD] gold"
-				else -- gold then 
+				else 
 					strTransport = transportReference .. " unknown cargo"
 				end
 				string = string .. "[NEWLINE]Cargo : ".. strTransport

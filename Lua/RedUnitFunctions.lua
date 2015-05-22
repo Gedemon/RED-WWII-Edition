@@ -997,6 +997,8 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 			plot:SetImprovementType(citadelType)
 		end
 	end
+
+	LuaEvents.NewUnitCreated()
 end
 
 function InitializeUnit(playerID, unitID)
@@ -1766,6 +1768,10 @@ function CheckEmbarkedPromotion(unit)
 		local specialCase = false
 		if MapModData.RED.UnitData[unitKey] then -- don't test new units before initialisation of MapModData.RED.UnitData
 			if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK or MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_DISEMBARK then
+				specialCase = true
+			end
+			if MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARKED_WAYPOINT and (not unit:IsEmbarked()) then
+				-- Do not remove the embarkation promotion if we're still on land but trying to reach a waypoint on water...
 				specialCase = true
 			end
 

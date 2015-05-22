@@ -790,13 +790,13 @@ function ValidateData()
 							local iUnitType = unitInfo.ID
 							local unitClassType = GameInfo["Units"][iUnitType]["Class"]
 							local unitClass = GameInfo.UnitClasses[unitClassType].ID
-							local bUseRatio = USE_UNIT_RATIO_FOR_AI -- save old value for USE_UNIT_RATIO_FOR_AI
-							USE_UNIT_RATIO_FOR_AI = false -- to check if unit can be build without using ratio...
-							if g_Unit_Classes[unitClass] and (g_Unit_Classes[unitClass].NumType == iClass) and PlayerTrainingRestriction(iPlayer, iUnitType) then
+							local bTemp1, bTemp2, bTemp3, bTemp4 = USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI	-- save old value for USE_UNIT_RATIO_FOR_AI
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = false, false, false, false				-- to check if unit can be build without using ratio...
+							if g_Unit_Classes[unitClass] and (g_Unit_Classes[unitClass].NumType == iClass) and CachePlayerTrainingRestriction(iPlayer, iUnitType) then
 								classPercent = percent
 								checkClass = true
 							end
-							USE_UNIT_RATIO_FOR_AI = bUseRatio -- restore default value
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = bTemp1, bTemp2, bTemp3, bTemp4 -- restore default value
 						end
 						totalPercent = totalPercent + classPercent
 						if checkClass then
@@ -807,7 +807,6 @@ function ValidateData()
 						Dprint("  - Ok ! (total = ".. totalPercent .."%)")
 					else
 						Dprint("WARNING: Validating Armor SubClass Restriction failed for ".. tostring(player:GetName()) .." (total = ".. tostring(totalPercent) .."%)")
-						Dprint("-> this could mean that this player is restricted by number of units already build and is not relevant mid-game")
 					end
 				end
 				Dprint("")
@@ -833,13 +832,13 @@ function ValidateData()
 							local iUnitType = unitInfo.ID
 							local unitClassType = GameInfo["Units"][iUnitType]["Class"]
 							local unitClass = GameInfo.UnitClasses[unitClassType].ID
-							local bUseRatio = USE_UNIT_RATIO_FOR_AI -- save old value for USE_UNIT_RATIO_FOR_AI
-							USE_UNIT_RATIO_FOR_AI = false -- to check if unit can be build without using ratio...
-							if g_Unit_Classes[unitClass] and (g_Unit_Classes[unitClass].NumType == iClass) and PlayerTrainingRestriction(iPlayer, iUnitType) then
+							local bTemp1, bTemp2, bTemp3, bTemp4 = USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI	-- save old value for USE_UNIT_RATIO_FOR_AI
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = false, false, false, false				-- to check if unit can be build without using ratio...
+							if g_Unit_Classes[unitClass] and (g_Unit_Classes[unitClass].NumType == iClass) and CachePlayerTrainingRestriction(iPlayer, iUnitType) then
 								classPercent = percent
 								checkClass = true
 							end
-							USE_UNIT_RATIO_FOR_AI = bUseRatio -- restore default value
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = bTemp1, bTemp2, bTemp3, bTemp4 -- restore default value
 						end
 						totalPercent = totalPercent + classPercent
 						if checkClass then
@@ -850,7 +849,6 @@ function ValidateData()
 						Dprint("  - Ok ! (total = ".. totalPercent .."%)")
 					else
 						Dprint("WARNING: Validating Air SubClass Restriction Failed ! for ".. tostring(player:GetName()) .." (total = ".. tostring(totalPercent) .."%)")
-						Dprint("-> this could mean that this player is restricted by number of units already build and is not relevant mid-game")
 					end
 				end
 				Dprint("")
@@ -1338,16 +1336,23 @@ end
 
 function GetFreeUnitsFromScenario (iPlayer)
 	
-	if not g_Units_Maintenance_Modifier then
-		return 0
-	end
+	local player = Players[iPlayer]
+	local numFreeUnitsFromScenario = 0
 
-	local civID = GetCivIDFromPlayerID(iPlayer, false)
-	local numFreeUnitsFromScenario = g_Units_Maintenance_Modifier[civID] or 0
+	-- scenario specific bonus (U.K. got +10 on europe 39-45 map for example)
+	if g_Units_Maintenance_Modifier then	
+		local civID = GetCivIDFromPlayerID(iPlayer, false)
+		numFreeUnitsFromScenario = g_Units_Maintenance_Modifier[civID] or 0	
+	end	
+
+	-- bonus for the AI
+	if (not player:IsHuman()) and (not player:IsMinorCiv()) and (not player:IsBarbarian()) then
+		numFreeUnitsFromScenario = numFreeUnitsFromScenario + AI_FREE_UNIT_SUPPLY
+	end
 
 	-- convoy are free from maintenance
 	local numConvoi = 0
-	for unit in Players[iPlayer]:Units() do
+	for unit in player:Units() do
 		if (unit:GetUnitType() == CONVOY) then
 			numConvoi = numConvoi + 1
 		end

@@ -127,7 +127,8 @@ LAND_CAP_RATIO					= 10	-- relative to territory owned, player can build (number
 -- AI Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
-RED_AI_HANDICAP = 3 -- handicap value for computer player (specific to R.E.D. function, not linked to vanilla handicap tables)
+RED_AI_HANDICAP		= 3		-- handicap value for computer player (specific to R.E.D. function, not linked to vanilla handicap tables)
+AI_FREE_UNIT_SUPPLY = 10	-- maintenance free units for AI players
 
 ALLOW_AI_CONTROL = true -- Allow the use of functions to (try to) control the AI units and build list
 
@@ -137,7 +138,16 @@ MAX_AI_UNITS				= 75	-- Max number of units for the AI when ALLOW_AI_UNITS_LIMIT
 
 UNIT_SUPPORT_LIMIT_FOR_AI	= false -- Allow limitation of max number of AI units based on number of supported units
 AI_UNIT_SUPPLY_THRESHOLD	= 10	-- if UNIT_SUPPORT_LIMIT_FOR_AI is true, AI start disbanding wounded units when close to this threshold
-AI_MINIMAL_RESERVE			= 30	-- Do not disband units if we have less than AI_MINIMAL_RESERVE left
+
+AI_MINIMAL_RESERVE			= 30	-- | 
+AI_LAND_MINIMAL_RESERVE		= nil	-- | Do not disband units if we have less than this 
+AI_AIR_MINIMAL_RESERVE		= nil	-- | (nil means "not checked")
+AI_SEA_MINIMAL_RESERVE		= nil	-- |
+
+AI_USE_RESOURCE_LIMIT		= true	-- the AI won't build units using resources in case of shortage...
+AI_TURNS_BEFORE_SHORTAGE	= 5		-- consider low on a resource if there is a shortage in this number of turn at the current rate
+AI_UNIT_RESOURCE_LOW		= 4		-- Don't build unit consuming more than this number of resource per HP healed if we're low on stock
+AI_UNIT_RESOURCE_SHORTAGE	= 1		-- Don't build unit consuming more than this number of resource per HP healed if we're out of stock
 
 TRACK_COMBATS_MAX_TURNS						= 5 -- Number of previous turns entries keeped in the TrackCombat table
 DESTROYER_SUB_HUNTING_MAX_TURNS_ATTACK		= 2 -- Number of previous turns attacks entries destroyers look at for subhunting
@@ -160,17 +170,6 @@ SUICIDE_HP_RATIO				= 4.5	-- Under this ratio between HP left and damage receive
 NO_AI_EMBARKATION				= false -- remove AI ability to embark 
 NO_LAND_UNIT_BUILD_ON_ISLAND	= true	-- prevent the AI to build land units on cities on island when NO_AI_EMBARKATION = true
 NO_LAND_UNIT_ISLAND_MAX_AREA	= 10	-- prevent land units to be build in area under that size when NO_LAND_UNIT_BUILD_ON_ISLAND = true
-
--- Orders types for AI override
-RED_CONVOY						= 1
-RED_HEALING						= 2
-RED_INTERCEPTION				= 3
-RED_AIRSWEEP					= 4
-RED_REBASE						= 5
-RED_MOVE						= 6
-RED_MOVE_TO_EMBARK				= 7
-RED_MOVE_TO_DISEMBARK			= 8
-RED_MOVE_TO_EMBARKED_WAYPOINT	= 9
 
 -- Healing values
 MIN_HEALTH_PERCENT			= 35 -- under this health percent, force unit to heal

@@ -6,6 +6,8 @@ include( "SupportFunctions"  );
 include( "InstanceManager" );
 include( "InfoTooltipInclude" );
 
+include ("RedOverrideInclude")
+
 local m_PlayerTable = Matchmaking.GetPlayerList();
 local m_PlayerNames = {};
 for i = 1, #m_PlayerTable do
@@ -273,6 +275,64 @@ function UpdateDisplay()
 				local otherLeaderInfo = GameInfo.Leaders[otherLeaderType];
 
 				controlTable.CivName:SetText(strCiv);
+
+				-- <<<<< RED resource string
+				local iPlayerID = iPlayerLoop
+				local resourceData = MapModData.RED.ResourceData
+				local strRes = ""
+
+				local pPlayer = Players[iPlayerID]
+				local data
+				if resourceData then
+					data = resourceData[iPlayerID]
+				end
+				if data then
+
+					local personnelReinforcement	= GetPersonnelReinforcement(iPlayerID) 
+					local materielReinforcement		= GetMaterielReinforcement(iPlayerID) 
+					local OilProcurement			= GetOilProcurement(iPlayerID, true) -- second argument set to true to prevent testing of routes to access resources (save time)
+
+					local neededResource			= GetNeededResourceForUnits(iPlayerID, true)
+
+					local fluxPersonnel = Round(personnelReinforcement.total - neededResource.nextTurnPers)
+					local fluxMateriel = Round(materielReinforcement.total - neededResource.nextTurnMat) -- - matToUpgrade -- check that...
+					local fluxOil = Round(OilProcurement.total - neededResource.nextTurnOil)
+					if Game.GetGameTurn() == 0 then
+						fluxOil = 0
+					end
+
+					if fluxPersonnel >= 0 then
+						strRes = strRes .. "[ICON_PERSONNEL] ".. tostring(data.Personnel) 
+					elseif data.Personnel + fluxPersonnel <= 0 then
+						strRes = strRes .. "[ICON_PERSONNEL] [COLOR_WARNING_TEXT]".. tostring(data.Personnel) .."[ENDCOLOR]"
+					else
+						strRes = strRes .. "[ICON_PERSONNEL] [COLOR_PLAYER_ORANGE_TEXT]".. tostring(data.Personnel) .."[ENDCOLOR]"						
+					end
+
+					if fluxMateriel >= 0 then
+						strRes = strRes .. " [ICON_MATERIEL] ".. tostring(data.Materiel) 
+					elseif data.Materiel + fluxMateriel <= 0 then
+						strRes = strRes .. " [ICON_MATERIEL] [COLOR_WARNING_TEXT]".. tostring(data.Materiel) .."[ENDCOLOR]"
+					else
+						strRes = strRes .. " [ICON_MATERIEL] [COLOR_PLAYER_ORANGE_TEXT]".. tostring(data.Materiel) .."[ENDCOLOR]"						
+					end
+
+					if RESOURCE_CONSUMPTION then
+						if fluxOil >= 0 then
+							strRes = strRes .. " [ICON_RES_OIL] ".. tostring(data.Oil) 
+						elseif data.Oil + fluxOil <= 0 then
+							strRes = strRes .. " [ICON_RES_OIL] [COLOR_WARNING_TEXT]".. tostring(data.Oil) .."[ENDCOLOR]"
+						else
+							strRes = strRes .. " [ICON_RES_OIL] [COLOR_PLAYER_ORANGE_TEXT]".. tostring(data.Oil) .."[ENDCOLOR]"						
+						end
+					end
+
+				else
+					strRes	= "[ICON_PERSONNEL] 0 [ICON_MATERIEL] 0"
+				end
+				controlTable.ResourceString:SetText(strRes);
+				-- RED >>>>>
+
 				CivIconHookup( iPlayerLoop, 32, controlTable.CivSymbol, controlTable.CivIconBG, controlTable.CivIconShadow, false, true );
 				
 				IconHookup( otherLeaderInfo.PortraitIndex, 64, otherLeaderInfo.IconAtlas, controlTable.LeaderPortrait );			
