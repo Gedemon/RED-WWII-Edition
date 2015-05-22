@@ -15,8 +15,107 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 	-- version history --
 
-v.39 (May xx, 2015):
--
+v.39 (May 22, 2015):
+- DLL :
+	The value to estimate combat results (large/small victory/defeat) based on damages difference was hardcoded to 30, changed to 7 to reflect the mod's values
+	Max received damage in any situation is 15 HP, to prevent kills in 3-4shoots
+	Use new DLL event to call function at the beginning of a turn, not at the beginning of each human player turn
+	One melee attack per turn from inside a city and no attack from inside a city for sea units
+	No Zone Of Control on sea
+	Add a function to create a RED_WWII folder in the game's "assets/DLC" folder to override some vanilla files to prevent crash on load before deactivating DLCs/Mods
+	Crash fix for some case of tentative of air attack on an embarked unit.
+	Allow promotion of units after combat
+	Bug fix in strategy flavor (dividing by zero, the case did not occurs with vanilla civ5 values)
+	Test for military/strategy AI (attack closest cities in priority)
+	No more selling gold for gold per turn, unless for peace or when allied
+
+- Features : 
+	Starting French translation
+	a lots of new units (and corresponding projects) added
+	Can toggle the reinforcement tooltip to show requirement for all units, including those that have no supply lines
+	Add Oil resource (including stock and use) on the europe 39-45 map
+	Add more conditions for projects availability
+	Allow repeatable projects
+	Add auto-repair function for improvements pillaged by Special Forces
+	Give Materiel and Oil when capturing a city, depending on it's size
+	Add "The MotherLand Calls" operation to USSR (available and repeatable when losing the war)
+	New building: oil refinery (can stock 1000 oil) for all nation
+	Allow special forces to embark from anywhere and move after attacking
+	Add objective information to top panel in the 39-45 Europe scenario
+	Add "Fortification" unit (not in build list, immobile, defense only, but can counter-fire and use defensive first strike)
+	Add "Maginot Line" and "Westwall" options to the 1939-1945 Europe map
+	When attacking from sea, winning the combat will force the defending unit to retreat, but it's the attacking unit that will get extra damage (heavy offensive)
+	Add "PERMANENT_WAR_DECLARATION" to scenario rules (default = true), when using alternate history any declaration of war is permanent (prevent your ally to ask for peace in your back)
+	Add a table (g_Units_Maintenance_Modifier) for maintenance free units per nation, used with new DLL event
+	Additional compatibility checks on the setup screen (disable DLCs and verify minimal game version)
+	AI disband wounded units if it can't support them
+
+- Bug fix :
+	No color overlay on nation flag near cities names
+	Remove unneeded entries in the rebuild of the vanilla database
+	Can't retreat on enemy or neutral territory
+	Can't retreat if no moves left
+	Can now retreat on another unit of the same nation if the regiment/division rule is respected
+	Remove all beta/alpha scenarios from the list, they can be reactivated by changing the content type from "CustomRED_" to "CustomRED" in the project or modinfo file
+	Some of the promotions text that where displaying wrong values
+	Prevent counter-counter-attack during naval combat
+	Clean function AreSameside(player1ID,player2ID). it was hardcoded in general files to do some things for the 39-45 Europe, now there is an override function in the scenario files
+	Do not escape from a city to go on neutral/hostile territory !
+	Only show the local player's procurement details on the resource tooltip of the top panel, even during other players turn...
+	Remove reference to the deleted "PreLoading" files
+	Don't allow two units to (automatically) attack a sub from the same position
+	Do not show vanilla leaders icon and name (fixed by disabling DLCs)
+	Show correct value in texts (fixed by disabling DLCs)
+	Show correct defensive value of a plot on mouse over
+	Germany does not try to send reinforcement on U.K. after Seelowe if there are no Axis units left there (Europe 39-45 map)
+	Minor nations should use the restriction table for units production
+	Do not show culture or science in buildings descriptions (there are still a few texts to edit)
+	Mobile Artillery is now really an artillery unit, not a tank with ranged attack and melee promotions...
+	Mobile Artillery can counter-fire / provide support fire
+	Notification for new project should be displayed correctly
+	Do not launch counter-fire or support fire if the triggering unit can't attack...
+	But no need to check if the attacking unit can attack for counter-fire, the attack is already made at this moment !
+	In some cases units on a "sea" route could still be on land without the embarked promotion...
+
+- Balance :
+	Buildings give more XP
+	Raise defense value for some improvements
+	Change a few cities on the 1939 maps, tweak Oil deposit placement and values
+	Raise Strasbourg defense for the AI on the 1939-1945 Europe map
+	Lose only one movement point on retreat
+	Lower some promotions effect
+	Lower adjacent units bonus (because you can have 2 units per tile)
+	Buff tank destroyer ranged attack
+	Waffen SS use a bit more material for reinforcement
+	Assault guns and Tank Destroyers does not get the blitz promotion from Germany trait.
+	Infantry Tank defense bonus lowered to 20% (was 30%)
+	Startegic AI (to send reinforcement on pre-defined routes) Italy is "safe" if less than 6 plots are lost to the enemy, Germany is safe at less than 10 plots (was 1)
+	AI ships try to heal inside a city with harbors, it's safer than just outside...
+	Convoy are considered free units for supply limit (actually you get 1 more supply per convoy on the map)
+	Damage transferred from city to improvement when bombed are applied to the closest improvements first
+	Add Kirkwall (Scapa Flow) and Mulhouse (Europe 39-45 map)
+	Better Order of Battle for minor nations (Europe 39-45 map)
+	Add more units on troupe routes (Europe 39-45 map)
+	Change defense bonuses of urban areas (35%), factories (25%) and city ruins (30%)
+	Production modifier when over the supply limit for units is now -2% per unit (was 6)
+	Add a harbor for the AI in ABERDEEN (U.K.) on the 39-45 Europe map
+	Volley promotion give bonus against Fortification units
+	Allows minor nations to build units (Europe 39-45 map)
+	AI will disband wounded units if it can't build more, and won't build more units if it has reached the supply limit.
+	Add units ratio by class to minor nations build list
+	Change some database values to make the AI more aggressive
+
+- UI :
+	Add details for oil procurement in the top panel
+	Small improvements
+	Add a shortcut button near the mini map to set quick Combat/Movement ON/OFF on left/right click
+	Scale down Destroyers
+	Show other nation resources values on the diplolist
+
+- Optimization :
+	Correct distribution of units after Fall Of France event, added some optimizations, not sure if it's enough to fix the crashes some were experimenting.
+	Use coroutine to handle the Fall of France event on the 1939-1945 Europe
+	Cache some values
 
 v.38 (Aug 24, 2013):
 - DLL : Update source code to patch 1.0.3.18
