@@ -13,7 +13,8 @@ print("-------------------------------------")
 
 -- functions to call at beginning of each turn
 function ScenarioOnNewTurn()
-	SetAIStrategicValues()
+	SetAIStrategicValues()	
+	InitializeEuro1940Projects()
 	PrepareForWar(5) -- alert 5 turns before declaring war
 	PrepareForWar(1) -- alert 1 turn before declaring war
 end
@@ -59,4 +60,6 @@ end
 
 -- functions to call after entering game (DoM screen button pushed for a new game or reloading)
 function ScenarioOnEnterGame()
+	DoInitEuro1940UI()
+	GameEvents.CityCaptureComplete.Add(	UpdateEuro1940ScoreString )
 end

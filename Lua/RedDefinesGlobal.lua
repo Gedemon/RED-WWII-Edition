@@ -6,18 +6,20 @@
 print("Loading Red Defines...")
 print("-------------------------------------")
 
+g_RED_WWII_ModID = "580c14eb-9799-4d31-8b14-c2a78931de89"
+
 -------------------------------------------------------------------------------------------------------
 -- Initialize for SaveUtils
 -------------------------------------------------------------------------------------------------------
 WARN_NOT_SHARED = false
 include( "ShareData.lua" )
 include( "SaveUtils" )
-MY_MOD_NAME = "580c14eb-9799-4d31-8b14-c2a78931de89"
+MY_MOD_NAME = g_RED_WWII_ModID
 
 PLAYER_SAVE_SLOT =			0		-- player slot for saveutils (used by culture map)
 DEFAULT_SAVE_KEY =			"0,0"	-- default plot for saveutils
 UNIT_SAVE_SLOT =			"0,1"
-REINFORCEMENT_SAVE_SLOT =	"1,0"
+RESOURCE_SAVE_SLOT =		"1,0"
 PROJECTS_SAVE_SLOT =		"1,1"
 COMBATLOG_SAVE_SLOT =		"0,2"
 DYNAMICMAP_SAVE_SLOT =		"1,2"
@@ -30,13 +32,15 @@ USE_ARCHIVE				= false	-- If true, archive the old entries, else delete them. Ar
 -------------------------------------------------------------------------------------------------------
 -- DEBUG Output
 -------------------------------------------------------------------------------------------------------
-PRINT_DEBUG =			true	-- Dprint Lua output to firetuner ON/OFF
-PRINT_DLL_DEBUG =		false	-- use DLL_Debug GameEvent to show some values from the C++ code in Firetuner
-DEBUG_SHOW_PLOT_XY =	false	-- show plot X,Y on mouse over plot
-DEBUG_SHOW_UNIT_KEY =	false	-- show unitkey on mouse over flag
-DEBUG_PERFORMANCE =		false	-- always show loading/save time of tables
-USE_CUSTOM_OPTION =		true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
-DEBUG_ORPHAN_TILE =		false	-- orphan tile function output debug text to firetuner ON/OFF
+PRINT_DEBUG				= true	-- Dprint Lua output to firetuner ON/OFF
+PRINT_DLL_DEBUG			= false	-- use DLL_Debug GameEvent to show some values from the C++ code in Firetuner
+DEBUG_SHOW_PLOT_XY		= true	-- show plot X,Y on mouse over plot
+DEBUG_SHOW_UNIT_KEY		= false	-- show unitkey on mouse over flag
+DEBUG_SHOW_RED_ORDER	= true	-- show RED current order (if any) on mouse over flag
+DEBUG_PERFORMANCE		= false	-- always show loading/save time of tables
+DEBUG_AI_BUILD			= true	-- Show AI build restrictions and current cities productions
+USE_CUSTOM_OPTION		= true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
+DEBUG_ORPHAN_TILE		= false	-- orphan tile function output debug text to firetuner ON/OFF
 
 g_UnitRestrictionString = ""
 
@@ -54,7 +58,7 @@ SHOW_UNIT_SUPPLY_THRESHOLD = 20		-- don't show unit supply left until this numbe
 -------------------------------------------------------------------------------------------------------
 -- use mod data to save / load value between game initialisation phases
 -------------------------------------------------------------------------------------------------------
-myModId = "580c14eb-9799-4d31-8b14-c2a78931de89"
+myModId = g_RED_WWII_ModID
 myModVersion = Modding.GetActivatedModVersion(myModId)
 modUserData = Modding.OpenUserData(myModId, myModVersion)
 -- Selected Scenario
@@ -63,27 +67,30 @@ g_Scenario_Name = savedData.GetValue("RedScenario") or modUserData.GetValue("Red
 
 
 ----------------------------------------------------------------------------------------------------------------------------
--- Global Data Tables
+-- Global Data
 ----------------------------------------------------------------------------------------------------------------------------
 
--- Saved
-g_UnitData = {}
-g_ReinforcementData = {}
-g_ProjectsDone = {}
-g_CombatsLog = {}
-g_DynamicMap = {}
+MAX_HP = GameDefines.MAX_HIT_POINTS
 
 -- Cached 
 g_FixedPlots = {}
 g_Wounded = {}
+g_RunningCoroutines = {}
+g_IsGameFullyInitialized = false
+g_LimitedByRatio = {}
+g_TrainingRestriction = {}
 
+-- Saved & Shared
+MapModData.RED = MapModData.RED or {}
+MapModData.RED.UnitData = MapModData.RED.UnitData or {}
+MapModData.RED.ResourceData = MapModData.RED.ResourceData or {}
+MapModData.RED.ProjectsDone = MapModData.RED.ProjectsDone or {}
+MapModData.RED.CombatsLog = MapModData.RED.CombatsLog or {}
+MapModData.RED.DynamicMap = MapModData.RED.DynamicMap or {}
+MapModData.RED.ResourceMap = MapModData.RED.ResourceMap or {}
 
-----------------------------------------------------------------------------------------------------------------------------
--- R.E.D. Rules
-----------------------------------------------------------------------------------------------------------------------------
-
-include ("RedDefinesRules") -- Big file edition is too slow with ModBuddy...
-
+-- Cached & Shared
+MapModData.RED.OilNationDetail = MapModData.RED.OilNationDetail or {}
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Civilizations Type ID
@@ -100,27 +107,35 @@ JAPAN =		GameInfo.Civilizations.CIVILIZATION_JAPAN.ID
 CHINA =		GameInfo.Civilizations.CIVILIZATION_CHINA.ID
 GREECE =	GameInfo.Civilizations.CIVILIZATION_GREECE.ID
 
+MINOR =		99 -- can be used in shared tables like g_Combat_Type_Ratio... 
+
 ----------------------------------------------------------------------------------------------------------------------------
 -- Placeholder major civ used on hotseat scenario loading as player one, to be killed at game start.
 ----------------------------------------------------------------------------------------------------------------------------
-
 HOTSEAT_CIV_TO_KILL = GameInfo.Civilizations.CIVILIZATION_MONGOL.ID
+
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Diplomacy Enum
 ----------------------------------------------------------------------------------------------------------------------------
-
 DOF = 0 -- Declaration of Friendship
 DEN = 1 -- Denounciation
 DOW = 2 -- Declaration of War
 PEA = 3 -- Permanent Alliance
 SPT = 4 -- Signe Peace Treaty
 
+----------------------------------------------------------------------------------------------------------------------------
+-- Transported types enum
+----------------------------------------------------------------------------------------------------------------------------
+TRANSPORT_MATERIEL	= 1
+TRANSPORT_PERSONNEL = 2
+TRANSPORT_UNIT		= 3
+TRANSPORT_GOLD		= 4
+TRANSPORT_OIL		= 5
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Combat types Enum
 ----------------------------------------------------------------------------------------------------------------------------
-
 MELEE =			0	-- normal combat
 RANGED =		1	-- ranged attack
 SUBATTACK =		2	-- submarines attacking
@@ -133,7 +148,40 @@ CITYASSAULT =	8	-- Melee attack on city
 NAVALCOUNTER =	9	-- Naval counter-attack
 GRDINTERCEPT =	10	-- Interception by ground (sea, land) unit
 
+----------------------------------------------------------------------------------------------------------------------------
+-- Orders types for AI override
+----------------------------------------------------------------------------------------------------------------------------
+RED_CONVOY						= 1
+RED_HEALING						= 2
+RED_INTERCEPTION				= 3
+RED_AIRSWEEP					= 4
+RED_REBASE						= 5
+RED_MOVE						= 6
+RED_MOVE_TO_EMBARK				= 7
+RED_MOVE_TO_DISEMBARK			= 8
+RED_MOVE_TO_EMBARKED_WAYPOINT	= 9
 
+----------------------------------------------------------------------------------------------------------------------------
+-- Project's Trigger types Enum
+----------------------------------------------------------------------------------------------------------------------------
+TRIGGER_XP =			0	-- Project is triggered by XP gained during combat by an unit type
+TRIGGER_DATE =			1	-- Project have a chance to be triggered each turns after a fixed Date
+TRIGGER_DATE_AND_XP =	3	-- Project is triggered if both Date and XP condition are checked
+TRIGGER_DATE_OR_XP =	4	-- Project is triggered if any of Date or XP condition is checked
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Resource Connection types Enum
+----------------------------------------------------------------------------------------------------------------------------
+RESOURCE_OWNED_PLOTS =			0	-- Resource is connected when you own the plot (no road or rails connection required)
+RESOURCE_ROAD_TO_CAPITAL =		1	-- Resource is connected when linked by road (or rails) to the capital
+RESOURCE_RAILS_TO_CAPITAL =		2	-- Resource is connected when linked by rails to the capital
+RESOURCE_ROAD_TO_ANY_CITY =		3	-- Resource is connected when linked by road (or rails) to any owned city
+RESOURCE_RAILS_TO_ANY_CITY =	4	-- Resource is connected when linked by rails to any owned city
+
+----------------------------------------------------------------------------------------------------------------------------
+-- Resources Type ID
+----------------------------------------------------------------------------------------------------------------------------
+RESOURCE_OIL =	GameInfo.Resources.RESOURCE_OIL.ID
 
 ----------------------------------------------------------------------------------------------------------------------------
 --Moves
@@ -234,23 +282,28 @@ AXISCITY =				GameInfo.Buildings.BUILDING_AXISCITY.ID
 COMINTERNCITY =			GameInfo.Buildings.BUILDING_COMINTERNCITY.ID
 NODRAFT =				GameInfo.Buildings.BUILDING_NODRAFT.ID
 LIMITEDDRAFT =			GameInfo.Buildings.BUILDING_LIMITEDDRAFT.ID
+LEGION_HQ =				GameInfo.Buildings.BUILDING_LEGION_HQ.ID
+SYNTHETIC_FUEL_PLANT =	GameInfo.Buildings.BUILDING_SYNTHETIC_FUEL_PLANT.ID
+OIL_REFINERY =			GameInfo.Buildings.BUILDING_OIL_REFINERY.ID
 
 
 -- Available buildings for major civs
 g_Major_Buildings = {
-	[FRANCE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, SHIPYARD}, -- LARGE_AIR_FACTORY, : no bombers or heavy bombers
-	[ENGLAND] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[USSR] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[GERMANY] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[ITALY] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[GREECE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, LARGE_AIR_FACTORY,SHIPYARD}, -- MEDIUM_AIR_FACTORY, : no fast bombers/heavy fighters
-	[JAPAN] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[AMERICA] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
-	[CHINA] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD},
+	[FRANCE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, SHIPYARD, OIL_REFINERY}, -- LARGE_AIR_FACTORY, : no bombers or heavy bombers
+	[ENGLAND] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, OIL_REFINERY},
+	[USSR] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, OIL_REFINERY},
+	[GERMANY] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, SYNTHETIC_FUEL_PLANT, OIL_REFINERY},
+	[ITALY] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, OIL_REFINERY},
+	[GREECE] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, SHIPYARD, OIL_REFINERY}, -- LARGE_AIR_FACTORY, : no bombers or heavy bombers
+	[JAPAN] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, OIL_REFINERY},
+	[AMERICA] = {FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, OIL_REFINERY},
+	[CHINA] =	{FACTORY, ARSENAL, HARBOR, RADIO, BARRACKS, ACADEMY, BASE, HOSPITAL, BANK, COURTHOUSE, BARRICADE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY, LARGE_AIR_FACTORY, SHIPYARD, OIL_REFINERY},
 }
 
 -- Buildings pre-request (need all building types listed)
 g_Buildings_Req = {
+	[ACADEMY] =				{BARRACKS},
+	[BASE] =				{BARRACKS},
 	[LAND_FACTORY] =		{FACTORY},
 	[SMALL_AIR_FACTORY] =	{FACTORY}, 
 	[MEDIUM_AIR_FACTORY] =	{FACTORY}, 
@@ -268,10 +321,11 @@ g_Buildings_Exclusion = {
 	[ARSENAL] =				{OPEN_CITY}, 
 	[BARRACKS] =			{OPEN_CITY}, 
 	[BARRICADE] =			{OPEN_CITY},
+	[BASE] =				{OPEN_CITY},
 }
 
 -- Available buildings for minor civs
-g_Minor_Buildings = {FACTORY, ARSENAL, HARBOR, BARRACKS, ARMORY, BASE, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY}
+g_Minor_Buildings = {FACTORY, ARSENAL, HARBOR, BARRACKS, ARMORY, BASE, LAND_FACTORY, SMALL_AIR_FACTORY, MEDIUM_AIR_FACTORY}
 
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -290,6 +344,12 @@ WAR_BONDS =		GameInfo.Processes.PROCESS_WAR_BONDS.ID
 -- Promotions Type ID
 PROMOTION_NO_SUPPLY =					GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY.ID
 PROMOTION_NO_SUPPLY_SPECIAL_FORCES =	GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY_SPECIAL_FORCES.ID
+PROMOTION_NO_SUPPLY_MECHANIZED =		GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY_MECHANIZED.ID
+PROMOTION_LIGHT_RATIONING =				GameInfo.UnitPromotions.PROMOTION_LIGHT_RATIONING.ID
+PROMOTION_RATIONING =					GameInfo.UnitPromotions.PROMOTION_RATIONING.ID
+PROMOTION_HEAVY_RATIONING =				GameInfo.UnitPromotions.PROMOTION_HEAVY_RATIONING.ID
+PROMOTION_ELITE =						GameInfo.UnitPromotions.PROMOTION_ELITE.ID
+PROMOTION_ACE =							GameInfo.UnitPromotions.PROMOTION_ACE.ID
 PROMOTION_EMBARKED_FIX =				GameInfo.UnitPromotions.PROMOTION_EMBARKED_FIX.ID
 PROMOTION_EMBARKED_ARTILLERY_FIX =		GameInfo.UnitPromotions.PROMOTION_EMBARKED_ARTILLERY_FIX.ID
 PROMOTION_MEDIC =						GameInfo.UnitPromotions.PROMOTION_MEDIC.ID
@@ -313,9 +373,23 @@ PROMOTION_ARCTIC_POWER =				GameInfo.UnitPromotions.PROMOTION_ARCTIC_POWER.ID
 PROMOTION_LONG_PARADROP =				GameInfo.UnitPromotions.PROMOTION_LONG_PARADROP.ID
 PROMOTION_FIGHTER =						GameInfo.UnitPromotions.PROMOTION_FIGHTER.ID
 PROMOTION_HEAVY_FIGHTER =				GameInfo.UnitPromotions.PROMOTION_HEAVY_FIGHTER.ID
-PROMOTION_MODERN_FIGHTER =				GameInfo.UnitPromotions.PROMOTION_MODERN_FIGHTER.ID
 PROMOTION_SORTIE =						GameInfo.UnitPromotions.PROMOTION_SORTIE.ID
-PROMOTION_FULL_PENALTY =				GameInfo.UnitPromotions.PROMOTION_FULL_PENALTY.ID
+PROMOTION_AIR_RECON =					GameInfo.UnitPromotions.PROMOTION_AIR_RECON.ID
+FIRST_STRIKE_RANGE_BONUS =				GameInfo.UnitPromotions.PROMOTION_FIRST_STRIKE_RANGE_BONUS.ID
+PROMOTION_ARTILLERY =					GameInfo.UnitPromotions.PROMOTION_ARTILLERY.ID
+PROMOTION_FIELD_GUN =					GameInfo.UnitPromotions.PROMOTION_FIELD_GUN.ID
+PROMOTION_FORTIFIED_GUN =				GameInfo.UnitPromotions.PROMOTION_FORTIFIED_GUN.ID
+PROMOTION_LIGHT_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID
+PROMOTION_TANK_DESTROYER =				GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID
+PROMOTION_HEAVY_TANK_DESTROYER =		GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID
+PROMOTION_MOBILE_ARTILLERY =			GameInfo.UnitPromotions.PROMOTION_MOBILE_ARTILLERY.ID
+
+
+----------------------------------------------------------------------------------------------------------------------------
+-- R.E.D. Rules
+----------------------------------------------------------------------------------------------------------------------------
+include ("RedDefinesRules") -- Big file edition is too slow with ModBuddy...
+
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Units

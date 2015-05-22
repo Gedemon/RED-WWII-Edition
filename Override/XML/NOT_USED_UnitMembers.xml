@@ -32,7 +32,7 @@
 		<MaterialTypeTag>METAL</MaterialTypeTag>
 		<MaterialTypeSoundOverrideTag>METALSM</MaterialTypeSoundOverrideTag>
 	</UnitMemberArtInfo>
-	<!-- UNIT_ANTI_TANK_GUN ************************************************ -->
+	<!-- UNIT_FIELD_GUN ************************************************ -->
 	<UnitMemberArtInfo>
 		<Type>ART_DEF_UNIT_MEMBER_ANTITANKGUN</Type>
 		<fScale>0.09</fScale>

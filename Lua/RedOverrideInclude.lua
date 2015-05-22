@@ -12,7 +12,7 @@ include ("RedFunctions")
 include ("RedDiplomacy")
 include ("RedUnitUtils")
 include ("RedUnitFunctions")
-include ("RedReinforcements")
+include ("RedResources")
 include ("RedScenarioDefine")
 
 --------------------------------------------------------------

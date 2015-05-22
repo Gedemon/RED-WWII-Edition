@@ -131,16 +131,7 @@ function AreSameSide( player1ID, player2ID)
 
 	if not player:IsMinorCiv() and not player2:IsMinorCiv() then	
 		Dprint ("Both are major...", bDebug )
-		if ( civ1ID == GERMANY and civ2ID == USSR ) then -- todo : not safe for scenario specific cases, but needed...
-			if not team:IsAtWar( player2:GetTeam() ) then
-				return true
-			end
-		end
-		if ( civ1ID ==  USSR and civ2ID == GERMANY) then
-			if not team:IsAtWar( player2:GetTeam() ) then
-				return true
-			end
-		end
+
 		if ( g_Allied[civ1ID] and g_Allied[civ2ID] ) then
 			if not team:IsAtWar( player2:GetTeam() ) then
 				return true
@@ -269,6 +260,16 @@ function IsNeutral(playerID)
 		end
 	end
 	return true	
+end
+
+function IsAllied(playerID)
+	local civID = GetCivIDFromPlayerID(playerID)
+	return g_Allied[civID]
+end
+
+function IsAxis(playerID)
+	local civID = GetCivIDFromPlayerID(playerID)
+	return g_Axis[civID]
 end
 
 
@@ -509,6 +510,11 @@ end
 function WarConsequences( iTeam1, iTeam2, bWar ) -- Check for declaration of war consequences...
 
 	local bDebug = false
+
+	if PERMANENT_WAR_DECLARATION then	
+		Teams[iTeam1]:SetPermanentWarPeace( iTeam2, true)
+		Teams[iTeam2]:SetPermanentWarPeace( iTeam1, true)
+	end
 
 	if (bWar) then
 		local minorCiv = GetMinorFromTeam(iTeam1)
@@ -801,15 +807,6 @@ function OpenBorders(playerID)
 	Dprint("Opening Borders of " .. tostring(Players[playerID]:GetName()), bDebug)
 	local team = Teams[Players[playerID]:GetTeam()]
 	team:SetClosedBorder(false)
-	--[[
-	local map = LoadTerritoryMap()
-	for key, data in pairs ( map ) do
-		local plot = GetPlotFromKey(key)
-		if (data.PlayerID == playerID) and (data.FeatureType ~= plot:GetFeatureType()) then			
-			plot:SetFeatureType(data.FeatureType)
-		end
-	end
-	--]]
 end
 
 function InitializeClosedBorders()

@@ -397,7 +397,7 @@ function RefreshCityBanner(cityBanner, iActiveTeam, iActivePlayer)
 		-- This is another player's banner instance
 		if( controls.MinorIndicator and controls.StatusIcon ) then
 		
-			controls.StatusIcon:SetColor( textColor );
+			--controls.StatusIcon:SetColor( textColor ); -- RED use colored flag
 			local civType = player:GetCivilizationType();
 			local civInfo = GameInfo.Civilizations[civType];
 
@@ -568,6 +568,14 @@ end
 -- On City Created
 -------------------------------------------------
 function OnCityCreated( hexPos, playerID, cityID, cultureType, eraType, continent, populationSize, size, fowState )
+
+	--[[ RED <<<<<
+	print (tostring(cityID))
+	if not cityID or cityID < 1 then 
+		return
+	end
+	-- RED >>>>> --]]
+
 	local controlTable = {};
 	local svStrikeButton = {};
 	

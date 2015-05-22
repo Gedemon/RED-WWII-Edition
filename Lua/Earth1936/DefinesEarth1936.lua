@@ -126,7 +126,7 @@ g_Major_Units = {
 	[FRANCE] = {
 		FR_INFANTRY, FR_LEGION,
 		FR_R35, FR_R40, FR_H35, FR_H39,
-		FR_S35, FR_B1, FR_ARL_44,
+		FR_S35, FR_B1, FR_ARL44,
 		FR_MB152, FR_D520, FR_POTEZ630,
 		FR_LN401, FR_AMIOT350,
 		FR_FANTASQUE, FR_GALISSONIERE, FR_SUBMARINE, FR_BATTLESHIP, FR_BATTLESHIP_2,
@@ -154,7 +154,7 @@ g_Major_Units = {
 		GE_PANZER_II, GE_PANZER_II_L,
 		GE_PANZER_III, GE_PANZER_III_J, GE_PANZER_IV, GE_PANZER_IV_G, GE_PANZER_IV_H, GE_PANZER_V,
 		GE_PANZER_VI,
-		GE_BF109, GE_BF109_F, GE_BF109_G, GE_FW190, GE_BF110, GE_BF110_F4, GE_JU88C, GE_HE219,
+		GE_BF109, GE_BF109_F, GE_BF109_G, GE_FW190, GE_BF110, GE_BF110_F4, GE_JU88_C, GE_HE219,
 		GE_JU87, GE_JU88, GE_HE111, GE_HE177,
 		GE_DESTROYER, GE_SUBMARINE, GE_LEIPZIG, GE_DEUTSCHLAND, GE_BATTLESHIP, GE_BATTLESHIP_2,
 		ARTILLERY},
@@ -168,7 +168,7 @@ g_Major_Units = {
 	[AMERICA] = {
 		US_INFANTRY,
 		US_M3STUART, US_M5STUART,
-		US_M3_GRANT, US_SHERMAN, US_SHERMAN_IIA, US_SHERMAN_III, US_SHERMAN_IIIA, US_SHERMAN_IV, US_SHERMAN_JUMBO, US_SHERMAN_EASYEIGHT, US_M26_PERSHING,
+		US_M3GRANT, US_SHERMAN, US_SHERMAN_IIA, US_SHERMAN_III, US_SHERMAN_IIIA, US_SHERMAN_IV, US_SHERMAN_JUMBO, US_SHERMAN_EASYEIGHT, US_M26_PERSHING,
 		US_P36, US_P40, US_P51, US_P38,
 		US_B17, US_B25, US_B24, 
 		US_SUBMARINE, US_BATTLESHIP_2, US_FLETCHER, US_BALTIMORE, US_BATTLESHIP, US_CARRIER, 
@@ -176,7 +176,7 @@ g_Major_Units = {
 	[JAPAN] = {
 		JP_INFANTRY,
 		JP_TYPE97_SHINHORO, JP_TYPE1, JP_TYPE3, JP_TYPE4, TYPE4_CHI_TO, JP_TYPE5,
-		JP_ZERO,
+		JP_A6M2,
 		JP_AICHI, JP_KI21,
 		JP_SUBMARINE, JP_BATTLESHIP_2, JP_KAGERO, JP_TAKAO, JP_BATTLESHIP, JP_CARRIER,
 		ARTILLERY},
@@ -214,11 +214,11 @@ g_UnitMaxInstance = {
 -- unit type called when AI need reserve troops
 g_Reserve_Unit = {
 	[FRANCE] = { {Prob = 50, ID = FR_INFANTRY}, {Prob = 10, ID = FR_AMR35}, {Prob = 10, ID = FR_FCM36}, {Prob = 5, ID = FR_AMC35}, {Prob = 5, ID = FR_CHAR_D1}, {Prob = 5, ID = FR_CHAR_D2}, },
-	[ENGLAND] = { {Prob = 50, ID = UK_INFANTRY}, {Prob = 20, ID = UK_VICKERS_MK6B}, {Prob = 10, ID = UK_TETRARCH}, {Prob = 5, ID = US_M3_GRANT},  },
+	[ENGLAND] = { {Prob = 50, ID = UK_INFANTRY}, {Prob = 20, ID = UK_VICKERS_MK6B}, {Prob = 10, ID = UK_TETRARCH}, {Prob = 5, ID = US_M3GRANT},  },
 	[USSR] = { {Prob = 50, ID = RU_INFANTRY}, {Prob = 20, ID = RU_T26}, {Prob = 15, ID = RU_T28},  },
 	[GERMANY] = { {Prob = 50, ID = GE_INFANTRY}, {Prob = 20, ID = GE_PANZER_I}, {Prob = 15, ID = GE_PANZER_35},  },
 	[ITALY] = { {Prob = 50, ID = IT_INFANTRY}, {Prob = 20, ID = IT_L6_40}, {Prob = 15, ID = IT_M11_39},  },
-	[AMERICA] = { {Prob = 50, ID = US_INFANTRY}, {Prob = 25, ID = US_M3STUART}, {Prob = 10, ID = US_M3_GRANT},  },
+	[AMERICA] = { {Prob = 50, ID = US_INFANTRY}, {Prob = 25, ID = US_M3STUART}, {Prob = 10, ID = US_M3GRANT},  },
 	[JAPAN] = { {Prob = 75, ID = JP_INFANTRY}, {Prob = 25, ID = JP_TYPE97_SHINHORO}},
 	[CHINA] = { {Prob = 75, ID = JP_INFANTRY}, {Prob = 15, ID = US_M3STUART}, {Prob = 10, ID = CH_T26B},  },
 }
@@ -290,9 +290,9 @@ g_Initial_OOB = {
 	{Name = "American Suez Fleet", X = 149, Y = 38, Domain = "Sea", CivID = AMERICA, Group = {US_SUBMARINE, US_SUBMARINE} },
 -- Imperial Japanese Navy and Air Force
 	{Name = "Japanese Manchurian Army", X = 54, Y = 19, Domain = "Land", AI = true, CivID = JAPAN, Group = {JP_INFANTRY, JP_INFANTRY, JP_INFANTRY, JP_INFANTRY} },
-	{Name = "Japanese Air", X = 97, Y = 58, Domain = "Air", CivID = JAPAN, Group = {JP_ZERO, JP_ZERO, JP_ZERO} },
-	{Name = "Japanese Korea Air", X = 86, Y = 67, Domain = "Air", CivID = JAPAN, Group = {JP_ZERO, JP_AICHI, JP_KI21} },
-	{Name = "Japanese Air AI Bonus", X = 88, Y = 49, Domain = "Air", AI = true,CivID = JAPAN, Group = {JP_ZERO, JP_AICHI, JP_KI21} },
+	{Name = "Japanese Air", X = 97, Y = 58, Domain = "Air", CivID = JAPAN, Group = {JP_A6M2, JP_A6M2, JP_A6M2} },
+	{Name = "Japanese Korea Air", X = 86, Y = 67, Domain = "Air", CivID = JAPAN, Group = {JP_A6M2, JP_AICHI, JP_KI21} },
+	{Name = "Japanese Air AI Bonus", X = 88, Y = 49, Domain = "Air", AI = true,CivID = JAPAN, Group = {JP_A6M2, JP_AICHI, JP_KI21} },
 	{Name = "Japanese Western fleet", X = 93, Y = 53, Domain = "Sea", CivID = JAPAN, Group = {JP_SUBMARINE, JP_BATTLESHIP_2, JP_KAGERO, JP_TAKAO, JP_BATTLESHIP, JP_KAGERO, JP_KAGERO,} },
 	{Name = "Japanese Eastern Fleet", X = 103, Y = 45, Domain = "Sea", CivID = JAPAN, Group = {JP_SUBMARINE, JP_TAKAO, JP_BATTLESHIP, JP_KAGERO, JP_KAGERO, JP_CARRIER, JP_CARRIER} },
 -- Chinese Navy and Air Force

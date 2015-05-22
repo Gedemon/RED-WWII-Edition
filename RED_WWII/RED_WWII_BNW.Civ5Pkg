@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Civ5Package>
+	<GUID>{e94d025b-f519-41a2-9aa9-f2e1e9c640f7}</GUID>
+	<Version>1</Version>
+	<Priority>250</Priority>
+	<PTags>
+		<Tag>Version</Tag>
+	</PTags>
+	<Name>
+		<Value language="en_US">RED WWII Hackfix</Value>
+	</Name>
+	<Description>
+		<Value language="en_US">RED WWII Hackfix</Value>
+	</Description>
+
+	<UISkin name="Expansion2Primary" set="Expansion2" platform="Common">
+		<Skin>
+			<Directory>Mods</Directory>
+		</Skin>
+	</UISkin>
+
+</Civ5Package>

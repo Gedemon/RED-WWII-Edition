@@ -1,0 +1,2597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+
+	<!-- ++++++++++++++++++++ -->
+	<!-- +  REPLACED TEXTS  + -->
+	<!-- ++++++++++++++++++++ -->
+	<Language_FR_FR>		
+		
+		<Replace Tag="TXT_KEY_BEGIN_GAME_BUTTON">
+			<Text>Commencer la Guerre...</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BEGIN_GAME_BUTTON_CONTINUE">
+			<Text>Continuer la Guerre...</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_POP_WONDERS">
+			<Text>PROJETS</Text>
+		</Replace>
+		
+		<Replace Tag="TXT_KEY_PROCESS_WEALTH_HELP">
+			<Text>[COLOR_POSITIVE_TEXT]La richesse[ENDCOLOR] convertit 50% de la [ICON_PRODUCTION] Production de cette ville en [ICON_GOLD] Or.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_IMPROVEMENT_TRADING_POST">
+			<Text>Zone Urbaine</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_UNIT_SUPPLY_REACHED_TOOLTIP">
+			<Text>Votre nation peut ravitailler {1_Num} Unités.[NEWLINE]Vous avez dépassé cette limite de {2_Num}[NEWLINE][COLOR_WARNING_TEXT] {3_Num}%[ICON_PRODUCTION] Production dans vos villes.[ENDCOLOR][NEWLINE][ICON_BULLET] Ravitaillement par les villes = {4_Num} unités.[NEWLINE][ICON_BULLET] Ravitaillement par la population = {5_Num} unités.[NEWLINE][ICON_BULLET] Ravitaillement de base = {6_Num} unités.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_SUPPLY_REACHED">
+			<Text>[COLOR_WARNING_TEXT]Limite de ravitaillement atteinte ! {1_Num}%[ICON_PRODUCTION][ENDCOLOR]</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_PRODMOD_UNIT_SUPPLY">
+			<Text>[NEWLINE][ICON_BULLET]Modificateur par ravitaillement : {1_Num}%</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_CITYVIEW_CITIZENS_TEXT">
+			<Text>Taille de la Ville: {1_NumCitizens}</Text>
+		</Replace>
+		
+		<Replace Tag="TXT_KEY_FOOD_HELP_INFO">
+			<Text>[ICON_FOOD] La nourriture détermine le nombre de soldats que votre armée peut contenir. Plus votre nation produit de la nourriture, plus votre réserve de personnel sera grande.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_GOLD_HELP_INFO">
+			<Text>[ICON_GOLD] L'Or est stockée dans la trésor national. Il peut servir à acheter des objets dans les Villes, maintenir votre infrastructure, et servir de levier pour la diplomatie.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_TP_GOLD_EXPLANATION">
+			<Text>Avec [ICON_GOLD] l'Or vous pouvez payer des unités et des bâtiments dans vos villes, maintenir votre infrastructure, et l'utiliser comme levier dans la diplomatie.</Text>
+		</Replace>
+	</Language_FR_FR>
+
+	<!-- ++++++++++++++++++++++++++ -->
+	<!-- +  DAMAGE NOTIFICATIONS  + -->
+	<!-- ++++++++++++++++++++++++++ -->
+	<Language_FR_FR>			
+		
+		<!-- Damage Text -->
+
+		<Update>
+			<!-- todo : Deactivate by adding fake argument {@5_UnitName} if we want a total override and retreat on 1 line only -->
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_WITHDRAW" />
+			<Set Text="Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) a attaqué un {@3_EnUName} ennemi ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<!-- Deactivate (fake argument {@x_UnitName} added)-->
+		<Update>
+			<Where Tag="TXT_KEY_MISC_ENEMY_AIR_UNIT_DESTROYED" />
+			<Set Text="Grâce à l'interception de votre {@1_UnitName}, le {@3_EnUName} {@2_owner_adjective} attaquant votre {@4_DefUnitName} a été abattu!{@5_UnitName}"/>
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_ENEMY_AIR_UNIT_INTERCEPTED" />
+			<Set Text="Grâce à l'interception de votre {@1_UnitName}, nous avons endommagé le {@3_EnUName} {@2_owner_adjective} ({4_Num} dégâts) attaquant votre {@5_DefUnitName}.{@6_UnitName}" />
+		</Update>
+		
+		<Row Tag="TXT_KEY_MISC_YOU_UNIT_WITHDRAW_RED">
+			<!-- Replacement -->
+			<Text>"Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) a attaqué un  {@3_EnUName} ennemi ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!"</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_YOU_UNIT_ESCAPED_FROM_CITY">
+			<Text>Votre {@1_UnitName} s'est replié(e) de {@2_CityName} avec [COLOR_NEGATIVE_TEXT]{3_Num}[ENDCOLOR] dégâts!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_ENEMY_UNIT_ESCAPED_FROM_CITY">
+			<Text>Un {@1_UnitName} ennemi s'est replié(e) {@2_CityName} avec [COLOR_POSITIVE_TEXT]{3_Num}[ENDCOLOR] dégâts!</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_YOU_UNIT_EXTRA_DAMAGE_NO_RETREAT">
+			<Text>Votre {@1_UnitName} a été mis(e) en déroute mais n'avait pas de postion de repli ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts supplémentaires!)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_YOU_GIVE_EXTRA_DAMAGE_NO_RETREAT">
+			<Text>Un(e) {@1_UnitName} ennemi(e) a été mis(e) en déroute mais n'avait pas de postion de repli ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] dégâts supplémentaires!)</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_RETREAT">
+			<Text>Votre {@1_UnitName} a forcé l'ennemi {@2_EnUName} à[COLOR_POSITIVE_TEXT]battre en retraite[ENDCOLOR]!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_RETREAT_FULL">
+			<Text>Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) à forcé un {@3_EnUName} ennemi ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] dégâts) à [COLOR_POSITIVE_TEXT]battre en retraite[ENDCOLOR] !</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MISC_YOU_RETREAT">
+			<Text>Un(e) {@1_UnitName} ennemi(e) a forcé votre {@2_EnUName} à [COLOR_NEGATIVE_TEXT]battre en retraite[ENDCOLOR]!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOU_RETREAT_FULL">
+			<Text>Un(e) {@1_UnitName} ennemi(e) ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) a forcé votre {@3_EnUName} ([COLOR_NEGATIVE_TEXT]{4_Num}[ENDCOLOR] dégâts) à [COLOR_NEGATIVE_TEXT]battre en retraite[ENDCOLOR] !</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_BY_RANGED">
+			<Text>Votre {@1_UnitName} a bombardé un(e) {@2_EnUName} ennemi(e)! ([COLOR_POSITIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_UNKNOWN_CITY_BY_RANGED">
+			<Text>Votre {@1_UnitName} a bombardé une ville ennemie! ([COLOR_POSITIVE_TEXT]{2_Damage}[ENDCOLOR] dégâts)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_CITY_BY_RANGED">
+			<Text>Votre {@1_UnitName} a attaqué la ville de {@2_EnUName}! ([COLOR_POSITIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MISC_YOU_ARE_ATTACKED_BY_RANGED">
+			<Text>Un(e) {@1_UnitName} ennemi(e) a bombardé votre {@2_EnUName}! ([COLOR_NEGATIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOUR_UNKNOWN_CITY_ATTACKED_BY_RANGED">
+			<Text>Un(e) {@1_UnitName} a bombardé une de vos villes! ([COLOR_NEGATIVE_TEXT]{2_Damage}[ENDCOLOR] dégâts)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOUR_CITY_ATTACKED_BY_RANGED">
+			<Text>Un(e) {@1_UnitName} ennemi(e) a bombardé la ville de {@2_EnUName}! ([COLOR_NEGATIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MISC_YOU_RECEIVE_COUNTER_FIRE">
+			<Text>Votre {@1_UnitName} a subi un [COLOR_NEGATIVE_TEXT]Tir de Contre-Batterie[ENDCOLOR] d'un {@2_EnUName} ennemi!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOU_USE_COUNTER_FIRE">
+			<Text>Votre {@1_UnitName} a pu effectué un [COLOR_POSITIVE_TEXT]Tir de Contre-Batterie[ENDCOLOR] sur un(e) {@2_EnUName} ennemi(e)!</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MISC_YOU_GET_OFFENSIVE_SUPPORT">
+			<Text>Votre {@1_UnitName} a pu fournir un [COLOR_POSITIVE_TEXT]Tir de Préparation[ENDCOLOR] pour l'attaque de votre {@2_EnUName}!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_ENEMY_GET_OFFENSIVE_SUPPORT">
+			<Text>Un(e) {@1_UnitName} ennemi(e) a pu fournir un [COLOR_NEGATIVE_TEXT]Tir de Préparation [ENDCOLOR] pour l'attaque de son {@2_EnUName}!</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_MISC_ENEMY_GET_DEFENSIVE_SUPPORT">
+			<Text>Un(e) {@1_UnitName} ennemi(e) a pu effectuer un [COLOR_NEGATIVE_TEXT]Tir de Contre-Batterie[ENDCOLOR] contre l'attaque de votre {@2_EnUName}!</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MISC_YOU_GET_DEFENSIVE_SUPPORT">
+			<Text>Votre {@1_UnitName} a pu effectuer un [COLOR_POSITIVE_TEXT]Tir de Contre-Batterie[ENDCOLOR] contre l'attaque d'un(e) {@2_EnUName} ennemi(e)!</Text>
+		</Row>
+		
+		<Replace Tag="TXT_KEY_MISC_YOU_ATTACK_BY_AIR">
+			<Text>Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts) a bombardé un {@2_EnUName} ennemi ([COLOR_POSITIVE_TEXT]{4_Damage}[ENDCOLOR] dégâts)!</Text>
+		</Replace>
+
+		<Row Tag="TXT_KEY_MISC_YOU_ATTACK_CITY_BY_AIR">
+			<Text>Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)a bombardé la ville de {@2_EnUName} ([COLOR_POSITIVE_TEXT]{4_Damage}[ENDCOLOR] dégâts)!</Text>
+		</Row>
+
+		<Replace Tag="TXT_KEY_MISC_YOUR_CITY_ATTACKED_BY_AIR">
+			<Text>La ville de {@2_EnUName} ([COLOR_NEGATIVE_TEXT]{4_Damage}[ENDCOLOR] dégâts) a été bombardée par un {@1_UnitName} ennemi ([COLOR_POSITIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)!</Text>
+		</Replace>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_ARE_ATTACKED_BY_AIR" />
+			<Set Text="Votre {@2_UnitName} ([COLOR_NEGATIVE_TEXT]{4_Num}[ENDCOLOR] dégâts) a été bombardé(e) par un {@1_EnUName} ennemi ([COLOR_POSITIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)!" />
+		</Update>
+		
+		<!-- Damage Text From Thalassicus CiVUP-->
+
+		<Update>
+			<Where Tag="TXT_KEY_MISC_ENEMY_UNIT_WITHDRAW" />
+			<Set Text="Un(e) {@1_EnUName} ennemi(e) ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) a attaqué votre {@3_UnitName} ([COLOR_NEGATIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_ENEMY_UNIT_WITHDRAW_CITY" />
+			<Set Text="Un(e) {@1_EnUName} ennemi(e) ([COLOR_POSITIVE_TEXT]{2_Num}[ENDCOLOR] a attaqué la ville de {@3_CityName} ([COLOR_NEGATIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_AIR_UNIT_HURT" />
+			<Set Text="Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts) a été [COLOR_NEGATIVE_TEXT]intercepté[ENDCOLOR] par un {@2_EnUName} ennemi!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_HURT_ENEMY_AIR" />
+			<Set Text="Votre {@2_UnitName} a intercepté un  {@1_UnitName} ennemi! ([COLOR_POSITIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)" />
+		</Update>
+		
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_ARE_ATTACKED_BY_AIR_AND_DEATH" />
+			<Set Text="Votre {@1_UnitName} a été [COLOR_NEGATIVE_TEXT]détruit(e)[ENDCOLOR] après avoir été bombardé par un {@2_EnUName} ennemi!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_ATTACK_BY_AIR_AND_DEATH" />
+			<Set Text="Votre {@1_UnitName} a bombardé un(e)  {@2_EnUName} ennemi(e) et l'[COLOR_POSITIVE_TEXT]a vaincu(e)[ENDCOLOR]!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_CITY_WAS_CAPTURED" />
+			<Set Text="Malgré s'être défendue, la ville de {@1_CityName} a été [COLOR_NEGATIVE_TEXT]capturée[ENDCOLOR] par la {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@3_owner_adjective}} {@2_EnUName} ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] damage)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_DEFENSES_REDUCED_TO" />
+			<Set Text="Les défenses de {@1_CityName} ont été réduites de [COLOR_NEGATIVE_TEXT]{2_Num}%[ENDCOLOR] par la {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {3_UnitName}}!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT" />
+			<Set Text="En se défendant, votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) [COLOR_POSITIVE_TEXT]a tué[ENDCOLOR] la {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@4_owner_adjective}} {@3_EnUName}!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_KILLED_ENEMY_UNIT_CITY" />
+			<Set Text="En se défendant, la ville de {@1_CityName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) [COLOR_POSITIVE_TEXT]a tué[ENDCOLOR] la {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@4_owner_adjective}} {3_EnUName}!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_REDUCE_CITY_DEFENSES" />
+			<Set Text="Votre {@1_UnitName} a réduit les défenses de {@2_CityName} de [COLOR_POSITIVE_TEXT]{3_NewVal}%[ENDCOLOR]!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_SHOT_DOWN_ENEMY" />
+			<Set Text="Votre {@1_UnitName} a été [COLOR_POSITIVE_TEXT]abattu[ENDCOLOR] {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {3_owner_civ}} {@2_EnUName}!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_CAPTURED_ENEMY_CITY" />
+			<Set Text="Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) [COLOR_POSITIVE_TEXT]a capturé[ENDCOLOR] la ville de {@3_CityName}!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_DESTROYED_ENEMY" />
+			<Set Text="Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) [COLOR_POSITIVE_TEXT]a vaincu[ENDCOLOR] un(e) {@3_UnitName} ennemi(e)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_DIED_ATTACKING" />
+			<Set Text="Votre {@1_UnitName} [COLOR_NEGATIVE_TEXT]est mort(e)[ENDCOLOR] en attaquant un(e)  {@2_EnUName} ennemi(e) ([COLOR_POSITIVE_TEXT]{3_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_DIED_ATTACKING_CITY" />
+			<Set Text="Votre {@1_UnitName} [COLOR_NEGATIVE_TEXT]est mort(e)[ENDCOLOR] en attaquant la ville de {@2_EnUName} ([COLOR_POSITIVE_TEXT]{3_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_SHOT_DOWN" />
+			<Set Text="Votre {@1_UnitName} a été [COLOR_NEGATIVE_TEXT]abattu[ENDCOLOR] par un{@2_EnUName} ennemi!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_SURRENDER" />
+			<Set Text="Votre {@1_EnUName} [COLOR_NEGATIVE_TEXT]s'est rendu(e)[ENDCOLOR] à la {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@2_Adjective}} {@3_UnitName}!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_WAS_DESTROYED" />
+			<Set Text="En se défendant, Votre {@1_UnitName} a été [COLOR_NEGATIVE_TEXT]détruit(e)[ENDCOLOR] par la {TXT_KEY_GRAMMAR_A_AN &lt;&lt; {@3_owner_adjective}} {@2_EnUName} ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_WAS_DESTROYED_UNKNOWN" />
+			<Set Text="En se défendant, votre {@1_UnitName} a été [COLOR_NEGATIVE_TEXT]détruit(e)[ENDCOLOR] par un {@2_EnUName} dissimulé ([COLOR_POSITIVE_TEXT]{3_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_WAS_DESTROYED_ATTRITION" />
+			<Set Text="Votre {@1_UnitName} a été [COLOR_NEGATIVE_TEXT]détruit(e)[ENDCOLOR] du fait de l'attrition!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_WITHDRAW" />
+			<Set Text="Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) a attaqué un(e) {@3_EnUName} ennemi(e) ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOU_UNIT_WITHDRAW_CITY" />
+			<Set Text="Votre {@1_UnitName} ([COLOR_NEGATIVE_TEXT]{2_Num}[ENDCOLOR] dégâts) a attaqué la ville de {@3_CityName} ([COLOR_POSITIVE_TEXT]{4_Num}[ENDCOLOR] dégâts)!" />
+		</Update>
+		<Update>
+			<Where Tag="TXT_KEY_MISC_YOUR_CITY_RANGE_ATTACK" />
+			<Set Text="{@1_Name} a bombardé un(e) {@2_EnUName} ennemi(e)! ([COLOR_POSITIVE_TEXT]{3_Damage}[ENDCOLOR] dégâts)" />
+		</Update>
+	</Language_FR_FR>
+
+	<!-- ++++++++++++++ -->
+	<!-- +  UI TEXTS  + -->
+	<!-- ++++++++++++++ -->
+	<Language_FR_FR>
+			
+		<!-- Flag Promotion Mod -->
+		<Row Tag="TXT_KEY_MAP_OPTIONS_HIDE_UNIT_ICON">
+			<Text>Icônes d'Unités</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MAP_OPTIONS_HIDE_UNIT_ICON_TT">
+			<Text>Afficher les icônes d'unités</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOGGLE_FLAG_PROMOTIONS">
+			<Text>Promotions d'Unités</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TOGGLE_FLAG_PROMOTIONS_TT">
+			<Text>Afficher les Promotions d'Unités (max. 9) près de l'icône de l'unité.[NEWLINE] Un clique-droit ouvre le menu des options</Text>
+		</Row>
+		
+		<!-- CsebMod - Extended Plot MouseOver Popup -->
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_IMPROVEMENTS_REQUIRED_FOR_RESOURCE">
+			<Text>(Avec {1})</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_IMPROVEMENT_UNDER_CONSTRUCTION">
+			<Text>[COLOR_YELLOW]{1}[ENDCOLOR] ([COLOR_POSITIVE_TEXT]{2} tours[ENDCOLOR])</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_LABEL_DEFENSE">
+			<Text>Défense</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_LABEL_DEFENSE_BLOCK_SIMPLE">
+			<Text>[COLOR_POSITIVE_TEXT]Defense Mod[ENDCOLOR] : {1}%</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_LABEL_YIELDS_ACTUAL">
+			<Text>[COLOR_POSITIVE_TEXT]Rendements[ENDCOLOR] : {1}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_LABEL_YIELDS_WITHOUTFEATURE">
+			<Text>[COLOR_YELLOW]Sans {1}[ENDCOLOR] : {2}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_LABEL_YIELDS_WITHIMPROVEMENT">
+			<Text>[COLOR_YELLOW]Avec {1}[ENDCOLOR] : {2}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CSB_PLOTROLL_HELP_PRESS_FOR_MORE">
+			<Text>[COLOR_GREY](Appuyer sur ALT pour plus)[ENDCOLOR]</Text>
+		</Row>
+		
+		<!-- Hover Info by Adam Watkins -->
+		<Row Tag="TXT_KEY_HOVERINFO_MOVES">
+			<Text>{1_num}[ICON_MOVES]</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOVERINFO_EXPERIENCE">
+			<Text>{1_num}/{2_num}XP</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOVERINFO_HEALTH">
+			<Text>[COLOR_NEGATIVE_TEXT]{1_num}PV[ENDCOLOR]</Text>
+		</Row>
+		<!-- R.E.D. extension -->
+		<Row Tag="TXT_KEY_HOVERINFO_FORTIFIED">
+			<Text>bonus de retranchement : [COLOR_POSITIVE_TEXT]+{1_num} %[ENDCOLOR] ( {2_num} tour(s) nécessaire(s) pour le max)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOVERINFO_RANGE_STRIKE">
+			<Text>Portée:{1_num}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOVERINFO_REINFORCEMENT">
+			<Text>Renforts par point de dégât:[NEWLINE]{1_num} [ICON_MATERIEL] Matériel[NEWLINE]{2_num} [ICON_PERSONNEL] Personnel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOVERINFO_REQUIRED_REINFORCEMENT">
+			<Text>Renforts requis :[NEWLINE]{2_num} [ICON_MATERIEL] Matériel ({1_num}/dégât)[NEWLINE]{4_num} [ICON_PERSONNEL] Personnel ({3_num}/dégât)</Text>
+		</Row>
+
+
+		<!-- Processes -->
+
+		<Row Tag="TXT_KEY_PROCESS_RECRUITING">
+			<Text>Votre Nation a besoin de VOUS !</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROCESS_RECRUITING_HELP">
+			<Text>Recrute du personnel pour les renforts dans cette ville. Le nombre de recrues par tour dépend de la taille de la ville et de la [ICON_FOOD] croissance.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROCESS_WAR_BONDS">
+			<Text>Acheter les Bonds de Guerre !</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROCESS_WAR_BONDS_HELP">
+			<Text>Convertit 75% de l' [ICON_GOLD] or et de la [ICON_PRODUCTION] production en matériel pour les renforts.</Text>
+		</Row>
+
+		<!-- WWII UI -->
+
+		<Row Tag="TXT_KEY_NUMBER_TEXT">
+			<Text>{1_Num:number "#.##"}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NUMBER_PERTURN_TEXT">
+			<Text>+{1_perTurn:number "#.##"}</Text>
+		</Row>
+		<Row Tag="TXT_KEY_NUMBER_PERTURN_TEXT_NEGATIVE">
+			<Text>[COLOR_WARNING_TEXT]{1_perTurn:number "#.##"}[ENDCOLOR]</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_CITY_POPULATION"  >
+			<Text>Population de la Ville = {1_Num} [ICON_CITIZEN]</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_TP_SCENARIO_GPT">
+			<Text>{1_Num} venant des paramètres de scénario.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PRODUCTION_MATERIEL">
+			<Text>[ICON_MATERIEL] Matériel: {1_Num} pour 1 dégât.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PRODUCTION_PERSONNEL">
+			<Text>[ICON_PERSONNEL] Personnel: {1_Num} pour 1 dégât.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_MATERIEL">
+			<Text>Matériel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_HELP_INFO">
+			<Text>[ICON_MATERIEL] Le Matériel est nécessaire pour renforcer vos unités après qu'elles aient été endommagées en combat. En fonction du type d'unité, plus ou moins de matériel sera nécessaire.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_PRODUCTION">
+			<Text>{1_Num} [ICON_MATERIEL] grâce à la production des villes</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_FACTORY">
+			<Text>{1_Num} [ICON_MATERIEL] grâce aux usines</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_HARBOR">
+			<Text>{1_Num} [ICON_MATERIEL] grâce aux ports (importations)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_MATERIEL_FROM_WAR_BONDS">
+			<Text>{1_Num} [ICON_MATERIEL] grâce aux bonds de guerre</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_PERSONNEL">
+			<Text>Personnel</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_HELP_INFO">
+			<Text>[ICON_PERSONNEL] Le Personnel est nécessaire pour renforcer vos unités après avoir été blessées au combat. En fonction du type d'unité, plus ou moins de personnel sera nécessaire.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_FOOD">
+			<Text>{1_Num} [ICON_PERSONNEL] grâce à la croissance</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_HOSPITAL">
+			<Text>{1_Num} [ICON_PERSONNEL] grâce aux soldats soignés</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_RECRUITING">
+			<Text>{1_Num} [ICON_PERSONNEL] recrutés grâce aux bâtiments</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_WE_NEED_YOU">
+			<Text>{1_Num} [ICON_PERSONNEL] recrutés grâce aux villes</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_PROPAGANDA">
+			<Text>+ {1_Num} % de recrutement grâce à la propagande</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PERSONNEL_FROM_TRAIT">
+			<Text>+ 100 % de recrutement grâce au trait</Text>
+		</Row>
+		<Row Tag="TXT_KEY_REINFORCEMENT_FROM_OCCUPIED">
+			<Text>(avec {1_Num} % de pénalité d'occupation)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_REINFORCEMENT_FROM_RESISTANCE">
+			<Text>(avec {1_Num} % de pénalité de résistance)</Text>
+		</Row>
+		<Row Tag="TXT_KEY_REINFORCEMENT_FROM_CAPTURED">
+			<Text>(avec {1_Num} % de pénalité de capture)</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_SUPPLY_TOOLTIP">
+			<Text>Votre nation peut supporter {1_Num} unités.[NEWLINE]Votre armée est composée de {2_Num} unités.[NEWLINE][ICON_BULLET] Ravitaillement par les villes = {3_Num} unités.[NEWLINE][ICON_BULLET] Ravitaillement par la population = {4_Num} unités.[NEWLINE][ICON_BULLET] Ravitaillement de base = {5_Num} unités.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_SUPPLY">
+			<Text>Le ravitaillement permet {1_Num} unité(s) en plus.</Text>
+		</Row>
+
+		<!-- Impassable Features for closed borders -->
+		<Row Tag="TXT_KEY_FEATURE_CLOSED_BORDER">
+			<Text>Frontières fermées</Text>
+		</Row>
+
+	</Language_FR_FR>
+
+	<!-- +++++++++++++++++++ -->
+	<!-- +  SETUP SCREENS  + -->
+	<!-- +++++++++++++++++++ -->
+	<Language_FR_FR>
+			
+		<!-- setup screen -->
+		<Row Tag="TXT_KEY_RED_MOD_TITLE">
+			<Text>R.E.D. WWII</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_MOD_DESC">
+			<Text>R.E.D. WWII Edition</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RED_SCENARIO_SELECT">
+			<Text>Sélectionner le Scénario</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_MENU_BACK">
+			<Text>Quitter vers le menu des Mods</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_LOADING_SP_GAME">
+			<Text>Charger un Jeu normal</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LOADING_HOTSEAT_GAME">
+			<Text>Charger un Jeu HotSeat</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_RED_HOTSEAT_TITLE">
+			<Text>R.E.D. Hotseat</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_HOTSEAT_DESC">
+			<Text>R.E.D. WWII Hotseat Edition</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOT_SEAT_FIX">
+			<Text>Bienvenue sur R.E.D WWII HotSeat Edition. Cliquer sur le bouton Continuer pour commencer votre partie. Vous pouvez sauvegarder avant chaque tour de chaque joueur, ou depuis le menu du jeu. Pour recharger un jeu hotseat, vous devez utiliser l'écran de chargement hotseat depuis le menu de configuration personnalisé. Bon jeu et reportez les bugs sur civfanatics, merci.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_HOT_SEAT_LOAD">
+			<Text>Bienvenue sur R.E.D WWII HotSeat Edition. Pour commencer votre jeu hotseat, vous devrez manuellement passer l'écran de connexion du "Joueur 1" qui est un joueur factice utilisé pour résoudre un problème avec l'hotseat et le chargement de scénario WB. Vous n'aurez à le faire qu'une fois lors du premier tour du jeu.[NEWLINE][NEWLINE] Vous pourrez sauvegarder avant chaque tour de chaque joueur, ou depuis le menu du jeu. Pour recharger un jeu hotseat, vous devez utiliser l'écran de chargement hotseat depuis le menu de configuration personnalisé.[NEWLINE][NEWLINE]Bon jeu et reportez les bugs sur civfanatics, merci.</Text>
+		</Row>
+		
+		<!-- [WORLD SIZES] Dual: 40*24 = 960 | Tiny 56*36 = 2016 | Small 66*42 = 2772 | Standard 80*52 = 4160 | Large 104*64 = 6656 | Huge 128*80 = 10280 | Giant 180*94 = 16920 -->
+		
+		<Row Tag="TXT_KEY_RED_EURO1940_SCENARIO_TITLE">
+			<Text>Europe 1939-1945</Text>
+		</Row>
+		<!-- Europe map 108*91 = 9828 tiles -> Huge -->
+		<Row Tag="TXT_KEY_RED_EURO1940_SCENARIO_DESC">
+			<Text>
+				Auteur: Gedemon[NEWLINE]Taille: [COLOR_PLAYER_ORANGE_TEXT]Vaste[/COLOR] (min. 4GB RAM)[NEWLINE]Stabilité: [COLOR_GREEN]Stable[/COLOR][NEWLINE][NEWLINE]Prenez le contrôle de la France, du Royaume-Uni, l'U.R.S.S, l'Italie, la Grèce ou l'Allemagne en Europe de 1939 à 1945.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_BRIEFING">
+			<Text>Prenez le contrôle de la France, du Royaume-Uni, l'U.R.S.S, l'Italie, la Grèce ou l'Allemagne en Europe de 1939 à 1945.[NEWLINE][NEWLINE]Le jeu finira quand un camp aura perdu toutes ses villes clés. Voici la liste des objectifs par nation : [NEWLINE][NEWLINE][ICON_BULLET] Royaume-Uni : London, Liverpool, Edinburgh, Newcastle.[NEWLINE][ICON_BULLET] France : Paris, Caen, Bordeaux, Dunkerque.[NEWLINE][ICON_BULLET] U.R.S.S. : Moscow, Stalingrad, Kiev, Leningrad.[NEWLINE][ICON_BULLET] Allemagne : Berlin, Kiel, Bremen, Frankfurt.[NEWLINE][ICON_BULLET] Italie : Rome, Naples, Milan, Bologne.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_GENERIC_CIVILIZATION_BRIEFING">
+			<Text>Prenez le contrôle de la France, du Royaume-Uni, l'U.R.S.S, l'Italie, la Grèce ou l'Allemagne en Europe de 1939 à 1945.[NEWLINE][NEWLINE]Le jeu finira quand un camp aura perdu toutes ses villes clés. Voici la liste des objectifs par nation : [NEWLINE][NEWLINE][ICON_BULLET] Royaume-Uni : London, Liverpool, Edinburgh, Newcastle.[NEWLINE][ICON_BULLET] France : Paris, Caen, Bordeaux, Dunkerque.[NEWLINE][ICON_BULLET] U.R.S.S. : Moscow, Stalingrad, Kiev, Leningrad.[NEWLINE][ICON_BULLET] Allemagne : Berlin, Kiel, Bremen, Frankfurt.[NEWLINE][ICON_BULLET] Italie : Rome, Naples, Milan, Bologne.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_RED_STALINGRAD_SCENARIO_TITLE">
+			<Text>Stalingrad</Text>
+		</Row>
+		<!-- Stalingrad map 50*40 = 9828 tiles -> tiny -->
+		<Row Tag="TXT_KEY_RED_STALINGRAD_SCENARIO_DESC">
+			<Text>Auteur: Gedemon[NEWLINE]Taille: [COLOR_GREEN]Minuscule[/COLOR][NEWLINE]Stabilité: [COLOR_GREEN]Stable[/COLOR][NEWLINE][NEWLINE]Menez les troupes Soviétiques ou Allemandes à la victoire pendant la bataille de Stalingrad, avec des objectifs.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_STALINGRAD_BRIEFING">
+			<Text>Prenez le contrôle des troupes Soviétiques ou Allemandes pendant la bataille de Stalingrad.[NEWLINE][NEWLINE]En tant qu'Allemand vous devez préserver votre 6e Armée, gagnez le contrôle de Stalingrad et gardez vos lignes de ravitaillement de l'ouest et du sud ouvertes.[NEWLINE][NEWLINE]En tant que Soviétique reprenez Stalingrad si vous le perdez, detruisez la 6e Armée Allemande et fermez la tenaille à Kalash en utilisant vos renforts.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_STALINGRAD_GENERIC_CIVILIZATION_BRIEFING">
+			<Text>Prenez le contrôle des troupes Soviétiques ou Allemandes pendant la bataille de Stalingrad.[NEWLINE][NEWLINE]En tant qu'Allemand vous devez préserver votre 6e Armée, gagnez le contrôle de Stalingrad et gardez vos lignes de ravitaillement de l'ouest et du sud ouvertes.[NEWLINE][NEWLINE]En tant que Soviétique reprenez Stalingrad si vous le perdez, detruisez la 6e Armée Allemande et fermez la tenaille à Kalash en utilisant vos renforts.</Text>
+		</Row>
+		
+		<!-- Earth map 180*94 = 16920 tiles -> Giant -->
+		<Row Tag="TXT_KEY_RED_EARTH1942_SCENARIO_DESC">
+			<Text>Auteur: T_KCommanderbly[NEWLINE]Taille: [COLOR_WARNING_TEXT]Géante[/COLOR] (8GB RAM/quad CPU)[NEWLINE]Stabilité: [COLOR_PLAYER_ORANGE_TEXT]Crashes possibles dûs à la taille[/COLOR][NEWLINE][NEWLINE]Choisissez parmi huit nations pendant la Deuxième Guerre Mondiale. Combattez avec les forces de l'Axe et tentez de dominer le monde ou bien combattez avec les Alliés et essayez de le sauver.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EARTH1942_BRIEFING">
+			<Text>Les huit nations suivantes sont dans ces équipes :[NEWLINE][NEWLINE][COLOR_BLUE]Alliés[/COLOR][NEWLINE][ICON_BULLET]Royaume-Uni[NEWLINE][ICON_BULLET]France[NEWLINE][ICON_BULLET]U.R.S.S[NEWLINE][ICON_BULLET]Etats Unis[NEWLINE][ICON_BULLET]Chine Nationaliste[NEWLINE][NEWLINE][COLOR_RED]Axe[/COLOR][NEWLINE][ICON_BULLET]Allemagne[NEWLINE][ICON_BULLET]Italie[NEWLINE][ICON_BULLET]Japon.[NEWLINE][NEWLINE][ICON_BULLET]Note: Si vous êtes un joueur confirmé vous voudrez jouer avec la France, la Chine Nationaliste ou l'Italie. Si vous êtes un nouveau joueur vous voudrez jouer les Etats Unis ou le Royaume-Uni.[NEWLINE][NEWLINE][ICON_BULLET] Autre note: Si vous recherchez beaucoup d'action jouez avec l'Allemagne, le Japon ou l'Union Soviétique.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EARTH1942_SCENARIO_TITLE">
+			<Text>La Terre - Janvier 1942</Text>
+		</Row>
+
+		<!-- America / Europe map 127*91 = 11557 tiles -> Huge -->
+		<Row Tag="TXT_KEY_RED_AMERICAEURO1936_SCENARIO_DESC">
+			<Text>Auteur: T_KCommanderbly[NEWLINE]Taille: [COLOR_PLAYER_ORANGE_TEXT]Vaste[/COLOR] (min. 4GB RAM)[NEWLINE]Stabilité: [COLOR_PLAYER_ORANGE_TEXT]Bêta / Déconseillé[/COLOR][NEWLINE][NEWLINE]Expérimentez une carte combinant la côte Est et l'Europe, formez votre armée et jouez les événements historiques tels qu'ils se sont déroulés lors de la Seconde Guerre Mondiale.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_AMERICAEURO1936_BRIEFING">
+			<Text>Informations supplémentaires pour chaque civilisation: [NEWLINE][NEWLINE][ICON_BULLET][COLOR_CYAN]La France:[/COLOR] entourée d'alliés et de nations mineures amies, la France a vite accès à de puissants chars et une économie forte. Mais la production de la France est plutôt faible et elle est militairement plutôt faible. [ICON_BULLET][NEWLINE][NEWLINE][COLOR_PLAYER_DARK_BLUE]Le Royaume-Uni:[/COLOR] protégé par la Manche, le Royaume-Uni a la plus puissante flotte de départ et une très forte position stratégique dans le monde. Cependant l'économie britannique est en difficulté du fait du Commonwealth et son armée de départ est petite.[NEWLINE][NEWLINE][ICON_BULLET][COLOR_RED]L'U.S.S.R:[/COLOR] la nation la plus étendue, l'Union Soviétique a la plus grande armée et a accès aux meilleurs chars du jeu. Mais les Soviétiques manquent d'une bonne infrastructure et d'une flotte.[NEWLINE][NEWLINE][ICON_BULLET][COLOR_BLUE]Les Etats Unis:[/COLOR] séparés de l'Europe par l'océan Atlantique les USA ont la meilleure production dans le jeu et une économie très forte. Mais les USA ont une petite armée et aviation de départ.[NEWLINE][NEWLINE][ICON_BULLET][COLOR_GREY]L'Allemagne:[/COLOR] une grande puissance militaire, l'Allemagne a la plus puissante armée de terre et la plus puissante aviation du jeu. Mais l'Allemagne est entourée d'ennemis et commence avec un score faible. [NEWLINE][NEWLINE][ICON_BULLET][COLOR_GREEN]L'Italie:[/COLOR] au centre de la carte, l'Italie a une puissante flotte de départ et une bonne position stratégique. Mais L'Italie a une faible économie ainsi qu'une faible production.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_AMERICAEURO1936_SCENARIO_TITLE">
+			<Text>Amérique du Nord / Europe - Juillet 1936</Text>
+		</Row>
+
+		<!-- Earth 1936 map 180*94 = 16920 tiles -> Giant -->
+		<Row Tag="TXT_KEY_RED_EARTH1936_SCENARIO_DESC">
+			<Text>Auteur: T_KCommanderbly[NEWLINE]Taille: [COLOR_WARNING_TEXT]Géante[/COLOR] (8GB RAM/quad CPU)[NEWLINE]Stabilité: [COLOR_WARNING_TEXT]Alpha (version expérimentale)[/COLOR][NEWLINE][NEWLINE]Expérimentez une carte géante de la Terre en 1936, construisez votre économie, votre production et votre armée pendant que des événements historiques se déroulent dans la guerre la plus meurtrière de l'histoire de l'humanité.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EARTH1936_BRIEFING">
+			<Text>Informations de civilisations: [NEWLINE][NEWLINE][COLOR_CYAN]La France:[/COLOR][NEWLINE]	[ICON_CAPITAL]Essayez de tenir à distance les forces de l'Axe jusqu'à ce que l'Union Soviétique entre en guerre (Juin 1941) pour créer deux fronts. Perdre Paris amènera au renversement de votre gouvernement donc gardez le à tout prix.[NEWLINE]	[ICON_GOLD]Vous recevrez des convois en contrôlant l'Indochine et vous recevrez des convois gratuits des Etats Unis.[NEWLINE]	[ICON_STRENGTH]La France a de puissants chars de départ et a accès aux unités de la Légion Etrangère.[NEWLINE][NEWLINE][COLOR_PLAYER_DARK_BLUE]Le Royaume-Uni:[/COLOR][NEWLINE]	[ICON_CAPITAL]Entouré par la mer, il est très important d'établir une domination navale et aérienne. Garder les forces de l'Axe éloignées de Suez est aussi essentiel pour gagner la guerre.[NEWLINE]	[ICON_GOLD] Vous recevrez des convois en contrôlant Hong Kong, Singapore and Bombay, et vous recevrez aussi des convois gratuits des Etats Unis, du Canada et de l'Australie. Garder les voies maritimes ouvertes est essentiel pour réussir et contrôler Suez aidera vos convois à arriver plus vite.[NEWLINE]	[ICON_STRENGTH]Le Royaume-Uni a la plus puissante flotte et a accès à de puissantes unités aériennes. La plupart des chars britanniques sont conçus pour la vitesse et les terrains ouverts, mais pas pour la puissance.[NEWLINE][NEWLINE][ICON_BULLET][COLOR_RED]L'U.R.S.S:[/COLOR] [NEWLINE]	[ICON_CAPITAL]Si la France venait à tomber, il est essentiel de tenir face à l'Allemagne en utilisant autant de personnel et de matériel que possible. Faire confiance aux Alliés à l'Ouest amènera à des résultats mitigés cependant le plus important est de résister à l'Allemagne. Cela finira par nous faire gagner la guerre sur le front de l'Est. [NEWLINE]	[ICON_GOLD]Si une route ou une voie ferrée est contrôlée de la ville de Murmansk à Moscow, alors vous recevrez des convois venant des Etats Unis. Vous recevrez aussi des convois gratuits de la côte Ouest des Etats Unis.[NEWLINE]	[ICON_STRENGTH]Les Soviétiques ont accès à des chars très puissants, avec leur capacité spéciale il est aussi essentiel de produire autant de divisions d'infanterie que votre économie peut en supporter.[NEWLINE][NEWLINE][ICON_BULLET][COLOR_BLUE]Les Etats Unis:[/COLOR] [NEWLINE]	[ICON_CAPITAL]En jouant les Etats Unis il est important d'exploiter la production et de ravitailler les Alliés avec autant d'avions, de navires et de chars que possible. Garder l'Union Soviétique, le Royaume-Uni et l'Australie en vie à tout prix est essentiel pour empêcher les forces de l'Axe d'envahir les Etats Unis.[NEWLINE]	[ICON_GOLD]Les Américains reçoivent des convois gratuits du Brésil et de l'Australie. Contrôler Panama vous donnera aussi accès à un convoi.[NEWLINE]	[ICON_STRENGTH]Le niveau de production américain leur permet de produire des chars, des avions et des navires à un taux capable d'atteindre trois fois celui des forces de l'Axe réunies. Bien que faible au début, l'aviation américaine est puissante en fin de jeu, surtout ses bombardiers. [NEWLINE][NEWLINE][ICON_BULLET][COLOR_GREY]L'Allemagne[/COLOR] [NEWLINE]	[ICON_CAPITAL]Avec l'Allemagne il est important de vaincre les ennemis rapidement avant qu'ils ne puissent stopper votre avance, les laisser vivre trop longtemps vous sera fatal surtout en attaquant l'Union Soviétique. Empêcher tous les convois alliés d'atteindre leurs destinations est essentiel pour isoler des nations comme le Royaume-Uni.[NEWLINE]	[ICON_GOLD]Les Allemands reçoivent des convois de la Suède, de la Norvège et de la Finlande tant que ce n'est pas l'hiver.[NEWLINE]	[ICON_STRENGTH]Les Allemands ont de puissants chars et avions. La promotion Blitz signifie que créer une attaque combinée de l'aviation, des blindés et de l'infanterie est toujours la meilleure stratégie pour défaire les ennemis rapidement.[NEWLINE][NEWLINE][ICON_BULLET][COLOR_GREEN]L'Italie:[/COLOR] [NEWLINE]	[ICON_CAPITAL]Avec l'Italie il est important de maintenir la pression sur la France ainsi que de capturer le canal de Suez pour ralentir les convois ravitaillant le Royaume-Uni. L'Italie a un puissant allié au nord mais c'est le travail de l'Italie de sécuriser les frontières Sud de l'Axe. [NEWLINE]	[ICON_GOLD]L'Italie ne reçoit pas de convois, cependant contrôler Suez ralentira les convois Alliés.[NEWLINE]	[ICON_STRENGTH]L'Italie n'a pas d'avantage militaire mais sa position stratégique lui permet de protéger ses territoires plus facilement. [NEWLINE][NEWLINE][COLOR_WHITE]La Grèce[/COLOR] [NEWLINE]	[ICON_CAPITAL]Un peu comme la France, il est important de résister à l'avance allemande jusqu'à ce que d'autres pays alliés entrent en guerre afin de relâcher la pression afin qu'une offensive devienne possible.[NEWLINE]	[ICON_GOLD]Les Grecs ne reçoivent pas de convois cependant aider à protéger Suez garantira un accès facile aux convois Alliés.[NEWLINE]	[ICON_STRENGTH]Les Grecs ne possèdent aucune puissance militaire cependant les nombreux points escarpés leur donnent un avantage en défense.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EARTH1936_SCENARIO_TITLE">
+			<Text>La Terre - WWII - Juillet 1936</Text>
+		</Row>
+
+		<!-- Small Europe map 68*56 = 3808 tiles -> Huge -->
+		<Row Tag="TXT_KEY_RED_SMALL_EURO1940_SCENARIO_TITLE">
+			<Text>Petite Europe 1939-1945</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_SMALL_EURO1940_SCENARIO_DESC">
+			<Text>Auteur: Gedemon[NEWLINE]Taille: Standard[NEWLINE]Stabilité: [COLOR_WARNING_TEXT]Alpha (Version expérimentale)[/COLOR][NEWLINE][NEWLINE]Prenez le contrôle de la France, du Royaume-Uni, l'U.R.S.S, l'Italie, la Grèce ou l'Allemagne de 1939 à 1945..</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_SMALL_EURO1940_BRIEFING">
+			<Text>Prenez le contrôle de la France, du Royaume-Uni, l'U.R.S.S, l'Italie, la Grèce ou l'Allemagne de 1939 à 1945.[NEWLINE][NEWLINE]Le jeu finira quand un camp aura perdu toutes ses villes clés. Voici la liste des objectifs par nation : [NEWLINE][NEWLINE][ICON_BULLET] Royaume-Uni : London, Liverpool, Edinburgh, Newcastle.[NEWLINE][ICON_BULLET] France : Paris, Caen, Bordeaux, Dunkerque.[NEWLINE][ICON_BULLET] U.R.S.S. : Moscow, Stalingrad, Kiev, Leningrad.[NEWLINE][ICON_BULLET] Allemagne : Berlin, Kiel, Bremen, Frankfurt.[NEWLINE][ICON_BULLET] Italie : Rome, Naples, Milan, Bologne.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_SMALL_EURO1940_GENERIC_CIVILIZATION_BRIEFING">
+			<Text>Prenez le contrôle de la France, du Royaume-Uni, l'U.R.S.S, l'Italie, la Grèce ou l'Allemagne de 1939 à 1945.[NEWLINE][NEWLINE]Le jeu finira quand un camp aura perdu toutes ses villes clés. Voici la liste des objectifs par nation : [NEWLINE][NEWLINE][ICON_BULLET] Royaume-Uni : London, Liverpool, Edinburgh, Newcastle.[NEWLINE][ICON_BULLET] France : Paris, Caen, Bordeaux, Dunkerque.[NEWLINE][ICON_BULLET] U.R.S.S. : Moscow, Stalingrad, Kiev, Leningrad.[NEWLINE][ICON_BULLET] Allemagne : Berlin, Kiel, Bremen, Frankfurt.[NEWLINE][ICON_BULLET] Italie : Rome, Naples, Milan, Bologne.</Text>
+		</Row>
+
+	</Language_FR_FR>
+
+	<!-- +++++++++++++ -->
+	<!-- +  NATIONS  + -->
+	<!-- +++++++++++++ -->
+	<Language_FR_FR>
+		<!-- FRANCE -->
+		<Row Tag="TXT_KEY_RED_WWII_FRANCE">
+			<Text>République Française</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_WWII_FRANCE_SHORT">
+			<Text>France</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_FRANCE_BRIEFING">
+			<Text>
+				Général, la France a été au centre du monde de la culture et des arts pendant des siècles, nous sommes l'un des rares pays à être resté une Démocratie et notre armée est réputée la plus moderne au monde. Après la Grande Guerre ("La Der des Ders" comme nous les pensions alors) notre nation a dû se reconstruire seule, mais nous avons ensuite été plongés dans la dépression mondiale et maintenant les choses empirent car les actes d'aggression s'intensifient en Europe et dans le Pacifique. Maintenant le monde se tourne vers notre puissance pour contrer la montée du fascisme et des idéaux militaristes.[NEWLINE][NEWLINE]Alors que la paix est de plus en plus incertaine, le peuple français vous a choisi pour être son chef en ces temps difficiles. Pourrez-vous Général mener la France à repousser l'aggression Fasciste, parviendrez-vous à faire de cette guerre la réelle "dernière des dernières" ?[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Armée:[/COLOR]                         [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Flotte:[/COLOR]                           [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economie:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR]                   [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Situation Diplomatique:[/COLOR]  [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_FRANCE_HEADING_1">
+			<Text>Invasion</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_FRANCE_TEXT_1">
+			<Text>
+				L'invasion de la Pologne a obligé la France et la Grande-Bretagne à déclarer la guerre à l'Allemagne. Mais les Alliés n'ont pas lancé d'assauts massifs et ont gardé une attitude défensive: cela a été appelé la Drôle de guerre. Cela n'a pas empêché l'armée Allemande de conquérir la Pologne en l'espace de quelques semaines avec leurs innovantes tactiques de la Blitzkrieg et avec l'aide de l'attaque de l'Union Soviétique sur la Pologne. Quand l'Allemagne a eu les mains libres pour une attaque à l'Ouest, la Bataille de France commença, en Mai 1940, et les mêmes tactiques dévastatrices ont encore une fois prouvé leur efficacité. La Wehrmacht a contourné la ligne Maginot en passant par la forêt des Ardennes. Une seconde force allemande avait été envoyée en Belgique et aux Pays Bas pour faire diversion. En six semaines de combats acharnés, les français ont perdu 90,000 hommes. De nombreux civils ont cherché refuge en empruntant les routes de France: quelques deux millions de réfugiés de Belgique et de Hollande ont été rejoints par entre huit et dix millions de civils français, représentant un quart de la population Française, tous allant vers le sud et l'ouest. Ce mouvement fut le plus grand mouvement de civils dans l'histoire avant 1947.[NEWLINE][NEWLINE]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_FRANCE_HEADING_2">
+			<Text>Occupation</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_FRANCE_TEXT_2">
+			<Text>
+				Les chefs Français se sont rendus à l'Allemagne Nazie le 24 Juin 1940, après que la Force Expéditionnaire Britannique ait été évacuée de Dunkerque. L'Allemagne Nazie a occupé les trois cinquièmes du territoire Français, laissant le reste au sud-est au nouveau gouvernement de Vichy. Ce régime a cherché à collaborer avec l'Allemagne. Il a été établi le 10 Juillet 1940. Le régime de Vichy était dirigé par Philippe Pétain, le vieux héros de la Première Guerre Mondiale. Cela était initialement censé être un gouvernement intérimaire pour superviser l'administration Française avant la défaite soit-disant proche de la Grande-Bretagne. Au lieu de cela , il a duré quatre ans. C'était un cas unique parmi les multiples régimes collaborationnistes du temps de la guerre du fait qu'il ait été établi constitutionnellement, par le Parlement Français. Cependant, Charles de Gaulle s'était auto-déclaré à la tête du gouvernement rival en exil sur Radio Londres, rassemblant les Forces Françaises Libres à ses côtés, trouvant du soutien dans quelques colonies Françaises et étant reconnu par la Grande Bretagne et les USA.[NEWLINE][NEWLINE]
+				Le régime de Vichy a adopté de violentes politiques antisémites sur sa propre initiative, sans directive de l'Allemagne. Durant l'occupation Allemande 76,000 Juifs ont été déportés, souvent avec l'aide des autorités de Vichy, et sont morts dans les camps d'extermination Nazis. Après l'attaque sur Mers-el-Kébir en 1940, où la flotte Britannique a détruit au large une partie de la flotte Française, toujours sous commandement de la France de Vichy, tuant environ 1,100 marins, il y a eu une indignation nationale et un sentiment de méfiance dans les forces Françaises, conduisant aux événements de la Bataille de Dakar. Finalement, plusieurs navires Français importants comme le Richelieu et le Surcouf ont rejoint les Forces Françaises Libres. Sur le front Est l'URSS manquait de pilotes et plusieurs pilotes Français ont rejoint l'Union Soviétique et ont combattu la Luftwaffe au sein de l'escadrille Normandie-Niemen . En France occupée, très peu de personnes se sont organnisées contre l'Occupation Allemande durant l'été 1940. Cependant, leur nombre augmentait au fur et à mesure que Vichy avait recours à des politiques plus strictes afin de satisfaire l'énorme demande des nazis et que le déclin final de l'Allemagne Nazie semblait de plus en plus évident. Les opposants isolés ont finalement formé un réel mouvement: la Résistance. Il y a aussi des hommes Français qui ont rejoint les SS, ils étaient appelés la Division Charlemagne; sachant qu'ils ne survivraient pas si l'Allemagne venait à perdre, ils étaient parmi les derniers à se rendre à la bataille de Berlin.[NEWLINE][NEWLINE]
+				En Novembre 1942, la France de Vichy a finalement été occupée par les forces Allemandes, car la guerre en Afrique du Nord arrivait à son terme; les Allemands prévoyaient alors une menace Alliée au Sud de l'Europe.[NEWLINE][NEWLINE]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_FRANCE_HEADING_3">
+			<Text>Libération</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_FRANCE_TEXT_3">
+			<Text>
+				Le 6 Juin 1944 les Alliés débarquaient en Normandie et le 15 Août ils débarquaient en Provence (avec les 260,000 hommes de l'armée B Française). Le Général Leclerc a libéré Paris et Strasbourg et plus tard, avec le cuirassé Richelieu, il a représenté la France à Tokyo pendant la reddition Japonaise.
+			</Text>
+		</Row>
+		<!-- GERMANY -->
+		<Row Tag="TXT_KEY_RED_WWII_GERMANY">
+			<Text>Troisième Reich</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_WWII_GERMANY_SHORT">
+			<Text>Allemagne</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_GERMANY_BRIEFING">
+			<Text>
+				Mein Führer, Après la Première Guerre Mondiale, nous avons été humiliés par la trahison de nos propres chefs et avons été traités durement par le Traité de Versailles. La République de Weimar a échoué et nous a conduit dans un désastre économique. Après des troubles et de mauvaises directions, vous avez finalement accédé au pouvoir. Vous avez déjà amené notre pays à un nouveau glorieux empire, le Troisième Reich, en défiant le Traité de Versailles et en résolvant les problèmes économiques.[NEWLINE][NEWLINE]Notre Patrie a toujous été une grande nation, notre armée est la meilleure au monde, nos généraux sont inégalés et notre puissance industrielle est sans précédent. Mein Führer, pourrez-vous amener le peuple Allemand à achever la domination du monde, pourrez-vous leur donner "das tausendjährige Reich" que vous avez promis ?[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Armée:[/COLOR]                         [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Flotte:[/COLOR]                           [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economie:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR]                   [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Situation Diplomatique:[/COLOR]  [ICON_CAPITAL][ICON_CAPITAL]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_GERMANY_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_GERMANY_TEXT_1">
+			<Text>
+				En 1935, l'Allemagne a repris le contrôle de la Sarre et en 1936 le contrôle militaire sur le bord du Rhin, que nous avions tous deux perdus lors du Traité de Versailles. En 1938 et 1939, l'Autriche et la Tchécoslovaquie sont passés sous contrôle allemand et l'invasion de la Pologne a été préparé avec le pacte the Molotov–Ribbentrop et l'Opération Himmler. Le 1e Septembre 1939 la Wehrmacht a lancé une blitzkrieg sur la Pologne qui a été rapidement occupée par l'Allemagne et par l'Armée Rouge Soviétique. Le Royaume-Uni et la France ont déclaré la guerre à l'Allemagne, marquant le début de la Seconde Guerre Mondiale.[NEWLINE][NEWLINE]
+				Au fur et à mesure que la guerre progressait, l'Allemagne et ses alliés ont rapidement gagné le contrôle d'une grande partie de l'Europe continentale alors que le plan d'occuper le Royaume-Uni a échoué. Le 22 Juin 1941, l'Allemagne a rompu le pacte Molotov–Ribbentrop et a envahi l'Union Soviétique. La même année, le Japon a attaqué la base américaine de Pearl Harbor, et l'Allemagne a déclaré la guerre aux Etats Unis. La Bataille de Stalingrad a forcé l'armée Allemande à se replier du front Est. En Septembre 1943, l'Italie, alliée de l'Allemagne, s'est rendue, et les troupes Allemandes ont été forcées de défendre un front supplémentaire en Italie. Le Jour-J a ouvert un Front à l'Ouest, et les Alliés ont commencé à avancer vers le territoire Allemand. Le 8 Mai 1945, Les forces armées Allemandes se sont rendues après que l'Armée Rouge ait occupé Berlin.
+			</Text>
+		</Row>
+		<!-- UK -->
+		<Row Tag="TXT_KEY_RED_WWII_UK">
+			<Text>Royaume-Uni</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_WWII_UK_SHORT">
+			<Text>R-U</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_UK_BRIEFING">
+			<Text>
+				Monsieur le Premier Ministre, l'Empire Britannique a été le plus grand et le plus puissant de la surface de la terre durant des siècles. Nous avons été le protécteur de la Démocratie et le premier pays humanitaire au monde, notre armée a été inégalée pendant une longue période. Mais beaucoup de nations ont grandi pour contester ce que nous représentons et ce que nous croyons. La victoire coûteuse durant la Première Guerre Mondiale et la Grande Dépression dans laquelle le monde est plongé a énormément nui à notre grande économie.[NEWLINE][NEWLINE]Cependant le peuple vous a élu alors que la menace d'une guerre s'accroit en Europe, se fiant à votre commandement et à votre force pour faire face au militarisme et au fascisme. Pourrez-vous Monsieur le Premier Ministre vaincre les aggresseurs et nous faire sortir de cette crise, parviendrez-vous à empêcher la chute de notre Empire contre tous ces dangers ?[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Armée:[/COLOR]                         [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Flotte:[/COLOR]                           [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economie:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR]                   [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Situation Diplomatique:[/COLOR]  [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_UK_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_UK_TEXT_1">
+			<Text>Le Royaume-Uni, avec les colonies de l'Empire britannique, dont l'Inde britannique, ont déclaré la guerre à l'Allemagne Nazie en 1939, après l'invasion de la Pologne par les Allemands. Les Hostilités avec le Japon ont commencé en 1941, après que celui-ci ait attaqué les colonies Britanniques en Asie. Suite à la défaite de ses alliés européens pendant la première année de la guerre, le Royaume-Uni a continué le combat contre l'Allemagne qui a pris forme avec des périodes marquantes telles que la Bataille d'Angleterre et la Bataille de l'Atlantique. Après les débarquements du Jour J et la défaite subséquente de l'Allemagne et de ses alliées, le Royaume-Uni était l'un des "Trois Grands" qui se sont rencontrés à la fin de la guerre pour organiser le monde d'après guerre. La guerre a laissé le Royaume-Uni financièrement affaibli malgré que l'aide du Plan Marshall et les prêts des Etats Unis et du Canada aient aidé le Royaume-Uni vers la voie de la reconstruction.</Text>
+		</Row>
+		<!-- ITALY -->
+		<Row Tag="TXT_KEY_RED_WWII_ITALY">
+			<Text>Italie</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_WWII_ITALY_SHORT">
+			<Text>Italie</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_ITALY_BRIEFING">
+			<Text>
+				Duce, Après la coûteuse victoire pendant la Première Guerre Mondiale, notre gouvernement est entré dans la tourmente et, craignant un soulèvement Communiste, il vous a installé au pouvoir. Prenant des actions immédiates, vous avez éliminé toute opposition et êtes devenu le Premier leader Fasciste en Europe. Les habitants de l'Italie sont devenus las de vos règles et sont bouleversés par les temps économiques difficiles qui sont arrivés, cependant vous leur avez promis un Nouvel Empire Romain, et défiant la Société des Nations vous avez déjà envahi l'Ethiopie, premier pays à tomber sous notre domination.[NEWLINE][NEWLINE]Pendant des siècles nous avons été l'empire le plus important dans l'Ouest et le peuple italien travaillant dur regarde vers vous pour rétablir leur gloire. Duce, pourrez-vous restaurer un puissant Empire, parviendrez-vous à faire de Rome le centre du monde encore une fois ?[NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Armée:[/COLOR]                         [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Flotte:[/COLOR]                           [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economie:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR]                   [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Situation Diplomatique:[/COLOR]  [ICON_CAPITAL][ICON_CAPITAL]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_ITALY_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_ITALY_TEXT_1">
+			<Text>
+				En 1935, Mussolini a envahi l'Ethiopie, menant à une aliénation internationale et conduisant l'Italie à se retirer de la Société des Nations. En conséquence, l'Italie s'est alliée avec l'Allemagne Nazie et l'Empire du Japon et a fortement aidé Franco dans la Guerre Civile Espagnole. En 1939, l'Italie a occupé l'Albanie, un protectorat de facto depuis des décennies, et est entrée dans la Seconde Guerre Mondiale en 1940 du côté des forces de l'Axe. Mussolini, voulant une victoire rapide comme celle de la Blitzkrieg d'Hitler en Pologne et en France, a envahi la Grèce en Octobre 1940 mais a été forcé de reconnaître ceci comme une impasse humiliante après quelques mois. Dans le même temps, l'Italie, après avoir initialement conquis la Somalie Britannique et une partie de l'Egypte, a subi une contre-attaque alliée amenant à la perte de toutes les possessions dans la Corne d'Afrique et en Afrique du Nord.[NEWLINE][NEWLINE]
+				L'Italie a ensuite été envahie par les Alliés en Juillet 1943, amenant à l'effondrement du régime Fasciste et à la chute de Mussolini. En Septembre 1943, l'Italie s'est rendue. Le pays est resté un champ de bataille pour le reste de la guerre, car les Alliés sont venus du Sud et le Nord était une base pour les fascistes Italiens restés loyaux et les forces Allemandes, et combattaient aussi les mouvements de résistance italienne.. Les hostilités ont cessé le 2 Mai 1945. Près d'un demi million d'Italiens (civils compris) sont morts pendant le conflit, et l'économie Italienne a été pratiquement détruite; le revenu par habitant en 1944 était à son point le plus bas depuis le début du 20e siècle.
+			</Text>
+		</Row>
+		<!-- USSR -->
+		<Row Tag="TXT_KEY_RED_WWII_USSR">
+			<Text>U.R.S.S.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_WWII_USSR_SHORT">
+			<Text>U.R.S.S.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_USSR_BRIEFING">
+			<Text>
+				Camarade, cela fait bien longtemps que les peuples du monde ont été maudits par l'Impérialisme et le Capitalisme. Mais plus maintenant, car la glorieuse Union Soviétique a surgi des cendres de l'horrible Première Guerre Mondiale et de la Grande Révolution d'Octobre. Cependant notre nation doit maintenant défaire le fascisme et les mauvaises influences de l'Occident afin de devenir la superpuissance qu'elle est censé être.[NEWLINE][NEWLINE]Le peuple de la glorieuse Union Soviétique vous a reconnu comme l'autorité absolue pour les guider vers la victoire contre la menace capitaliste et fasciste. Pourrez-vous camarade montrer au monde le pouvoir de notre gouvernement socialiste, et propager nos idéaux communistes à travers le monde, parviendrez-vous à faire de nous la vraie puissance victorieuse de la guerre à venir ?[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Armée:[/COLOR]                         [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Flotte:[/COLOR]                          [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economie:[/COLOR]                     [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR]                   [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Situation Diplomatique:[/COLOR]  [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_USSR_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_USSR_TEXT_1">
+			<Text>
+				En 1938, après que le Royaume-Uni et la France aient conclu les Accords de Munich avec l'Allemagne, l'URSS a traité avec les Nazis, à la fois militairement et économiquement lors d'entretiens approfondis. Les deux pays ont conclu le Pacte Germano-Soviétique de Non-aggression ainsi qu'un accord commercial Germano-Soviétique. Le pacte de non-aggression a rendu possible l'occupation soviétique de la Lithuanie, la Lettonie, l'Estonie, la Bessarabie, la Bucovine du Nord, et l'est de la Pologne. Fin Novembre de la même année, incapable d'exercer des pressions sur la République de Finlande afin de faire reculer ses frontières de 25 km de Leningrad, Joseph Staline a ordonné l'invasion de la Finlande.[NEWLINE][NEWLINE]
+				Dans l'Est, l'armée soviétique a gagné plusieurs victoires décisives pendant les incidents frontaliers avec l'Empire du Japon en 1938 et 1939. Cependant, en Avril 1941, l'URSS a signé un pacte de Neutralité Soviético-Japonais, reconnaissant l'intégrité territoriale du Mandchoukouo, un Etat fantoche Japonais.[NEWLINE][NEWLINE]
+				Bien qu'il ait été débattu pour savoir si l'Union Soviétique n'avait aucune intention d'envahir l'Allemagne une fois qu'elle serait assez forte, l'Allemagne a rompu elle-même le traité et a envahi l'Union Soviétique le 22 juin 1941, commençant ainsi ce qui fut appelé la "Grande Guerre Patriotique" en URSS. L'Armée Rouge a stoppé l'Armée Allemande soit-disant invincible à la Bataille de Moscou, aidée par un hiver inhabituellement rude. La Bataille de Stalingrad, qui a duré de fin 1942 à début 1943, a porté un coup sévère aux Allemands, dont ils ne se sont jamais réellement remis, et est devenue un point tournant de la guerre. Après Stalingrad, les forces Soviétiques ont avancé à travers l'Europe de l'Est jusqu'à Berlin avant que l'Allemagne ne capitule en 1945.[NEWLINE][NEWLINE]
+				La même année, l'URSS, dans l'accomplissement de son accord avec les Alliés à la Conférence de Yalta, a denoncé le Pacte de Neutralité Sovético-Japonais en avril 1945 et a envahi le Mandchoukouo et d'autres territoires contrôlés par le Japon le 9 Août 1945. Ce conflit s'est terminé avec une victoire décisive de l'Union Soviétique, contribuant à la capitulation sans condition du Japon et mettant ainsi un terme à la Seconde Guerre Mondiale.
+			</Text>
+		</Row>
+		<!-- GREECE -->
+		<Row Tag="TXT_KEY_RED_WWII_GREECE">
+			<Text>Grèce</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_WWII_GREECE_SHORT">
+			<Text>Grèce</Text>
+		</Row>
+		<Row Tag="TXT_KEY_RED_EURO1940_GREECE_BRIEFING">
+			<Text>
+				Arkhigos Metaxas, la Grèce vit des jours sombres, nous sommes les parents de la civilisation occidentale et aujourd'hui après plus de 10,000 ans d'existence notre pays est sous l'une des plus grandes menaces qu'il ait connu. La Première Guerre Mondiale a laissé de profondes blessures dans chaque aspect de notre nation, notre équipement militaire est obsolète, et aucune de nos frontière n'est en sécurité. Mais les Helléniques n'ont jamais appris le mot "capituler", nos défenseurs ne seront pas nos armes mais le courage légendaire et l'honneur des armées Helléniques qui ont protégé notre nation pendant tous ces siècles. Metaxas, les fils des Spartiates et d'Alexandre le Grand vous attendent pour les diriger, mais serait-ce vers la victoire ou vers une mort honorable, pour un autre Marathon ou pour un autre Thermopyles ?[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Armée:[/COLOR]                         [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Flotte:[/COLOR]                           [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                     [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economie:[/COLOR]                     [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR]                   [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Situation Diplomatique:[/COLOR]  [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_GREECE_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_WW2_SCENARIO_CIV_GREECE_TEXT_1">
+			<Text>
+				Malgré ses forces armées numériquement faibles et mal équipées, la Grèce a apporté une contribution décisive aux efforts Alliés pendant la Seconde Guerre Mondiale. Au début de la guerre la Grèce a rejoint les Alliés et a refusé de céder à l'ultimatum de Mussolini réclamant les droits d'occupation de sites stratégiques grecs. Quand l'émisaire Italien a présenté ces demandes le 28 Octobre 1940 au Premier Ministre Grec Metaxas, il a été accueilli avec une réponse laconique: "Alors, c'est la guerre". L'Italie a envahi la Grèce en passant par l'Albanie le jour-même, mais les troupes Grecques ont repoussé l'envahisseur après une lutte acharnée. Cela a marqué la première victoire Alliée de la guerre.[NEWLINE][NEWLINE]
+				Initialement pour sécuriser son flanc sud stratégique, le dictateur allemand Adolf Hitler est intervenu à contrecoeur et s'est lancé dans la Bataille de Grèce. Les troupes d'Allemagne, de Bulgarie et d'Italie ont réussi à envahir la Grèce, en passant par la Yougoslavie, venant à bout de troupes grecques, britanniques, australiennes et néo zélandaises.[NEWLINE][NEWLINE]
+				Le 20 Mai 1941, les Allemands ont tenté de prendre la Crète avec une vaste opération aéroportée - avec pour but de réduire la menace d'une contre-offensive alliée en Egypte — mais ont dû faire face à une forte résistance. La campagne de Grèce a très certainement retardé les plans militaires allemands contre l'Union Soviétique et les lourdes pertes en parachutistes allemands ont contraint les Allemands à ne plus lancer d'invasion aérienne à grande échelle.[NEWLINE][NEWLINE]
+				Pendant les années d'Occupation de la Grèce par l'Allemagne Nazie, des milliers de Grecs sont morts en combat, dans les camps de concentration, ou de la famine. Les occupants ont assassiné la plus grande partie de la communauté Juive malgré les efforts de l'Eglise Orthodoxe grecque et de nombreux autres chrétiens grecs pour cacher les Juifs. L'économie de la Grèce a été dévastée.[NEWLINE][NEWLINE]
+				Quand l'Armée Soviétique a commencé à traverser la Roumanie en Août 1944, l'Armée Allemande en Grèce a commencé à se replier du nord et du nord-ouest de la Grèce vers la Yougoslavie et l'Albanie pour éviter de se retrouver encerclée en Grèce. Par conséquent, l'occupation allemande de la Grèce s'est terminée en Octobre 1944. Les troupes britanniques ont débarqué le 4 Octobre à Patras, et sont entrées à Athènes le 13 Octobre.[NEWLINE][NEWLINE]
+				Pendant la période entre 1942 et 1944, connue comme la première phase des guerres civiles grecques, les groupes de résistance marxistes et non-marxistes se sont combattus dans un conflit fratricide pour établir la direction du mouvement de résistance grec. Dans la seconde phase (1944), les communistes ascendants, avec le contrôle militaire de la plus grande partie de la Grèce, se sont confrontés au gouvernement grec revenant d'exil, qui avait été formé sous les auspices alliées au Caire et qui incluait originellement six ministres du Parti Communiste Grec (KKE). Dans la troisième phase (communément appelé le "Troisième Round" par les Communistes) (1946-1949), des forces de guerilla contrôlées par le KKE ont combattu contre le gouvernement grec internationalement reconnu qui avait été formé après les élections boycottées par le KKE.[NEWLINE][NEWLINE]
+				La guerre civile a laissé la Grèce avec un héritage de polarisation politique; par la suite, la Grèce est aussi entrée dans l'alliance avec les Etats Unis et a rejoint l'OTAN, alors que les relations avec ses voisins Communistes au Nord, pro-Soviétiques et neutres, devenaient tendues.
+			</Text>
+		</Row>
+	</Language_FR_FR>
+
+	<!-- +++++++++++++ -->
+	<!-- +  LEADERS  + -->
+	<!-- +++++++++++++ -->
+	<Language_FR_FR>
+		<!-- DE GAULLE -->
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_DE_GAULLE_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_DE_GAULLE_TEXT_1">
+			<Text>
+				Vétéran de la Première Guerre Mondiale, dans les années 20 et 30 De Gaulle s'est imposé comme un partisan des divisions blindées mobiles, qu'il considérait comme allant devenir un outil central dans la guerre moderne. Durant la Seconde Guerre Mondiale, il a atteint temporairement le grade de Général de Brigade, dirigeant l'une des rares contre-attaques réussites de la Bataille de France, puis il servit brièvement au gouvernement français alors que la France tombait.[NEWLINE][NEWLINE]
+				Il s'est échappé en Angleterre et a donné un discours célèbre à la radio, diffusé par la BBC le 18 juin 1940, exhortant au peuple français de résister à l'Allemagne Nazie, puis il organisa les Forces Françaises Libres avec des officiers français exilés en Grande Bretagne.[NEWLINE][NEWLINE]
+				Il a peu à peu obtenu le contrôle de toutes les colonies françaises exceptée l'Idochine — la plupart d'entre elles ayant d'abord été contrôlées par le régime pro-allemand de Vichy - et au moment de la libération de la France en 1944 il était à la tête d'un gouvernement en exile, insistant pour que la France soit considérée comme une grande puissance indépendante par les autres Alliés. De Gaulle est devenu le premier ministre du Gouvernement Provisoire Français, démissionant en 1946 à cause de conflits politiques.('source : Wikipedia')
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_DE_GAULLE_LIVED">
+			<Text>1890 - 1970</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_DE_GAULLE_NAME">
+			<Text>Charles De Gaulle</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_DE_GAULLE_SUBTITLE">
+			<Text>Chef des Forces Françaises</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LEADER_DE_GAULLE">
+			<Text>Charles De Gaulle</Text>
+		</Row>
+		<!-- HITLER -->
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_HITLER_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_HITLER_TEXT_1">
+			<Text>
+				Adolf Hitler était un politicien Allemand d'origine Autrichienne et le chef du Parti National Socialiste des Travailleurs Allemands, communément connu comme le Parti Nazi. Il a été Chancelier de l'Allemagne de 1933 à 1945 et, après 1934, il fut aussi à la tête de l'Etat en tant que Führer und Reichskanzler, dirigeant le pays comme un dictateur absolu.[NEWLINE][NEWLINE]
+				Vétéran décoré de la Première Guerre Mondiale, Hitler a rejoint le précurseur du Parti Nazi en 1919 et en est devenu le leader en 1921. Il a tenté un coup d'Etat manqué appelé le Putsh de la Brasserie à Munich en 1923, ce pour quoi il a été emprisonné. Suite à son emprisonnement, durant lequel il a écrit Mein Kampf, il a gagné du soutien en promouvant le nationalisme Allemand, l'anti-sémitisme, l'anti-capitalisme, and l'anti-communisme avec un art oratoire charsimatique et la propagande. Il a été nommé chancelier en 1933, et il a rapidement transformé la République de Weimar vers le Troisième Reich, une dictature à parti unique basé sur le totalitarisme et les idéaux autocratiques du socialisme national.[NEWLINE][NEWLINE]
+				Hitler voulait en fin de compte établir un Nouvel Ordre de l'hégémonie Nazie Allemande absolue en Europe Continentale. Pour y parvenir, il a poursuivi une politique étrangère avec pour but de d'agrandir l'espace vital pour le peuple Aryen, dirigeant toutes les ressources de l'Etat vers cet objectif. Ceci comprenait le réarmement de l'Allemagne, qui culmina en 1939 quand la Wehrmacht envahit la Pologne. En réponse, le Royaume-Uni et la France déclarèrent la guerre à l'Allemagne, conduisant à l'éclatement de la Seconde Guerre Mondiale en Europe.[NEWLINE][NEWLINE]
+				En trois ans, l'Allemagne et les puissances de l'Axe ont occupé la plus grande partie de l'Europe et de l'Afrique du Nord, l'Est et le Sud-Est de l'Asie et l'océan Pacifique. Cependant, avec le revirement de l'invasion de l'Union Soviétique par les Nazis, les Alliés ont pris l'initiative à partir de 1942. En 1945, les armées Alliées ont envahi l'Europe contrôlée par l'Allemagne par tous les côtés. Les forces Nazies ont commis de nombreux actes violents pendant la guerre, incluant l'assassinat systématique de pas moins de 17 millions de civils, dont environ six millions de Juifs dans l'Holocaust, et entre 500,000 et 1,500,000 de Roms, Polonais, civils et prisonniers de guerre Soviétiques, handicapés, homosexuels, Témoins de Jéhovah, et d'autres opposants politiciens et religieux.[NEWLINE][NEWLINE]
+				Dans les derniers jours de la guerre, pendant la Bataille de Berlin en 1945, Hitler a épousé sa maîtresse de longue date Eva Braun et, pour éviter d'être capturé par les forces Soviétiques moins de deux jours plus tard, ils se sont tous deux suicidés le 30 Avril 1945. ('source : Wikipedia')
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_HITLER_LIVED">
+			<Text>1889 - 1945</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_HITLER_NAME">
+			<Text>Adolf Hitler</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_HITLER_SUBTITLE">
+			<Text>Führer du Troisième Reich</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LEADER_HITLER">
+			<Text>Adolf Hitler</Text>
+		</Row>
+		<!-- CHURCHILL -->
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_CHURCHILL_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_CHURCHILL_TEXT_1">
+			<Text>
+				Sir Winston Leonard Spencer-Churchill, (30 Novembre 1874 - 24 Janvier 1965) était un politicien Britannique et un homme d'Etat connu pour avoir diriger le Royaume-Uni pendant la Seconde Guerre Mondiale. Il est largement considéré comme l'un des plus grands leaders en temps de guerre. Il a servi deux fois comme Premier Ministre (1940–45 et 1951–55). Homme d'Etat et orateur remarquable, Churchill était aussi un officier de l'Armée Britannique, un historien, un écrivain et un artiste. A ce jour, il est le seul Premier Ministre britannique à avoir reçu le Prix Nobel de Littérature, et il a été la première personne à avoir été fait citoyen d'honneur des Etats Unis. ('source : Wikipedia')
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_CHURCHILL_LIVED">
+			<Text>1874 - 1965</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_CHURCHILL_NAME">
+			<Text>Winston Churchill</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_CHURCHILL_SUBTITLE">
+			<Text>Premier Ministre du Royaume-Uni</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LEADER_CHURCHILL">
+			<Text>Winston Churchill</Text>
+		</Row>
+		<!-- MUSSOLINI -->
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_MUSSOLINI_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_MUSSOLINI_TEXT_1">
+			<Text>
+				Mussolini est devenu le 40e Premier Ministre d'Italie en 1922 et a commencé à utiliser le titre de Duce en 1925. Après 1936, son titre officiel était «Son Excellence Benito Mussolini, chef du gouvernement, Duce du fascisme, et fondateur de l'Empire". Mussolini a aussi créé et occupé le grade militaire suprême de Premier Maréchal de l'Empire avec le Roi Victor Emmanuel III d'Italie, qui leur donnait le contrôle suprême de l'armée d'Italie. Mussolini est resté au pouvoir jusqu'à ce qu'il soit remplacé en 1943; puis pendant une courte période jusqu'à sa mort, il était le chef de la République Sociale Italienne.[NEWLINE][NEWLINE]
+				Mussolini était parmi les fondateurs du Fascisme italien, qui comprenait les éléments du nationalisme, corporatisme, syndicalisme national, l'expansionnisme, le progrès social et anti-socialisme, combiné avec la censure et la propagande d'Etat. Durant les années qui ont suivi la création de l'idéologie Fasciste, Mussolini a influencé, ou a obtenu l'admiration d'une grande variété de personnalités politiques. ('source : Wikipedia')
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_MUSSOLINI_LIVED">
+			<Text>1883 - 1945</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_MUSSOLINI_NAME">
+			<Text>Benito Mussolini</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_MUSSOLINI_SUBTITLE">
+			<Text>Duce d'Italie</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LEADER_MUSSOLINI">
+			<Text>Benito Mussolini</Text>
+		</Row>
+		<!-- STALIN -->
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_STALIN_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_STALIN_TEXT_1">
+			<Text>
+				Joseph Vissarionovich Staline (18 Decembre 1878 - 5 Mars 1953), originaire de Géorgie, était un politicien Soviétique et un révolutionnaire Bolchévique, qui a occupé le poste de Premier Secrétaire du Parti Communiste du Comité central de l'Union Soviétique de 1922 jusqu'à sa mort en 1953. Bien que le poste de Secrétaire Général est électif et n'était pas initialement considéré comme le plus haut poste dans l'Etat Soviétique, après la mort de Lénine en 1924, Staline a fait en sorte de gagner de plus en plus de pouvoir, en diminuant progressivement tous les groupes d'opposition au sein du parti. Cela incluait Leon Trotsky, l'organisateur de l'Armée Rouge, promoteur de la Révolution mondiale, et principal concurrent de Staline parmi les leaders soviétiques au début, qui a été exilé de l'Union Soviétique en 1929. Au lieu de cela, l'idée de Staline du socialisme dans un seul pays est devenu la première ligne de la politique soviétique. ('source : Wikipedia')
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_STALIN_LIVED">
+			<Text>1878 - 1953</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_STALIN_NAME">
+			<Text>Joseph Staline</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_STALIN_SUBTITLE">
+			<Text>Secrétaire Général du Parti Communiste</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LEADER_STALIN">
+			<Text>Joseph Staline</Text>
+		</Row>
+		<!-- METAXAS -->
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_METAXAS_HEADING_1">
+			<Text>Histoire</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_METAXAS_TEXT_1">
+			<Text>
+				Né en 1871 à Ithaque, Ioannis Metaxas était un haut officier de l'armée qui a été nommé en 1936 premier ministre par le Roi George II et qui prit plus tard les pleins pouvoirs, sauvant la Grèce d'un effondrement économique et réussissant à équipper 800,000 troupes au lieu des 200,000 que la Grèce pouvait armer auparavant. Il a aussi réussi à unir le peuple hellénique divisé sous sa dictature et les a guidés vers de grandes victoires face aux forces de l'Axe. Metaxas mourut à Athènes le 29 Janvier 1941 d'une toxémie, avant l'invasion de la Grèce par les Allemands.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_METAXAS_LIVED">
+			<Text>1871 - 1941</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_METAXAS_NAME">
+			<Text>Ioannis Metaxas</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIVILOPEDIA_LEADERS_METAXAS_SUBTITLE">
+			<Text>Arkhigos of Hellas</Text>
+		</Row>
+		<Row Tag="TXT_KEY_LEADER_METAXAS">
+			<Text>Ioannis Metaxas</Text>
+		</Row>
+
+	</Language_FR_FR>
+
+	<!-- ++++++++++++ -->
+	<!-- +  TRAITS  + -->
+	<!-- ++++++++++++ -->
+	<Language_FR_FR>
+		<!-- traits -->
+		<Row Tag="TXT_KEY_TRAIT_NEVER_SURRENDER">
+			<Text>+25% [ICON_STRENGTH] de puissance pour les unités combattant sur (et au-dessus) le territoire du Royaume-Uni.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TRAIT_NEVER_SURRENDER_DESC">
+			<Text>"We shall never surrender"</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_TRAIT_BLITZKRIEG">
+			<Text>Toutes les unités blindées commencent avec la promotion Blitz.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TRAIT_BLITZKRIEG_DESC">
+			<Text>Blitzkrieg</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_TRAIT_RESISTANCE">
+			<Text>+50% de chance d'apparition d'unités de partisan dans le territoire pris par l'ennemi.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TRAIT_RESISTANCE_DESC">
+			<Text>La Résistance Française</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_TRAIT_GREAT_PATRIOTIC_WAR">
+			<Text>Double le taux de [ICON_PERSONNEL] personnel recruté dans les villes Soviétiques</Text>
+		</Row>
+		<Row Tag="TXT_KEY_TRAIT_GREAT_PATRIOTIC_WAR_DESC">
+			<Text>La Grande Guerre Patriotique</Text>
+		</Row>
+	</Language_FR_FR>
+
+	<!-- +++++++++++++++ -->
+	<!-- +  BUILDINGS  + -->
+	<!-- +++++++++++++++ -->
+	<Language_FR_FR>
+
+		<!-- Replaced texts -->
+		<Replace Tag="TXT_KEY_BUILDING_WALLS">
+			<Text>Barricades</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_WALLS_STRATEGY">
+			<Text>Les Barricades augmentent la capacité de Défense de la ville, la rendant plus difficile à capturer.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_BARRACKS_HELP">
+			<Text>+10 XP pour les Unités Terrestres.[NEWLINE]+15 [ICON_PERSONNEL] Personnel / tour.[NEWLINE]Peut abriter 100 [ICON_PERSONNEL] Personnel. Permet la construction d'une Académie Militaire nécessaire pour réaliser des projets, ou bien d'une Base Militaire.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_MILITARY_ACADEMY_HELP">
+			<Text>+20 XP pour toutes les Unités.[NEWLINE]+25 [ICON_PERSONNEL] Personnel / tour.[NEWLINE]La Ville doit avoir une caserne. Permet la création de nouvelles unités.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_MILITARY_BASE_HELP">
+			<Text>Peut stocker 100 [ICON_MATERIEL] Matériel.[NEWLINE]Peut abriter 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP pour toutes les Unités.[NEWLINE]La Ville doit avoir une caserne. Peut permettre la préparation d'opérations militaires.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_ARSENAL_HELP">
+			<Text>Peut stocker 500 [ICON_MATERIEL] Matériel.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_FACTORY_HELP">
+			<Text>Permet la construction d'extensions d'usines pour les unités aériennes, navales ou terrestres.[NEWLINE]+20 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 50 [ICON_MATERIEL] Matériel.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_HARBOR_HELP">
+			<Text>Forme une [ICON_CONNECTED] Route Commerciale avec la [ICON_CAPITAL] Capitale par la mer (si elles ne sont pas déjà [ICON_CONNECTED] connectées par voie terrestre).[NEWLINE]La Ville doit être construite sur la côte.[NEWLINE]+15% [ICON_PRODUCTION] de Production pour les Unités Navales.[NEWLINE]+10 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 50 [ICON_MATERIEL] Matériel.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_HOSPITAL_STRATEGY">
+			<Text>L'Hôpital peut soigner 3% de vos soldats blessés chaque tour, avec un taux maximum de 150[ICON_PERSONNEL] Personnel.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_BROADCAST_TOWER_HELP">
+			<Text>Les Radios sont utilisées pour diffuser la propagande.[NEWLINE]Avec un Bâtiment Administratif, cela permet l'entraînement et le renforcement des Unités dans les villes occupées.[NEWLINE]Génère le recrutment de [ICON_PERSONNEL] Personnel, dépendant de la taille de la ville.[NEWLINE]+ 50 % de taux de recrutement de [ICON_PERSONNEL] Personnel pour tous les bâtiments dans cette ville.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_COURTHOUSE">
+			<Text>Bâtiment Administratif</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_BUILDING_COURTHOUSE_HELP">
+			<Text>Permet l'administration des villes occupées.[NEWLINE]Avec une Tour de Diffusion pour la propagande, cela permet l'entraînement et le renforcement des Unités dans les villes occupées.[NEWLINE]Augmente le taux de renforcement de base dans les villes capturées.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_BUILDING_BANK_HELP">
+			<Text>Les Banques augmentent votre production d'Or.</Text>
+		</Replace>
+
+		<!-- New texts -->
+
+		<Row Tag="TXT_KEY_BUILDING_LAND_FACTORY">
+			<Text>Usine de Chars</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_LAND_FACTORY_HELP">
+			<Text>Permet la construction de chars moyens et de chars lourds.[NEWLINE]+15% de [ICON_PRODUCTION] Production pour les Unités Terrestres.[NEWLINE]+15 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 50 [ICON_MATERIEL] Matériel.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_SMALL_AIR_FACTORY">
+			<Text>Petite Usine Aéronautique</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_SMALL_AIR_FACTORY_HELP">
+			<Text>Permet la construction de chasseurs, chasseur-bombardiers et avions d'attaque au sol.[NEWLINE]+10% de [ICON_PRODUCTION] Production pour les Unités Aériennes.[NEWLINE]+5 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 20 [ICON_MATERIEL] Matériel.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_MEDIUM_AIR_FACTORY">
+			<Text>Usine Aéronautique Moyenne</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_MEDIUM_AIR_FACTORY_HELP">
+			<Text>Permet la construction de chasseurs lourds et de bombardiers légers/rapides.[NEWLINE]+10%  de[ICON_PRODUCTION] Production pour les Unités Aériennes.[NEWLINE]+5 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 20 [ICON_MATERIEL] Matériel.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_LARGE_AIR_FACTORY">
+			<Text>Grande Usine Aéronautique</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_LARGE_AIR_FACTORY_HELP">
+			<Text>Permet la construction de bombardiers et de bombardiers lourds.[NEWLINE]+10% de [ICON_PRODUCTION] Production pour les Unités Aériennes.[NEWLINE]+5 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 20 [ICON_MATERIEL] Matériel.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_SHIPYARD">
+			<Text>Chantier Naval</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_SHIPYARD_HELP">
+			<Text>Permet la construction de Sous-marins, cuirassés et croiseurs de bataille.[NEWLINE]+10% de [ICON_PRODUCTION] Production pour les Unités Navales.[NEWLINE]+15 [ICON_MATERIEL] Matériel / tour.[NEWLINE]Peut stocker 50 [ICON_MATERIEL] Matériel.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_BUILDING_OPEN_CITY">
+			<Text>Ville Ouverte</Text>
+		</Row>
+		<Row Tag="TXT_KEY_BUILDING_OPEN_CITY_HELP">
+			<Text>Vous ne pouvez pas établir de position défensive dans cette ville.</Text>
+		</Row>
+	</Language_FR_FR>
+		
+	<!-- +++++++++++ -->
+	<!-- +  UNITS  + -->
+	<!-- +++++++++++ -->
+	<Language_FR_FR>
+
+		<!-- Update -->
+		<Replace Tag="TXT_KEY_UNIT_HELP_ARTILLERY">
+			<Text>Les Obusiers tirent des projectiles à de hautes trajectoires, avec un angle de descente élevé, les rendant efficace contre les positions fortifiées et les défenses de villes, grâce à des tirs indirects par-dessus les obstacles. Leurs munitions hautement explosives leur donnent un bonus contre l'infanterie. Cette unité organisée en régiment peut être empilée avec une division.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_HELP_ANTI_TANK_GUN">
+			<Text>Les Canons de campagne tirent de plus petits obus avec une meilleure force de pénétration et avec des trajectoires directes. Combinés avec des munitions perforantes, ils peuvent infliger des pertes importantes aux unités blindées. Cette unité organisée en régiment peut être empilée avec une division.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_HELP_ANTI_AIRCRAFT_GUN">
+			<Text>Les Canons Anti-aériens sont des canons avec une haute vélocité - permettant d'atteindre de plus grandes altitudes – et une cadence de tir élevée, pouvant aussi être utilisés défensivement contre les unités blindées. Cette unité organisée en régiment peut être empilée avec une division pour pouvoir la protéger des avions ennemis.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_HELP_BOMBER">
+			<Text>Avions spécialisés dans le bombardement de grandes cibles au sol. Forts contre les villes, ils manquent de précision quand ils bombardent des unités.</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_UNIT_ARTILLERY">
+			<Text>Obusier</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_UNIT_AT_GUN">
+			<Text>Canon de campagne</Text>
+		</Replace>
+		
+		<!-- New texts -->
+
+		<Row Tag="TXT_KEY_UNIT_CONVOY">
+			<Text>Convoi</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_CONVOY">
+			<Text>Escorter le convoi jusqu'à une de vos villes</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_CONVOY_STRATEGY">
+			<Text>Les convois transportent des renforts pour votre nation</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIV5_INDUSTRIAL_CONVOY_HEADING">
+			<Text>Convoi</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIV5_INDUSTRIAL_CONVOY_STATBOX">
+			<Text>statistiques manquantes</Text>
+		</Row>
+		<Row Tag="TXT_KEY_CIV5_INDUSTRIAL_CONVOY_TEXT">
+			<Text>Escorter le convoi jusqu'à une de vos villes</Text>
+		</Row>
+		
+		<Row Tag="TXT_KEY_UNIT_SPECIAL_FORCES">
+			<Text>Forces Spéciales</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_LIGHT_TANK">
+			<Text>Char Léger</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_LIGHT_TANK_DESTROYER">
+			<Text>Chasseur de Char Léger</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_CRUISER_TANK">
+			<Text>Char Rapide</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_MAIN_BATTLE_TANK">
+			<Text>Char de Bataille</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_TANK">
+			<Text>Char Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_SUPER_HEAVY_TANK">
+			<Text>Super Char Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_DESTROYER">
+			<Text>Chasseur de Char</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_TANK_DESTROYER">
+			<Text>Chasseur de Char Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_ASSAULT_GUN">
+			<Text>Canon d'Assaut</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_ASSAULT_GUN">
+			<Text>Canon d'Assaut Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_FIGHTER_BOMBER">
+			<Text>Chasseur Bombardier</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_ATTACK_AIRCRAFT">
+			<Text>Avion d'Attaque</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_FIGHTER">
+			<Text>Chasseur Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_FAST_BOMBER">
+			<Text>Bombardier Léger</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_BOMBER">
+			<Text>Bombardier Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_CRUISER">
+			<Text>Croiseur</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HEAVY_CRUISER">
+			<Text>Croiseur Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_DREADNOUGHT">
+			<Text>Dreadnought</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_BATTLESHIP_2">
+			<Text>Cuirassé</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_MOBILE_ARTILLERY">
+			<Text>Artillerie Motorisée</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_ENGINEER">
+			<Text>Ingénieur</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_FORTIFICATION">
+			<Text>Fortification</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_MOBILE_HQ">
+			<Text>QG Mobile</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_AIRFIELD">
+			<Text>Aérodrome</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_BLOCKER">
+			<Text>Passage Bloqué</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_HELP_FAST_BOMBER">
+			<Text>Les Bombardiers Légers sont de petits bombardiers bi-moteurs avec une bonne vitesse, faisant d'eux des cibles difficiles. Plus précis contre les unités, ils font moins de dégâts aux villes que les bombardiers standards.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_BOMBER">
+			<Text>Bombardiers à long rayon d'action et bien armés avec une grande capacité de chargement pouvant faire d'importants dégâts aux villes, mais très imprécis contre les unités.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_FIGHTER">
+			<Text>Chasseurs bi-moteurs avec une plus grosse capacité de chargement et un meilleur rayon d'action que les chasseurs standards. Ils sont polyvalents et peuvent être utilisés pour intercepter les bombardiers ennemis, pour la reconnaissance ou les attaques au sol.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_ATTACK_AIRCRAFT">
+			<Text>Avions légers utilisés pour les attaques au sol, ils ont un petit rayon d'action et sont vulnérables aux chasseurs ennemis, mais ils constituent le meilleur choix pour éliminer les véhicules blindés ennemis.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_ASSAULT_GUN">
+			<Text>Canons ou obusiers montés sur un véhicule motorisé ou un chassis blindé, ils sont conçus pour attaquer des positions fortifiées. Forts contre les villes et l'infanterie retranchée, ils peuvent aussi être utilisés efficacement contre les autres véhicules blindés, mais ils sont lents et faiblement blindés.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_ASSAULT_GUN">
+			<Text>Les canons d'Assaut Lourds sont très puissants contre les villes et l'infanterie retranchée, ils sont craints des autres blindés, mais très lents et plus faiblement blindés.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_LIGHT_TANK_DESTROYER">
+			<Text>Canons Anti-Chars montés sur roues ou chenillés, utilisant généralement les embuscades pour contrer les chars adverses. Leur mobilité est moins grande que celle des chars, et ils sont moins bons en attaque.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_TANK_DESTROYER">
+			<Text>Canons Anti-Chars montés sur roues ou chenillés, utilisant généralement les embuscades pour contrer les chars adverses. Leur mobilité est moins grande que celle des chars, et ils sont moins bons en attaque.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_TANK_DESTROYER">
+			<Text>Chasseurs de Chars lourdement blindés, redoutables face aux autres chars. Leur mobilité est faible et ils consomment beaucoup de ressources.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_TANK">
+			<Text>Chars lourdement blindés, ils sont très puissants mais lents et ont besoin de beaucoup de ressources. Leurs tailles en font des cibles faciles pour les attaques aériennes.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_CRUISER_TANK">
+			<Text>Les Chars rapides (aussi appelés chars de cavalerie) sont des chars très rapides, pouvant profiter des failles dans le front ennemi pour couper ses voies de ravitaillement. Faiblement armés et blindés pour une plus grande vitesse, ils ne font pas le poids face aux autres chars et ont une faible défense.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_LIGHT_TANK">
+			<Text>Faiblement blindés et rapides, les chars légers ont besoin de moins de ressources que la plupart des chars, et sont bons contre l'infanterie et pour la reconnaissance</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_CRUISER">
+			<Text>Plus petits que les cuirassés mais plus grands que les destroyers, les croiseurs offrent une combinaison équilibrée de vitesse, de portée et de puissance de feu.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_HEAVY_CRUISER">
+			<Text>Les croiseurs Lourds sont conçus pour les missions à long terme, ils se déplacent vite et sont bien armés grâce à leurs grosses batteries de 203 mm.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_HELP_DREADNOUGHT">
+			<Text>Cuirassés obsolètes et Croiseurs de Bataille, ils manquent de vitesse et sont surclassés par les cuirassés modernes, mais leur armement lourd reste une menace pour n'importe quel autre navire.</Text>
+		</Row>
+	</Language_FR_FR>
+
+	<!-- +++++++++++++++++++++++ -->
+	<!-- +  GLOBAL PROMOTIONS  + -->
+	<!-- +++++++++++++++++++++++ -->
+	<Language_FR_FR>
+
+		<!-- UPDATE -->
+
+		<Replace Tag="TXT_KEY_PROMOTION_MEDIC">
+			<Text>Médecins de Combat</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_MEDIC_HELP">
+			<Text>-10% [ICON_PERSONNEL] de personnel nécessaire pour renforcer cette unité.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_MARCH">
+			<Text>Hôpital de campagne</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_MARCH_HELP">
+			<Text>-30% [ICON_PERSONNEL] de personnel nécessaire pour renforcer cette unité.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_REPAIR_HELP">
+			<Text>-20% [ICON_MATERIEL] de matériel nécessaire pour renforcer cette unité.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_SUPPLY_HELP">
+			<Text>-20% [ICON_MATERIEL]de matériel et -30% [ICON_PERSONNEL] de personnel nécessaires pour renforcer cette unité.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_ANTI_SUBMARINE_I">
+			<Text>Bonus contre les Sous-marins</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_ANTI_SUBMARINE_I_HELP">
+			<Text>+ 100% [ICON_STRENGTH] de Puissance contre les [COLOR_POSITIVE_TEXT]Sous-marins[ENDCOLOR].</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_ANTI_SUBMARINE_II">
+			<Text>Bonus contre les Sous-marins</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_ANTI_SUBMARINE_II_HELP">
+			<Text>+ 200% [ICON_STRENGTH] de ¨Puissance contre les [COLOR_POSITIVE_TEXT]Sous-marins[ENDCOLOR].</Text>
+		</Replace>
+
+		<Replace Tag="TXT_KEY_PROMOTION_CITY_SIEGE_HELP">
+			<Text>+20% Bonus contre les Villes.</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_PROMOTION_CITY_SIEGE">
+			<Text>Bonus contre les Villes (20)</Text>
+		</Replace>
+
+		<!-- NEW TEXTS -->
+
+		<!-- NO SUPPLY (use Lua for effect) -->
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY">
+			<Text>Le ravitaillement est coupé</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_DESC">
+			<Text>-25% [ICON_STRENGTH] en [COLOR_NEGATIVE_TEXT]Attaque[ENDCOLOR][NEWLINE]-10% [ICON_STRENGTH] en [COLOR_NEGATIVE_TEXT]Défense[ENDCOLOR][NEWLINE]Ne peut pas recevoir de renforts</Text>
+		</Row>
+
+		<!-- NO SUPPLY SPECIAL FORCES (use Lua for effect) -->
+		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC">
+			<Text>Ne peut pas recevoir de renforts</Text>
+		</Row>
+
+		<!-- HEAVY (use Lua for effect) -->
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY">
+			<Text>Unité Lourde</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_DESC">
+			<Text>+ 100% [ICON_MATERIEL] matériel nécessaire pour renforcer cette unité.</Text>
+		</Row>
+
+		<!-- SPECIAL FORCES (use Lua for effect) -->
+		<Row Tag="TXT_KEY_PROMOTION_SPECIAL_FORCES">
+			<Text>Forces Spéciales</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SPECIAL_FORCES_DESC">
+			<Text>Invisible dans la Forêt/Jungle.</Text>
+		</Row>
+
+		<!-- EMBARKED FIX (deprecated)-->
+		<Row Tag="TXT_KEY_PROMOTION_EMBARKED_FIX">
+			<Text>Unité terrestre embarqué</Text>
+		</Row>
+
+		<!-- DESERT MOVES x2 -->
+		<Row Tag="TXT_KEY_PROMOTION_DESERT_POWER">
+			<Text>Les Rats du désert</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_DESERT_POWER_HELP">
+			<Text>x2 [ICON_MOVE] mouvement dans le désert</Text>
+		</Row>
+
+		<!-- Ready for winter -->
+		<Row Tag="TXT_KEY_PROMOTION_WINTER_READY">
+			<Text>Paré pour l'hiver</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_WINTER_READY_HELP">
+			<Text>L'unité peut obtenir l'Equipement d'Hiver plus vite</Text>
+		</Row>
+
+		<!-- SNOW MOVES x2 -->
+		<Row Tag="TXT_KEY_PROMOTION_ARCTIC_POWER">
+			<Text>Equipement d'Hiver</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ARCTIC_POWER_HELP">
+			<Text>x2 [ICON_MOVE] Mouvement dans la neige.</Text>
+		</Row>
+
+
+		<!-- SMALL EVASION -->
+		<Row Tag="TXT_KEY_PROMOTION_SMALL_EVASION">
+			<Text>Evasion</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SMALL_EVASION_DESC">
+			<Text>+25% chance d'échapper à une interception.</Text>
+		</Row>
+
+		<!-- GUN 25 -->
+		<Row Tag="TXT_KEY_PROMOTION_GUN_25">
+			<Text>Bonus vs Armes à feu</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_GUN_25_DESC">
+			<Text>+ 25% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]d'Armes à feu[ENDCOLOR].</Text>
+		</Row>
+
+		<!-- RANGE +3 -->
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_3">
+			<Text>Carte Tactique</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_3_DESC">
+			<Text>+ 4 [ICON_MOVE] Rayon d'Action dû aux paramètres du scénario.</Text>
+		</Row>
+
+		<!-- RANGE +6 -->
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_6">
+			<Text>Carte Tactique</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_RANGE_6_DESC">
+			<Text>+ 6 [ICON_MOVE] Rayon d'Action dû aux paramètres du scénario.</Text>
+		</Row>
+
+		<!-- NAVAL MOVE +2 -->
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2">
+			<Text>Déplacement Naval Rapide</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_NAVAL_MOVEMENT_2_DESC">
+			<Text>+ 2 [ICON_MOVE] mouvement dû aux paramètres du scénario.</Text>
+		</Row>
+
+		<!-- OCEAN MOVE x2 -->
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT">
+			<Text>Déplacement Rapide dans l'Océan</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SCENARIO_OCEAN_MOVEMENT_DESC">
+			<Text>x2 [ICON_MOVE] Mouvement dans l'Océan dû aux paramètres du scénario</Text>
+		</Row>
+
+		<!-- LARGE TARGET (AIR PENALTY 25) -->
+		<Row Tag="TXT_KEY_PROMOTION_LARGE_TARGET">
+			<Text>Grande Cible</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LARGE_TARGET_DESC">
+			<Text>- 25% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]Aériennes[ENDCOLOR].</Text>
+		</Row>
+
+		<!-- ARMOR PENALTY 25 (not used)-->
+		<Row Tag="TXT_KEY_PROMOTION_ARMOR_PENALTY_25">
+			<Text>Pénalité vs Blindés</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ARMOR_PENALTY_25_DESC">
+			<Text>- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Blindés[ENDCOLOR].</Text>
+		</Row>
+
+		<!-- SUBMARINE PENALTY 50 -->
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50">
+			<Text>Pénalité vs Sous-marins</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE_PENALTY_50_DESC">
+			<Text>- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].</Text>
+		</Row>
+
+		<!-- CITY PENALTY 50 -->
+		<Row Tag="TXT_KEY_PROMOTION_CITY_PENALTY_50">
+			<Text>Penalité vs Villes</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_CITY_PENALTY_50_DESC">
+			<Text>- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].</Text>
+		</Row>
+
+		<!-- LIGHT EQUIPEMENT PENALTY -->
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT">
+			<Text>Equipement Léger</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_DESC">
+			<Text>- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Blindés[ENDCOLOR].[NEWLINE]- 10% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].</Text>
+		</Row>
+	</Language_FR_FR>
+	
+	<!-- ++++++++++++++++++++++ -->
+	<!-- +  UNITS PROMOTIONS  + -->
+	<!-- ++++++++++++++++++++++ -->
+	<Language_FR_FR>
+		
+		<!-- ARTILLERY (Howitzer-Guns)-->
+		<Row Tag="TXT_KEY_PROMOTION_ARTILLERY">
+			<Text>Canons d'Artillerie</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ARTILLERY_DESC">
+			<Text>Peut tirer par-dessus les obstacles.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Unités Retranchées[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]d'armes à feu[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]Navales[ENDCOLOR].[NEWLINE]Ne peut pas attaquer les [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].[NEWLINE]Pas d'attaque de mêlée, visibilité limitée.</Text>
+		</Row>
+		
+		<!-- ARTILLERY (Field Guns)-->
+		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN">
+			<Text>Canons de campagne</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FIELD_GUN_DESC">
+			<Text>Tir direct uniquement.[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Unités Blindées[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]Navales[ENDCOLOR].[NEWLINE]Ne peut pas attaquer les [COLOR_NEGATIVE_TEXT]sous-marins[ENDCOLOR].[NEWLINE]Pas d'attaque de mêlée, visibilité limitée.</Text>
+		</Row>
+		
+		<!-- ARTILLERY (Anti Aircraft Guns)-->
+		<Row Tag="TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN">
+			<Text>Canons Anti-aériens</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ANTI_AIRCRAFT_GUN_DESC">
+			<Text>Peut effectuer 3 interceptions par tour.[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Unités Aériennes[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Unités Blindées[ENDCOLOR].[NEWLINE]Pas d'attaque de mêlée, visibilité limitée.</Text>
+		</Row>
+		
+		<!-- HEAVY TANK -->
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_TANK">
+			<Text>Char Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_TANK_DESC">
+			<Text>+ 15% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Blindées[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- LIGHT TANK -->
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_TANK">
+			<Text>Char Léger</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_LIGHT_TANK_DESC">
+			<Text>+ 25% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]d'Armes à feu[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Blindés[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- ASSAULT GUN -->
+		<Row Tag="TXT_KEY_PROMOTION_ASSAULT_GUN">
+			<Text>Canon d'Assaut</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ASSAULT_GUN_DESC">
+			<Text>+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Unités Retranchées[ENDCOLOR].[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Blindées[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]d'Armes à feu[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- FIGHTER -->
+		<Row Tag="TXT_KEY_PROMOTION_FIGHTER">
+			<Text>Chasseur</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FIGHTER_DESC">
+			<Text>Peut intercepter 2 unités [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR] par tour.[NEWLINE]+ 25% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]- 83% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH][COLOR_NEGATIVE_TEXT]Combat à distance[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- MODERN FIGHTER -->
+		<Row Tag="TXT_KEY_PROMOTION_MODERN_FIGHTER">
+			<Text>Chasseur Moderne</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_MODERN_FIGHTER_DESC">
+			<Text>Peut intercepter 3 unités [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR] par tour.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]- 83% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] [COLOR_NEGATIVE_TEXT]Combat à distance[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- HEAVY FIGHTER -->
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_FIGHTER">
+			<Text>Chasseur Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_FIGHTER_DESC">
+			<Text>Peut intercepter 2 unités [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR] par tour.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Bombardiers[ENDCOLOR].[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Bombardiers Lourds[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]- 75% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] [COLOR_NEGATIVE_TEXT]Combat à distance[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- ATTACK AIRCRAFT -->
+		<Row Tag="TXT_KEY_PROMOTION_ATTACK_AIRCRAFT">
+			<Text>Avion d'Attaque au sol</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_ATTACK_AIRCRAFT_DESC">
+			<Text>+ 150% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR].[NEWLINE]+ 100% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Terrestres[ENDCOLOR].[NEWLINE]+ 33% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Navales[ENDCOLOR].[NEWLINE]- 15% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Chasseurs[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- FAST BOMBER -->
+		<Row Tag="TXT_KEY_PROMOTION_FAST_BOMBER">
+			<Text>Bombardier Rapide</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_FAST_BOMBER_DESC">
+			<Text>+25% chance d'échapper à une interception.[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Terrestres[ENDCOLOR].[NEWLINE]+ 50% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Navales[ENDCOLOR].[NEWLINE]- 25% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- HEAVY BOMBER -->
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_BOMBER">
+			<Text>Bombardier Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_HEAVY_BOMBER_DESC">
+			<Text>+ 20% [ICON_STRENGTH] Combat VS [COLOR_POSITIVE_TEXT]Villes[ENDCOLOR].[NEWLINE]- 35% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]d'Armes à feu[ENDCOLOR].[NEWLINE]- 50% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]Terrestres[ENDCOLOR].[NEWLINE]- 70% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]Navales[ENDCOLOR].[NEWLINE]- 75% [ICON_STRENGTH] Combat VS unités [COLOR_NEGATIVE_TEXT]Blindées[ENDCOLOR].[NEWLINE]- 95% [ICON_STRENGTH] Combat VS [COLOR_NEGATIVE_TEXT]Sous-marins[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- SUBMARINES -->
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE">
+			<Text>Sous-marin</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_SUBMARINE_DESC">
+			<Text>+ 100% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Navales[ENDCOLOR] et [COLOR_POSITIVE_TEXT]Embarquées[ENDCOLOR].</Text>
+		</Row>
+		
+		<!-- CRUISER -->
+		<Row Tag="TXT_KEY_PROMOTION_CRUISER">
+			<Text>Croiseur</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROMOTION_CRUISER_DESC">
+			<Text>+ 25% [ICON_STRENGTH] Combat VS unités [COLOR_POSITIVE_TEXT]Navales[ENDCOLOR] et [COLOR_POSITIVE_TEXT]Aériennes[ENDCOLOR].</Text>
+		</Row>
+
+	</Language_FR_FR>
+
+	<!-- ++++++++++++++++++++ -->
+	<!-- +  UNITS PROJECTS  + -->
+	<!-- ++++++++++++++++++++ -->
+	<Language_FR_FR>			
+		
+		<!-- ATTACK AIRCRAFT -->
+		<Row Tag="TXT_KEY_PROJECT_ATTACK_AIRCRAFT">
+			<Text>Conception d'un Avion d'Attaque au sol</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_ATTACK_AIRCRAFT_DESC">
+			<Text>Le Ju 87 allemand a prouvé sa valeur pendant la guerre civile d'Espagne, nous pourrons avoir besoin d'un avion comme cela pour contrer les unités blindées enemies.</Text>
+		</Row>
+		
+		<!-- HEAVY BOMBER -->
+		<Row Tag="TXT_KEY_PROJECT_HEAVY_BOMBER">
+			<Text>Conception d'un Bombardier Lourd</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_HEAVY_BOMBER_DESC">
+			<Text>Si les défenses des villes deviennent plus puissantes ou si vos bombardiers moyens commencent à prendre trop de dégâts face aux chasseurs ennemis, de nouveaux bombardiers avec une plus grosse capacité d'emport et un puissant armement défensif vont être nécessaires. L'achèvement de ce projet permettra la construction de Bombardiers Lourds modernes.</Text>
+		</Row>
+		
+		<!-- FRANCE -->
+
+		<!-- LIGHT TANK H39 -->
+		<Row Tag="TXT_KEY_PROJECT_H39">
+			<Text>Conception du Hotchkiss H39</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_H39_DESC">
+			<Text>Une évolution du char de cavalerie Hotchkiss H35</Text>
+		</Row>
+		
+		<!-- LIGHT TANK R40 -->
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_R40">
+			<Text>Conception du Renault R-40</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_R40_DESC">
+			<Text>Une évolution du char léger Renault R-35</Text>
+		</Row>
+		
+		<!-- TANK ARL-44 -->
+		<Row Tag="TXT_KEY_PROJECT_ARL_44">
+			<Text>Conception du Char Lourd ARL-44</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_ARL_44_DESC">
+			<Text>L'Armée Française manque de chars lourds modernes comme en possèdent les nations voisines, mais nos ingénieurs ont fini les plans pour un nouveau modèle.</Text>
+		</Row>
+		
+		<!-- FIGHTER M.B.152 -->
+		<Row Tag="TXT_KEY_PROJECT_MB152">
+			<Text>Conception du chasseur M.B.152</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MB152_DESC">
+			<Text>Notre Air Force manque de chasseurs modernes, nous pensons que ce modèle pourrait être une solution.</Text>
+		</Row>
+		
+		<!-- FIGHTER M.S.406 -->
+		<Row Tag="TXT_KEY_PROJECT_MS406">
+			<Text>Conception du chasseur M.S.406</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MS406_DESC">
+			<Text>Notre Air Force manque de chasseurs modernes, nous pensons que ce modèle pourrait être une solution.</Text>
+		</Row>
+		
+		<!-- FIGHTER D520 -->
+		<Row Tag="TXT_KEY_PROJECT_FIGHTER_D520">
+			<Text>Conception du Dewotine D.520</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_FIGHTER_D520_DESC">
+			<Text>Notre nation manque toujours de chasseurs modernes compétitifs, cette fois nous sommes certains que le modèle proposé est la solution.</Text>
+		</Row>
+		
+		<!-- USSR -->
+	
+		<!-- TANK T34 -->
+		<Row Tag="TXT_KEY_PROJECT_T34">
+			<Text>Conception du char T-34</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_T34_DESC">
+			<Text>Cet excellent modèle de char est un projet de haute priorité..</Text>
+		</Row>
+		
+		<!-- TANK T34/76 -->
+		<Row Tag="TXT_KEY_PROJECT_T34_76">
+			<Text>Conception du char T-34/76</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_T34_76_DESC">
+			<Text>Nos ingénieurs ont un projet pour monter le puissant canon F-34 de 76.2 mm sur le T-34.</Text>
+		</Row>
+		
+		<!-- TANK T-34/85 -->
+		<Row Tag="TXT_KEY_PROJECT_T34_85">
+			<Text>Conception du char T-34/85</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_T34_85_DESC">
+			<Text>Un T-34 amélioré avec un meilleur canon et une plus grande tourelle pour 3 hommes.</Text>
+		</Row>
+		
+		<!-- KV-1 -->
+		<Row Tag="TXT_KEY_PROJECT_KV1">
+			<Text>Conception du char KV-1</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_KV1_DESC">
+			<Text>Nos ingénieurs ont conçu un puissant char lourd à ajouter à notre arsenal, qui, nous pensons, pourrait même être supérieur au char français B1.</Text>
+		</Row>
+		
+		<!-- TANK IS-1 -->
+		<Row Tag="TXT_KEY_PROJECT_IS_1">
+			<Text>Conception du char IS-1</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IS_1_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un modèle de char lourd qui sera capable de contrer le blindage et la puissance de feu des Allemands.</Text>
+		</Row>
+		
+		<!-- TANK IS-2 -->
+		<Row Tag="TXT_KEY_PROJECT_IS_2">
+			<Text>Conception du char IS-2</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IS_2_DESC">
+			<Text>Nos ingénieurs sont prêts à améliorer le IS-1 avec un canon de 122mm.</Text>
+		</Row>
+		
+		<!-- HEAVY ASSAULT GUN KV-2 -->
+		<Row Tag="TXT_KEY_PROJECT_KV2">
+			<Text>Conception du Canon d'Assaut Lourd KV-2</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_KV2_DESC">
+			<Text>Nos ingénieurs ont les plans d'un KV-1 équippé d'un obusier de 152mm, ce modèle sera parfait pour attaquer les fortifications ennemies et les villes.</Text>
+		</Row>
+		
+		<!-- FIGHTER LaGG3 -->
+		<Row Tag="TXT_KEY_PROJECT_LAGG3">
+			<Text>Conception du Lavochkin LaGG-3</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LAGG3_DESC">
+			<Text>Ce projet est le premier modèle de chasseur moderne disponible pour l'URSS.</Text>
+		</Row>
+		
+		<!-- FIGHTER La-5 -->
+		<Row Tag="TXT_KEY_PROJECT_LA5">
+			<Text>Conception du Lavochkin La-5</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LA5_DESC">
+			<Text>Une évolution du LaGG-3.</Text>
+		</Row>
+		
+		<!-- FIGHTER La-5 v2 -->
+		<Row Tag="TXT_KEY_PROJECT_LA5_V2">
+			<Text>Conception du Lavochkin La-5 FN</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LA5_V2_DESC">
+			<Text>Une évolution du La-5.</Text>
+		</Row>
+		
+		<!-- FIGHTER La-7 -->
+		<Row Tag="TXT_KEY_PROJECT_LA7">
+			<Text>Conception du Lavochkin La-7</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LA7_DESC">
+			<Text>Une évolution du La-5.</Text>
+		</Row>
+		
+		<!-- FIGHTER Yak-7 -->
+		<Row Tag="TXT_KEY_PROJECT_YAK7">
+			<Text>Conception du chasseur Yak-7</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_YAK7_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un chasseur de soutien rapproché à deux places.</Text>
+		</Row>
+		
+		<!-- ATTACK AIRCRAFT IL-2 -->
+		<Row Tag="TXT_KEY_PROJECT_IL2">
+			<Text>Conception du Ilyushin Il-2</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IL2_DESC">
+			<Text>Le Ju 87 Allemand a prouvé sa valeur durant la guerre civile d'Espagne, nous pourrions avoir besoin d'un avion comme cela (mais plus solide) pour contrer les unités blindées ennemies.</Text>
+		</Row>
+		
+		<!-- FAST BOMBER TUPOLEV TU-2 -->
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_TU2">
+			<Text>Conception du Tupolev Tu-2</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_TU2_DESC">
+			<Text>Cet avion rapide a une plus grande capacité d'emport que le PE-2 et aura encore plus de chance d'échapper aux interception.</Text>
+		</Row>
+		
+		<!-- BOMBER IL-4 -->
+		<Row Tag="TXT_KEY_PROJECT_IL4">
+			<Text>Conception du Ilyushin Il-4</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_IL4_DESC">
+			<Text>Un modèle de bombardier moyen.</Text>
+		</Row>
+		
+		<!-- BATTLESHIP Soyuz class -->
+		<Row Tag="TXT_KEY_PROJECT_BATTLESHIP_SOYUZ">
+			<Text>Conception du cuirassé de classe Sovetsky Soyuz</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BATTLESHIP_SOYUZ_DESC">
+			<Text>Nous n'avons pas de cuirassé moderne pour faire face à la flotte allemande, ils seront nécessaires si nous voulons être capable de garder le contrôle de nos routes maritimes pour le transport de matériel ou de troupes.</Text>
+		</Row>
+		
+		<!-- GERMANY -->
+	
+		<!-- LIGHT TANK PANZER II Ausf L -->
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L">
+			<Text>Conception du Panzer II Ausf L</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_PANZER_II_L_DESC">
+			<Text>Une évolution du char léger Panzer II</Text>
+		</Row>
+		
+		<!-- Panzer III -->
+		<Row Tag="TXT_KEY_PROJECT_PANZERIII">
+			<Text>Conception du char Panzer III</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZERIII_DESC">
+			<Text>Nous pensons que nous pouvons nous écarter de nos panzers originaux et en créer un nouveau pouvant contrer les véhicules blindés ennemis, faisant de lui un modèle très utile.</Text>
+		</Row>
+		
+		<!-- TANK Panzer III Ausf J -->
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_III_J">
+			<Text>Conception du Panzer III Ausf J</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_III_J_DESC">
+			<Text>Une évolution du char Panzer III</Text>
+		</Row>
+		
+		<!-- Panzer IV -->
+		<Row Tag="TXT_KEY_PROJECT_PANZERIV">
+			<Text>Conception du char Panzer IV</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZERIV_DESC">
+			<Text>Nos unités d'infanterie pourraient recevoir davantage de soutien des chars d'infanterie, nos ingénieurs sont prêts à développer le Panzer IV (le char le plus utilisé dans l'Armée Allemande).</Text>
+		</Row>
+		
+		<!-- TANK Panzer IV Ausf G -->
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_G">
+			<Text>Conception du Panzer IV Ausf G</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_G_DESC">
+			<Text>Une évolution du char Panzer IV</Text>
+		</Row>
+		
+		<!-- TANK Panzer IV Ausf H -->
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_H">
+			<Text>Conception du Panzer IV Ausf H</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TANK_PANZER_IV_H_DESC">
+			<Text>Une évolution du char Panzer IV Ausf G</Text>
+		</Row>
+		
+		<!-- TANK Panzer V Panther -->
+		<Row Tag="TXT_KEY_PROJECT_PANZER_V_PANTHER">
+			<Text>Conception du Char Panzer V Panther</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZER_V_PANTHER_DESC">
+			<Text>Les T-34 et KV-1 Russes surclassent nos Panzer IV et Panzer III, nos ingénieurs sont prêts à créer un nouveau modèle pour contrer leurs chars.</Text>
+		</Row>
+		
+		<!-- TANK Panzer VI Tiger -->
+		<Row Tag="TXT_KEY_PROJECT_PANZER_VI_TIGER">
+			<Text>Conception du Char Panzer VI Tigre</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_PANZER_VI_TIGER_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un puissant char lourd alliant puissance de feu et blindage.</Text>
+		</Row>
+		
+		<!-- FIGHTER BF-109F -->
+		<Row Tag="TXT_KEY_PROJECT_BF109F">
+			<Text>Conception du Messerschmitt Bf 109F</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF109F_DESC">
+			<Text>Une évolution du Messerschmitt Bf 109E.</Text>
+		</Row>
+		
+		<!-- FIGHTER BF-109G -->
+		<Row Tag="TXT_KEY_PROJECT_BF109G">
+			<Text>Conception du Messerschmitt Bf 109G</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF109G_DESC">
+			<Text>Une évolution du Messerschmitt Bf 109F.</Text>
+		</Row>
+		
+		<!-- FIGHTER FW-190 -->
+		<Row Tag="TXT_KEY_PROJECT_FW190">
+			<Text>Conception du Focke-Wulf Fw 190</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_FW190_DESC">
+			<Text>Un puissant chasseur.</Text>
+		</Row>
+		
+		<!-- FIGHTER BF-110 -->
+		<Row Tag="TXT_KEY_PROJECT_BF110">
+			<Text>Conception du Chasseur Lourd BF-110</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF110_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un chasseur bimoteur, qui sera bien plus lourd que nos BF-109, capables de prendre beaucoup plus de coups et de délivrer une bien plus grande de puissance de feu.</Text>
+		</Row>
+		
+		<!-- HEAVY FIGHTER BF110F4 -->
+		<Row Tag="TXT_KEY_PROJECT_BF110F4">
+			<Text>Conception du Messerschmitt Bf 110 F4</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BF110F4_DESC">
+			<Text>Une évolution du Bf 110.</Text>
+		</Row>
+		
+		<!-- HEAVY FIGHTER JU88 -->
+		<Row Tag="TXT_KEY_PROJECT_JU88">
+			<Text>Conception du Junker Ju 88C</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_JU88_DESC">
+			<Text>Le Junker Ju 88C est la version chasseur lourd du bombardier rapide Ju 88A.</Text>
+		</Row>
+		
+		<!-- HEAVY FIGHTER HE 219 -->
+		<Row Tag="TXT_KEY_PROJECT_HE219">
+			<Text>Conception du Heinkel He 219</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_HE219_DESC">
+			<Text>Le Heinkel He 219 Uhu ("hibou grand-duc") est très sophistiqué, il incluera un radar d'interception avancé VHF-band et la première utilisation opérationnelle du siège éjectable.</Text>
+		</Row>
+		
+		<!-- HEAVY BOMBER HE 177 -->
+		<Row Tag="TXT_KEY_PROJECT_HE177">
+			<Text>Conception du Heinkel He 177</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_HE177_DESC">
+			<Text>Si les défenses des villes deviennent plus puissantes ou si vos bombardiers moyens commencent à prendre trop de dégâts face aux chasseurs ennemis, de nouveaux bombardiers avec un plus grande capacité d'emport et un puissant armement défensif seront nécessaires. La recherche de ce projet permettra la construction de Bombardiers Lourds Modernes.</Text>
+		</Row>
+		
+		<!-- UK -->
+
+		<!-- Tetrarch -->
+		<Row Tag="TXT_KEY_PROJECT_TETRARCH">
+			<Text>Conception du char Tetrarch</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TETRARCH_DESC">
+			<Text>Nos chars légers précédents manquent de puissant armement, le Tetrarch sera conçu pour porter un canon de 2 livres qui améliorera significativement nos divisions blindées.</Text>
+		</Row>
+		
+		<!-- Matilda I -->
+		<Row Tag="TXT_KEY_PROJECT_MATILDAI">
+			<Text>Conception du Char Matilda I</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MATILDAI_DESC">
+			<Text>En nous écartant du Vickers MK VI, nous pensons pouvoir créer un meilleur char d'infanterie armé d'une meilleure mitrailleuse vickers.</Text>
+		</Row>
+		
+		<!-- Matilda II -->
+		<Row Tag="TXT_KEY_PROJECT_MATILDAII">
+			<Text>Conception du Char Matilda II</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MATILDAII_DESC">
+			<Text>En se basant sur des modèles de chars précédents, nos ingénieurs pensent qu'ils pourront développer un char léger avancé pour concurrencer les autres chars modernes.</Text>
+		</Row>
+		
+		<!-- Cruiser MK III -->
+		<Row Tag="TXT_KEY_PROJECT_CRUISERMKIII">
+			<Text>Conception du Char Cruiser MK III</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_CRUISERMKIII_DESC">
+			<Text>Un nouveau système de suspension est disponible pour rendre nos chars Cruiser plus rapides, nos ingénieurs sont prêts à créer un char Cruiser utilisant ce nouveau système de suspension.</Text>
+		</Row>
+		
+		<!-- TANK A-10 Valentine -->
+		<Row Tag="TXT_KEY_PROJECT_VALENTINE">
+			<Text>Conception du Char A10 Valentine</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_VALENTINE_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un nouveau char rapide d'infanterie.</Text>
+		</Row>
+		
+		<!-- TANK A-13 Covenanter -->
+		<Row Tag="TXT_KEY_PROJECT_A13_COVENANTER">
+			<Text>Conception du Char A13 Covenanter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A13_COVENANTER_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un meilleur blindé pour remplacer le Cruiser IV.</Text>
+		</Row>
+		
+		<!-- TANK A-15 Crusader -->
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER">
+			<Text>Conception du Char A15 Crusader</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER_DESC">
+			<Text>Nos ingénieurs sont prêts à créer un Char de cavalerie plus rapide et plus puissant pour contrer les Panzer III et Panzer IV ennemis.</Text>
+		</Row>
+		
+		<!-- TANK A-15 Crusader MK III -->
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER_MKIII">
+			<Text>Conception du Char A15 Crusader MK III</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_A15_CRUSADER_MKIII_DESC">
+			<Text>Un A15 Crusader amélioré avec un canon de 6 livres.</Text>
+		</Row>
+		
+		<!-- CRUISER TANK MK IV -->
+		<Row Tag="TXT_KEY_PROJECT_CRUISER_IV">
+			<Text>Conception de l'A13 Mk II Cruiser Mk IV</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_CRUISER_IV_DESC">
+			<Text>Les chars Cruiser n'ont pas encore répondu aux spécifications requises, ce nouveau modèle est un autre pas dans la bonne direction.</Text>
+		</Row>
+		
+		<!-- TANK M4 Firefly -->
+		<Row Tag="TXT_KEY_PROJECT_M4_FIREFLY">
+			<Text>Conception du M4 Sherman Firefly</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M4_FIREFLY_DESC">
+			<Text>Ce modèle est basé sur le M4 Sherman américain sur lequel sera monté le terrible canon anti-char britannique de 17 livres.</Text>
+		</Row>
+		
+		<!-- HEAVY TANK CHURCHILL -->
+		<Row Tag="TXT_KEY_PROJECT_CHURCHILL">
+			<Text>Conception de l'A22 Churchill</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_CHURCHILL_DESC">
+			<Text>Un modèle de Char Lourd.</Text>
+		</Row>
+		
+		<!-- FIGHTER Spitfire Mk V -->
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_V">
+			<Text>Conception du Spitfire Mk V</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_V_DESC">
+			<Text>Une évolution du Spitfire.</Text>
+		</Row>
+		
+		<!-- FIGHTER Spitfire Mk IX -->
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_IX">
+			<Text>Conception du Spitfire Mk IX</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SPITFIRE_IX_DESC">
+			<Text>Une évolution du Spitfire.</Text>
+		</Row>
+		
+		<!-- HEAVY FIGHTER Whirlwind -->
+		<Row Tag="TXT_KEY_PROJECT_WHIRLWIND">
+			<Text>Conception du Westland Whirlwind</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_WHIRLWIND_DESC">
+			<Text>Un modèle de Chasseur Lourd.</Text>
+		</Row>
+		
+		<!-- HEAVY FIGHTER Beaufighter -->
+		<Row Tag="TXT_KEY_PROJECT_BEAUFIGHTER">
+			<Text>Conception du Bristol Beaufighter</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BEAUFIGHTER_DESC">
+			<Text>Un modèle de Chasseur Lourd robuste.</Text>
+		</Row>
+		
+		<!-- FAST BOMBER MOSQUITO -->
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_MOSQUITO">
+			<Text>Conception du De Havilland Mosquito</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_BOMBER_MOSQUITO_DESC">
+			<Text>Initialement conçu comme un bombardier léger désarmé, le Mosquito sera surement l'un des plus rapides avions disponibles, lui permettant d'échapper aux interceptions avant d'atteindre sa cible.</Text>
+		</Row>
+		
+		<!-- BOMBER Avro Lancaster -->
+		<Row Tag="TXT_KEY_PROJECT_LANCASTER">
+			<Text>Conception du Bombardier Avro Lancaster</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LANCASTER_DESC">
+			<Text>Nos ingénieurs sont prêts à créer notre second bombardier lourd qui sera très efficace lors des raids nocturnes.</Text>
+		</Row>
+		
+		<!-- ITALY -->
+
+		<!-- LIGHT TANK L6/40 -->
+		<Row Tag="TXT_KEY_PROJECT_L6040">
+			<Text>Conception du char L6/40</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_L6040_DESC">
+			<Text>Notre armée pourrait utiliser un char léger avancé pour soutenir notre infanterie sur le champ de bataille, voila donc la solution.</Text>
+		</Row>
+		
+		<!-- TANK M11-39 -->
+		<Row Tag="TXT_KEY_PROJECT_M1139">
+			<Text>Conception du char M11/39</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M1139_DESC">
+			<Text>Notre armée manque de char moderne pouvant se comparer à ceux des autres nations, nos ingénieurs, copiant les autres nations, sont donc prêts à développer le M11/39.</Text>
+		</Row>
+		
+		<!-- TANK M13/40 -->
+		<Row Tag="TXT_KEY_PROJECT_M13_40">
+			<Text>Conception du char Fiat-Ansaldo M13/40</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M13_40_DESC">
+			<Text>Une évolution du char M11/39.</Text>
+		</Row>
+		
+		<!-- TANK M14/41 -->
+		<Row Tag="TXT_KEY_PROJECT_M14_41">
+			<Text>Conception du char Fiat M14/41</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M14_41_DESC">
+			<Text>Une évolution du char M13/40.</Text>
+		</Row>
+		
+		<!-- TANK M15/42 -->
+		<Row Tag="TXT_KEY_PROJECT_M15_42">
+			<Text>Conception du char M15/42</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M15_42_DESC">
+			<Text>Une évolution du char M14/41.</Text>
+		</Row>
+		
+		<!-- HEAVY TANK P26/40 -->
+		<Row Tag="TXT_KEY_PROJECT_P26_40">
+			<Text>Conception de l'Ansaldo P26/40</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P26_40_DESC">
+			<Text>Un modèle de Char Lourd.</Text>
+		</Row>
+		
+		<!-- FIGHTER G.50 -->
+		<Row Tag="TXT_KEY_PROJECT_G50">
+			<Text>Conception du Chasseur G.50</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_G50_DESC">
+			<Text>Notre Air Force manque de chasseur monoplan, nos ingénieurs sont prêts à développer notre premier chasseur monoplan.</Text>
+		</Row>
+		
+		<!-- FIGHTER Maachi C.202 Folgore -->
+		<Row Tag="TXT_KEY_PROJECT_MC202">
+			<Text>Conception du Chasseur Maachi C.202 Folgore</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_MC202_DESC">
+			<Text>Nos ingénieurs sont prêts à créer notre prochain chasseur, qui excellera dans les combats aériens.</Text>
+		</Row>
+		
+		<!-- FIGHTER G.55 -->
+		<Row Tag="TXT_KEY_PROJECT_G55">
+			<Text>Conception du Fiat G.55 Centauro</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_G55_DESC">
+			<Text>Un chasseur moderne avec de grandes promesses.</Text>
+		</Row>
+		
+		<!-- BOMBER SM.84 -->
+		<Row Tag="TXT_KEY_PROJECT_SM84">
+			<Text>Conception du Savoia-Marchetti SM.84</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SM84_DESC">
+			<Text>Bombardier basé sur le SM.79 avec plus de puissance, une meilleure défense et une plus grande capacité d'emport, mais aussi plus lent et moins manoeuvrable.</Text>
+		</Row>
+		
+		<!-- USA -->
+
+		<!-- M3 Grant -->
+		<Row Tag="TXT_KEY_PROJECT_M3GRANT">
+			<Text>Conception du Char M3 Grant</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M3GRANT_DESC">
+			<Text>Notre armée manque de chars, en particulier des chars capables de combattre d'autres chars, le M3 Grant sera notre solution.</Text>
+		</Row>
+		
+		<!-- LIGHT TANK M5 Stuart -->
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_M5">
+			<Text>Conception du M5 Stuart</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_LIGHT_TANK_M5_DESC">
+			<Text>Une évolution du char léger M3 Stuart.</Text>
+		</Row>
+		
+		<!-- M4 Sherman -->
+		<Row Tag="TXT_KEY_PROJECT_M4SHERMAN">
+			<Text>Conception du Char M4A1 Sherman II</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M4SHERMAN_DESC">
+			<Text>En se basant sur les performances des chars précédents en Europe et en Afrique, nos ingénieurs ont mis au point un modèle de char moderne (le char le plus utilisé dans l'Armée Américaine).</Text>
+		</Row>
+		
+		<!-- TANK M4A1(76)W Sherman IIA -->
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIA">
+			<Text>Conception du Char M4A1(76)W Sherman IIA</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIA_DESC">
+			<Text>L'utilisation du Sherman par les Britanniques en Afrique du Nord a prouvé son efficacité, mais on peut le rendre meilleur avec un canon de 76mm et une mitralleuse de plus gros calibre.</Text>
+		</Row>
+		
+		<!-- TANK M4A2 Sherman III -->
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_III">
+			<Text>Conception du Char M4A2 Sherman III</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_III_DESC">
+			<Text>Nos ingénieurs ont conçu une casemate améliorée pour le Sherman, basé sur les informations du front, ceci améliorera la capacité du Sherman à prendre des coups.</Text>
+		</Row>
+		
+		<!-- TANK M4A2(76)W Sherman IIIA -->
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIIA">
+			<Text>Conception du Char M4A2(76)W Sherman IIIA</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IIIA_DESC">
+			<Text>Une version améliorée du M4A2 Sherman monté avec un canon de 76mm et un meilleur blindage.</Text>
+		</Row>
+		
+		<!-- TANK M4A3 Sherman IV -->
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IV">
+			<Text>Conception du Char M4A3 Sherman IV</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_IV_DESC">
+			<Text>Nos ingénieurs sont prêts à créer la 4e version du Sherman, qui améliorera sa vitesse de production et son blindage.</Text>
+		</Row>
+		
+		<!-- TANK M4A3E2 Sherman Jumbo -->
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_JUMBO">
+			<Text>Conception du Char M4A3E2 Sherman Jumbo</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_JUMBO_DESC">
+			<Text>Une autre amélioration du Sherman avec un bien meilleur blindage ainsi qu'une plus grosse tourelle.</Text>
+		</Row>
+		
+		<!-- TANK M4A3E8 Easy Eight -->
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_EASYEIGHT">
+			<Text>Conception du Char M4A3E8 Sherman Easy Eight</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_SHERMAN_EASYEIGHT_DESC">
+			<Text>Une autre amélioration du Sherman lui donnant un meilleur canon, un meilleur blindage et un système de chenilles amélioré.</Text>
+		</Row>
+		
+		<!-- TANK M-26 PERSHING -->
+		<Row Tag="TXT_KEY_PROJECT_M26_PERSHING">
+			<Text>Conception du Char M-26 Pershing</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_M26_PERSHING_DESC">
+			<Text>Notre armée manque de chars lourds pour contrer les lignes de chars lourds allemands, voici donc la solution.</Text>
+		</Row>
+		
+		<!-- FIGHTER P-40 -->
+		<Row Tag="TXT_KEY_PROJECT_P40">
+			<Text>Conception du Chasseur P-40</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P40_DESC">
+			<Text>Notre Air Force manque de chasseurs modernes comme ceux d'Europe, nos ingénieurs sont prêts pour le modèle de chasseur P-40.</Text>
+		</Row>
+		
+		<!-- FIGHTER P-51 Mustang -->
+		<Row Tag="TXT_KEY_PROJECT_P51">
+			<Text>Conception du P-51 Mustang</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P51_DESC">
+			<Text>Nos bombardiers manquent de chasseurs d'escorte à long rayon d'action, et celui-ci, certainement l'un des plus puissants chasseurs pouvant être produit, est la solution.</Text>
+		</Row>
+		
+		<!-- FIGHTER P-38 -->
+		<Row Tag="TXT_KEY_PROJECT_P38">
+			<Text>Conception du Chasseur Lourd P-38</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_P38_DESC">
+			<Text>Nos ingénieurs sont prêts à créer notre premier chasseur lourd, qui sera bien plus résistant que les chasseurs standards.</Text>
+		</Row>
+		
+		<!-- BOMBER B-25 -->
+		<Row Tag="TXT_KEY_PROJECT_B25">
+			<Text>Conception du Bombardier B-25</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_B25_DESC">
+			<Text>Notre Air Force pourrait utiliser un bombardier plus léger que nos bombardiers lourds, nos ingénieurs sont prêts à mettre au point un modèle pour un nouveau bombardier Boeing.</Text>
+		</Row>
+		
+		<!-- BOMBER B-17 -->
+		<Row Tag="TXT_KEY_PROJECT_B17">
+			<Text>Conception du Bombardier B-17</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_B17_DESC">
+			<Text>Notre Air Force manque de bombardiers stratégiques modernes pouvant accomplir des bombardements à longue portée sur les villes et les unités enemies, voici donc la solution.</Text>
+		</Row>
+		
+		<!-- BOMBER B-24 Liberator -->
+		<Row Tag="TXT_KEY_PROJECT_B24">
+			<Text>Conception du Bombardier B-24 Liberator</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_B24_DESC">
+			<Text>Nos ingénieurs sont prêts à créer notre second modèle de bombardier lourd pour compléter nos bombardiers lourds B-17.</Text>
+		</Row>
+		
+		<!-- JAPAN -->
+	
+		<!-- TANK Type 3 Chi-Nu -->
+		<Row Tag="TXT_KEY_PROJECT_TYPE3">
+			<Text>Conception du Char Type 3 Chi-Nu</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE3_DESC">
+			<Text>Notre char type 97 s'est prouvé inefficace contre les chars plus avancés comme le Sherman, ce modèle résoudra ce problème efficacement.</Text>
+		</Row>
+		
+		<!-- TANK Type 4 Ke-Nu -->
+		<Row Tag="TXT_KEY_PROJECT_TYPE4">
+			<Text>Conception du Char Type 4 Ke-Nu</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE4_DESC">
+			<Text>Nos ingénieurs pensent qu'ils peuvent rendre notre modèle de char léger meilleur en montant une tourelle plus grande sur la casemate.</Text>
+		</Row>
+		
+		<!-- TANK Type 4 Chi-To -->
+		<Row Tag="TXT_KEY_PROJECT_TYPE4_CHITO">
+			<Text>Conception du Char Type 4 Chi-To</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE4_CHITO_DESC">
+			<Text>L'Armée Japonaise manque de chars modernes, nos ingénieurs pensent pouvoir concevoir un modèle qui pourra résoudre ce problème en créant le premier char lourd japonais.</Text>
+		</Row>
+		
+		<!-- TANK Type 5 Chi-Ri -->
+		<Row Tag="TXT_KEY_PROJECT_TYPE5">
+			<Text>Conception du Char Type 5 Chi-Ri</Text>
+		</Row>
+		<Row Tag="TXT_KEY_PROJECT_TYPE5_DESC">
+			<Text>Le plus puissant char lourd Japonais, nos ingénieurs pensent que ce char fera des ravages contre les Sherman Alliés et autres chars moyens.</Text>
+		</Row>
+
+	</Language_FR_FR>
+
+	<!-- +++++++++++++++++++++++ -->
+	<!-- +  MILITARY PROJECTS  + -->
+	<!-- +++++++++++++++++++++++ -->
+	<Language_FR_FR>			
+	
+		<!-- Operation Weserübung (Norway / Denmark invasion) -->
+		<Row Tag="TXT_KEY_OPERATION_WESERUBUNG">
+			<Text>Opération Weserübung</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_WESERUBUNG_DESC">
+			<Text>Nos ingénieurs ont proposé de rassembler une force de divisions aéroportées pour sécuriser la zone aux alentours de Narvik en Norvège. Une fois que la force de frappe sera rassemblée, l'assaut sera lancé immédiatement si nous avons déclaré la guerre à la Norvège et au Danemark, ou alors il commencera avant que les troupes Françaises et Britanniques ne prennent l'initiative là-bas. Ils suggèrent de déployer un soutien naval pour ces troupes.</Text>
+		</Row>
+		
+		<!-- Operation Seelöwe (UK invasion) -->
+		<Row Tag="TXT_KEY_OPERATION_SEELOWE">
+			<Text>Opération Seelöwe</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_SEELOWE_DESC">
+			<Text>Après la France, nous devons envahir le Royaume-Uni pour élminier toute menace à l'Ouest avant notre expansion à l'Est. L'opération que nos Généraux ont prévu est bien plus ambitieuse que la proposition initiale, avec la création de deux armées complètes amphibies et de nombreuses Fallschirmjagerdivisionen. Une fois complétée, cette opération sera lancée seulement si la France s'est rendue.</Text>
+		</Row>
+		
+		<!-- NEW -->
+
+		<!-- Operation China (Invasion of China) -->
+		<Row Tag="TXT_KEY_OPERATION_CHINA">
+			<Text>Invasion de la Chine</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_CHINA_DESC">
+			<Text>Nos Généraux ont décidé d'une stratégie pour envahir la Chine, afin de saisir les principaux ports et les ressources situées près de leurs côtes. Ceci est gratuit car nous nous sommes préparés à un tel événement.</Text>
+		</Row>
+		
+		<!-- Operation Norway (Invasion of Norway and Denmark) -->
+		<Row Tag="TXT_KEY_OPERATION_NORWAY">
+			<Text>Opération Weserübung</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_NORWAY_DESC">
+			<Text>Nos Généraux ont décidé d'une stratégie pour envahir la Norvège et le Danemark. Ceci est gratuit car nous nous sommes préparés à un tel événement.</Text>
+		</Row>
+		
+		<!-- Operation Fall Gelb (Invasion Plan of France, Netherlands and Belgium) -->
+		<Row Tag="TXT_KEY_OPERATION_FALLGELB">
+			<Text>Opération Fall Gelb</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_FALLGELB_DESC">
+			<Text>Nos Généraux ont décidé d'une stratégie pour envahir la France, les Pays-Bas et la Belgique. Ceci est gratuit car nous nous sommes préparés à un tel événement (IA seulement).</Text>
+		</Row>
+		
+		<!-- Operation Sonnenblume (German Support in Africa) -->
+		<Row Tag="TXT_KEY_OPERATION_SONNENBLUME">
+			<Text>Opération Sonnenblume</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_SONNENBLUME_DESC">
+			<Text>Nos alliés en Italie ont besoin d'aide en Afrique, si nous pouvons repousser l'ennemi nous pourrons prendre Suez et avoir accès au pétrole du Moyen-Orient. Nos Généraux sont prêts à étudier un plan et à envoyer un "Afrika Korps" pour soutenir nos alliés Italiens.</Text>
+		</Row>
+		
+		<!-- Operation Twenty Five (Invasion Plan of Yugoslavia) -->
+		<Row Tag="TXT_KEY_OPERATION_TWENTYFIVE">
+			<Text>Opération Twenty Five</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_TWENTYFIVE_DESC">
+			<Text>Nos Généraux ont décidé d'une stratégie pour envahir la Yougoslavie. Ceci est gratuit car nous nous sommes préparés à un tel événement (IA seulement).</Text>
+		</Row>
+		
+		<!-- Operation Marita (Invasion Plan of Greece) -->
+		<Row Tag="TXT_KEY_OPERATION_MARITA">
+			<Text>Opération Marita</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_MARITA_DESC">
+			<Text>Nos Généraux ont décidé d'une stratégie pour envahir la Grèce. Ceci est gratuit car nous nous sommes préparés à un tel événement (IA seulement).</Text>
+		</Row>
+		
+		<!-- Operation Pacific (Invasion Plan of Indonesia and the Philippines) -->
+		<Row Tag="TXT_KEY_OPERATION_PACIFIC">
+			<Text>Invasion de l'Indonésie et des Philippines</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_PACIFIC_DESC">
+			<Text>Nos Généraux ont mis au point une stratégie pour envahir l'Indonésie et les Philippines en prenant le contrôle de ressources vitales dans cette région. Ceci est gratuit parce que nous avons été préparé à un tel événement.</Text>
+		</Row>
+		
+		<!-- Operation Torch (Invasion Plan of North Africa) -->
+		<Row Tag="TXT_KEY_OPERATION_TORCH">
+			<Text>Opération Torch</Text>
+		</Row>
+		<Row Tag="TXT_KEY_OPERATION_TORCH_DESC">
+			<Text>Les généraux Britanniques ont suggéré un plan pour pousser les forces de l'Axe hors d'Afrique, avec l'armée Alliée à l'Est nous pouvons écraser les troupes Italiennes, Vichystes et Allemandes entre nos deux armées. Ce plan libérera de nombreuses villes sous contrôle de Vichy pour les rendre à la France Libre.</Text>
+		</Row>
+		
+	</Language_FR_FR>
+
+	<!-- +++++++++++++++++++++++++++++++ -->
+	<!-- +  CIVILOPEDIA SHIPS ENTRIES  + -->
+	<!-- +++++++++++++++++++++++++++++++ -->
+	<Language_fr_FR>
+		<!--RICHELIEU-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_RICHELIEU">
+			<Text>
+				Le Richelieu était un cuirassé français construit à partir de 1935, baptisé en l'honneur du cardinal de Richelieu, pour le rôle fondateur de ce ministre dans la création d'une première puissance navale française au début du XVIIe siècle.
+				Premier cuirassé français, d'un déplacement égal au maximum autorisé à l'époque par les traités de limitation des armements navals (35 000 tonnes), destiné à contrer les cuirassés italiens de la classe Vittorio Veneto.
+				c'était une version plus puissante de la classe Dunkerque, dont il reprend la disposition spécifique de l'artillerie principale en deux tourelles quadruples à l'avant, mais cette fois au calibre de 380 mm.
+				Un sister-ship de la classe Richelieu, le Jean Bart, mis sur cale, en 1936, alors qu'allait commencer la construction du cuirassé allemand Bismarck, n'entrera en service qu'en 1955.
+			</Text>
+		</Row>
+		<!--HOOD-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_HOOD">
+			<Text>
+				Le HMS Hood est un croiseur de bataille britannique, fleuron de la Royal Navy pendant l'entre-deux-guerres, coulé le 24 mai 1941 à la sortie du détroit du Danemark, lors d'une bataille navale l'opposant au cuirassé allemand Bismarck.
+				Le 21 mai 1941, le cuirassé allemand Bismarck, ainsi que le croiseur lourd SMS Prinz Eugen , sont repérés à Bergen, en Norvège.
+				Le 22 mai, à 22 h 15, le Hood et le Prince of Wales quittent Scapa Flow pour aller à leur rencontre au détroit du Danemark.
+				Le lendemain 24 mai, à 5 h 05, à la sortie du détroit du Danemark, les deux flottes s'aperçoivent. La bataille est engagée à 5 h 52, les quatre navires en présence encaissent chacun des coups sévères, mais personne ne semble emporter la décision.
+				Les navires allemands deviennent pourtant de plus en plus précis dans leur tir, tandis que le navire amiral britannique, le Hood, souffre de nombreux problèmes techniques qui l'empêchent de tirer plus vite.
+				A 5 h 57, la seconde salve du SMS Prinz Eugen déclenche un incendie, à 6 h 00, un obus du Bismarck atteint le talon d'Achille du Hood, au niveau de la soute à munitions insuffisamment protégée.
+				Une formidable explosion retentit, avec une boule de feu haute de plusieurs centaines de mètres : le navire est cassé en deux et coule en quelques minutes.
+				On ne trouvera que trois survivants sur les 1419 hommes d'équipage.
+			</Text>
+		</Row>
+		<!--LITTORIO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_LITTORIO">
+			<Text>
+				Le Littorio est le premier cuirassé d'une classe de quatre navires italiens de la Seconde Guerre mondiale : le Littorio, le Vittorio Veneto, le Roma (entré en service fin 1942) et l’Impero (non terminé).
+				Le 11 novembre 1940 le Vittorio Veneto fut légèrement endommagé pendant la bataille de Tarente.
+				Touché par trois torpilles alors qu'il était à quai, les réparations furent rapides.
+				En septembre 1941, le Littorio participa à l'attaque d'un convoi britannique ravitaillant Malte.
+				Fin 1941 et début 1942, il participa aux batailles de Syrte, près des côtes libyennes, au cours desquelles il coula les destroyers HMS Havroc et HMS Kingston.
+				Le 15 juin 1942, il attaqua un convoi britannique mais fut endommagé par une torpille lancée depuis un bombardier Vickers Wellington.
+				Le 30 juillet 1943, il fut renommé Italia et, après l'armistice du 8 septembre 1943, il fut envoyé au Grand Lac Amer en Égypte et il y resta jusqu'en 1948, année de son démantèlement.
+				Les caractéristiques de cette classe sont :
+				Blindage : 225 à 350 mm à la ceinture, 152 à 203 mm sur le pont.
+				Armement : 9 canons de 381 mm en tourelles triples (2 avant et 1 arrière), 12 canons de 152 mm, 12 canons de 90 mm anti-aériens et 50 mitrailleuses anti-aériennes de 37 et 20 mm.
+				Les navires de la classe Littorio emportaient également trois hydravions mis en œuvre grâce à une catapulte.
+			</Text>
+		</Row>
+		<!--IOWA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_IOWA">
+			<Text>
+				L’USS Iowa (BB-61) (« The Big Stick ») est un cuirassé de l'United States Navy qui participa notamment à la Seconde Guerre mondiale.
+			</Text>
+		</Row>
+		<!--YAMATO-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_YAMATO">
+			<Text>
+				Le Yamato, du nom de l'ancienne province japonaise de Yamato, était un cuirassé de premier rang de la marine impériale japonaise, et le premier de la classe Yamato.[NEWLINE]
+				Avec son jumeau le Musashi, le Yamato était le plus grand des cuirassés jamais construits, déplaçant 65 027 tonnes, et armés de pièces de 460 mm, le plus gros calibre jamais monté sur un navire de guerre.[NEWLINE]
+				Le Yamato fut coulé le 7 Avril 1945 par les portes avions américains.
+			</Text>
+		</Row>
+		<!--GANGUT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_GANGUT">
+			<Text>
+				Le Gangut est un cuirassé de classe Gangut qui servit dans la Marine impériale de Russie de 1911 à 1917, puis dans la Marine soviétique de 1917 à 1956.
+				Le 27 juin 1925 il prit le nom de Révolution d'Octobre (Oktyabrkaya Revolutsiya).
+				Il prit part à trois conflits : la Première Guerre mondiale, la Guerre d'Hiver (1939-1940), la Seconde Guerre mondiale.
+				Dès la déclaration de la Seconde Guerre mondiale, le Révolution d'Octobre entreprit un voyage de Tallinn à Kronstadt, puis de ce port se rendit à Leningrad (septembre 1941). Le cuirassé prit part à la défense de cette ville pendant toute la durée du conflit opposant l'URSS à l'Allemagne nazie. De 1941 à 1945, sous le commandement de MZ Moskalenko, NA Petrichev et S.D Soloukhine l'artillerie de marine ouvrit le feu sur les forces armées allemandes.
+				Armé de canons anti-aériens (4x75 mm - 14x37 mm - 10x12,7 mm - et 89 canons de 7,62 mm) installés en 1941) le cuirassé dirigea ses tirs contre les pilotes de la Luftwaffe.
+				Au cours de l'attaque aérienne du 21 septembre 1941, le Révolution d'Octobre fut touché par trois bombes, lors du raid aérien du 27 septembre 1941, un bombe atteignit les tourelles du cuirassé provoquant un incendie à bord, le mécanisme de rotation resta bloqué, mais le navire continua la défense de la Leningrad.
+				En 1944, le Révolution d'Octobre apporta son soutien lors de l'offensive du front de Leningrad.
+				Pour son comportement héroïque lors de la défense de Leningrad, le 22 juillet 1944, le Révolution d'Octobre fut décoré de l'Ordre du Drapeau rouge.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA BISMARCK-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_BISMARCK">
+			<Text>
+				Le Bismarck est un cuirassé allemand de la Seconde Guerre mondiale, fleuron de la Kriegsmarine du IIIe Reich et qui porte le nom du chancelier Otto von Bismarck (1815-1898).
+				Il est célèbre pour avoir coulé le croiseur de bataille HMS "Hood" et gravement endommagé le cuirassé HMS "Prince of Wales".
+				Il s'ensuivit une prise en chasse par la flotte britannique, avec notamment les cuirassés HMS Rodney et HMS King George V ainsi que le porte avions HMS Ark Royal.
+				Sa barre bloquée par l'explosion d'une torpille tirée d'un avion "Swordfish" le Bismarck ne put échappé aux cuirassés anglais.
+				Gravement endommagé par les tirs ennemis l'équipage saborda le navire au large de Brest le 27 mai 1941.
+				Sur un équipage de plus de 2 200 hommes, seuls 115 survivants furent recueillis par le Dorsetshire.
+				Ils étaient des centaines (peut-être un millier) encore à l'eau, lorsqu'ils furent abandonnés sous les yeux effarés des matelots britanniques, le croiseur ayant cru repérer un sous-marin allemand tout proche.
+				Il fut, avec son "sister-ship" le Tirpitz, le bâtiment le plus puissant du régime nazi et la fierté de son pays.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DUNKERQUE-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLESHIP_DUNKERQUE">
+			<Text>
+				Le Dunkerque était, comme son sistership de la classe Dunkerque, le Strasbourg, difficilement classable.[NEWLINE]
+				En effet, à peine moins rapides mais mieux protégés qu'un croiseur de bataille, leur blindage était moindre que celui des derniers cuirassés construits antérieurement au Traité de Washington de 1922, mais en revanche ils avaient une vitesse supérieure.[NEWLINE]
+				Les historiens maritimes les classent indifféremment comme croiseur de bataille ou cuirassé, c'est-à-dire bâtiment de ligne.[NEWLINE]
+				Mis en service respectivement en 1937 et 1939, le Dunkerque et le Strasbourg constituent l'avant-dernière classe de navires de ligne mis en service par la Marine nationale française.[NEWLINE]
+				Ils étaient remarquables par leur artillerie principale de 330 mm, en deux tourelles quadruples à l'avant.[NEWLINE]
+				Ils ont fini leur carrière sabordés à Toulon, pour éviter de tomber aux mains des Allemands, le 27 novembre 1942.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA DREADNOUGHT-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_DREADNOUGHT">
+			<Text>
+				Le dreadnought est le type prédominant de cuirassé du XXe siècle.[NEWLINE]
+				Il tire son nom du navire de guerre britannique HMS Dreadnought, lancé en 1906, qui présentait deux caractéristiques nouvelles pour l'époque : son artillerie principale n'était que d'un seul calibre (all-big-gun) et il était propulsé par un système révolutionnaire de turbine à vapeur alimentée au charbon.[NEWLINE]
+				Son impact fut si grand que les cuirassés construits après lui reprirent ces caractéristiques et furent appelés des « dreadnoughts » (ceux construits avant, des pré-dreadnoughts).[NEWLINE]
+				Le terme « dreadnought » fut progressivement abandonné après la Première Guerre mondiale, quand tous les cuirassés en partagèrent les caractéristiques.[NEWLINE]
+				Le terme dreadnought pouvait aussi inclure les croiseurs de bataille, type de navire alliant la vitesse mais aussi la légèreté de blindage des croiseurs à l'armement principal des révolutionnaires dreadnoughts.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SCHARNHORST-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SCHARNHORST">
+			<Text>
+				Les Scharnhorst ne rentrent dans aucune des catégories de navires construites dans les années trente. Ils ont une protection digne d'un cuirassé, mais un armement inférieur à celui d'un croiseur de bataille. Ils font suite aux corsaires de la classe Deutschland mais vont beaucoup plus vite grâce à leurs turbines. Par contre, leur autonomie est limitée. Ils naissent comme une réponse aux Dunkerque français (eux mêmes une réponse aux Deutschland) avec une puissance de feu est un peu inférieure (9 x 280mm contre 8 x 330mm) mais une protection très supérieure. Il était prévu de les réarmer avec les mêmes canons de 380mm que les Bismarck, mais le plan n'aboutit pas (ce sera commencé sur le Gneisenau).
+				En 1939, ce sont les deux plus grosses unités de la Kriegsmarine, status qu'ils conserveront jusqu'à l'entrée en service du Bismarck. Pendant trois ans, ils opèrent de conserve, remportant plusieurs succès spectaculaires comme la destruction du Glorious au large de la Norvège ou une campagne dévastatrice contre le commerce allié dans l'Atlantique en 1941. Le redressement sur mer et dans les airs des alliés ensuite leurs rend la vie pénible. Ils sont bloqués pendant plus de 6 mois à Brest avant de remporter leur dernier succès commun, la traversée de la Manche en plein jour en février 1942 à la barbe des Anglais. Ce sera la dernière action de guerre du Gneisenau, endommagé à plusieurs reprise et dont la reconstruction avec des canons de 380mm sera abandonnée quelques mois plus tard.
+				Le Scharnhorst va continuer à hanter les eaux du grand nord pendant encore un an, redevenant par période la plus importante unité de la Kriegsmarine quand le Tirpitz était hors combat. En tentant d'attaquer un convoi arctique au large du Cap Nord en décembre 1943, il sera surpris et détruit par le cuirassé britannique HMS Duke of York.
+			</Text>
+		</Row>
+		<!--CIVILOPEDIA SOUTH DAKOTA-->
+		<Row Tag="TXT_KEY_UNIT_PEDIA_BATTLECRUISER_SOUTH_DAKOTA">
+			<Text>
+				Les "South Dakota" furent conçus en tirant les enseignements des "North Carolina". Ils devaient remplacer ces derniers, pour faire face aux nouveaux cuirassés japonais.
+				C'est une version raccourcie de son prédécesseur. Ses machines, moins puissantes et volumineuses, permettaient de gagner du poids et de la place, mis à profit pour renforcer le blindage du navire, calculé pour résister à des obus de 406mm et non plus seulement de 356mm. Pour le reste, ses performances (vitesse et armement) sont similaires à celles des 'North Carolina".
+				[NEWLINE][NEWLINE]
+				Ils entrent en service dans la seconde moitié de l'année 1942.
+				Le South Dakota arrive juste à temps dans le Pacifique Sud pour participer à la bataille navale de Santa Cruz, et il sera endommagé le 14 novembre 1942, lors de la seconde bataille navale de Guadalcanal.
+				[NEWLINE][NEWLINE]
+				L'Alabama et le Massachussetts servirent pendant un temps dans l'Atlantique, puis furent transférés dans le Pacifique. Les quatre "South Dakota" participèrent ensuite à l'offensive de Nimitz dans le Pacifique central, en novembre 1943. Puis jusqu'à la fin de la guerre du Pacifique. Ils servirent essentiellement pour l'escorte des porte-avions d'escadre.
+				[NEWLINE][NEWLINE]
+				Après la guerre, ils furent versés dans la réserve, jusqu'à leur mise à la ferraille, au début des années soixantes, exceptés l'Alabama et le Massachussetts, transformés en musées.
+			</Text>
+		</Row>
+	</Language_fr_FR>
+
+	<!-- +++++++++++++++++++++++++++++++ -->
+	<!-- +  CIVILOPEDIA TANKS ENTRIES  + -->
+	<!-- +++++++++++++++++++++++++++++++ -->
+	<Language_fr_FR>
+		<!--"TXT_KEY_UNIT_TXT" ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_R35_TEXT">
+			<Text>
+				Le char Renault R-35 était un char léger d'infanterie français de la Seconde Guerre mondiale.
+				Il possédait un blindage avant de 43 mm, ce qui était considérable pour l'époque, mais son canon de 37 mm datait de la Première Guerre mondiale
+				et son équipage ne comptait que deux personnes (un pilote et le commandant, « un homme à tout faire » en charge du rechargement, du ciblage et de guider le pilote).
+				Il possédait un moteur de 85 chevaux à essence qui pouvait l'amener à une vitesse de pointe de 20 km/h mais son autonomie était limitée.
+				Les Français utilisaient (en cas du R-35) des tactiques qui se sont révélé inefficaces; au lieu d'approcher l'ennemi en grande formation blindée, ils employaient des attaques solitaires par des bataillons.
+				Ces tactiques dépassées, son armement peu puissant et son équipage peu important conduisit les R-35 Renault à leur mort opérationnelle.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_I_TEXT">
+			<Text>
+				Le Panzer I est un char léger allemand, conçut dans les années 1930 et utilisé, lors de la Guerre d'Espagne et au début de la Seconde Guerre mondiale. Il fut le premier panzer réalisé alors que l'Allemagne, suite au traité de Versailles, avait interdiction d'étudier ou de construire des engins blindés, si bien que la première désignation qui lui fut appliquée pour brouiller les pistes, fut bien anodine, Landwirtschaftlicher Schlepper, ou tracteur agricole, mais par la suite il en reçut une plus officielle Panzerkampfwagen I (véhicule de combat blindé I). Il est également connu sous le nom de Sonderkraftfahrzeug 101 (abréviation SdKfz 101) littéralement véhicule spécial à moteur.
+				Il était principalement destiné à servir comme véhicule d'instruction, peu coûteux car légèrement armé et blindé, pour formaliser les nouvelles doctrines de la blitzkrieg, mais les retards sur les modèles suivants contraignirent les allemands à l'utiliser au combat. Il constitua ainsi les gros des panzerdivisions, lors des campagnes de Pologne et de France, mais fut rapidement retiré des premières lignes et converti à d'autres usages, principalement comme tracteur pour des canons sur roues.
+				Son équipage se composait d'un conducteur et d'un commandant qui était également tireur. Il possédait deux mitrailleuses de calibres 7,92 mm. La faible épaisseur de son blindage n'était efficace que contre l'infanterie légère. Pour un poids de près de 5 tonnes, le moteur de 100 chevaux était nettement insuffisant et sa consommation de près de 120l les 100km trop importante.
+				En dépit de ses faibles performances de combat, l'expérience du "Panzer I" s'avéra précieuse lorsqu'il fallut développer des chars plus puissants et la plupart des équipages de "Panzers" furent formés sur ce char.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_PANZER_II_TEXT">
+			<Text>
+				Le Panzerkampfwagen II ( PzKpfw II ) ou Sd. Kfz. 121 était un char d'assaut de fabrication allemande. Comme le PzKpfw I, il fut conçu comme un modèle provisoire, en attendant des chars comme les PzKpfw III ou les PzKpfw IV.
+				Ces deux types de véhicules étaient destinés à fournir des engins d'entraînement pour les équipages de la Panzerwaffe, afin de mettre au point les tactiques de la future Blitzkrieg.
+				Cependant, le retard dans la production de véritables chars de combat obligea les Allemands à les utiliser massivement au début de la Seconde Guerre mondiale et ce n'est qu'à partir de 1941 qu'ils furent progressivement retirés des premières lignes.
+				Le PzKpfw II resta cependant longtemps un véhicule important de l'arsenal de la Wehrmacht, grâce à des dérivés de reconnaissance et comme châssis pour des canons automoteurs comme les Marder II et les Wespe.
+				Il comptait un membre d'équipage de plus que le Panzer I, un opérateur radio, également chargé du rechargement du canon automatique de 20 mm.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_MATHILDA_I_TEXT">
+			<Text>
+				Le Matilda fut développé à partir de l'expérience de 1917, consistant à utiliser les chars uniquement comme soutien de l'infanterie. D'après le cahier des charges de 1934, il devait être doté d'un blindage pouvant résister aux canons antichars de l'époque et pouvoir évoluer sur des terrains difficilement praticables.
+				Le Matilda appartenait aux 4th et 7th Battalions du Royal Tank Corps et arriva en France avec le BEF. Malgré un blindage et une vitesse insuffisante, 60 Matilda Mk.I furent déployés avec 16 Matilda Mk.II, des chars beaucoup plus performants, contre les chars de la 7e Panzerdivision de Rommel durant la bataille d'Arras.
+				Avec des résultats aux combats décevants, le Matilda Mk.I fut retiré du service en Angleterre. Les Allemands ne jugèrent pas utile de le réutiliser comme chars capturés.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_7TP_TXT">
+			<Text>
+				Le 7TP est un char d'assaut polonais de la Seconde Guerre mondiale.
+				Le char 7TP est une copie du char Vickers-Armstrong britannique de 1934, les Polonais s'étant contentés de l'équiper d'un canon antichar de 37 mm et d'un moteur diesel de 110 cv (ce fut alors le premier char diesel au monde) qui pouvait l'amener à une vitesse de 37 km/h.
+				Il avait également un blindage de 17 mm.
+				Il était parfaitement apte à s'attaquer aux Panzers I et II mais comme les Polonais ne disposaient que de 137 7TP lors de l'invasion allemande, ils furent alors totalement submergés.
+				En Pologne occupée, les Allemands se servirent alors des 7TP restants comme tracteurs ou pour les missions de police.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_P38T_TEXT">
+			<Text>
+				Le Panzerkampfwagen 38(t) (ce qui signifiait : « véhicule de combat blindé tchécoslovaque, modèle 1938 ») était le nom donné par les Allemands à un char d'assaut tchécoslovaque fabriqué dans les usines de chars Škoda qu'ils avaient mis au service de leur industrie de guerre durant l'année 1939 avant l'éclatement du confit.
+				Le nom que lui donnait l'armée tchécoslovaque était LT vz. 38.
+				Ce véhicule de combat blindé fut conçu par les Tchécoslovaques à partir de 1935.
+				Il a eu du succès à l'exportation, avec 50 chars exportés vers l'Iran, 24 vers la Suisse et autant vers le Pérou.
+				L'armée tchécoslovaque en commande 150, mais ceux-ci ne sont pas entrés en service avant l'occupation du pays par l'Allemagne en 1939.
+				Les occupants allemands ont ordonné la poursuite de la production entre 1938 et 1942.
+				Au total, lorsque la production cessa, 1411 Panzerkampfwagen 38(t) (modèles A à G) avaient été fabriqués.
+				La production des Panzer 38 (t) a continué jusqu'en 1942, mais son canon était trop peu puissant pour percer les blindages de la fin de la guerre.
+				Le châssis restait intéressant, donc les derniers modèles ont été produits sans tourelle afin d'y monter une autre arme.
+				Plusieurs modèles de canons d'assaut, de chasseurs de chars ou de véhicules antiaériens ont été produits à partir de ce châssis.
+				La transformation de Panzer 38(t) déjà existants en ces véhicules a libéré 351 tourelles, qui ont par la suite été employées dans des fortifications fixes.
+				Une version suédoise, le Sav m/43, a été employée en Suède jusqu'en 1970.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SOMUA_S35_TEXT">
+			<Text>
+				Le char Somua S35 était un véhicule blindé de la Seconde Guerre mondiale construit par Somua, considéré comme le meilleur char de combat français en 1940.
+				Produit à 430 exemplaires, il était rapide, correctement blindé (ce fut le premier char de l'histoire équipé d'un blindage incliné, plus résistant pour autant d'épaisseur) et armé d’un canon de 47 mm.
+				Équipé d’une tourelle monoplace, le chef de char faisait office de canonnier, ce qui empêchait de tirer pleinement parti de l'armement principal.
+				Le Somua S-35 participa victorieusement le 12 mai 1940 à la bataille de Hannut en Belgique, première bataille rangée de blindés de l'histoire.
+				Sa fabrication en série fut limitée par les demandes de l'État-Major (une centaine par an) entre 1938 et 1939 alors que les capacités de production de SOMUA étaient supérieures.
+				Aussi, à peine plus de 400 Somua furent produits, tous étant engagés au combat en mai-juin 1940 y compris ceux sortants d'usine et remis aux mains d'équipages inexpérimentés, comme à la 4e DCR du colonel de Gaulle.
+				Les S-35 étaient concentrés dans les Divisions Légères Mécaniques, comme le firent les Allemands avec leurs divisions de Panzer.
+				Néanmoins, ils furent pratiquement tous détruits ou sabordés et, à la défaite de la France, les Allemands en saisirent le plus qu'ils purent (environ 297) et pensèrent les utiliser aux côtés des Pz III trop peu nombreux.
+				Toutefois, la tourelle monoplace du S 35 fut rejetée et ils les reconvertirent en chars d'entraînement ou pour le combat contre les partisans sous l'appellation Panzerkampfwagen 35-S 739(f).
+				Certains furent envoyés sur le front de l'Est, d’autres furent cédés à l'armée italienne.
+				L'un d'eux, capturé par les partisans yougoslaves, reprit du service dans le camp allié.
+				L'armée allemande l'utilisa sur le territoire français en juin 1944 lorsqu'elle tenta de repousser l'invasion alliée.
+				À mesure que les alliés parvenaient à les capturer, ils les cédaient aux Français qui les retournaient contre la Wehrmacht.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_SHERMAN_M4_TXT">
+			<Text>
+				Le Medium Tank M4 est le char américain moyen produit en plus grande quantité pendant la Seconde Guerre mondiale.
+				Près de cinquante mille exemplaires (toutes versions confondues) furent produits.
+				Son surnom de « Sherman », lui est attribué par les Britanniques, quand ils reçoivent leurs premiers exemplaires dans le cadre de la loi de prêt-bail, continuant leur tradition de nommer les chars d'origine américaine d'après le nom d'un général nordiste de la guerre de Sécession célèbre de ce pays.
+				L'US Army adopte par la suite ce surnom, et le Medium Tank M4 est dès lors appelé « M4 Sherman ». Les Soviétiques surnomment les leurs « Emcha ».
+				Le Sherman est engagé pour la première fois au combat lors de la bataille d'El-Alamein, en octobre 1942.
+				Très rapidement, il démontre d'excellentes qualités au combat.
+				Il possède en particulier une très bonne fiabilité mécanique qui lui permet des taux de disponibilités importants, contrairement à beaucoup de chars de son époque.
+				Son armement, avec un canon de 75 mm en tourelle, est une révolution pour les équipages britanniques, car il permet de tirer sans exposer la caisse du char, comme c'est le cas avec le M3 Lee.
+				Par rapport aux chars britanniques contemporains, armés de canon de 40 mm, ce canon a une puissance suffisante en tir antipersonnel, en particulier contre les servants des canons antichars, et se révèle efficace contre des chars comme les Panzer III et Panzer IV.
+				Il a donc une influence déterminante dans la défaite infligée à l'Afrika Korps.
+				Cependant, il souffre aussi de graves défauts, qui vont apparaître, progressivement au cours de l'avancée des alliés en 1943.
+				Le premier à être reconnu est sa tendance à prendre rapidement feu suite à un impact, qui lui vaut les sobriquets peu flatteurs de « Ronson » par les Britanniques et « Tommy Cooker » par les Allemands.
+				Sa haute silhouette, avec ses 2,74 mètres, se révèle aussi préjudiciable sur le champ de bataille, en particulier dans le désert.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_TYPE_97_TEXT">
+			<Text>
+				Le char moyen type 97 Chi-Ha était un char japonais de la Seconde Guerre mondiale.[NEWLINE]
+				Après l'abandon de la recherche des chars lourds et des chenillettes, le Japon se mit à la recherche d'un char moyen.[NEWLINE]
+				Le type 97 de 16 tonnes, considéré comme trop coûteux, fut préféré après le début des hostilités en Chine, mettant de côté les considérations économiques.[NEWLINE]
+				2 123 type 97 Chi-Ha de 16 tonnes allaient ainsi être fabriqués et mis en service entre 1938 et 1943.[NEWLINE]
+				Utilisé contre la Chine, il ne faisait pas le poids contre les chars occidentaux développés pendant la Seconde Guerre mondiale.[NEWLINE]
+				Il resta pourtant le char standard de l'armée impériale japonaise pendant tout le conflit.[NEWLINE]
+				Utilisé aussi lors de la bataille à Guadalcanal, les bases japonaises étaient isolées.[NEWLINE]
+				Bien que puissants, les chi-ha furent repoussés et Guadalcanal fut prise.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_M13-40_TXT">
+			<Text>
+				Le Char Fiat-Ansaldo M13/40 était un char moyen italien, conçu afin de remplacer le Fiat L3, le Fiat L6/40 et le Fiat M11/39 dans l'Armée italienne au commencement de la Seconde Guerre mondiale.[NEWLINE]
+				Bien que conçu comme un char moyen, le M13/40 était plus près à l'époque des standards d'un char léger en termes de blindage, mais pas en ce qui concerne sa puissance de feu.[NEWLINE]
+				On comprend ainsi sa dénomination : "M" pour Medio ("moyen"), 13 pour son poids en tonne (poids prévu initialement lors du lancement de la production) et 40 pour son année d'adoption (1940).[NEWLINE]
+				Le M13/40 fut utilisé durant la campagne des Balkans en 1941 et pendant la Guerre du désert. Il n'a pas connu le Front de l'Est où les forces italiennes ne disposaient que des Fiat L6/40 et des Semovente 47/32.[NEWLINE]
+				Début 1942, l'Armée italienne dut admettre le manque de puissance de feu du M13/40 et passa au Semovente 75/18 pour l'ossature de ses bataillons de chars.
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_TANK_B1_TEXT">
+			<Text>
+				Le char B1 est un blindé lourd, conçu en France au cours des années 1930.[NEWLINE]
+				En septembre 1939, il existait quatre bataillons équipés de chars B1, les 8e, 15e, 28e et 37e bataillons de chars de combat, chacun avec 33 chars.[NEWLINE]
+				Le dernier était équipé de la première version du char, les autres mettant en ligne des B1 bis.[NEWLINE]
+				Bien qu'engagé en urgence, et dans un rôle pour lequel il n'a pas été conçu, le B1 bis posa de très nombreux problèmes aux troupes allemandes, son épais blindage résistant à toutes les armes antichar.[NEWLINE]
+				Les Allemands durent alors improviser pour le mettre hors de combat, en utilisant leurs pièces d'artillerie en tir tendu, en particulier les canons antiaériens de 88 mm (Le B1 bis nommé Jeanne d'Arc, par exemple, encaissa 90 impacts avant d'être incendié par un 88).[NEWLINE]
+				Malgré cette supériorité écrasante, tous les défauts du B1 bis et des divisions cuirassées empêchèrent la relative impunité des B1 d'avoir une influence sur le cours de l'offensive allemande.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_P26_40 ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_P26_40_TEXT">
+			<Text>
+				Le Char Ansaldo P26/40, ou P-26/40, était un char d'assaut italien de 26 tonnes nominales conçu à la fin des années 1930.[NEWLINE]
+				Ce nouveau char est né suite à la conclusion de l'État-Major de l'Armée royale italienne qui avait considéré que les chars de moyen tonnage « M » n'auraient pas pu résister très longtemps aux nouveaux chars étrangers, dont la gamme moyenne tendait à dépasser les 20 tonnes.[NEWLINE]
+				Le fait que le P.40 n'ait pas été employé par l'armée régulière italienne contre d'autres chars de sa catégorie rend l'évaluation de ses capacités difficile.[NEWLINE]
+				Toutefois, le fait que les armées nazies l'aient comparé à leur Panzer IV Ausf G et l'aient jugé digne d'être produit jusqu'en 1945 montre qu'il avait une valeur militaire plus que certaine.[NEWLINE]
+				Il faut dire que ce char avait une vitesse supérieure au Panzer IV et que son blindage était beaucoup plus efficace.[NEWLINE]
+				Ce seront plus de 100 chars italiens qui seront livrés aux troupes allemandes.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_M26_PERSHING ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_M26_PERSHING_TEXT">
+			<Text>
+				Le Heavy Tank M26 Pershing était un char lourd construit par les États-Unis et utilisé au cours de la Seconde Guerre mondiale et de la guerre de Corée.[NEWLINE]
+				Il fut nommé en hommage au Général John Pershing, le chef du corps expéditionnaire américain au cours de la Première Guerre mondiale.[NEWLINE]
+				Belton Y. Cooper, un officier d’armement du Combat Command de la 3rd Armored Division écrivit un rapport sur ses expériences de combat au sein de la force blindée américaine.[NEWLINE]
+				Selon lui, 10 M26 furent envoyés à la 3rd Armored Division en février 1945.[NEWLINE]
+				D’après Cooper, le premier engagement d’un M26 de la 3rd Armored Division montra qu’il était l’égal du Panther.[NEWLINE]
+				Il rapporte aussi qu’un M26, en embuscade, attaqua 2 Tigres I et 1 Panzer IV et les mit hors de combat à une distance de 1 km.
+			</Text>
+		</Row>
+		<!--UNIT_TANK_CHURCHILL ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TANK_CHURCHILL_TEXT">
+			<Text>
+				Le char Churchill ou plus officiellement, Infantry Tank MkIV ou A22, est un char britannique utilisé lors de la Seconde Guerre mondiale.[NEWLINE]
+				Il est le dernier aboutissement du concept de char d'infanterie, en vigueur alors dans l'armée britannique.[NEWLINE]
+				Il était réputé pour son solide blindage, et pour avoir servi de base à de nombreux dérivés spéciaux, les Hobart's Funnies.[NEWLINE]
+				Après des débuts difficiles, il fut produit à près de 8 400 exemplaires et servit honorablement dans l'armée britannique jusqu'en 1952.[NEWLINE]
+				Il reçut son nom en l'honneur de Winston Churchill qui, en plus d'être le premier ministre de l'époque, avait pris une part importante, lors de la Première Guerre mondiale, à l'émergence des premiers chars d'assaut.[NEWLINE]
+				Celui-ci aurait déclaré à ce propos : « Ce tank a encore plus de défauts que moi ».
+			</Text>
+		</Row>
+		<!--UNIT_TIGER_BATTALION ENTRIES-->
+		<Row Tag="TXT_KEY_UNIT_TIGER_II_TEXT">
+			<Text>
+				Le Panzerkampfwagen VI Königstiger, ou Sd.Kfz. 182 Panzer VI ausf B Tiger II, surnommé le Königstiger (Tigre royal), est un char d'assaut allemand de la Seconde Guerre mondiale.[NEWLINE]
+				Produit à 50 exemplaires pour le modèle à tourelle "Porsche", à 439 exemplaires pour le modèle à tourelle "Henschel", ce char était pourvu d'un important blindage, d'un canon antichar lui donnant la possibilité de mettre hors de combat tous les chars alliés en service lors des deux dernières années du conflit, mais il possédait le même moteur que le char Panther. Son rapport poids-puissance était donc moindre, il était lent et peu mobile, extrêmement gourmand en carburant, et devait changer de chenilles avant et après tout transport par rail.[NEWLINE]
+				Ce char ne fut pas non plus endivisionné, à l'instar de son prédécesseur, et remplaça le Tigre I dans les schwere Panzer Abteilungen, ou bataillons de chars lourds. 150 d'entre eux furent confiés à des unités de Waffen SS, tous les autres furent affectés à la Wehrmacht. Ils arrivèrent sur le front en février 1944. Ses premiers engagements eurent lieu autour de Minsk en mai de la même année. Leur action fut cependant restreinte, surtout sur le front Ouest, à cause des restrictions en carburant, des problèmes techniques, pannes, et surtout à cause de la redoutable aviation d'attaque au sol (jabo, de l'allemand "Jagdbomber", chasseur-bombardier) des alliés. Lors de la bataille de Normandie, certains Königstigers furent même engagés par des croiseurs.[NEWLINE]
+				Le dernier char de la guerre à être détruit fut aussi un Tigre Royal, saboté par son équipage suite à un problème mécanique, le 10 mai 1945, en Autriche.[NEWLINE]
+				Le dernier de ces chars à être maintenu en état de marche est exposé au musée des blindés de Saumur.[NEWLINE]
+				[NEWLINE]
+				Il était armé d'un canon de 88 mm de 71 calibres de longueur (fût de 6,30 mètres), comparé aux 88 mm 56 calibres du Tigre I.[NEWLINE]
+				La portée effective de ce canon était de dix kilomètres. Il pouvait percer le blindage frontal d'un char T-34/85, d'un Sherman M4 ou d'un Cromwell à 3,5 km, au-delà même de la portée des canons de ces chars.[NEWLINE]
+				L'optique de visée du canon était elle aussi à la hauteur de ces extraordinaires caractéristiques balistiques.[NEWLINE]
+				À titre indicatif, le canon du Königstiger perforait entre 132 et 153 mm de blindage incliné à 30° à 2 000 mètres de distance.[NEWLINE]
+			</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_TANK_KV-1">
+			<Text>
+				Le char Kliment Voroshilov (KV) est un char de rupture soviétique.[NEWLINE]
+				Il fut une désagréable surprise pour la Wehrmacht lors de l’opération Barbarossa : il était à l'époque quasiment invulnérable à toutes ses armes excepté le canon antiaérien Flak de 88 mm et des tirs directs d’artillerie.[NEWLINE]
+				[NEWLINE]
+				En 1943, l’idée de réarmer le kV avec un 85 mm, se concrétisa enfin, rendue urgente par l’apparition des chars Tigre allemands beaucoup plus difficiles à détruire.[NEWLINE]
+				L’objet 237 armé avec un S-18 puis des kV réarmés avec des S-31 et des D-5T, furent testés, et finalement à la fin de l’année apparut le kV-85 qui partageait sa tourelle avec l'IS-85. Il fut produit parallèlement au kV-1s.[NEWLINE]
+			</Text>
+		</Row>
+	</Language_fr_FR>
+</GameData>

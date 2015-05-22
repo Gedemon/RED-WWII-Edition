@@ -461,9 +461,8 @@ end
 function GetPlotDefenseString(pPlot)
 	local strResult = ""; -- result string
 	local iActiveTeam = Game.GetActiveTeam(); -- the ID of the currently active team
-	local pTeam = Teams[iActiveTeam]; -- the currently active team
 
-	local iDefensePlotTotal = pPlot:DefenseModifier(pTeam, true);
+	local iDefensePlotTotal = pPlot:DefenseModifier(iActiveTeam, true);
 
 	if (iDefensePlotTotal ~= 0) then
 		strResult = Locale.ConvertTextKey("TXT_KEY_CSB_PLOTROLL_LABEL_DEFENSE_BLOCK_SIMPLE", iDefensePlotTotal)

@@ -130,8 +130,9 @@ Controls.No:RegisterCallback( Mouse.eLClick, OnNo );
 ----------------------------------------------------------------        
 function OnBack()
     --UIManager:DequeuePopup( ContextPtr );
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModsMenuGrid/"):SetHide(false)
+	--ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModsMenuGrid/"):SetHide(false)
 	ContextPtr:SetHide(true)
+	ContextPtr:LookUpControl("../ModsMenuGrid/"):SetHide(false)
 end
 Controls.BackButton:RegisterCallback( Mouse.eLClick, OnBack );
 

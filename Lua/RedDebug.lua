@@ -91,7 +91,7 @@ end
 -- show unit data
 function ShowUnitData()
 	--[[
-	local unitData = LoadUnitData()
+	local unitData = MapModData.RED.UnitData
 	Dprint("Unit Data Table (loaded) :")
 	Dprint("-------------------------------------")
 	for id, values in pairs (unitData) do
@@ -102,7 +102,7 @@ function ShowUnitData()
 	Dprint("-------------------------------------")
 	--]]
 
-	local unitData = g_UnitData
+	local unitData = MapModData.RED.UnitData
 	Dprint("Unit Data Table (Global) :")
 	for id, values in pairs (unitData) do
 		Dprint("-------------------------------------")
@@ -116,7 +116,7 @@ function ShowUnitData()
 end
 
 function ShowFullUnitData()
-	local unitData = g_UnitData
+	local unitData = MapModData.RED.UnitData
 	Dprint("Unit Data Table (Global) :")
 	for id, values in pairs (unitData) do		
 		print("-----------------")
@@ -127,21 +127,6 @@ function ShowFullUnitData()
 	end
 	Dprint("-------------------------------------")
 end
-
--- show unit classes
-function ShowUnitClasses()
-	Dprint("Unit Classes table :")
-	Dprint("-------------------------------------")
-	for id, values in pairs (g_Unit_Classes) do
-		local str = ""
-		if values.Capture then str = "true"; else str = "false"; end
-		Dprint(" [" .. id .. "]  - Capture tile: " .. str .. ", Moral: " .. values.Moral .. ", Num. count type = " .. values.NumType.. ", MaterielRatio = " .. values.MaterielRatio)
-	end
-	Dprint("-------------------------------------")
-
-
-end
-
 
 -- show Availables units for Major Civs
 function ShowMajorUnits()
@@ -160,22 +145,14 @@ function ShowMajorUnits()
 end
 
 -- show reinforcement data
-function ShowReinforcementData()
-	local reinforcementData = LoadReinforcementData()
-	Dprint("Reinforcement Data Table (loaded) :")
+function ShowResourceData()
+	local resourceData = MapModData.RED.ResourceData
+	Dprint("Resource Data Table (loaded) :")
 	Dprint("-------------------------------------")
-	for id, values in pairs (reinforcementData) do
+	for id, values in pairs (resourceData) do
 		Dprint(Players [ id ]:GetName() .. " (id=" .. id.. ")  personnel = ".. values.Personnel .. "/".. values.MaxPersonnel ..", materiel = ".. values.Materiel .. "/".. values.MaxMateriel ..", Flux = " .. values.FluxPersonnel .." pers., "..values.FluxMateriel .. " mat.")
 	end
-	Dprint("-------------------------------------")
-	
-	local reinforcementData = g_ReinforcementData
-	Dprint("Reinforcement Data Table (global) :")
-	Dprint("-------------------------------------")
-	for id, values in pairs (reinforcementData) do
-		Dprint(Players [ id ]:GetName() .. " (id=" .. id.. ")  personnel = ".. values.Personnel .. "/".. values.MaxPersonnel ..", materiel = ".. values.Materiel .. "/".. values.MaxMateriel ..", Flux = " .. values.FluxPersonnel .." pers., "..values.FluxMateriel .. " mat.")
-	end
-	Dprint("-------------------------------------")
+	Dprint("-------------------------------------")	
 
 end
 
@@ -267,10 +244,10 @@ end
 -- if need to update unit data in midgame after added/changed a row.
 -- of course the update must be what's changed here...
 function UpdateUnitData()
-	for key, values in pairs (g_UnitData) do
-		if values.UnitId and not values.UnitID then g_UnitData[key].UnitID = values.UnitId end
-		if not values.Alive then g_UnitData[key].Alive = true end
-		if not values.UniqueID then g_UnitData[key].UniqueID = values.UnitID.."-".. values.BuilderID .."-"..os.clock() end
+	for key, values in pairs (MapModData.RED.UnitData) do
+		if values.UnitId and not values.UnitID then MapModData.RED.UnitData[key].UnitID = values.UnitId end
+		if not values.Alive then MapModData.RED.UnitData[key].Alive = true end
+		if not values.UniqueID then MapModData.RED.UnitData[key].UniqueID = values.UnitID.."-".. values.BuilderID .."-"..os.clock() end
 	end
 end
 
@@ -317,8 +294,13 @@ end
 function ShowPlayerTrainingRestriction(iPlayer)
 	local player = Players[iPlayer]
 	Dprint("---------------------------------------------------------------------------------------------------------------")
-	Dprint("Units restrictions for " .. player:GetName() )
-	Dprint("---------------------------------------------------------------------------------------------------------------")
+	Dprint("Units restrictions for " .. tostring(player:GetName()) )
+	Dprint("---------------------------------------------------------------------------------------------------------------")	
+	Dprint("Total num. of units :	" .. tostring(player:GetNumUnits()) )
+	Dprint("Max number of units :	" .. tostring(player:GetNumUnitsSupplied()) )
+	Dprint("Supernumerary units :	" .. tostring(player:GetNumUnitsOutOfSupply()) )
+	Dprint("Production Modifier :	" .. tostring(player:GetUnitProductionMaintenanceMod()) .."%" )
+	Dprint("-------------------------------------")
 	for unitInfo in GameInfo.Units() do
 		local iUnitType = unitInfo.ID
 		local name = Locale.ConvertTextKey( unitInfo.Description )
@@ -342,107 +324,8 @@ function ShowPlayerTrainingRestriction(iPlayer)
 		if bTest then
 			local aliveUnitType = CountUnitTypeAlive (iUnitType, iPlayer)
 			line1 = line1 .. ", num alive = "..aliveUnitType
-			PlayerTrainingRestriction(iPlayer, iUnitType)
+			CachePlayerTrainingRestriction(iPlayer, iUnitType) -- g_UnitRestrictionString is set here
 		end
-
-		--[[
-		-- restrictions based on numbers
-
-		if bTest and g_Unit_Classes[unitClass] then -- bugfix : some unused classes are not defined (Settler, Worker...), just don't test them...
-
-			-- restriction ratio for AI player
-			if not player:IsBarbarian() then
-				local totalUnits = player:GetNumMilitaryUnits()
-				local aliveUnitClass = CountUnitClassAlive (unitClass, iPlayer)
-				local aliveUnitSubClass = CountUnitSubClassAlive (unitClass, iPlayer)
-				local aliveArmor = CountArmorAlive (unitClass, iPlayer)
-				local aliveUnitType = CountUnitTypeAlive (iUnitType, iPlayer)
-				local land, sea, air = CountDomainUnits (iPlayer)
-				line1 = line1 .. ", num alive = "..aliveUnitType
-
-				-- Class restriction
-				if g_Combat_Type_Ratio then -- scenario may not use this
-					-- Air restriction
-					if GameInfo.Units[iUnitType].Domain == "DOMAIN_AIR" then
-						if (air > 0) and (totalUnits/air < g_Combat_Type_Ratio[civID].Air) then
-							-- false
-							line2 = line2 .. "Air restriction ("..totalUnits.."/"..air .."<".. g_Combat_Type_Ratio[civID].Air.."), "
-						else
-							line2 = line2 .. "Air OK ("..totalUnits.."/"..air .."<".. g_Combat_Type_Ratio[civID].Air.."), "
-						end
-					end
-					-- Sea restriction
-					if GameInfo.Units[iUnitType].Domain == "DOMAIN_SEA" then
-						if (sea > 0) and (totalUnits/sea < g_Combat_Type_Ratio[civID].Sea) then
-							-- false
-							line2 = line2 .. "Sea restriction ("..totalUnits.."/"..sea .."<".. g_Combat_Type_Ratio[civID].Sea.."), "
-						else
-							line2 = line2 .. "Sea OK ("..totalUnits.."/"..sea .."<".. g_Combat_Type_Ratio[civID].Sea.."), "
-						end
-					end
-					-- no land restriction...
-
-					-- Armor restriction
-					if IsArmorClass(g_Unit_Classes[unitClass].NumType) then
-						if (aliveArmor > 0) and (land/aliveArmor < g_Combat_Type_Ratio[civID].Armor) then
-							-- false
-							line2 = line2 .. "Global Armor restriction (".. land.."/"..aliveArmor .."<".. g_Combat_Type_Ratio[civID].Armor .."), "
-						else
-							line2 = line2 .. "Global Armor OK (".. land.."/"..aliveArmor .."<".. g_Combat_Type_Ratio[civID].Armor .."), "
-						end
-
-						if g_Max_Armor_SubClass_Percent and g_Max_Armor_SubClass_Percent[civID] then
-							local armorType = g_Unit_Classes[unitClass].NumType
-							local maxPercent = g_Max_Armor_SubClass_Percent[civID][armorType]
-
-							if (aliveArmor > 0) and (aliveUnitSubClass/aliveArmor*100 > maxPercent) then
-								-- false
-								line2 = line2 .. "Armor Type percent (".. aliveUnitSubClass/aliveArmor*100 .."%) restriction (".. aliveUnitSubClass.."/".. aliveArmor .."*100<=".. maxPercent .."%), "
-							else
-								line2 = line2 .. "Armor Type percent (".. aliveUnitSubClass/aliveArmor*100 .."%) OK (".. aliveUnitSubClass.."/".. aliveArmor .."*100<=".. maxPercent .."%), "
-							end
-						end
-					end
-		
-					-- Artillery restriction
-					if g_Unit_Classes[unitClass].NumType == CLASS_ARTILLERY then
-						if (aliveUnitClass > 0) and (land/aliveUnitClass < g_Combat_Type_Ratio[civID].Artillery) then
-							-- false
-							line2 = line2 .. "Artillery restriction (".. land.."/"..aliveUnitClass .."<".. g_Combat_Type_Ratio[civID].Artillery .."), "
-						else
-							line2 = line2 .. "Artillery OK (".. land.."/"..aliveUnitClass .."<".. g_Combat_Type_Ratio[civID].Artillery .."), "
-						end			
-					end
-				end
-
-			end
-
-			-- restriction when upgrade is available
-			local upgradeType = GetUnitUpgradeType( iUnitType )
-			if upgradeType and player:CanTrain(upgradeType) then			
-				-- false
-				line2 = line2 .. "Upgrade available, "
-			end
-
-			-- restriction on builded units of this type
-			local maxNumber = g_UnitMaxNumber[iUnitType]
-			if (maxNumber and maxNumber <= CountUnitType (iUnitType)) then
-				-- false
-				line2 = line2 .. "Max build reached (".. maxNumber .."<=".. CountUnitType (iUnitType) .."), "
-			end
-	
-			-- restriction on unit instances
-			local maxInstance = g_UnitMaxInstance[iUnitType]
-			if maxInstance then
-				local aliveUnits = CountUnitTypeAlive (iUnitType)
-				if (maxInstance <= aliveUnits) then
-					-- false
-					line2 = line2 .. "Max alive reached (".. maxInstance .."<=".. aliveUnits .."), "
-				end
-			end
-		end
-		
-		--]]
 
 		-- allowed unit ?
 		local allowedTable = g_Major_Units[civID]
@@ -466,7 +349,34 @@ function ShowPlayerTrainingRestriction(iPlayer)
 		end
 	end
 end
---GameEvents.PlayerDoTurn.Add(ShowPlayerTrainingRestriction)
+
+function ShowAITrainingRestriction(iPlayer)
+	if not DEBUG_AI_BUILD then
+		return
+	end
+	local player = Players[iPlayer]
+	if player:IsAlive() and (not player:IsBarbarian()) and (not player:IsHuman()) then -- and (not player:IsMinorCiv()) 
+		ShowPlayerTrainingRestriction(iPlayer)
+	end
+end
+--GameEvents.PlayerDoTurn.Add(ShowAITrainingRestriction)
+
+function ListCitiesBuild(iPlayer)
+	if not DEBUG_AI_BUILD then
+		return
+	end
+	local player = Players[iPlayer]
+	if player:IsAlive() and  (not player:IsBarbarian()) and (not player:IsHuman()) then --(not player:IsMinorCiv()) and
+		print()
+		print ("----------------------------------------------------------- ")
+		print ("- Listing current cities build for " .. tostring(player:GetName()))
+		for city in player:Cities() do	
+			print ("  - " .. tostring(city:GetName()) .. " : " .. Locale.ConvertTextKey(city:GetProductionNameKey()) )
+		end
+	end
+
+end
+--GameEvents.PlayerDoTurn.Add(ShowAITrainingRestriction)
 
 function ClearUnitMission()
 	for playerID = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
@@ -474,10 +384,10 @@ function ClearUnitMission()
 		if player and player:IsAlive() then
 			for unit in player:Units() do				
 				local unitKey = GetUnitKey(unit)
-				if g_UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
-					g_UnitData[unitKey].OrderType = nil
-					g_UnitData[unitKey].OrderReference = nil
-					g_UnitData[unitKey].OrderObjective = nil
+				if MapModData.RED.UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+					MapModData.RED.UnitData[unitKey].OrderObjective = nil
 				end
 			end
 		end
@@ -503,10 +413,10 @@ function ListUnitMoves(SpecificPlayerID)
 			for unit in player:Units() do				
 				local unitKey = GetUnitKey(unit)
 				--[[
-				if g_UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
-					g_UnitData[unitKey].OrderType = nil
-					g_UnitData[unitKey].OrderReference = nil
-					g_UnitData[unitKey].OrderObjective = nil
+				if MapModData.RED.UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
+					MapModData.RED.UnitData[unitKey].OrderType = nil
+					MapModData.RED.UnitData[unitKey].OrderReference = nil
+					MapModData.RED.UnitData[unitKey].OrderObjective = nil
 				end --]]
 				if unit:GetMoves() > 0 then				
 					Dprint(unit:GetName() .. " moves left = " .. unit:GetMoves() )
@@ -531,10 +441,10 @@ function SkipUnitsTurn(PlayerID)
 		for unit in player:Units() do				
 			local unitKey = GetUnitKey(unit)
 			--[[
-			if g_UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
-				g_UnitData[unitKey].OrderType = nil
-				g_UnitData[unitKey].OrderReference = nil
-				g_UnitData[unitKey].OrderObjective = nil
+			if MapModData.RED.UnitData[unitKey] and not (unit:GetUnitType() == CONVOY) then
+				MapModData.RED.UnitData[unitKey].OrderType = nil
+				MapModData.RED.UnitData[unitKey].OrderReference = nil
+				MapModData.RED.UnitData[unitKey].OrderObjective = nil
 			end --]]
 			--if unit:GetMoves() > 0 then
 				unit:PopMission()
@@ -550,7 +460,7 @@ function ShowCombatLog()
 	Dprint ("-------------")
 	Dprint ("Combat Log :")
 	Dprint ("-------------")
-	for i, data in ipairs(g_CombatsLog) do		
+	for i, data in ipairs(MapModData.RED.CombatsLog) do		
 		for k, v in pairs(data) do
 			print(k, v, "Type = " .. type( v ))
 		end		
@@ -601,11 +511,11 @@ function CheckUnitData()
 					print("unitKey = " .. unitKey)	
 					print("Name = " .. tostring(unit:GetName()))
 					print("Turn created = ".. tostring(unit:GetGameTurnCreated()))				
-					if g_UnitData[unitKey]  then
+					if MapModData.RED.UnitData[unitKey]  then
 						print("unitData[unitKey]")						
-						if g_UnitData[unitKey].OrderType then
-							print("unitData[unitKey].OrderType = " .. g_UnitData[unitKey].OrderType)							
-							if unit:GetUnitType() == CONVOY and g_UnitData[unitKey].OrderType == RED_CONVOY then
+						if MapModData.RED.UnitData[unitKey].OrderType then
+							print("unitData[unitKey].OrderType = " .. MapModData.RED.UnitData[unitKey].OrderType)							
+							if unit:GetUnitType() == CONVOY and MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then
 								print("Unit is convoy with order type 'RED_CONVOY'")
 							else
 								print("ERROR : convoy without unitData[unitKey].OrderType == RED_CONVOY")
@@ -617,7 +527,7 @@ function CheckUnitData()
 						print("ERROR : no unitData[unitKey]")
 						print("Forcing Registration NOW...")
 						RegisterNewUnit(iPlayer, unit)
-						g_UnitData[unitKey].TurnCreated = unit:GetGameTurnCreated()
+						MapModData.RED.UnitData[unitKey].TurnCreated = unit:GetGameTurnCreated()
 					end 
 				else
 					print("ERROR : no unitKey")
@@ -627,7 +537,7 @@ function CheckUnitData()
 			print ("------------------------------------------------------")
 		end
 	end
-	SaveData("Unit", g_UnitData, UNIT_SAVE_SLOT)
+	SaveData("Unit", MapModData.RED.UnitData, UNIT_SAVE_SLOT)
 end
 
 -- Debug DLL event

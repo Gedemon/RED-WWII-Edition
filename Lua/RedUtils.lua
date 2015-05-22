@@ -21,6 +21,9 @@ end
 --------------------------------------------------------------
 
 function Round(num)
+	if type(num) ~= "number" then -- only try to round number...
+		return num 
+	end
     under = math.floor(num)
     upper = math.floor(num) + 1
     underV = -(under - num)
@@ -191,6 +194,31 @@ function GetAdjacentPlots(plot, bIncludeSelf)
 	return plotList
 end
 
+-- return list of adjacent plots
+function AreAdjacentPlots(plot, plot2)
+	local bDebug = false
+	
+	if not plot or not plot2 then
+		Dprint("- WARNING ! plot is nil for AreAdjacentPlots()")
+	end
+
+	local direction_types = {
+		DirectionTypes.DIRECTION_NORTHEAST,
+		DirectionTypes.DIRECTION_EAST,
+		DirectionTypes.DIRECTION_SOUTHEAST,
+		DirectionTypes.DIRECTION_SOUTHWEST,
+		DirectionTypes.DIRECTION_WEST,
+		DirectionTypes.DIRECTION_NORTHWEST
+	}
+	for loop, direction in ipairs(direction_types) do
+		local adjPlot = Map.PlotDirection( plot:GetX(), plot:GetY(), direction)
+		if ( adjPlot == plot2 ) then
+			return true
+		end
+	end
+	return false
+end
+
 -- return list of plots in a circle, Thanks to Thalassicus...
 function GetPlotsInCircle(plot, minRadius, maxRadius)
     local plotList    = {}
@@ -311,6 +339,20 @@ function IsNearNavalFriendlyCity(plot, playerID)
 		end
 	end
 	return bFriendlyCity
+end
+
+function IsInNavalFriendlyCity(plot, playerID)
+	if not plot then
+		Dprint ( "WARNING ! Plot is nil in IsInNavalFriendlyCity(plot, playerID)")
+		return false
+	end
+	if plot:IsCity() then
+		local city = plot:GetPlotCity()
+		if AreSameSide( playerID, city:GetOwner()) and city:GetNumBuilding(HARBOR) > 0 then
+			return true
+		end
+	end
+	return false
 end
 
 -- get closest friendly naval city from a plot (return city object)
@@ -507,11 +549,12 @@ function LoadAllTable()
 	DEBUG_PERFORMANCE = true	
 	local t1 = os.clock()
 
-	g_UnitData = LoadData("Unit", {}, UNIT_SAVE_SLOT)
-	g_ReinforcementData = LoadData("Reinforcement", {}, REINFORCEMENT_SAVE_SLOT)
-	g_ProjectsDone = LoadData("ProjectsDone", {}, PROJECTS_SAVE_SLOT)
-	g_CombatsLog = LoadData("CombatsLog", {}, COMBATLOG_SAVE_SLOT)
-	g_DynamicMap = LoadData("DynamicMap", {}, DYNAMICMAP_SAVE_SLOT)
+	MapModData.RED.UnitData = LoadData("Unit", {}, UNIT_SAVE_SLOT)
+	MapModData.RED.ResourceData = LoadData("Resource", {}, RESOURCE_SAVE_SLOT)
+	MapModData.RED.ProjectsDone = LoadData("ProjectsDone", {}, PROJECTS_SAVE_SLOT)
+	MapModData.RED.CombatsLog = LoadData("CombatsLog", {}, COMBATLOG_SAVE_SLOT)
+	MapModData.RED.DynamicMap = LoadData("DynamicMap", {}, DYNAMICMAP_SAVE_SLOT)
+	MapModData.RED.ResourceMap = LoadData("ResourceMap", {}, DYNAMICMAP_SAVE_SLOT)
 
 	local t2 = os.clock()
 	Dprint("  - Total time for all tables :		" .. t2 - t1 .. " s")
@@ -523,13 +566,13 @@ function SaveAllTable()
 	DEBUG_PERFORMANCE = true	
 	local t1 = os.clock()
 
-	if #g_CombatsLog > MAX_COMBAT_LOG_ENTRIES then -- do we need to archive or delete entries in combat log ?
+	if #MapModData.RED.CombatsLog > MAX_COMBAT_LOG_ENTRIES then -- do we need to archive or delete entries in combat log ?
 		local logArchive = {}
 		if USE_ARCHIVE then
 			LoadData("CombatsLogArchive", {}, COMBAT_ARCHIVE_SAVE_SLOT)
 		end
 		local logActive = {}
-		for i, data in ipairs(g_CombatsLog) do
+		for i, data in ipairs(MapModData.RED.CombatsLog) do
 			if i < (MAX_COMBAT_LOG_ENTRIES - MIN_COMBAT_LOG_ENTRIES) then 
 				table.insert(logArchive, data)
 			else
@@ -539,14 +582,15 @@ function SaveAllTable()
 		if USE_ARCHIVE then
 			SaveData("CombatsLogArchive", logArchive, COMBAT_ARCHIVE_SAVE_SLOT)
 		end
-		g_CombatsLog = logActive
+		MapModData.RED.CombatsLog = logActive
 	end
 	
-	SaveData("CombatsLog", g_CombatsLog, COMBATLOG_SAVE_SLOT)
-	SaveData("Unit", g_UnitData, UNIT_SAVE_SLOT)
-	SaveData("Reinforcement", g_ReinforcementData, REINFORCEMENT_SAVE_SLOT)
-	SaveData("ProjectsDone", g_ProjectsDone, PROJECTS_SAVE_SLOT)
-	SaveData("DynamicMap", g_DynamicMap, DYNAMICMAP_SAVE_SLOT)
+	SaveData("CombatsLog", MapModData.RED.CombatsLog, COMBATLOG_SAVE_SLOT)
+	SaveData("Unit", MapModData.RED.UnitData, UNIT_SAVE_SLOT)
+	SaveData("Resource", MapModData.RED.ResourceData, RESOURCE_SAVE_SLOT)
+	SaveData("ProjectsDone", MapModData.RED.ProjectsDone, PROJECTS_SAVE_SLOT)
+	SaveData("DynamicMap", MapModData.RED.DynamicMap, DYNAMICMAP_SAVE_SLOT)
+	SaveData("ResourceMap", MapModData.RED.ResourceMap, DYNAMICMAP_SAVE_SLOT)
 
 	local t2 = os.clock()
 	Dprint("  - Total time for all tables :		" .. t2 - t1 .. " s")
@@ -604,7 +648,7 @@ end
 
 -- the territory map is an save of all nation territory at game start
 -- structure : TerritoryMap[plotKey] = { PlayerID = owner, CivID = civID, Type = type }
--- It's a one-time writen table, saved once.
+-- It's a one-time written table, saved once.
 function LoadTerritoryMap()
 	local pPlayer = Players[PLAYER_SAVE_SLOT]
 	local territoryMap = load( pPlayer, "TerritoryMap" ) or {}
@@ -615,33 +659,6 @@ function SaveTerritoryMap( territoryMap )
 	save( pPlayer, "TerritoryMap", territoryMap )
 end
 
--- the dynamic map contains damage done to terrain improvment, and a counter for reparations...
-function LoadDynamicMap()
-	return LoadData("DynamicMap", {}, DYNAMICMAP_SAVE_SLOT)
-end
-
--- Available reinforcements data
--- structure : reinforcementData[playerID] = { Personnel = , Materiel = , MaxPersonnel = , MaxMateriel = , FluxPersonnel = , FluxMateriel = }
-function LoadReinforcementData()
-	return LoadData("Reinforcement", {}, REINFORCEMENT_SAVE_SLOT)
-end
-
--- UnitData is used to save extra info for units
--- structure : 
--- unitData[GetUnitKey(unit)] = { BuilderID = playerID, Type = unitType, TypeID = unitTypeID, Moral = , MaterielRatio = , Materiel = , MaxMateriel = , Personnel = , MaxPersonnel = , MaxHP =  }
-function LoadUnitData()
-	return LoadData("Unit", {}, UNIT_SAVE_SLOT)
-end
-
--- CombatsLog logs all combat
-function LoadCombatsLog()
-	return LoadData("CombatsLog", {}, COMBATLOG_SAVE_SLOT)
-end
-
--- Tracks finished projects
-function LoadProjectsDone()
-	return LoadData("ProjectsDone", {}, PROJECTS_SAVE_SLOT)
-end
 
 --------------------------------------------------------------
 -- Initialization 
@@ -738,17 +755,115 @@ end
 
 function ShareGlobalTables()
 	print("Sharing Global Tables...")
-	g_ReinforcementData = share ("Reinforcement", g_ReinforcementData)
-	g_Wounded			= share ("Wounded", g_Wounded)
+	g_Wounded = share ("Wounded", g_Wounded)
 end
 
+function ValidateData()
+
+	Dprint("-------------------------------------")
+	Dprint("Validating UnitClasses table...")	
+	if g_Unit_Classes then
+		for class in GameInfo.UnitClasses() do
+			if not g_Unit_Classes[class.ID] then
+				Dprint("WARNING: ".. tostring(class.Type).." is not defined in g_Unit_Classes")			
+			end			
+		end
+	else
+		Dprint("ERROR: g_Unit_Classes does not exist")
+	end
+	
+	if g_Max_Armor_SubClass_Percent then	
+		Dprint("-------------------------------------")
+		Dprint("Validating Armor SubClass Restriction table...")
+		Dprint("")
+		for iPlayer = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
+			local player = Players[iPlayer]
+			if player:IsEverAlive() and not player:IsMinorCiv() and not player:IsBarbarian() then
+				Dprint("- Checking for ".. tostring(player:GetName()) .."...")
+				local civID = GetCivIDFromPlayerID(iPlayer)
+				if g_Max_Armor_SubClass_Percent[civID] then
+					local totalPercent = 0
+					for iClass, percent in pairs(g_Max_Armor_SubClass_Percent[civID]) do
+						local checkClass = false
+						local classPercent = 0
+						for unitInfo in GameInfo.Units() do
+							local iUnitType = unitInfo.ID
+							local unitClassType = GameInfo["Units"][iUnitType]["Class"]
+							local unitClass = GameInfo.UnitClasses[unitClassType].ID
+							local bTemp1, bTemp2, bTemp3, bTemp4 = USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI	-- save old value for USE_UNIT_RATIO_FOR_AI
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = false, false, false, false				-- to check if unit can be build without using ratio...
+							if g_Unit_Classes[unitClass] and (g_Unit_Classes[unitClass].NumType == iClass) and CachePlayerTrainingRestriction(iPlayer, iUnitType) then
+								classPercent = percent
+								checkClass = true
+							end
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = bTemp1, bTemp2, bTemp3, bTemp4 -- restore default value
+						end
+						totalPercent = totalPercent + classPercent
+						if checkClass then
+							Dprint(" - Found unit for " .. Locale.ConvertTextKey(GameInfo.UnitClasses[iClass].Description) .." (" .. tostring(classPercent) .."% allowed)")
+						end
+					end
+					if totalPercent > 100 then					
+						Dprint("  - Ok ! (total = ".. totalPercent .."%)")
+					else
+						Dprint("WARNING: Validating Armor SubClass Restriction failed for ".. tostring(player:GetName()) .." (total = ".. tostring(totalPercent) .."%)")
+					end
+				end
+				Dprint("")
+			end
+		end
+	end
+		
+	if g_Max_Air_SubClass_Percent then	
+		Dprint("-------------------------------------")
+		Dprint("Validating Air SubClass Restriction table...")
+		Dprint("")
+		for iPlayer = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
+			local player = Players[iPlayer]
+			if player:IsEverAlive() and not player:IsMinorCiv() and not player:IsBarbarian() then
+				Dprint("- Checking for ".. tostring(player:GetName()) .."...")
+				local civID = GetCivIDFromPlayerID(iPlayer)
+				if g_Max_Air_SubClass_Percent[civID] then
+					local totalPercent = 0
+					for iClass, percent in pairs(g_Max_Air_SubClass_Percent[civID]) do
+						local checkClass = false
+						local classPercent = 0
+						for unitInfo in GameInfo.Units() do
+							local iUnitType = unitInfo.ID
+							local unitClassType = GameInfo["Units"][iUnitType]["Class"]
+							local unitClass = GameInfo.UnitClasses[unitClassType].ID
+							local bTemp1, bTemp2, bTemp3, bTemp4 = USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI	-- save old value for USE_UNIT_RATIO_FOR_AI
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = false, false, false, false				-- to check if unit can be build without using ratio...
+							if g_Unit_Classes[unitClass] and (g_Unit_Classes[unitClass].NumType == iClass) and CachePlayerTrainingRestriction(iPlayer, iUnitType) then
+								classPercent = percent
+								checkClass = true
+							end
+							USE_UNIT_RATIO_FOR_AI, ALLOW_AI_UNITS_LIMIT, AI_USE_RESOURCE_LIMIT, UNIT_SUPPORT_LIMIT_FOR_AI = bTemp1, bTemp2, bTemp3, bTemp4 -- restore default value
+						end
+						totalPercent = totalPercent + classPercent
+						if checkClass then
+							Dprint(" - Found unit for " .. Locale.ConvertTextKey(GameInfo.UnitClasses[iClass].Description) .." (" .. tostring(classPercent) .."% allowed)")
+						end
+					end
+					if totalPercent > 100 then					
+						Dprint("  - Ok ! (total = ".. totalPercent .."%)")
+					else
+						Dprint("WARNING: Validating Air SubClass Restriction Failed ! for ".. tostring(player:GetName()) .." (total = ".. tostring(totalPercent) .."%)")
+					end
+				end
+				Dprint("")
+			end
+		end
+	end
+
+end
 --------------------------------------------------------------
 -- Projects Utils 
 --------------------------------------------------------------
 
 function GetTotalCombatXP(unitTypeID)
 	local total = 0
-	for key, data in pairs(g_UnitData) do
+	for key, data in pairs(MapModData.RED.UnitData) do
 		if data.TypeID == unitTypeID then
 			total = total + data.CombatXP
 		end
@@ -768,14 +883,38 @@ function IsProjectOfCiv(iProjectType, civID)
 end
 
 function IsProjectDone(iProjectType, civID)
-	if g_ProjectsDone[iProjectType] and g_ProjectsDone[iProjectType][civID] then
+	if not civID then 
+		return MapModData.RED.ProjectsDone[iProjectType] -- function can be called with no 2nd argument to check if the project was done by ANY civ.
+
+	elseif MapModData.RED.ProjectsDone[iProjectType] and MapModData.RED.ProjectsDone[iProjectType][civID] then
 		return true
 	end
 	return false
 end
 
+function CanRepeatProject(iProjectType)
+	return g_ProjectsTable[iProjectType].Repeat
+end
+
+function IsMilitaryOperationProject(iProjectType, civID)
+	if not g_Military_Project then
+		return false
+	end
+	if not g_Military_Project[civID] then
+		return false
+	end
+	if not g_Military_Project[civID][iProjectType] then
+		return false
+	end
+	return true
+end
+
+function MarkProjectNotCompleted(iProjectType, civID)
+	MapModData.RED.ProjectsDone[iProjectType] = { [civID] = false}
+end
+
 function MarkProjectDone(iProjectType, civID)
-	g_ProjectsDone[iProjectType] = { [civID] = true}
+	MapModData.RED.ProjectsDone[iProjectType] = { [civID] = true}
 end
 
 function FinalizeNextPlayerProjects(CurrentPlayerID)
@@ -795,15 +934,19 @@ function FinalizeNextPlayerProjects(CurrentPlayerID)
 				Dprint ("     - Turn(s) left = " .. turnLeft, bDebug)
 				if turnLeft < 2 then
 					Dprint ("     - Removing project from build list and mark it as done...", bDebug)
+					city:SetProduction(0) -- in case the project is allowed to be build again...
 					city:PopOrder()
 					local civID = GetCivIDFromPlayerID(playerID)
-					MarkProjectDone(projectID, civID)
+					if (not CanRepeatProject(projectID)) or (IsMilitaryOperationProject(projectID, civID)) then -- Military operation are marked available again in RedUnitFunctions if they can be produced multiple time
+						MarkProjectDone(projectID, civID)
+					end
 					-- todo : alert all player for some projects only...
 					if g_ProjectsTable[projectID].TopSecret then
 						player:AddNotification(NotificationTypes.NOTIFICATION_PROJECT_COMPLETED, str .. " is finished", "Project done !", city:GetX(), city:GetY(), projectID, playerID)
 					else
 						BroadcastNotification(NotificationTypes.NOTIFICATION_PROJECT_COMPLETED, str .. " is finished", "Project done !", city:GetX(), city:GetY(), projectID, playerID )
 					end
+					LuaEvents.ProjectDone(projectID, civID) -- can use LuaEvents.ProjectDone.Add(anyScenarioFunction) in the scenarios Lua to do special stuff...
 				end
 			end
 		end
@@ -958,6 +1101,14 @@ end
 -- W.I.P.
 --------------------------------------------------------------
 
+local Clock = os.clock
+function Pause(n)  -- seconds
+	Dprint ("PAUSING for " .. n .. " seconds")
+   local t0 = Clock()
+   while Clock() - t0 <= n do
+   end
+end
+
 function TurnToMonth()
 	local bDebug = true
 	local turn = Game.GetGameTurn()
@@ -1090,4 +1241,123 @@ function IsOperationLaunched(iOperation)
 		return true
 	end
 	return false
+end
+
+--[[
+ToHexFromGrid( Vector2( city:GetX(), city:GetY() ) )
+Events.SerialEventCityCreated(Vector2 vHexPos, PlayerID player, CityID cityID, ArtStyleType artStyleType, EraType eraType, int continent, int populationSize, int size, int fogState)
+
+
+Events.SerialEventCityCreated(ToHexFromGrid( Vector2( x, y ) ), 0, NULL, GameInfoTypes.ARTSTYLE_ASIAN, GameInfoTypes.ERA_ANCIENT, NULL, 1, 1, 2)
+
+			if (pPlot:GetVisibilityCount() > 0) then
+				pPlot:ChangeVisibilityCount(team, -1, -1, true, true);
+			end
+			pPlot:SetRevealed(team, false);
+
+--]]
+
+function CreateFakeCity(x,y, playerID, artStyleType, eraType, size, name )
+	local vHexPos = ToHexFromGrid( Vector2( x,y ) )
+	local plot = GetPlot(x,y)
+	local visibility = plot:GetVisibilityCount(Players[Game.GetActivePlayer()]:GetTeam())
+	Events.SerialEventCityCreated(ToHexFromGrid( Vector2( x, y ) ), playerID, NULL, artStyleType, eraType, NULL, 1, size, 2) -- todo: dynamic fogstate
+
+end
+
+function SetVisibility(playerID, x, y, visibility) -- DLL is broken ?  see ChangeVisibilityCount for Lua converting to boolean what should be an integer ?
+	local player = Players[playerID]
+	local plot = GetPlot(x,y)
+	plot:ChangeVisibilityCount(player:GetTeam(), -plot:GetVisibilityCount(player:GetTeam()) + num, -1, true, false)
+end
+
+
+--[[
+-- Pazyryk code for City graphic...
+
+local g_cityUpdateInfo = {}
+local g_cityUpdateNum = 0
+
+local function ListenerSerialEventCityCreated(vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
+	print("ListenerSerialEventCityCreated: ", vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
+	g_cityUpdateNum = g_cityUpdateNum + 1
+	g_cityUpdateInfo[g_cityUpdateNum] = g_cityUpdateInfo[g_cityUpdateNum] or {}
+	local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
+	updateInfo[1] = {x = vHexPos.x, y = vHexPos.y, z = vHexPos.z}
+	updateInfo[2] = iPlayer
+	updateInfo[3] = iCity
+	updateInfo[4] = artStyleType --ArtStyleTypes.ARTSTYLE_ASIAN
+	updateInfo[5] = eraType
+	updateInfo[6] = continent
+	updateInfo[7] = populationSize
+	updateInfo[8] = size
+	updateInfo[9] = fogState
+	--Warning! Infinite loop if new updateInfo causes an update!
+end
+Events.SerialEventCityCreated.Add(ListenerSerialEventCityCreated)
+
+local function UpdateCityGraphics()
+	if g_cityUpdateNum == 0 then return end
+	print("Running UpdateCityGraphics; number cached = ", g_cityUpdateNum)
+	while 0 < g_cityUpdateNum do
+		local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
+		g_cityUpdateNum = g_cityUpdateNum - 1
+		Events.SerialEventCityCreated(updateInfo[1], updateInfo[2], updateInfo[3], updateInfo[4], updateInfo[5], updateInfo[6], updateInfo[7], updateInfo[8], updateInfo[9])
+	end
+end
+Events.SerialEventGameDataDirty.Add(UpdateCityGraphics)
+Events.SequenceGameInitComplete.Add(UpdateCityGraphics)
+Events.SerialEventCityCaptured.Add(UpdateCityGraphics)	--not sure if this happens before or after city art change
+
+--]]
+
+
+function ResumeCoroutines()
+	for i, co in ipairs( g_RunningCoroutines ) do
+		if coroutine.status(co) == "dead" then
+			g_RunningCoroutines[i] = nil
+		else
+			local result, err = coroutine.resume(co)
+			if not result then
+				Dprint("*********** Coroutine ERROR ***********");
+				Dprint(err);
+				Dprint("***************************************");
+			end
+		end
+	end
+end
+
+function StartCoroutine(func)
+	local co = coroutine.create(func)
+	table.insert(g_RunningCoroutines, co)
+	return co
+end
+
+
+function GetFreeUnitsFromScenario (iPlayer)
+	
+	local player = Players[iPlayer]
+	local numFreeUnitsFromScenario = 0
+
+	-- scenario specific bonus (U.K. got +10 on europe 39-45 map for example)
+	if g_Units_Maintenance_Modifier then	
+		local civID = GetCivIDFromPlayerID(iPlayer, false)
+		numFreeUnitsFromScenario = g_Units_Maintenance_Modifier[civID] or 0	
+	end	
+
+	-- bonus for the AI
+	if (not player:IsHuman()) and (not player:IsMinorCiv()) and (not player:IsBarbarian()) then
+		numFreeUnitsFromScenario = numFreeUnitsFromScenario + AI_FREE_UNIT_SUPPLY
+	end
+
+	-- convoy are free from maintenance
+	local numConvoi = 0
+	for unit in player:Units() do
+		if (unit:GetUnitType() == CONVOY) then
+			numConvoi = numConvoi + 1
+		end
+	end
+
+	return numFreeUnitsFromScenario + numConvoi
+
 end

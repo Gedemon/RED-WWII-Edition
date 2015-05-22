@@ -11,19 +11,25 @@ print("-------------------------------------")
 -- Scenario Specific Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
-WAR_MINIMUM_STARTING_TURN = 3
-REVEAL_ALL_CITIES = true -- cities tiles are always visible for every civs
-EMBARK_FROM_HARBOR = true -- allow embarking only from a city with a port (and adjacent tiles)
-BEACHHEAD_DAMAGE = true -- Amphibious assault on an empty tile owned by enemy civ will cause damage to the landing unit
-CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will place mountain on neutral territories to make them impassable
+WAR_MINIMUM_STARTING_TURN		= 3
+REVEAL_ALL_CITIES				= true	-- cities tiles are always visible for every civs
+EMBARK_FROM_HARBOR				= true	-- allow embarking only from a city with a port (and adjacent tiles)
+BEACHHEAD_DAMAGE				= true	-- Amphibious assault on an empty tile owned by enemy civ will cause damage to the landing unit (not implemented)
+CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true	-- if true neutral territories is impassable
+RESOURCE_CONSUMPTION			= true	-- Use resource consumption (fuel, ...)
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- AI Scenario Specific Rules
 ----------------------------------------------------------------------------------------------------------------------------
 
-ALLOW_AI_CONTROL = true
-NO_AI_EMBARKATION = true -- remove AI ability to embark (to do : take total control of AI unit to embark)
-NO_SUICIDE_ATTACK = true -- If set to true, try to prevent suicide attacks
+ALLOW_AI_CONTROL			= true
+NO_AI_EMBARKATION			= true -- remove AI ability to embark (to do : take total control of AI unit to embark)
+NO_SUICIDE_ATTACK			= true -- If set to true, try to prevent suicide attacks
+UNIT_SUPPORT_LIMIT_FOR_AI	= true -- Allow limitation of max number of AI units based on number of supported units
+	
+AI_LAND_MINIMAL_RESERVE		= 15	
+AI_AIR_MINIMAL_RESERVE		= 10	
+AI_SEA_MINIMAL_RESERVE		= 8	
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Calendar
@@ -101,8 +107,18 @@ YUGOSLAVIA = GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
 -- Units (see RedDefines.lua for IDs)
 ----------------------------------------------------------------------------------------------------------------------------
 
+-- Modifier for maintenance free units
+g_Units_Maintenance_Modifier = {
+	[FRANCE] = 0,
+	[ENGLAND] = 10,
+	[USSR] = 0,
+	[GERMANY] = 0,
+	[ITALY] = 7,
+	[GREECE] = 5,
+}
+
 -- Available units for minor civs
-g_Minor_Units = {}
+g_Minor_Units = {INFANTRY, ARTILLERY, AT_GUN, AA_GUN, PARATROOPER, LIGHT_TANK, TANK}
 
 -- unit type called when AI need reserve troops
 g_Reserve_Unit = {
@@ -142,23 +158,24 @@ g_Combat_Type_Ratio = {
 	-- Armor	<= land units / armor units
 	-- Artillery<= land units / artillery units
 	-- ( 1 = no limit )
-	[FRANCE]	= {Air = 5, Sea = 5, Armor = 2, Artillery = 8,},
-	[ENGLAND]	= {Air = 4, Sea = 3.5, Armor = 2, Artillery = 8,},
-	[USSR]		= {Air = 5, Sea = 7, Armor = 3, Artillery = 7.5,},
-	[GERMANY]	= {Air = 5, Sea = 5, Armor = 1.85, Artillery = 8,},
-	[ITALY]		= {Air = 5, Sea = 4, Armor = 3, Artillery = 8,},
-	[GREECE]	= {Air = 5, Sea = 5, Armor = 4, Artillery = 8,},
+	[FRANCE]	= {Air = 5,		Sea = 5,	Armor = 2,		Artillery = 6,},
+	[ENGLAND]	= {Air = 4,		Sea = 3.5,	Armor = 2,		Artillery = 6,},
+	[USSR]		= {Air = 5,		Sea = 7,	Armor = 3,		Artillery = 5,},
+	[GERMANY]	= {Air = 5,		Sea = 5,	Armor = 1.85,	Artillery = 6,},
+	[ITALY]		= {Air = 5,		Sea = 4,	Armor = 3,		Artillery = 6,},
+	[GREECE]	= {Air = 5,		Sea = 5,	Armor = 4,		Artillery = 6,},
+	[MINOR]		= {Air = 7,		Sea = 7,	Armor = 6,		Artillery = 6,},
 }
 
 -- Armor type ratio restriction used by AI
 g_Max_Armor_SubClass_Percent = {
 	-- max num	<= armor units / type units
-	[FRANCE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[ENGLAND]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[USSR]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[GERMANY]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[ITALY]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
-	[GREECE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, },--[CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
+	[FRANCE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 25, [CLASS_ASSAULT_GUN] = 25, [CLASS_LIGHT_TANK_DESTROYER] = 30, [CLASS_TANK_DESTROYER] = 30,	},
+	[ENGLAND]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 60, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 25, [CLASS_ASSAULT_GUN] = 10, [CLASS_LIGHT_TANK_DESTROYER] = 25, [CLASS_TANK_DESTROYER] = 25,	},
+	[USSR]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 30, [CLASS_LIGHT_TANK_DESTROYER] = 25, [CLASS_TANK_DESTROYER] = 30,	},
+	[GERMANY]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 40, [CLASS_ASSAULT_GUN] = 30, [CLASS_LIGHT_TANK_DESTROYER] = 30, [CLASS_TANK_DESTROYER] = 30,	},
+	[ITALY]		= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, [CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
+	[GREECE]	= {	[CLASS_LIGHT_TANK] = 50, [CLASS_CRUISER_TANK] = 20, [CLASS_TANK] = 60, [CLASS_HEAVY_TANK] = 20, [CLASS_ASSAULT_GUN] = 10, [CLASS_LIGHT_TANK_DESTROYER] = 15, [CLASS_TANK_DESTROYER] = 10,	},
 }	
 
 -- Air type ratio restriction used by AI
@@ -166,10 +183,10 @@ g_Max_Air_SubClass_Percent = {
 	-- max num	<= armor units / type units
 	[FRANCE]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
 	[ENGLAND]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
-	[USSR]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 50, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
+	[USSR]		= {	[CLASS_FIGHTER] = 55, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 50, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 45, [CLASS_HEAVY_BOMBER] = 15,	},
 	[GERMANY]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 20, [CLASS_HEAVY_BOMBER] = 15,	},
 	[ITALY]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
-	[GREECE]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
+	[GREECE]	= {	[CLASS_FIGHTER] = 60, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 45, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
 }		
 
 -- Order of Battle
@@ -178,7 +195,7 @@ g_Max_Air_SubClass_Percent = {
 g_Initial_OOB = { 
 	{Name = "French north army", X = 33, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_AMR35, FR_B1, FR_S35} },
 	{Name = "French south army", X = 30, Y = 35, Domain = "Land", AI = true, CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_CHAR_D1} },
-	{Name = "French metr. aviation", X = 28, Y = 45, Domain = "Air", CivID = FRANCE, Group = {FR_MS406, FR_MS406 } },
+	{Name = "French metr. aviation", X = 28, Y = 45, Domain = "Air", CivID = FRANCE, Group = {FR_MS406, FR_MB152 } },
 	{Name = "French metr. aviation AI Bonus", X = 28, Y = 45, Domain = "Air", AI = true, CivID = FRANCE, Group = {FR_HAWK75, FR_HAWK75 } },
 	{Name = "French Mediteranean fleet", X = 28, Y = 30, Domain = "Sea", CivID = FRANCE, Group = {FR_FANTASQUE, FR_FANTASQUE, FR_SUBMARINE, FR_GALISSONIERE, FR_GALISSONIERE, FR_BATTLESHIP, FR_BATTLESHIP_2} },
 	{Name = "French North Africa", X = 16, Y = 18, Domain = "Land", CivID = FRANCE, Group = {FR_LEGION, FR_AMC35, FR_CHAR_D2} },
@@ -191,11 +208,11 @@ g_Initial_OOB = {
 	{Name = "England Exped. corp Netherlands", X = 26, Y = 52, Domain = "Land", AI = true, CivID = ENGLAND, Group = {UK_INFANTRY, UK_INFANTRY, UK_MATILDA_I, UK_MATILDA_II} },
 	{Name = "England Exped. corp Belgium", X = 24, Y = 53, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH} },
 	{Name = "England Exped. corp Egypt", X = 63, Y = 2, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_CRUISER_I, UK_VICKERS_MK6B} },
-	{Name = "England Metropole RAF", X = 27, Y = 52, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE, UK_SPITFIRE, UK_WELLINGTON, UK_WELLINGTON} },
-	{Name = "England Metropole RAF AI", X = 27, Y = 52, Domain = "Air", AI = true, CivID = ENGLAND, Group = {UK_SPITFIRE, UK_SPITFIRE,} },
-	{Name = "England Malta RAF", X = 41, Y = 14, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE} },
-	{Name = "England Nicosia RAF", X = 74, Y = 12, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE} },
-	{Name = "England Egypt RAF", X = 60, Y = 3, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE} },
+	{Name = "England Metropole RAF", X = 27, Y = 52, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE, UK_HURRICANE, UK_WELLINGTON, UK_WELLINGTON} },
+	{Name = "England Metropole RAF AI", X = 27, Y = 52, Domain = "Air", AI = true, CivID = ENGLAND, Group = {UK_SPITFIRE, UK_HURRICANE,} },
+	{Name = "England Malta RAF", X = 41, Y = 14, Domain = "Air", CivID = ENGLAND, Group = {UK_HURRICANE} },
+	{Name = "England Nicosia RAF", X = 74, Y = 12, Domain = "Air", CivID = ENGLAND, Group = {UK_HURRICANE} },
+	{Name = "England Egypt RAF", X = 60, Y = 3, Domain = "Air", CivID = ENGLAND, Group = {UK_HURRICANE} },
 	{Name = "England Home fleet", X = 10, Y = 46, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_BATTLESHIP, UK_BATTLESHIP_2, UK_ELIZABETH} },
 	{Name = "England Home fleet North", X = 34, Y = 59, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_DIDO, UK_BATTLESHIP_2} },
 	{Name = "England West Mediterranean fleet", X = 13, Y = 22, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_SUBMARINE, UK_ELIZABETH} },
@@ -233,22 +250,44 @@ g_Initial_OOB = {
 
 }
 
+-- Options
+if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 1", X = 35, Y = 42, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 2", X = 35, Y = 43, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 3", X = 36, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 4", X = 35, Y = 45, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 5", X = 35, Y = 46, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+end
+
+if(PreGame.GetGameOption("Westwall") ~= nil) and (PreGame.GetGameOption("Westwall") >  0) then
+	table.insert (g_Initial_OOB,	{Name = "Westwall 1", X = 36, Y = 42, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 2", X = 37, Y = 44, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 3", X = 37, Y = 46, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+																																	 
+	table.insert (g_Initial_OOB,	{Name = "Westwall 4", X = 35, Y = 47, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 5", X = 35, Y = 49, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 6", X = 35, Y = 51, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 7", X = 36, Y = 53, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+end
+
 
 g_MinorMobilization_OOB = { 
 	{Name = "Poland army", X = 53, Y = 46, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
 	{Name = "Poland air force", X = 53, Y = 48, Domain = "Air", CivID = POLAND, IsMinor = true, Group = {PL_PZL37, PL_P11, PL_P11, PL_P11} },
 	{Name = "Poland fleet", X = 51, Y = 56, Domain = "Sea", CivID = POLAND, IsMinor = true, Group = {PL_SUBMARINE} },
-	{Name = "Belgian army", X = 34, Y = 48, Domain = "Land", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY} },
-	{Name = "Netherlands army", X = 35, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {INFANTRY} },
-	{Name = "Finland army", X = 59, Y = 68, Domain = "Land", CivID = FINLAND, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Slovakia army", X = 53, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35} },
-	{Name = "Slovakia army 2", X = 50, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35} },
-	{Name = "Romania army", X = 59, Y = 36, Domain = "Land", CivID = ROMANIA, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Yugoslavia army", X = 53, Y = 30, Domain = "Land", CivID = YUGOSLAVIA, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Bulgaria army", X = 61, Y = 29, Domain = "Land", CivID = BULGARIA, IsMinor = true, Group = {INFANTRY, INFANTRY} },
-	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {INFANTRY, INFANTRY} },
-	{Name = "Sweden army", X = 45, Y = 60, Domain = "Land", CivID = SWEDEN, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY, INFANTRY} },
-	{Name = "Spanish army", X = 13, Y = 30, Domain = "Land", CivID = SPAIN, IsMinor = true, Group = {INFANTRY, INFANTRY, INFANTRY} },
+	{Name = "Belgian army", X = 34, Y = 48, Domain = "Land", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
+	{Name = "Netherlands army", X = 35, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {DU_INFANTRY, AT_GUN, DU_VICKERS_M1936, DU_MTSL, ARTILLERY} },
+	{Name = "Netherlands air force", X = 34, Y = 52, Domain = "Air", CivID = NETHERLANDS, IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
+	{Name = "Finland army", X = 59, Y = 68, Domain = "Land", CivID = FINLAND, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
+	{Name = "Slovakia army", X = 53, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
+	{Name = "Slovakia army 2", X = 50, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, AT_GUN} },
+	{Name = "Romania army", X = 59, Y = 36, Domain = "Land", CivID = ROMANIA, IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, INFANTRY, RO_TACAM, ARTILLERY} },
+	{Name = "Yugoslavia army", X = 53, Y = 30, Domain = "Land", CivID = YUGOSLAVIA, IsMinor = true, Group = {INFANTRY, INFANTRY, AT_GUN, INFANTRY, YU_SKODA, YU_SKODA, ARTILLERY} },
+	{Name = "Bulgaria army", X = 61, Y = 29, Domain = "Land", CivID = BULGARIA, IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {HU_INFANTRY, HU_INFANTRY, HU_INFANTRY, HU_38M_TOLDI, HU_38M_TOLDI, HU_40M_TURAN, ARTILLERY} },
+	{Name = "Hungary air force", X = 51, Y = 38, Domain = "Air", CivID = HUNGARY, IsMinor = true, Group = {HU_RE2000, HU_RE2000, HU_CA135} },
+	{Name = "Sweden army", X = 45, Y = 60, Domain = "Land", CivID = SWEDEN, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, ARTILLERY} },
+	{Name = "Spanish army", X = 13, Y = 30, Domain = "Land", CivID = SPAIN, IsMinor = true, Group = {SP_INFANTRY, AT_GUN, SP_INFANTRY, AT_GUN, SP_INFANTRY, ARTILLERY} },
 }
 
 ---------------------------------------------------------------------------------------------------------------------------
@@ -262,6 +301,13 @@ g_Minor_UU = {
 				[CLASS_TANK] = PL_10TP,
 				[CLASS_INFANTRY] = PL_INFANTRY,
 				[CLASS_FIGHTER] = PL_P11,
+	},
+	[HUNGARY] = {
+				[CLASS_TANK] = HU_40M_TURAN,
+				[CLASS_INFANTRY] = HU_INFANTRY,
+	},
+	[BULGARIA] = {
+				[CLASS_INFANTRY] = HU_INFANTRY,
 	},
 }
 
@@ -301,11 +347,14 @@ g_MinorProtector = {
 	[ALBANIA] = {ITALY, },
 	[LIBYA] = {ITALY, }, 
 	[ROMANIA] = {GERMANY, ITALY},
+	[BULGARIA] = {GERMANY, ITALY},
 	[SPAIN] = {GERMANY, ITALY},
 	[SLOVAKIA] = {GERMANY, }, 
 	[HUNGARY] = {GERMANY, }, 
 	[YUGOSLAVIA] = {GREECE, },
 	[SWEDEN] = {FRANCE, ENGLAND, GERMANY, }, 
+	[TURKEY] = {FRANCE, ENGLAND, GERMANY, ITALY, USSR, GREECE }, 
+	[BALTIC] = {USSR}, 
 }
 
 -- Victory types
@@ -410,6 +459,7 @@ g_Minor_Relation = {
 		{Value = 50, Major = ENGLAND, Minor = YUGOSLAVIA},
 		{Value = 120, Major = GERMANY, Minor = SLOVAKIA},
 		{Value = 50, Major = GERMANY, Minor = HUNGARY},
+		{Value = 50, Major = GERMANY, Minor = ROMANIA},
 		{Value = 50, Major = GERMANY, Minor = LIBYA},
 		{Value = 50, Major = GERMANY, Minor = ALBANIA},
 		{Value = 50, Major = GERMANY, Minor = SWEDEN},
@@ -417,6 +467,7 @@ g_Minor_Relation = {
 		{Value = 120, Major = ITALY, Minor = ALBANIA},
 		{Value = 50, Major = ITALY, Minor = SLOVAKIA},
 		{Value = 50, Major = ITALY, Minor = HUNGARY},
+		{Value = 50, Major = ITALY, Minor = ROMANIA},
 		{Value = 50, Major = ITALY, Minor = SWEDEN},
 		{Value = 50, Major = USSR, Minor = IRAQ},
 		{Value = 50, Major = USSR, Minor = IRAN},
@@ -522,12 +573,13 @@ g_Minor_Major_DoW = {
 g_Cities = {
 	-- UNITED KINGDOM
 	{X = 27, Y = 52, Key = true, Buildings = { FACTORY, HARBOR }, AIBuildings = {SHIPYARD}, }, -- LONDON
-	{X = 24, Y = 57, Key = true,  Buildings = { HARBOR }, AIBuildings = {LAND_FACTORY}, }, -- LIVERPOOL
-	{X = 26, Y = 62, Key = true,  Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
-	{X = 27, Y = 59, Key = true,  Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
+	{X = 24, Y = 57, Key = true, Buildings = { HARBOR }, AIBuildings = {LAND_FACTORY}, }, -- LIVERPOOL
+	{X = 26, Y = 61, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
+	{X = 24, Y = 62, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- GLASGOW
+	{X = 28, Y = 58, Key = true, Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
 	{X = 21, Y = 62, Buildings = { HARBOR }, }, -- BELFAST
-	{X = 28, Y = 65, }, -- ABERDEEN
-	{X = 10, Y = 24, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
+	{X = 28, Y = 65, AIBuildings = { HARBOR }, }, -- ABERDEEN
+	{X = 10, Y = 25, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
 	{X = 41, Y = 14, Buildings = { HARBOR, BASE }, AIBuildings = {ARSENAL}, }, -- MALTA
 	{X = 22, Y = 52, Buildings = { HARBOR }, }, -- PLYMOUTH
 	{X = 92, Y = 11, }, -- HABBANIYA
@@ -535,13 +587,15 @@ g_Cities = {
 	{X = 73, Y = 2,  }, -- SUEZ
 	{X = 29, Y = 54, }, -- NORWICH
 	{X = 25, Y = 54, }, -- BIRMINGHAM
-	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- NICOSIA
+	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- KIRKWALL (Scapa Flow)
+	{X = 28, Y = 68, Buildings = { HARBOR }, }, -- NICOSIA
 	-- GERMANY
-	{X = 44, Y = 50, Key = true,  Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE}, }, -- BERLIN
-	{X = 41, Y = 54, Key = true,  Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
-	{X = 38, Y = 52, Key = true,  Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY}, }, -- BREMEN
-	{X = 39, Y = 46, Key = true,  Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
+	{X = 44, Y = 50, Key = true, Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE}, }, -- BERLIN
+	{X = 39, Y = 46, Key = true, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
+	{X = 39, Y = 53, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD, BASE}, }, -- HAMBURG
+	{X = 40, Y = 40, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LAND_FACTORY, ARSENAL, BASE}, }, -- MUNICH
 	{X = 45, Y = 43, Buildings = { FACTORY }, }, -- PRAGUE
+	{X = 40, Y = 55, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
 	{X = 39, Y = 43, AIBuildings = {FACTORY}, }, -- NUREMBERG
 	{X = 52, Y = 53, Buildings = { HARBOR }, AIBuildings = {FACTORY}, }, -- KONIGSBERG
 	{X = 42, Y = 41, AIBuildings = {FACTORY}, }, -- PASSAU
@@ -551,19 +605,18 @@ g_Cities = {
 	{X = 45, Y = 46, AIBuildings = {FACTORY}, }, -- DRESDEN
 	{X = 41, Y = 48, AIBuildings = {FACTORY}, }, -- MAGDEBURG
 	{X = 47, Y = 40, Buildings = { FACTORY }, }, -- VIENNA
-	{X = 40, Y = 40, Buildings = { FACTORY }, }, -- MUNICH
 	-- FRANCE
-	{X = 28, Y = 45, Key = true,  Buildings = { FACTORY, BANK, OPEN_CITY }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
+	{X = 28, Y = 45, Key = true, Buildings = { FACTORY, BANK, OPEN_CITY, BARRACKS }, AIBuildings = {LAND_FACTORY},  }, -- PARIS	
 	{X = 29, Y = 34, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- MARSEILLE
-	{X = 30, Y = 38, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- LYON
-	{X = 25, Y = 36, Buildings = { FACTORY }, }, -- TOULOUSE
+	{X = 30, Y = 38, Buildings = { FACTORY }, }, -- LYON
+	{X = 25, Y = 36, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- TOULOUSE
 	{X = 25, Y = 46, Key = true,  }, -- CAEN
 	{X = 23, Y = 48, Buildings = { HARBOR }, }, -- CHERBOURG
-	{X = 16, Y = 18, }, -- SIDI BEL ABBES
+	{X = 16, Y = 18, Buildings = { BARRACKS, LEGION_HQ }, }, -- SIDI BEL ABBES
 	{X = 33, Y = 27, Buildings = { HARBOR }, }, -- AJACCIO
 	{X = 21, Y = 45, Buildings = { HARBOR }, }, -- SAINT NAZAIRE
 	{X = 19, Y = 48, }, -- BREST
-	{X = 36, Y = 45, }, -- STRASBOURG
+	{X = 36, Y = 45, AIBuildings = {BARRACKS, ARSENAL, BASE},}, -- STRASBOURG
 	{X = 33, Y = 34, }, -- NICE
 	{X = 22, Y = 39, Key = true,  }, -- BORDEAUX
 	{X = 21, Y = 42, Buildings = { HARBOR }, }, -- LA ROCHELLE
@@ -574,6 +627,7 @@ g_Cities = {
 	{X = 29, Y = 50, Key = true, Buildings = { HARBOR }, }, -- DUNKERQUE
 	{X = 31, Y = 46, }, -- REIMS
 	{X = 30, Y = 41, }, -- DIJON
+	{X = 34, Y = 42, }, -- MULHOUSE
 	-- ITALY
 	{X = 39, Y = 28, Key = true, Buildings = { FACTORY, HARBOR }, AIBuildings = { SHIPYARD }, }, -- ROME
 	{X = 41, Y = 25, Key = true, Buildings = { HARBOR }, AIBuildings = { SMALL_AIR_FACTORY }, }, -- NAPLES
@@ -632,7 +686,7 @@ g_Cities = {
 	{X = 83, Y = 54, }, -- PENZA
 	{X = 101, Y = 55, }, -- CHELYABINSK
 	{X = 61, Y = 60, }, -- PSKOV
-	{X = 80, Y = 60, }, -- NOVGOROD
+	{X = 80, Y = 60, AIBuildings = {SMALL_AIR_FACTORY, LARGE_AIR_FACTORY, MEDIUM_AIR_FACTORY},}, -- NOVGOROD
 	{X = 66, Y = 55, }, -- SMOLENSK
 	{X = 105, Y = 59, }, -- TOBOL'SK
 	{X = 87, Y = 59, }, -- KAZAN

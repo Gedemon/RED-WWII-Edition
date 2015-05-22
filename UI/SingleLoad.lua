@@ -30,7 +30,6 @@ function OnStartButton()
 	print("Clicked on Load Game button...")
 	ContextPtr:SetHide(true)
 	UIManager:DequeuePopup( ContextPtr )
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/PreLoading/"):SetHide(false)
 
 	if g_GameType == GameTypes.GAME_SINGLE_PLAYER or g_GameType == GameTypes.GAME_HOTSEAT_MULTIPLAYER then
 		UIManager:SetUICursor( 1 );
@@ -130,9 +129,9 @@ Controls.No:RegisterCallback( Mouse.eLClick, OnNo );
 ----------------------------------------------------------------        
 ----------------------------------------------------------------        
 function OnBack()
-    --UIManager:DequeuePopup( ContextPtr );
-	
-	ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModsMenuGrid/"):SetHide(false)
+    --UIManager:DequeuePopup( ContextPtr );	
+	--ContextPtr:LookUpControl("/FrontEnd/MainMenu/ModsEULAScreen/ModsBrowser/ModsMenu/ModsMenuGrid/"):SetHide(false)
+	ContextPtr:LookUpControl("../ModsMenuGrid/"):SetHide(false)
 	ContextPtr:SetHide(true)
 end
 Controls.BackButton:RegisterCallback( Mouse.eLClick, OnBack );
@@ -437,7 +436,8 @@ function SetSelected( index )
 			end
 			
 			Controls.StartButton:SetToolTipString(tooltip);
-			Controls.StartButton:SetDisabled(canLoadSaveResult > 0 or header.GameType ~= g_GameType);  
+			Controls.StartButton:SetDisabled(canLoadSaveResult > 0 or header.GameType ~= g_GameType);
+			--Controls.StartButton:SetDisabled(canLoadSaveResult > 3 or header.GameType ~= g_GameType);  -- to load saves with any DLC (will crash !)
 			
 			Controls.Delete:SetDisabled(false); 
 			

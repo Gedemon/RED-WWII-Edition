@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Context ColorSet="Beige_Black_Alpha" Font="TwCenMT22" FontStyle="Shadow" Name="REDModsMenu" >
+
+    <!-- Overall Screen Container -->
+    <Image Anchor="R,T" Offset="0,0"  Size="630,200" Texture="CivilzationV_Logo.dds" ID="Civ5Logo" Hidden="0" />
+	
+	<Grid ID ="WarningGrid" Size="480,300" Anchor="C,T" Offset="0.32" Padding="0,0" Style="Grid9DetailSix140" >
+		<Box Color="Black.0" Anchor="C,T" Offset="0.0" Size="320.140" Hidden="0" >
+
+			<Label ID="WarningTitle" Anchor="C,C" Offset="0,42" Font="TwCenMT24" ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String=" "  />
+
+		</Box>
+		<GridButton Anchor="C,B" ID="WarningButton" Offset="0.64"  Size="320,45"    Style="ZoomButton" String="Click for Installation Instructions">
+			<ShowOnMouseOver>
+				<AlphaAnim Anchor="L,T" Size="320,48" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+					<Grid   Size="320,48" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL" />
+				</AlphaAnim>
+			</ShowOnMouseOver>
+			<Image Anchor="C,B" AnchorSide="I.O" Offset="0,0" Texture="bar300x2.dds" Size="300.1" />
+		</GridButton>
+	</Grid>
+	
+	<Instance Name="ModInstance">
+		<Label ID="Label" Anchor="L,T"  Font="TwCenMT16"  TruncateWidth="320"  ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="Detail" />
+	</Instance>
+	
+    <Grid ID ="ModsMenuGrid" Size="380,480" Anchor="C,C" Offset="0.32" Padding="0,0" Style="Grid9DetailSix140" >
+
+
+        <Box Color="Black.0" Anchor="C,T" Offset="0.44" Size="320.393" Hidden="0" >
+			<!--
+            <Grid Size="48,393" Anchor="L,T" AnchorSide="O.I" Offset="0.0" Padding="0,0" Style="WindowGrid" />
+            <Grid Size="48,393" Anchor="R,T" AnchorSide="O.I" Offset="0.0" Padding="0,0" Style="WindowGrid" />
+			-->
+
+		</Box>
+<!--
+        <Image Anchor="C,T" Offset="0,-33" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/topframe.dds" Size="512,128" />
+        <Image Anchor="C,B" Offset="0,-109" AnchorSide="O.O"  Texture="Assets/UI/Art/Controls/bottomframe.dds" Size="512,128" />
+-->
+		<!--
+        <Label Anchor="C,T" Offset="0,19" Font="TwCenMT20" Color0="30.50.80.255" Color1="133.184.186.255" Color2="133.184.186.255" FontStyle="SoftShadow" String="{TXT_KEY_MODS:upper}" />
+		-->
+		<Stack Anchor="C,T" Offset="0,54" Padding="0" StackGrowth="Bottom" ID="MainStack" >
+
+            <GridButton Anchor="C,T" ID="SinglePlayerButton"  Size="320,45"    Style="ZoomButton" String="TXT_KEY_RED_SCENARIO_SELECT">
+                <ShowOnMouseOver>
+                    <AlphaAnim Anchor="L,T" Size="320,48" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+                        <Grid   Size="320,48" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL" />
+                    </AlphaAnim>
+                </ShowOnMouseOver>
+				<Image Anchor="C,B" AnchorSide="I.O" Offset="0,0" Texture="bar300x2.dds" Size="300.1" />
+            </GridButton>
+
+           <GridButton Anchor="C,T" ID="MultiPlayerButton"   Size="320,45"    Style="ZoomButton" String="TXT_KEY_MODDING_MULTIPLAYER">
+                <ShowOnMouseOver>
+                    <AlphaAnim Anchor="L,T" Size="320,48" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+                        <Grid   Size="320,48" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL" />
+                    </AlphaAnim>
+                </ShowOnMouseOver>
+                <Image Anchor="C,B" AnchorSide="I.O" Offset="0,0" Texture="bar300x2.dds" Size="300.1" />
+            </GridButton>
+			
+			<GridButton Anchor="C,T" ID="LoadSingleGameButton"   Size="320,45"    Style="ZoomButton" String="TXT_KEY_LOADING_SP_GAME">
+				<ShowOnMouseOver>
+					<AlphaAnim Anchor="L,T" Size="320,48" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+						<Grid   Size="320,48" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL" />
+					</AlphaAnim>
+				</ShowOnMouseOver>
+
+				<Image Anchor="C,B" AnchorSide="I.O" Offset="0,0" Texture="bar300x2.dds" Size="300.1" />
+			</GridButton>
+
+			<GridButton Anchor="C,T" ID="LoadHotseatGameButton"   Size="320,45"    Style="ZoomButton" String="TXT_KEY_LOADING_HOTSEAT_GAME">
+				<ShowOnMouseOver>
+					<AlphaAnim Anchor="L,T" Size="320,48" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+						<Grid   Size="320,48" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL" />
+					</AlphaAnim>
+				</ShowOnMouseOver>
+
+				<Image Anchor="C,B" AnchorSide="I.O" Offset="0,0" Texture="bar300x2.dds" Size="300.1" />
+			</GridButton>
+        </Stack>
+
+		<!-- Listings Box -->
+		<ScrollPanel Anchor="C,B" Offset="0,40" ID="ModsScrollPanel" Vertical="1" Size="320,230" AutoScrollBar="1">
+
+			<!-- Scroll Controls -->
+			<ScrollBar  Anchor="R,T" AnchorSide="O,I" Offset="0,18" Length="404" Style="VertSlider"/>
+			<UpButton   Anchor="R,T" AnchorSide="O,I" Offset="0,0" Style="ScrollBarUp"/>
+			<DownButton Anchor="R,B" AnchorSide="O,I" Offset="0,0" Style="ScrollBarDown"/>
+
+			<!-- Listing Stack (Dynamic) -->
+			<Stack ID="ModsStack" StackGrowth="B" Offset="4,0" Padding="2">
+				<Label ID="ModsInUseLabel" Anchor="L,T"  Font="TwCenMT16"   ColorSet="Beige_Black_Alpha" FontStyle="Shadow" String="TXT_KEY_MODS_IN_USE" />
+			</Stack>
+		</ScrollPanel>
+
+        <GridButton Anchor="C,B" ID="BackButton" Offset="0,44" Size="320,45" Style="ZoomButton" String="TXT_KEY_RED_MENU_BACK" >
+            <ShowOnMouseOver>
+                <AlphaAnim Anchor="L,T" Size="320,48" Pause="0" Cycle="Bounce" Speed="1" AlphaStart="1.5" AlphaEnd="1">
+                    <Grid   Size="320,48" Offset="0,-2" Padding="0,0" Style="Grid9FrameTurnsHL" />
+                </AlphaAnim>
+            </ShowOnMouseOver>
+
+            <Image Anchor="C,T" AnchorSide="I.O" Offset="0,0" Texture="bar300x2.dds" Size="300.1" />
+        </GridButton>
+
+<!--
+        <Image Anchor="C,T" Offset="-184,44"  Texture="Assets/UI/Art/WorldView/WindowTrimLeft.dds" Size="98,394" />
+        <Image Anchor="C,T" Offset="184,44"  Texture="Assets/UI/Art/WorldView/WindowTrimRight.dds" Size="98,394" />
+
+
+-->
+
+
+    </Grid>
+
+    <!-- Child Screens -->
+	<!--<LuaContext FileName="Assets/UI/FrontEnd/Modding/ModsSinglePlayer" ID="ModdingSinglePlayer" Hidden="1" />-->
+	<LuaContext FileName="ScenarioMod" ID="ScenarioMod" Hidden="1" />
+	<LuaContext FileName="HotSeatLoad" ID="HotSeatLoadScreen" Hidden="1" />
+	<LuaContext FileName="SingleLoad" ID="SingleLoadScreen" Hidden="1" />
+	 
+    <!-- Hiding for now until we address issues with multiplayer and modding -->
+    <!--<LuaContext FileName="Assets/UI/FrontEnd/Multiplayer/MultiplayerSelect" ID="ModMultiplayerSelectScreen" Hidden="1"/>-->
+    <!--<LuaContext FileName="Assets/UI/FrontEnd/Modding/ModsBrowser" ID="ModsBrowserScreen" Hidden="1" /> -->
+
+
+</Context>

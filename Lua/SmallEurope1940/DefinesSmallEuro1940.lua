@@ -14,7 +14,7 @@ WAR_MINIMUM_STARTING_TURN = 3
 REVEAL_ALL_CITIES = true -- cities tiles are always visible for every civs
 EMBARK_FROM_HARBOR = false -- allow embarking only from a city with a port (and adjacent tiles)
 BEACHHEAD_DAMAGE = true -- Amphibious assault on an empty tile owned by enemy civ will cause damage to the landing unit
-CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true -- if true will place mountain on neutral territories to make them impassable
+CLOSE_MINOR_NEUTRAL_CIV_BORDERS = true 	-- if true neutral territories is impassable
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- AI Scenario Specific Rules

@@ -327,7 +327,7 @@
 			</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_GREEN_AND_BLACK</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_MIDDLE_EAST</ArtStyleType>
 			<ArtStyleSuffix>_AFRI</ArtStyleSuffix>
 			<ArtStylePrefix>AFRICAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -652,7 +652,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_CUBA</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -678,7 +678,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_DOMINICANREPUBLIC</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -691,7 +691,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_ECUADOR</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -704,7 +704,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_PANAMA</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -717,7 +717,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_HONDURAS</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -730,7 +730,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_GUATAMALA</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -743,7 +743,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_ELSALVADOR</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -756,7 +756,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_COSTARICA</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -769,7 +769,7 @@
 			<Civilopedia>TXT_KEY_CIV5_TYRE_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_NICARAGUA</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -860,7 +860,7 @@
 			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_MEXICO</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -951,7 +951,7 @@
 			<Civilopedia>TXT_KEY_CIV5_RIODEJANEIRO_TEXT</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_BRAZIL</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>
@@ -1081,7 +1081,7 @@
 			<Civilopedia>Central America represents the many nations around the area of Central American and the Caribbean. Central America would be unaffected by the war but in 1942 to 1945 many of the countries located in this area would join the Allies. Some of them contributed to the founding of the United Nations.</Civilopedia>
 			<DefaultPlayerColor>PLAYERCOLOR_HONDURAS</DefaultPlayerColor>
 			<ArtDefineTag>ART_DEF_CIVILIZATION_MINOR</ArtDefineTag>
-			<ArtStyleType>ARTSTYLE_EUROPEAN</ArtStyleType>
+			<ArtStyleType>ARTSTYLE_GRECO_ROMAN</ArtStyleType>
 			<ArtStylePrefix>EUROPEAN </ArtStylePrefix>
 			<ArtStyleSuffix>_EURO</ArtStyleSuffix>
 			<MinorCivTrait>MINOR_TRAIT_CULTURED</MinorCivTrait>

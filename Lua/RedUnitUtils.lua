@@ -29,34 +29,34 @@ end
 
 -- return the unit refered by the key string
 function GetUnitFromKey ( unitKey )
-	if g_UnitData[unitKey] then
+	if MapModData.RED.UnitData[unitKey] then
 		local pos = string.find(unitKey, ",")
 		local unitID = tonumber(string.sub(unitKey, 1 , pos -1))
 		local pos2 = string.find(unitKey, ",", pos+1)
 		local playerID = tonumber(string.sub(unitKey, pos +1, pos2 -1))
-		--local ownerID = g_UnitData[unitKey].OwnerID
+		--local ownerID = MapModData.RED.UnitData[unitKey].OwnerID
 		local unit = Players[playerID]:GetUnitByID(unitID)
 		if unit then
 			return unit
 		else
-			if g_UnitData[unitKey].Alive == nil then
+			if MapModData.RED.UnitData[unitKey].Alive == nil then
 				Dprint("- WARNING: unit is nil and alive is not set for GetUnitFromKey(), marking as dead")
-				Dprint("--- UnitId = " .. g_UnitData[unitKey].UnitID ..", BuilderID = " .. g_UnitData[unitKey].BuilderID ..", Type = " .. g_UnitData[unitKey].Type )
-				g_UnitData[unitKey].Alive = false
+				Dprint("--- UnitId = " .. MapModData.RED.UnitData[unitKey].UnitID ..", BuilderID = " .. MapModData.RED.UnitData[unitKey].BuilderID ..", Type = " .. MapModData.RED.UnitData[unitKey].Type )
+				MapModData.RED.UnitData[unitKey].Alive = false
 				return nil
-			elseif g_UnitData[unitKey].Alive then
+			elseif MapModData.RED.UnitData[unitKey].Alive then
 				Dprint("- WARNING: unit is marked alive but is nil for GetUnitFromKey(), marking as dead")
-				Dprint("--- UnitId = " .. g_UnitData[unitKey].UnitID ..", BuilderID = " .. g_UnitData[unitKey].BuilderID ..", Type = " .. g_UnitData[unitKey].Type )
-				g_UnitData[unitKey].Alive = false
+				Dprint("--- UnitId = " .. MapModData.RED.UnitData[unitKey].UnitID ..", BuilderID = " .. MapModData.RED.UnitData[unitKey].BuilderID ..", Type = " .. MapModData.RED.UnitData[unitKey].Type )
+				MapModData.RED.UnitData[unitKey].Alive = false
 				return nil
 			else -- alive = false, don't return
 				--Dprint("- WARNING: unit is nil for GetUnitFromKey()")
-				--Dprint("--- UnitId = " .. g_UnitData[unitKey].UnitId ..", BuilderID = " .. g_UnitData[unitKey].BuilderID ..", Type = " .. g_UnitData[unitKey].Type )
+				--Dprint("--- UnitId = " .. MapModData.RED.UnitData[unitKey].UnitId ..", BuilderID = " .. MapModData.RED.UnitData[unitKey].BuilderID ..", Type = " .. MapModData.RED.UnitData[unitKey].Type )
 				return nil
 			end
 		end
 	else
-		Dprint("- WARNING: g_UnitData[unitKey] is nil for GetUnitFromKey()")
+		Dprint("- WARNING: MapModData.RED.UnitData[unitKey] is nil for GetUnitFromKey()")
 		if unitKey then Dprint("--- unitKey =	" .. unitKey ) end
 		if unitID then Dprint("--- unitID =		" .. unitID ) end
 		if ownerID then Dprint("--- ownerID =	" .. ownerID ) end
@@ -68,12 +68,9 @@ end
 function RequestedReinforcementsPerHP(iUnitType, unit)
 
 	local thisUnit = GameInfo.Units[iUnitType]
-	local classID = GameInfo.UnitClasses[thisUnit.Class].ID
-	if not g_Unit_Classes[classID] then
-		return 0, 0
-	end
-	local reqMateriel = g_Unit_Classes[classID].MaterielRatio / REINFORCEMENT_RATIO
-	local reqPersonnel = REINFORCEMENT_BASE - reqMateriel
+
+	local reqMateriel = thisUnit.Materiel
+	local reqPersonnel = thisUnit.Personnel
 
 	-- apply promotion
 	-- to do: defines values
@@ -90,18 +87,6 @@ function RequestedReinforcementsPerHP(iUnitType, unit)
 		if unit:IsHasPromotion(PROMOTION_SUPPLY) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 30 / 100) end
 		if unit:IsHasPromotion(PROMOTION_SUPPLY) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end
 		if unit:IsHasPromotion(PROMOTION_HEAVY) then malusMateriel = malusMateriel + (reqMateriel * 100 / 100) end
-	else
-		local condition = "UnitType = '" .. thisUnit.Type .. "'"
-		for row in GameInfo.Unit_FreePromotions( condition ) do
-			local promotion = GameInfo.UnitPromotions[row.PromotionType]
-			if (promotion.ID == PROMOTION_MEDIC) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 10 / 100) end
-			if (promotion.ID == PROMOTION_FIELD_HOSPITAL) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 30 / 100) end
-			if (promotion.ID == PROMOTION_REPAIR) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end
-			if (promotion.ID == PROMOTION_AIR_REPAIR) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end						
-			if (promotion.ID == PROMOTION_SUPPLY) then bonusPersonnel = bonusPersonnel + (reqPersonnel * 30 / 100) end
-			if (promotion.ID == PROMOTION_SUPPLY) then bonusMateriel = bonusMateriel + (reqMateriel * 20 / 100) end
-			if (promotion.ID == PROMOTION_HEAVY) then malusMateriel = malusMateriel + (reqMateriel * 100 / 100) end	
-		end		
 	end
 	reqPersonnel = reqPersonnel - bonusPersonnel + malusPersonnel
 	reqMateriel = reqMateriel - bonusMateriel + malusMateriel
@@ -123,7 +108,7 @@ function CanGetReinforcement(unit)
 		local unitType = unit:GetUnitType()
 		local plot = unit:GetPlot()
 		if ( GameInfo.Units[unitType].Domain ~= "DOMAIN_SEA" ) 
-			or (GameInfo.Units[unitType].Domain == "DOMAIN_SEA" and (IsNearNavalFriendlyCity(plot, playerID) or plot:IsCity() )) 
+			or (GameInfo.Units[unitType].Domain == "DOMAIN_SEA" and (IsNearNavalFriendlyCity(plot, unit:GetOwner()) or plot:IsCity() )) 
 			then -- To do : aircraft on carrier
 
 			return true
@@ -136,7 +121,7 @@ end
 function CountUnitClass (unitClass, playerID)
 	local num = 0
 
-	for id, values in pairs (g_UnitData) do
+	for id, values in pairs (MapModData.RED.UnitData) do
 		if (values.BuilderID == playerID
 		and (
 				values.NumType == g_Unit_Classes[unitClass].NumType
@@ -157,13 +142,13 @@ function CountUnitClassAlive (unitClass, playerID)
 	local bDebug = true
 	local num = 0
 
-	for key, values in pairs (g_UnitData) do
+	for key, values in pairs (MapModData.RED.UnitData) do
 		if (	values.NumType == g_Unit_Classes[unitClass].NumType
 				or (IsArmorClass(values.NumType) and IsArmorClass(g_Unit_Classes[unitClass].NumType))
 				or (IsFighterClass(values.NumType) and IsFighterClass(g_Unit_Classes[unitClass].NumType))
 				or (IsBomberClass(values.NumType) and IsBomberClass(g_Unit_Classes[unitClass].NumType))				
 		) then
-			if g_UnitData[key] then -- can be nil when unit change owner
+			if MapModData.RED.UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
 				if unit and playerID == unit:GetOwner() and not unit:IsDead() then
 					num = num +1
@@ -180,9 +165,9 @@ function CountUnitSubClassAlive (unitClass, playerID)
 	local bDebug = true
 	local num = 0
 
-	for key, values in pairs (g_UnitData) do
+	for key, values in pairs (MapModData.RED.UnitData) do
 		if ( values.NumType == g_Unit_Classes[unitClass].NumType ) then
-			if g_UnitData[key] then -- can be nil when unit change owner
+			if MapModData.RED.UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
 				if unit and playerID == unit:GetOwner() and not unit:IsDead() then
 					num = num +1
@@ -197,9 +182,9 @@ end
 function CountArmorAlive (unitClass, playerID)
 	local bDebug = true
 	local num = 0
-	for key, values in pairs (g_UnitData) do
+	for key, values in pairs (MapModData.RED.UnitData) do
 		if ( IsArmorClass(values.NumType) ) then
-			if g_UnitData[key] then -- can be nil when unit change owner
+			if MapModData.RED.UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
 				if unit and playerID == unit:GetOwner() and not unit:IsDead() then
 					num = num +1
@@ -215,7 +200,7 @@ end
 function CountUnitType (unitType)
 	local num = 0
 
-	for id, values in pairs (g_UnitData) do
+	for id, values in pairs (MapModData.RED.UnitData) do
 		if ( values.TypeID == unitType ) then
 			num = num +1
 		end
@@ -228,9 +213,9 @@ end
 function CountUnitTypeAlive (unitType, playerID)
 	local bDebug = true
 	local aliveUnits = 0
-	for key, values in pairs (g_UnitData) do
+	for key, values in pairs (MapModData.RED.UnitData) do
 		if values.TypeID == unitType then
-			if g_UnitData[key] then -- can be nil when unit change owner
+			if MapModData.RED.UnitData[key] then -- can be nil when unit change owner
 				local unit = GetUnitFromKey(key)
 				if unit and not unit:IsDead() then
 					if (playerID and playerID == unit:GetOwner()) or not playerID then -- function can be called with playerID = nil
@@ -287,7 +272,7 @@ function GetNumFreeLandUnitsByArea (playerID, areaID)
 	for unit in player:Units() do
 		if unit:GetArea() == areaID and unit:GetDomainType() == DomainTypes.DOMAIN_LAND then
 			local unitKey = GetUnitKey(unit)
-			if not g_UnitData[unitKey].OrderType then
+			if not MapModData.RED.UnitData[unitKey].OrderType then
 				num = num + 1
 			end
 		end
@@ -305,7 +290,7 @@ function GetFreeLandUnitsAround (playerID, range, plot)
 			local unitPlot = unit:GetPlot()
 			local distance = distanceBetween(plot, unitPlot) - 1
 			local unitKey = GetUnitKey(unit)
-			if g_UnitData[unitKey] and (not g_UnitData[unitKey].OrderType) and (distance <= range) and (unitPlot:GetArea() == plot:GetArea()) then			
+			if MapModData.RED.UnitData[unitKey] and (not MapModData.RED.UnitData[unitKey].OrderType) and (distance <= range) and (unitPlot:GetArea() == plot:GetArea()) then			
 				Dprint ("  - adding " .. unit:GetName() .. " to free list (distance = ".. distance ..")", bDebug)
 				table.insert(freeUnits, unit)
 			end
@@ -318,10 +303,10 @@ end
 function ChangeUnitOwner (unit, iNewOwner)
 	
 	local unitKey = GetUnitKey(unit)
-	if g_UnitData[unitKey] then
+	if MapModData.RED.UnitData[unitKey] then
 
 		-- first update to unit table
-		g_UnitData[unitKey].OwnerID = iNewOwner
+		MapModData.RED.UnitData[unitKey].OwnerID = iNewOwner
 
 		local player = Players[ iNewOwner ]
 
@@ -354,11 +339,11 @@ function ChangeUnitOwner (unit, iNewOwner)
 
 		-- second update to units table
 		local newUnitKey = GetUnitKey(newUnit)
-		g_UnitData[newUnitKey] = g_UnitData[unitKey]
-		g_UnitData[unitKey] = nil
+		MapModData.RED.UnitData[newUnitKey] = MapModData.RED.UnitData[unitKey]
+		MapModData.RED.UnitData[unitKey] = nil
 		return newUnit -- in case we want to do something with the new unit...
 	else
-		Dprint("- WARNING: g_UnitData[unitKey] is nil for ChangeUnitOwner()")
+		Dprint("- WARNING: MapModData.RED.UnitData[unitKey] is nil for ChangeUnitOwner()")
 	end
 end
 
@@ -366,11 +351,11 @@ end
 function ChangeUnitType (unit, iType)
 	
 	local unitKey = GetUnitKey(unit)
-	if g_UnitData[unitKey] then
+	if MapModData.RED.UnitData[unitKey] then
 
 		-- first update to unit table
-		g_UnitData[unitKey].TypeID = iType
-		g_UnitData[unitKey].Type = GameInfo.Units[iType].Type
+		MapModData.RED.UnitData[unitKey].TypeID = iType
+		MapModData.RED.UnitData[unitKey].Type = GameInfo.Units[iType].Type
 
 		local player = Players[ unit:GetOwner() ]
 
@@ -403,12 +388,12 @@ function ChangeUnitType (unit, iType)
 
 		-- second update to units table
 		local newUnitKey = GetUnitKey(newUnit)
-		g_UnitData[newUnitKey] = g_UnitData[unitKey]
-		g_UnitData[newUnitKey].CombatXP = 0 -- reset combat XP, as it's a new type
-		g_UnitData[unitKey] = nil
+		MapModData.RED.UnitData[newUnitKey] = MapModData.RED.UnitData[unitKey]
+		MapModData.RED.UnitData[newUnitKey].CombatXP = 0 -- reset combat XP, as it's a new type
+		MapModData.RED.UnitData[unitKey] = nil
 		return newUnit -- in case we want to do something with the new unit...
 	else
-		Dprint("- WARNING: g_UnitData[unitKey] is nil for ChangeUnitType()")
+		Dprint("- WARNING: MapModData.RED.UnitData[unitKey] is nil for ChangeUnitType()")
 	end
 end
 
@@ -453,11 +438,13 @@ function EscapeUnitsFromPlot(plot, bRetreat, damageToTransfert, iAttackingPlayer
 				for i, escapePlot in pairs(escapeList) do					
 
 					if (escapePlot:GetArea() == plot:GetArea() or escapePlot:Area():GetNumTiles() > 15) -- same area or not a lake/island
-					   and escapePlot:GetNumUnits() == 0 -- no other unit here
+					   and CanSharePlot(unit, escapePlot) -- no other unit here
 					   and ((escapePlot:IsWater() and bSeaUnit) or (not escapePlot:IsWater() and bLandUnit)) -- same domain
 					   and not escapePlot:IsMountain() -- no alpinist here
 					   and not escapePlot:IsImpassable() -- do we need to chack the mountain if we check this one ?
 					   and not bEscaped -- don't jump around, escape once !
+					   --and (unit:CanEnterTerritory() or escapePlot:GetOwner() == unit:GetOwner()) -- CanEnterTerritory is false for CS units on their own territory ???
+					   and AreSameSide( escapePlot:GetOwner(), unit:GetOwner())
 					   then 						
 						Dprint(" -- " .. unit:GetName() .." transfered to plot ".. escapePlot:GetX() .."," .. escapePlot:GetY(), bDebug)
 						unit:SetXY( escapePlot:GetX() , escapePlot:GetY())
@@ -516,17 +503,17 @@ end
 -- Track combat XP for Projects based on XP gained.
 function UpdateCombatXP(unit)
 	local unitKey = GetUnitKey(unit)
-	if g_UnitData[unitKey] then
-		local combatXP = g_UnitData[unitKey].CombatXP or 0
-		local prevXP = g_UnitData[unitKey].TotalXP or 0
+	if MapModData.RED.UnitData[unitKey] then
+		local combatXP = MapModData.RED.UnitData[unitKey].CombatXP or 0
+		local prevXP = MapModData.RED.UnitData[unitKey].TotalXP or 0
 		local diffXP = unit:GetExperience() - prevXP
 		combatXP = combatXP + diffXP
 		Dprint("Updating XP for " .. unit:GetName() ..", gain "..diffXP.."xp from combat, now has "..combatXP.." combatXP / " .. unit:GetExperience() .." totalXP", g_DebugCombat )
-		g_UnitData[unitKey].CombatXP = combatXP	
-		g_UnitData[unitKey].TotalXP = unit:GetExperience()
+		MapModData.RED.UnitData[unitKey].CombatXP = combatXP	
+		MapModData.RED.UnitData[unitKey].TotalXP = unit:GetExperience()
 		return combatXP
 	else
-		Dprint("- WARNING: g_UnitData[unitKey] is nil for UpdateCombatXP()", g_DebugCombat)
+		Dprint("- WARNING: MapModData.RED.UnitData[unitKey] is nil for UpdateCombatXP()", g_DebugCombat)
 		return 0
 	end
 end
@@ -534,7 +521,7 @@ end
 -- Count num units moving on a route
 function GetNumUnitsEnRoute(routeID)
 	local num = 0
-	for i, data in pairs(g_UnitData) do
+	for i, data in pairs(MapModData.RED.UnitData) do
 		if (data.OrderType == RED_MOVE_TO_DISEMBARK or data.OrderType == RED_MOVE_TO_EMBARK or data.OrderType == RED_MOVE) and data.OrderReference == routeID then
 			num = num + 1
 		end
@@ -556,58 +543,19 @@ function CanParadrop(unitTypeID)
 end
 
 -- test if this Unit type (ID) has no combat penalty from no supply line
-function HasNoSupplyPenalty(unitTypeID)
+function HasNoCombatPenaltyFromSupply(unitTypeID)
 	return g_NoSupplyPenalty[unitTypeID] or false
 end
 
--- reset number of interception available for all interceptor units of a player
-function UpdateNumInterceptions(playerID)
-
-	local bDebug = true
-
-	local player = Players[playerID]
-	if ( player:IsAlive() ) then	
-		Dprint("-------------------------------------", bDebug)
-		Dprint("Update Number of available interceptions for ".. player:GetName() .." air units ...", bDebug)
-		
-		for unit in player:Units() do
-			SetNumInterceptions(unit)
-		end
-	end
+-- test if this Unit type (ID) has fuel
+function UseFuel(unitTypeID)
+	return (GameInfo.Units[unitTypeID].FuelConsumption > 0)
 end
--- GameEvents.PlayerDoTurn.Add(UpdateNumInterceptions)
 
--- (re-)initialize number of interceptions for a given unit
--- deprecated ?
-function SetNumInterceptions(unit)
-	if not unit then	
-		Dprint("WARNING : SetNumInterceptions called for nil unit...")
-		return
-	end
-	if not (unit:GetDomainType() == DomainTypes.DOMAIN_AIR and unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_INTERCEPTION_IV.ID )) then
-		return
-	end
-	
-	-- Promotions can add up, don't use elseif...
-	local num = 1
-	if unit:IsHasPromotion( PROMOTION_FIGHTER ) or unit:IsHasPromotion( PROMOTION_HEAVY_FIGHTER ) then
-		num = num + 1
-	end
-	if unit:IsHasPromotion( PROMOTION_SORTIE ) then
-		num = num + 1
-	end
-	if unit:IsHasPromotion( PROMOTION_MODERN_FIGHTER ) then
-		num = num + 2
-	end
 
-	local unitKey = GetUnitKey(unit)
-	if g_UnitData[unitKey] then
-		g_UnitData[unitKey].NumInterceptions = num
-		Dprint(" - Update Number of available interceptions ("..tostring(num)..") for ".. unit:GetName(), bDebug)
-	else
-		Dprint("WARNING : g_UnitData["..tostring(unitKey).."] is nil...")
-	end
-
+-- test if this Unit type (ID) is never retreating under attack
+function IsNeverRetreating(unitTypeID)
+	return g_NeverRetreating[unitTypeID] or false
 end
 
 function SetTemporaryBestDefender(unit)	
@@ -638,6 +586,20 @@ function GetBestDefender(plot, unit)
 		end
 	end
 	return bestDefender
+end
+
+
+function IsTankDestroyer(unit)
+	return (    unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_LIGHT_TANK_DESTROYER.ID )
+			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_TANK_DESTROYER.ID )
+			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_HEAVY_TANK_DESTROYER.ID )
+			)
+end
+
+function IsAssaultGun(unit)
+	return (    unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_ASSAULT_GUN.ID )
+			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_HEAVY_ASSAULT_GUN.ID )
+			)
 end
 
 function IsArmorClass(iNumType)
@@ -675,6 +637,7 @@ end
 
 function IsSubmarineClass(iNumType)
 	return (    iNumType == CLASS_SUBMARINE
+			 or iNumType == CLASS_SUBMARINE_2
 			 or iNumType == CLASS_SUBMARINE_3
 			)
 end
@@ -694,16 +657,20 @@ function ReinitUnits(playerID)
 				Dprint("WARNING: ".. unit:GetName() .." of ".. player:GetName() .." was marked 'best defender' outside combat, unmark it...") 
 				unit:SetMarkedBestDefender(false)
 			end
-			if g_SpecialType[unitType] and not unit:IsSpecialType() then
+			if IsRegiment(unit) and not unit:IsSpecialType() then
 				Dprint("WARNING: ".. unit:GetName() .." of ".. player:GetName() .." was not marked 'special type', mark it...") 
 				unit:SetIsSpecialType(true)
+			end
+			-- tank destroyers can only fight in defense
+			if IsTankDestroyer(unit) or unit:IsHasPromotion(PROMOTION_FORTIFIED_GUN) then
+				unit:SetMadeAttack(true)
 			end
 		end
 	end
 end
 
 function IsMaxNumber(unitType)
-	if g_UnitMaxNumber[unitType] and g_UnitMaxNumber[unitType] then
+	if g_UnitMaxNumber and g_UnitMaxNumber[unitType] then
 		local maxNumber = g_UnitMaxNumber[unitType]
 		if (maxNumber and maxNumber <= CountUnitType (unitType)) then
 			return true
@@ -712,8 +679,27 @@ function IsMaxNumber(unitType)
 	return false
 end
 
+function IsLimitedNumber(unitType)
+	if g_UnitMaxNumber and g_UnitMaxNumber[unitType] then
+		return true
+	end
+	return false
+end
+
+function IsRegiment(unit)
+	local unitClass = unit:GetUnitClassType()
+	if g_Unit_Classes[unitClass] and g_Unit_Classes[unitClass].Regiment  then
+		return true
+	end
+	local unitType = unit:GetUnitType()
+	if g_SpecialType and g_SpecialType[unitType] then
+		return true
+	end
+	return false
+end
+
 -- Check if this unit class is limited by ratio for the AI
-function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDebug )
+function CacheIsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDebug )
 
 	local unitClassType = GameInfo["Units"][unitType]["Class"]
 	local unitClass = GameInfo.UnitClasses[unitClassType].ID
@@ -729,7 +715,7 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 	
 	if GameInfo.Units[unitType].Domain == "DOMAIN_AIR" then
 	
-		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then
+		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] and g_Combat_Type_Ratio[civID].Air then
 			if (numDomain > 0) and (totalUnits/numDomain < g_Combat_Type_Ratio[civID].Air) then
 				g_UnitRestrictionString = "Air ratio restriction (totalUnits/numDomain < g_Combat_Type_Ratio[civID].Air) -> (".. totalUnits .." / ".. numDomain .." < ".. g_Combat_Type_Ratio[civID].Air..")"
 				return true
@@ -738,14 +724,14 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 		if g_Max_Air_SubClass_Percent and g_Max_Air_SubClass_Percent[civID] then
 			local airType = g_Unit_Classes[unitClass].NumType
 			local maxPercent = g_Max_Air_SubClass_Percent[civID][airType]
-			if (numDomain > 0) and (aliveUnitSubClass / numDomain * 100 > maxPercent) then
+			if maxPercent and (numDomain > 0) and (aliveUnitSubClass / numDomain * 100 > maxPercent) then
 				g_UnitRestrictionString = "Air type restriction (aliveUnitSubClass / numDomain * 100 > g_Max_Air_SubClass_Percent[civID][airType]) -> (".. aliveUnitSubClass .." / ".. numDomain .." * 100 > ".. maxPercent..")"
 				return true
 			end
 		end
 
 	elseif GameInfo.Units[unitType].Domain == "DOMAIN_SEA" then
-		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then	
+		if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] and g_Combat_Type_Ratio[civID].Sea then	
 			if (numDomain > 0) and (totalUnits / numDomain < g_Combat_Type_Ratio[civID].Sea) then			
 				g_UnitRestrictionString = "Sea ratio restriction (totalUnits / numDomain < g_Combat_Type_Ratio[civID].Sea) -> (".. totalUnits .." / ".. numDomain .." < ".. g_Combat_Type_Ratio[civID].Sea..")"
 				return true
@@ -759,7 +745,9 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 		
 			local aliveArmor = CountArmorAlive (unitClass, playerID)
 			
-			if (aliveArmor > 0) and g_Combat_Type_Ratio and (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) then
+			if g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] and g_Combat_Type_Ratio[civID].Armor
+			   and (aliveArmor > 0) and (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor)
+			   then
 				g_UnitRestrictionString = "Armor ratio restriction (numDomain / aliveArmor < g_Combat_Type_Ratio[civID].Armor) -> (".. numDomain .." / ".. aliveArmor .." < ".. g_Combat_Type_Ratio[civID].Armor..")"
 				return true
 			end					
@@ -768,7 +756,7 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 				local armorType = g_Unit_Classes[unitClass].NumType
 				local maxPercent = g_Max_Armor_SubClass_Percent[civID][armorType]
 
-				if (aliveArmor > 0) and ( aliveUnitSubClass / aliveArmor * 100 > maxPercent) then
+				if (aliveArmor > 0) and maxPercent and ( aliveUnitSubClass / aliveArmor * 100 > maxPercent) then
 				g_UnitRestrictionString = "Armor type restriction (aliveUnitSubClass / aliveArmor * 100 > g_Max_Armor_SubClass_Percent[civID][armorType]) -> (".. aliveUnitSubClass .." / ".. aliveArmor .." * 100 > ".. maxPercent..")"
 					return true
 				end
@@ -786,4 +774,82 @@ function IsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain, bDeb
 	-- No limit found
 	return false
 
+end
+
+
+-- Check if this unit class is limited by ratio for the AI
+function IsLimitedByRatio(unitType, playerID)
+	if g_LimitedByRatio then
+		if g_LimitedByRatio[unitType] then
+			return g_LimitedByRatio[unitType][playerID]
+		end
+	end
+	return false
+end
+function FillCacheIsLimitedByRatio()
+	for iPlayer = 0, GameDefines.MAX_PLAYERS-1 do
+		PlayerCacheIsLimitedByRatio(iPlayer)
+	end
+end
+function PlayerCacheIsLimitedByRatio(iPlayer)
+	local player = Players[iPlayer]
+	if player ~= nil and player:IsAlive() and (not player:IsBarbarian()) then
+		local civID = GetCivIDFromPlayerID(iPlayer)
+		local totalUnits = player:GetNumMilitaryUnits()
+		for unitInfo in GameInfo.Units() do
+			local iUnitType = unitInfo.ID
+			local numDomain = CountDomainUnits (iPlayer, iUnitType)
+			g_LimitedByRatio[iUnitType] = g_LimitedByRatio[iUnitType] or {} -- initialize this entry if not already filled	
+			g_LimitedByRatio[iUnitType][iPlayer] = CacheIsLimitedByRatio(iUnitType, iPlayer, civID, totalUnits, numDomain, true )
+		end
+	end
+end
+
+function FillCacheTrainingRestriction()
+	for iPlayer = 0, GameDefines.MAX_PLAYERS-1 do
+		PlayerCacheTrainingRestriction(iPlayer)
+	end
+end
+
+function PlayerCacheTrainingRestriction(iPlayer)
+	local player = Players[iPlayer]
+	if player ~= nil and player:IsAlive() and (not player:IsBarbarian()) then
+		for unitInfo in GameInfo.Units() do
+			local iUnitType = unitInfo.ID
+			g_TrainingRestriction[iUnitType] = g_TrainingRestriction[iUnitType] or {} -- initialize this entry if not already filled	
+			g_TrainingRestriction[iUnitType][iPlayer] = CachePlayerTrainingRestriction(iPlayer, iUnitType)
+		end
+	end
+end
+
+function CanSharePlot(unit, plot)
+	local numUnits = plot:GetNumUnits();
+	for i = 0, numUnits do
+		
+		local plotUnit = plot:GetUnit(i)
+		if plotUnit ~= nil and plotUnit ~= unit and ((unit:GetOwner() ~= plotUnit:GetOwner()) or (unit:IsSpecialType() and plotUnit:IsSpecialType()) or (not unit:IsSpecialType() and not plotUnit:IsSpecialType())) then
+			return false
+		end
+	end
+	return true
+end
+
+function CleanOrdersRED (unit)
+	local bDebug = true
+	local unitKey = GetUnitKey(unit)
+	if not MapModData.RED.UnitData[unitKey] then -- Units that are not initialized can't have custom orders...
+		return
+	end
+	unit:PopMission()
+	MapModData.RED.UnitData[unitKey].OrderType = nil
+	MapModData.RED.UnitData[unitKey].OrderReference = nil
+	MapModData.RED.UnitData[unitKey].OrderObjective = nil
+	MapModData.RED.UnitData[unitKey].TotalControl = nil
+end
+
+function Disband(unit)
+	local iGoldToScrap = unit:GetScrapGold()
+	local pPlayer = Players[unit:GetOwner()]
+	unit:Kill()
+	pPlayer:ChangeGold(iGoldToScrap)
 end

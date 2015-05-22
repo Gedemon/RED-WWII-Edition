@@ -328,6 +328,20 @@ function RefreshCheckBoxGameOptions()
 			Disabled = false,
 			GameOption = true,
 			SortPriority = 3,
+		},	{
+			Type = "MaginotLine",
+			Name = "Maginot Line",
+			ToolTip = "The Maginot Line will be placed on the map at game start.",
+			Disabled = false,
+			GameOption = true,
+			SortPriority = 1,
+		},	{
+			Type = "Westwall",
+			Name = "Westwall",
+			ToolTip = "The Westwall (aka Siegfried Line) will be placed on the map at game start.",
+			Disabled = false,
+			GameOption = true,
+			SortPriority = 1,
 		},
 
 	}

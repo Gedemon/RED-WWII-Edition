@@ -518,7 +518,10 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 		local pPlayer = Players[Game.GetActivePlayer()];
         local active_team = pPlayer:GetTeam();
         local team = self.m_Player:GetTeam();
-		local unitData = LoadUnitData()
+		local unitData = MapModData.RED.UnitData
+		if not unitData then
+			print("WARNING : unitData is nil for " .. tostring(pUnit:GetName()))
+		end
 		local unitKey = GetUnitKey(pUnit)
 
 		--[[
@@ -532,6 +535,12 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 		-- Debug Infos
 		if DEBUG_SHOW_UNIT_KEY then
 			string = string .. "[NEWLINE]Debug: UnitKey = ".. tostring(unitKey);
+		end
+		if DEBUG_SHOW_RED_ORDER then
+			if unitData[unitKey] then
+				if unitData[unitKey].OrderType then string = string .. "[NEWLINE]Debug: OrderType = ".. tostring(unitData[unitKey].OrderType); end
+				if unitData[unitKey].OrderObjective then string = string .. "[NEWLINE]Debug: OrderObjective = ".. tostring(unitData[unitKey].OrderObjective.X) .. "," .. tostring(unitData[unitKey].OrderObjective.Y); end
+			end
 		end
 
 		-- Unit Class
@@ -547,8 +556,12 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 
 		-- Convoy ? Transport ? Destination ?
 		local bIsConvoy = false
-		if unitData[unitKey] and unitData[unitKey].OrderType == RED_CONVOY then
+		
+		if pUnit:GetUnitClassType() == CLASS_CONVOY then
 			bIsConvoy = true
+		end
+
+		if unitData[unitKey] and unitData[unitKey].OrderType == RED_CONVOY then
 			local destination = unitData[unitKey].OrderObjective
 			local transportType = unitData[unitKey].TransportType
 			local transportReference = unitData[unitKey].TransportReference
@@ -556,15 +569,19 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 			if transportReference and transportType then
 				local strTransport = ""
 				if transportType == TRANSPORT_MATERIEL then
-					strTransport = transportReference .. " materiel"
+					strTransport = transportReference .. " [ICON_MATERIEL] materiel"
 				elseif transportType == TRANSPORT_PERSONNEL then
-					strTransport = transportReference .. " personnel"
+					strTransport = transportReference .. " [ICON_PERSONNEL] personnel"
 				elseif transportType == TRANSPORT_UNIT then 
 					local unitInfo = GameInfo.Units[transportReference]
 					local unitName = Locale.ConvertTextKey( unitInfo.Description ) .. " (" .. Locale.ToUpper(Locale.ConvertTextKey(GameInfo.UnitClasses[unitInfo.Class].Description)) .. ")"
 					strTransport = "" .. unitName
-				else -- gold then 
-					strTransport = transportReference .. " gold"
+				elseif transportType == TRANSPORT_OIL then
+					strTransport = transportReference .. " [ICON_RES_OIL] oil"
+				elseif transportType == TRANSPORT_GOLD then
+					strTransport = transportReference .. " [ICON_GOLD] gold"
+				else 
+					strTransport = transportReference .. " unknown cargo"
 				end
 				string = string .. "[NEWLINE]Cargo : ".. strTransport
 			end
@@ -616,6 +633,13 @@ g_UnitFlagClass =  --@was: local -- Modified by Erendir
 			else
 				string = string .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_HOVERINFO_REINFORCEMENT", reqMateriel, reqPersonnel );
 			end
+		end
+
+		-- Oil Consumption
+		local reqOil = GameInfo.Units[pUnit:GetUnitType()].FuelConsumption		
+		if reqOil > 0 then
+			string = string .. "[NEWLINE]------------";
+			string = string .. "[NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_HOVERINFO_OIL_CONSUMPTION", reqOil );
 		end
 
 		local buildType = pUnit:GetBuildType();			
@@ -1875,3 +1899,25 @@ Events.GameplaySetActivePlayer.Add(OnActivePlayerChanged);
 -- Added by Erendir
 include"UnitFlagManager_addin"
 -- End Add
+
+function UpdateAllFlags()
+	print ("Updating all units flag...")
+	local iActivePlayerID = Game.GetActivePlayer();
+	
+	-- Rebuild all the tool tip strings.
+	for playerID,playerTable in pairs( g_MasterList ) 
+	do
+		local pPlayer = Players[ playerID ]		
+		for unitID, pFlag in pairs( playerTable ) 
+		do
+			local pUnit = pPlayer:GetUnitByID( unitID )
+			if ( pUnit ~= nil ) then        	
+				pFlag:UpdateVisibility()
+				pFlag:UpdateTooltip()
+			end
+		end
+	end
+end
+--Events.SequenceGameInitComplete.Add( UpdateAllFlags )
+Events.LoadScreenClose.Add(UpdateAllFlags)
+LuaEvents.WWIITest.Add(UpdateAllFlags)
