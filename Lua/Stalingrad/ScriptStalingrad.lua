@@ -594,6 +594,31 @@ function CheckStalingradVictory()
 	end
 end
 
+function Set6thArmyInitialStrength()
+	local savedData = Modding.OpenSaveData()
+	local sixthArmyValue = Get6thArmyStrength()
+	savedData.SetValue("6thArmyInitialStrength", sixthArmyValue)
+end
+
+function Get6thArmyInitialStrength()
+	local savedData = Modding.OpenSaveData()
+	local sixthArmyValue = savedData.GetValue("6thArmyInitialStrength") or SIXTH_ARMY_INITIAL_STRENGTH
+	return sixthArmyValue
+end
+
+function Get6thArmyStrength()
+
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local player = Players[iGermany]
+
+	local sixthArmyValue = 0
+	for unit in player:Units() do
+		if string.find(unit:GetName(), "6.Ar") then
+			sixthArmyValue = sixthArmyValue + unit:GetCurrHitPoints()
+		end
+	end
+	return sixthArmyValue
+end
 
 --------------------------------------------------------------
 -- R.E.D. Functions override for Stalingrad Scenario...
@@ -656,7 +681,6 @@ function CreateTerritoryMap()
 	SaveTerritoryMap( territoryMap )
 end
 
-
 -- function HandleCityCapture (hexPos, playerID, cityID, newPlayerID)
 function HandleCityCapture (playerID, bCapital, iX, iY, newPlayerID)
 
@@ -717,30 +741,4 @@ function CheckEmbarkedPromotion(unit)
 		Dprint("   - Adding embarkation promotion to " .. unit:GetName() .. " (unitID =".. unit:GetID(), bDebug)
 		unit:SetHasPromotion(PROMOTION_EMBARKATION, true)
 	end
-end
-
-function Set6thArmyInitialStrength()
-	local savedData = Modding.OpenSaveData()
-	local sixthArmyValue = Get6thArmyStrength()
-	savedData.SetValue("6thArmyInitialStrength", sixthArmyValue)
-end
-
-function Get6thArmyInitialStrength()
-	local savedData = Modding.OpenSaveData()
-	local sixthArmyValue = savedData.GetValue("6thArmyInitialStrength") or SIXTH_ARMY_INITIAL_STRENGTH
-	return sixthArmyValue
-end
-
-function Get6thArmyStrength()
-
-	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
-	local player = Players[iGermany]
-
-	local sixthArmyValue = 0
-	for unit in player:Units() do
-		if string.find(unit:GetName(), "6.Ar") then
-			sixthArmyValue = sixthArmyValue + unit:GetCurrHitPoints()
-		end
-	end
-	return sixthArmyValue
 end

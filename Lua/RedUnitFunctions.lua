@@ -1683,12 +1683,16 @@ end
 
 function DynamicTilePromotion(playerID, UnitID, x, y)
 
+	-- to do : optimization...
+
 	local bDebug = false
 
 	local plot = Map.GetPlot(x,y)
 	local player = Players [ playerID ]
 	local unit = player:GetUnitByID(UnitID)
 	local unitType = unit:GetUnitType()
+
+	if unit:IsEmbarked() and (not player:IsHuman()) then bDebug = true; end
 
 	if (plot) then 
 		Dprint("-------------------------------------", bDebug)

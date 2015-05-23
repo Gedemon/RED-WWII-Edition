@@ -849,7 +849,9 @@ end
 
 function Disband(unit)
 	local iGoldToScrap = unit:GetScrapGold()
-	local pPlayer = Players[unit:GetOwner()]
+	local iPlayer = unit:GetOwner()
+	local pPlayer = Players[iPlayer]
 	unit:Kill()
 	pPlayer:ChangeGold(iGoldToScrap)
+	LuaEvents.OnUnitKilled(iPlayer)
 end

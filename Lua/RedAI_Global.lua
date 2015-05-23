@@ -152,9 +152,11 @@ function AIUnitControl(playerID)
 		if MapModData.RED.UnitData[unitKey] 
 		and (ALLOW_AI_CONTROL or MapModData.RED.UnitData[unitKey].TotalControl)
 		and ((not player:IsHuman()) or MapModData.RED.UnitData[unitKey].TotalControl) then
+			local bIsConvoy = false
 			if MapModData.RED.UnitData[unitKey].OrderType then
 				if MapModData.RED.UnitData[unitKey].OrderType == RED_CONVOY then
 					MoveConvoy(unit)
+					bIsConvoy = true
 				elseif MapModData.RED.UnitData[unitKey].OrderType == RED_MOVE_TO_EMBARK then
 					MoveToEmbark(unit) -- reinforcement en route
 				end
@@ -167,7 +169,7 @@ function AIUnitControl(playerID)
 			end
 
 			-- Try to force healing or do more action
-			if not ForceHealing(unit) then
+			if (not bIsConvoy) and (not ForceHealing(unit)) then -- check if it's a convoy first, it could have reached it's destination, and we don't want it do do anything at this point anyway
 				GoSubHunting(unit) -- launch destroyers/cruisers against reported subs
 			end
 
@@ -577,33 +579,38 @@ function disbandingWoundedUnit(unit)
 	
 	if  (IsLimitedByRatio(iUnitType, iPlayer)) then -- Disband when we have reach the max limit for that type of unit
 		Dprint("Unit is limited by ratio...")
-
 		bLimitedSupply = true
-
-	elseif (iUnitsLeft <= AI_UNIT_SUPPLY_THRESHOLD and (AI_MINIMAL_RESERVE and iUnitsTotal > AI_MINIMAL_RESERVE)) then  -- If there are no ratio limit, disband when we are near the max supply limit, but check if there is a minimal reserve requested
-		Dprint("Player is near (or above) supply limit (".. tostring(iUnitsLeft) .." left) and still have more than minimal reserve (".. tostring(iUnitsTotal) .." units / ".. tostring(AI_MINIMAL_RESERVE) .." minimum allowed")
-
-		bLimitedSupply = true
-
-		-- but check for minimum in domain if required !
-		if AI_LAND_MINIMAL_RESERVE and unit:GetDomainType() == DomainTypes.DOMAIN_LAND and CountDomainUnits (iPlayer, iUnitType) <= AI_LAND_MINIMAL_RESERVE then
-			Dprint("But there is not enough unit of this domain left !")
-			bLimitedSupply = false
-		elseif AI_AIR_MINIMAL_RESERVE and unit:GetDomainType() == DomainTypes.DOMAIN_AIR and CountDomainUnits (iPlayer, iUnitType) <= AI_AIR_MINIMAL_RESERVE then	
-			Dprint("But there is not enough unit of this domain left !")	
-			bLimitedSupply = false
-		elseif AI_SEA_MINIMAL_RESERVE and unit:GetDomainType() == DomainTypes.DOMAIN_SEA and CountDomainUnits (iPlayer, iUnitType) <= AI_SEA_MINIMAL_RESERVE then
-			Dprint("But there is not enough unit of this domain left !")
-			bLimitedSupply = false
-		end
 	end
 
+	if (AI_UNIT_SUPPLY_THRESHOLD and iUnitsLeft <= AI_UNIT_SUPPLY_THRESHOLD) then  -- If there are no ratio limit, disband when we are near the max supply limit
+		Dprint("Player is near (or above) supply limit (".. tostring(iUnitsLeft) .." left) ")
+		bLimitedSupply = true
+	end
 
 	--
 	-- to do: check for experience above average, materiel/personnel/oil reserves and consumption
 	--
 
-	if UNIT_SUPPORT_LIMIT_FOR_AI and bLimitedSupply and (not IsLimitedNumber(iUnitType)) then
+	if bLimitedSupply and (not IsLimitedNumber(iUnitType)) then -- UNIT_SUPPORT_LIMIT_FOR_AI and 
+	
+		-- check for minimal number of units left before disbanding
+		if (AI_MINIMAL_RESERVE and iUnitsTotal <= AI_MINIMAL_RESERVE) then
+			Dprint("But there is not enough unit left (".. tostring(iUnitsTotal) .." units / ".. tostring(AI_MINIMAL_RESERVE) .." minimum allowed")	
+			return false
+		end
+
+		-- also check for minimum in domain if required !
+		if AI_LAND_MINIMAL_RESERVE and unit:GetDomainType() == DomainTypes.DOMAIN_LAND and CountDomainUnits (iPlayer, iUnitType) <= AI_LAND_MINIMAL_RESERVE then
+			Dprint("But there is not enough unit of this domain left !")
+			return false
+		elseif AI_AIR_MINIMAL_RESERVE and unit:GetDomainType() == DomainTypes.DOMAIN_AIR and CountDomainUnits (iPlayer, iUnitType) <= AI_AIR_MINIMAL_RESERVE then	
+			Dprint("But there is not enough unit of this domain left !")	
+			return false
+		elseif AI_SEA_MINIMAL_RESERVE and unit:GetDomainType() == DomainTypes.DOMAIN_SEA and CountDomainUnits (iPlayer, iUnitType) <= AI_SEA_MINIMAL_RESERVE then
+			Dprint("But there is not enough unit of this domain left !")
+			return false
+		end
+
 		Dprint("Disbanding unit...")
 		Disband(unit)
 		return true
