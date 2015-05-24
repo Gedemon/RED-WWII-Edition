@@ -354,8 +354,6 @@ function CoCallOfFrance()
 			end
 		end
 	end
-
-	--Pause(1)
 	coroutine.yield()
 
 	Dprint("- Change french units ownership ...", bDebug)
@@ -440,8 +438,6 @@ function CoCallOfFrance()
 					
 		Dprint("      - done for " .. data.Unit:GetName(), bDebug )
 	end
-				
-	--Pause(1)
 	coroutine.yield()
 				
 	-- Land Units
@@ -512,8 +508,6 @@ function CoCallOfFrance()
 		end
 		Dprint("      - done for " .. data.Unit:GetName(), bDebug )
 	end
-				
-	--Pause(1)
 	coroutine.yield()
 
 	-- Fleet is simply split in 2	
@@ -540,11 +534,9 @@ function CoCallOfFrance()
 					
 		Dprint("      - done for " .. data.Unit:GetName(), bDebug )
 	end
-				
-	--Pause(1)
 	coroutine.yield()
 
-	Dprint("- Change french cities ownership ...", bDebug)	
+	Dprint("- Change (captured by french) cities ownership ...", bDebug)	
 	for city in pFrance:Cities() do  -- todo : handle french owned cities in colonies
 		local plot = city:Plot()
 		local plotKey = GetPlotKey ( plot )
@@ -555,59 +547,9 @@ function CoCallOfFrance()
 			EscapeUnitsFromPlot(plot)			
 			coroutine.yield()
 			originalPlayer:AcquireCity(city, false, true)
-			--city:SetOccupied(false) -- needed in this case ?
-			coroutine.yield()
-
-		else
-			local x, y = city:GetX(), city:GetY()
-			if ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
-				Dprint("   - " .. city:GetName() .. " in occupied territory at (".. x ..",".. y ..")", bDebug)
-				if city:GetOwner() ~= newPlayerID then 
-					EscapeUnitsFromPlot(plot)
-					coroutine.yield()
-					pAxis:AcquireCity(city, false, true)
-					coroutine.yield()
-					city:SetPuppet(false)
-					city:ChangeResistanceTurns(-city:GetResistanceTurns())
-				else -- just remove resistance if city was already occupied
-					city:ChangeResistanceTurns(-city:GetResistanceTurns())
-				end
-			elseif (y > 32 and x < 32) then -- Vichy territory
-				Dprint("   - " .. city:GetName() .. " in Vichy territory at (".. x ..",".. y ..")", bDebug)
-				EscapeUnitsFromPlot(plot)
-				coroutine.yield()
-				pVichy:AcquireCity(city, false, true)
-				coroutine.yield()
-				--city:SetOccupied(false)
-				city:SetPuppet(false)
-				city:SetNumRealBuilding(COURTHOUSE, 1) -- above won't work, try workaround...
-				city:ChangeResistanceTurns(-city:GetResistanceTurns())
-			elseif (y > 26 and x > 32 and y < 35 and x < 34) then -- Nice, Ajaccio to Italy
-				Dprint("   - " .. city:GetName() .. " in Italy occupied territory at (".. x ..",".. y ..")", bDebug)
-				if city:GetOwner() ~= iItaly then
-					EscapeUnitsFromPlot(plot)
-					coroutine.yield()
-					pItaly:AcquireCity(city, false, true)
-					coroutine.yield()
-					city:SetPuppet(false)
-					city:ChangeResistanceTurns(-city:GetResistanceTurns())
-				end
-			elseif (y > 44 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg to Germany
-				Dprint("   - " .. city:GetName() .. " in Germany occupied territory at (".. x ..",".. y ..")", bDebug)
-				if city:GetOwner() ~= iGermany then
-					EscapeUnitsFromPlot(plot)
-					coroutine.yield()
-					pGermany:AcquireCity(city, false, true)
-					coroutine.yield()
-					city:SetPuppet(false)
-					city:ChangeResistanceTurns(-city:GetResistanceTurns())
-				end
-			end					
+			coroutine.yield()		
 		end
 	end
-				
-	--Pause(1)
-	coroutine.yield()
 
 	Dprint("Updating territory map ...", bDebug)	
 	for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
@@ -620,7 +562,8 @@ function CoCallOfFrance()
 			local plotKey = GetPlotKey ( plot )
 			local originalOwner = GetPlotFirstOwner(plotKey)
 
-			if (originalOwner ~= ownerID) and (originalOwner == iAlgeria or originalOwner == iMorocco or originalOwner == iSyria or originalOwner == iTunisia or originalOwner == iLebanon) then -- restore french colonies territory
+			-- restore french colonies territory
+			if (originalOwner ~= ownerID) and (originalOwner == iAlgeria or originalOwner == iMorocco or originalOwner == iSyria or originalOwner == iTunisia or originalOwner == iLebanon) then
 				plot:SetOwner(originalOwner, -1 )
 				if plot:IsCity() then
 					local city = plot:GetPlotCity()
@@ -629,10 +572,13 @@ function CoCallOfFrance()
 					Players[originalOwner]:AcquireCity(city, false, true)
 					coroutine.yield()
 				end
-			elseif originalOwner ~= iFrance and ownerID == iFrance then -- liberate plot captured by France
+
+			-- liberate plot captured by France
+			elseif originalOwner ~= iFrance and ownerID == iFrance then
 				plot:SetOwner(originalOwner, -1 ) 
 
-			elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 24 and y > 32) or (y > 42 and x < 33)) then -- occupied territory
+			-- occupied territory
+			elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 24 and y > 32) or (y > 42 and x < 33)) then 
 				--Dprint("(".. x ..",".. y ..") = Plot in occupied territory")
 				if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
 					local city = plot:GetPlotCity()
@@ -643,7 +589,9 @@ function CoCallOfFrance()
 				else
 					plot:SetOwner(newPlayerID, -1 ) 
 				end
-			elseif originalOwner == iFrance and ((y > 32 and x < 32))  then -- Vichy territory
+
+			-- Vichy territory
+			elseif originalOwner == iFrance and ((y > 32 and x < 32))  then 
 				--Dprint("(".. x ..",".. y ..") = Plot in Vichy territory")
 				if plot:IsCity() and ownerID ~= iVichy then
 					local city = plot:GetPlotCity()
@@ -654,7 +602,9 @@ function CoCallOfFrance()
 				else
 					plot:SetOwner(iVichy, -1 ) 
 				end
-			elseif originalOwner == iFrance and (y > 26 and x > 31 and y < 38 and x < 36) then -- Nice, Ajaccio region to Italy
+
+			-- Nice, Ajaccio region to Italy
+			elseif originalOwner == iFrance and (y > 26 and x > 31 and y < 38 and x < 36) then
 				--Dprint("(".. x ..",".. y ..") = Plot in Italy occupied territory")
 				if plot:IsCity() and ownerID ~= iItaly then
 					local city = plot:GetPlotCity()
@@ -665,13 +615,15 @@ function CoCallOfFrance()
 				else
 					plot:SetOwner(iItaly, -1 ) 
 				end
-			elseif originalOwner == iFrance and (y > 40 and x > 32 and y < 47 and x < 37) then -- Metz, Strasbourg region to Germany
+
+			-- Metz, Strasbourg region to Germany
+			elseif originalOwner == iFrance and (y > 39 and x > 31 and y < 47 and x < 37) then 
 				--Dprint("(".. x ..",".. y ..") = Plot in Germany occupied territory")
 				if plot:IsCity() and ownerID ~= iGermany then
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
 					coroutine.yield()
-					Players[iGermany]:AcquireCity(city, false, true)
+					pGermany:AcquireCity(city, false, true)
 					coroutine.yield()
 				else
 					plot:SetOwner(iGermany, -1 ) 
@@ -679,8 +631,6 @@ function CoCallOfFrance()
 			end
 		end
 	end
-				
-	--Pause(1)
 	coroutine.yield()
 				
 	-- change minor diplomacy
@@ -705,8 +655,7 @@ function CoCallOfFrance()
 	pTunisia:ChangeMinorCivFriendshipWithMajor( iEngland, - pTunisia:GetMinorCivFriendshipWithMajor(iEngland) )
 	pLebanon:ChangeMinorCivFriendshipWithMajor( iFrance, - pLebanon:GetMinorCivFriendshipWithMajor(iFrance) )
 	pLebanon:ChangeMinorCivFriendshipWithMajor( iEngland, - pLebanon:GetMinorCivFriendshipWithMajor(iEngland) )
-				
-	--Pause(1)
+	
 	coroutine.yield()
 				
 	Dprint("Updating war/peace ...", bDebug)	
@@ -751,23 +700,43 @@ function CoCallOfFrance()
 	coroutine.yield()
 	pLebanon:ChangeMinorCivFriendshipWithMajor( iGermany, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iGermany) )
 	pLebanon:ChangeMinorCivFriendshipWithMajor( iItaly, 50 - pLebanon:GetMinorCivFriendshipWithMajor(iItaly) )
-				
-	--Pause(1)
+	
 	coroutine.yield()
 				
 	Dprint("Finalizing Fall of France ...", bDebug)	
 
-	-- remove resistance from Paris
-	pParis:ChangeResistanceTurns(-pParis:GetResistanceTurns())
+	-- remove resistance in Axis occupoed cities that were french
+	for city in pGermany:Cities() do  -- todo : handle french owned cities in colonies
+		local plot = city:Plot()
+		local plotKey = GetPlotKey ( plot )
+		local originalOwner = GetPlotFirstOwner(plotKey)
+		if originalOwner == iFrance then
+			Dprint(" - Remove resistance in captured french city: " .. city:GetName(), bDebug )
+			if city:GetResistanceTurns() > 0 then
+				city:ChangeResistanceTurns(-city:GetResistanceTurns())
+			end
+		end
+	end
+	coroutine.yield()
+
+	for city in pItaly:Cities() do  -- todo : handle french owned cities in colonies
+		local plot = city:Plot()
+		local plotKey = GetPlotKey ( plot )
+		local originalOwner = GetPlotFirstOwner(plotKey)
+		if originalOwner == iFrance then
+			Dprint(" - Remove resistance in captured french city: " .. city:GetName(), bDebug )
+			if city:GetResistanceTurns() > 0 then
+				city:ChangeResistanceTurns(-city:GetResistanceTurns())
+			end
+		end
+	end
+	coroutine.yield()
 
 	-- french may try to restart...
 	if Game.GetActivePlayer() ~= iFrance then
 		Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, pFrance:GetName() .. " has fled from Paris with all the gold of France promising to continue the fight from french colonies.", pFrance:GetName() .. " in exil !", -1, -1)
 	end
-	pFrance:SetGold(pFrance:GetGold() + 5000)
-
-	--savedData.SetValue("FranceHasFallen", 1) -- at the begining of the script to prevent duplicate call now that we use coroutine
-				
+	pFrance:SetGold(pFrance:GetGold() + 5000)				
 	Dprint("Fall of France event completed...", bDebug)	
 end
 

@@ -73,12 +73,13 @@ g_Scenario_Name = savedData.GetValue("RedScenario") or modUserData.GetValue("Red
 MAX_HP = GameDefines.MAX_HIT_POINTS
 
 -- Cached 
-g_FixedPlots = {}
-g_Wounded = {}
-g_RunningCoroutines = {}
-g_IsGameFullyInitialized = false
-g_LimitedByRatio = {}
-g_TrainingRestriction = {}
+g_FixedPlots				= {}
+g_Wounded					= {}
+g_RunningCoroutines			= {}
+g_IsGameFullyInitialized	= false
+g_LimitedByRatio			= {}
+g_TrainingRestriction		= {}
+g_NoCityCapture				= false	-- prevent loop in HandleCityCapture()
 
 -- Saved & Shared
 MapModData.RED = MapModData.RED or {}

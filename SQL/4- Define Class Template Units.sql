@@ -47,7 +47,7 @@ SELECT	'TORPEDO_BOMBER',		NULL,		'',		'Torpedo Bomber',		'AttackAircraft_Generic
 SELECT	'FAST_BOMBER',			NULL,		'',		'Fast Bomber',			NULL,						'BOMBER',			NULL,	'HeavyFighterWing',	NULL,	NULL,	40,		420,	NULL,	NULL,	12,		20,		NULL,	8,		NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
 SELECT	'JET_BOMBER',			NULL,		'',		'Jet Bomber',			NULL,						'BOMBER',			NULL,	NULL,				NULL,	NULL,	45,		525,	NULL,	NULL,	14,		25,		NULL,	15,		NULL,	1,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
 SELECT	'HEAVY_BOMBER',			NULL,		'',		'Heavy Bomber',			'Bomber_Generic',			'BOMBER',			NULL,	NULL,				NULL,	NULL,	70,		500,	NULL,	NULL,	16,		30,		NULL,	15,		NULL,	42,		NULL,				NULL,				NULL,			NULL	UNION ALL
-SELECT	'CRUISER',				NULL,		'',		'Cruiser',				'Cruiser_Generic',			'BATTLESHIP',		NULL,	NULL,				0.11,	45,		30,		435,	6,		NULL,	NULL,	18,		5,		8,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
+SELECT	'CRUISER',				NULL,		'',		'Cruiser',				'Cruiser_Generic',			'BATTLESHIP',		NULL,	NULL,				0.105,	45,		30,		435,	6,		NULL,	NULL,	18,		5,		8,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
 SELECT	'HEAVY_CRUISER',		NULL,		'',		'Heavy Cruiser',		NULL,						'BATTLESHIP',		NULL,	NULL,				NULL,	50,		36,		485,	5,		NULL,	NULL,	20,		6,		10,		NULL,	10,		'WW2_UNIT_ICONS',	NULL,				NULL,			NULL	UNION ALL
 SELECT	'DREADNOUGHT',			NULL,		'',		'Dreadnought',			'Dreadnought_Generic',		'BATTLESHIP',		NULL,	NULL,				0.10,	50,		36,		525,	4,		NULL,	NULL,	25,		8,		15,		NULL,	10,		NULL,				NULL,				NULL,			NULL;--	UNION ALL
 

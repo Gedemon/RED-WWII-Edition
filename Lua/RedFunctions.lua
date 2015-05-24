@@ -119,7 +119,11 @@ end
 -- handle city capture
 -- function HandleCityCapture (hexPos, playerID, cityID, newPlayerID) -- format for adding to Events.SerialEventCityCaptured
 function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
-	
+
+	if g_NoCityCapture then -- do not run when 
+		return
+	end
+
 	local cityPlot = Map.GetPlot(iX, iY)
 	local cityPlotKey = GetPlotKey(cityPlot)
 	local bDebugOutput = true
@@ -134,15 +138,18 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		local player = Players [ originalCityOwner ]
 		local newPlayer = Players [ newPlayerID ]
 
+		g_NoCityCapture = true
 		player:AcquireCity(city, false, true) -- void player:acquireCity(<City> pCity, boolean bConquest, boolean bTrade)
+		g_NoCityCapture = false
 
 		if player:IsMinorCiv() and not newPlayer:IsMinorCiv() then
 			player:ChangeMinorCivFriendshipWithMajor( newPlayerID, LIBERATE_MINOR_CITY_BONUS ) -- give diplo bonus for liberating friendly city
 		end
-		return -- the function is recalled with the old player acquisition, no need to do it twice
 	end
 
-	city:ChangeResistanceTurns(-Round(city:GetResistanceTurns()*0.75)) -- lower the number of resistance turns by 75%
+	if city:GetResistanceTurns() >0 then
+		city:ChangeResistanceTurns(-Round(city:GetResistanceTurns()*0.75)) -- lower the number of resistance turns by 75%
+	end
 
 	for i = 0, city:GetNumCityPlots() - 1, 1 do
 		local plot = city:GetCityIndexPlot( i )
@@ -818,6 +825,36 @@ ContextPtr:SetInputHandler( InputHandler )
 
 
 --------------------------------------------------------------
+-- User Interface
+--------------------------------------------------------------
+
+function AirSweepHighlight()
+	local interfaceMode = UI.GetInterfaceMode()
+	if interfaceMode == InterfaceModeTypes.INTERFACEMODE_AIR_SWEEP then
+		local pSelUnit = UI.GetHeadSelectedUnit()
+		local selUnitPlot = pSelUnit:GetPlot()
+		local selX = selUnitPlot:GetX()
+		local selY = selUnitPlot:GetY()
+		local range = pSelUnit:Range()
+		for x = -range,range do
+			for y = -range,range do
+				local tPlot = Map.GetPlotXY(selX,selY,x,y)
+				if tPlot ~= nil then
+					local tX = tPlot:GetX()
+					local tY = tPlot:GetY()
+					local tdist = Map.PlotDistance(selX,selY,tX,tY)
+					if tdist <= range then
+						local hex = ToHexFromGrid(Vector2(tX,tY))
+						Events.SerialEventHexHighlight(hex,true,Vector4(0.7,0.7,0,1),"MovementRangeBorder")
+					end
+				end
+			end
+		end
+	end
+end
+Events.InterfaceModeChanged.Add(AirSweepHighlight)
+
+--------------------------------------------------------------
 -- Load / Save Handler
 --------------------------------------------------------------
 function OnSaveClicked()
@@ -865,7 +902,7 @@ function RegisterOnSaveCallback()
 end
 
 --------------------------------------------------------------
--- Otrher functions...
+-- Other functions...
 --------------------------------------------------------------
 
 function TransfertDamage( city, damage)

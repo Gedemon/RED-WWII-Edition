@@ -5,7 +5,7 @@
     <ProjectGuid>{ecf7c652-3ea7-41fb-9bac-83ee7e298a7d}</ProjectGuid>
     <Name>R.E.D. WWII Edition</Name>
     <Guid>580c14eb-9799-4d31-8b14-c2a78931de89</Guid>
-    <ModVersion>39</ModVersion>
+    <ModVersion>40</ModVersion>
     <Stability>Beta</Stability>
     <Teaser>R.E.D. WWII Edition</Teaser>
     <Description>R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine.[NEWLINE]Features :[NEWLINE][ICON_BULLET]Frontline: units can capture tiles (or liberate your allied/friends tiles)[NEWLINE][ICON_BULLET]Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat[NEWLINE][ICON_BULLET]Reinforcements: personnel and materiel are needed to "heal" your units.[NEWLINE][ICON_BULLET]National units: each great power have it's own set of units models[NEWLINE][NEWLINE][COLOR_RED]The[/COLOR] [COLOR_YELLOW]R.E.D. WWII Data Files (V.5)[/COLOR][COLOR_RED] mod must be activated to play this mod[/COLOR]</Description>

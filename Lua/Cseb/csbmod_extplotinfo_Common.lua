@@ -4,6 +4,7 @@
 --
 
 include ( "csbmod_Common_PlotHelpers" );
+include ( "RedOverrideInclude" );
 
 -------------------------------------------------
 -- Returns general unit / military information
@@ -370,18 +371,44 @@ function GetResourceString(pPlot, bShortVersion)
 		local pResource = GameInfo.Resources[resourceType]; -- get the resource object
 		
 		if (pPlot:GetNumResource() > 1) then -- we leave this there for the odd chance they add quantified resources
-			strResult = strResult .. pPlot:GetNumResource() .. " ";
+			strResult = strResult .. tostring(pPlot:GetNumResource()*RESOURCE_PRODUCTION_FACTOR) .. " ";
 		end
 		
 		-- Add the resource info to the line
 		local convertedKey = Locale.ConvertTextKey(pResource.Description);		
 		strResult = strResult .. pResource.IconString .. " " .. convertedKey;
 
+		--[[
 		-- Find the improvements that can improve this resource and list them
 		local strImpList = csebPlotHelpers_GetImprovementListForResource(pPlot, pResource);
 		if (strImpList ~= "") then
 			strResult = strResult .. " " .. Locale.ConvertTextKey( "TXT_KEY_CSB_PLOTROLL_IMPROVEMENTS_REQUIRED_FOR_RESOURCE", strImpList );
 		end
+		--]]
+
+		-- RED <<<<<
+		if RESOURCE_CONNECTION == RESOURCE_OWNED_PLOTS then
+			-- that's the simpliest case !
+			strResult = strResult .. " (added each turn to your stock if this gisement is owned by you or your allies)"
+
+		elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_CAPITAL then
+			-- need road connection between the resource plot and the capital...
+			strResult = strResult .. " (added each turn to your stock if this gisement is linked by roads or rails to your capital)"
+
+		elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_CAPITAL then
+			-- need rails connection between the resource plot and the capital...
+			strResult = strResult .. " (added each turn to your stock if this gisement is linked by rails to your capital)"
+
+		elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_ANY_CITY then
+			-- need road connection between the resource plot and any city...
+			strResult = strResult .. " (added each turn to your stock if this gisement is linked by roads or rails to one of your cities)"
+
+		elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_ANY_CITY then
+			-- need rails connection between the resource plot and any city...
+			strResult = strResult .. " (added each turn to your stock if this gisement is linked by rails to one of your cities)"
+		end
+		-- RED >>>>>
+
 		
 		-- check to see if the player owns the neccessary technology for the resource and display a warning if he does not
 		local iTechCityTrade = GameInfoTypes[pResource.TechCityTrade];
@@ -460,9 +487,14 @@ end
 -------------------------------------------------
 function GetPlotDefenseString(pPlot)
 	local strResult = ""; -- result string
-	local iActiveTeam = Game.GetActiveTeam(); -- the ID of the currently active team
-
-	local iDefensePlotTotal = pPlot:DefenseModifier(iActiveTeam, true);
+	local pPlayer = Players[pPlot:GetOwner()]
+	local iDefensePlotTotal = 0
+	if pPlayer then
+		local iPlotTeam = pPlayer:GetTeam()
+		iDefensePlotTotal = pPlot:DefenseModifier(iPlotTeam, true);
+	else
+		iDefensePlotTotal = pPlot:DefenseModifier(-1, true);
+	end
 
 	if (iDefensePlotTotal ~= 0) then
 		strResult = Locale.ConvertTextKey("TXT_KEY_CSB_PLOTROLL_LABEL_DEFENSE_BLOCK_SIMPLE", iDefensePlotTotal)

@@ -1272,46 +1272,6 @@ function SetVisibility(playerID, x, y, visibility) -- DLL is broken ?  see Chang
 end
 
 
---[[
--- Pazyryk code for City graphic...
-
-local g_cityUpdateInfo = {}
-local g_cityUpdateNum = 0
-
-local function ListenerSerialEventCityCreated(vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
-	print("ListenerSerialEventCityCreated: ", vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
-	g_cityUpdateNum = g_cityUpdateNum + 1
-	g_cityUpdateInfo[g_cityUpdateNum] = g_cityUpdateInfo[g_cityUpdateNum] or {}
-	local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
-	updateInfo[1] = {x = vHexPos.x, y = vHexPos.y, z = vHexPos.z}
-	updateInfo[2] = iPlayer
-	updateInfo[3] = iCity
-	updateInfo[4] = artStyleType --ArtStyleTypes.ARTSTYLE_ASIAN
-	updateInfo[5] = eraType
-	updateInfo[6] = continent
-	updateInfo[7] = populationSize
-	updateInfo[8] = size
-	updateInfo[9] = fogState
-	--Warning! Infinite loop if new updateInfo causes an update!
-end
-Events.SerialEventCityCreated.Add(ListenerSerialEventCityCreated)
-
-local function UpdateCityGraphics()
-	if g_cityUpdateNum == 0 then return end
-	print("Running UpdateCityGraphics; number cached = ", g_cityUpdateNum)
-	while 0 < g_cityUpdateNum do
-		local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
-		g_cityUpdateNum = g_cityUpdateNum - 1
-		Events.SerialEventCityCreated(updateInfo[1], updateInfo[2], updateInfo[3], updateInfo[4], updateInfo[5], updateInfo[6], updateInfo[7], updateInfo[8], updateInfo[9])
-	end
-end
-Events.SerialEventGameDataDirty.Add(UpdateCityGraphics)
-Events.SequenceGameInitComplete.Add(UpdateCityGraphics)
-Events.SerialEventCityCaptured.Add(UpdateCityGraphics)	--not sure if this happens before or after city art change
-
---]]
-
-
 function ResumeCoroutines()
 	for i, co in ipairs( g_RunningCoroutines ) do
 		if coroutine.status(co) == "dead" then

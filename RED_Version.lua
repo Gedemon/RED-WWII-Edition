@@ -2,4 +2,4 @@
 -- Author: Gedemon
 --------------------------------------------------------------
 
-g_RED_Version = "R.E.D. WWII Edition v.39 1.01"
+g_RED_Version = "R.E.D. WWII Edition v.40 beta 1"

@@ -159,6 +159,7 @@ UPDATE Defines SET Value = 1 WHERE Name = 'EXPERIENCE_DEFENDING_UNIT_RANGED'; --
 --"MAX_EXPERIENCE_PER_COMBAT","10"
 --"MIN_EXPERIENCE_PER_COMBAT","1"
 
+UPDATE Defines SET Value = 1 WHERE Name = 'RECON_VISIBILITY_RANGE'; -- default = 6
 
 --------------------------------------------------------------------------------------------
 -- Diplo AI defines
@@ -279,15 +280,15 @@ UPDATE Leaders SET Boldness = 10,	VictoryCompetitiveness = 10,	Meanness = 10	WHE
 UPDATE Leaders SET Boldness = 10,	VictoryCompetitiveness = 9,		Meanness = 7	WHERE Type = 'LEADER_CATHERINE';	-- U.S.S.R.
 UPDATE Leaders SET Boldness = 9,	VictoryCompetitiveness = 8,		Meanness = 7	WHERE Type = 'LEADER_ODA_NOBUNAGA';	-- Japan
 
-UPDATE Leader_Flavors SET Flavor = 15	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_AUGUSTUS';		-- ITALY
-UPDATE Leader_Flavors SET Flavor = 20	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_BISMARCK';		-- GERMANY
-UPDATE Leader_Flavors SET Flavor = 15	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_CATHERINE';	-- U.S.S.R.
-UPDATE Leader_Flavors SET Flavor = 20	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_ODA_NOBUNAGA';	-- Japan
+UPDATE Leader_Flavors SET Flavor = 12	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_AUGUSTUS';		-- ITALY
+UPDATE Leader_Flavors SET Flavor = 18	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_BISMARCK';		-- GERMANY
+UPDATE Leader_Flavors SET Flavor = 13	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_CATHERINE';	-- U.S.S.R.
+UPDATE Leader_Flavors SET Flavor = 18	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_ODA_NOBUNAGA';	-- Japan
 
-UPDATE Leader_Flavors SET Flavor = 18	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_AUGUSTUS';		-- ITALY
-UPDATE Leader_Flavors SET Flavor = 20	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_BISMARCK';		-- GERMANY
-UPDATE Leader_Flavors SET Flavor = 15	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_CATHERINE';	-- U.S.S.R.
-UPDATE Leader_Flavors SET Flavor = 18	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_ODA_NOBUNAGA';	-- Japan
+UPDATE Leader_Flavors SET Flavor = 16	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_AUGUSTUS';		-- ITALY
+UPDATE Leader_Flavors SET Flavor = 18	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_BISMARCK';		-- GERMANY
+UPDATE Leader_Flavors SET Flavor = 13	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_CATHERINE';	-- U.S.S.R.
+UPDATE Leader_Flavors SET Flavor = 16	WHERE FlavorType = 'FLAVOR_EXPANSION'	AND LeaderType = 'LEADER_ODA_NOBUNAGA';	-- Japan
 
 UPDATE Leader_Flavors SET Flavor = 6	WHERE FlavorType = 'FLAVOR_MILITARY_TRAINING' AND LeaderType = 'LEADER_AUGUSTUS';		-- ITALY
 UPDATE Leader_Flavors SET Flavor = 10	WHERE FlavorType = 'FLAVOR_MILITARY_TRAINING' AND LeaderType = 'LEADER_BISMARCK';		-- GERMANY

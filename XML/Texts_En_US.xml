@@ -54,6 +54,15 @@
 		<Replace Tag="TXT_KEY_SPECIALUNIT_FIGHTER">
 			<Text>Aircraft</Text>
 		</Replace>
+
+
+		<Replace Tag="TXT_KEY_INTERFACEMODE_AIR_SWEEP">
+			<Text>Air Superiority</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_INTERFACEMODE_AIR_SWEEP_HELP">
+			<Text>Order the unit to engage enemy fighters and give intelligence on the targeted area.</Text>
+		</Replace>
+
 	</Language_en_US>
 
 	<!-- ++++++++++++++++++++++++++ -->

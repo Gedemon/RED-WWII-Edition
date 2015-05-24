@@ -211,7 +211,6 @@ g_cityUpdateInfo = {}
 g_cityUpdateNum = 0
 
 function ListenerSerialEventCityCreated(vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
-	print("ListenerSerialEventCityCreated: ", vHexPos, iPlayer, iCity, artStyleType, eraType, continent, populationSize, size, fogState)
 	g_cityUpdateNum = g_cityUpdateNum + 1
 	g_cityUpdateInfo[g_cityUpdateNum] = g_cityUpdateInfo[g_cityUpdateNum] or {}
 	local updateInfo = g_cityUpdateInfo[g_cityUpdateNum]
