@@ -60,7 +60,7 @@
 			<Text>Air Superiority</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_INTERFACEMODE_AIR_SWEEP_HELP">
-			<Text>Order the unit to engage enemy fighters and give intelligence on the targeted area.</Text>
+			<Text>Order the unit to recon the targeted area and engage enemy fighters.</Text>
 		</Replace>
 
 	</Language_en_US>
@@ -1386,10 +1386,10 @@
 			<Text>Supply line is cut</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_DESC">
-			<Text>-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].</Text>
+			<Text>-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-10% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].[NEWLINE]Can lose [COLOR_NEGATIVE_TEXT]hit points[ENDCOLOR] each turn.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_MECHANIZED_DESC">
-			<Text>-33% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].[NEWLINE]Reduced [COLOR_NEGATIVE_TEXT]movement[ENDCOLOR] points.</Text>
+			<Text>-33% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Attack[ENDCOLOR].[NEWLINE]-25% [ICON_STRENGTH] on [COLOR_NEGATIVE_TEXT]Defense[ENDCOLOR].[NEWLINE]Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].[NEWLINE]Reduced [COLOR_NEGATIVE_TEXT]movement[ENDCOLOR] points.[NEWLINE]Can lose [COLOR_NEGATIVE_TEXT]hit points[ENDCOLOR] each turn.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_PROMOTION_NO_SUPPLY_SPECIAL_FORCES_DESC">
 			<Text>Can't get [COLOR_NEGATIVE_TEXT]reinforcements[ENDCOLOR].</Text>

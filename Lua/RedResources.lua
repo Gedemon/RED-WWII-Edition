@@ -1092,5 +1092,13 @@ function IsPersonnelShortage(iPlayer)
 	return (MapModData.RED.ResourceData[iPlayer].Personnel + MapModData.RED.ResourceData[iPlayer].FluxPersonnel <= 0)
 end
 
+function IsNearOilShortage(iPlayer)
+	return (MapModData.RED.ResourceData[iPlayer].Oil + (MapModData.RED.ResourceData[iPlayer].FluxOil * AI_TURNS_BEFORE_SHORTAGE) <= 0)
+end
+
+function IsOilShortage(iPlayer)
+	return (MapModData.RED.ResourceData[iPlayer].Oil + MapModData.RED.ResourceData[iPlayer].FluxOil <= 0)
+end
+
 -- Update required tooltips when this file is loaded...
 LuaEvents.WWIITest()

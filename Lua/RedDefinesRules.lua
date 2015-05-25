@@ -57,6 +57,9 @@ RESOURCE_CONSUMPTION				= false						-- If true, use resources consumption (fuel
 RESOURCE_CONNECTION					= RESOURCE_ROAD_TO_ANY_CITY	-- Default connection type (can be overriden by scenario defines)
 RESOURCE_FROM_FRIENDS				= true						-- If true you get resources from friendly territory (friendly CS or major with open border), else only from your territory
 
+UNIT_BLEEDING						= true	-- when true, unit will lose HP each turn when their supply line is cut
+BLEEDING_PER_TURN					= 2
+
 -- Convoy
 TRANSPORT_DEFAULT					= TRANSPORT_MATERIEL	-- default type (1 = materiel...)
 TRANSPORT_DEFAULT_REFERENCE			= 250					-- default value
@@ -146,8 +149,8 @@ AI_SEA_MINIMAL_RESERVE		= nil	-- |
 
 AI_USE_RESOURCE_LIMIT		= true	-- the AI won't build units using resources in case of shortage...
 AI_TURNS_BEFORE_SHORTAGE	= 5		-- consider low on a resource if there is a shortage in this number of turn at the current rate
-AI_UNIT_RESOURCE_LOW		= 4		-- Don't build unit consuming more than this number of resource per HP healed if we're low on stock
-AI_UNIT_RESOURCE_SHORTAGE	= 1		-- Don't build unit consuming more than this number of resource per HP healed if we're out of stock
+AI_UNIT_RESOURCE_LOW		= 7		-- Don't build unit consuming more than this number of resource per HP healed if we're low on stock
+AI_UNIT_RESOURCE_SHORTAGE	= 2		-- Don't build unit consuming more than this number of resource per HP healed if we're out of stock
 
 TRACK_COMBATS_MAX_TURNS						= 5 -- Number of previous turns entries keeped in the TrackCombat table
 DESTROYER_SUB_HUNTING_MAX_TURNS_ATTACK		= 2 -- Number of previous turns attacks entries destroyers look at for subhunting

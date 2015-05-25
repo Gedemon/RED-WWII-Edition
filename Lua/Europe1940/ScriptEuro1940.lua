@@ -705,8 +705,8 @@ function CoCallOfFrance()
 				
 	Dprint("Finalizing Fall of France ...", bDebug)	
 
-	-- remove resistance in Axis occupoed cities that were french
-	for city in pGermany:Cities() do  -- todo : handle french owned cities in colonies
+	-- remove resistance in Axis occupied cities that were french
+	for city in pGermany:Cities() do
 		local plot = city:Plot()
 		local plotKey = GetPlotKey ( plot )
 		local originalOwner = GetPlotFirstOwner(plotKey)
@@ -719,7 +719,7 @@ function CoCallOfFrance()
 	end
 	coroutine.yield()
 
-	for city in pItaly:Cities() do  -- todo : handle french owned cities in colonies
+	for city in pItaly:Cities() do
 		local plot = city:Plot()
 		local plotKey = GetPlotKey ( plot )
 		local originalOwner = GetPlotFirstOwner(plotKey)
@@ -731,6 +731,19 @@ function CoCallOfFrance()
 		end
 	end
 	coroutine.yield()
+
+	for city in pVichy:Cities() do
+		local plot = city:Plot()
+		local plotKey = GetPlotKey ( plot )
+		local originalOwner = GetPlotFirstOwner(plotKey)
+		if originalOwner == iFrance then
+			Dprint(" - Remove resistance in captured french city: " .. city:GetName(), bDebug )
+			if city:GetResistanceTurns() > 0 then
+				city:ChangeResistanceTurns(-city:GetResistanceTurns())
+			end
+		end
+	end
+	coroutine.yield()	
 
 	-- french may try to restart...
 	if Game.GetActivePlayer() ~= iFrance then
@@ -935,7 +948,9 @@ function GiveVilniusToPoland()
 	EscapeUnitsFromPlot(plotVilnius)
 	pPoland:AcquireCity(city, false, true)
 	city:SetPuppet(false)
-	city:ChangeResistanceTurns(-city:GetResistanceTurns())
+	if city:GetResistanceTurns() > 0 then
+		city:ChangeResistanceTurns(-city:GetResistanceTurns())
+	end
 	city:SetOccupied(false)
 
 	for x = 53, 60, 1 do
@@ -983,7 +998,6 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 					local iPoland = GetPlayerIDFromCivID (POLAND, true, true)
 					local pPoland = Players[iPoland]
 
-
 					-- todo :
 					-- save from units for UK
 					--Dprint("- Change Poland units ownership ...")	
@@ -992,50 +1006,16 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 						unit:Kill()
 					end						
 
-					Dprint("- Change Poland cities ownership ...")	
-					for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
-						local plot = Map.GetPlotByIndex(iPlotLoop)
-						local x = plot:GetX()
-						local y = plot:GetY()
+					Dprint("- Change (captured by) Poland cities ownership ...")	
+					for city in pPoland:Cities() do  
+						local plot = city:Plot()
 						local plotKey = GetPlotKey ( plot )
-						if plot:IsCity() then
-							city = plot:GetPlotCity()
-							local originalOwner = GetPlotFirstOwner(plotKey)
-							if city:GetOwner() == iPoland and originalOwner ~= iPoland then -- liberate cities captured by Poland
-								Dprint(" - " .. city:GetName() .. " was captured, liberate...")	
-								local originalPlayer = Players[originalOwner]
-								originalPlayer:AcquireCity(city, false, true)
-								--city:SetOccupied(false) -- needed in this case ?
-							elseif originalOwner == iPoland then
-								if (x > 47 and x < 51)  then -- Germany
-									Dprint(" - " .. city:GetName() .. " is in Germany sphere...")	
-									if city:GetOwner() ~= iGermany then 
-										pGermany:AcquireCity(city, false, true)
-										city:SetPuppet(false)
-										city:ChangeResistanceTurns(-city:GetResistanceTurns())
-									else -- just remove resistance if city was already occupied
-										city:ChangeResistanceTurns(-city:GetResistanceTurns())
-									end
-								elseif (x > 55 and x < 61) then -- USSR
-									Dprint(" - " .. city:GetName() .. " is in USSR sphere...")
-									if city:GetOwner() ~= iUSSR then 
-										pUSSR:AcquireCity(city, false, true)
-										city:SetPuppet(false)
-										city:ChangeResistanceTurns(-city:GetResistanceTurns())
-									else -- just remove resistance if city was already occupied
-										city:ChangeResistanceTurns(-city:GetResistanceTurns())
-									end
-								elseif (x > 52 and x < 54) then -- Central cities to Warsaw conqueror
-									Dprint(" - " .. city:GetName() .. " is central, going to " .. Players[newPlayerID]:GetName())
-									if city:GetOwner() ~= newPlayerID then 
-										Players[newPlayerID]:AcquireCity(city, false, true)
-										city:SetPuppet(false)
-										city:ChangeResistanceTurns(-city:GetResistanceTurns())
-									else -- just remove resistance if city was already occupied
-										city:ChangeResistanceTurns(-city:GetResistanceTurns())
-									end
-								end					
-							end
+						local originalOwner = GetPlotFirstOwner(plotKey)
+						if originalOwner ~= iPoland then
+							Dprint(" - liberate city captured by Poland: " .. city:GetName(), bDebug )
+							local originalPlayer = Players[originalOwner]
+							EscapeUnitsFromPlot(plot)
+							originalPlayer:AcquireCity(city, false, true)
 						end
 					end
 
@@ -1066,8 +1046,30 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 						end
 					end				
 
-					-- remove resistance from Warsaw
-					pWarsaw:ChangeResistanceTurns(-pWarsaw:GetResistanceTurns())
+					-- remove resistance 
+					for city in pGermany:Cities() do
+						local plot = city:Plot()
+						local plotKey = GetPlotKey ( plot )
+						local originalOwner = GetPlotFirstOwner(plotKey)
+						if originalOwner == iPoland then
+							Dprint(" - Remove resistance in captured polish city: " .. city:GetName(), bDebug )
+							if city:GetResistanceTurns() > 0 then
+								city:ChangeResistanceTurns(-city:GetResistanceTurns())
+							end
+						end
+					end
+
+					for city in pUSSR:Cities() do
+						local plot = city:Plot()
+						local plotKey = GetPlotKey ( plot )
+						local originalOwner = GetPlotFirstOwner(plotKey)
+						if originalOwner == iPoland then
+							Dprint(" - Remove resistance in captured polish city: " .. city:GetName(), bDebug )
+							if city:GetResistanceTurns() > 0 then
+								city:ChangeResistanceTurns(-city:GetResistanceTurns())
+							end
+						end
+					end
 				
 					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "The Polish governement has fled the country, Poland has fallen under German and Soviet control.", "Poland has fallen !", cityPlot:GetX(), cityPlot:GetY())
 
@@ -1122,42 +1124,16 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 					unit:Kill()
 				end						
 
-				Dprint("- Change Denmark cities ownership ...")	
-				for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
-					local plot = Map.GetPlotByIndex(iPlotLoop)
-					local x = plot:GetX()
-					local y = plot:GetY()
+				Dprint("- Change (captured by) Denmark cities ownership ...")	-- really just in case !
+				for city in pDenmark:Cities() do  
+					local plot = city:Plot()
 					local plotKey = GetPlotKey ( plot )
-					if plot:IsCity() then
-						city = plot:GetPlotCity()
-						local originalOwner = GetPlotFirstOwner(plotKey)
-						if city:GetOwner() == iDenmark and originalOwner ~= iDenmark then -- liberate cities captured by Denmark
-							Dprint(" - " .. city:GetName() .. " was captured, liberate...")	
-							local originalPlayer = Players[originalOwner]
-							originalPlayer:AcquireCity(city, false, true)
-							--city:SetOccupied(false) -- needed in this case ?
-						elseif originalOwner == iDenmark then
-							if ( x > 37 )  then -- Germany
-								Dprint(" - " .. city:GetName() .. " is in Germany sphere...")	
-								if city:GetOwner() ~= iGermany then 
-									pGermany:AcquireCity(city, false, true)
-									city:SetPuppet(false)
-									city:ChangeResistanceTurns(-city:GetResistanceTurns())
-								else -- just remove resistance if city was already occupied
-									city:ChangeResistanceTurns(-city:GetResistanceTurns())
-								end
-							elseif ( x < 22 ) then -- UK
-								Dprint(" - " .. city:GetName() .. " is in UK sphere...")
-								if city:GetOwner() == iDenmark then -- change to UK only if it was still controlled by Denmark
-									pUK:AcquireCity(city, false, true)
-									city:SetPuppet(false)
-									city:SetOccupied(false)
-									city:ChangeResistanceTurns(-city:GetResistanceTurns())
-								else -- just remove resistance if city was already occupied by someone else
-									city:ChangeResistanceTurns(-city:GetResistanceTurns())
-								end
-							end					
-						end
+					local originalOwner = GetPlotFirstOwner(plotKey)
+					if originalOwner ~= iDenmark then
+						Dprint(" - liberate city captured by Denmark: " .. city:GetName(), bDebug )
+						local originalPlayer = Players[originalOwner]
+						EscapeUnitsFromPlot(plot)
+						originalPlayer:AcquireCity(city, false, true)
 					end
 				end
 
@@ -1185,8 +1161,18 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 					end
 				end				
 
-				-- remove resistance from Copenhagen
-				pCopenhagen:ChangeResistanceTurns(-pCopenhagen:GetResistanceTurns())
+				-- remove resistance 
+				for city in pGermany:Cities() do
+					local plot = city:Plot()
+					local plotKey = GetPlotKey ( plot )
+					local originalOwner = GetPlotFirstOwner(plotKey)
+					if originalOwner == iDenmark then
+						Dprint(" - Remove resistance in captured dane city: " .. city:GetName(), bDebug )
+						if city:GetResistanceTurns() > 0 then
+							city:ChangeResistanceTurns(-city:GetResistanceTurns())
+						end
+					end
+				end
 				
 				Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "To prevent civilian losses " .. pDenmark:GetName() .. " has surrender to Germany, Denmark has fallen under German control. Remaining Denmark territory is now under U.K. protection", pDenmark:GetName() .. " has fallen !", cityPlot:GetX(), cityPlot:GetY())
 

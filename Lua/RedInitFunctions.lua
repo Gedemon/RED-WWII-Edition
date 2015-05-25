@@ -240,6 +240,7 @@ function CommonOnEnterGame()
 	GameEvents.UnitSetXY.Add( SubHunting )
 	GameEvents.TurnComplete.Add( REDAutoSave )
 	GameEvents.PlayerEndTurnInitiated.Add( REDAutoSaveEachPlayer )
+	GameEvents.UnitHasPillaged.Add( SetPillageDamage )
 	LuaEvents.OnUnitKilled.Add( PlayerCacheIsLimitedByRatio )
 	LuaEvents.OnUnitKilled.Add( PlayerCacheTrainingRestriction )
 	GameEvents.PlayerDoTurn.Add( PlayerCacheIsLimitedByRatio )
@@ -248,6 +249,7 @@ function CommonOnEnterGame()
 	GameEvents.PlayerDoTurn.Add( FinalizeNextPlayerProjects )	
 	GameEvents.PlayerDoTurn.Add( ShowAITrainingRestriction )
 	GameEvents.PlayerDoTurn.Add( ListCitiesBuild )
+	GameEvents.PlayerDoTurn.Add( UnitsBleeding )							-- UnitsBleeding: before doing other stuff with units, no need to reinforce/upgrade/control a dying unit...
 	GameEvents.PlayerDoTurn.Add( DynamicUnitPromotion )						-- DynamicUnitPromotion: before calling reinforcements
 	GameEvents.PlayerDoTurn.Add( ManageResources )
 	GameEvents.PlayerDoTurn.Add( UpgradingUnits )							-- UpgradingUnits: after calling reinforcement

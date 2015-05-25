@@ -40,28 +40,6 @@ function MapUpdate() -- to do : check culture tile consistency. for example, a c
 		local ownerID = plot:GetOwner()
 		local plotKey = GetPlotKey ( plot )
 
-		-- Set timer to auto-repair plots that have been pillaged by units (like Special Forces)...
-		if plot:IsImprovementPillaged() then
-			if not MapModData.RED.DynamicMap[plotKey] then
-				Dprint("Improvement pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
-				MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = IMPROVEMENT_MAX_DAMAGE, RouteDamage = 0  }
-							
-			elseif MapModData.RED.DynamicMap[plotKey].ImprovementDamage == 0 then
-				Dprint("Improvement pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
-				MapModData.RED.DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
-			end
-		end		
-		if plot:IsRoutePillaged() then
-			if not MapModData.RED.DynamicMap[plotKey] then
-				Dprint("Route pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
-				MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = 0, RouteDamage = IMPROVEMENT_MAX_DAMAGE  }
-
-			elseif MapModData.RED.DynamicMap[plotKey].RouteDamage == 0 then
-				Dprint("Route pillaged, but not from city damage transfert at plot ("..x..","..y.."), set timer for auto-repair...")
-				MapModData.RED.DynamicMap[plotKey].RouteDamage = IMPROVEMENT_MAX_DAMAGE
-			end
-		end
-
 		-- check only owned plot...
 		if (ownerID ~= -1) then
 			local originalOwner = GetPlotFirstOwner(plotKey)
@@ -120,7 +98,7 @@ end
 -- function HandleCityCapture (hexPos, playerID, cityID, newPlayerID) -- format for adding to Events.SerialEventCityCaptured
 function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 
-	if g_NoCityCapture then -- do not run when 
+	if g_NoCityCapture then -- do not run twice when liberating a city 
 		return
 	end
 
@@ -379,10 +357,19 @@ function CachePlayerTrainingRestriction(iPlayer, iUnitType)
 		end
 		
 		if IsPersonnelShortage(iPlayer) and reqPersonnel > AI_UNIT_RESOURCE_SHORTAGE then		
-			g_UnitRestrictionString = "Player is short on personnel and unit use " .. tostring(reqMateriel) .." (max allowed = ".. tostring(AI_UNIT_RESOURCE_SHORTAGE) ..")"
+			g_UnitRestrictionString = "Player is short on personnel and unit use " .. tostring(reqPersonnel) .." (max allowed = ".. tostring(AI_UNIT_RESOURCE_SHORTAGE) ..")"
 			return false
 		elseif IsNearPersonnelShortage(iPlayer) and reqPersonnel > AI_UNIT_RESOURCE_LOW then		
-			g_UnitRestrictionString = "Player is low on personnel and unit use " .. tostring(reqMateriel) .." (max allowed = ".. tostring(AI_UNIT_RESOURCE_LOW) ..")"
+			g_UnitRestrictionString = "Player is low on personnel and unit use " .. tostring(reqPersonnel) .." (max allowed = ".. tostring(AI_UNIT_RESOURCE_LOW) ..")"
+			return false
+		end
+		
+		local fuelConsumption = GetFuelConsumption(iUnitType)
+		if IsOilShortage(iPlayer) and fuelConsumption > AI_UNIT_RESOURCE_SHORTAGE then		
+			g_UnitRestrictionString = "Player is short on oil and unit use " .. tostring(fuelConsumption) .." (max allowed = ".. tostring(AI_UNIT_RESOURCE_SHORTAGE) ..")"
+			return false
+		elseif IsNearOilShortage(iPlayer) and fuelConsumption > AI_UNIT_RESOURCE_LOW then		
+			g_UnitRestrictionString = "Player is low on oil and unit use " .. tostring(fuelConsumption) .." (max allowed = ".. tostring(AI_UNIT_RESOURCE_LOW) ..")"
 			return false
 		end
 	end
@@ -1281,3 +1268,37 @@ function SetGlobalAIStrategicValues()
 	FillCacheTrainingRestriction()
 
 end
+
+
+function SetPillageDamage (iX, iY, bImprovement, bRoute, iUnitID, iOwnerID)
+
+	local plot = Map.GetPlot(iX, iY)
+	local plotKey = GetPlotKey ( plot )
+	local bDebugOutput = true
+	Dprint ("Improvement pillaged by unit at (" .. tostring(plotKey).. ")", bDebugOutput)		
+
+	-- Set timer to auto-repair plots that have been pillaged by units (like Special Forces)...
+	if bImprovement then
+		if not MapModData.RED.DynamicMap[plotKey] then
+			Dprint("Mark Improvement pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
+			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = IMPROVEMENT_MAX_DAMAGE, RouteDamage = 0  }
+							
+		elseif MapModData.RED.DynamicMap[plotKey].ImprovementDamage == 0 then
+			Dprint("Update Improvement pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
+			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
+		end
+	end		
+	if bRoute then
+		if not MapModData.RED.DynamicMap[plotKey] then
+			Dprint("Mark Route pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
+			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = 0, RouteDamage = IMPROVEMENT_MAX_DAMAGE  }
+
+		elseif MapModData.RED.DynamicMap[plotKey].RouteDamage == 0 then
+			Dprint("Update Improvement pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
+			MapModData.RED.DynamicMap[plotKey].RouteDamage = IMPROVEMENT_MAX_DAMAGE
+		end
+	end
+
+	Dprint ("-------------------------------------", bDebugOutput)
+end
+-- add to GameEvents.UnitHasPillaged

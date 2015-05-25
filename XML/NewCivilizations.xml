@@ -257,10 +257,6 @@
 	<Civilization_Start_Region_Avoid>
 		<Delete />
 	</Civilization_Start_Region_Avoid>
-	<Civilization_CityNames>
-		<Delete />
-	</Civilization_CityNames>
-	
 	
 	<Leaders>
 		<Update>

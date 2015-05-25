@@ -550,7 +550,7 @@ function GoHealing(unit)
 			end
 		end
 	elseif not unit:IsEmbarked() then -- other units, but don't test embarked units, they should simply go to their objective ASAP
-		if not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY)) and not (unit:IsHasPromotion(PROMOTION_NO_SUPPLY_SPECIAL_FORCES)) then
+		if not IsNoSupply(unit) then
 			-- unit is receiving reinforcement here, trying to heal
 			--unit:SetMoves(0)
 			Dprint("Land unit is receiving reinforcement here, trying to heal (mark for no atack)...", g_bAIDebug)

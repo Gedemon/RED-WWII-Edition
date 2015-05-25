@@ -1617,7 +1617,7 @@ function UpgradingUnits(playerID)
 				local oldType = data.Unit:GetUnitType()
 				local plot = data.Unit:GetPlot()
 				local newUnit = ChangeUnitType (data.Unit, data.UpgradeType)
-				player:AddNotification(NotificationTypes.NOTIFICATION_UNIT_PROMOTION, newUnit:GetNameNoDesc() .. " have just been upgraded from ".. Locale.ConvertTextKey(GameInfo.Units[oldType].Description).." to " .. Locale.ConvertTextKey(GameInfo.Units[data.UpgradeType].Description), newUnit:GetNameNoDesc() .. " upgraded !", plot:GetX(), plot:GetY(), data.UpgradeType, data.UpgradeType)
+				player:AddNotification(NotificationTypes.NOTIFICATION_UNIT_PROMOTION, newUnit:GetNameNoDesc() .. " have just been upgraded from ".. Locale.ConvertTextKey(GameInfo.Units[oldType].Description).." to " .. Locale.ConvertTextKey(GameInfo.Units[data.UpgradeType].Description), newUnit:GetNameNoDesc() .. " upgraded !", -1, -1, data.UpgradeType, newUnit:GetID())
 				return -- upgrade one unit per turn max...
 			end
 		end		
@@ -1987,3 +1987,20 @@ function CanRangeStrike(iPlayer, iUnit, x, y)
 	return true
 end
 --GameEvents.CanRangeStrikeAt.Add(CanRangeStrike)
+
+
+function UnitsBleeding(playerID)
+	local bDebug = true
+	local player = Players[playerID]
+	if ( player:IsAlive() and not player:IsBarbarian() ) then
+		Dprint("-------------------------------------", bDebug)
+		Dprint("Check units bleeding for ".. player:GetCivilizationShortDescription() .."...", bDebug)
+		for unit in player:Units() do
+			if IsBleeding(unit) and (not unit:IsDead()) then
+				Dprint(" - apply bleeding to ".. unit:GetName() .."...", bDebug)
+				local damage = unit:GetDamage()
+				unit:SetDamage(unit:GetDamage() + BLEEDING_PER_TURN)
+			end
+		end
+	end
+end

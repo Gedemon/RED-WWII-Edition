@@ -552,6 +552,10 @@ function UseFuel(unitTypeID)
 	return (GameInfo.Units[unitTypeID].FuelConsumption > 0)
 end
 
+-- test if this Unit type (ID) has fuel
+function GetFuelConsumption(unitTypeID)
+	return GameInfo.Units[unitTypeID].FuelConsumption
+end
 
 -- test if this Unit type (ID) is never retreating under attack
 function IsNeverRetreating(unitTypeID)
@@ -696,6 +700,23 @@ function IsRegiment(unit)
 		return true
 	end
 	return false
+end
+
+function IsBleeding(unit)
+	if UNIT_BLEEDING then
+		return (    unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY.ID )
+				 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY_MECHANIZED.ID )
+				)
+	else
+		return false
+	end
+end
+
+function IsNoSupply(unit)
+	return (    unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY.ID )
+			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY_SPECIAL_FORCES.ID )
+			 or unit:IsHasPromotion( GameInfo.UnitPromotions.PROMOTION_NO_SUPPLY_MECHANIZED.ID )
+			)
 end
 
 -- Check if this unit class is limited by ratio for the AI

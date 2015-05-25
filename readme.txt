@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.39
+v.40
 
 	-- Presentation --
 
@@ -14,6 +14,36 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+	
+v.40 (May 25, 2015):
+-DLL : 
+	add GameEvent "UnitHasPillaged" to track damages on improvement/roads
+	terrain defenseModifier (hill, forest, improvement, ...) can stack
+    "Sweeping" is now "Air Superiority" : engage enemy intercepting aircraft in the area and also give reconnaissance on the adjacent tiles (no need to see the targeted plot)
+   
+-UI :
+	show damage level on improvements (from nearby cities being bombed or special Forces pillaging)
+	update resource string on mouse over plot to match the mod's rules
+    really give correct information about defensive value of a plot
+    add max range highlight to "Air Superiority" missions (previously "Air Sweep")
+    tweak some battleships, cruisers and heavy cruisers size
+
+-Feature :
+	units with no supply line "bleed" (-2 HP/turn)
+
+-Balance :
+	add Military Base and Academy to some of the AI cities (so they can make projects) on the Europe 39-45 map
+	AI will not build units that require Oil if it can't supply them
+    tweak U.S.S.R. air class ratio
+    tweak leaders' flavor values
+
+-Bug Fix :
+	can now click on the notification icon to see which unit has been upgraded
+
+-Crash Fix :
+	new function for the "Fall of France" event on the 39-45 map
+	apply change from "Fall of France" to other "Fall of ..." (Poland, Denmark) functions on the Europe 39-45 map
+
 
 v.39 (May 22, 2015):
 - DLL :

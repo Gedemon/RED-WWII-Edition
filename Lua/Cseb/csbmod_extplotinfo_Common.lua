@@ -264,9 +264,21 @@ function GetImprovementString(pPlot)
 		local convertedKey = Locale.ConvertTextKey(GameInfo.Improvements[iImprovementType].Description);		
 		strResult = strResult .. convertedKey;
 
-		if pPlot:IsImprovementPillaged() then -- add text, when it is pillaged.
+		-- <<<<< RED
+		if MapModData.RED.DynamicMap[plotKey] and MapModData.RED.DynamicMap[plotKey].ImprovementDamage > 0 then
+			if pPlot:IsImprovementPillaged() then
+				local destroyedPercent = Round((MapModData.RED.DynamicMap[plotKey].ImprovementDamage-IMPROVEMENT_DAMAGED_THRESHOLD) / (IMPROVEMENT_MAX_DAMAGE-IMPROVEMENT_DAMAGED_THRESHOLD) * 100)
+				local turnsToRepair = Round((MapModData.RED.DynamicMap[plotKey].ImprovementDamage-IMPROVEMENT_DAMAGED_THRESHOLD) / IMPROVEMENT_REPAIR_PER_TURN)
+				strResult = strResult .. "[COLOR_WARNING_TEXT](" .. tostring(destroyedPercent) .. "% destroyed - repaired in ".. tostring(turnsToRepair) .. " turns)[ENDCOLOR]";
+			else
+				local damagedPercent = Round(MapModData.RED.DynamicMap[plotKey].ImprovementDamage / IMPROVEMENT_DAMAGED_THRESHOLD * 100)
+				strResult = strResult .. "[COLOR_PLAYER_ORANGE_TEXT](" .. tostring(damagedPercent) .. "% damaged)[ENDCOLOR]";
+			end
+		-- RED >>>>>
+		elseif pPlot:IsImprovementPillaged() then -- add text, when it is pillaged.
 			strResult = strResult .. "[COLOR_WARNING_TEXT]" .. Locale.ConvertTextKey("TXT_KEY_PLOTROLL_PILLAGED") .. "[ENDCOLOR]";
 		end
+		
 	end
 
 	-- add the improvement being built on this plot
@@ -295,7 +307,18 @@ function GetImprovementString(pPlot)
 		local convertedKey = Locale.ConvertTextKey(GameInfo.Routes[iRouteType].Description);		
 		strResult = strResult .. convertedKey;
 		
-		if (pPlot:IsRoutePillaged()) then
+		-- <<<<< RED
+		if MapModData.RED.DynamicMap[plotKey] and MapModData.RED.DynamicMap[plotKey].RouteDamage > 0 then
+			if pPlot:IsRoutePillaged() then
+				local destroyedPercent = Round((MapModData.RED.DynamicMap[plotKey].RouteDamage-IMPROVEMENT_DAMAGED_THRESHOLD) / (IMPROVEMENT_MAX_DAMAGE-IMPROVEMENT_DAMAGED_THRESHOLD) * 100)
+				local turnsToRepair = Round((MapModData.RED.DynamicMap[plotKey].RouteDamage-IMPROVEMENT_DAMAGED_THRESHOLD) / IMPROVEMENT_REPAIR_PER_TURN)
+				strResult = strResult .. "[COLOR_WARNING_TEXT](" .. tostring(destroyedPercent) .. "% destroyed - repaired in ".. tostring(turnsToRepair) .. " turns)[ENDCOLOR]";
+			else
+				local damagedPercent = Round(MapModData.RED.DynamicMap[plotKey].RouteDamage / IMPROVEMENT_DAMAGED_THRESHOLD * 100)
+				strResult = strResult .. "[COLOR_PLAYER_ORANGE_TEXT](" .. tostring(damagedPercent) .. "% damaged)[ENDCOLOR]";
+			end
+		-- RED >>>>>
+		elseif (pPlot:IsRoutePillaged()) then
 			strResult = strResult .."[COLOR_WARNING_TEXT]" .. Locale.ConvertTextKey("TXT_KEY_PLOTROLL_PILLAGED") .. "[ENDCOLOR]";
 		end
 	end
