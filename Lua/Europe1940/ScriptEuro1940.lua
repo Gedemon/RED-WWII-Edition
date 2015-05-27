@@ -262,6 +262,7 @@ end
 function CoCallOfFrance()
 	
 	local savedData = Modding.OpenSaveData()
+	local bDebug = true	
 
 	-- todo: learn how to pass those to the coroutine...
 	local cityPlot = GetPlot (28,45)
@@ -969,7 +970,7 @@ end
 function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
   if ALLOW_SCRIPTED_EVENTS then
 	local cityPlot = Map.GetPlot( ToGridFromHex( hexPos.x, hexPos.y ) )
-
+	local bDebug = true	
 	local x, y = ToGridFromHex( hexPos.x, hexPos.y )
 	local civID = GetCivIDFromPlayerID(newPlayerID, false)
 	local pAxis = Players[newPlayerID]
@@ -1003,7 +1004,7 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 					--Dprint("- Change Poland units ownership ...")	
 					for unit in pPoland:Units() do 
 						--local newUnit = ChangeUnitOwner (unit, iEngland)
-						unit:Kill()
+						unit:Kill(false, -1)
 					end						
 
 					Dprint("- Change (captured by) Poland cities ownership ...")	
@@ -1034,14 +1035,31 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 								plot:SetOwner(originalOwner, -1 ) 
 
 							elseif originalOwner == iPoland and (x > 46 and x < 51)  then -- German territory
-								plot:SetOwner(iGermany, -1 ) 
+								if plot:IsCity() and ownerID ~= iGermany then 
+									local city = plot:GetPlotCity()
+									EscapeUnitsFromPlot(plot)
+									pGermany:AcquireCity(city, false, true)
+								else
+									plot:SetOwner(iGermany, -1 ) 
+								end
 
 							elseif originalOwner == iPoland and (x > 50 and x < 55) then -- Central territory
-								plot:SetOwner(newPlayerID, -1 ) 
+								if plot:IsCity() and ownerID ~= newPlayerID then 
+									local city = plot:GetPlotCity()
+									EscapeUnitsFromPlot(plot)
+									pAxis:AcquireCity(city, false, true)
+								else
+									plot:SetOwner(newPlayerID, -1 ) 
+								end 
 
 							elseif originalOwner == iPoland and (x > 54 and x < 61) then -- USSR Territory
-								plot:SetOwner(iUSSR, -1 ) 
-
+								if plot:IsCity() and ownerID ~= newPlayerID then 
+									local city = plot:GetPlotCity()
+									EscapeUnitsFromPlot(plot)
+									pUSSR:AcquireCity(city, false, true)
+								else
+									plot:SetOwner(iUSSR, -1 ) 
+								end 
 							end
 						end
 					end				
@@ -1074,6 +1092,7 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 					Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "The Polish governement has fled the country, Poland has fallen under German and Soviet control.", "Poland has fallen !", cityPlot:GetX(), cityPlot:GetY())
 
 					savedData.SetValue("PolandHasFalled", 1)
+					Dprint("Fall of Poland event completed...", bDebug)	
 				end
 			end
 		end
@@ -1095,6 +1114,8 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 	local cityPlot = GetPlotFromKey ( defendingPlotKey )
 	local x = cityPlot:GetX()
 	local y = cityPlot:GetY()
+	
+	local bDebug = true	
 
 	local civID = GetCivIDFromPlayerID(iAttackingPlayer, false)
 
@@ -1152,10 +1173,22 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 							plot:SetOwner(originalOwner, -1 ) 
 
 						elseif originalOwner == iDenmark and (x > 35)  then -- German territory
-							plot:SetOwner(iGermany, -1 ) 
+								if plot:IsCity() and ownerID ~= newPlayerID then 
+									local city = plot:GetPlotCity()
+									EscapeUnitsFromPlot(plot)
+									pGermany:AcquireCity(city, false, true)
+								else
+									plot:SetOwner(iGermany, -1 ) 
+								end 
 
 						elseif originalOwner == iDenmark and (x < 35) and ownerID == iDenmark then -- Denmark to UK
-							plot:SetOwner(iUK, -1 ) 
+								if plot:IsCity() and ownerID ~= newPlayerID then 
+									local city = plot:GetPlotCity()
+									EscapeUnitsFromPlot(plot)
+									pUK:AcquireCity(city, false, true)
+								else
+									plot:SetOwner(iUK, -1 ) 
+								end 
 
 						end
 					end
@@ -1174,9 +1207,22 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 					end
 				end
 				
+				for city in pUK:Cities() do
+					local plot = city:Plot()
+					local plotKey = GetPlotKey ( plot )
+					local originalOwner = GetPlotFirstOwner(plotKey)
+					if originalOwner == iDenmark then
+						Dprint(" - Remove resistance in captured dane city: " .. city:GetName(), bDebug )
+						if city:GetResistanceTurns() > 0 then
+							city:ChangeResistanceTurns(-city:GetResistanceTurns())
+						end
+					end
+				end
+				
 				Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, "To prevent civilian losses " .. pDenmark:GetName() .. " has surrender to Germany, Denmark has fallen under German control. Remaining Denmark territory is now under U.K. protection", pDenmark:GetName() .. " has fallen !", cityPlot:GetX(), cityPlot:GetY())
 
 				savedData.SetValue("DenmarkHasFalled", 1)
+				Dprint("Fall of Denmark event completed...", bDebug)	
 			end
 		end
 	end

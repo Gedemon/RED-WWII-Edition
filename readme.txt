@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.40
+v.41
 
 	-- Presentation --
 
@@ -14,6 +14,8 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.41 
 	
 v.40 (May 25, 2015):
 -DLL : 

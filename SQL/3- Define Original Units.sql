@@ -85,6 +85,8 @@ INSERT INTO SpecialUnits (Type, Description, Valid, CityLoad)	VALUES ('SPECIALUN
 -- Change Strategic View Icons
 --REPLACE INTO "ArtDefine_StrategicView" VALUES('ART_DEF_UNIT_INFANTRY','Unit','SV_Blank.dds');
 
+-- Make convoy "high priority" target for the AI
+UPDATE Units SET CivilianAttackPriority ='CIVILIAN_ATTACK_PRIORITY_HIGH' WHERE Type = 'UNIT_CONVOY';
 
 --------------------------------------------------------------
 -- Reset flavors
