@@ -45,6 +45,7 @@ end
 -- functions to call after game initialization (DoM screen button "Begin your journey" appears)
 function ScenarioOnGameInit()
 	GiveVilniusToPoland() -- safe here because ScenarioOnGameInit() is called after main OnGameInit() (and territory map initialization)
+	BalanceScenario()
 	GameEvents.PlayerCanCreate.Add(PlayerEuro1940ProjectRestriction)
 	Events.SerialEventCityCaptured.Add( FallOfFrance )
 	Events.SerialEventCityCaptured.Add( FallOfPoland )

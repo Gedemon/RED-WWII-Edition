@@ -3,23 +3,62 @@
 -- Loaded AFTER all other modifications.
 --------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------
+-- Improvements
+--------------------------------------------------------------------------------------------
+
+UPDATE Improvements SET DefenseModifier = 20	WHERE Type = 'IMPROVEMENT_MANUFACTORY';
+UPDATE Improvements SET DefenseModifier = 25	WHERE Type = 'IMPROVEMENT_CITY_RUINS';
+UPDATE Improvements SET DefenseModifier = 30	WHERE Type = 'IMPROVEMENT_TRADING_POST';
+UPDATE Improvements SET DefenseModifier = 40	WHERE Type = 'IMPROVEMENT_BUNKER';
+UPDATE Improvements SET DefenseModifier = 75	WHERE Type = 'IMPROVEMENT_FORT';
+UPDATE Improvements SET DefenseModifier = 100	WHERE Type = 'IMPROVEMENT_CITADEL';
+
+UPDATE Improvements SET NearbyEnemyDamage = 0	WHERE Type = 'IMPROVEMENT_CITADEL';
+
+
+UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale 
+	WHERE ResourceType = 'ART_DEF_RESOURCE_ALUMINUM'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_ALUMINUM_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL_HEAVY_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_COAL_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON_HEAVY_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_IRON_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_OIL'
+		OR ResourceType = 'ART_DEF_RESOURCE_OIL_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_HEAVY_MARSH'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_HEAVY'
+		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM';
+
+UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale
+	WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_MANUFACTORY'
+		OR ImprovementType = 'ART_DEF_IMPROVEMENT_QUARRY';
+
+UPDATE ArtDefine_Landmarks SET Scale = 0.85*Scale WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_FORT'; 
+UPDATE ArtDefine_Landmarks SET Scale = 0.95*Scale WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_CITADEL';
+UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_BUNKER';
 
 --------------------------------------------------------------------------------------------
 -- Buildings
 --------------------------------------------------------------------------------------------
 
-UPDATE Building_Flavors SET Flavor = Flavor * 0.5;	-- Build less buildings...
+UPDATE Building_Flavors SET Flavor = Flavor * 0.75;	-- Build less buildings...
 
 --------------------------------------------------------------------------------------------
 -- Units
 --------------------------------------------------------------------------------------------
 UPDATE Units SET ProjectPrereq = NULL;			-- We don't need to set projects for units, this is handled by the mod custom function/tables
-UPDATE Unit_Flavors SET Flavor = Flavor * 4;	-- Build more units...
+UPDATE Unit_Flavors SET Flavor = Flavor * 2;	-- Build more units...
 
 --------------------------------------------------------------------------------------------
 -- Projects
 --------------------------------------------------------------------------------------------
-UPDATE Project_Flavors SET Flavor = Flavor * 3 WHERE ProjectType LIKE 'PROJECT_%';	-- Project's flavor relative to units...
+UPDATE Project_Flavors SET Flavor = Flavor * 1.75 WHERE ProjectType LIKE 'PROJECT_%';	-- Project's flavor relative to units...
 
 
 /*

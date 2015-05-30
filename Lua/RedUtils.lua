@@ -426,6 +426,32 @@ function GetCloseNavalCity ( playerID, plot , bNotSelf)
 	end
 end
 
+
+function SetCitadelAt(x,y)
+	local plot = GetPlot(x ,y)
+	local iType = GameInfoTypes["IMPROVEMENT_CITADEL"]
+	if (plot:GetImprovementType() ~= iType) then
+		plot:SetImprovementType(iType)
+	end
+end
+
+function SetFortAt(x,y)
+	local plot = GetPlot(x ,y)
+	local iType = GameInfoTypes["IMPROVEMENT_FORT"]
+	if (plot:GetImprovementType() ~= iType) then
+		plot:SetImprovementType(iType)
+	end
+end
+
+function SetBunkerAt(x,y)
+	local plot = GetPlot(x ,y)
+	local iType = GameInfoTypes["IMPROVEMENT_BUNKER"]
+	if (plot:GetImprovementType() ~= iType) then
+		plot:SetImprovementType(iType)
+	end
+end
+
+
 --------------------------------------------------------------
 -- Database functions 
 --------------------------------------------------------------

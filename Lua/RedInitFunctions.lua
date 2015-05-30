@@ -157,7 +157,6 @@ function CommonOnNewTurn()
 	SetMinorRelations()
 	SetMinorDOW()
 	SetMajorRelations()	
-	SpawnConvoy()
 	ClearAIairSweep()
 	RepairImprovements()
 	LaunchMilitaryOperation()
@@ -226,6 +225,7 @@ end
 
 -- functions to call after entering game (DoM screen button pushed)
 function CommonOnEnterGame()
+	Events.InterfaceModeChanged.Add(AirSweepHighlight)
 	Events.SerialEventCityCaptured.Add(	VictoryCheck )
 	GameEvents.CityCaptureComplete.Add(	HandleCityCapture )					-- called before the attack animation
 	--LuaEvents.OnCityCaptured.Add( FixCityGraphicBug )						-- called after the attack animation ?
@@ -255,6 +255,7 @@ function CommonOnEnterGame()
 	GameEvents.PlayerDoTurn.Add( UpgradingUnits )							-- UpgradingUnits: after calling reinforcement
 	GameEvents.PlayerDoTurn.Add( CallReserveTroops )
 	GameEvents.PlayerDoTurn.Add( SpawnReinforcements )
+	GameEvents.PlayerDoTurn.Add( SpawnConvoy )
 	GameEvents.PlayerDoTurn.Add( AIUnitControl )
 	GameEvents.PlayerDoTurn.Add( LaunchMilitaryOperation )
 	GameEvents.PlayerDoTurn.Add( ResetCombatTracking )

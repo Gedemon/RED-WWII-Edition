@@ -347,7 +347,7 @@ function CheckAIObjective(previousPlayerID)
 				unit:SetDeployFromOperationTurn(1)
 			end
 		end
-		player:AddTemporaryDominanceZone (34, 24)
+		player:AddTemporaryDominanceZone (34, 24, AI_TACTICAL_TARGET_CITY)
 	end
 end
 -- GameEvents.PlayerDoTurn.Add(CheckAIObjective) at game init

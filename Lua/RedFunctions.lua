@@ -839,7 +839,7 @@ function AirSweepHighlight()
 		end
 	end
 end
-Events.InterfaceModeChanged.Add(AirSweepHighlight)
+--Events.InterfaceModeChanged.Add(AirSweepHighlight)
 
 --------------------------------------------------------------
 -- Load / Save Handler
@@ -1283,7 +1283,7 @@ function SetPillageDamage (iX, iY, bImprovement, bRoute, iUnitID, iOwnerID)
 			Dprint("Mark Improvement pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
 			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = IMPROVEMENT_MAX_DAMAGE, RouteDamage = 0  }
 							
-		elseif MapModData.RED.DynamicMap[plotKey].ImprovementDamage == 0 then
+		elseif MapModData.RED.DynamicMap[plotKey].ImprovementDamage then
 			Dprint("Update Improvement pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
 			MapModData.RED.DynamicMap[plotKey].ImprovementDamage = IMPROVEMENT_MAX_DAMAGE
 		end
@@ -1293,7 +1293,7 @@ function SetPillageDamage (iX, iY, bImprovement, bRoute, iUnitID, iOwnerID)
 			Dprint("Mark Route pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
 			MapModData.RED.DynamicMap[plotKey] = { ImprovementDamage = 0, RouteDamage = IMPROVEMENT_MAX_DAMAGE  }
 
-		elseif MapModData.RED.DynamicMap[plotKey].RouteDamage == 0 then
+		elseif MapModData.RED.DynamicMap[plotKey].RouteDamage then
 			Dprint("Update Improvement pillaged by unit (max damage), set timer for auto-repair...", bDebugOutput)
 			MapModData.RED.DynamicMap[plotKey].RouteDamage = IMPROVEMENT_MAX_DAMAGE
 		end

@@ -1053,7 +1053,7 @@ function FallOfPoland(hexPos, playerID, cityID, newPlayerID)
 								end 
 
 							elseif originalOwner == iPoland and (x > 54 and x < 61) then -- USSR Territory
-								if plot:IsCity() and ownerID ~= newPlayerID then 
+								if plot:IsCity() and ownerID ~= iUSSR then 
 									local city = plot:GetPlotCity()
 									EscapeUnitsFromPlot(plot)
 									pUSSR:AcquireCity(city, false, true)
@@ -1173,7 +1173,7 @@ function FallOfDenmark(iAttackingUnit, defendingPlotKey, iAttackingPlayer, iDefe
 							plot:SetOwner(originalOwner, -1 ) 
 
 						elseif originalOwner == iDenmark and (x > 35)  then -- German territory
-								if plot:IsCity() and ownerID ~= newPlayerID then 
+								if plot:IsCity() and ownerID ~= iGermany then 
 									local city = plot:GetPlotCity()
 									EscapeUnitsFromPlot(plot)
 									pGermany:AcquireCity(city, false, true)
@@ -1576,12 +1576,19 @@ function GetSueztoUSSRTransport()
 	return transport
 end
 function GetUStoUSSRTransport()
-	local rand = math.random( 1, 2 )
 	local transport
-	if rand == 1 then
-		transport = {Type = TRANSPORT_MATERIEL, Reference = 375} 
-	elseif rand == 2 then 
-		transport = {Type = TRANSPORT_GOLD, Reference = 500}
+	local factor = 1
+	local turn = Game.GetGameTurn()
+	local turnDate = 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if turnDate > 19420101 then		
+		factor = 3
+	end
+	local rand = math.random( 1, 4 )
+	if rand < 4 then
+		transport = {Type = TRANSPORT_MATERIEL, Reference = 400 * factor} 
+	else 
+		transport = {Type = TRANSPORT_GOLD, Reference = 250 * factor}
 	end	
 	return transport
 end
@@ -1616,6 +1623,138 @@ function GetSueztoGreeceTransport()
 	return transport
 end
 
+function GetUSAFtoUKTransport1()
+	local rand = math.random( 1, 4 )
+	local transport
+	if rand < 4 then
+		transport = {Type = TRANSPORT_UNIT, Reference = US_B17}
+	else 
+		transport = {Type = TRANSPORT_UNIT, Reference = US_P40}
+	end
+	
+	return transport
+end
+function IsRouteOpenUSAFtoUK1()
+	local bDebug = false
+	Dprint("   - Checking possible maritime route from US to UK for Air Force", bDebug)
+
+	if not IsRouteOpenUStoUK() then
+		return false
+	end
+	
+	if not UKIsSafe() then
+		return false
+	end
+	
+	local turn = Game.GetGameTurn()
+	local turnDate = 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if turnDate < 19420301 and turnDate > 19421231 then		
+		Dprint("     - not between march and december 1942...", bDebug)
+		return false
+	end
+
+	local iUK = GetPlayerIDFromCivID(ENGLAND, false)
+	if CountUnitTypeAlive (US_B17, iUK) + CountUnitTypeAlive (US_P40, iUK) > 10 then
+		Dprint("     - too many USAF units in Europe...", bDebug)
+		return false
+	end	
+
+	return true
+end
+
+function GetUStoEuropeTroops1()
+	local rand = math.random( 1, 6 )
+	local transport
+	if rand == 1 then
+		transport = {Type = TRANSPORT_UNIT, Reference = US_M24CHAFFEE}
+	elseif rand == 2 then 
+		transport = {Type = TRANSPORT_UNIT, Reference = US_SHERMAN}
+	elseif rand == 3 then 
+		transport = {Type = TRANSPORT_UNIT, Reference = US_MECH_INFANTRY}
+	elseif rand == 4 then 
+		transport = {Type = TRANSPORT_UNIT, Reference = US_MARINES}
+	elseif rand > 4 then 
+		transport = {Type = TRANSPORT_UNIT, Reference = US_INFANTRY}
+	end
+	
+	return transport
+end
+function IsRouteOpenUStoFranceTroops1()
+	local bDebug = true
+	Dprint("   - Checking possible maritime route from US to France for Army", bDebug)
+
+	if not IsRouteOpenUStoFrance() then
+		return false
+	end
+
+	if not UKIsSafe() then -- priority to UK (reinforcement to France can be send from there once the danger is eliminated)
+		return false
+	end
+	
+	local turn = Game.GetGameTurn()
+	local turnDate = 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if turnDate < 19420301 and turnDate > 19421231 then		
+		Dprint("     - not between march and december 1942...", bDebug)
+		return false
+	end
+
+	local iFrance = GetPlayerIDFromCivID(FRANCE, false)
+	local numUnitsUS = CountUnitTypeAlive (US_M24CHAFFEE, iFrance) + CountUnitTypeAlive (US_SHERMAN, iFrance) + CountUnitTypeAlive (US_M24CHAFFEE, iFrance) + CountUnitTypeAlive (US_MECH_INFANTRY, iFrance) + CountUnitTypeAlive (US_MARINES, iFrance) + CountUnitTypeAlive (US_INFANTRY, iFrance)
+	if numUnitsUS > 30 then
+		Dprint("     - too many US Army units in France...", bDebug)
+		return false
+	end	
+
+	return true
+end
+
+
+function IsRouteOpenUStoUKTroops1()
+	local bDebug = true
+	Dprint("   - Checking possible maritime route from US to France for Army", bDebug)
+
+	if not IsRouteOpenUStoUK() then
+		return false
+	end
+	
+	if UKIsSafe() then
+		return false
+	end
+	
+	local turn = Game.GetGameTurn()
+	local turnDate = 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if turnDate < 19420301 and turnDate > 19421231 then		
+		Dprint("     - not between march and december 1942...", bDebug)
+		return false
+	end
+
+	local iUK = GetPlayerIDFromCivID(ENGLAND, false)
+	local numUnitsUS = CountUnitTypeAlive (US_M24CHAFFEE, iUK) + CountUnitTypeAlive (US_SHERMAN, iUK) + CountUnitTypeAlive (US_M24CHAFFEE, iUK) + CountUnitTypeAlive (US_MECH_INFANTRY, iUK) + CountUnitTypeAlive (US_MARINES, iUK) + CountUnitTypeAlive (US_INFANTRY, iUK)
+	if numUnitsUS > 30 then
+		Dprint("     - too many US Army units in UK...", bDebug)
+		return false
+	end	
+
+	return true
+end
+
+function GetUStoEuropeArmyResources()
+	local rand = math.random( 1, 3 )
+	local transport
+	if rand == 1 then
+		transport = {Type = TRANSPORT_MATERIEL, Reference = 1500} 
+	elseif rand == 2 then 
+		transport = {Type = TRANSPORT_PERSONNEL, Reference = 500}
+	elseif rand == 3 then 
+		transport = {Type = TRANSPORT_OIL, Reference = 2000}
+	end
+	
+	return transport
+end
+
 -- ... then define the convoys table
 -- don't move those define from this files, they must be set AFTER the functions definition...
 
@@ -1636,6 +1775,11 @@ SUEZ_TO_GREECE		= 13
 CARAIB_TO_FRANCE	= 14
 CARAIB_TO_UK		= 15
 CARAIB_TO_GREECE	= 16
+US_TO_UK_USAF1		= 17
+US_TO_UK_USAF_RES	= 18
+US_TO_FR_ARMY1		= 19
+US_TO_FR_ARMY_RES	= 20
+US_TO_UK_ARMY1		= 21
 
 -- Convoy table
 g_Convoy = { 
@@ -1830,6 +1974,68 @@ g_Convoy = {
 		MaxFleet = 1,
 		Frequency = 15, -- probability (in percent) of convoy spawning at each turn
 		Transport = GetCaraibOilTransport,
+	},
+	[US_TO_UK_USAF1] = {
+		Name = "US to UK - USAF 1",
+		SpawnList = { {X=0, Y=50}, {X=0, Y=55}, {X=0, Y=60}, {X=0, Y=65}, {X=0, Y=70}, {X=0, Y=75}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=22, Y=52}, {X=24, Y=57}, {X=27, Y=52}, {X=28, Y=65}, }, -- Plymouth, Liverpool, London, Aberdeen
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = ENGLAND,
+		MaxFleet = 1,
+		Frequency = 75, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsRouteOpenUSAFtoUK1,
+		Transport = GetUSAFtoUKTransport1,
+	},
+	[US_TO_UK_USAF_RES] = {
+		Name = "US to UK - USAF Oil",
+		SpawnList = { {X=0, Y=50}, {X=0, Y=55}, {X=0, Y=60}, {X=0, Y=65}, {X=0, Y=70}, {X=0, Y=75}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=22, Y=52}, {X=24, Y=57}, {X=27, Y=52}, {X=28, Y=65}, }, -- Plymouth, Liverpool, London, Aberdeen
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = ENGLAND,
+		MaxFleet = 1,
+		Frequency = 45, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsRouteOpenUSAFtoUK1,
+		Transport = GetUStoEuropeArmyResources,
+	},
+	[US_TO_FR_ARMY1] = {
+		Name = "US to France -> Army",
+		SpawnList = { {X=0, Y=50}, {X=0, Y=55}, {X=0, Y=60}, {X=0, Y=65}, {X=0, Y=70}, {X=0, Y=75}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=21, Y=42}, {X=21, Y=45}, {X=29, Y=50}, {X=29, Y=34}, }, -- La Rochelle, St Nazaire, Dunkerque, Marseille
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = FRANCE,
+		MaxFleet = 1, -- how many convoy can use that route at the same time (not implemented)
+		Frequency = 75, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsRouteOpenUStoFranceTroops1, -- Must refer to a function, remove this line to use the default condition (true)
+		UnloadCondition = function() return true; end, -- Must refer to a function, remove this line to use the default condition (true)
+		Transport = GetUStoEuropeTroops1, -- Must refer to a function, remove this line to use the default function
+	},
+	[US_TO_FR_ARMY_RES] = {
+		Name = "US to France -> resources for Army",
+		SpawnList = { {X=0, Y=50}, {X=0, Y=55}, {X=0, Y=60}, {X=0, Y=65}, {X=0, Y=70}, {X=0, Y=75}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=21, Y=42}, {X=21, Y=45}, {X=29, Y=50}, {X=29, Y=34}, }, -- La Rochelle, St Nazaire, Dunkerque, Marseille
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = FRANCE,
+		MaxFleet = 1, -- how many convoy can use that route at the same time (not implemented)
+		Frequency = 45, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsRouteOpenUStoFranceTroops1, -- Must refer to a function, remove this line to use the default condition (true)
+		UnloadCondition = function() return true; end, -- Must refer to a function, remove this line to use the default condition (true)
+		Transport = GetUStoEuropeArmyResources, -- Must refer to a function, remove this line to use the default function
+	},
+	[US_TO_UK_ARMY1] = {
+		Name = "US to UK - Army 1",
+		SpawnList = { {X=0, Y=50}, {X=0, Y=55}, {X=0, Y=60}, {X=0, Y=65}, {X=0, Y=70}, {X=0, Y=75}, },
+		RandomSpawn = true, -- true : random choice in spawn list
+		DestinationList = { {X=22, Y=52}, {X=24, Y=57}, {X=27, Y=52}, {X=28, Y=65}, }, -- Plymouth, Liverpool, London, Aberdeen
+		RandomDestination = false, -- false : sequential try in destination list
+		CivID = ENGLAND,
+		MaxFleet = 1,
+		Frequency = 65, -- probability (in percent) of convoy spawning at each turn
+		Condition = IsRouteOpenUStoUKTroops1,
+		Transport = GetUStoEuropeTroops1,
 	},
 }
 
@@ -2684,4 +2890,46 @@ function GetAxisKeyCities()
 	end
 
 	return cities
+end
+
+--------------------------------------------------------------
+-- Other functions
+--------------------------------------------------------------
+
+function BalanceScenario()
+
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+
+	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
+	local pUSSR = Players[iUSSR]
+
+	-- Place the Modlin Fortress in Poland
+	if pGermany:IsHuman() or pUSSR:IsHuman() then
+
+		local iPoland = GetPlayerIDFromCivID (POLAND, true, true)
+		local pPoland = Players[iPoland]
+		 SetCitadelAt(52,49)
+
+	end
+	
+	-- Place the fortifications for the Maginot Line
+	if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then
+		SetCitadelAt(36, 44)
+		SetFortAt(35, 42)
+		SetFortAt(35, 43)
+		SetBunkerAt(35, 45)
+		SetBunkerAt(35, 46)
+	end
+
+	-- Place the fortifications for the Siegfried Line
+	if(PreGame.GetGameOption("Westwall") ~= nil) and (PreGame.GetGameOption("Westwall") >  0) then
+		SetBunkerAt(37, 42)
+		SetBunkerAt(38, 44)
+		SetBunkerAt(37, 46)
+		SetBunkerAt(35, 47)
+		SetBunkerAt(35, 49)
+		SetBunkerAt(35, 51)
+		SetBunkerAt(36, 53)
+	end
 end

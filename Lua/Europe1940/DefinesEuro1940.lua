@@ -252,16 +252,16 @@ g_Initial_OOB = {
 
 -- Options
 if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then
-	table.insert (g_Initial_OOB,	{Name = "Maginot Line 1", X = 35, Y = 42, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
-	table.insert (g_Initial_OOB,	{Name = "Maginot Line 2", X = 35, Y = 43, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
-	table.insert (g_Initial_OOB,	{Name = "Maginot Line 3", X = 36, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
-	table.insert (g_Initial_OOB,	{Name = "Maginot Line 4", X = 35, Y = 45, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
-	table.insert (g_Initial_OOB,	{Name = "Maginot Line 5", X = 35, Y = 46, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 1", X = 35, Y = 42, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"SF de Mulhouse"}, })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 2", X = 35, Y = 43, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"SF de Colmar"}, })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 3", X = 36, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage du Hochwald"}, })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 4", X = 35, Y = 45, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage du Simserhof"},  })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 5", X = 35, Y = 46, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage de Fermont"}, })
 end
 
 if(PreGame.GetGameOption("Westwall") ~= nil) and (PreGame.GetGameOption("Westwall") >  0) then
-	table.insert (g_Initial_OOB,	{Name = "Westwall 1", X = 36, Y = 42, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
-	table.insert (g_Initial_OOB,	{Name = "Westwall 2", X = 37, Y = 44, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 1", X = 37, Y = 42, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
+	table.insert (g_Initial_OOB,	{Name = "Westwall 2", X = 38, Y = 44, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
 	table.insert (g_Initial_OOB,	{Name = "Westwall 3", X = 37, Y = 46, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
 																																	 
 	table.insert (g_Initial_OOB,	{Name = "Westwall 4", X = 35, Y = 47, Domain = "Land", CivID = GERMANY, Group = {FORTIFIED_GUN} })
@@ -273,14 +273,11 @@ end
 
 g_MinorMobilization_OOB = { 
 	{Name = "Poland army", X = 53, Y = 46, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
+	{Name = "Poland fortification", X = 52, Y = 49, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {FORTIFIED_GUN}, UnitsName = {"Twierdza Modlin"}, },
 	{Name = "Poland air force", X = 53, Y = 48, Domain = "Air", CivID = POLAND, IsMinor = true, Group = {PL_PZL37, PL_P11, PL_P11, PL_P11} },
 	{Name = "Poland fleet", X = 51, Y = 56, Domain = "Sea", CivID = POLAND, IsMinor = true, Group = {PL_SUBMARINE} },
-	{Name = "Belgian army", X = 32, Y = 49, Domain = "Land", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
-	{Name = "Netherlands army", X = 34, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {DU_INFANTRY, } },
-	{Name = "Netherlands army", X = 34, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {AT_GUN, } },
-	{Name = "Netherlands army", X = 34, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {DU_VICKERS_M1936, } },
-	{Name = "Netherlands army", X = 34, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {DU_MTSL,} },
-	{Name = "Netherlands army", X = 34, Y = 52, Domain = "Land", CivID = NETHERLANDS, IsMinor = true, Group = {ARTILLERY} },
+	{Name = "Belgian army", X = 32, Y = 49, Domain = "City", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
+	{Name = "Netherlands army", X = 34, Y = 52, Domain = "City", CivID = NETHERLANDS, IsMinor = true, Group = {DU_INFANTRY, AT_GUN, DU_VICKERS_M1936, DU_MTSL, ARTILLERY} },
 	{Name = "Netherlands air force", X = 34, Y = 52, Domain = "Air", CivID = NETHERLANDS, IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
 	{Name = "Finland army", X = 59, Y = 68, Domain = "Land", CivID = FINLAND, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
 	{Name = "Slovakia army", X = 53, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
@@ -620,7 +617,7 @@ g_Cities = {
 	{X = 33, Y = 27, Buildings = { HARBOR }, }, -- AJACCIO
 	{X = 21, Y = 45, Buildings = { HARBOR }, }, -- SAINT NAZAIRE
 	{X = 19, Y = 48, }, -- BREST
-	{X = 36, Y = 45, AIBuildings = {BARRACKS, ARSENAL, BASE},}, -- STRASBOURG
+	{X = 36, Y = 45, Buildings = { BASE }, AIBuildings = {BARRACKS, ARSENAL},}, -- STRASBOURG
 	{X = 33, Y = 34, }, -- NICE
 	{X = 22, Y = 39, Key = true,  }, -- BORDEAUX
 	{X = 21, Y = 42, Buildings = { HARBOR }, }, -- LA ROCHELLE

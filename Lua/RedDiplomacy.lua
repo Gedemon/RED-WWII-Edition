@@ -730,7 +730,7 @@ function GeneralMobilization (iTeam1, iTeam2, bWar)
 					Dprint("Placing ".. oob.Name, bDebug)
 					if oob.Domain == "Land" or  oob.Domain == "Sea" then
 						PlaceUnits(oob)
-					elseif oob.Domain == "Air" then
+					elseif oob.Domain == "Air" or oob.Domain == "City" then
 						PlaceAirUnits(oob)
 					else
 						Dprint("WARNING, domain is not valid : ".. oob.Domain, bDebug)
@@ -743,7 +743,7 @@ function GeneralMobilization (iTeam1, iTeam2, bWar)
 			end
 			for player, plotkey in pairs(dominanceZone) do
 				Dprint("Set dominance zone for ".. player:GetName() .. " at " .. plotkey, bDebug)
-				player:AddTemporaryDominanceZone (GetPlotXYFromKey (plotkey))
+				player:AddTemporaryDominanceZone (GetPlotXYFromKey (plotkey), AI_TACTICAL_TARGET_CITY)
 			end		
 			
 			for civID, bMobilize in pairs(mobilizedCiv) do

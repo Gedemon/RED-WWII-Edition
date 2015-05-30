@@ -67,56 +67,61 @@ function GetConvoyTransport(routeID)
 	return transport
 end
 
-function SpawnConvoy()
+function SpawnConvoy(playerID)
 	local bDebug = true
 	if g_Convoy then
+		local player = Players [ playerID ]
+		if (not player:IsAlive()) or player:IsBarbarian() then
+			return
+		end
 		Dprint("-------------------------------------")
 		Dprint ("Try to spawn convoy units...")
 		Dprint("-------------------------------------")
 		for routeID, data in ipairs(g_Convoy) do
-			Dprint("- Checking maritime route: ".. g_Convoy[routeID].Name, bDebug)
-			local rand = math.random( 1, 100 )
-			local bSpawned = false
- 			Dprint("   - Frequency = " .. data.Frequency .. ", random percent = " .. rand , bDebug)
-			local condition
-			if data.Condition then
-				condition = data.Condition()
-			else
-				condition = true -- if no condition set, assume always true
-			end
-
-			local objective = GetConvoyDestination(routeID)
-			
-			if not objective then
-				Dprint("      - Can't get a destination...", bDebug)
-			end
-
-			if not condition then
-				Dprint("      - Condition is not true...", bDebug)
-			end
-
-			if condition and objective and rand < data.Frequency then
-				local playerID = GetPlayerIDFromCivID( data.CivID, data.IsMinor )
-				local player = Players [ playerID ]
-				if data.RandomSpawn then
-					local numTry = 0
-					while not bSpawned and numTry < 10 do -- check 10 random plots from list for spawning...
-						local spawnList = data.SpawnList
-						local randPlot = math.random( 1, #spawnList )
- 						Dprint("      - Random spawn position selection = " .. randPlot, bDebug)
-						local plotPosition = spawnList[randPlot]
-						bSpawned = InitConvoyUnit(playerID, plotPosition.X, plotPosition.Y, routeID)
-						numTry = numTry + 1
-					end
+			local convoyOwnerID = GetPlayerIDFromCivID( data.CivID, data.IsMinor )
+			if playerID == convoyOwnerID then
+				Dprint("- Checking maritime route: ".. g_Convoy[routeID].Name, bDebug)
+				local rand = math.random( 1, 100 )
+				local bSpawned = false
+ 				Dprint("   - Frequency = " .. data.Frequency .. ", random percent = " .. rand , bDebug)
+				local condition
+				if data.Condition then
+					condition = data.Condition()
 				else
-					for i, plotPosition in ipairs(data.SpawnList) do
- 						Dprint("      - Sequential spawn position selection = " .. i, bDebug)
-						if not bSpawned then
+					condition = true -- if no condition set, assume always true
+				end
+
+				local objective = GetConvoyDestination(routeID)
+			
+				if not objective then
+					Dprint("      - Can't get a destination...", bDebug)
+				end
+
+				if not condition then
+					Dprint("      - Condition is not true...", bDebug)
+				end
+
+				if condition and objective and rand < data.Frequency then
+					if data.RandomSpawn then
+						local numTry = 0
+						while not bSpawned and numTry < 10 do -- check 10 random plots from list for spawning...
+							local spawnList = data.SpawnList
+							local randPlot = math.random( 1, #spawnList )
+ 							Dprint("      - Random spawn position selection = " .. randPlot, bDebug)
+							local plotPosition = spawnList[randPlot]
 							bSpawned = InitConvoyUnit(playerID, plotPosition.X, plotPosition.Y, routeID)
+							numTry = numTry + 1
+						end
+					else
+						for i, plotPosition in ipairs(data.SpawnList) do
+ 							Dprint("      - Sequential spawn position selection = " .. i, bDebug)
+							if not bSpawned then
+								bSpawned = InitConvoyUnit(playerID, plotPosition.X, plotPosition.Y, routeID)
+							end
 						end
 					end
 				end
-			end
+			end		
 		end		
 		Dprint("-------------------------------------")
 	end
@@ -175,7 +180,7 @@ function InitConvoyUnit(playerID, x, y, routeID)
 			player:AddNotification(NotificationTypes.NOTIFICATION_GENERIC, "New convoy formed, transporting " .. strTransport .. " to " .. strDestination, "New convoy formed !", x, y)
 			Dprint("      - Creating New convoy at ("..x..","..y.."), transporting " .. strTransport .. " to " .. strDestination, bDebug)
 			--MoveUnitTo (unit, GetPlot (objective.X, objective.Y ))
-			unit:SetMoves(0) -- don't move on first turn
+			--unit:SetMoves(0) -- don't move on first turn
 			return true
 		else
 			Dprint("      - WARNING !!! convoy unit is nil at ("..x..","..y.."), for " .. player:GetName(), bDebug)

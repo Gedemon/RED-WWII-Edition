@@ -232,36 +232,10 @@ UPDATE Terrains SET Movement = 2 WHERE Type = 'TERRAIN_SNOW';
 --------------------------------------------------------------------------------------------
 -- Improvements
 --------------------------------------------------------------------------------------------
-UPDATE Improvements SET DefenseModifier = 35 WHERE Type = 'IMPROVEMENT_TRADING_POST';
-UPDATE Improvements SET DefenseModifier = 25 WHERE Type = 'IMPROVEMENT_MANUFACTORY';
-UPDATE Improvements SET DefenseModifier = 30 WHERE Type = 'IMPROVEMENT_CITY_RUINS';
-UPDATE Improvements SET DefenseModifier = 75 WHERE Type = 'IMPROVEMENT_FORT';
 
 INSERT INTO Improvement_Yields (ImprovementType, YieldType, Yield) VALUES ('IMPROVEMENT_TRADING_POST', 'YIELD_PRODUCTION', 1);
 UPDATE Improvement_Yields SET Yield = 2 WHERE ImprovementType = 'IMPROVEMENT_MINE';
 
-UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale 
-	WHERE ResourceType = 'ART_DEF_RESOURCE_ALUMINUM'
-		OR ResourceType = 'ART_DEF_RESOURCE_COAL'
-		OR ResourceType = 'ART_DEF_RESOURCE_COAL_HEAVY'
-		OR ResourceType = 'ART_DEF_RESOURCE_ALUMINUM_HEAVY'
-		OR ResourceType = 'ART_DEF_RESOURCE_COAL_HEAVY_MARSH'
-		OR ResourceType = 'ART_DEF_RESOURCE_COAL_MARSH'
-		OR ResourceType = 'ART_DEF_RESOURCE_IRON'
-		OR ResourceType = 'ART_DEF_RESOURCE_IRON_HEAVY'
-		OR ResourceType = 'ART_DEF_RESOURCE_IRON_HEAVY_MARSH'
-		OR ResourceType = 'ART_DEF_RESOURCE_IRON_MARSH'
-		OR ResourceType = 'ART_DEF_RESOURCE_OIL'
-		OR ResourceType = 'ART_DEF_RESOURCE_OIL_HEAVY'
-		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_MARSH'
-		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_HEAVY_MARSH'
-		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM_HEAVY'
-		OR ResourceType = 'ART_DEF_RESOURCE_URANIUM';
-
-UPDATE ArtDefine_Landmarks SET Scale = 0.65*Scale
-	WHERE ImprovementType = 'ART_DEF_IMPROVEMENT_MANUFACTORY'
-		OR ImprovementType = 'ART_DEF_IMPROVEMENT_QUARRY';
-	
 UPDATE Builds SET PrereqTech = NULL;
 
 

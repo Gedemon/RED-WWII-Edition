@@ -886,108 +886,107 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 				-- we can't get resource from a pillaged plot...
 				-- to do: check for the resource corresponding improvement too ? I don't plan to make scenario where we search for resource and improve land, but...
 				Dprint("- Improvement pillaged at " .. plotKey)
-				break
-			end
-			local ownerID = plot:GetOwner()
-
-			if not RESOURCE_FROM_FRIENDS and ownerID ~= playerID then
-				-- Don't check for relation if we already know that resources are not shared
-				Dprint("- Can't access resource at " .. plotKey .. " (not in player territory and no access to friend resources from scenario setting)")
-				break
 			else
-				local bOnFriendlyTerritory = (ownerID == playerID)
-				if not bOnFriendlyTerritory then
-					if AreSameSide( ownerID, playerID) then
-						bOnFriendlyTerritory = true
+				local ownerID = plot:GetOwner()
+				Dprint("- Available resource found at " .. plotKey .. " check for relation with owner (id =" .. tostring(ownerID) ..")")
+
+				if not RESOURCE_FROM_FRIENDS and ownerID ~= playerID then
+					-- Don't check for relation if we already know that resources are not shared
+					Dprint("  - Can't access resource (not in player territory and no access to friend resources from scenario setting)")
+				else
+					local bOnFriendlyTerritory = (ownerID == playerID)
+					if not bOnFriendlyTerritory then
+						if AreSameSide( ownerID, playerID) then
+							bOnFriendlyTerritory = true
+						end
 					end
+				
+					if bOnFriendlyTerritory then
+						Dprint("  - Resource is on friendly territory, check for possible route")
+
+						local bCanGetRessource = false
+
+						if RESOURCE_CONNECTION == RESOURCE_OWNED_PLOTS then
+							Dprint("   - No connection required from scenario settings...")
+							-- that's the simpliest case !
+							bCanGetRessource = true
+
+						elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_CAPITAL then
+							-- check road connection between the resource plot and the capital...
+							Dprint("   - Looking for route to capital...")
+							local player = Players[playerID]
+							local capital = player:GetCapitalCity()
+							if capital then
+								bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Road", false, nil , NoResourcePath)
+							end
+
+						elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_CAPITAL then
+							-- check rails connection between the resource plot and the capital...
+							Dprint("   - Looking for rails to capital...")
+							local player = Players[playerID]
+							local capital = player:GetCapitalCity()
+							if capital then
+								bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Railroad", false, nil , NoResourcePath)
+							end
+
+						elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_ANY_CITY then
+							-- check road connection between the resource plot and any city...
+							Dprint("   - Looking for route to any city...")
+							local player = Players[playerID]
+							-- first check closest own cities
+							local closeCity = GetCloseCity ( playerID, plot )
+							if closeCity then
+								local cityPlot = closeCity:Plot()
+								-- first check the area, no need to calculate land path if not in the same land... 
+								bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , NoResourcePath) ) 
+							end	
+							-- then all own cities
+							if not bCanGetRessource then
+								for city in player:Cities() do
+									local cityPlot = city:Plot()
+									if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , NoResourcePath) ) then
+										bCanGetRessource = true
+										break
+									end	
+								end
+							end
+
+						elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_ANY_CITY then
+							-- check rails connection between the resource plot and any city...
+							Dprint("   - Looking for rails to any city...")
+							local player = Players[playerID]
+							-- first check closest own cities
+							local closeCity = GetCloseCity ( playerID, plot )
+							if closeCity then
+								local cityPlot = closeCity:Plot()
+								-- first check the area, no need to calculate land path if not in the same land... 
+								bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , NoResourcePath) ) 
+							end	
+							-- then all own cities
+							if not bCanGetRessource then
+								for city in player:Cities() do
+									local cityPlot = city:Plot()
+									if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , NoResourcePath) ) then
+										bCanGetRessource = true
+										break
+									end	
+								end
+							end
+						end
+				
+						if bCanGetRessource then
+							Dprint("   - Resource is connected, added to pool...")
+							local numAdded = MapModData.RED.ResourceMap[plotKey].Num * RESOURCE_PRODUCTION_FACTOR
+							numResource = numResource + numAdded
+							local source = Players[ownerID]:GetCivilizationShortDescription()
+							if procurementDetail[source] then
+								procurementDetail[source]= procurementDetail[source] + numAdded
+							else
+								procurementDetail[source]= numAdded
+							end
+						end
+					end				
 				end
-				
-				if bOnFriendlyTerritory then
-					Dprint("- Resource is on friendly territory at " .. plotKey .. " check for possible route")
-
-					local bCanGetRessource = false
-
-					if RESOURCE_CONNECTION == RESOURCE_OWNED_PLOTS then
-						Dprint("   - No connection required from scenario settings...")
-						-- that's the simpliest case !
-						bCanGetRessource = true
-
-					elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_CAPITAL then
-						-- check road connection between the resource plot and the capital...
-						Dprint("   - Looking for route to capital...")
-						local player = Players[playerID]
-						local capital = player:GetCapitalCity()
-						if capital then
-							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Road", false, nil , NoResourcePath)
-						end
-
-					elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_CAPITAL then
-						-- check rails connection between the resource plot and the capital...
-						Dprint("   - Looking for rails to capital...")
-						local player = Players[playerID]
-						local capital = player:GetCapitalCity()
-						if capital then
-							bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Railroad", false, nil , NoResourcePath)
-						end
-
-					elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_ANY_CITY then
-						-- check road connection between the resource plot and any city...
-						Dprint("   - Looking for route to any city...")
-						local player = Players[playerID]
-						-- first check closest own cities
-						local closeCity = GetCloseCity ( playerID, plot )
-						if closeCity then
-							local cityPlot = closeCity:Plot()
-							-- first check the area, no need to calculate land path if not in the same land... 
-							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , NoResourcePath) ) 
-						end	
-						-- then all own cities
-						if not bCanGetRessource then
-							for city in player:Cities() do
-								local cityPlot = city:Plot()
-								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Road", false, nil , NoResourcePath) ) then
-									bCanGetRessource = true
-									break
-								end	
-							end
-						end
-
-					elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_ANY_CITY then
-						-- check rails connection between the resource plot and any city...
-						Dprint("   - Looking for rails to any city...")
-						local player = Players[playerID]
-						-- first check closest own cities
-						local closeCity = GetCloseCity ( playerID, plot )
-						if closeCity then
-							local cityPlot = closeCity:Plot()
-							-- first check the area, no need to calculate land path if not in the same land... 
-							bCanGetRessource = ( cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , NoResourcePath) ) 
-						end	
-						-- then all own cities
-						if not bCanGetRessource then
-							for city in player:Cities() do
-								local cityPlot = city:Plot()
-								if ( city ~= closeCity and cityPlot:GetArea() == plot:GetArea() and isPlotConnected( player , plot, cityPlot, "Railroad", false, nil , NoResourcePath) ) then
-									bCanGetRessource = true
-									break
-								end	
-							end
-						end
-					end
-				
-					if bCanGetRessource then
-						Dprint("   - Resource is connected, added to pool...")
-						local numAdded = MapModData.RED.ResourceMap[plotKey].Num * RESOURCE_PRODUCTION_FACTOR
-						numResource = numResource + numAdded
-						local source = Players[ownerID]:GetCivilizationShortDescription()
-						if procurementDetail[source] then
-							procurementDetail[source]= procurementDetail[source] + numAdded
-						else
-							procurementDetail[source]= numAdded
-						end
-					end
-
-				end				
 			end
 		end
 	end

@@ -15,7 +15,23 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 	-- version history --
 
-v.41 
+v.41 (May 30, 2015):
+- Feature :
+	add bunker Improvements (asioasioasio Civ4 model converted by Ekmek)
+
+- Bug fix :
+	cities were not converted during Fall of Poland and Denmark
+	damage values were not correctly set on pillaged improvement
+	convoy move immediately after spawning (can't be blocked anymore by a smart player against the edge of the map)
+	do not stop adding resources to a player pool after testing a pillaged plot
+    
+- Balance :
+	mark convoy as "CIVILIAN_ATTACK_PRIORITY_HIGH" for the AI
+	add Fortification NW of Warsaw on the 39-45 Europe map
+	add Military Base for Strasbourg for the human players (it was already available to the AI) on the 39-45 Europe map
+	new routes in 1942 for U.K. and France (resources and military units from USA) on the 39-45 Europe map
+	defensive positions (Urban Area, Factories, Bunker, Fort, Citadel) are pillaged when an unit capture their position on enemy territory (but not when liberating territory)
+	lower strength of fortification units (from 50 to 40)
 	
 v.40 (May 25, 2015):
 -DLL : 
@@ -622,73 +638,60 @@ v0.1 (Jul 16, 2011):
 Formatted presentation for Steam Workshop
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine, with the following features :
+[h1]R.E.D. WWII Edition is a total conversion wargame[/h1]
+[quote][list]
+[*]Frontline: units can capture tiles (or liberate your allied/friends tiles)
+[*]Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat
+[*]Fuel: oil is stockpiled and some units are rationed when reserve are low with malus in movement and combat.  
+[*]Reinforcements: personnel and materiel are needed to 'heal' your units.
+[*]Retreat: units will retreat under heavy casualties.
+[*]National units: each great power have it's own set of units models
+[*]Convoy: automated naval units bringing resources, gold or new units to your coastal cities
+[*]Hotseat supported
+[/list][/quote]
 
-- Frontline: units can capture tiles (or liberate your allied/friends tiles)
-- Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat
-- Reinforcements: personnel and materiel are needed to "heal" your units.
-- Retreat: units will retreat under heavy casualties.
-- National units: each great power have it's own set of units models
-- Hotseat supported
+[h1]Important Note[/h1]
+[quote]The [url=http://steamcommunity.com/workshop/filedetails/?id=75520782]R.E.D. WWII Data Files[/url] mod must be activated to play this.
 
+All other mods and most DLC will be automatically deactivated to prevent potential incompatibilities. A few mods are marked as authorized.
 
+This mod use a custom DLL and so can only be used on Windows but you can found an older and Mac compatible version (v. 31 beta 4 with less advanced features) [url=forums.civfanatics.com/showpost.php?p=11745831&postcount=4]on civfanatics[/url]
 
-[b]Important Note[/b]
-=========================================================================
+New versions may brake saved games, always finish your previous game before updating
+[/quote]
 
-The R.E.D. WWII Data Files mod must be activated to play this. (You can find it in the R.E.D. WWII collection listed below the screenshots) 
+[h1]Installation[/h1]
+[quote]
+[olist]
+[*] Click the 'subscribe' button and go back in game, in the mod section, it will be downloaded automatically.
+[*] Disable all DLC (except the Mongol DLC) and any unhautorised mods. Don't worry, if you forgot to do it, the mod will deactivate theim and reinitialize to the main menu.
+[*] Once downloaded, click the checkbox on the right of the mod line to enabled it.
+[*] Get the [url=http://steamcommunity.com/sharedfiles/filedetails/?id=75520782 ]R.E.D. WWII Data Files mod[/url]  
+[*] Once you've enabled the 2 R.E.D. WWII mods click 'NEXT'
+[*] Click 'SINGLE PLAYER' then 'CUSTOM GAME', select 'R.E.D. WWII Edition' in the list and click 'LOAD MOD' (this step will be automated after your first game)
+[*] At this point the mod will deactivate all DLC and mods that are not required and will navigate back to the main menu if needed, just go in the mods menu and do step 5-6 again (this step will be automated after your first game)
+[*] Select a scenario or load a previously saved game (note that new version may break save games, always finish your game before updating)
+[/olist]
 
-All other mods will be automatically deactivated to prevent potential incompatibilities. A few mods are marked as authorized.
+[h1]PLEASE READ AND USE THE THREAD IN THE DISCUSSION SECTION IF YOU NEED HELP, ALL COMMENTS RELATED TO INSTALLATION PROBLEMS WILL BE DELETED.[/h1]
 
+See also [url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url] on CivFanatics
 
+The mod copy a few files in the game's folder to prevent a crash when disabling the DLCs. To uninstall , simply unsubscribe and delete the [b]RED_WWII[/b] folder in [i]"..Steam\steamapps\common\sid meier's civilization v\Assets\DLC"[/i]
+[/quote]
 
-[b]Installation[/b]
-=========================================================================
+[h1]Scenarios[/h1]
+[quote]Some scenarios have been disabled because they have not been updated since a long time and may cause bugs and crashes, now that you are warned, you can enable them following the instructions [url=http://steamcommunity.com/workshop/filedetails/discussion/75522294/617336568075278406/]here[/url]
+[list]
+[*][b]Stalingrad[/b] (map size: small) : Play as Germany or U.S.S.R. for the control of Stalingrad
+[*][b]Europe 1939-1945[/b] (map size : large) : Play as Germany, Greece, Italy, France, U.K. or U.S.S.R. on the European and North African theatre.
+[/list]
+[/quote]
 
-- Click the 'subscribe' button and go back in game, in the mod section, it will be downloaded automatically.
-- Once downloaded, click the checkbox on the right of the mod line to enabled it.
-- Get the [url=http://steamcommunity.com/sharedfiles/filedetails/?id=75520782 ]R.E.D. WWII Data Files mod[/url]  
-- Once you've enabled the 2 R.E.D. WWII mods click "next"
-
-If you don't have G+K, a file must be manually installed, else you'll  get a DLL error message, see [url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url]
-
-
-
-[b]Scenarios[/b]
-=========================================================================
-
-- Stalingrad (map size: small) : Play as Germany or U.S.S.R. for the control of Stalingrad
-
-- Europe 1939-1945 (map size : large) : Play as Germany, Greece, Italy, France, U.K. or U.S.S.R. on the European and North African theatre.
-
-- Earth 1942 (map size: giant) by T_KCommanderbly : Take control of China, Germany, Italy, Japan, France, U.K., U.S.A or U.S.S.R. on a giant earth map (min. config.: quadcore CPU and 8GB RAM on 64 bits OS)
-
-
-
-[b]Troubleshooting[/b]
-=========================================================================
-
-If the mod is not downloaded automatically even after unsubscribing/restarting the game, here's detailled instructions to reset the download and try again.
-
-- first:
-[url=https://support.steampowered.com/kb_article.php?ref=2037-QEUH-3335 ]Check your game files integrity[/url].
-
-- second:
-Delete all the content of the civ5 cache folder (\My Documents\My Games\Sid Meier's Civilization 5\cache)
-Go into your civ5 mods folder (\My Documents\My Games\Sid Meier's Civilization 5\MODS) and delete any file or folder named 'R.E.D. WWII Edition' or 'R.E.D. WWII Data File' depending of which one has failed to download/extract/update.
-
-
-[b]Feedback, bug reports & detailled informations[/b]
-=========================================================================
-
-Thanks to Civfanatics, R.E.D. WWII has it's [url=http://forums.civfanatics.com/forumdisplay.php?f=471 ]own subforum there[/url], with more informations on scenarios, concepts, what's planned, etc... 
+[h1]Feedback, bug reports and detailled informations[/h1]
+[quote][url=http://forums.civfanatics.com/forumdisplay.php?f=471 ]R.E.D. WWII subforum on Civfanatics[/url]
 
 [url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url]
 [url=http://forums.civfanatics.com/showthread.php?t=431344 ]Development discussion[/url] 
-[url=http://forums.civfanatics.com/showthread.php?t=436077 ]Current features[/url] 
-
-
-[b]Credits[/b]
-=========================================================================
-
-see the full [url=http://forums.civfanatics.com/showthread.php?t=484955 ]credits list[/url].
+[url=http://forums.civfanatics.com/showthread.php?t=436077 ]Features[/url] 
+[url=http://forums.civfanatics.com/showthread.php?t=484955 ]Credits list[/url][/quote]

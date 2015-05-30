@@ -196,6 +196,31 @@ LOCAL_PLAYER = Game.GetActivePlayer
 BARBARIAN_PLAYER = GameDefines.MAX_CIV_PLAYERS
 --HANDICAP = modUserData.GetValue ("Handicap")
 
+----------------------------------------------------------------------------------------------------------------------------
+-- AI Tactical enum (MUST be identical to DLL)
+----------------------------------------------------------------------------------------------------------------------------
+AI_TACTICAL_TARGET_NONE							= 0
+AI_TACTICAL_TARGET_CITY							= 1
+AI_TACTICAL_TARGET_BARBARIAN_CAMP				= 2
+AI_TACTICAL_TARGET_IMPROVEMENT					= 3
+AI_TACTICAL_TARGET_BLOCKADE_RESOURCE_POINT		= 4
+AI_TACTICAL_TARGET_LOW_PRIORITY_UNIT			= 5		-- Can't attack one of our cities
+AI_TACTICAL_TARGET_MEDIUM_PRIORITY_UNIT			= 6		-- Can damage one of our cities
+AI_TACTICAL_TARGET_HIGH_PRIORITY_UNIT			= 7		-- Can contribute to capturing one of our cities
+AI_TACTICAL_TARGET_CITY_TO_DEFEND				= 8
+AI_TACTICAL_TARGET_IMPROVEMENT_TO_DEFEND		= 9
+AI_TACTICAL_TARGET_DEFENSIVE_BASTION			= 10
+AI_TACTICAL_TARGET_ANCIENT_RUINS				= 11
+AI_TACTICAL_TARGET_BOMBARDMENT_ZONE				= 12	-- Used for naval bombardment operation
+AI_TACTICAL_TARGET_EMBARKED_MILITARY_UNIT		= 13
+AI_TACTICAL_TARGET_EMBARKED_CIVILIAN			= 14
+AI_TACTICAL_TARGET_VERY_HIGH_PRIORITY_CIVILIAN	= 15
+AI_TACTICAL_TARGET_HIGH_PRIORITY_CIVILIAN		= 16
+AI_TACTICAL_TARGET_MEDIUM_PRIORITY_CIVILIAN		= 17
+AI_TACTICAL_TARGET_LOW_PRIORITY_CIVILIAN		= 18
+
+
+
 --[[
 ****************************************************************************************************************************
 All values used below can be overriden by scenario specific values.

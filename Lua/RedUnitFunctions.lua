@@ -34,6 +34,7 @@ function UnitCaptureTile(playerID, UnitID, x, y)
 
 	local plotKey = GetPlotKey ( plot )
 	local ownerID = plot:GetOwner()
+	
 
 	-- If the unit is moving on another player territory...
 	if (playerID ~= ownerID and ownerID ~= -1) then
@@ -48,6 +49,7 @@ function UnitCaptureTile(playerID, UnitID, x, y)
 		if team:IsAtWar( player2:GetTeam() ) then
 			Dprint(" - Unit owner (id="..playerID..") and tile owner (id="..ownerID..") are at war", bDebug)
 			firstOwner = GetPlotFirstOwner( plotKey )	
+			local bPillageDefense = false
 					
 			if (firstOwner == -1) then
 				firstOwner = ownerID -- assume that current owner is also the first owner when there wasn't one on map initialization
@@ -58,12 +60,14 @@ function UnitCaptureTile(playerID, UnitID, x, y)
 				Dprint(" - Unit is liberating it's own territory", bDebug)
 				g_FixedPlots[plotKey] = true
 				plot:SetOwner(playerID, -1 )
+				--bPillageDefense = true
 
 			-- capturing current owner territory			
 			elseif ( ownerID == firstOwner) then
 				Dprint(" - Unit is capturing territory", bDebug)				
 				g_FixedPlots[plotKey] = true
 				plot:SetOwner(playerID, -1 )
+				bPillageDefense = true
 
 			else
 				-- don't free old owner territory if we're at war !
@@ -72,21 +76,31 @@ function UnitCaptureTile(playerID, UnitID, x, y)
 					Dprint(" - Unit is capturing territory, old owner civ (id=".. firstOwner ..") is also at war with unit owner", bDebug)
 					g_FixedPlots[plotKey] = true
 					plot:SetOwner(playerID, -1 )
+					bPillageDefense = true
 
 				elseif ( not player3:IsAlive() ) then
 					Dprint(" - Unit is capturing territory, old owner civ (id=".. firstOwner ..") is dead", bDebug)
 					g_FixedPlots[plotKey] = true
 					plot:SetOwner(playerID, -1 )
+					bPillageDefense = true
 
 				else
 				-- liberating old owner territory
 					Dprint(" - Unit is liberating this territory belonging to another civ (id=".. firstOwner ..")", bDebug)
 					g_FixedPlots[plotKey] = true
-					plot:SetOwner(firstOwner, -1 )	
+					plot:SetOwner(firstOwner, -1 )
+					--bPillageDefense = true
 
 					if player3:IsMinorCiv() and not player:IsMinorCiv() then
 						player3:ChangeMinorCivFriendshipWithMajor( playerID, LIBERATE_MINOR_TERRITORY_BONUS ) -- give diplo bonus for liberating minor territory
 					end
+				end
+			end
+			if bPillageDefense then -- defensive improvement are damaged if we're capturing territory
+				local improvementType = plot:GetImprovementType()
+				if improvementType ~= -1 and (not plot:IsImprovementPillaged()) and GameInfo.Improvements[improvementType].DefenseModifier > 0 then
+					plot:SetImprovementPillaged( true )
+					SetPillageDamage (plot:GetX(), plot:GetY(), true, false, UnitID, playerID)
 				end
 			end
 		end
@@ -979,6 +993,7 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 		unit:SetMadeAttack(true) -- will be set to false when needed in counter-fire / first strike functions in RedCombat.lua
 	end
 
+	--[[
 	-- Place fort under airport
 	if unitType == AIRFIELD then
 		local plot = unit:GetPlot()
@@ -997,6 +1012,7 @@ function RegisterNewUnit(playerID, unit, bNoAutoNaming) -- unit is object, not I
 			plot:SetImprovementType(citadelType)
 		end
 	end
+	--]]
 
 	LuaEvents.NewUnitCreated()
 end
@@ -1132,7 +1148,7 @@ function InitializeOOB ()
 				Dprint("Placing ".. oob.Name, bDebug)
 				if oob.Domain == "Land" or  oob.Domain == "Sea" then
 					PlaceUnits(oob)
-				elseif oob.Domain == "Air" then
+				elseif oob.Domain == "Air" or oob.Domain == "City" then
 					PlaceAirUnits(oob)
 				else
 					Dprint("WARNING, domain is not valid : ".. oob.Domain, bDebug)
@@ -1144,7 +1160,7 @@ function InitializeOOB ()
 		end
 		for player, plotkey in pairs(dominanceZone) do
 			Dprint("Set dominance zone for ".. player:GetName() .. " at " .. plotkey, bDebug)
-			player:AddTemporaryDominanceZone (GetPlotXYFromKey (plotkey))
+			player:AddTemporaryDominanceZone (GetPlotXYFromKey (plotkey), AI_TACTICAL_TARGET_CITY)
 		end
 		Dprint("-------------------------------------", bDebug)
 		Dprint("End of Order of Battle initialization ...", bDebug)
@@ -1181,16 +1197,16 @@ function SpawnReinforcements(playerID)
 							Dprint("Placing ".. oob.Name, bDebug)
 							if oob.Domain == "Land" or  oob.Domain == "Sea" then
 								PlaceUnits(oob)
-							elseif oob.Domain == "Air" then
+							elseif oob.Domain == "Air" or oob.Domain == "City" then
 								PlaceAirUnits(oob)
 							else
 								Dprint("WARNING, domain is not valid : ".. oob.Domain, bDebug)
 							end
 						end
 					end					
-					--if oob.InitialObjective then
-					--	player:AddTemporaryDominanceZone (GetPlotXYFromKey ( oob.InitialObjective ))
-					--end
+					if oob.InitialObjective then
+						player:AddTemporaryDominanceZone (GetPlotXYFromKey ( oob.InitialObjective ), AI_TACTICAL_TARGET_CITY)
+					end
 				end
 			end
 			Dprint("-------------------------------------", bDebug)
@@ -1446,9 +1462,9 @@ function LaunchUnits(militaryOperation)
 				end
 			end
 										
-			--if oob.InitialObjective then
-			--	player:AddTemporaryDominanceZone (GetPlotXYFromKey ( oob.InitialObjective ))
-			--end
+			if oob.InitialObjective then
+				player:AddTemporaryDominanceZone (GetPlotXYFromKey ( oob.InitialObjective ), AI_TACTICAL_TARGET_CITY)
+			end
 
 			if placedUnits < #oob.Group then
 				Dprint("- WARNING : asked to place " ..  tostring(#oob.Group) .. " units, but found valid plots for only " .. tostring(placedUnits))
