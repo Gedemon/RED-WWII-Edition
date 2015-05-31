@@ -837,8 +837,34 @@ function PlayerCacheTrainingRestriction(iPlayer)
 	if player ~= nil and player:IsAlive() and (not player:IsBarbarian()) then
 		for unitInfo in GameInfo.Units() do
 			local iUnitType = unitInfo.ID
-			g_TrainingRestriction[iUnitType] = g_TrainingRestriction[iUnitType] or {} -- initialize this entry if not already filled	
-			g_TrainingRestriction[iUnitType][iPlayer] = CachePlayerTrainingRestriction(iPlayer, iUnitType)
+			if PlayerCanEverBuild(iPlayer, iUnitType) then
+				g_TrainingRestriction[iUnitType] = g_TrainingRestriction[iUnitType] or {} -- initialize this entry if not already filled	
+				g_TrainingRestriction[iUnitType][iPlayer] = CachePlayerTrainingRestriction(iPlayer, iUnitType)
+			end
+		end
+	end
+end
+
+
+function PlayerCanEverBuild(iPlayer, iUnitType)
+	local player = Players[iPlayer]
+	if not player:IsMinorCiv() then
+		local civID = GetCivIDFromPlayerID(iPlayer, false)
+		local allowedTable = g_Major_Units[civID]
+		if (allowedTable) then
+			for i, allowedType in pairs (allowedTable) do
+				if (allowedType == iUnitType) then
+					g_UnitRestrictionString = "No restriction, found in allowed table for major civs."
+					return true
+				end
+			end
+		end
+	else	
+		for i, allowedType in pairs (g_Minor_Units) do
+			if (allowedType == iUnitType) then
+				g_UnitRestrictionString = "No restriction, found in allowed table for minor civs."
+				return true
+			end
 		end
 	end
 end

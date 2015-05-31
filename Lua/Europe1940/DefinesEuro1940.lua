@@ -62,38 +62,38 @@ end
 -- Must be scenario specific to allow replacing of a major civ reference by a minor...
 ----------------------------------------------------------------------------------------------------------------------------
 
-ALBANIA = GameInfo.MinorCivilizations.MINOR_CIV_ALBANIA.ID
-ALGERIA = GameInfo.MinorCivilizations.MINOR_CIV_ALGERIA.ID
-ARABIA = GameInfo.MinorCivilizations.MINOR_CIV_ARABIA.ID
-BALTIC = GameInfo.MinorCivilizations.MINOR_CIV_BALTIC_STATES.ID
-BELGIUM = GameInfo.MinorCivilizations.MINOR_CIV_BELGIUM.ID
-BULGARIA = GameInfo.MinorCivilizations.MINOR_CIV_BULGARIA.ID
-DENMARK = GameInfo.MinorCivilizations.MINOR_CIV_DENMARK.ID
-EGYPT = GameInfo.MinorCivilizations.MINOR_CIV_EGYPT.ID
-FINLAND = GameInfo.MinorCivilizations.MINOR_CIV_FINLAND.ID
-HUNGARY = GameInfo.MinorCivilizations.MINOR_CIV_HUNGARY.ID
-IRAN = GameInfo.MinorCivilizations.MINOR_CIV_IRAN.ID
-IRAQ = GameInfo.MinorCivilizations.MINOR_CIV_IRAQ.ID
-IRELAND = GameInfo.MinorCivilizations.MINOR_CIV_IRELAND.ID
-LEBANON = GameInfo.MinorCivilizations.MINOR_CIV_LEBANON.ID
-LIBYA = GameInfo.MinorCivilizations.MINOR_CIV_LIBYA.ID
-MOROCCO = GameInfo.MinorCivilizations.MINOR_CIV_MOROCCO.ID
+ALBANIA		= GameInfo.MinorCivilizations.MINOR_CIV_ALBANIA.ID
+ALGERIA		= GameInfo.MinorCivilizations.MINOR_CIV_ALGERIA.ID
+ARABIA		= GameInfo.MinorCivilizations.MINOR_CIV_ARABIA.ID
+BALTIC		= GameInfo.MinorCivilizations.MINOR_CIV_BALTIC_STATES.ID
+BELGIUM		= GameInfo.MinorCivilizations.MINOR_CIV_BELGIUM.ID
+BULGARIA	= GameInfo.MinorCivilizations.MINOR_CIV_BULGARIA.ID
+DENMARK		= GameInfo.MinorCivilizations.MINOR_CIV_DENMARK.ID
+EGYPT		= GameInfo.MinorCivilizations.MINOR_CIV_EGYPT.ID
+FINLAND		= GameInfo.MinorCivilizations.MINOR_CIV_FINLAND.ID
+HUNGARY		= GameInfo.MinorCivilizations.MINOR_CIV_HUNGARY.ID
+IRAN		= GameInfo.MinorCivilizations.MINOR_CIV_IRAN.ID
+IRAQ		= GameInfo.MinorCivilizations.MINOR_CIV_IRAQ.ID
+IRELAND		= GameInfo.MinorCivilizations.MINOR_CIV_IRELAND.ID
+LEBANON		= GameInfo.MinorCivilizations.MINOR_CIV_LEBANON.ID
+LIBYA		= GameInfo.MinorCivilizations.MINOR_CIV_LIBYA.ID
+MOROCCO		= GameInfo.MinorCivilizations.MINOR_CIV_MOROCCO.ID
 NETHERLANDS = GameInfo.MinorCivilizations.MINOR_CIV_NETHERLANDS.ID
-NORWAY = GameInfo.MinorCivilizations.MINOR_CIV_NORWAY.ID
-PALESTINE = GameInfo.MinorCivilizations.MINOR_CIV_PALESTINE.ID
-POLAND = GameInfo.MinorCivilizations.MINOR_CIV_POLAND.ID
-PORTUGAL = GameInfo.MinorCivilizations.MINOR_CIV_PORTUGAL.ID
-ROMANIA = GameInfo.MinorCivilizations.MINOR_CIV_ROMANIA.ID
-SLOVAKIA = GameInfo.MinorCivilizations.MINOR_CIV_SLOVAKIA.ID
-SPAIN = GameInfo.MinorCivilizations.MINOR_CIV_SPAIN.ID
-SWEDEN = GameInfo.MinorCivilizations.MINOR_CIV_SWEDEN.ID
+NORWAY		= GameInfo.MinorCivilizations.MINOR_CIV_NORWAY.ID
+PALESTINE	= GameInfo.MinorCivilizations.MINOR_CIV_PALESTINE.ID
+POLAND		= GameInfo.MinorCivilizations.MINOR_CIV_POLAND.ID
+PORTUGAL	= GameInfo.MinorCivilizations.MINOR_CIV_PORTUGAL.ID
+ROMANIA		= GameInfo.MinorCivilizations.MINOR_CIV_ROMANIA.ID
+SLOVAKIA	= GameInfo.MinorCivilizations.MINOR_CIV_SLOVAKIA.ID
+SPAIN		= GameInfo.MinorCivilizations.MINOR_CIV_SPAIN.ID
+SWEDEN		= GameInfo.MinorCivilizations.MINOR_CIV_SWEDEN.ID
 SWITZERLAND = GameInfo.MinorCivilizations.MINOR_CIV_SWITZERLAND.ID
-SYRIA = GameInfo.MinorCivilizations.MINOR_CIV_SYRIA.ID
-TUNISIA = GameInfo.MinorCivilizations.MINOR_CIV_TUNISIA.ID
-TURKEY = GameInfo.MinorCivilizations.MINOR_CIV_TURKEY.ID
-VICHY = GameInfo.MinorCivilizations.MINOR_CIV_VICHY.ID
-TUNISIA = GameInfo.MinorCivilizations.MINOR_CIV_TUNISIA.ID
-YUGOSLAVIA = GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
+SYRIA		= GameInfo.MinorCivilizations.MINOR_CIV_SYRIA.ID
+TUNISIA		= GameInfo.MinorCivilizations.MINOR_CIV_TUNISIA.ID
+TURKEY		= GameInfo.MinorCivilizations.MINOR_CIV_TURKEY.ID
+VICHY		= GameInfo.MinorCivilizations.MINOR_CIV_VICHY.ID
+TUNISIA		= GameInfo.MinorCivilizations.MINOR_CIV_TUNISIA.ID
+YUGOSLAVIA	= GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
 
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ g_Units_Maintenance_Modifier = {
 }
 
 -- Available units for minor civs
-g_Minor_Units = {INFANTRY, ARTILLERY, AT_GUN, AA_GUN, PARATROOPER, LIGHT_TANK, TANK}
+g_Minor_Units = {}
 
 -- unit type called when AI need reserve troops
 g_Reserve_Unit = {
@@ -193,8 +193,8 @@ g_Max_Air_SubClass_Percent = {
 -- group size = 7 units max placed in (and around) plot (x,y), except air placed only in central plot (should be city plot)
 -- we can initialize any units for anyone here, no restriction by nation like in build list
 g_Initial_OOB = { 
-	{Name = "French north army", X = 33, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_AMR35, FR_B1, FR_S35} },
-	{Name = "French south army", X = 30, Y = 35, Domain = "Land", AI = true, CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_CHAR_D1} },
+	{Name = "French north army", X = 33, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_AMR35, FR_B1, FR_S35, AT_GUN} },
+	{Name = "French south army", X = 30, Y = 35, Domain = "Land", AI = true, CivID = FRANCE, Group = {FR_INFANTRY, FR_INFANTRY, FR_CHAR_D1, AT_GUN} },
 	{Name = "French metr. aviation", X = 28, Y = 45, Domain = "Air", CivID = FRANCE, Group = {FR_MS406, FR_MB152 } },
 	{Name = "French metr. aviation AI Bonus", X = 28, Y = 45, Domain = "Air", AI = true, CivID = FRANCE, Group = {FR_HAWK75, FR_HAWK75 } },
 	{Name = "French Mediteranean fleet", X = 28, Y = 30, Domain = "Sea", CivID = FRANCE, Group = {FR_FANTASQUE, FR_FANTASQUE, FR_SUBMARINE, FR_GALISSONIERE, FR_GALISSONIERE, FR_BATTLESHIP, FR_BATTLESHIP_2} },
@@ -204,7 +204,7 @@ g_Initial_OOB = {
 	{Name = "French Syria aviation", X = 84, Y = 12, Domain = "Air", CivID = FRANCE, Group = {FR_MS406} },
 	{Name = "French Oceanic fleet", X = 16, Y = 44, Domain = "Sea", CivID = FRANCE, Group = {FR_FANTASQUE, FR_FANTASQUE, FR_GALISSONIERE, FR_SUBMARINE, FR_SUBMARINE, FR_GALISSONIERE, FR_BATTLESHIP} },
 
-	{Name = "England Metropole army", X = 27, Y = 54, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH} },
+	{Name = "England Metropole army", X = 27, Y = 54, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH, AT_GUN} },
 	{Name = "England Exped. corp Netherlands", X = 26, Y = 52, Domain = "Land", AI = true, CivID = ENGLAND, Group = {UK_INFANTRY, UK_INFANTRY, UK_MATILDA_I, UK_MATILDA_II} },
 	{Name = "England Exped. corp Belgium", X = 24, Y = 53, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH} },
 	{Name = "England Exped. corp Egypt", X = 63, Y = 2, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_CRUISER_I, UK_VICKERS_MK6B} },
@@ -219,25 +219,25 @@ g_Initial_OOB = {
 	{Name = "England East Mediterranean fleet", X = 66, Y = 7, Domain = "Sea", CivID = ENGLAND, Group = {UK_TRIBA, UK_DIDO, UK_SUBMARINE, UK_ELIZABETH} },
 	{Name = "England Home fleet AI Bonus", X = 34, Y = 66, Domain = "Sea", AI = true, CivID = ENGLAND, Group = {UK_TRIBA, UK_TRIBA, UK_DIDO, UK_DIDO} },
 
-	{Name = "USSR central army", X = 75, Y = 48, Domain = "Land", CivID = USSR, Group = {RU_INFANTRY, RU_INFANTRY, RU_INFANTRY, RU_BT2, RU_T26, RU_T28} },
-	{Name = "USSR moscow army", X = 67, Y = 57, Domain = "Land", AI = true, CivID = USSR, Group = {RU_INFANTRY, RU_INFANTRY, RU_INFANTRY, RU_BT2, RU_BT2, RU_T28} },
+	{Name = "USSR central army", X = 75, Y = 48, Domain = "Land", CivID = USSR, Group = {RU_INFANTRY, RU_INFANTRY, RU_INFANTRY, RU_BT2, RU_T26, RU_T28, RU_ARTILLERY} },
+	{Name = "USSR moscow army", X = 67, Y = 57, Domain = "Land", AI = true, CivID = USSR, Group = {RU_INFANTRY, RU_INFANTRY, RU_INFANTRY, RU_BT2, AT_GUN, RU_T28, RU_ARTILLERY} },
 	{Name = "USSR central aviation", X = 72, Y = 58, Domain = "Air", CivID = USSR, Group = {RU_I16, RU_I16} },
 	{Name = "USSR central aviation AI Bonus", X = 72, Y = 58, Domain = "Air", AI = true,CivID = USSR, Group = {RU_I16, RU_I16, RU_TB3, RU_TB3 } },
 	{Name = "USSR South fleet", X = 69, Y = 32, Domain = "Sea", CivID = USSR, Group = {RU_GANGUT, RU_GANGUT, RU_KIROV, RU_GNEVNY} },
 	{Name = "USSR North fleet", X = 67, Y = 87, Domain = "Sea", CivID = USSR, Group = {RU_GANGUT, RU_SUBMARINE, RU_GNEVNY} },
 	{Name = "USSR Central fleet", X = 52, Y = 62, Domain = "Sea", AI = true, CivID = USSR, Group = {RU_GANGUT, RU_KIROV, RU_GNEVNY} },
 
-	{Name = "German central army", X = 42, Y = 46, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, GE_PANZER_III} },
-	{Name = "German north army", X = 42, Y = 50, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, GE_PANZER_III} },
-	{Name = "German east army", X = 48, Y = 46, Domain = "Land", AI = true, CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, GE_PANZER_III} },
+	{Name = "German central army", X = 42, Y = 46, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
+	{Name = "German north army", X = 42, Y = 50, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
+	{Name = "German east army", X = 48, Y = 46, Domain = "Land", AI = true, CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
 	{Name = "German Luftwaffe", X = 44, Y = 50, Domain = "Air", CivID = GERMANY, Group = {GE_BF109, GE_BF109, GE_HE111, GE_HE111, GE_JU87, GE_JU87, GE_JU87} },
 	{Name = "German Luftwaffe AI Bonus", X = 44, Y = 50, Domain = "Air", AI = true, CivID = GERMANY, Group = {GE_BF109, GE_BF109, GE_HE111, GE_JU87} },
 	{Name = "German Fleet", X = 47, Y = 54, Domain = "Sea", CivID = GERMANY, Group = {GE_BATTLESHIP_2, GE_DESTROYER, GE_BATTLESHIP, GE_DESTROYER} },
 	{Name = "German Submarine Fleet", X = 10, Y = 72, Domain = "Sea", CivID = GERMANY, Group = { GE_SUBMARINE, GE_SUBMARINE, GE_SUBMARINE, GE_DESTROYER, GE_DEUTSCHLAND} },
 	{Name = "German Fleet AI bonus", X = 38, Y = 61, Domain = "Sea", AI = true, CivID = GERMANY, Group = { GE_LEIPZIG, GE_DESTROYER, GE_DESTROYER, GE_DESTROYER} },
 
-	{Name = "Italian army", X = 37, Y = 33, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_M11_39, IT_L6_40, IT_L6_40, IT_INFANTRY, IT_INFANTRY} },
-	{Name = "Italian colonial army", X = 53, Y = 5, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_INFANTRY, IT_M11_39, IT_M11_39, IT_L6_40, IT_L6_40} },
+	{Name = "Italian army", X = 37, Y = 33, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_M11_39, IT_INFANTRY, IT_L6_40, AT_GUN, ARTILLERY} },
+	{Name = "Italian colonial army", X = 53, Y = 5, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_INFANTRY, IT_M11_39, AT_GUN, IT_L6_40, ARTILLERY} },
 	{Name = "Italian air", X = 39, Y = 28, Domain = "Air", CivID = ITALY, Group = {IT_CR42, IT_CR42, IT_CR42} },
 	{Name = "Italian air AI Bonus", X = 39, Y = 28, Domain = "Air", AI = true, CivID = ITALY, Group = {IT_CR42, IT_SM79, IT_SM79} },
 	{Name = "Italian fleet", X = 39, Y = 24, Domain = "Sea", CivID = ITALY, Group = {IT_SOLDATI, IT_SOLDATI, IT_ZARA, IT_DI_CAVOUR, IT_SUBMARINE, IT_BATTLESHIP} },
@@ -272,23 +272,35 @@ end
 
 
 g_MinorMobilization_OOB = { 
-	{Name = "Poland army", X = 53, Y = 46, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
-	{Name = "Poland fortification", X = 52, Y = 49, Domain = "Land", CivID = POLAND, IsMinor = true, Group = {FORTIFIED_GUN}, UnitsName = {"Twierdza Modlin"}, },
-	{Name = "Poland air force", X = 53, Y = 48, Domain = "Air", CivID = POLAND, IsMinor = true, Group = {PL_PZL37, PL_P11, PL_P11, PL_P11} },
-	{Name = "Poland fleet", X = 51, Y = 56, Domain = "Sea", CivID = POLAND, IsMinor = true, Group = {PL_SUBMARINE} },
-	{Name = "Belgian army", X = 32, Y = 49, Domain = "City", CivID = BELGIUM, IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
-	{Name = "Netherlands army", X = 34, Y = 52, Domain = "City", CivID = NETHERLANDS, IsMinor = true, Group = {DU_INFANTRY, AT_GUN, DU_VICKERS_M1936, DU_MTSL, ARTILLERY} },
-	{Name = "Netherlands air force", X = 34, Y = 52, Domain = "Air", CivID = NETHERLANDS, IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
-	{Name = "Finland army", X = 59, Y = 68, Domain = "Land", CivID = FINLAND, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
-	{Name = "Slovakia army", X = 53, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
-	{Name = "Slovakia army 2", X = 50, Y = 42, Domain = "Land", CivID = SLOVAKIA, IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, AT_GUN} },
-	{Name = "Romania army", X = 59, Y = 36, Domain = "Land", CivID = ROMANIA, IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, INFANTRY, RO_TACAM, ARTILLERY} },
-	{Name = "Yugoslavia army", X = 53, Y = 30, Domain = "Land", CivID = YUGOSLAVIA, IsMinor = true, Group = {INFANTRY, INFANTRY, AT_GUN, INFANTRY, YU_SKODA, YU_SKODA, ARTILLERY} },
-	{Name = "Bulgaria army", X = 61, Y = 29, Domain = "Land", CivID = BULGARIA, IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, ARTILLERY} },
-	{Name = "Hungary army", X = 52, Y = 39, Domain = "Land", CivID = HUNGARY, IsMinor = true, Group = {HU_INFANTRY, HU_INFANTRY, HU_INFANTRY, HU_38M_TOLDI, HU_38M_TOLDI, HU_40M_TURAN, ARTILLERY} },
-	{Name = "Hungary air force", X = 51, Y = 38, Domain = "Air", CivID = HUNGARY, IsMinor = true, Group = {HU_RE2000, HU_RE2000, HU_CA135} },
-	{Name = "Sweden army", X = 45, Y = 60, Domain = "Land", CivID = SWEDEN, IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, ARTILLERY} },
-	{Name = "Spanish army", X = 13, Y = 30, Domain = "Land", CivID = SPAIN, IsMinor = true, Group = {SP_INFANTRY, AT_GUN, SP_INFANTRY, AT_GUN, SP_INFANTRY, ARTILLERY} },
+	{Name = "Poland army",			X = 53, Y = 46,		Domain = "Land",	CivID = POLAND,		IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
+	{Name = "Poland fortification", X = 52, Y = 49,		Domain = "Land",	CivID = POLAND,		IsMinor = true, Group = {FORTIFIED_GUN}, UnitsName = {"Twierdza Modlin"}, },
+	{Name = "Poland air force",		X = 53, Y = 48,		Domain = "Air",		CivID = POLAND,		IsMinor = true, Group = {PL_PZL37, PL_P11, PL_P11, PL_P11} },
+	{Name = "Poland fleet",			X = 51, Y = 56,		Domain = "Sea",		CivID = POLAND,		IsMinor = true, Group = {PL_SUBMARINE} },
+	{Name = "Belgian army",			X = 32, Y = 49,		Domain = "City",	CivID = BELGIUM,	IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
+	{Name = "Netherlands army",		X = 34, Y = 52,		Domain = "City",	CivID = NETHERLANDS,IsMinor = true, Group = {DU_INFANTRY, AT_GUN, DU_VICKERS_M1936, DU_MTSL, ARTILLERY} },
+	{Name = "Netherlands AF",		X = 34, Y = 52,		Domain = "Air",		CivID = NETHERLANDS,IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
+	{Name = "Finland army",			X = 59, Y = 68,		Domain = "Land",	CivID = FINLAND,	IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
+	{Name = "Slovakia army",		X = 53, Y = 42,		Domain = "Land",	CivID = SLOVAKIA,	IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
+	{Name = "Slovakia army 2",		X = 50, Y = 42,		Domain = "Land",	CivID = SLOVAKIA,	IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, AT_GUN} },
+	{Name = "Romania army",			X = 59, Y = 36,		Domain = "Land",	CivID = ROMANIA,	IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, INFANTRY, RO_TACAM, ARTILLERY} },
+	{Name = "Yugoslavia army",		X = 53, Y = 30,		Domain = "Land",	CivID = YUGOSLAVIA,	IsMinor = true, Group = {INFANTRY, INFANTRY, AT_GUN, INFANTRY, YU_SKODA, YU_SKODA, ARTILLERY} },
+	{Name = "Bulgaria army",		X = 61, Y = 29,		Domain = "Land",	CivID = BULGARIA,	IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Hungary army",			X = 52, Y = 39,		Domain = "Land",	CivID = HUNGARY,	IsMinor = true, Group = {HU_INFANTRY, HU_INFANTRY, HU_INFANTRY, HU_38M_TOLDI, HU_38M_TOLDI, HU_40M_TURAN, ARTILLERY} },
+	{Name = "Hungary air force",	X = 51, Y = 38,		Domain = "Air",		CivID = HUNGARY,	IsMinor = true, Group = {HU_RE2000, HU_RE2000, HU_CA135} },
+	{Name = "Sweden army",			X = 45, Y = 60,		Domain = "Land",	CivID = SWEDEN,		IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, ARTILLERY} },
+	{Name = "Spanish army",			X = 13, Y = 30,		Domain = "Land",	CivID = SPAIN,		IsMinor = true, Group = {SP_INFANTRY, AT_GUN, SP_INFANTRY, AT_GUN, SP_INFANTRY, ARTILLERY} },
+	
+	{Name = "Generic army",			X = 36, Y = 40,		Domain = "City",	CivID = SWITZERLAND,IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 7, Y = 30,		Domain = "City",	CivID = PORTUGAL,	IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 97, Y = 3,		Domain = "City",	CivID = ARABIA,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 66, Y = 24,		Domain = "City",	CivID = TURKEY,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 73, Y = 22,		Domain = "City",	CivID = TURKEY,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 40, Y = 59,		Domain = "City",	CivID = DENMARK,	IsMinor = true, Group = {INFANTRY, AT_GUN} },
+	{Name = "Generic army",			X = 43, Y = 57,		Domain = "City",	CivID = DENMARK,	IsMinor = true, Group = {INFANTRY, AA_GUN} },
+	{Name = "Generic army",			X = 101, Y = 20,	Domain = "City",	CivID = IRAN,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 20, Y = 59,		Domain = "City",	CivID = IRELAND,	IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 44, Y = 66,		Domain = "City",	CivID = NORWAY,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+
 }
 
 ---------------------------------------------------------------------------------------------------------------------------

@@ -10,6 +10,41 @@ print("-------------------------------------")
 -----------------------------------------
 -- Functions override
 -----------------------------------------
+function RemoveHiddenCivs()
+	Dprint("-------------------------------------")
+	Dprint("Remove starting units from hidden minor civs ...")
+	for playerID = GameDefines.MAX_MAJOR_CIVS, GameDefines.MAX_CIV_PLAYERS - 1 do
+		local player = Players[playerID]
+		local minorCivID = player:GetMinorCivType()
+		-- Does this civ exist ?
+		if minorCivID ~= -1 then
+			for v in player:Units() do
+				if (v:GetUnitType() == SETTLER) then
+					v:SetDamage( v:GetMaxHitPoints() )
+				end
+			end
+		end
+	end
+	
+	if HOTSEAT_CIV_TO_KILL then
+		Dprint("-------------------------------------")
+		Dprint("Remove starting units from hidden major civs ...")
+		local player = Players[GetPlayerIDFromCivID (HOTSEAT_CIV_TO_KILL, false, true)]
+		if player then
+			for v in player:Units() do
+				v:Kill(true, -1)
+			end
+		end
+	end
+
+	-- No America at start
+	local player = Players[GetPlayerIDFromCivID (AMERICA, false, true)]
+	if player and not player:IsHuman() then
+		for v in player:Units() do
+			v:Kill(true, -1)
+		end
+	end
+end
 
 function AreSameSide( player1ID, player2ID)
 
@@ -97,7 +132,9 @@ function SetAIStrategicValues()
 	local bDebug = true
 	
 	Dprint ("-------------------------------------", bDebug)
-	Dprint ("Setting Strategic value for AI...", bDebug)
+	Dprint ("Cache scenario AI Strategic values...", bDebug)
+	local t_start = os.clock()
+
 
 	local initialNorway, initialEgypt, initialLibya, initialNAfrica, initialAlbania = 0, 0, 0, 0, 0
 	local actualNorway, actualEgypt, actualLibya, actualNAfrica, actualAlbania = 0, 0, 0, 0, 0
@@ -180,6 +217,9 @@ function SetAIStrategicValues()
 
 	g_France_Land_Ratio = actualFrance / initialFrance
 	g_USSR_Land_Ratio = actualUSSR / initialUSSR
+
+	local t_end = os.clock()
+	Dprint("  - Total time :		" .. t_end - t_start .. " s")
 end
 
 -----------------------------------------
@@ -2383,7 +2423,7 @@ g_TroopsRoutes = {
 				LandingList = { {X=28, Y=49}, {X=28, Y=48}, {X=27, Y=48}, }, -- near Dunkerque
 				RandomLanding = true, -- false : sequential try in landing list
 				MinUnits = 2,
-				MaxUnits = 2, -- Maximum number of units on the route at the same time
+				MaxUnits = 4, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = UKReinforcementToFrance, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2449,7 +2489,7 @@ g_TroopsRoutes = {
 				LandingList = { {X=40, Y=7}, {X=41, Y=6}, {X=45, Y=3}, {X=46, Y=3}, {X=51, Y=4}, {X=52, Y=6}, }, -- near Triploli, Sirte, Benghazi
 				RandomLanding = false, -- false : sequential try in landing list
 				MinUnits = 4,
-				MaxUnits = 12, -- Maximum number of units on the route at the same time
+				MaxUnits = 8, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = ItalyReinforcementToAfrica, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2465,7 +2505,7 @@ g_TroopsRoutes = {
 				LandingList = { {X=50, Y=24}, {X=50, Y=23}, {X=50, Y=25}, {X=50, Y=26}, {X=51, Y=22}, {X=51, Y=21}, }, -- near Tirana
 				RandomLanding = false, -- false : sequential try in landing list
 				MinUnits = 3,
-				MaxUnits = 8, -- Maximum number of units on the route at the same time
+				MaxUnits = 6, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = ItalyReinforcementToAlbania, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2483,7 +2523,7 @@ g_TroopsRoutes = {
 				LandingList = { {X=22, Y=20}, {X=23, Y=20}, {X=24, Y=20}, {X=24, Y=19}, {X=25, Y=19}, {X=26, Y=19}, {X=27, Y=19}, {X=28, Y=19}, {X=29, Y=19}, {X=30, Y=18}, {X=31, Y=18}, {X=32, Y=18}, {X=33, Y=18}, }, -- Between Alger and Tunis
 				RandomLanding = false, -- false : sequential try in landing list
 				MinUnits = 3,
-				MaxUnits = 12, -- Maximum number of units on the route at the same time
+				MaxUnits = 6, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = FranceReinforcementToAfrica, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2500,8 +2540,8 @@ g_TroopsRoutes = {
 				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
 				LandingList = { {X=39, Y=64}, {X=39, Y=63}, {X=40, Y=63}, {X=41, Y=64}, {X=42, Y=64}, }, -- Between Bergen and Oslo
 				RandomLanding = true, -- false : sequential try in landing list
-				MinUnits = 4,
-				MaxUnits = 8, -- Maximum number of units on the route at the same time
+				MinUnits = 3,
+				MaxUnits = 6, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = GermanyReinforcementToNorway, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2531,7 +2571,7 @@ g_TroopsRoutes = {
 				LandingList = { {X=23, Y=52}, {X=24, Y=52}, {X=25, Y=52}, {X=25, Y=51}, }, -- East of Plymouth
 				RandomLanding = true, -- false : sequential try in landing list
 				MinUnits = 2,
-				MaxUnits = 4, -- Maximum number of units on the route at the same time
+				MaxUnits = 6, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = GermanyReinforcementToUK, -- Must refer to a function, remove this line to use the default condition (true)
 			},

@@ -420,24 +420,8 @@ function CachePlayerTrainingRestriction(iPlayer, iUnitType)
 
 	-- allowed unit ?
 	-- check last, as it returns "true"
-	if not player:IsMinorCiv() then
-		local civID = GetCivIDFromPlayerID(iPlayer, false)
-		local allowedTable = g_Major_Units[civID]
-		if (allowedTable) then
-			for i, allowedType in pairs (allowedTable) do
-				if (allowedType == iUnitType) then
-					g_UnitRestrictionString = "No restriction, found in allowed table for major civs."
-					return true
-				end
-			end
-		end
-	else	
-		for i, allowedType in pairs (g_Minor_Units) do
-			if (allowedType == iUnitType) then
-				g_UnitRestrictionString = "No restriction, found in allowed table for minor civs."
-				return true
-			end
-		end
+	if PlayerCanEverBuild(iPlayer, iUnitType) then
+		return true
 	end
 
 	return false
@@ -921,9 +905,10 @@ function damageImprovements(city, damage, plot)
 	local improvementType = plot:GetImprovementType()
 	local fortType = GameInfoTypes["IMPROVEMENT_FORT"]
 	local citadelType = GameInfoTypes["IMPROVEMENT_CITADEL"]
+	local bunkerType = GameInfoTypes["IMPROVEMENT_BUNKER"]
 	local damageTotransfert = 0
 
-	if improvementType ~= -1 and improvementType ~= fortType and improvementType ~= citadelType and plot:GetOwner() == city:GetOwner() then			
+	if improvementType ~= -1 and improvementType ~= fortType and improvementType ~= citadelType and improvementType ~= bunkerType and plot:GetOwner() == city:GetOwner() then -- pure defensive improvements are not destroyed by city bombing
 
 		local plotKey = GetPlotKey ( plot )
 		local improvementDamage = 0
@@ -1232,16 +1217,14 @@ function UpdatePlayerData(playerID)
 	end
 	g_Wounded[playerID] = Round(wounded)
 
-	-- update procurement detail
-	GetNumResourceTypeForPlayer(RESOURCE_OIL, playerID)
-
 end
 
 function UpdateGlobalData()
 	for iPlayer = 0, GameDefines.MAX_CIV_PLAYERS - 1 do
 		local player = Players[iPlayer]
 		if player and player:IsAlive() and not player:IsBarbarian() then
-			UpdatePlayerData(iPlayer)
+			UpdatePlayerData(iPlayer)	
+			GetNumResourceTypeForPlayer(RESOURCE_OIL, iPlayer) -- update procurement detail
 		end
 	end	
 end
@@ -1262,11 +1245,12 @@ end
 
 function SetGlobalAIStrategicValues()
 	Dprint("-------------------------------------")
-	Dprint("Set Global AI Strategic Values...")
-
+	Dprint("Cache Global AI Strategic Values...")
+	local t_start = os.clock()
 	FillCacheIsLimitedByRatio()
 	FillCacheTrainingRestriction()
-
+	local t_end = os.clock()
+	Dprint("  - Total time :		" .. t_end - t_start .. " s")
 end
 
 

@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.41
+v.43
 
 	-- Presentation --
 
@@ -14,6 +14,34 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.43 (May 31, 2015):
+
+DLL
+only Conquest is available for AI Grand Strategy
+minors should not do anything
+finally fix wrong icons in War/Peace notification
+do not show war/peace notification related to a minor faction following a major into war.
+
+Balance:
+do not allow minor nation to build units (again), but give every neutral minor a starting OOB
+tweak major nations OOB (add artillery units)
+use a maximum number of units on a troop route to prevent sending too many units away
+remove Aircraft Carriers from build list, they'll be added as project (to spawn the whole package aircraft + carrier)
+infantry tanks get 25% penalty from air attacks
+
+Bug fix:
+U.S.A were not supposed to spawn on the Europe map
+Semovente M41-75/18 project was not correctly set
+bunker were not supposed to be damaged by nearby city bombardment
+
+A few optimizations
+
+
+v.42 (May 31, 2015):
+bugfix : convoy spawn before 1942
+typo: tribal class
+
 
 v.41 (May 30, 2015):
 - Feature :

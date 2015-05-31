@@ -888,14 +888,18 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 				Dprint("- Improvement pillaged at " .. plotKey)
 			else
 				local ownerID = plot:GetOwner()
+				local player = Players[playerID]
 				Dprint("- Available resource found at " .. plotKey .. " check for relation with owner (id =" .. tostring(ownerID) ..")")
 
 				if not RESOURCE_FROM_FRIENDS and ownerID ~= playerID then
 					-- Don't check for relation if we already know that resources are not shared
 					Dprint("  - Can't access resource (not in player territory and no access to friend resources from scenario setting)")
+				elseif player:IsMinorCiv() and ownerID ~= playerID then
+					-- Minoir civ only access their resources
+					Dprint("  - Can't access resource (not in this minor civ territory)")
 				else
 					local bOnFriendlyTerritory = (ownerID == playerID)
-					if not bOnFriendlyTerritory then
+					if not bOnFriendlyTerritory and not player:IsMinorCiv() then -- major civ may share resources
 						if AreSameSide( ownerID, playerID) then
 							bOnFriendlyTerritory = true
 						end
@@ -914,7 +918,6 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_CAPITAL then
 							-- check road connection between the resource plot and the capital...
 							Dprint("   - Looking for route to capital...")
-							local player = Players[playerID]
 							local capital = player:GetCapitalCity()
 							if capital then
 								bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Road", false, nil , NoResourcePath)
@@ -923,7 +926,6 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_CAPITAL then
 							-- check rails connection between the resource plot and the capital...
 							Dprint("   - Looking for rails to capital...")
-							local player = Players[playerID]
 							local capital = player:GetCapitalCity()
 							if capital then
 								bCanGetRessource = isPlotConnected( player , plot, capital:Plot(), "Railroad", false, nil , NoResourcePath)
@@ -932,7 +934,6 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						elseif	RESOURCE_CONNECTION == RESOURCE_ROAD_TO_ANY_CITY then
 							-- check road connection between the resource plot and any city...
 							Dprint("   - Looking for route to any city...")
-							local player = Players[playerID]
 							-- first check closest own cities
 							local closeCity = GetCloseCity ( playerID, plot )
 							if closeCity then
@@ -954,7 +955,6 @@ function GetNumResourceTypeForPlayer(resourceID, playerID)
 						elseif	RESOURCE_CONNECTION == RESOURCE_RAILS_TO_ANY_CITY then
 							-- check rails connection between the resource plot and any city...
 							Dprint("   - Looking for rails to any city...")
-							local player = Players[playerID]
 							-- first check closest own cities
 							local closeCity = GetCloseCity ( playerID, plot )
 							if closeCity then

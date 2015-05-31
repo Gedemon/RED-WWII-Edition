@@ -293,6 +293,9 @@ end
 
 function ShowPlayerTrainingRestriction(iPlayer)
 	local player = Players[iPlayer]
+	if player:IsMinorCiv() then
+		return
+	end
 	Dprint("---------------------------------------------------------------------------------------------------------------")
 	Dprint("Units restrictions for " .. tostring(player:GetName()) )
 	Dprint("---------------------------------------------------------------------------------------------------------------")	

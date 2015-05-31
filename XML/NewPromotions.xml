@@ -1067,6 +1067,13 @@
 			<PediaType>PEDIA_ATTRIBUTES</PediaType>
 		</Row>
 	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_LIGHT_INFANTRY_TANK</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
 
 	<!-- INFANTRY TANK -->
 	<UnitPromotions>
@@ -1099,6 +1106,13 @@
 			<Modifier>0</Modifier>
 		</Row>
 	</UnitPromotions_UnitCombatMods>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_INFANTRY_TANK</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-25</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
 
 	<!-- TANK -->
 	<UnitPromotions>

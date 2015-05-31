@@ -996,7 +996,7 @@ g_ProjectsTable = {
 	},
 	[PROJECT_M13_40] =  {
 		Buildings = {ACADEMY},
-		Trigger = {Type = TRIGGER_DATE, Date = 19390801, ProbPerTurn = 10},
+		Trigger = {Type = TRIGGER_DATE, Date = 19391201, ProbPerTurn = 10},
 	},
 	[PROJECT_M14_41] =  {
 		Buildings = {ACADEMY, LAND_FACTORY},
@@ -1521,7 +1521,7 @@ g_UnitsProject = {
 	[GE_STUG_IV] = PROJECT_STUG_IV,	
 	[GE_BRUMMBAR] = PROJECT_BRUMMBAR,
 	[GE_STURMTIGER] = PROJECT_STURMTIGER,
-	[IT_M41] = PROJECT_SM41,
+	[IT_SM41] = PROJECT_SM41,
 	[JP_TYPE2] = PROJECT_TYPE2,
 	--Tank destroyer
 	[FR_W15_TCC] = PROJECT_W15_TCC,

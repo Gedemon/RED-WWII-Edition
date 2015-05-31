@@ -1139,8 +1139,9 @@ function TurnToMonth()
 	local bDebug = true
 	local turn = Game.GetGameTurn()
 	local month = 0
+	local turnDate = 0
 	if g_Calendar[turn] then
-		local turnDate = tostring(g_Calendar[turn].Number)
+		turnDate = tostring(g_Calendar[turn].Number)
 		month = tonumber(string.sub(turnDate, 5, 6))
 	end
 	Dprint ("   - exctracting month = " .. month .. " from date = " .. turnDate, bDebug)

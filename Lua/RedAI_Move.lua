@@ -348,14 +348,18 @@ function SendTroops(playerID)
 				else
 					condition = true -- if no condition set, assume always true
 				end
-				Dprint ("  - testing reserve needed and minimum units for reinforcement vs number of available units : " .. route.ReserveUnits .. " + " .. route.MinUnits .. " <= " .. #listUnits , bDebug)
+				Dprint ("  - testing reserve needed (" .. route.ReserveUnits .. " must stay) and minimum units en route (" .. route.MinUnits .. ") for reinforcement vs number of available units in the area: " .. #listUnits , bDebug)
 				if condition and route.ReserveUnits + route.MinUnits <= #listUnits then -- there are enough free units here !	
-					Dprint ("  - conditions ok, marking possible route...", bDebug)
-					local rand = math.random(1, 10)
-					if rand * route.Priority > priority then -- mark this route as choosen to send reinforcement
-						priority = rand * route.Priority
-						routeID = id
-						availableUnits = listUnits
+					Dprint ("  - reserve ok, checking units already en route...", bDebug)
+					local NumUnitsEnRoute = GetNumUnitsEnRoute(routeID)
+					if route.MaxUnits and NumUnitsEnRoute < route.MaxUnits then
+						Dprint ("  - max number of units en route not reached (max =" .. tostring(route.MaxUnits) ..", actual = ".. tostring(NumUnitsEnRoute) .."), marking possible route...", bDebug)
+						local rand = math.random(1, 10)
+						if rand * route.Priority > priority then -- mark this route as choosen to send reinforcement
+							priority = rand * route.Priority
+							routeID = id
+							availableUnits = listUnits
+						end
 					end
 				end				
 				Dprint ("-----------------", bDebug)
