@@ -570,7 +570,7 @@ SELECT	'BOMBER_CA135',					'HUNGARY',	'',		'Caproni Ca.135',					'Caproni_Ca.135
 --										Nation Name			Unit Name																	Template Unit						Formation		Combat			Cost	ProjCst			Immobile		Materiel		FlagIndex		IconAtlas									SV Icon
 
 SELECT	'DESTROYER_FLETCHER',			'AMERICA',	'',		'Fletcher Class',					'Fletcher_Class',						'DESTROYER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
-SELECT	'DESTROYER_TRIBA',				'ENGLAND',	'',		'Triba Class',						'Triba_Class',							'DESTROYER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
+SELECT	'DESTROYER_TRIBA',				'ENGLAND',	'',		'Tribal Class',						'Triba_Class',							'DESTROYER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'DESTROYER_FANTASQUE',			'FRANCE',	'',		'Fantasque Class',					'Fantasque_Class',						'DESTROYER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'DESTROYER_TYPE_1934A',			'GERMANY',	'',		'Z Class',							'Z_Class',								'DESTROYER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL
 SELECT	'DESTROYER_GEORGIOS',			'GREECE',	'',		'Vasilefs Georgios Class',			'Vasilefs_Georgios_Class',				'DESTROYER',				NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,					NULL,				NULL,			NULL	UNION ALL

@@ -22,6 +22,7 @@ ScenarioCivilizations = {
 	[4] = "CIVILIZATION_ROME",
 	[5] = "CIVILIZATION_RUSSIA",
 	[6] = "CIVILIZATION_GREECE",
+	--[7] = "CIVILIZATION_AMERICA", -- enable for spectator mode
 }
 
 TYPE_SINGLE = 1

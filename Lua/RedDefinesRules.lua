@@ -148,8 +148,8 @@ AI_AIR_MINIMAL_RESERVE		= nil	-- | (nil means "not checked")
 AI_SEA_MINIMAL_RESERVE		= nil	-- |
 
 AI_USE_RESOURCE_LIMIT		= true	-- the AI won't build units using resources in case of shortage...
-AI_TURNS_BEFORE_SHORTAGE	= 5		-- consider low on a resource if there is a shortage in this number of turn at the current rate
-AI_UNIT_RESOURCE_LOW		= 7		-- Don't build unit consuming more than this number of resource per HP healed if we're low on stock
+AI_TURNS_BEFORE_SHORTAGE	= 15	-- consider low on a resource if there is a shortage in this number of turn at the current rate
+AI_UNIT_RESOURCE_LOW		= 10	-- Don't build unit consuming more than this number of resource per HP healed if we're low on stock
 AI_UNIT_RESOURCE_SHORTAGE	= 2		-- Don't build unit consuming more than this number of resource per HP healed if we're out of stock
 
 TRACK_COMBATS_MAX_TURNS						= 5 -- Number of previous turns entries keeped in the TrackCombat table

@@ -1649,7 +1649,7 @@ function IsRouteOpenUSAFtoUK1()
 	local turn = Game.GetGameTurn()
 	local turnDate = 0
 	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
-	if turnDate < 19420301 and turnDate > 19421231 then		
+	if turnDate < 19420301 or turnDate > 19421231 then		
 		Dprint("     - not between march and december 1942...", bDebug)
 		return false
 	end
@@ -1695,7 +1695,7 @@ function IsRouteOpenUStoFranceTroops1()
 	local turn = Game.GetGameTurn()
 	local turnDate = 0
 	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
-	if turnDate < 19420301 and turnDate > 19421231 then		
+	if turnDate < 19420301 or turnDate > 19421231 then		
 		Dprint("     - not between march and december 1942...", bDebug)
 		return false
 	end
@@ -1726,7 +1726,7 @@ function IsRouteOpenUStoUKTroops1()
 	local turn = Game.GetGameTurn()
 	local turnDate = 0
 	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
-	if turnDate < 19420301 and turnDate > 19421231 then		
+	if turnDate < 19420301 or turnDate > 19421231 then		
 		Dprint("     - not between march and december 1942...", bDebug)
 		return false
 	end
