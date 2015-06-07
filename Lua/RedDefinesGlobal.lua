@@ -34,11 +34,11 @@ USE_ARCHIVE				= false	-- If true, archive the old entries, else delete them. Ar
 -------------------------------------------------------------------------------------------------------
 PRINT_DEBUG				= true	-- Dprint Lua output to firetuner ON/OFF
 PRINT_DLL_DEBUG			= false	-- use DLL_Debug GameEvent to show some values from the C++ code in Firetuner
-DEBUG_SHOW_PLOT_XY		= true	-- show plot X,Y on mouse over plot
+DEBUG_SHOW_PLOT_XY		= false	-- show plot X,Y on mouse over plot
 DEBUG_SHOW_UNIT_KEY		= false	-- show unitkey on mouse over flag
-DEBUG_SHOW_RED_ORDER	= true	-- show RED current order (if any) on mouse over flag
+DEBUG_SHOW_RED_ORDER	= false	-- show RED current order (if any) on mouse over flag
 DEBUG_PERFORMANCE		= false	-- always show loading/save time of tables
-DEBUG_AI_BUILD			= true	-- Show AI build restrictions and current cities productions
+DEBUG_AI_BUILD			= false	-- Show AI build restrictions and current cities productions
 USE_CUSTOM_OPTION		= true	-- use the option value selected in setup screen, set to false to debug and force use of global/scenario files defines
 DEBUG_ORPHAN_TILE		= false	-- orphan tile function output debug text to firetuner ON/OFF
 

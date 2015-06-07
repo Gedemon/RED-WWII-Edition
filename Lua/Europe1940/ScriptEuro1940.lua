@@ -39,9 +39,33 @@ function RemoveHiddenCivs()
 
 	-- No America at start
 	local player = Players[GetPlayerIDFromCivID (AMERICA, false, true)]
-	if player and not player:IsHuman() then
-		for v in player:Units() do
-			v:Kill(true, -1)
+	if player then		
+		if not player:IsHuman() then
+			for v in player:Units() do
+				v:Kill(true, -1)
+			end
+		else
+			-- spectator/auto-play mode		
+			for v in player:Units() do				
+				if (v:GetUnitType() == SETTLER) then
+					v:Kill(true, -1)
+				else
+					v:SetXY(1, 88)
+				end
+			end
+			local spectateTeam = player:GetTeam()
+			for iPlotLoop = 0, Map.GetNumPlots()-1, 1 do
+				local plot = Map.GetPlotByIndex(iPlotLoop)
+				local x = plot:GetX()
+				local y = plot:GetY()
+				if (plot:GetVisibilityCount(spectateTeam) > 0) then
+					plot:ChangeVisibilityCount(spectateTeam, -1, -1, true)
+				end
+				plot:SetRevealed(spectateTeam, false)
+				plot:ChangeVisibilityCount(spectateTeam, 1, -1, true)
+				plot:SetRevealed(spectateTeam, true)
+			end
+			OptionsManager.SetSinglePlayerAutoEndTurnEnabled_Cached(true)
 		end
 	end
 end
@@ -126,6 +150,10 @@ g_Albania_Land_Ratio = 1
 g_NAfrica_Land_Ratio = 1
 g_France_Land_Ratio = 1
 g_USSR_Land_Ratio = 1
+
+-- limit troops route on specific fronts
+g_MaxForceInNorway = 150000
+g_MaxForceInAfrica = 200000
 
 function SetAIStrategicValues()
 
@@ -409,6 +437,7 @@ function CoCallOfFrance()
 	local Air = {}
 	local Sea = {}
 	local Land = {}
+
 	-- fill table (remove convoy and fortifications)
 	for unit in pFrance:Units() do 
 		--local newUnit = ChangeUnitOwner (unit, iVichy)
@@ -790,7 +819,13 @@ function CoCallOfFrance()
 	if Game.GetActivePlayer() ~= iFrance then
 		Players[Game.GetActivePlayer()]:AddNotification(NotificationTypes.NOTIFICATION_DIPLOMACY_DECLARATION, pFrance:GetName() .. " has fled from Paris with all the gold of France promising to continue the fight from french colonies.", pFrance:GetName() .. " in exil !", -1, -1)
 	end
-	pFrance:SetGold(pFrance:GetGold() + 5000)				
+	pFrance:SetGold(pFrance:GetGold() + 5000)
+
+	Dprint("The Axis player get a few Marder I tank destroyers...", bDebug)
+	pAxis:InitUnit(GE_MARDER_I, cityPlot:GetX(), cityPlot:GetY())
+	pAxis:InitUnit(GE_MARDER_I, cityPlot:GetX(), cityPlot:GetY())
+	pAxis:InitUnit(GE_MARDER_I, cityPlot:GetX(), cityPlot:GetY())	
+		
 	Dprint("Fall of France event completed...", bDebug)	
 end
 
@@ -2153,8 +2188,8 @@ function UKReinforcementToNorway()
 	local allyInNorway = GetTeamLandForceInArea( pUK, 37, 61, 54, 86 ) -- (37,61) -> (54,86) ~= norway rectangular area
 	local enemyInNorway = GetEnemyLandForceInArea( pUK, 37, 61, 54, 86 )
 	
-	if allyInNorway > enemyInNorway then	
-		Dprint ("   - but allied have more force than Axis in Norway, no need to reinforce them...", bDebug)
+	if (allyInNorway > enemyInNorway) or (allyInNorway > g_MaxForceInNorway) then	
+		Dprint ("   - but allied have enough in Norway, no need to reinforce them...", bDebug)
 		return false
 	end
 
@@ -2351,7 +2386,7 @@ function GermanyReinforcementToNorway()
 	local friendInNorway = GetTeamLandForceInArea( pGermany, 37, 61, 54, 86 ) -- (37,61) -> (54,86) ~= norway rectangular area
 	local enemyInNorway = GetEnemyLandForceInArea( pGermany, 37, 61, 54, 86 )
 	
-	if friendInNorway > enemyInNorway then	
+	if (friendInNorway > enemyInNorway)  or (friendInNorway > g_MaxForceInNorway) then	
 		Dprint ("   - but Axis have more force than Allies in Norway, no need to reinforce them...", bDebug)
 		return false
 	end

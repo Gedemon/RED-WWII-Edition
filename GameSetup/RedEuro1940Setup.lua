@@ -22,7 +22,7 @@ ScenarioCivilizations = {
 	[4] = "CIVILIZATION_ROME",
 	[5] = "CIVILIZATION_RUSSIA",
 	[6] = "CIVILIZATION_GREECE",
-	--[7] = "CIVILIZATION_AMERICA", -- enable for spectator mode
+--	[7] = "CIVILIZATION_AMERICA", -- enable for spectator mode
 }
 
 TYPE_SINGLE = 1
@@ -125,6 +125,7 @@ Controls.StartButton:RegisterCallback(Mouse.eLClick, function()
 	--UI.ResetScenarioPlayerSlots(true); -- why do that ?
 	PreGame.SetGameSpeed(2)  -- Standard speed
 	PreGame.SetOverrideScenarioHandicap(true)
+	--PreGame.SetEra(GameInfo.Eras["ERA_MODERN"].ID); -- nop do not start at turn 0, so maybe use and set tutn 0 in-game ?
 
 	if ( not g_bCanLoad ) then
 		Controls.StartButton:SetText("[COLOR_WARNING_TEXT]MODS SELECTION ERROR[ENDCOLOR]")

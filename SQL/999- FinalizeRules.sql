@@ -14,6 +14,20 @@ UPDATE Improvements SET DefenseModifier = 40	WHERE Type = 'IMPROVEMENT_BUNKER';
 UPDATE Improvements SET DefenseModifier = 75	WHERE Type = 'IMPROVEMENT_FORT';
 UPDATE Improvements SET DefenseModifier = 100	WHERE Type = 'IMPROVEMENT_CITADEL';
 
+-- test
+/*
+UPDATE Improvements SET DefenseModifier = 7	WHERE Type = 'IMPROVEMENT_MANUFACTORY';
+UPDATE Improvements SET DefenseModifier = 8	WHERE Type = 'IMPROVEMENT_CITY_RUINS';
+UPDATE Improvements SET DefenseModifier = 10	WHERE Type = 'IMPROVEMENT_TRADING_POST';
+UPDATE Improvements SET DefenseModifier = 13	WHERE Type = 'IMPROVEMENT_BUNKER';
+UPDATE Improvements SET DefenseModifier = 25	WHERE Type = 'IMPROVEMENT_FORT';
+UPDATE Improvements SET DefenseModifier = 33	WHERE Type = 'IMPROVEMENT_CITADEL';
+
+UPDATE Defines SET Value = 3 WHERE Name = 'HILLS_EXTRA_DEFENSE';
+UPDATE Features SET Defense = 8 WHERE Type = 'FEATURE_FOREST';
+UPDATE Features SET Defense = 8 WHERE Type = 'FEATURE_JUNGLE';
+-- / test */
+
 UPDATE Improvements SET NearbyEnemyDamage = 0	WHERE Type = 'IMPROVEMENT_CITADEL';
 
 

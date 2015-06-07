@@ -109,10 +109,10 @@ YUGOSLAVIA	= GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
 
 -- Modifier for maintenance free units
 g_Units_Maintenance_Modifier = {
-	[FRANCE] = 0,
+	[FRANCE] = 5,
 	[ENGLAND] = 10,
-	[USSR] = 0,
-	[GERMANY] = 0,
+	[USSR] = -5,
+	[GERMANY] = 5,
 	[ITALY] = 7,
 	[GREECE] = 5,
 }
@@ -229,11 +229,13 @@ g_Initial_OOB = {
 
 	{Name = "German central army", X = 42, Y = 46, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
 	{Name = "German north army", X = 42, Y = 50, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
-	{Name = "German east army", X = 48, Y = 46, Domain = "Land", AI = true, CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
+	{Name = "German east army", X = 48, Y = 46, Domain = "Land", AI = true, CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN}, UnitsXP = {30,30,45,60,30},  },
+	{Name = "German Berlin army", X = 44, Y = 50, Domain = "City", AI = true, CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_II, GE_PANZER_III, GE_PANZER_IV, AT_GUN}, UnitsXP = {30,30,45,30,60},},
 	{Name = "German Luftwaffe", X = 44, Y = 50, Domain = "Air", CivID = GERMANY, Group = {GE_BF109, GE_BF109, GE_HE111, GE_HE111, GE_JU87, GE_JU87, GE_JU87} },
-	{Name = "German Luftwaffe AI Bonus", X = 44, Y = 50, Domain = "Air", AI = true, CivID = GERMANY, Group = {GE_BF109, GE_BF109, GE_HE111, GE_JU87} },
+	{Name = "German Luftwaffe AI Bonus", X = 44, Y = 50, Domain = "Air", AI = true, CivID = GERMANY, Group = {GE_BF109, GE_BF109, GE_HE111, GE_JU87}, UnitsXP = {60,45,45,45}, },
 	{Name = "German Fleet", X = 47, Y = 54, Domain = "Sea", CivID = GERMANY, Group = {GE_BATTLESHIP_2, GE_DESTROYER, GE_BATTLESHIP, GE_DESTROYER} },
 	{Name = "German Submarine Fleet", X = 10, Y = 72, Domain = "Sea", CivID = GERMANY, Group = { GE_SUBMARINE, GE_SUBMARINE, GE_SUBMARINE, GE_DESTROYER, GE_DEUTSCHLAND} },
+	{Name = "German Submarine AI Bonus", X = 2, Y = 34, Domain = "Sea", AI = true, CivID = GERMANY, Group = { GE_SUBMARINE, GE_SUBMARINE, GE_SUBMARINE}, UnitsXP = {45,30,30}, },
 	{Name = "German Fleet AI bonus", X = 38, Y = 61, Domain = "Sea", AI = true, CivID = GERMANY, Group = { GE_LEIPZIG, GE_DESTROYER, GE_DESTROYER, GE_DESTROYER} },
 
 	{Name = "Italian army", X = 37, Y = 33, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_M11_39, IT_INFANTRY, IT_L6_40, AT_GUN, ARTILLERY} },
@@ -272,12 +274,12 @@ end
 
 
 g_MinorMobilization_OOB = { 
-	{Name = "Poland army",			X = 53, Y = 46,		Domain = "Land",	CivID = POLAND,		IsMinor = true, Group = {PL_INFANTRY, PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_INFANTRY, PL_10TP, PL_7TP} },
+	{Name = "Poland army",			X = 53, Y = 46,		Domain = "Land",	CivID = POLAND,		IsMinor = true, Group = {PL_INFANTRY, PL_VICKERS_MKE_A, PL_INFANTRY, PL_10TP, PL_7TP} },
 	{Name = "Poland fortification", X = 52, Y = 49,		Domain = "Land",	CivID = POLAND,		IsMinor = true, Group = {FORTIFIED_GUN}, UnitsName = {"Twierdza Modlin"}, },
-	{Name = "Poland air force",		X = 53, Y = 48,		Domain = "Air",		CivID = POLAND,		IsMinor = true, Group = {PL_PZL37, PL_P11, PL_P11, PL_P11} },
+	{Name = "Poland air force",		X = 53, Y = 48,		Domain = "Air",		CivID = POLAND,		IsMinor = true, Group = {PL_PZL37, PL_P11, } },
 	{Name = "Poland fleet",			X = 51, Y = 56,		Domain = "Sea",		CivID = POLAND,		IsMinor = true, Group = {PL_SUBMARINE} },
-	{Name = "Belgian army",			X = 32, Y = 49,		Domain = "City",	CivID = BELGIUM,	IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936, ARTILLERY, AT_GUN} },
-	{Name = "Netherlands army",		X = 34, Y = 52,		Domain = "City",	CivID = NETHERLANDS,IsMinor = true, Group = {DU_INFANTRY, AT_GUN, DU_VICKERS_M1936, DU_MTSL, ARTILLERY} },
+	{Name = "Belgian army",			X = 32, Y = 49,		Domain = "City",	CivID = BELGIUM,	IsMinor = true, Group = {INFANTRY, DU_VICKERS_M1936} },
+	{Name = "Netherlands army",		X = 34, Y = 52,		Domain = "City",	CivID = NETHERLANDS,IsMinor = true, Group = {DU_INFANTRY, DU_VICKERS_M1936, DU_MTSL} },
 	{Name = "Netherlands AF",		X = 34, Y = 52,		Domain = "Air",		CivID = NETHERLANDS,IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
 	{Name = "Finland army",			X = 59, Y = 68,		Domain = "Land",	CivID = FINLAND,	IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
 	{Name = "Slovakia army",		X = 53, Y = 42,		Domain = "Land",	CivID = SLOVAKIA,	IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
@@ -299,7 +301,7 @@ g_MinorMobilization_OOB = {
 	{Name = "Generic army",			X = 43, Y = 57,		Domain = "City",	CivID = DENMARK,	IsMinor = true, Group = {INFANTRY, AA_GUN} },
 	{Name = "Generic army",			X = 101, Y = 20,	Domain = "City",	CivID = IRAN,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
 	{Name = "Generic army",			X = 20, Y = 59,		Domain = "City",	CivID = IRELAND,	IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
-	{Name = "Generic army",			X = 44, Y = 66,		Domain = "City",	CivID = NORWAY,		IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, AA_GUN, INFANTRY, ARTILLERY} },
+	{Name = "Generic army",			X = 44, Y = 66,		Domain = "City",	CivID = NORWAY,		IsMinor = true, Group = {INFANTRY, AT_GUN} },
 
 }
 

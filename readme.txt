@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.43
+v.44
 
 	-- Presentation --
 
@@ -14,6 +14,18 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.44 (June 7, 2015)
+
+DLL :
+make extra-sure to reveal territory when teaming
+allow dead civ to change team 
+
+Balance:
+tweak OOB
+Marder I is not buildable (but 3 are given when conquering Paris)
+tweak retreats
+
 
 v.43 (May 31, 2015):
 
@@ -718,8 +730,4 @@ The mod copy a few files in the game's folder to prevent a crash when disabling 
 
 [h1]Feedback, bug reports and detailled informations[/h1]
 [quote][url=http://forums.civfanatics.com/forumdisplay.php?f=471 ]R.E.D. WWII subforum on Civfanatics[/url]
-
-[url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url]
-[url=http://forums.civfanatics.com/showthread.php?t=431344 ]Development discussion[/url] 
-[url=http://forums.civfanatics.com/showthread.php?t=436077 ]Features[/url] 
 [url=http://forums.civfanatics.com/showthread.php?t=484955 ]Credits list[/url][/quote]

@@ -178,6 +178,8 @@ UPDATE Defines SET Value = 0	WHERE Name = 'OPINION_WEIGHT_DOF_WITH_ENEMY';
 UPDATE Leaders SET Chattiness = -10;
 --UPDATE Leaders SET Meanness = 0;
 
+UPDATE HandicapInfos SET AIDeclareWarProb = 125;
+
 --------------------------------------------------------------------------------------------
 -- Game AI defines
 --------------------------------------------------------------------------------------------
@@ -249,9 +251,10 @@ UPDATE Resources SET TechReveal = NULL;
 --------------------------------------------------------------------------------------------
 -- Leaders
 --------------------------------------------------------------------------------------------
+/*
 UPDATE Leaders SET Boldness = 8,	VictoryCompetitiveness = 7,		Meanness = 9	WHERE Type = 'LEADER_AUGUSTUS';		-- ITALY
 UPDATE Leaders SET Boldness = 10,	VictoryCompetitiveness = 10,	Meanness = 10	WHERE Type = 'LEADER_BISMARCK';		-- GERMANY
-UPDATE Leaders SET Boldness = 10,	VictoryCompetitiveness = 9,		Meanness = 7	WHERE Type = 'LEADER_CATHERINE';	-- U.S.S.R.
+UPDATE Leaders SET Boldness = 7,	VictoryCompetitiveness = 7,		Meanness = 6	WHERE Type = 'LEADER_CATHERINE';	-- U.S.S.R.
 UPDATE Leaders SET Boldness = 9,	VictoryCompetitiveness = 8,		Meanness = 7	WHERE Type = 'LEADER_ODA_NOBUNAGA';	-- Japan
 
 UPDATE Leader_Flavors SET Flavor = 12	WHERE FlavorType = 'FLAVOR_OFFENSE'	AND LeaderType = 'LEADER_AUGUSTUS';		-- ITALY
@@ -283,14 +286,13 @@ UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 
 UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 'MINOR_CIV_APPROACH_CONQUEST' AND LeaderType = 'LEADER_BISMARCK';		-- GERMANY
 UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 'MINOR_CIV_APPROACH_CONQUEST' AND LeaderType = 'LEADER_CATHERINE';		-- U.S.S.R.
 UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 'MINOR_CIV_APPROACH_CONQUEST' AND LeaderType = 'LEADER_ODA_NOBUNAGA';	-- Japan
-
+--*/
 --------------------------------------------------------------------------------------------
 -- Unit Supply Production Modifier
 --------------------------------------------------------------------------------------------
 UPDATE HandicapInfos SET ProductionFreeUnits = 5;
 UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 0;
-UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 35;
-UPDATE HandicapInfos SET AIDeclareWarProb = 150;
+UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 25;
 UPDATE Defines SET Value = 96 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
 INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 2); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
 

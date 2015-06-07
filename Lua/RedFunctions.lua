@@ -295,8 +295,10 @@ end
 
 function PlayerTrainingRestriction(iPlayer, iUnitType)
 
-	 -- update data for humans player (they don't call this often)
+
 	local player = Players [ iPlayer ]
+
+	 -- update data for humans player (they don't call this often)
 	if player:IsHuman() then
 		return CachePlayerTrainingRestriction(iPlayer, iUnitType)
 	end

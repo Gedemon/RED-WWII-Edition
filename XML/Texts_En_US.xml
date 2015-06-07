@@ -956,6 +956,182 @@
 
 	</Language_en_US>
 
+	<!-- ++++++++++++++++ -->
+	<!-- +  CITY NAMES  + -->
+	<!-- ++++++++++++++++ -->
+	<Language_en_US>
+		
+		<!-- We use <Replace> in case the name already exist for another civilizations -->
+
+		<!-- ITALY -->
+
+		<Replace Tag="TXT_KEY_CITY_ROME_NAPLES">
+			<Text>Naples</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_TURIN">
+			<Text>Turin</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_MILAN">
+			<Text>Milan</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_MODENA">
+			<Text>Modena</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_BRESCIA">
+			<Text>Brescia</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_VICENZA">
+			<Text>Vicenza</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PRATO">
+			<Text>Prato</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_TRIESTE">
+			<Text>Trieste</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_MESSINA">
+			<Text>Messina</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_ASTI">
+			<Text>Asti</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PISA">
+			<Text>Pisa</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_FORLI">
+			<Text>Forli</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_SALERNO">
+			<Text>Salerno</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_FOGGIA">
+			<Text>Foggia</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_CAGLIARI">
+			<Text>Cagliari</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_LIVORNO">
+			<Text>Livorno</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PARMA">
+			<Text>Parma</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_VERONA">
+			<Text>Verona</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_CATANIA">
+			<Text>Catania</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_BARI">
+			<Text>Bari</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_BOLOGNA">
+			<Text>Bologna</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_FLORENCE">
+			<Text>Florence</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_GENOA">
+			<Text>Genoa</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_VENICE">
+			<Text>Venice</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PALERMO">
+			<Text>Palermo</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_RIMINI">
+			<Text>Rimini</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_SASSARI">
+			<Text>Sassari</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_MONZA">
+			<Text>Monza</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PESCARA">
+			<Text>Pescara</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_BERGAMO">
+			<Text>Bergamo</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_LATINA">
+			<Text>Latina</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PERUGIA">
+			<Text>Perugia</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_TARANTO">
+			<Text>Taranto</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_NOVARA">
+			<Text>Novara</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_FERRARA">
+			<Text>Ferrara</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_SIRACUSA">
+			<Text>Siracusa</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_PADUA">
+			<Text>Padua</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_TERNI">
+			<Text>Terni</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_ROME_VITTORIA">
+			<Text>Vittoria</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_RODHES">
+			<Text>Rodhes</Text>
+		</Replace>
+
+		<!-- GERMANY -->
+		<Replace Tag="TXT_KEY_CITY_NAME_NUREMBERG">
+			<Text>Nuremberg</Text>
+		</Replace>
+		
+		<!-- U.K. -->
+		<Replace Tag="TXT_KEY_CITY_NAME_GIBRALTAR">
+			<Text>Gibraltar</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_SUEZ">
+			<Text>Suez</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_MALTE">
+			<Text>Malte</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_NICOSIA">
+			<Text>Nicosia</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_KIRKWALL">
+			<Text>Kirkwall</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_EDINBURGH">
+			<Text>Edinburgh</Text>
+		</Replace>
+		
+		<!-- U.S.S.R. -->
+		<Replace Tag="TXT_KEY_CITY_NAME_STALINGRAD">
+			<Text>Stalingrad</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_LENINGRAD">
+			<Text>Leningrad</Text>
+		</Replace>
+		<Replace Tag="TXT_KEY_CITY_NAME_SEVASTOPOL">
+			<Text>Sevastopol</Text>
+		</Replace>
+
+		<!-- U.S.A. -->
+		<Replace Tag="TXT_KEY_CITY_NAME_PANAMA">
+			<Text>Panama</Text>
+		</Replace>
+		
+	
+
+
+</Language_en_US>
+	
 	<!-- +++++++++++++++ -->
 	<!-- +  BUILDINGS  + -->
 	<!-- +++++++++++++++ -->
