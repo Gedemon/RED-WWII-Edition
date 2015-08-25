@@ -35,7 +35,7 @@
 				<CivilopediaTag>TXT_KEY_RED_MOD_DESC</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_HOT_SEAT_LOAD</DawnOfManQuote>
 				<DawnOfManImage>dom_multi.dds</DawnOfManImage>
-				<MapImage>Earth1936startscreen.dds</MapImage>
+				<MapImage>RedWorldMap.dds</MapImage>
 				<PortraitIndex>63</PortraitIndex>
 				<IconAtlas>WW2_FLAGS</IconAtlas>
 				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
@@ -49,7 +49,7 @@
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_FRANCE</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_RED_EURO1940_FRANCE_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_france.dds</DawnOfManImage>
-				<MapImage>Earth1936startscreen.dds</MapImage>
+				<MapImage>mapFrance.dds</MapImage>
 				<PortraitIndex>5</PortraitIndex>
 				<IconAtlas>WW2_FLAGS</IconAtlas>
 				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
@@ -78,7 +78,7 @@
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_UK</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_RED_EURO1940_UK_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_uk.dds</DawnOfManImage>
-				<MapImage>Earth1936startscreen.dds</MapImage>
+				<MapImage>mapUnitedKingdom.dds</MapImage>
 				<PortraitIndex>1</PortraitIndex>
 				<IconAtlas>WW2_FLAGS</IconAtlas>
 				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
@@ -122,7 +122,7 @@
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_GREECE</CivilopediaTag>
 				<DawnOfManQuote>TXT_KEY_RED_EURO1940_GREECE_BRIEFING</DawnOfManQuote>
 				<DawnOfManImage>dom_greece.dds</DawnOfManImage>
-				<MapImage>Earth1936startscreen.dds</MapImage>
+				<MapImage>RedWorldMap.dds</MapImage>
 				<PortraitIndex>17</PortraitIndex>
 				<IconAtlas>WW2_FLAGS</IconAtlas>
 				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
@@ -150,7 +150,7 @@
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_JAPAN</CivilopediaTag>
 				<DawnOfManQuote>"Prime Minister, for years the Europeans have dominated the Asian world, but no longer. They have grown weak since World War I, and it is our right to take back Asia from the European and American plague. We are now a strong power, the Empire of the Rising Sun has already built one of the greatest navies in the world. We have already defeated the Chinese in Manchuria, and have taken islands in the Pacific.[NEWLINE][NEWLINE]We are at our golden age, the Empire of Japan is ready to achieve it's glory as a world power. Can you Prime Minister defeat the European and American plague and reunite the Asian lands...?"[NEWLINE][NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL]</DawnOfManQuote>
 				<DawnOfManImage>dom_japan.dds</DawnOfManImage>
-				<MapImage>Earth1936startscreen.dds</MapImage>
+				<MapImage>mapJapan.dds</MapImage>
 				<PortraitIndex>4</PortraitIndex>
 				<IconAtlas>WW2_FLAGS</IconAtlas>
 				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
@@ -164,7 +164,7 @@
 				<CivilopediaTag>TXT_KEY_WW2_SCENARIO_CIV_CHINA</CivilopediaTag>
 				<DawnOfManQuote>"Generalissimo, earlier in the centuary we broke away from Monarchy and formed our very own Republic. You Generalissimo assumed command and were able to force the other warlords to join your country creating a short lived united China. Only a couple years later our lands became englufed into a Civil War, against Communist China. To make things worse the militarists of Japan invade Manchuria forcing us to surrender the province of Machuria to them. With our military scattered and broken, with the Japanese to our northeast and the Communists lurking at our northwest we are under attack from enemies on all sides.[NEWLINE][NEWLINE]The people have look to you Generalissimo to fight against Communism and Militarism to put an end to violence in this country to bring peace and prosperity to the region. Can you bring peace to the people who havn't known peace for centuries, can you defeat Japan and Chinese Rebels, can you one again become the center of Asia...?"[NEWLINE][NEWLINE][NEWLINE][ICON_BULLET][COLOR_UNIT_TEXT]Army:[/COLOR]                      [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CITY_BLUE]Navy:[/COLOR]                      [ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_RESEARCH_RATE]Air Force:[/COLOR]                [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_GOLD]Economy:[/COLOR]                 [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_YIELD_PRODUCTION]Production:[/COLOR][TAB]              [ICON_CAPITAL][ICON_CAPITAL][NEWLINE][NEWLINE][ICON_BULLET][COLOR_CULTURE_RATE]Diplomatic Situation:[/COLOR] [ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL][ICON_CAPITAL]</DawnOfManQuote>
 				<DawnOfManImage>dom_china.dds</DawnOfManImage>
-				<MapImage>Earth1936startscreen.dds</MapImage>
+				<MapImage>RedWorldMap.dds</MapImage>
 				<PortraitIndex>7</PortraitIndex>
 				<IconAtlas>WW2_FLAGS</IconAtlas>
 				<AlphaIconAtlas>WW2_FLAGS</AlphaIconAtlas>
@@ -1248,49 +1248,55 @@
 		<Update>
 			<Where LeaderType="LEADER_ELIZABETH"/>
 			<Set>
-				<TraitType>TRAIT_NEVER_SURRENDER</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_BISMARCK"/>
 			<Set>
-				<TraitType>TRAIT_BLITZKRIEG</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_NAPOLEON"/>
 			<Set>
-				<TraitType>TRAIT_RESISTANCE</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_CATHERINE"/>
 			<Set>
-				<TraitType>TRAIT_GREAT_PATRIOTIC_WAR</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_WASHINGTON"/>
 			<Set>
-				<TraitType>TRAIT_ARSENALOFDEMOCRACY</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_WU_ZETIAN"/>
 			<Set>
-				<TraitType>TRAIT_SUNYATSENSTHEORY</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_AUGUSTUS"/>
 			<Set>
-				<TraitType>TRAIT_MARENOSTRUM</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 		<Update>
 			<Where LeaderType="LEADER_ALEXANDER"/>
 			<Set>
-				<TraitType>TRAIT_HEROES</TraitType>
+				<TraitType>TRAIT_EMPTY</TraitType>
+			</Set>
+		</Update>
+		<Update>
+			<Where LeaderType="LEADER_ODA_NOBUNAGA"/>
+			<Set>
+				<TraitType>TRAIT_EMPTY</TraitType>
 			</Set>
 		</Update>
 	</Leader_Traits>
@@ -1299,6 +1305,11 @@
 			<Type>TRAIT_RED_WW2</Type>
 			<Description>TXT_KEY_RED_MOD_DESC</Description>
 			<ShortDescription>TXT_KEY_RED_MOD_TITLE</ShortDescription>
+		</Row>
+		<Row>
+			<Type>TRAIT_EMPTY</Type>
+			<Description>...</Description>
+			<ShortDescription>...</ShortDescription>
 		</Row>
 		<Row>
 			<Type>TRAIT_NEVER_SURRENDER</Type>

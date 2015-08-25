@@ -27,7 +27,8 @@ UPDATE Technologies SET AllowsEmbarking = "false";
 --------------------------------------------------------------------------------------------
 -- Routes
 --------------------------------------------------------------------------------------------
-UPDATE Routes SET GoldMaintenance = 1;
+UPDATE Routes SET GoldMaintenance = 0 WHERE Type='ROUTE_ROAD';
+UPDATE Routes SET GoldMaintenance = 2 WHERE Type='ROUTE_RAILROAD';
 
 --------------------------------------------------------------------------------------------
 -- Buildings
@@ -45,7 +46,7 @@ UPDATE Buildings SET NeverCapture =		1		WHERE Type='BUILDING_WALLS';
 UPDATE Buildings SET NeverCapture =		1		WHERE Type='BUILDING_COURTHOUSE';
 UPDATE Buildings SET NeverCapture =		1		WHERE Type='BUILDING_BROADCAST_TOWER';
 UPDATE Buildings SET PrereqTech =		NULL;
-UPDATE Buildings SET ArtDefineTag =		NULL	WHERE Type='BUILDING_WALLS';
+--UPDATE Buildings SET ArtDefineTag =		NULL	WHERE Type='BUILDING_WALLS'; -- hardcoded ?
 
 DELETE FROM Building_ResourceQuantityRequirements;
 
@@ -175,7 +176,7 @@ UPDATE Defines SET Value = 0	WHERE Name = 'DONT_SETTLE_FLAVOR_MULTIPLIER';
 UPDATE Defines SET Value = -200 WHERE Name = 'OPINION_WEIGHT_DOF';
 UPDATE Defines SET Value = -75	WHERE Name = 'OPINION_WEIGHT_DOF_WITH_FRIEND';
 UPDATE Defines SET Value = 0	WHERE Name = 'OPINION_WEIGHT_DOF_WITH_ENEMY';
-UPDATE Leaders SET Chattiness = -10;
+--UPDATE Leaders SET Chattiness = -10;
 --UPDATE Leaders SET Meanness = 0;
 
 UPDATE HandicapInfos SET AIDeclareWarProb = 125;
@@ -251,7 +252,7 @@ UPDATE Resources SET TechReveal = NULL;
 --------------------------------------------------------------------------------------------
 -- Leaders
 --------------------------------------------------------------------------------------------
-/*
+--/*
 UPDATE Leaders SET Boldness = 8,	VictoryCompetitiveness = 7,		Meanness = 9	WHERE Type = 'LEADER_AUGUSTUS';		-- ITALY
 UPDATE Leaders SET Boldness = 10,	VictoryCompetitiveness = 10,	Meanness = 10	WHERE Type = 'LEADER_BISMARCK';		-- GERMANY
 UPDATE Leaders SET Boldness = 7,	VictoryCompetitiveness = 7,		Meanness = 6	WHERE Type = 'LEADER_CATHERINE';	-- U.S.S.R.
@@ -291,8 +292,8 @@ UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 
 -- Unit Supply Production Modifier
 --------------------------------------------------------------------------------------------
 UPDATE HandicapInfos SET ProductionFreeUnits = 5;
-UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 0;
-UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 25;
+UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 1;
+UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 10;
 UPDATE Defines SET Value = 96 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
 INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 2); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
 
@@ -304,3 +305,5 @@ INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_FREE_PLO
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_NO_MINOR_DIPLO_SPAM', 1, 0 );					-- prevent minor civs to send "please gift units message". (and fix a crash that can occur when the minor try to send the message)
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_STACK_IN_CITY', 1, 0 );						-- allow unit stacking in cities.
 INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CAN_ENTER_FOREIGN_CITY', 1, 0 );				-- allow units to enter in foreign cities.
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_CIVILIAN_MOVE_THROUGH', 1, 0 );					-- allow civilian to move through other units.
+INSERT INTO GameOptions (Type, "Default", Visible) VALUES ( 'GAMEOPTION_NAVAL_MOVE_THROUGH', 1, 0 );					-- allow naval units to move through enemy units

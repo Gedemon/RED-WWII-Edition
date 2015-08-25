@@ -111,7 +111,7 @@ YUGOSLAVIA	= GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
 g_Units_Maintenance_Modifier = {
 	[FRANCE] = 5,
 	[ENGLAND] = 10,
-	[USSR] = -5,
+	[USSR] = 0,
 	[GERMANY] = 5,
 	[ITALY] = 7,
 	[GREECE] = 5,
@@ -205,8 +205,8 @@ g_Initial_OOB = {
 	{Name = "French Oceanic fleet", X = 16, Y = 44, Domain = "Sea", CivID = FRANCE, Group = {FR_FANTASQUE, FR_FANTASQUE, FR_GALISSONIERE, FR_SUBMARINE, FR_SUBMARINE, FR_GALISSONIERE, FR_BATTLESHIP} },
 
 	{Name = "England Metropole army", X = 27, Y = 54, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH, AT_GUN} },
-	{Name = "England Exped. corp Netherlands", X = 26, Y = 52, Domain = "Land", AI = true, CivID = ENGLAND, Group = {UK_INFANTRY, UK_INFANTRY, UK_MATILDA_I, UK_MATILDA_II} },
-	{Name = "England Exped. corp Belgium", X = 24, Y = 53, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH} },
+	--{Name = "England Exped. corp Netherlands", X = 26, Y = 52, Domain = "Land", AI = true, CivID = ENGLAND, Group = {UK_INFANTRY, UK_INFANTRY, UK_MATILDA_I, UK_MATILDA_II} },
+	--{Name = "England Exped. corp Belgium", X = 24, Y = 53, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_TETRARCH} },
 	{Name = "England Exped. corp Egypt", X = 63, Y = 2, Domain = "Land", CivID = ENGLAND, Group = {UK_INFANTRY, UK_CRUISER_I, UK_VICKERS_MK6B} },
 	{Name = "England Metropole RAF", X = 27, Y = 52, Domain = "Air", CivID = ENGLAND, Group = {UK_SPITFIRE, UK_HURRICANE, UK_WELLINGTON, UK_WELLINGTON} },
 	{Name = "England Metropole RAF AI", X = 27, Y = 52, Domain = "Air", AI = true, CivID = ENGLAND, Group = {UK_SPITFIRE, UK_HURRICANE,} },
@@ -238,8 +238,8 @@ g_Initial_OOB = {
 	{Name = "German Submarine AI Bonus", X = 2, Y = 34, Domain = "Sea", AI = true, CivID = GERMANY, Group = { GE_SUBMARINE, GE_SUBMARINE, GE_SUBMARINE}, UnitsXP = {45,30,30}, },
 	{Name = "German Fleet AI bonus", X = 38, Y = 61, Domain = "Sea", AI = true, CivID = GERMANY, Group = { GE_LEIPZIG, GE_DESTROYER, GE_DESTROYER, GE_DESTROYER} },
 
-	{Name = "Italian army", X = 37, Y = 33, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_M11_39, IT_INFANTRY, IT_L6_40, AT_GUN, ARTILLERY} },
-	{Name = "Italian colonial army", X = 53, Y = 5, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_INFANTRY, IT_M11_39, AT_GUN, IT_L6_40, ARTILLERY} },
+	{Name = "Italian army", X = 37, Y = 33, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_M11_39, IT_INFANTRY, IT_INFANTRY, AT_GUN, ARTILLERY} },
+	{Name = "Italian colonial army", X = 53, Y = 5, Domain = "Land", CivID = ITALY, Group = {IT_INFANTRY, IT_INFANTRY, IT_INFANTRY, IT_INFANTRY, AT_GUN, IT_L6_40, ARTILLERY} },
 	{Name = "Italian air", X = 39, Y = 28, Domain = "Air", CivID = ITALY, Group = {IT_CR42, IT_CR42, IT_CR42} },
 	{Name = "Italian air AI Bonus", X = 39, Y = 28, Domain = "Air", AI = true, CivID = ITALY, Group = {IT_CR42, IT_SM79, IT_SM79} },
 	{Name = "Italian fleet", X = 39, Y = 24, Domain = "Sea", CivID = ITALY, Group = {IT_SOLDATI, IT_SOLDATI, IT_ZARA, IT_DI_CAVOUR, IT_SUBMARINE, IT_BATTLESHIP} },
@@ -256,7 +256,7 @@ g_Initial_OOB = {
 if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then
 	table.insert (g_Initial_OOB,	{Name = "Maginot Line 1", X = 35, Y = 42, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"SF de Mulhouse"}, })
 	table.insert (g_Initial_OOB,	{Name = "Maginot Line 2", X = 35, Y = 43, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"SF de Colmar"}, })
-	table.insert (g_Initial_OOB,	{Name = "Maginot Line 3", X = 36, Y = 44, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage du Hochwald"}, })
+	table.insert (g_Initial_OOB,	{Name = "Maginot Line 3", X = 36, Y = 45, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage du Hochwald"}, })
 	table.insert (g_Initial_OOB,	{Name = "Maginot Line 4", X = 35, Y = 45, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage du Simserhof"},  })
 	table.insert (g_Initial_OOB,	{Name = "Maginot Line 5", X = 35, Y = 46, Domain = "Land", CivID = FRANCE, Group = {FORTIFIED_GUN}, UnitsName = {"Ouvrage de Fermont"}, })
 end
@@ -376,6 +376,7 @@ g_MinorProtector = {
 g_Victory = {
 	[FRANCE] = "VICTORY_ALLIED_EUROPE",
 	[ENGLAND] = "VICTORY_ALLIED_EUROPE",
+	[GREECE] = "VICTORY_ALLIED_EUROPE",
 	[USSR] = "VICTORY_USSR_EUROPE",
 	[GERMANY] = "VICTORY_GERMANY_EUROPE",
 	[ITALY] = "VICTORY_AXIS_EUROPE",
@@ -587,11 +588,11 @@ g_Minor_Major_DoW = {
 -- Key cities are cities that need to be occupied to trigger victory
 g_Cities = {
 	-- UNITED KINGDOM
-	{X = 27, Y = 52, Key = true, Buildings = { FACTORY, HARBOR }, AIBuildings = {SHIPYARD, BASE, ACADEMY}, }, -- LONDON
+	{X = 27, Y = 52, Key = true, Buildings = { HARBOR }, AIBuildings = {SHIPYARD, BASE, ACADEMY}, }, -- LONDON
 	{X = 24, Y = 57, Key = true, Buildings = { HARBOR }, AIBuildings = {LAND_FACTORY}, }, -- LIVERPOOL
 	{X = 26, Y = 61, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- EDINBURGH
-	{X = 24, Y = 62, Key = true, Buildings = { HARBOR }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- GLASGOW
-	{X = 28, Y = 58, Key = true, Buildings = { FACTORY }, AIBuildings = {LARGE_AIR_FACTORY, HARBOR}, }, -- NEWCASTLE
+	{X = 24, Y = 62, Key = true, Buildings = { HARBOR }, }, -- GLASGOW
+	{X = 28, Y = 58, Key = true, Buildings = { HARBOR }, AIBuildings = {LARGE_AIR_FACTORY, }, }, -- NEWCASTLE
 	{X = 21, Y = 62, Buildings = { HARBOR }, }, -- BELFAST
 	{X = 28, Y = 65, AIBuildings = { HARBOR }, }, -- ABERDEEN
 	{X = 10, Y = 25, Buildings = { HARBOR, BASE }, }, -- GIBRALTAR
@@ -608,17 +609,18 @@ g_Cities = {
 	{X = 44, Y = 50, Key = true, Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE, ACADEMY}, }, -- BERLIN
 	{X = 39, Y = 46, Key = true, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
 	{X = 39, Y = 53, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD, BASE}, }, -- HAMBURG
-	{X = 40, Y = 40, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LAND_FACTORY, ARSENAL, BASE}, }, -- MUNICH
+	{X = 41, Y = 41, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LAND_FACTORY, ARSENAL, BASE}, }, -- MUNICH
 	{X = 45, Y = 43, Buildings = { FACTORY }, }, -- PRAGUE
 	{X = 40, Y = 55, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
 	{X = 39, Y = 43, AIBuildings = {FACTORY}, }, -- NUREMBERG
 	{X = 52, Y = 53, Buildings = { HARBOR }, AIBuildings = {FACTORY}, }, -- KONIGSBERG
-	{X = 42, Y = 41, AIBuildings = {FACTORY}, }, -- PASSAU
+	--{X = 42, Y = 41, AIBuildings = {FACTORY}, }, -- PASSAU
 	{X = 46, Y = 52, Buildings = { HARBOR }, AIBuildings = {FACTORY}, }, -- STETTIN
+	{X = 36, Y = 50, Buildings = { FACTORY }, }, -- ESSEN
 	{X = 36, Y = 49, Buildings = { FACTORY }, }, -- COLOGNE
 	{X = 48, Y = 46, AIBuildings = {FACTORY}, }, -- BRESLAU
 	{X = 45, Y = 46, AIBuildings = {FACTORY}, }, -- DRESDEN
-	{X = 41, Y = 48, AIBuildings = {FACTORY}, }, -- MAGDEBURG
+	{X = 42, Y = 48, AIBuildings = {FACTORY}, }, -- LIEPZIG
 	{X = 47, Y = 40, Buildings = { FACTORY }, }, -- VIENNA
 	-- FRANCE
 	{X = 28, Y = 45, Key = true, Buildings = { FACTORY, BANK, OPEN_CITY, BARRACKS }, AIBuildings = {LAND_FACTORY, ACADEMY},  }, -- PARIS	
@@ -631,7 +633,7 @@ g_Cities = {
 	{X = 33, Y = 27, Buildings = { HARBOR }, }, -- AJACCIO
 	{X = 21, Y = 45, Buildings = { HARBOR }, }, -- SAINT NAZAIRE
 	{X = 19, Y = 48, }, -- BREST
-	{X = 36, Y = 45, Buildings = { BASE }, AIBuildings = {BARRACKS, ARSENAL},}, -- STRASBOURG
+	--{X = 36, Y = 45, Buildings = { BARRACKS }, }, -- STRASBOURG
 	{X = 33, Y = 34, }, -- NICE
 	{X = 22, Y = 39, Key = true,  }, -- BORDEAUX
 	{X = 21, Y = 42, Buildings = { HARBOR }, }, -- LA ROCHELLE
@@ -661,8 +663,8 @@ g_Cities = {
 	{X = 41, Y = 29, }, -- PESCARA
 	{X = 62, Y = 14, Buildings = { HARBOR, BASE },}, -- RHODES
 	-- U.S.S.R.
-	{X = 72, Y = 58, Key = true, Buildings = { RADIO, HOSPITAL }, AIBuildings = {LAND_FACTORY, ACADEMY, BASE}, }, -- MOSCOW
-	{X = 84, Y = 48, Key = true, Buildings = { BARRACKS }, AIBuildings = {LAND_FACTORY}, }, -- STALINGRAD
+	{X = 72, Y = 58, Key = true, Buildings = { RADIO, HOSPITAL }, AIBuildings = {FACTORY, BARRACKS, LAND_FACTORY, ACADEMY, BASE}, }, -- MOSCOW
+	{X = 84, Y = 48, Key = true, Buildings = { BARRACKS }, AIBuildings = {FACTORY, LAND_FACTORY}, }, -- STALINGRAD
 	{X = 66, Y = 44, Key = true, Buildings = { BARRACKS }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- KIEV
 	{X = 64, Y = 64, Key = true, Buildings = { HARBOR }, }, -- LENINGRAD
 	{X = 65, Y = 85, Buildings = { HARBOR }, }, -- MURMANSK
@@ -701,7 +703,7 @@ g_Cities = {
 	{X = 83, Y = 54, }, -- PENZA
 	{X = 101, Y = 55, }, -- CHELYABINSK
 	{X = 61, Y = 60, }, -- PSKOV
-	{X = 80, Y = 60, AIBuildings = {SMALL_AIR_FACTORY, LARGE_AIR_FACTORY, MEDIUM_AIR_FACTORY},}, -- NOVGOROD
+	{X = 80, Y = 60, AIBuildings = {BARRACKS, SMALL_AIR_FACTORY, LARGE_AIR_FACTORY, MEDIUM_AIR_FACTORY},}, -- GORKY
 	{X = 66, Y = 55, }, -- SMOLENSK
 	{X = 105, Y = 59, }, -- TOBOL'SK
 	{X = 87, Y = 59, }, -- KAZAN

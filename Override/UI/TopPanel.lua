@@ -170,16 +170,43 @@ function UpdateData()
 
 		-- Update Unit Supply
 		if SHOW_UNIT_SUPPLY then
+
+			-- Supply from Lua rules <<<<<
+			-- to do : multiples functions, no duplicate code with GetFreeUnitsFromScenario from redutils.lua
+			local numFreeUnit = 0
+			for unit in pPlayer:Units() do
+				if (unit:GetUnitType() == CONVOY) or (unit:GetUnitType() == FORTIFIED_GUN) then
+					numFreeUnit = numFreeUnit + 1
+				end
+			end
+
+			local changeFromGoldRate = 0
+			local goldPerTurn = pPlayer:CalculateGoldRate()
+			if goldPerTurn < 0 then
+				changeFromGoldRate = math.floor (goldPerTurn / 20)
+			elseif goldPerTurn > 0 then
+				changeFromGoldRate = math.floor (goldPerTurn / 100)
+			end
+			
+			local changeFromBuildings = 0
+			for city in pPlayer:Cities() do
+				if city:IsHasBuilding(BARRACKS) then changeFromBuildings = changeFromBuildings + 1; end
+				if city:IsHasBuilding(BASE) then changeFromBuildings = changeFromBuildings + 5; end
+			end
+			
+			local numFreeUnitsFromScenario = GetFreeUnitsFromScenario (iPlayerID) - changeFromBuildings - changeFromGoldRate - numFreeUnit
+			-- Supply from Lua rules >>>>>
+
 			local iUnitSupplyMod = pPlayer:GetUnitProductionMaintenanceMod();
 			local iUnitsSupplied = pPlayer:GetNumUnitsSupplied();
 			local iUnitsTotal = pPlayer:GetNumUnits()
 			local iUnitsFromCities = pPlayer:GetNumUnitsSuppliedByCities()
 			local iUnitsFromPopulation = pPlayer:GetNumUnitsSuppliedByPopulation()
-			local iUnitsFromHandicap = pPlayer:GetNumUnitsSuppliedByHandicap() + GetFreeUnitsFromScenario (iPlayerID)
+			local iUnitsFromHandicap = pPlayer:GetNumUnitsSuppliedByHandicap() + numFreeUnitsFromScenario
 
 			if (iUnitSupplyMod ~= 0) then
 				local iUnitsOver = pPlayer:GetNumUnitsOutOfSupply();
-				local strUnitSupplyToolTip = Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_REACHED_TOOLTIP", iUnitsSupplied, iUnitsOver, iUnitSupplyMod, iUnitsFromCities, iUnitsFromPopulation, iUnitsFromHandicap);
+				local strUnitSupplyToolTip = Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_REACHED_TOOLTIP", iUnitsSupplied, iUnitsOver, iUnitSupplyMod, iUnitsFromCities, iUnitsFromPopulation, iUnitsFromHandicap, numFreeUnit, changeFromGoldRate, changeFromBuildings);
 				local strUnitSupply = "[ICON_STRENGTH] " .. Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_REACHED", iUnitSupplyMod);
 			
 				Controls.UnitSupplyString:SetToolTipString(strUnitSupplyToolTip);
@@ -188,7 +215,7 @@ function UpdateData()
 			else
 				local iUnitsLeft = iUnitsSupplied - iUnitsTotal
 				if iUnitsLeft <= SHOW_UNIT_SUPPLY_THRESHOLD then
-					local strUnitSupplyToolTip = Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_TOOLTIP", iUnitsSupplied, iUnitsTotal, iUnitsFromCities, iUnitsFromPopulation, iUnitsFromHandicap);
+					local strUnitSupplyToolTip = Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY_TOOLTIP", iUnitsSupplied, iUnitsTotal, iUnitsFromCities, iUnitsFromPopulation, iUnitsFromHandicap, numFreeUnit, changeFromGoldRate, changeFromBuildings);
 					local strUnitSupply = "[ICON_STRENGTH] " .. Locale.ConvertTextKey("TXT_KEY_UNIT_SUPPLY", iUnitsLeft);
 			
 					Controls.UnitSupplyString:SetToolTipString(strUnitSupplyToolTip);
@@ -744,6 +771,19 @@ function GoldTipHandler( control )
 	
 	if (fTotalIncome + iTotalGold < 0) then
 		strText = strText .. "[NEWLINE][COLOR:255:60:60:255]" .. Locale.ConvertTextKey("TXT_KEY_TP_LOSING_SCIENCE_FROM_DEFICIT") .. "[/COLOR]";
+	end
+
+	-- effect on units supply
+	local changeFromGoldRate = 0
+	local goldPerTurn = pPlayer:CalculateGoldRate()
+	if goldPerTurn < 0 then
+		changeFromGoldRate = math.floor (goldPerTurn / 20)
+		strText = strText .. "[NEWLINE][NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UNIT_LOST_SUPPLY_FROM_GOLD", changeFromGoldRate);
+	elseif goldPerTurn > 0 then
+		changeFromGoldRate = math.floor (goldPerTurn / 100)
+		if changeFromGoldRate > 0 then
+			strText = strText .. "[NEWLINE][NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UNIT_GAIN_SUPPLY_FROM_GOLD", changeFromGoldRate);
+		end
 	end
 	
 	-- Basic explanation of Happiness

@@ -27,7 +27,7 @@ g_AuthorizedModList = {
 	"580c14eb-9799-4d31-8b14-c2a78931de89", -- R.E.D. WWII Edition
 	"544d699d-1c84-4606-b22f-a1b009af9471", -- R.E.D. WWII Data Files
 	"a7761578-3a65-475a-a1aa-9a9699660415", -- R.E.D. WWII Audio Files
-	"28510df6-b277-4ba5-808b-da0ce788def4"; -- R.E.D. WWII National Anthems
+	"28510df6-b277-4ba5-808b-da0ce788def4", -- R.E.D. WWII National Anthems
 	"420f5ed1-b43c-4ba5-a5f0-d463c4cda72e", -- Faster Aircraft Animations
 	"57402d0e-06cb-4e71-831c-10ccd40e9572", -- R.E.D. Quick Combat
 	"5739c052-e089-4c19-9f3b-73b5363d4f5c", -- Fast Moves
@@ -39,6 +39,7 @@ g_AuthorizedModList = {
 	"170c8ed1-b516-4fe2-b571-befeac39d220", -- I.G.E. - Ingame Editor
 	"8affec94-2588-4fe9-a87a-703a64bdf53c", -- Unit Tester
 	"c70dee73-8179-4a19-a3e5-1d931908ff43", -- MultiPlayer ModsPack Maker
+	"5ffb233b-d9f3-4ec4-8fae-b8705b40c413", -- R.E.D. WWII 3D Leaders
 }
 
 

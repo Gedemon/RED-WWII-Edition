@@ -152,7 +152,7 @@ g_France_Land_Ratio = 1
 g_USSR_Land_Ratio = 1
 
 -- limit troops route on specific fronts
-g_MaxForceInNorway = 150000
+g_MaxForceInNorway = 100000
 g_MaxForceInAfrica = 200000
 
 function SetAIStrategicValues()
@@ -336,6 +336,7 @@ function CoCallOfFrance()
 	local cityPlot = GetPlot (28,45)
 	local pParis = cityPlot:GetPlotCity()
 	local pAxis = g_CapturingPlayer
+	local iAxis = pAxis:GetID()
 	g_CapturingPlayer = nil
 	--
 
@@ -650,14 +651,14 @@ function CoCallOfFrance()
 			-- occupied territory
 			elseif ownerID ~= iVichy and originalOwner == iFrance and ((x < 24 and y > 32) or (y > 42 and x < 33)) then 
 				--Dprint("(".. x ..",".. y ..") = Plot in occupied territory")
-				if plot:IsCity() and ownerID ~= newPlayerID then -- handle already captured french cities
+				if plot:IsCity() and ownerID ~= iAxis then -- handle already captured french cities
 					local city = plot:GetPlotCity()
 					EscapeUnitsFromPlot(plot)
 					coroutine.yield()
 					pAxis:AcquireCity(city, false, true)
 					coroutine.yield()
 				else
-					plot:SetOwner(newPlayerID, -1 ) 
+					plot:SetOwner(iAxis, -1 ) 
 				end
 
 			-- Vichy territory
@@ -2189,7 +2190,7 @@ function UKReinforcementToNorway()
 	local enemyInNorway = GetEnemyLandForceInArea( pUK, 37, 61, 54, 86 )
 	
 	if (allyInNorway > enemyInNorway) or (allyInNorway > g_MaxForceInNorway) then	
-		Dprint ("   - but allied have enough in Norway, no need to reinforce them...", bDebug)
+		Dprint ("   - but allied have enough force in Norway, no need to reinforce them...", bDebug)
 		return false
 	end
 
@@ -2387,7 +2388,7 @@ function GermanyReinforcementToNorway()
 	local enemyInNorway = GetEnemyLandForceInArea( pGermany, 37, 61, 54, 86 )
 	
 	if (friendInNorway > enemyInNorway)  or (friendInNorway > g_MaxForceInNorway) then	
-		Dprint ("   - but Axis have more force than Allies in Norway, no need to reinforce them...", bDebug)
+		Dprint ("   - but Axis have enough forces in Norway, no need to reinforce them...", bDebug)
 		return false
 	end
 
@@ -2429,6 +2430,36 @@ function GermanyReinforcementToUK()
 	return true 
 end
 
+
+function GermanyDisengagefromUK()
+
+	local bDebug = true
+	
+	Dprint ("  - Germany is Checking to remove troops from UK", bDebug)
+
+	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
+	local pGermany = Players[iGermany]
+
+	if not IsOperationLaunched(OPERATION_SEELOWE) then	
+		Dprint ("   - but Germany has not launched operation Seelowe...", bDebug)
+		return false
+	end
+	
+	local friendInUK = GetTeamLandForceInArea( pGermany, 19, 51, 30, 68 ) -- (19,51) -> (30,68) ~= UK rectangular area
+	if friendInUK == 0 then	
+		Dprint ("   - but Axis ("..friendInUK..") have no force left in UK...", bDebug)
+		return false
+	end
+
+	local enemyInUK = GetEnemyLandForceInArea( pGermany, 19, 51, 30, 68 )	
+	if friendInUK < (2*enemyInUK) then	
+		Dprint ("   - but Axis ("..friendInUK..") have not total domination over Allies ("..enemyInUK..") in UK...", bDebug)
+		return false
+	end
+
+	return true 
+end
+
 -- troops route list
 TROOPS_UK_FRANCE = 1
 TROOPS_UK_NORWAY = 2
@@ -2441,6 +2472,7 @@ TROOPS_GERMANY_NORWAY = 8
 TROOPS_GERMANY_SEELOWE_KIEL = 9
 TROOPS_GERMANY_SEELOWE_ST_NAZAIRE = 10
 TROOPS_GERMANY_UK = 11
+TROOPS_GERMANY_BACK_UK = 12
 
 -- troops route table
 
@@ -2567,7 +2599,7 @@ g_TroopsRoutes = {
 			[TROOPS_GERMANY_NORWAY] = {
 				Name = "Germany to Norway",
 				CentralPlot = {X=41, Y=54},
-				MaxDistanceFromCentral = 6,
+				MaxDistanceFromCentral = 3,
 				ReserveUnits = 5, -- minimum unit to keep in this area (ie : do not send those elsewhere)
 				EmbarkList = { {X=40, Y=54}, {X=40, Y=55}, {X=39, Y=53}, {X=38, Y=53},}, -- near Kiel (West of)
 				RandomEmbark = false, -- true : random choice in spawn list
@@ -2575,8 +2607,8 @@ g_TroopsRoutes = {
 				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
 				LandingList = { {X=39, Y=64}, {X=39, Y=63}, {X=40, Y=63}, {X=41, Y=64}, {X=42, Y=64}, }, -- Between Bergen and Oslo
 				RandomLanding = true, -- false : sequential try in landing list
-				MinUnits = 3,
-				MaxUnits = 6, -- Maximum number of units on the route at the same time
+				MinUnits = 2,
+				MaxUnits = 4, -- Maximum number of units on the route at the same time
 				Priority = 10, 
 				Condition = GermanyReinforcementToNorway, -- Must refer to a function, remove this line to use the default condition (true)
 			},
@@ -2610,6 +2642,23 @@ g_TroopsRoutes = {
 				Priority = 10, 
 				Condition = GermanyReinforcementToUK, -- Must refer to a function, remove this line to use the default condition (true)
 			},
+			
+			[TROOPS_GERMANY_BACK_UK] = {
+				Name = "Germany back to France from UK",
+				CentralPlot = {X=25, Y=55},
+				MaxDistanceFromCentral = 8,
+				ReserveUnits = 0, -- minimum unit to keep in this area (ie : do not send those elsewhere)
+				EmbarkList = { {X=26, Y=51}, {X=27, Y=51}, }, -- near London
+				RandomEmbark = false, -- true : random choice in spawn list
+				WaypointList = nil, -- waypoints
+				RandomWaypoint = false, -- true : random choice in waypoint list (use 1 random waypoint), else use sequential waypoint movement.
+				LandingList = { {X=28, Y=49}, {X=28, Y=48}, {X=27, Y=48}, }, -- near Dunkerque
+				RandomLanding = true, -- false : sequential try in landing list
+				MinUnits = 1,
+				MaxUnits = 2, -- Maximum number of units on the route at the same time
+				Priority = 10, 
+				Condition = GermanyDisengagefromUK, -- Must refer to a function, remove this line to use the default condition (true)
+			},
 	},
 }
 
@@ -2621,10 +2670,41 @@ g_TroopsRoutes = {
 -- add scenario specific restriction for projects
 function PlayerEuro1940ProjectRestriction  (iPlayer, iProjectType)
 
-	local civID = GetCivIDFromPlayerID(iPlayer, false)
+	local civID = GetCivIDFromPlayerID(iPlayer, false)	
+		
+	if civID == GERMANY and iProjectType == OPERATION_SEELOWE then
+		if AreAtWar( iPlayer, GetPlayerIDFromCivID(USSR, false)) then		
+			return false -- Operation Seelowe not available if Germany is at war with USSR...
+		end
+		local Berlin = GetPlot(44, 50):GetPlotCity()	-- Berlin
+		if Berlin:IsOccupied() then
+			return false -- Paratroopers launch from Berlin...
+		end
+	end	
+	
+	if civID == GERMANY and iProjectType == OPERATION_WESERUBUNG then
+		local Berlin = GetPlot(44, 50):GetPlotCity()	-- Berlin
+		if Berlin:IsOccupied() then
+			return false -- Paratroopers launch from Berlin...
+		end	
+	end
 
-	if civID == GERMANY and iProjectType == OPERATION_SEELOWE and AreAtWar( iPlayer, GetPlayerIDFromCivID(USSR, false)) then		
-		return false -- Operation Seelowe not available if Germany is at war with USSR...	
+	if civID == GERMANY and iProjectType == OPERATION_FALLGELB then
+		if(PreGame.GetGameOption("MaginotLine") == nil) or (PreGame.GetGameOption("MaginotLine") ==  0) then
+			return false -- Available only whith Maginot Line...
+		end
+		local Berlin = GetPlot(44, 50):GetPlotCity()	-- Berlin
+		if Berlin:IsOccupied() then
+			return false -- Paratroopers launch from Berlin...
+		end
+		local Essen = GetPlot(36, 50):GetPlotCity()	-- Essen
+		if Essen:IsOccupied() then
+			return false -- 1st army launch from Essen...
+		end
+		local Cologne = GetPlot(36, 49):GetPlotCity()	-- Cologne
+		if Cologne:IsOccupied() then
+			return false -- 2nd army launch from Cologne...
+		end
 	end
 
 	return true
@@ -2632,11 +2712,15 @@ end
 -- GameEvents.PlayerCanCreate.Add(PlayerEuro1940ProjectRestriction) (called in RedEuro1940.lua)
 
 
-function IsGermanyAtWarWithNorway()
+function IsGermanyReadyForWeserubung()
 	local bDebug = false
 	if not AreAtWar( GetPlayerIDFromCivID(GERMANY, false), GetPlayerIDFromCivID(NORWAY, true)) then
 		Dprint("      - Germany is not at war with Norway...", bDebug)
 		return false
+	end
+	local Berlin = GetPlot(44, 50):GetPlotCity()	-- Berlin
+	if Berlin:IsOccupied() then
+		return false -- Paratroopers launch from Berlin...
 	end
 	return true
 end
@@ -2698,6 +2782,31 @@ function IsUSSRLosingWar()
 	return true
 end
 
+function IsGermanyReadyForFallGelb()
+	local bDebug = false
+	if not AreAtWar( GetPlayerIDFromCivID(GERMANY, false), GetPlayerIDFromCivID(BELGIUM, true)) then
+		Dprint("      - Germany is not at war with Belgium...", bDebug)
+		return false
+	end
+	if not AreAtWar( GetPlayerIDFromCivID(GERMANY, false), GetPlayerIDFromCivID(NETHERLANDS, true)) then
+		Dprint("      - Germany is not at war with Netherlands...", bDebug)
+		return false
+	end
+	local Berlin = GetPlot(44, 50):GetPlotCity()	-- Berlin
+	if Berlin:IsOccupied() then
+		return false -- Paratroopers launch from Berlin...
+	end
+	local Essen = GetPlot(36, 50):GetPlotCity()	-- Essen
+	if Essen:IsOccupied() then
+		return false -- 1st army launch from Essen...
+	end
+	local Cologne = GetPlot(36, 49):GetPlotCity()	-- Cologne
+	if Cologne:IsOccupied() then
+		return false -- 2nd army launch from Cologne...
+	end
+	return true
+end
+
 g_Military_Project = {
 	------------------------------------------------------------------------------------
 	[GERMANY] = {
@@ -2705,7 +2814,7 @@ g_Military_Project = {
 		[OPERATION_WESERUBUNG] =  { -- projectID as index !
 			Name = "TXT_KEY_OPERATION_WESERUBUNG",
 			OrderOfBattle = {
-				{	Name = "Para Group 1", X = 44, Y = 52, Domain = "Land", CivID = GERMANY, -- spawn NW of Berlin
+				{	Name = "Para Group 1", X = 44, Y = 50, Domain = "City", CivID = GERMANY, -- spawn at Berlin
 					Group = {		GE_PARATROOPER,	GE_PARATROOPER, GE_PARATROOPER,	},
 					UnitsXP = {		10,				15,	}, 
 					InitialObjective = "51,85", -- Narvik
@@ -2714,7 +2823,7 @@ g_Military_Project = {
 					LaunchY = 83, -- (51,83) = Near Narvik
 					LaunchImprecision = 3, -- landing area
 				},
-				{	Name = "Para Group 2", X = 42, Y = 52, Domain = "Land", CivID = GERMANY, AI = true, -- spawn NW of Berlin
+				{	Name = "Para Group 2", X = 44, Y = 50, Domain = "City", CivID = GERMANY, AI = true, -- spawn at Berlin
 					Group = {		GE_PARATROOPER,	GE_PARATROOPER,	},
 					UnitsXP = {		10,				15,				}, 
 					InitialObjective = "43,72", -- Trondheim
@@ -2723,7 +2832,7 @@ g_Military_Project = {
 					LaunchY = 74, -- (44,74) = Near Trondheim
 					LaunchImprecision = 3, -- landing area
 				},
-				{	Name = "Para Group 3", X = 40, Y = 52, Domain = "Land", CivID = GERMANY, AI = true, -- spawn NW of Berlin
+				{	Name = "Para Group 3", X = 44, Y = 50, Domain = "City", CivID = GERMANY, AI = true, -- spawn at Berlin
 					Group = {		GE_PARATROOPER,	GE_PARATROOPER,	},
 					UnitsXP = {		25,				30,				}, 
 					InitialObjective = "43,72", -- Trondheim
@@ -2733,12 +2842,12 @@ g_Military_Project = {
 					LaunchImprecision = 3, -- landing area
 				},
 			},			
-			Condition = IsGermanyAtWarWithNorway, -- Must refer to a function, remove this line to use the default condition (always true)
+			Condition = IsGermanyReadyForWeserubung, -- Must refer to a function, remove this line to use the default condition (always true)
 		},
 		[OPERATION_SEELOWE] =  { -- projectID as index !
 			Name = "TXT_KEY_OPERATION_SEELOWE",
 			OrderOfBattle = {
-				{	Name = "Para Group 1", X = 44, Y = 52, Domain = "Land", CivID = GERMANY, -- spawn NW of Berlin
+				{	Name = "Para Group 1", X = 44, Y = 50, Domain = "City", CivID = GERMANY, -- spawn at Berlin
 					Group = {		GE_PARATROOPER,	GE_PARATROOPER, GE_PARATROOPER,	},
 					UnitsXP = {		10,				15,				10}, 
 					InitialObjective = nil, 
@@ -2764,7 +2873,41 @@ g_Military_Project = {
 			},			
 			Condition = FranceHasFallen, -- Must refer to a function, remove this line to use the default condition (always true)
 		},
-	},	
+		[OPERATION_FALLGELB] =  { -- projectID as index !
+			Name = "TXT_KEY_OPERATION_FALLGELB",
+			OrderOfBattle = {
+				{	Name = "Para Group 1", X = 44, Y = 50, Domain = "City", CivID = GERMANY, -- spawn at Berlin
+					Group = {		GE_PARATROOPER,	GE_PARATROOPER	},
+					UnitsXP = {		10,				15,}, 
+					InitialObjective = "34,52", -- Amsterdam
+					LaunchType = "ParaDrop",
+					LaunchX = 33, -- Destination plot
+					LaunchY = 51, -- (51,83) = Near Narvik
+					LaunchImprecision = 2, -- landing area
+				},
+				{	Name = "Para Group 2", X = 44, Y = 50, Domain = "City", CivID = GERMANY, -- spawn at Berlin
+					Group = {		GE_PARATROOPER,	GE_PARATROOPER,	},
+					UnitsXP = {		10,				15,				}, 
+					InitialObjective = "32,49", -- Brussel
+					LaunchType = "ParaDrop",
+					LaunchX = 33, -- Destination plot
+					LaunchY = 49, -- (44,74) = Near Trondheim
+					LaunchImprecision = 1, -- landing area
+				},
+				{	Name = "Army 1", X = 36, Y = 50, Domain = "City", CivID = GERMANY, AI = true, -- spawn at Essen
+					Group = {		GE_INFANTRY,	GE_INFANTRY,	GE_INFANTRY,	GE_PANZER_IV,	GE_PANZER_II,	ARTILLERY,	AT_GUN},
+					UnitsXP = {		10,				15,				15,				35,				30,				15,			20,	}, 
+					InitialObjective = "34,52", -- Amsterdam 
+				},
+				{	Name = "Army 1", X = 36, Y = 49, Domain = "City", CivID = GERMANY, AI = true, -- spawn at Cologne
+					Group = {		GE_INFANTRY,	GE_INFANTRY,	GE_INFANTRY,	GE_PANZER_III,	GE_PANZER_II,	ARTILLERY,	AT_GUN},
+					UnitsXP = {		20,				15,				30,				25,				25,				25,			20,	}, 
+					InitialObjective = "32,49", -- Brussel 
+				},
+			},
+			Condition = IsGermanyReadyForFallGelb, -- Must refer to a function, remove this line to use the default condition (always true)
+		},
+	},
 	------------------------------------------------------------------------------------
 	------------------------------------------------------------------------------------
 	[USSR] = {
@@ -2980,21 +3123,21 @@ function BalanceScenario()
 	local pUSSR = Players[iUSSR]
 
 	-- Place the Modlin Fortress in Poland
-	if pGermany:IsHuman() or pUSSR:IsHuman() then
+	--if pGermany:IsHuman() or pUSSR:IsHuman() then
 
 		local iPoland = GetPlayerIDFromCivID (POLAND, true, true)
 		local pPoland = Players[iPoland]
 		 SetCitadelAt(52,49)
 
-	end
+	--end
 	
 	-- Place the fortifications for the Maginot Line
 	if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then
-		SetCitadelAt(36, 44)
-		SetFortAt(35, 42)
-		SetFortAt(35, 43)
-		SetBunkerAt(35, 45)
-		SetBunkerAt(35, 46)
+		SetCitadelAt(36, 45)
+		SetBunkerAt(35, 42)
+		SetBunkerAt(35, 43)
+		SetFortAt(35, 45)
+		SetFortAt(35, 46)
 	end
 
 	-- Place the fortifications for the Siegfried Line

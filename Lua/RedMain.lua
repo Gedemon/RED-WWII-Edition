@@ -38,8 +38,8 @@ include ("RedSupplyRoutes")
 ----------------------------------------------------------------------------------------------------------------------------
 
 include ("RedScenarioDefine")
-include ("Script" .. g_Scenario_Name)
-include ("Red" .. g_Scenario_Name)
+if g_Scenario_Name then include ("Script" .. g_Scenario_Name) end;
+if g_Scenario_Name then include ("Red" .. g_Scenario_Name) end;
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- Initializing main functions...

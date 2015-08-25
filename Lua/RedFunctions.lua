@@ -125,7 +125,9 @@ function HandleCityCapture  (playerID, bCapital, iX, iY, newPlayerID)
 		end
 	end
 
-	if city:GetResistanceTurns() >0 then
+	city = cityPlot:GetPlotCity() -- in case it was destroyed by AcquireCity
+
+	if city:GetResistanceTurns() > 0 then
 		city:ChangeResistanceTurns(-Round(city:GetResistanceTurns()*0.75)) -- lower the number of resistance turns by 75%
 	end
 

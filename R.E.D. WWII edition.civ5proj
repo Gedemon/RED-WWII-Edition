@@ -5,7 +5,7 @@
     <ProjectGuid>{ecf7c652-3ea7-41fb-9bac-83ee7e298a7d}</ProjectGuid>
     <Name>R.E.D. WWII Edition</Name>
     <Guid>580c14eb-9799-4d31-8b14-c2a78931de89</Guid>
-    <ModVersion>44</ModVersion>
+    <ModVersion>45</ModVersion>
     <Stability>Beta</Stability>
     <Teaser>R.E.D. WWII Edition</Teaser>
     <Description>R.E.D. WWII Edition is a total conversion wargame mod based on the Civ5 game engine.[NEWLINE]Features :[NEWLINE][ICON_BULLET]Frontline: units can capture tiles (or liberate your allied/friends tiles)[NEWLINE][ICON_BULLET]Supply lines: units that are not connected to a city won't get reinforcement and a malus in combat[NEWLINE][ICON_BULLET]Reinforcements: personnel and materiel are needed to "heal" your units.[NEWLINE][ICON_BULLET]National units: each great power have it's own set of units models[NEWLINE][NEWLINE][COLOR_RED]The[/COLOR] [COLOR_YELLOW]R.E.D. WWII Data Files (V.5)[/COLOR][COLOR_RED] mod must be activated to play this mod[/COLOR]</Description>
@@ -22,7 +22,7 @@
     <SupportsHotSeat>true</SupportsHotSeat>
     <ReloadUnitSystem>true</ReloadUnitSystem>
     <HideSetupGame>true</HideSetupGame>
-    <Homepage>http://forums.civfanatics.com/showthread.php?t=431344</Homepage>
+    <Homepage>http://forums.civfanatics.com/forumdisplay.php?f=471</Homepage>
     <ModProperties>
       <Property>
         <Name>Custom_Background_TXT_KEY_RED_EURO1940_SCENARIO_TITLE</Name>
@@ -275,6 +275,11 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
+        <FileName>XML/ArmyFormations.xml</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
         <FileName>SQL/999- FinalizeRules.sql</FileName>
       </Action>
       <Action>
@@ -294,8 +299,8 @@
         <Type>Mod</Type>
         <Name>R.E.D. WWII Data Files</Name>
         <Id>544d699d-1c84-4606-b22f-a1b009af9471</Id>
-        <MinVersion>0</MinVersion>
-        <MaxVersion>999</MaxVersion>
+        <MinVersion>5</MinVersion>
+        <MaxVersion>5</MaxVersion>
       </Association>
     </ModDependencies>
   </PropertyGroup>
@@ -313,9 +318,11 @@
   <ItemGroup>
     <Folder Include="Art\" />
     <Folder Include="Art\FontIcons\" />
-    <Folder Include="Art\Improvements\Bunker" />
-    <Folder Include="Art\Maps" />
-    <Folder Include="Art\Improvements" />
+    <Folder Include="Art\Improvements\" />
+    <Folder Include="Art\Improvements\Bunker\" />
+    <Folder Include="Art\Maps\" />
+    <Folder Include="Art\Icons" />
+    <Folder Include="Art\Units" />
     <Folder Include="Art\SV_icons" />
     <Folder Include="GameSetup\" />
     <Folder Include="Lua\" />
@@ -360,11 +367,151 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
+    <Content Include="Art\FontIcons\RED_WWII_FontIcons.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Art\FontIcons\RED_WWII_FontIcons.ggxml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\FontIcons\RED_WWII_FontIcons.dds">
+    <Content Include="Art\Icons\BritishTroopsAtlas128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\BritishTroopsAtlas256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\BritishTroopsAtlas45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\BritishTroopsAtlas64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\BritishTroopsAtlas80.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\FrenchTroopsAtlas128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\FrenchTroopsAtlas256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\FrenchTroopsAtlas45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\FrenchTroopsAtlas64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\FrenchTroopsAtlas80.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_1_128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_1_256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_1_45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_1_64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_1_80.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_2_128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_2_256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_2_45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_2_64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\GermanTroopsAtlas_2_80.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\ItalianTroopsAtlas-128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\ItalianTroopsAtlas-256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\ItalianTroopsAtlas-45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\ItalianTroopsAtlas-64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\ItalianTroopsAtlas-80.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\OtherTroopsAtlas-128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\OtherTroopsAtlas-256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\OtherTroopsAtlas-45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\OtherTroopsAtlas-64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\OtherTroopsAtlas-80.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\RussianTroopsAtlas128.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\RussianTroopsAtlas256.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\RussianTroopsAtlas45.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\RussianTroopsAtlas64.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Icons\RussianTroopsAtlas80.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -404,7 +551,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Maps\mapItaly.dds">
+    <Content Include="Art\Maps\mapFrance.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -412,11 +559,51 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Art\Maps\mapUSSR.dds">
+    <Content Include="Art\Maps\mapItaly.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Maps\mapJapan.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Maps\mapUnitedKingdom.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Art\Maps\mapUSA.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Maps\mapUSSR.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Maps\RedWorldMap.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Units\Russian_crew_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Units\Russian_crew_sref.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Units\ZiS-3.fxsxml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Units\ZiS-3.gr2">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Units\ZiS-3_diff.dds">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Art\Units\ZiS-3_sref.dds">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -505,6 +692,10 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="Override\UI\DiploList.xml">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Override\UI\MilitaryOverview.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -1252,10 +1443,6 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Override\Vanilla\InGame\MilitaryOverview.lua">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
-    </Content>
     <Content Include="Override\Vanilla\InGame\MilitaryOverview.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
@@ -1745,6 +1932,10 @@
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
     <Content Include="World_War_II_1941.Civ5Map">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="XML\ArmyFormations.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

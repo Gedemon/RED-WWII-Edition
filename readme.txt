@@ -1,6 +1,6 @@
 R.E.D. WWII edition
 for Civilization 5
-v.44
+v.45
 
 	-- Presentation --
 
@@ -14,6 +14,59 @@ Full credits list : http://forums.civfanatics.com/showthread.php?t=484955
 
 
 	-- version history --
+
+v.45 (xxx x, 2015)
+
+AI (DLL):
+- Every nation use same value (5) for all flavors (testing purpose)
+- Tweak score target for cities
+- Do not allow Withdraw and Hedgehog posture (testing purpose)
+- Do not allow defensive Bastion and Improvement Defense (testing purpose)
+- Do not count Air units for Dominance zones (testing purpose)
+
+Global:
+- Add Urzahil's units icons
+- Add Urzahil's German translation
+- Add civilizations maps from JFD WWII Leader mod
+- Add WWII 3D Leaders to authorized mods list
+- Add ZiS-3 soviet Field Gun
+- Remove all traits description as they are not all activated
+
+Europe 1939-1945:
+- Tweak initial buildings list in cities
+- Remove Strasbourg for France, update Maginot Line position
+- Remove some small soviet cities
+- Move Munich, add Essen and Leipzig, remove Passau and Magdeburg for Germany
+- Change some population values
+- Add troops route out of U.K. in case of near complete conquest by Germany AI
+- Add Operation Fallgelb for Germany (human and AI), available only if the Maginot Line is on the map.
+- Always place the Modlin Fortress in Poland
+
+Balance :
+- Update AI operational and tactical defines values
+- Lower Mobile AA combat modifier vs Armor (from 100 to 25)
+- Add and edit Army Formations from Artificial Unintelligence mod
+- Tweak U.K. and Italy Order of Battle
+- Tweak "MotherLand Call" military operation flavors and cost
+- Change maintenance cost for roads (free) and rails (2 gpt)
+- Tweak ratio between number of cities and total population for units supplied
+- Barracks (+1 unit) and Military Bases (+5 units) can raise the total number of units supplied
+- Positive (+1 unit per 100 gpt) and negative (-1 unit per -20 gpt) gold ratio change total number of units supplied
+
+Bug fix:
+- BM13-16 project reference is the BM-13, not the T-34...
+- Add forgotten mobile artillery projects to Germany
+- Fix Field Gun size
+- Allow Greece to trigger allied victory
+- Give French territory to correct player when the AI conquer Paris
+- On Military operation, launch Paratroopers from a city and check that it's a friendly city (ie not captured)
+- Remove Joffre project
+
+Crash fix:
+- Prevent a crash that could occur on some computers when changing the number of resistance turns after capturing a city
+- Prevent a crash that could occur on some computers when a defending unit is destroyed after capturing the last city of a civilization
+- Fix rocket artillery graphical initialization that was causing random crashes when firing at large figures units (like infantry)
+
 
 v.44 (June 7, 2015)
 
@@ -713,11 +766,11 @@ New versions may brake saved games, always finish your previous game before upda
 [*] Select a scenario or load a previously saved game (note that new version may break save games, always finish your game before updating)
 [/olist]
 
-[h1]PLEASE READ AND USE THE THREAD IN THE DISCUSSION SECTION IF YOU NEED HELP, ALL COMMENTS RELATED TO INSTALLATION PROBLEMS WILL BE DELETED.[/h1]
+[h1]PLEASE READ AND USE THE THREAD IN THE DISCUSSION SECTION IF YOU NEED HELP, COMMENTS RELATED TO INSTALLATION PROBLEMS MAY BE IGNORED.[/h1]
 
 See also [url=http://forums.civfanatics.com/showthread.php?t=472345 ]Installation instructions and troubleshooting[/url] on CivFanatics
 
-The mod copy a few files in the game's folder to prevent a crash when disabling the DLCs. To uninstall , simply unsubscribe and delete the [b]RED_WWII[/b] folder in [i]"..Steam\steamapps\common\sid meier's civilization v\Assets\DLC"[/i]
+The mod copy files in the game's folder to prevent a crash when disabling the DLCs. To uninstall, or [b]if you downgrade to a previous version[/b], delete the [b]RED_WWII[/b] folder in [i]"..Steam\steamapps\common\sid meier's civilization v\Assets\DLC"[/i]
 [/quote]
 
 [h1]Scenarios[/h1]

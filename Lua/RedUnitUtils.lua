@@ -562,7 +562,8 @@ function IsNeverRetreating(unitTypeID)
 	return g_NeverRetreating[unitTypeID] or false
 end
 
-function SetTemporaryBestDefender(unit)	
+function SetTemporaryBestDefender(unit)
+	if unit:IsDead() then return end;
 	local bDebug = true
 	Dprint("    - Set ("..tostring(unit:GetName())..") as best defender on plot ".. unit:GetX() ..",".. unit:GetY(), bDebug)
 	Dprint("    - Moves Left = ".. unit:MovesLeft(), bDebug)
@@ -572,6 +573,7 @@ function SetTemporaryBestDefender(unit)
 end
 
 function RemoveTemporaryBestDefender(unit)
+	if unit:IsDead() then return end;
 	local bDebug = true
 	Dprint("    - Unset ("..tostring(unit:GetName())..") as best defender on plot ".. unit:GetX() ..",".. unit:GetY(), bDebug)
 	Dprint("    - Moves Left = ".. unit:MovesLeft(), bDebug)

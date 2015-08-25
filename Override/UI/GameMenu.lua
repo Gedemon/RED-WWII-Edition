@@ -478,6 +478,7 @@ function OnYes( )
    	UIManager:SetUICursor( 1 );
 	
 	if(m_ExitToMain) then
+		MapModData.RED = nil;
 		Events.ExitToMainMenu();
 	else
 		UI.ExitGame();

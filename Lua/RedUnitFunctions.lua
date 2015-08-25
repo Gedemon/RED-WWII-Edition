@@ -1356,7 +1356,7 @@ function LaunchUnits(militaryOperation)
 				objectivePlot = GetPlot(oob.LaunchX, oob.LaunchY)
 				objectivePlotList = GetPlotsInCircle(objectivePlot, 0, oob.LaunchImprecision)
 				for i, testPlot in pairs(objectivePlotList) do
-					if IsSafePlot( testPlot, playerID) and not testPlot:IsWater() and not testPlot:IsImpassable() and not testPlot:IsCity() and not IsNeutral(testPlot:GetOwner()) then
+					if testPlot:GetNumUnits() == 0 and not testPlot:IsWater() and not testPlot:IsImpassable() and not testPlot:IsCity() and not IsNeutral(testPlot:GetOwner()) then
 						table.insert(validPlotList, testPlot)
 					end
 				end
@@ -1443,7 +1443,8 @@ function LaunchUnits(militaryOperation)
 					local dropPlot = validPlotList[i]
 					
 					Dprint("   - Launch Paradrop mission for " .. unit:GetName() .. " (unitID = ".. unit:GetID() .. ") at " .. tostring(dropPlot:GetX()) .."," .. tostring(dropPlot:GetY()), bDebug)
-
+					
+					unit:SetHasPromotion(PROMOTION_PARADROP, false) -- to do: restore after removing long paradrop in case it was set
 					unit:SetHasPromotion(PROMOTION_LONG_PARADROP, true)
 					unit:PopMission()
 					unit:PushMission(MissionTypes.MISSION_PARADROP, dropPlot:GetX(), dropPlot:GetY(), 0, 0, 1, MissionTypes.MISSION_PARADROP, unit:GetPlot(), unit)

@@ -1338,13 +1338,28 @@ function GetFreeUnitsFromScenario (iPlayer)
 	end
 
 	-- convoy are free from maintenance
-	local numConvoi = 0
+	local numFreeUnit = 0
 	for unit in player:Units() do
-		if (unit:GetUnitType() == CONVOY) then
-			numConvoi = numConvoi + 1
+		if (unit:GetUnitType() == CONVOY) or (unit:GetUnitType() == FORTIFIED_GUN) then
+			numFreeUnit = numFreeUnit + 1
 		end
 	end
 
-	return numFreeUnitsFromScenario + numConvoi
+	-- change from goldrate
+	local changeFromGoldRate = 0
+	local goldPerTurn = player:CalculateGoldRate()
+	if goldPerTurn < 0 then
+		changeFromGoldRate = math.floor (goldPerTurn / 20)
+	elseif goldPerTurn > 0 then
+		changeFromGoldRate = math.floor (goldPerTurn / 100)
+	end
+
+	local changeFromBuildings = 0
+	for city in player:Cities() do
+		if city:IsHasBuilding(BARRACKS) then changeFromBuildings = changeFromBuildings + 1; end
+		if city:IsHasBuilding(BASE) then changeFromBuildings = changeFromBuildings + 5; end
+	end
+
+	return numFreeUnitsFromScenario + numFreeUnit + changeFromGoldRate + changeFromBuildings
 
 end

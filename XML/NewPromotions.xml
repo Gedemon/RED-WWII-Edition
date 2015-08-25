@@ -943,7 +943,7 @@
 		<Row>
 			<PromotionType>PROMOTION_MOBILE_AA_GUN</PromotionType>
 			<UnitCombatType>UNITCOMBAT_ARMOR</UnitCombatType>
-			<Modifier>100</Modifier>
+			<Modifier>25</Modifier>
 		</Row>
 	</UnitPromotions_UnitCombatMods>
 	<UnitPromotions_Domains>

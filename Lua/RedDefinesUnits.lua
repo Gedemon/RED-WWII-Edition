@@ -238,6 +238,7 @@ RO_TACAM				= GameInfo.Units.UNIT_TANK_DESTROYER_TACAM.ID
 ARTILLERY				= GameInfo.Units.UNIT_ARTILLERY.ID
 RU_ARTILLERY			= GameInfo.Units.UNIT_ARTILLERY_ML20.ID
 AT_GUN					= GameInfo.Units.UNIT_FIELD_GUN.ID
+RU_AT_GUN				= GameInfo.Units.UNIT_FIELD_GUN_ZIS3.ID
 AA_GUN					= GameInfo.Units.UNIT_ANTI_AIRCRAFT_GUN.ID
 -- Mobile Artilleries ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 FR_MOBILE_AA_GUN		= GameInfo.Units.UNIT_MOBILE_AA_GUN_HOTCHKISS.ID
@@ -503,7 +504,7 @@ g_Major_Units = {
 		RU_I16, RU_LAGG3, RU_LA5, RU_LA5_V2, RU_LA7, RU_YAK_7, RU_YAK_9,
 		RU_IL2, RU_IL2M3, RU_IL10, RU_PE2, RU_TU2, RU_IL4, RU_TB3, RU_PE8,
 		RU_GNEVNY, RU_SUBMARINE, RU_KIROV, RU_BATTLESHIP,
-		RU_ARTILLERY, AA_GUN, AT_GUN},
+		RU_ARTILLERY, AA_GUN, RU_AT_GUN},
 	[GERMANY] = {
 		GE_INFANTRY, GE_PARATROOPER, GE_SS_INFANTRY, GE_SPECIAL_FORCES, GE_MECH_INFANTRY,
 		GE_PZJAGER_I, GE_MARDER_II, GE_MARDER_II_D, GE_MARDER_III, GE_MARDER_III_H, GE_MARDER_III_M, GE_HETZER, -- GE_MARDER_I, 

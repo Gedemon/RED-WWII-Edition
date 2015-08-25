@@ -25,7 +25,7 @@
 		</Replace>
 
 		<Replace Tag="TXT_KEY_UNIT_SUPPLY_REACHED_TOOLTIP">
-			<Text>Your nation can support {1_Num} Units.[NEWLINE]You are over that limit by {2_Num}[NEWLINE][COLOR_WARNING_TEXT] {3_Num}%[ICON_PRODUCTION] Production in cities.[ENDCOLOR][NEWLINE][ICON_BULLET] Cities supply = {4_Num} units.[NEWLINE][ICON_BULLET] Population supply = {5_Num} units.[NEWLINE][ICON_BULLET] Base supply = {6_Num} units.</Text>
+			<Text>Your nation can support {1_Num} Units.[NEWLINE]You are over that limit by {2_Num}[NEWLINE][COLOR_WARNING_TEXT] {3_Num}%[ICON_PRODUCTION] Production in cities.[ENDCOLOR][NEWLINE][ICON_BULLET] Cities supply = {4_Num} units.[NEWLINE][ICON_BULLET] Population supply = {5_Num} units.[NEWLINE][ICON_BULLET] Nation supply = {6_Num} units.[NEWLINE][ICON_BULLET] Free (convoy, fortifications) = {7_Num} units.[NEWLINE][ICON_BULLET] Gold income = {8_Num} units.[NEWLINE][ICON_BULLET] Buildings (barracks, bases) = {9_Num} units.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_UNIT_SUPPLY_REACHED">
 			<Text>Army oversized: [COLOR_WARNING_TEXT]{1_Num}%[ICON_PRODUCTION][ENDCOLOR]</Text>
@@ -457,10 +457,17 @@
 		</Row>
 
 		<Row Tag="TXT_KEY_UNIT_SUPPLY_TOOLTIP">
-			<Text>Your nation can support {1_Num} Units.[NEWLINE]Your army is composed of {2_Num} units.[NEWLINE][ICON_BULLET] Cities supply = {3_Num} units.[NEWLINE][ICON_BULLET] Population supply = {4_Num} units.[NEWLINE][ICON_BULLET] Base supply = {5_Num} units.</Text>
+			<Text>Your nation can support {1_Num} Units.[NEWLINE]Your army is composed of {2_Num} units.[NEWLINE][ICON_BULLET] Cities supply = {3_Num} units.[NEWLINE][ICON_BULLET] Population supply = {4_Num} units.[NEWLINE][ICON_BULLET] Nation supply = {5_Num} units.[NEWLINE][ICON_BULLET] Free (convoy, fortifications) = {6_Num} units.[NEWLINE][ICON_BULLET] Gold income = {7_Num} units.[NEWLINE][ICON_BULLET] Buildings (barracks, bases) = {8_Num} units.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UNIT_SUPPLY">
 			<Text>Supply allows {1_Num} more Units.</Text>
+		</Row>
+
+		<Row Tag="TXT_KEY_UNIT_LOST_SUPPLY_FROM_GOLD">
+			<Text>Negative income: [COLOR_WARNING_TEXT]{1_Num} [ICON_STRENGTH][ENDCOLOR] unit(s) supplied.</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UNIT_GAIN_SUPPLY_FROM_GOLD">
+			<Text>Positive income: [COLOR_POSITIVE_TEXT]+ {1_Num} [ICON_STRENGTH][ENDCOLOR] unit(s) supplied.</Text>
 		</Row>
 
 		<!-- Impassable Features for closed borders -->
@@ -1144,13 +1151,13 @@
 			<Text>Barricades increase a city's Defense Strength, making the city more difficult to capture.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_BARRACKS_HELP">
-			<Text>+10 XP for land Units.[NEWLINE]+15 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]Can house 100 [ICON_PERSONNEL] Personnel. Allows construction of Military Academy and Military Base, needed to create projects.</Text>
+			<Text>+10 XP for land Units.[NEWLINE]+15 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]Can house 100 [ICON_PERSONNEL] Personnel.[NEWLINE]+1 unit supplied.[NEWLINE]Allows construction of Military Academy and Military Base, needed to create projects.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_MILITARY_ACADEMY_HELP">
 			<Text>+20 XP for all Units.[NEWLINE]+25 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]City must have Barracks. Allows the creation of new weapon designs.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_MILITARY_BASE_HELP">
-			<Text>Can stock 1000 [ICON_MATERIEL] Materiel.[NEWLINE]Can house 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP for all Units.[NEWLINE]City must have Barracks. May allow the preparation of military operations.</Text>
+			<Text>Can stock 1000 [ICON_MATERIEL] Materiel.[NEWLINE]Can house 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP for all Units.[NEWLINE]+5 units supplied.[NEWLINE]City must have Barracks.[NEWLINE]May allow the preparation of military operations.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_ARSENAL_HELP">
 			<Text>Can stock 500 [ICON_MATERIEL] Materiel.</Text>

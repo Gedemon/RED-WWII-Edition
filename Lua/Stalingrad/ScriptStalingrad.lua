@@ -692,7 +692,7 @@ function HandleCityCapture (playerID, bCapital, iX, iY, newPlayerID)
 	local city = cityPlot:GetPlotCity()
 	Dprint ("Handle capture of ".. tostring(city:GetName()) .." at (" .. cityPlotKey.. ")", bDebugOutput)
 	city:SetPuppet(false) -- prevent AI puppeting cities it could use...
-	city:ChangeResistanceTurns(-city:GetResistanceTurns()) -- no resistance
+	if city:GetResistanceTurns() > 0 then city:ChangeResistanceTurns(-city:GetResistanceTurns()) end; -- no resistance
 	city:SetOccupied(false) -- not occupied
 
 	-- Remove or Restore buildings in key cities
