@@ -792,6 +792,13 @@ function CacheIsLimitedByRatio(unitType, playerID, civID, totalUnits, numDomain,
 				return true
 			end			
 		end
+		-- Anti-Air Artillery restriction
+		if g_Unit_Classes[unitClass].NumType == CLASS_AA_GUN and g_Combat_Type_Ratio and g_Combat_Type_Ratio[civID] then
+			if (aliveUnitClass > 0) and (numDomain / aliveUnitClass < g_Combat_Type_Ratio[civID].AntiAirArtillery) then
+				g_UnitRestrictionString = "Anti-Air Artillery ratio restriction (numDomain / aliveUnitClass < g_Combat_Type_Ratio[civID].AntiAirArtillery) -> (".. numDomain .." / ".. aliveUnitClass .." < ".. g_Combat_Type_Ratio[civID].AntiAirArtillery..")"
+				return true
+			end			
+		end
 	end
 
 	-- No limit found

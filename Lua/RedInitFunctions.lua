@@ -152,11 +152,12 @@ end
 
 -- functions to call at beginning of each turn
 function CommonOnNewTurn()
+	ShowResourceData()
 	InitializeProjects()
 	MapUpdate() -- check for culture consistency
 	SetMinorRelations()
 	SetMinorDOW()
-	SetMajorRelations()	
+	SetMajorRelations()
 	ClearAIairSweep()
 	RepairImprovements()
 	LaunchMilitaryOperation()

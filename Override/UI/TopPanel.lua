@@ -172,35 +172,17 @@ function UpdateData()
 		if SHOW_UNIT_SUPPLY then
 
 			-- Supply from Lua rules <<<<<
-			-- to do : multiples functions, no duplicate code with GetFreeUnitsFromScenario from redutils.lua
-			local numFreeUnit = 0
-			for unit in pPlayer:Units() do
-				if (unit:GetUnitType() == CONVOY) or (unit:GetUnitType() == FORTIFIED_GUN) then
-					numFreeUnit = numFreeUnit + 1
-				end
-			end
+			local numFreeUnit = GetSupplyFreeUnits(pPlayer)
+			local changeFromGoldRate = GetSupplyFromGoldRate(pPlayer)			
+			local changeFromBuildings = GetSupplyFromBuildings(pPlayer)			
+			local numFreeUnitsFromScenario = GetFreeUnitsForPlayer(pPlayer)
 
-			local changeFromGoldRate = 0
-			local goldPerTurn = pPlayer:CalculateGoldRate()
-			if goldPerTurn < 0 then
-				changeFromGoldRate = math.floor (goldPerTurn / 20)
-			elseif goldPerTurn > 0 then
-				changeFromGoldRate = math.floor (goldPerTurn / 100)
-			end
-			
-			local changeFromBuildings = 0
-			for city in pPlayer:Cities() do
-				if city:IsHasBuilding(BARRACKS) then changeFromBuildings = changeFromBuildings + 1; end
-				if city:IsHasBuilding(BASE) then changeFromBuildings = changeFromBuildings + 5; end
-			end
-			
-			local numFreeUnitsFromScenario = GetFreeUnitsFromScenario (iPlayerID) - changeFromBuildings - changeFromGoldRate - numFreeUnit
+			local iUnitsFromCities = GetSupplyFromCities(pPlayer)
 			-- Supply from Lua rules >>>>>
 
 			local iUnitSupplyMod = pPlayer:GetUnitProductionMaintenanceMod();
 			local iUnitsSupplied = pPlayer:GetNumUnitsSupplied();
 			local iUnitsTotal = pPlayer:GetNumUnits()
-			local iUnitsFromCities = pPlayer:GetNumUnitsSuppliedByCities()
 			local iUnitsFromPopulation = pPlayer:GetNumUnitsSuppliedByPopulation()
 			local iUnitsFromHandicap = pPlayer:GetNumUnitsSuppliedByHandicap() + numFreeUnitsFromScenario
 
@@ -774,16 +756,11 @@ function GoldTipHandler( control )
 	end
 
 	-- effect on units supply
-	local changeFromGoldRate = 0
-	local goldPerTurn = pPlayer:CalculateGoldRate()
-	if goldPerTurn < 0 then
-		changeFromGoldRate = math.floor (goldPerTurn / 20)
+	local changeFromGoldRate = GetSupplyFromGoldRate(pPlayer)
+	if changeFromGoldRate < 0 then
 		strText = strText .. "[NEWLINE][NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UNIT_LOST_SUPPLY_FROM_GOLD", changeFromGoldRate);
-	elseif goldPerTurn > 0 then
-		changeFromGoldRate = math.floor (goldPerTurn / 100)
-		if changeFromGoldRate > 0 then
-			strText = strText .. "[NEWLINE][NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UNIT_GAIN_SUPPLY_FROM_GOLD", changeFromGoldRate);
-		end
+	elseif changeFromGoldRate > 0 then
+		strText = strText .. "[NEWLINE][NEWLINE]" .. Locale.ConvertTextKey("TXT_KEY_UNIT_GAIN_SUPPLY_FROM_GOLD", changeFromGoldRate);
 	end
 	
 	-- Basic explanation of Happiness

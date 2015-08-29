@@ -1634,8 +1634,10 @@ function UpgradingUnits(playerID)
 				local oldType = data.Unit:GetUnitType()
 				local plot = data.Unit:GetPlot()
 				local newUnit = ChangeUnitType (data.Unit, data.UpgradeType)
-				player:AddNotification(NotificationTypes.NOTIFICATION_UNIT_PROMOTION, newUnit:GetNameNoDesc() .. " have just been upgraded from ".. Locale.ConvertTextKey(GameInfo.Units[oldType].Description).." to " .. Locale.ConvertTextKey(GameInfo.Units[data.UpgradeType].Description), newUnit:GetNameNoDesc() .. " upgraded !", -1, -1, data.UpgradeType, newUnit:GetID())
-				return -- upgrade one unit per turn max...
+				if newUnit then
+					player:AddNotification(NotificationTypes.NOTIFICATION_UNIT_PROMOTION, newUnit:GetNameNoDesc() .. " have just been upgraded from ".. Locale.ConvertTextKey(GameInfo.Units[oldType].Description).." to " .. Locale.ConvertTextKey(GameInfo.Units[data.UpgradeType].Description), newUnit:GetNameNoDesc() .. " upgraded !", -1, -1, data.UpgradeType, newUnit:GetID())
+					return -- upgrade one unit per turn max...
+				end
 			end
 		end		
 		Dprint("No upgrade made (not enought materiel, or no upgradable units available)", bDebug)

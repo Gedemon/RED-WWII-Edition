@@ -965,11 +965,11 @@
     </Content>
     <Content Include="Override\UI\ModsMenu.lua">
       <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Override\UI\ModsMenu.xml">
       <SubType>Lua</SubType>
-      <ImportIntoVFS>True</ImportIntoVFS>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Override\UI\MPList.lua">
       <SubType>Lua</SubType>

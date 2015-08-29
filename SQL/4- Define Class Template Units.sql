@@ -254,10 +254,8 @@ UPDATE Units SET Help =  (SELECT Tag FROM Language_en_US WHERE 'TXT_KEY_UNIT_HEL
 ---------------------------------------------------------
 -- Fill secondary tables
 ---------------------------------------------------------
-	
-INSERT OR REPLACE INTO Unit_AITypes (UnitType, UnitAIType)
-	SELECT 'UNIT_' || UnitKey, UnitAIType
-	FROM Unit_AITypes JOIN UnitConfiguration ON  (UnitType= 'UNIT_' || UnitConfiguration.Template);
+
+-- (note : Unit_AITypes is filled manually for Classes)
 	
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)
 	SELECT 'UNIT_' || UnitKey, FlavorType, Flavor
@@ -289,10 +287,6 @@ INSERT INTO Civilization_UnitClassOverrides (CivilizationType, UnitClassType, Un
 --------------------------------------------------------------
 -- Update flavors
 --------------------------------------------------------------
-
---INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_PARATROOPER',			'FLAVOR_AIR',			3);
---INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_PARATROOPER',			'FLAVOR_DEFENSE',		7);
---INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_PARATROOPER',			'FLAVOR_OFFENSE',		14);
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_SPECIAL_FORCES',		'FLAVOR_AIR',			3);
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_SPECIAL_FORCES',		'FLAVOR_DEFENSE',		7);
@@ -331,11 +325,11 @@ INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_LIGHT_TANK_DESTROYER','FLAVOR_DEFENSE',		14);
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_LIGHT_TANK_DESTROYER','FLAVOR_OFFENSE',		2);
-INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_LIGHT_TANK_DESTROYER','FLAVOR_MOBILE',		0);
+INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_LIGHT_TANK_DESTROYER','FLAVOR_MOBILE',		2);
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_TANK_DESTROYER',		'FLAVOR_DEFENSE',		16);
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_TANK_DESTROYER',		'FLAVOR_OFFENSE',		2);
-INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_TANK_DESTROYER',		'FLAVOR_MOBILE',		0);
+INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_TANK_DESTROYER',		'FLAVOR_MOBILE',		2);
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_HEAVY_TANK_DESTROYER','FLAVOR_DEFENSE',		18);
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_HEAVY_TANK_DESTROYER','FLAVOR_OFFENSE',		2);
@@ -343,24 +337,142 @@ INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_ASSAULT_GUN',			'FLAVOR_DEFENSE',		2);
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_ASSAULT_GUN',			'FLAVOR_OFFENSE',		16);
-INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_ASSAULT_GUN',			'FLAVOR_MOBILE',		0);
+INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_ASSAULT_GUN',			'FLAVOR_MOBILE',		4);
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_HEAVY_ASSAULT_GUN',	'FLAVOR_DEFENSE',		2);
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_HEAVY_ASSAULT_GUN',	'FLAVOR_OFFENSE',		18);
-INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_HEAVY_ASSAULT_GUN',	'FLAVOR_MOBILE',		0);
+INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_HEAVY_ASSAULT_GUN',	'FLAVOR_MOBILE',		2);
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_MOBILE_ARTILLERY',	'FLAVOR_MOBILE',		8);
 
 INSERT OR REPLACE INTO Unit_Flavors (UnitType, FlavorType, Flavor)	VALUES ('UNIT_MOBILE_AA_GUN',		'FLAVOR_MOBILE',		8);
 
------------------------------------------------
--- Handle special cases
------------------------------------------------
--- Set Unit AI for Paratrooper
-UPDATE Units SET DefaultUnitAI = 'UNITAI_PARADROP' WHERE 'UNIT_PARATROOPER' = Type;
 
--- Set Unit AI for Special Forces
-UPDATE Units SET DefaultUnitAI = 'UNITAI_PARADROP' WHERE 'SPECIAL_FORCES' = Type;
+--------------------------------------------------------------
+-- Reset Units AI types
+--------------------------------------------------------------
+DROP TABLE IF EXISTS Unit_AITypes; -- Recreate the table to set (UnitType, UnitAIType) as Primary Key (prevent duplicate entries when updating flavors for sub-classes and units)
+CREATE TABLE Unit_AITypes ('UnitType' text , 'UnitAIType' text , PRIMARY KEY (UnitType, UnitAIType), foreign key (UnitType) references Units(Type), foreign key (UnitAIType) references UnitAIInfos(Type));
+
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ANTI_AIRCRAFT_GUN',	'UNITAI_CITY_SPECIAL');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ANTI_AIRCRAFT_GUN',	'UNITAI_COUNTER');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ARTILLERY',			'UNITAI_CITY_BOMBARD');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ARTILLERY',			'UNITAI_RANGED');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ASSAULT_GUN',			'UNITAI_ATTACK');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ATOMIC_BOMB',			'UNITAI_ICBM');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ATTACK_AIRCRAFT',		'UNITAI_ATTACK_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_BATTLESHIP',			'UNITAI_ATTACK_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_BATTLESHIP',			'UNITAI_RESERVE_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_BOMBER',				'UNITAI_ATTACK_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CARRIER',				'UNITAI_CARRIER_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CRUISER',				'UNITAI_ATTACK_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CRUISER',				'UNITAI_RESERVE_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CRUISER',				'UNITAI_EXPLORE_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CRUISER',				'UNITAI_ESCORT_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CRUISER_TANK',		'UNITAI_FAST_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_CRUISER_TANK',		'UNITAI_EXPLORE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_DESTROYER',			'UNITAI_ATTACK_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_DESTROYER',			'UNITAI_RESERVE_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_DESTROYER',			'UNITAI_EXPLORE_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_DESTROYER',			'UNITAI_ESCORT_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_DREADNOUGHT',			'UNITAI_ATTACK_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_DREADNOUGHT',			'UNITAI_RESERVE_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_FAST_BOMBER',			'UNITAI_ATTACK_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_FIELD_GUN',			'UNITAI_COUNTER');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_FIELD_GUN',			'UNITAI_RANGED');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_FIELD_GUN',			'UNITAI_CITY_BOMBARD');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_FIELD_GUN',			'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_FIGHTER',				'UNITAI_DEFENSE_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_ASSAULT_GUN',	'UNITAI_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_ASSAULT_GUN',	'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_BOMBER',		'UNITAI_ATTACK_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_CRUISER',		'UNITAI_ATTACK_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_CRUISER',		'UNITAI_RESERVE_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_CRUISER',		'UNITAI_ESCORT_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_FIGHTER',		'UNITAI_DEFENSE_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_TANK',			'UNITAI_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_TANK',			'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_TANK_DESTROYER','UNITAI_DEFENSE');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_HEAVY_TANK_DESTROYER','UNITAI_COUNTER');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_INFANTRY',			'UNITAI_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_INFANTRY',			'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_INFANTRY_TANK',		'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_JET_BOMBER',			'UNITAI_ATTACK_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_JET_FIGHTER',			'UNITAI_DEFENSE_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_BOMBER',		'UNITAI_ATTACK_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_INFANTRY_TANK',	'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_TANK',			'UNITAI_FAST_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_TANK',			'UNITAI_DEFENSE');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_TANK',			'UNITAI_EXPLORE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_TANK_DESTROYER','UNITAI_DEFENSE');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_LIGHT_TANK_DESTROYER','UNITAI_COUNTER');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MAIN_BATTLE_TANK',	'UNITAI_FAST_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MAIN_BATTLE_TANK',	'UNITAI_DEFENSE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MECHANIZED_INFANTRY',	'UNITAI_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MECHANIZED_INFANTRY',	'UNITAI_DEFENSE');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MECHANIZED_INFANTRY',	'UNITAI_EXPLORE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MOBILE_AA_GUN',		'UNITAI_CITY_SPECIAL');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MOBILE_AA_GUN',		'UNITAI_COUNTER');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MOBILE_ARTILLERY',	'UNITAI_CITY_BOMBARD');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_MOBILE_ARTILLERY',	'UNITAI_RANGED');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_NAVY_BOMBER',			'UNITAI_ATTACK_AIR');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_NAVY_BOMBER',			'UNITAI_CARRIER_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_NAVY_FIGHTER',		'UNITAI_DEFENSE_AIR');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_NAVY_FIGHTER',		'UNITAI_CARRIER_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_NAVY_LIGHT_BOMBER',	'UNITAI_ATTACK_AIR');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_NAVY_LIGHT_BOMBER',	'UNITAI_CARRIER_AIR');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_PARATROOPER',			'UNITAI_PARADROP');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ROCKET_ARTILLERY',	'UNITAI_CITY_BOMBARD');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_ROCKET_ARTILLERY',	'UNITAI_RANGED');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_SPECIAL_FORCES',		'UNITAI_PARADROP');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_SPECIAL_FORCES',		'UNITAI_EXPLORE');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_SUBMARINE',			'UNITAI_ATTACK_SEA');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_SUBMARINE',			'UNITAI_EXPLORE_SEA');
+
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_TANK',				'UNITAI_FAST_ATTACK');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_TANK',				'UNITAI_DEFENSE');
+INSERT INTO Unit_AITypes (UnitType, UnitAIType)	VALUES ('UNIT_TANK',				'UNITAI_ATTACK');
+
 
 -----------------------------------------------
 -- Clear UnitConfiguration for next step

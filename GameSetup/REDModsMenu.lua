@@ -451,7 +451,7 @@ function Initialize()
 
 	if bWrongGameVersion then
 		print("ERROR: Wrong version of the game !")
-		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]Wrong game version ![ENDCOLOR][NEWLINE]Build #" .. tostring(buildVersion) .." detected.[NEWLINE]Minimal build #" .. tostring(g_BuildMinimumVersion) .." needed."
+		warningHelp = "[COLOR_RED]Installation Error:[NEWLINE]Wrong game version ![ENDCOLOR][NEWLINE]Build #" .. tostring(buildVersion) .." detected.[NEWLINE]Update Civ5 or use Windows version."
 		warningString = "Click for installation instructions."
 		bValid = false
 	end

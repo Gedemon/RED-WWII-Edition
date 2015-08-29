@@ -77,11 +77,13 @@ end
 
 -- functions to call at beginning of each turn
 function OnNewTurn ()
+	UpdateTurnProcessingText("Initializing new turn Data for RED WWII...")
 	CommonOnNewTurn()
 	ScenarioOnNewTurn()
 	LuaEvents.WWIITest()
 	SaveAllTable() -- must be last before NewTurnSummary
 	NewTurnSummary() -- after other functions to get benchmark...
+	UpdateTurnProcessingText("Finishing new turn initialization...")
 end
 GameEvents.GameDoTurn.Add( OnNewTurn )
 --Events.ActivePlayerTurnStart.Add( OnNewTurn )

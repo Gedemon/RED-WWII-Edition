@@ -109,12 +109,12 @@ YUGOSLAVIA	= GameInfo.MinorCivilizations.MINOR_CIV_YUGOSLAVIA.ID
 
 -- Modifier for maintenance free units
 g_Units_Maintenance_Modifier = {
-	[FRANCE] = 5,
-	[ENGLAND] = 10,
-	[USSR] = 0,
-	[GERMANY] = 5,
-	[ITALY] = 7,
-	[GREECE] = 5,
+	[FRANCE] = 7,
+	[ENGLAND] = 16,
+	[USSR] = -1,
+	[GERMANY] = 7,
+	[ITALY] = 14,
+	[GREECE] = 10,
 }
 
 -- Available units for minor civs
@@ -158,13 +158,13 @@ g_Combat_Type_Ratio = {
 	-- Armor	<= land units / armor units
 	-- Artillery<= land units / artillery units
 	-- ( 1 = no limit )
-	[FRANCE]	= {Air = 5,		Sea = 5,	Armor = 2,		Artillery = 6,},
-	[ENGLAND]	= {Air = 4,		Sea = 3.5,	Armor = 2,		Artillery = 6,},
-	[USSR]		= {Air = 5,		Sea = 7,	Armor = 3,		Artillery = 5,},
-	[GERMANY]	= {Air = 5,		Sea = 5,	Armor = 1.85,	Artillery = 6,},
-	[ITALY]		= {Air = 5,		Sea = 4,	Armor = 3,		Artillery = 6,},
-	[GREECE]	= {Air = 5,		Sea = 5,	Armor = 4,		Artillery = 6,},
-	[MINOR]		= {Air = 7,		Sea = 7,	Armor = 6,		Artillery = 6,},
+	[FRANCE]	= {Air = 5,		Sea = 5,	Armor = 2,		Artillery = 5,	AntiAirArtillery = 7,},
+	[ENGLAND]	= {Air = 4,		Sea = 3.5,	Armor = 2,		Artillery = 5,	AntiAirArtillery = 7,},
+	[USSR]		= {Air = 5,		Sea = 7,	Armor = 3,		Artillery = 4,	AntiAirArtillery = 7,},
+	[GERMANY]	= {Air = 5,		Sea = 5,	Armor = 1.85,	Artillery = 5,	AntiAirArtillery = 7,},
+	[ITALY]		= {Air = 5,		Sea = 4,	Armor = 3,		Artillery = 5,	AntiAirArtillery = 7,},
+	[GREECE]	= {Air = 5,		Sea = 5,	Armor = 4,		Artillery = 5,	AntiAirArtillery = 7,},
+	[MINOR]		= {Air = 7,		Sea = 7,	Armor = 6,		Artillery = 5,	AntiAirArtillery = 7,},
 }
 
 -- Armor type ratio restriction used by AI
@@ -187,7 +187,18 @@ g_Max_Air_SubClass_Percent = {
 	[GERMANY]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 20, [CLASS_HEAVY_BOMBER] = 15,	},
 	[ITALY]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
 	[GREECE]	= {	[CLASS_FIGHTER] = 60, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 45, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
-}		
+}
+
+-- Artillery type ratio restriction used by AI
+g_Max_Artillery_SubClass_Percent = {
+	-- max num	<= armor units / type units
+	[FRANCE]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
+	[ENGLAND]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
+	[USSR]		= {	[CLASS_FIGHTER] = 60, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 50, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 45, [CLASS_HEAVY_BOMBER] = 15,	},
+	[GERMANY]	= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 20, [CLASS_HEAVY_BOMBER] = 15,	},
+	[ITALY]		= {	[CLASS_FIGHTER] = 50, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 30, [CLASS_FAST_BOMBER] = 50, [CLASS_BOMBER] = 30, [CLASS_HEAVY_BOMBER] = 15,	},
+	[GREECE]	= {	[CLASS_FIGHTER] = 60, [CLASS_FIGHTER_BOMBER] = 40, [CLASS_HEAVY_FIGHTER] = 30, [CLASS_ATTACK_AIRCRAFT] = 45, [CLASS_FAST_BOMBER] = 30, [CLASS_BOMBER] = 50, [CLASS_HEAVY_BOMBER] = 15,	},
+}	
 
 -- Order of Battle
 -- group size = 7 units max placed in (and around) plot (x,y), except air placed only in central plot (should be city plot)
@@ -226,6 +237,7 @@ g_Initial_OOB = {
 	{Name = "USSR South fleet", X = 69, Y = 32, Domain = "Sea", CivID = USSR, Group = {RU_GANGUT, RU_GANGUT, RU_KIROV, RU_GNEVNY} },
 	{Name = "USSR North fleet", X = 67, Y = 87, Domain = "Sea", CivID = USSR, Group = {RU_GANGUT, RU_SUBMARINE, RU_GNEVNY} },
 	{Name = "USSR Central fleet", X = 52, Y = 62, Domain = "Sea", AI = true, CivID = USSR, Group = {RU_GANGUT, RU_KIROV, RU_GNEVNY} },
+	{Name = "USSR fortification", X = 63, Y = 65, Domain = "Land", AI = true, CivID = USSR, Group = {FORTIFIED_GUN}, UnitsName = {"Krepost Oreshek"}, },
 
 	{Name = "German central army", X = 42, Y = 46, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
 	{Name = "German north army", X = 42, Y = 50, Domain = "Land", CivID = GERMANY, Group = {GE_INFANTRY, GE_INFANTRY, GE_PANZER_I, GE_PANZER_III, GE_PANZER_I, AT_GUN} },
@@ -282,6 +294,8 @@ g_MinorMobilization_OOB = {
 	{Name = "Netherlands army",		X = 34, Y = 52,		Domain = "City",	CivID = NETHERLANDS,IsMinor = true, Group = {DU_INFANTRY, DU_VICKERS_M1936, DU_MTSL} },
 	{Name = "Netherlands AF",		X = 34, Y = 52,		Domain = "Air",		CivID = NETHERLANDS,IsMinor = true, Group = {DU_FOKKER_DXXI, DU_FOKKER_GI, DU_FOKKER_TV} },
 	{Name = "Finland army",			X = 59, Y = 68,		Domain = "Land",	CivID = FINLAND,	IsMinor = true, Group = {SW_INFANTRY, AT_GUN, SW_INFANTRY, AT_GUN, SW_INFANTRY, SW_INFANTRY, FI_BT42, ARTILLERY} },
+	{Name = "Finland fortification",X = 61, Y = 66,		Domain = "Land",	CivID = FINLAND,	IsMinor = true, Group = {FORTIFIED_GUN}, UnitsName = {"Mannerheim-linja"}, },
+	{Name = "Finland fortification",X = 62, Y = 68,		Domain = "Land",	CivID = FINLAND,	IsMinor = true, Group = {FORTIFIED_GUN}, UnitsName = {"Mannerheim-linja"}, },
 	{Name = "Slovakia army",		X = 53, Y = 42,		Domain = "Land",	CivID = SLOVAKIA,	IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, ARTILLERY} },
 	{Name = "Slovakia army 2",		X = 50, Y = 42,		Domain = "Land",	CivID = SLOVAKIA,	IsMinor = true, Group = {GE_INFANTRY, GE_PANZER_35, AT_GUN} },
 	{Name = "Romania army",			X = 59, Y = 36,		Domain = "Land",	CivID = ROMANIA,	IsMinor = true, Group = {INFANTRY, AT_GUN, INFANTRY, INFANTRY, RO_TACAM, ARTILLERY} },
@@ -487,6 +501,8 @@ g_Minor_Relation = {
 		{Value = 50, Major = ITALY, Minor = SWEDEN},
 		{Value = 50, Major = USSR, Minor = IRAQ},
 		{Value = 50, Major = USSR, Minor = IRAN},
+		{Value = 50, Major = USSR, Minor = PALESTINE},
+		{Value = 50, Major = USSR, Minor = EGYPT},
 		
 		--{Value = -120, Major = FRANCE, Minor = SWITZERLAND}, -- test
 	},
@@ -606,12 +622,12 @@ g_Cities = {
 	{X = 74, Y = 12, Buildings = { HARBOR }, }, -- KIRKWALL (Scapa Flow)
 	{X = 28, Y = 68, Buildings = { HARBOR }, }, -- NICOSIA
 	-- GERMANY
-	{X = 44, Y = 50, Key = true, Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE, ACADEMY}, }, -- BERLIN
+	{X = 44, Y = 50, Key = true, Buildings = { FACTORY, RADIO, BARRACKS }, AIBuildings = {LAND_FACTORY, ARSENAL, BASE, ACADEMY, OIL_REFINERY}, }, -- BERLIN
 	{X = 39, Y = 46, Key = true, Buildings = { FACTORY }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- FRANKFURT
-	{X = 39, Y = 53, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD, BASE}, }, -- HAMBURG
-	{X = 41, Y = 41, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LAND_FACTORY, ARSENAL, BASE}, }, -- MUNICH
+	{X = 39, Y = 53, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LARGE_AIR_FACTORY, SHIPYARD, BASE, OIL_REFINERY}, }, -- HAMBURG
+	{X = 41, Y = 41, Key = true, Buildings = { FACTORY }, AIBuildings = {BARRACKS, LAND_FACTORY, ARSENAL, BASE, OIL_REFINERY}, }, -- MUNICH
 	{X = 45, Y = 43, Buildings = { FACTORY }, }, -- PRAGUE
-	{X = 40, Y = 55, Buildings = { HARBOR }, AIBuildings = {SHIPYARD}, }, -- KIEL
+	{X = 40, Y = 55, Buildings = { HARBOR }, AIBuildings = {SHIPYARD, OIL_REFINERY}, }, -- KIEL
 	{X = 39, Y = 43, AIBuildings = {FACTORY}, }, -- NUREMBERG
 	{X = 52, Y = 53, Buildings = { HARBOR }, AIBuildings = {FACTORY}, }, -- KONIGSBERG
 	--{X = 42, Y = 41, AIBuildings = {FACTORY}, }, -- PASSAU
@@ -663,10 +679,10 @@ g_Cities = {
 	{X = 41, Y = 29, }, -- PESCARA
 	{X = 62, Y = 14, Buildings = { HARBOR, BASE },}, -- RHODES
 	-- U.S.S.R.
-	{X = 72, Y = 58, Key = true, Buildings = { RADIO, HOSPITAL }, AIBuildings = {FACTORY, BARRACKS, LAND_FACTORY, ACADEMY, BASE}, }, -- MOSCOW
-	{X = 84, Y = 48, Key = true, Buildings = { BARRACKS }, AIBuildings = {FACTORY, LAND_FACTORY}, }, -- STALINGRAD
+	{X = 72, Y = 58, Key = true, Buildings = { RADIO, HOSPITAL }, AIBuildings = {FACTORY, BARRACKS, LAND_FACTORY, ACADEMY}, }, -- MOSCOW
+	{X = 84, Y = 48, Key = true, Buildings = { BARRACKS }, AIBuildings = {FACTORY, LAND_FACTORY, RADIO}, }, -- STALINGRAD
 	{X = 66, Y = 44, Key = true, Buildings = { BARRACKS }, AIBuildings = {SMALL_AIR_FACTORY}, }, -- KIEV
-	{X = 64, Y = 64, Key = true, Buildings = { HARBOR }, }, -- LENINGRAD
+	{X = 64, Y = 64, Key = true, Buildings = { HARBOR }, AIBuildings = {BASE, RADIO}, }, -- LENINGRAD
 	{X = 65, Y = 85, Buildings = { HARBOR }, }, -- MURMANSK
 	{X = 67, Y = 37, }, -- ODESSA
 	{X = 92, Y = 41, }, -- ASTRAKHAN

@@ -1320,46 +1320,81 @@ function StartCoroutine(func)
 	return co
 end
 
-
 function GetFreeUnitsFromScenario (iPlayer)
 	
 	local player = Players[iPlayer]
 	local numFreeUnitsFromScenario = 0
 
+	numFreeUnitsFromScenario = GetFreeUnitsForPlayer(player)
+
+	numFreeUnitsFromScenario = numFreeUnitsFromScenario + GetSupplyFreeUnits(player)
+	numFreeUnitsFromScenario = numFreeUnitsFromScenario + GetSupplyFromGoldRate(player)
+	numFreeUnitsFromScenario = numFreeUnitsFromScenario + GetSupplyFromBuildings(player)
+	numFreeUnitsFromScenario = numFreeUnitsFromScenario + GetSupplyFromCities(player)
+
+	return numFreeUnitsFromScenario
+
+end
+
+function GetFreeUnitsForPlayer(player)
 	-- scenario specific bonus (U.K. got +10 on europe 39-45 map for example)
-	if g_Units_Maintenance_Modifier then	
-		local civID = GetCivIDFromPlayerID(iPlayer, false)
-		numFreeUnitsFromScenario = g_Units_Maintenance_Modifier[civID] or 0	
-	end	
-
-	-- bonus for the AI
-	if (not player:IsHuman()) and (not player:IsMinorCiv()) and (not player:IsBarbarian()) then
-		numFreeUnitsFromScenario = numFreeUnitsFromScenario + AI_FREE_UNIT_SUPPLY
+	local numFreeUnit = 0
+	if g_Units_Maintenance_Modifier then
+		local civID = GetCivIDFromPlayerID(player:GetID(), false)
+		numFreeUnit = g_Units_Maintenance_Modifier[civID] or 0	
 	end
+	return numFreeUnit
+end
 
-	-- convoy are free from maintenance
+function GetSupplyFreeUnits(player)
+	-- convoy and fortifications are free from maintenance
 	local numFreeUnit = 0
 	for unit in player:Units() do
 		if (unit:GetUnitType() == CONVOY) or (unit:GetUnitType() == FORTIFIED_GUN) then
 			numFreeUnit = numFreeUnit + 1
 		end
 	end
+	return numFreeUnit
+end
 
-	-- change from goldrate
+function GetSupplyFromCities(player)
+	local numFreeUnit = 0
+	for unit in player:Cities() do
+		numFreeUnit = numFreeUnit + SUPPLY_FROM_CITIES
+	end
+	return Round(numFreeUnit) -- allow fraction per city
+end
+
+function GetSupplyFromGoldRate(player)
+	-- convoy and fortifications are free from maintenance
 	local changeFromGoldRate = 0
 	local goldPerTurn = player:CalculateGoldRate()
 	if goldPerTurn < 0 then
-		changeFromGoldRate = math.floor (goldPerTurn / 20)
+		changeFromGoldRate = math.floor (goldPerTurn / SUPPLY_NEGATIVE_GPT_RATIO)
 	elseif goldPerTurn > 0 then
-		changeFromGoldRate = math.floor (goldPerTurn / 100)
+		changeFromGoldRate = math.floor (goldPerTurn / SUPPLY_POSITIVE_GPT_RATIO)
 	end
+	return changeFromGoldRate
+end
 
+function GetSupplyFromBuildings(player)
+	-- convoy and fortifications are free from maintenance
 	local changeFromBuildings = 0
 	for city in player:Cities() do
-		if city:IsHasBuilding(BARRACKS) then changeFromBuildings = changeFromBuildings + 1; end
-		if city:IsHasBuilding(BASE) then changeFromBuildings = changeFromBuildings + 5; end
+		if city:IsHasBuilding(BARRACKS) then changeFromBuildings = changeFromBuildings + SUPPLY_FROM_BARRACKS; end
+		if city:IsHasBuilding(ARSENAL) then changeFromBuildings = changeFromBuildings + SUPPLY_FROM_ARSENALS; end
+		if city:IsHasBuilding(BASE) then changeFromBuildings = changeFromBuildings + SUPPLY_FROM_BASES; end
 	end
+	return Round(changeFromBuildings) -- allow fraction per building
+end
 
-	return numFreeUnitsFromScenario + numFreeUnit + changeFromGoldRate + changeFromBuildings
 
+function UpdateTurnProcessingText(strText)
+	ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/CivIcon"):SetTexture("CivSymbolsColor512.dds")
+    ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/CivIcon"):SetTextureOffsetVal( 448 + 7, 128 + 7 )
+    ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/CivIcon"):SetColor( Vector4( 1.0, 1.0, 1.0, 1.0 ) )
+    ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/CivIcon"):SetHide( false )
+    ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/CivIconBG"):SetHide( true )
+    ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/CivIconShadow"):SetHide( true )
+	ContextPtr:LookUpControl("/InGame/WorldView/TurnProcessing/TurnProcessingTitle"):SetText(strText)
 end

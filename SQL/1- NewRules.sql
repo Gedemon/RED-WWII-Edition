@@ -179,8 +179,6 @@ UPDATE Defines SET Value = 0	WHERE Name = 'OPINION_WEIGHT_DOF_WITH_ENEMY';
 --UPDATE Leaders SET Chattiness = -10;
 --UPDATE Leaders SET Meanness = 0;
 
-UPDATE HandicapInfos SET AIDeclareWarProb = 125;
-
 --------------------------------------------------------------------------------------------
 -- Game AI defines
 --------------------------------------------------------------------------------------------
@@ -190,7 +188,7 @@ UPDATE HandicapInfos SET AIDeclareWarProb = 125;
 --DELETE FROM CitySpecialization_Flavors WHERE FlavorType='FLAVOR_EXPANSION';
 --UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_PERCENT_CONTINENT_UNOWNED';
 --UPDATE Defines SET Value = 0	WHERE Name = 'AI_CITY_SPECIALIZATION_FOOD_WEIGHT_EARLY_EXPANSION'; 
-UPDATE Defines SET Value = 5	WHERE Name = 'AI_STRATEGY_MILITARY_RESERVE_PERCENTAGE'; -- default 35
+UPDATE Defines SET Value = 5	WHERE Name = 'AI_STRATEGY_MILITARY_RESERVE_PERCENTAGE'; -- default 35 <- not used
 
 UPDATE AIMilitaryStrategies SET TechPrereq = NULL;
 UPDATE AIMilitaryStrategies SET FirstTurnExecuted = 0;
@@ -288,12 +286,25 @@ UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 
 UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 'MINOR_CIV_APPROACH_CONQUEST' AND LeaderType = 'LEADER_CATHERINE';		-- U.S.S.R.
 UPDATE Leader_MinorCivApproachBiases SET Bias = 10	WHERE MinorCivApproachType = 'MINOR_CIV_APPROACH_CONQUEST' AND LeaderType = 'LEADER_ODA_NOBUNAGA';	-- Japan
 --*/
+
 --------------------------------------------------------------------------------------------
--- Unit Supply Production Modifier
+-- Unit Supply & Production Modifier from Handicap
 --------------------------------------------------------------------------------------------
-UPDATE HandicapInfos SET ProductionFreeUnits = 5;
-UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 1;
-UPDATE HandicapInfos SET ProductionFreeUnitsPopulationPercent = 10;
+
+UPDATE Defines SET Value = 4 WHERE Name = 'AI_HANDICAP';
+UPDATE PostDefines SET Key = 'HANDICAP_PRINCE' WHERE Name = 'AI_HANDICAP';
+
+UPDATE HandicapInfos SET ProductionFreeUnits = 5,	ProductionFreeUnitsPopulationPercent = 10,	AIUnitSupplyPercent = 95,	AITrainPercent = 80,	AIConstructPercent = 80,	AIDeclareWarProb = 100	WHERE Type = 'HANDICAP_DEITY';
+UPDATE HandicapInfos SET ProductionFreeUnits = 7,	ProductionFreeUnitsPopulationPercent = 12,	AIUnitSupplyPercent = 95,	AITrainPercent = 85,	AIConstructPercent = 85,	AIDeclareWarProb = 90	WHERE Type = 'HANDICAP_IMMORTAL';
+UPDATE HandicapInfos SET ProductionFreeUnits = 9,	ProductionFreeUnitsPopulationPercent = 13,	AIUnitSupplyPercent = 95,	AITrainPercent = 90,	AIConstructPercent = 90,	AIDeclareWarProb = 85	WHERE Type = 'HANDICAP_EMPEROR';
+UPDATE HandicapInfos SET ProductionFreeUnits = 12,	ProductionFreeUnitsPopulationPercent = 14,	AIUnitSupplyPercent = 95,	AITrainPercent = 95,	AIConstructPercent = 95,	AIDeclareWarProb = 80	WHERE Type = 'HANDICAP_KING';
+UPDATE HandicapInfos SET ProductionFreeUnits = 15,	ProductionFreeUnitsPopulationPercent = 15,	AIUnitSupplyPercent = 100,	AITrainPercent = 100,	AIConstructPercent = 100,	AIDeclareWarProb = 75	WHERE Type = 'HANDICAP_PRINCE';
+UPDATE HandicapInfos SET ProductionFreeUnits = 20,	ProductionFreeUnitsPopulationPercent = 25,	AIUnitSupplyPercent = 105,	AITrainPercent = 105,	AIConstructPercent = 105,	AIDeclareWarProb = 65	WHERE Type = 'HANDICAP_WARLORD';
+UPDATE HandicapInfos SET ProductionFreeUnits = 25,	ProductionFreeUnitsPopulationPercent = 50,	AIUnitSupplyPercent = 110,	AITrainPercent = 110,	AIConstructPercent = 110,	AIDeclareWarProb = 60	WHERE Type = 'HANDICAP_CHIEFTAIN';
+UPDATE HandicapInfos SET ProductionFreeUnits = 30,	ProductionFreeUnitsPopulationPercent = 100,	AIUnitSupplyPercent = 125,	AITrainPercent = 125,	AIConstructPercent = 125,	AIDeclareWarProb = 50	WHERE Type = 'HANDICAP_SETTLER';
+
+UPDATE HandicapInfos SET ProductionFreeUnitsPerCity = 0; -- Now handled in Lua
+
 UPDATE Defines SET Value = 96 WHERE Name = 'MAX_UNIT_SUPPLY_PRODMOD';
 INSERT INTO Defines (Name, Value) VALUES ('SUPPLY_PRODMOD_PER_UNIT', 2); -- used in DLL to calculate Unit supply production modifier, was hardcoded at 10
 

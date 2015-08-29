@@ -25,7 +25,7 @@
 		</Replace>
 
 		<Replace Tag="TXT_KEY_UNIT_SUPPLY_REACHED_TOOLTIP">
-			<Text>Your nation can support {1_Num} Units.[NEWLINE]You are over that limit by {2_Num}[NEWLINE][COLOR_WARNING_TEXT] {3_Num}%[ICON_PRODUCTION] Production in cities.[ENDCOLOR][NEWLINE][ICON_BULLET] Cities supply = {4_Num} units.[NEWLINE][ICON_BULLET] Population supply = {5_Num} units.[NEWLINE][ICON_BULLET] Nation supply = {6_Num} units.[NEWLINE][ICON_BULLET] Free (convoy, fortifications) = {7_Num} units.[NEWLINE][ICON_BULLET] Gold income = {8_Num} units.[NEWLINE][ICON_BULLET] Buildings (barracks, bases) = {9_Num} units.</Text>
+			<Text>Your nation can support {1_Num} Units.[NEWLINE]You are over that limit by {2_Num}[NEWLINE][COLOR_WARNING_TEXT] {3_Num}%[ICON_PRODUCTION] Production in cities.[ENDCOLOR][NEWLINE][ICON_BULLET] Cities supply = {4_Num} units.[NEWLINE][ICON_BULLET] Population supply = {5_Num} units.[NEWLINE][ICON_BULLET] Nation supply = {6_Num} units.[NEWLINE][ICON_BULLET] Free (convoy, fortifications) = {7_Num} units.[NEWLINE][ICON_BULLET] Gold income = {8_Num} units.[NEWLINE][ICON_BULLET] Buildings (barracks, bases, arsenals) = {9_Num} units.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_UNIT_SUPPLY_REACHED">
 			<Text>Army oversized: [COLOR_WARNING_TEXT]{1_Num}%[ICON_PRODUCTION][ENDCOLOR]</Text>
@@ -457,7 +457,7 @@
 		</Row>
 
 		<Row Tag="TXT_KEY_UNIT_SUPPLY_TOOLTIP">
-			<Text>Your nation can support {1_Num} Units.[NEWLINE]Your army is composed of {2_Num} units.[NEWLINE][ICON_BULLET] Cities supply = {3_Num} units.[NEWLINE][ICON_BULLET] Population supply = {4_Num} units.[NEWLINE][ICON_BULLET] Nation supply = {5_Num} units.[NEWLINE][ICON_BULLET] Free (convoy, fortifications) = {6_Num} units.[NEWLINE][ICON_BULLET] Gold income = {7_Num} units.[NEWLINE][ICON_BULLET] Buildings (barracks, bases) = {8_Num} units.</Text>
+			<Text>Your nation can support {1_Num} Units.[NEWLINE]Your army is composed of {2_Num} units.[NEWLINE][ICON_BULLET] Cities supply = {3_Num} units.[NEWLINE][ICON_BULLET] Population supply = {4_Num} units.[NEWLINE][ICON_BULLET] Nation supply = {5_Num} units.[NEWLINE][ICON_BULLET] Free (convoy, fortifications) = {6_Num} units.[NEWLINE][ICON_BULLET] Gold income = {7_Num} units.[NEWLINE][ICON_BULLET] Buildings (barracks, bases, arsenals) = {8_Num} units.</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UNIT_SUPPLY">
 			<Text>Supply allows {1_Num} more Units.</Text>
@@ -1151,16 +1151,16 @@
 			<Text>Barricades increase a city's Defense Strength, making the city more difficult to capture.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_BARRACKS_HELP">
-			<Text>+10 XP for land Units.[NEWLINE]+15 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]Can house 100 [ICON_PERSONNEL] Personnel.[NEWLINE]+1 unit supplied.[NEWLINE]Allows construction of Military Academy and Military Base, needed to create projects.</Text>
+			<Text>+10 XP for land Units.[NEWLINE]+15 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]Can house 100 [ICON_PERSONNEL] Personnel.[NEWLINE]+0.25 units supplied.[NEWLINE]Allows construction of Military Academy and Military Base, needed to create projects.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_MILITARY_ACADEMY_HELP">
 			<Text>+20 XP for all Units.[NEWLINE]+25 [ICON_PERSONNEL] Personnel / turn.[NEWLINE]City must have Barracks. Allows the creation of new weapon designs.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_MILITARY_BASE_HELP">
-			<Text>Can stock 1000 [ICON_MATERIEL] Materiel.[NEWLINE]Can house 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP for all Units.[NEWLINE]+5 units supplied.[NEWLINE]City must have Barracks.[NEWLINE]May allow the preparation of military operations.</Text>
+			<Text>Can stock 1000 [ICON_MATERIEL] Materiel.[NEWLINE]Can house 500 [ICON_PERSONNEL] Personnel.[NEWLINE]+15 XP for all Units.[NEWLINE]+1 unit supplied.[NEWLINE]City must have Barracks.[NEWLINE]May allow the preparation of military operations.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_ARSENAL_HELP">
-			<Text>Can stock 500 [ICON_MATERIEL] Materiel.</Text>
+			<Text>Can stock 500 [ICON_MATERIEL] Materiel.[NEWLINE]+0.5 units supplied.</Text>
 		</Replace>
 		<Replace Tag="TXT_KEY_BUILDING_FACTORY_HELP">
 			<Text>Allows construction of factory extensions for air, sea or land units.[NEWLINE]+20 [ICON_MATERIEL] Materiel / turn.[NEWLINE]Can stock 50 [ICON_MATERIEL] Materiel.</Text>
@@ -3025,19 +3025,18 @@
 		</Row>
 		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_MATILDA_II">
 			<Text>
-				The Tank, Infantry, Mk II, Matilda II (A12) was a British infantry tank of the Second World War. It was a marked improvement upon its predecessors, the Matilda I (A11), boasting a 2 pounder gun, thicker armor and numerous other technological improvements. However it's massive weight, nearly twice that of the predecessor, made it slow and cumbersome.[NEWLINE][NEWLINE]
-				When war broke out in September, 1939, only two Matilda's were in service with the British Army. Nonetheless a small number of Matilda's did take part in the Battle of France where their thick armour proved a rude shock to the advancing German troops. Those tanks were later abandoned in the Dunkirk evacuation.[NEWLINE][NEWLINE]
-				Nonetheless production of the Matilda continued, and the tanks were sent to the newly established front of North East Africa. It was there, against a poorly equipped Italian force, that it earned it's nickname 'Queen of the Desert'. Its incredibly tough armor proved too thick for the Italian tanks and guns, and helped drive the axis forces across the Libyan desert.[NEWLINE][NEWLINE]
-				However with the arrival of the Afrika Korps its luck began to change. It proved vulnerable to the Germans new anti-tank guns, and was ill suited to the mobile warfare that was taking place. For a time it still proved a match for enemy tanks, but as newer and more powerful Axis models arrived on the battlefield it began to give ground.[NEWLINE][NEWLINE]
-				Its successor, the Valentine tank, began to arrive in late 1941, replacing the increasingly obselete Matilda. What remained of the Matilda force in Africa was largely destroyed in the summer of 1942, in Operation Crusader, where they helped win Britain's first ground victory against German forces. However it continued to be used in other theatres, largely in the pacific, where they proved more than a match for Japanese forces, and became the only British tank to remain in service throughout the war.
+				The Matilda Mark II (A12), originally known simply as The Infantry Tank Mark II, was a British infantry tank of the Second World War.  It was a marked improvement over its predecessor, the Matilda I (A11), boasting a 2 pounder gun, thicker armour, and numerous other technological improvements.  However, its massive weight, nearly twice that of its predecessor, made it slow and cumbersome.[NEWLINE][NEWLINE]
+				When war broke out in September, 1939, only two Matilda's were in service with the British Army.  Nonetheless, a small number of Matilda's did take part in the Battle of France where their thick armour proved a rude shock to the advancing German troops.  Those tanks were later abandoned in the Dunkirk evacuation.[NEWLINE][NEWLINE]
+				Production of the Matilda continued and the tanks were sent to the newly established front of North East Africa.  It was there, against a poorly equipped Italian force, that it earned its nickname 'Queen of the Desert'.  Its incredibly tough armour proved too thick for the Italian tanks and guns and helped drive the axis forces across the Libyan desert.[NEWLINE][NEWLINE]
+				With the arrival of the Afrika Korps, The Matilda’s luck began to change. It proved vulnerable to the Germans new anti-tank guns, and it was ill suited to the mobile warfare that was taking place.  For a time, it still proved a match for enemy tanks; however, as newer and more powerful Axis models arrived on the battlefield, it slowly became less and less effective.[NEWLINE][NEWLINE]
+				Its successor, the Valentine tank, began to arrive in late 1941, replacing the increasingly obsolete Matilda. What remained of the Matilda force in Africa was largely destroyed in the summer of 1942, during Operation Crusader, where they helped win Britain's first ground victory against German forces. However, it continued to be used in other theatres, largely in the pacific, where they proved more than a match for Japanese forces and became the only British tank to remain in service throughout the war.
 			</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_VALENTINE">
 			<Text>
-				The Tank, Infantry, Mk III, Valentine was a British infantry tank of the Second World War. The "A" designation was withheld from the tank since it was a private design from Vickers-Armstrongs, however the source of the name "Valentine" is unknown. Many claim it's because the design was first presented on valentine's day, others that it was the middle name of one of the designer. Some say it was just a random codename used by the company.[NEWLINE][NEWLINE]
-				The successor to the Matilda II, it was no huge leap forward in tank evolution. With a similar top speed, armour thickness and arnament(at least at first) it's main draw was its smaller weight, lower silhouette and reduced production costs. It began trials in May 1940, coinciding with the loss of equipment in Dunkirk. Keen to replace losses, the War Office appproved the design and rushed into production to replace losses. During the war 8,275 were built in the UK and Canada, making it the most produced British tank design of the war.[NEWLINE][NEWLINE]
-				It first saw combat during Operation Crusader and was used extensively throughout the African campaign. During the campaign it earned a reputation for reliability and good protection. However, like many tanks of its time, it's two pounder gun was insufficient to counter enemy tanks. Later variants were fitted with the six pounder but this was delayed due to a need to replace losses from Dunkirk.[NEWLINE][NEWLINE]
-				It was also used in the European theatre, but by 1944 it had been almost completely replaced by the Churchill (A22). It was also used extensively by Soviet forces, who recieved several thousand through the land-lease program. Serving from the Battle of Moscow until the end of the war its small size and reliability was popular among soviet troops.
+				The Valentine Tank, which was the successor to the Matilda II, was a British infantry tank designed by Vickers-Armstrong.  With a similar top speed, armour thickness and armament as the Matilda II, it was no huge leap forward in tank evolution.  Its main draw was reduced weight, lower silhouette, and reduced production costs.  The Valentine began trials in May 1940, coinciding with the loss of equipment in Dunkirk.  Keen to replace losses, the War Office approved the design and rushed it into production.  During the war 8,275 were built in the UK and Canada, making it the most produced British tank design of the war.[NEWLINE][NEWLINE]
+				The Valentine first saw combat during Operation Crusader in North Africa and was used extensively throughout the African campaign.  During the campaign, it earned a reputation for reliability and good protection.  However, like many tanks of its time, its two pounder gun was insufficient to counter enemy tanks.  Later variants were fitted with the six pounder; but, this was delayed due to a need to replace losses from Dunkirk.[NEWLINE][NEWLINE]
+				It was also used in the European theatre; however, by 1944 it had been almost completely replaced by the Churchill (A22).  The Valentine was also used extensively by Soviet forces, who received several thousand through the land-lease program.  Serving from the Battle of Moscow until the end of the war its small size and reliability was popular among Soviet troops.
 			</Text>
 		</Row>
 		<Row Tag="TXT_KEY_UNIT_PEDIA_TANK_CRUISER_MKI">

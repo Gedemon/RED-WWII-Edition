@@ -20,9 +20,10 @@ v.45 (xxx x, 2015)
 AI (DLL):
 - Every nation use same value (5) for all flavors (testing purpose)
 - Tweak score target for cities
-- Do not allow Withdraw and Hedgehog posture (testing purpose)
-- Do not allow defensive Bastion and Improvement Defense (testing purpose)
+- Make defensive Bastion and defend improvements only when they are under immediate threat
 - Do not count Air units for Dominance zones (testing purpose)
+- Air units should rebase out of cities about to be captured
+- Fighters and Attack Aircraft should not bombard cities when they will have no effect on the defense and very small effect on improvements around.
 
 Global:
 - Add Urzahil's units icons
@@ -31,8 +32,12 @@ Global:
 - Add WWII 3D Leaders to authorized mods list
 - Add ZiS-3 soviet Field Gun
 - Remove all traits description as they are not all activated
+- Change the text on mod initialization to explain the "version number" error: either trying to load on a mac, or using an obsolete version
+- Update the turn processing text to show that the mod is updating values after the Barbarian turn
+- Restore the "return to Main Menu" button (should not crash anymore)
 
 Europe 1939-1945:
+- Make improvements and road/rails visible for all nations at game start.
 - Tweak initial buildings list in cities
 - Remove Strasbourg for France, update Maginot Line position
 - Remove some small soviet cities
@@ -41,6 +46,9 @@ Europe 1939-1945:
 - Add troops route out of U.K. in case of near complete conquest by Germany AI
 - Add Operation Fallgelb for Germany (human and AI), available only if the Maginot Line is on the map.
 - Always place the Modlin Fortress in Poland
+- Set friend relation between USSR and Palestine/Egypt, to allow spawning of convoy to USSR via Suez
+- Add Mannerheim Line for Finland and Oreshek Fortress for USSR
+- Allow Operation Seelowe after succeeding in USSR invasion and if France is also invaded (or has fallen)
 
 Balance :
 - Update AI operational and tactical defines values
@@ -50,22 +58,34 @@ Balance :
 - Tweak "MotherLand Call" military operation flavors and cost
 - Change maintenance cost for roads (free) and rails (2 gpt)
 - Tweak ratio between number of cities and total population for units supplied
-- Barracks (+1 unit) and Military Bases (+5 units) can raise the total number of units supplied
-- Positive (+1 unit per 100 gpt) and negative (-1 unit per -20 gpt) gold ratio change total number of units supplied
+- Barracks (+0.25 unit), Arsenals (+0.5 units) and Military Bases (+1 unit) can raise the total number of units supplied
+- Positive (+1 unit per 100 gpt) and negative (-1 unit per -20 gpt) gold income change total number of units supplied
+- Tweak the base supplied value for all nations, based on above change
+- Difficulty level now affect the total number of unit supplied (for reference, the difference is around 20 units between Prince and Deity)
+- Anti-Air artillery ratio can be set for the AI
+- Add specific penalties to Air units under fuel restriction
+- Add ranged penalty for land units under fuel restriction
+- Tweak flavors values for some units
+- Reset all UNIT_AI types for consistency
 
 Bug fix:
-- BM13-16 project reference is the BM-13, not the T-34...
+- BM13-16 project reference is the BM-13 Katyusha, not the T-34...
+- Set upgrade path for Katyusha and Sturmovik
 - Add forgotten mobile artillery projects to Germany
 - Fix Field Gun size
 - Allow Greece to trigger allied victory
 - Give French territory to correct player when the AI conquer Paris
 - On Military operation, launch Paratroopers from a city and check that it's a friendly city (ie not captured)
 - Remove Joffre project
+- A bad reference to "close city" could make the map update fail and the following foced diplomatie was not called
+- Sometime the mod was trying to upgrade an unit without reference (and failed, loosing any upgrade possibility for that turn)
+- Tactical moves priorities should be correctly set from the config file (NewRules.sql) now
 
 Crash fix:
 - Prevent a crash that could occur on some computers when changing the number of resistance turns after capturing a city
 - Prevent a crash that could occur on some computers when a defending unit is destroyed after capturing the last city of a civilization
 - Fix rocket artillery graphical initialization that was causing random crashes when firing at large figures units (like infantry)
+- Removed a file from the VFS that was causing a crash when going back to main menu
 
 
 v.44 (June 7, 2015)

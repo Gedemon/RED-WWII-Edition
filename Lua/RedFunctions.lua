@@ -1104,12 +1104,12 @@ function IsUnderControl ( plot, bCapturedPlot )
 			if city  then -- AreSameSide( plot:GetOwner(), city:GetOwner()) then
 				if bCapturedPlot then --and plot:GetOwner() == city:GetOwner() then -- captured plot are kept under control by own cities only...
 					if plot:GetOwner() == city:GetOwner() and isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, NoNationalPath) then  -- path must be direct for captured plots (not going through friendly territory)
-						Dprint ("   - Found path with city (".. closeCity:GetName() ..") for captured plot", bDebug )
+						Dprint ("   - Found path with city (".. city:GetName() ..") for captured plot", bDebug )
 						return true
 					end
 				elseif AreSameSide( plot:GetOwner(), city:GetOwner()) then -- any ally can keep control of free territory
 					if isPlotConnected(Players[city:GetOwner()], plot, adjPlot, "Land", nil, nil, PathBlocked) then -- for "free territory", friendly path is allowed
-						Dprint ("   - Found path with city (".. closeCity:GetName() ..")", bDebug )
+						Dprint ("   - Found path with city (".. city:GetName() ..")", bDebug )
 						return true
 					end
 				end

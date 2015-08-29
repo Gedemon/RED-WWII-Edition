@@ -141,7 +141,7 @@ function OnShowHide( isHide, isInit )
 	Controls.SaveGameButton:SetHide(bHideSaveGameOption);
 
 	-- returning to main menu does not unload VFS override files (and crash anyway), so allows only return to windows...
-	Controls.MainMenuButton:SetHide(true);
+	--Controls.MainMenuButton:SetHide(true);
 	
     if( not isInit ) then
 		UI.SetInterfaceMode(InterfaceModeTypes.INTERFACEMODE_SELECTION);

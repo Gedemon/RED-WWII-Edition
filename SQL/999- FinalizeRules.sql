@@ -114,6 +114,8 @@ UPDATE Defines SET Value = 10	WHERE Name = 'AI_TACTICAL_OVERKILL_PERCENT';						
 UPDATE Defines SET Value = 0	WHERE Name = 'AI_HOMELAND_MOVE_PRIORITY_HEAL';						-- Default = 30
 UPDATE Defines SET Value = 150	WHERE Name = 'AI_MILITARY_CITY_THREAT_WEIGHT_CAPITAL';				-- Default = 125
 
+INSERT INTO TacticalMoves (Type, OperationsCanRecruit, DominanceZoneMove, OffenseFlavorWeight, DefenseFlavorWeight, Priority) 
+	VALUES ('TACTICAL_TARGET_UNIT_TO_DEFEND',0,0,100,100,100);
 
 UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_MOVE_NONCOMBATANTS_TO_SAFETY';		-- Default = 0
 UPDATE TacticalMoves SET Priority = 150 WHERE Type = 'TACTICAL_CAPTURE_CITY';						-- Default = 150
@@ -130,15 +132,15 @@ UPDATE TacticalMoves SET Priority = 82	WHERE Type = 'TACTICAL_ATTRIT_LOW_UNIT';	
 
 UPDATE TacticalMoves SET Priority = 1	WHERE Type = 'TACTICAL_REPOSITION';							-- Default = 1
 UPDATE TacticalMoves SET Priority = 40	WHERE Type = 'TACTICAL_PILLAGE';							-- Default = 40
-UPDATE TacticalMoves SET Priority = 60	WHERE Type = 'TACTICAL_SAFE_BOMBARDS',						-- Default = 60
+UPDATE TacticalMoves SET Priority = 60	WHERE Type = 'TACTICAL_SAFE_BOMBARDS';						-- Default = 60
 UPDATE TacticalMoves SET Priority = 8	WHERE Type = 'TACTICAL_HEAL';								-- Default = 8
-UPDATE TacticalMoves SET Priority = 20	WHERE Type = 'TACTICAL_GARRISON_TO_ALLOW_BOMBARD'			-- Default = 20
-UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_BASTION_ALREADY_THERE';				-- Default = 7
-UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_GARRISON_ALREADY_THERE';				-- Default = 6
-UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_GUARD_IMPROVEMENT_ALREADY_THERE';	-- Default = 3
-UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_BASTION_1_TURN';						-- Default = 5
-UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_GARRISON_1_TURN';					-- Default = 4
-UPDATE TacticalMoves SET Priority = 0	WHERE Type = 'TACTICAL_GUARD_IMPROVEMENT_1_TURN';			-- Default = 2
+UPDATE TacticalMoves SET Priority = 20	WHERE Type = 'TACTICAL_GARRISON_TO_ALLOW_BOMBARD';			-- Default = 20
+UPDATE TacticalMoves SET Priority = 7	WHERE Type = 'TACTICAL_BASTION_ALREADY_THERE';				-- Default = 7
+UPDATE TacticalMoves SET Priority = 6	WHERE Type = 'TACTICAL_GARRISON_ALREADY_THERE';				-- Default = 6
+UPDATE TacticalMoves SET Priority = 3	WHERE Type = 'TACTICAL_GUARD_IMPROVEMENT_ALREADY_THERE';	-- Default = 3
+UPDATE TacticalMoves SET Priority = 5	WHERE Type = 'TACTICAL_BASTION_1_TURN';						-- Default = 5
+UPDATE TacticalMoves SET Priority = 4	WHERE Type = 'TACTICAL_GARRISON_1_TURN';					-- Default = 4
+UPDATE TacticalMoves SET Priority = 2	WHERE Type = 'TACTICAL_GUARD_IMPROVEMENT_1_TURN';			-- Default = 2
 UPDATE TacticalMoves SET Priority = 10	WHERE Type = 'TACTICAL_AIR_SWEEP';							-- Default = 10
 UPDATE TacticalMoves SET Priority = 20	WHERE Type = 'TACTICAL_AIR_INTERCEPT';						-- Default = 20
 UPDATE TacticalMoves SET Priority = 1	WHERE Type = 'TACTICAL_AIR_REBASE';							-- Default = 1
@@ -172,8 +174,8 @@ UPDATE TacticalMoves SET Priority = 30	 WHERE Type = 'TACTICAL_ATTACK_LOW_PRIORI
 --*/
 
 
-/* Units AI */
+/* Special cases for Units AI */
 UPDATE Units SET DefaultUnitAI = 'UNITAI_ATTACK' WHERE Domain = 'DOMAIN_LAND' AND (Class LIKE '%ASSAULT_GUN%' OR Class = 'UNITCLASS_INFANTRY_2');
 UPDATE Units SET DefaultUnitAI = 'UNITAI_DEFENSE' WHERE Domain = 'DOMAIN_LAND' AND (Class LIKE '%TANK_DESTROYER%');
 UPDATE Units SET DefaultUnitAI = 'UNITAI_RANGED' WHERE Domain = 'DOMAIN_LAND' AND (Class LIKE '%FIELD_GUN%');
-UPDATE Units SET DefaultUnitAI = 'UNITAI_PARADROP' WHERE Domain = 'DOMAIN_LAND' AND (Class LIKE '%PARATROOPER%');
+UPDATE Units SET DefaultUnitAI = 'UNITAI_PARADROP' WHERE Domain = 'DOMAIN_LAND' AND (Class LIKE '%PARATROOPER%') OR  (Class LIKE '%SPECIAL_FORCES%');

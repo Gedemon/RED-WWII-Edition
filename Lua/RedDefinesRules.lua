@@ -31,6 +31,14 @@ LIBERATE_MINOR_TERRITORY_BONUS	= 5		-- bonus for liberating minor civ territory
 LIBERATE_MINOR_CITY_BONUS		= 30	-- bonus for liberating minor civ city
 NO_DIPLO_STATEMENT				= true	-- no diplo contact
 
+-- Units supply
+SUPPLY_FROM_BARRACKS	= 0.25	-- free units from barracks
+SUPPLY_FROM_ARSENALS	= 0.5	-- free units from arsenals
+SUPPLY_FROM_BASES		= 1.0	-- free units from bases
+SUPPLY_FROM_CITIES		= 0.25	-- free units from cities
+SUPPLY_POSITIVE_GPT_RATIO = 100 -- bonus = Gold per turn / SUPPLY_POSITIVE_GPT_RATIO
+SUPPLY_NEGATIVE_GPT_RATIO = 20	-- malus = Gold per turn / SUPPLY_NEGATIVE_GPT_RATIO
+
 -- Resources
 INITIAL_MATERIEL_VALUE				= 0		-- Materiel reserve at start
 INITIAL_PERSONNEL_VALUE				= 0		-- Personnel reserve at start
@@ -133,7 +141,6 @@ LAND_CAP_RATIO					= 10	-- relative to territory owned, player can build (number
 ----------------------------------------------------------------------------------------------------------------------------
 
 RED_AI_HANDICAP		= 3		-- handicap value for computer player (specific to R.E.D. function, not linked to vanilla handicap tables)
-AI_FREE_UNIT_SUPPLY = 10	-- maintenance free units for AI players
 
 ALLOW_AI_CONTROL = true -- Allow the use of functions to (try to) control the AI units and build list
 

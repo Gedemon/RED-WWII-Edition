@@ -66,6 +66,7 @@
 			<Help>TXT_KEY_PROMOTION_LIGHT_RATIONING_DESC</Help>
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<CannotBeChosen>true</CannotBeChosen>
+			<RangedAttackModifier>-10</RangedAttackModifier>
 			<AttackMod>-10</AttackMod>
 			<CityAttack>-10</CityAttack>
 			<DefenseMod>-5</DefenseMod>
@@ -84,6 +85,7 @@
 			<Help>TXT_KEY_PROMOTION_RATIONING_DESC</Help>
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<CannotBeChosen>true</CannotBeChosen>
+			<RangedAttackModifier>-20</RangedAttackModifier>
 			<AttackMod>-20</AttackMod>
 			<CityAttack>-20</CityAttack>
 			<DefenseMod>-10</DefenseMod>
@@ -102,6 +104,7 @@
 			<Help>TXT_KEY_PROMOTION_HEAVY_RATIONING_DESC</Help>
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<CannotBeChosen>true</CannotBeChosen>
+			<RangedAttackModifier>-33</RangedAttackModifier>
 			<AttackMod>-33</AttackMod>
 			<CityAttack>-33</CityAttack>
 			<DefenseMod>-20</DefenseMod>
@@ -110,6 +113,79 @@
 			<PediaType>NONE</PediaType>
 		</Row>
 	</UnitPromotions>
+
+
+	<!-- LIGHT RATIONING FOR AIRCRAFT (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_LIGHT_RATIONING_AIRCRAFT</Type>
+			<Description>TXT_KEY_PROMOTION_LIGHT_RATIONING</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_LIGHT_RATIONING_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_LIGHT_RATIONING_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangeChange>-1</RangeChange>
+			<RangedAttackModifier>-10</RangedAttackModifier>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_LIGHT_RATIONING_AIRCRAFT</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-10</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+
+	<!-- RATIONING FOR AIRCRAFT (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_RATIONING_AIRCRAFT</Type>
+			<Description>TXT_KEY_PROMOTION_RATIONING</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_RATIONING_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_RATIONING_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangeChange>-2</RangeChange>
+			<RangedAttackModifier>-20</RangedAttackModifier>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_RATIONING_AIRCRAFT</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-20</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
+
+	<!-- HEAVY RATIONING FOR AIRCRAFT (use Lua for effect) -->
+	<UnitPromotions>
+		<Row>
+			<Type>PROMOTION_HEAVY_RATIONING_AIRCRAFT</Type>
+			<Description>TXT_KEY_PROMOTION_HEAVY_RATIONING</Description>
+			<PediaEntry>TXT_KEY_PROMOTION_HEAVY_RATIONING_DESC</PediaEntry>
+			<Help>TXT_KEY_PROMOTION_HEAVY_RATIONING_DESC</Help>
+			<Sound>AS2D_IF_LEVELUP</Sound>
+			<CannotBeChosen>true</CannotBeChosen>
+			<RangeChange>-4</RangeChange>
+			<RangedAttackModifier>-33</RangedAttackModifier>
+			<PortraitIndex>57</PortraitIndex>
+			<IconAtlas>ABILITY_ATLAS</IconAtlas>
+			<PediaType>NONE</PediaType>
+		</Row>
+	</UnitPromotions>
+	<UnitPromotions_Domains>
+		<Row>
+			<PromotionType>PROMOTION_HEAVY_RATIONING_AIRCRAFT</PromotionType>
+			<DomainType>DOMAIN_AIR</DomainType>
+			<Modifier>-33</Modifier>
+		</Row>
+	</UnitPromotions_Domains>
 	
 	<!-- HEAVY (use Lua for effect) - Deprecated -->
 	<UnitPromotions>

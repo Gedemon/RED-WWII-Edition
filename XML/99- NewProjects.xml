@@ -293,7 +293,7 @@
 			<Strategy>TXT_KEY_OPERATION_MOTHERLANDCALL_DESC</Strategy>
 			<MaxGlobalInstances>-1</MaxGlobalInstances>
 			<MaxTeamInstances>1</MaxTeamInstances>
-			<Cost>75</Cost>
+			<Cost>150</Cost>
 			<IconAtlas>BW_ATLAS_1</IconAtlas>
 			<PortraitIndex>10</PortraitIndex>
 		</Row>
@@ -302,7 +302,7 @@
 		<Row>
 			<ProjectType>OPERATION_MOTHERLANDCALL</ProjectType>
 			<FlavorType>FLAVOR_DEFENSE</FlavorType>
-			<Flavor>200</Flavor>
+			<Flavor>100</Flavor>
 		</Row>
 		<Row>
 			<ProjectType>OPERATION_MOTHERLANDCALL</ProjectType>

@@ -1018,6 +1018,9 @@ function RemoveRationing(playerID)
 			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false) end
 			if (unit:IsHasPromotion(PROMOTION_RATIONING))		then unit:SetHasPromotion(PROMOTION_RATIONING,			false) end
 			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING)) then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false) end
+			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT,	false) end
+			if (unit:IsHasPromotion(PROMOTION_RATIONING_AIRCRAFT))		then unit:SetHasPromotion(PROMOTION_RATIONING_AIRCRAFT,			false) end
+			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT)) then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT,	false) end
 		end
 	end
 end
@@ -1027,9 +1030,15 @@ function ApplyLightRationing(playerID)
 	for unit in player:Units() do
 		local unitType = unit:GetUnitType()
 		if UseFuel(unitType) then
-			if (not unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	true)	end
-			if (unit:IsHasPromotion(PROMOTION_RATIONING))			then unit:SetHasPromotion(PROMOTION_RATIONING,			false)	end
-			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))		then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false)	end
+			if (unit:GetDomainType() == DomainTypes.DOMAIN_AIR) then
+				if (not unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT))	then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT,	true)	end
+				if (unit:IsHasPromotion(PROMOTION_RATIONING_AIRCRAFT))				then unit:SetHasPromotion(PROMOTION_RATIONING_AIRCRAFT,			false)	end
+				if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT))		then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT,	false)	end
+			else
+				if (not unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	true)	end
+				if (unit:IsHasPromotion(PROMOTION_RATIONING))			then unit:SetHasPromotion(PROMOTION_RATIONING,			false)	end
+				if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))		then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false)	end
+			end
 		end
 	end
 end
@@ -1039,9 +1048,15 @@ function ApplyRationing(playerID)
 	for unit in player:Units() do
 		local unitType = unit:GetUnitType()
 		if UseFuel(unitType) then
-			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false)	end
-			if (not unit:IsHasPromotion(PROMOTION_RATIONING))	then unit:SetHasPromotion(PROMOTION_RATIONING,			true)	end
-			if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false)	end
+			if (unit:GetDomainType() == DomainTypes.DOMAIN_AIR) then
+				if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT))	then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT,	false)	end
+				if (not unit:IsHasPromotion(PROMOTION_RATIONING_AIRCRAFT))		then unit:SetHasPromotion(PROMOTION_RATIONING_AIRCRAFT,			true)	end
+				if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT,	false)	end
+			else
+				if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING)) then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false)	end
+				if (not unit:IsHasPromotion(PROMOTION_RATIONING))	then unit:SetHasPromotion(PROMOTION_RATIONING,			true)	end
+				if (unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	false)	end
+			end
 		end
 	end
 end
@@ -1051,9 +1066,15 @@ function ApplyHeavyRationing(playerID)
 	for unit in player:Units() do
 		local unitType = unit:GetUnitType()
 		if UseFuel(unitType) then
-			if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING))		then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false)	end
-			if (unit:IsHasPromotion(PROMOTION_RATIONING))			then unit:SetHasPromotion(PROMOTION_RATIONING,			false)	end
-			if (not unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	true)	end
+			if (unit:GetDomainType() == DomainTypes.DOMAIN_AIR) then
+				if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT))		then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING_AIRCRAFT,	false)	end
+				if (unit:IsHasPromotion(PROMOTION_RATIONING_AIRCRAFT))				then unit:SetHasPromotion(PROMOTION_RATIONING_AIRCRAFT,			false)	end
+				if (not unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING_AIRCRAFT,	true)	end
+			else
+				if (unit:IsHasPromotion(PROMOTION_LIGHT_RATIONING))		then unit:SetHasPromotion(PROMOTION_LIGHT_RATIONING,	false)	end
+				if (unit:IsHasPromotion(PROMOTION_RATIONING))			then unit:SetHasPromotion(PROMOTION_RATIONING,			false)	end
+				if (not unit:IsHasPromotion(PROMOTION_HEAVY_RATIONING))	then unit:SetHasPromotion(PROMOTION_HEAVY_RATIONING,	true)	end
+			end
 		end
 	end
 end

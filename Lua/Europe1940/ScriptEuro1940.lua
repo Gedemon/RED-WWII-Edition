@@ -45,12 +45,11 @@ function RemoveHiddenCivs()
 				v:Kill(true, -1)
 			end
 		else
-			-- spectator/auto-play mode		
+			-- spectator/auto-play mode
+			local newUnit = player:InitUnit(US_SPECIAL_FORCES, 1, 88)
 			for v in player:Units() do				
-				if (v:GetUnitType() == SETTLER) then
+				if (v:GetUnitType() ~= US_SPECIAL_FORCES) then
 					v:Kill(true, -1)
-				else
-					v:SetXY(1, 88)
 				end
 			end
 			local spectateTeam = player:GetTeam()
@@ -257,6 +256,21 @@ end
 -- to do : 
 -- liberation of Paris -> liberate vichy France if still existing
 -- annexation of Vichy France -> when Morocco, Algeria or Tunisia is liberated by allies (then maybe giving vichy units to axis or France ?)
+
+function NorthFranceInvaded()
+	local Dunkerque = GetPlot(29, 50):GetPlotCity()	-- Dunkerque
+	local Metz = GetPlot(34, 46):GetPlotCity()		-- Metz
+	local Mulhouse = GetPlot(34, 42):GetPlotCity()	-- Mulhouse
+	local Reims = GetPlot(31, 46):GetPlotCity()		-- Reims
+	local Paris = GetPlot(28, 45):GetPlotCity()		-- Reims
+	local Caen = GetPlot(25, 46):GetPlotCity()		-- Caen
+	local Cherbourg = GetPlot(23, 48):GetPlotCity()	-- Cherbourg
+	if (g_France_Land_Ratio <= 0.55 and Dunkerque:IsOccupied() and Metz:IsOccupied() and Mulhouse:IsOccupied() and Reims:IsOccupied() and Paris:IsOccupied() and Caen:IsOccupied() and Cherbourg:IsOccupied()) then
+		return true
+	else
+		return false
+	end
+end
 
 function FranceHasFallen()
 	local savedData = Modding.OpenSaveData()
@@ -1634,11 +1648,37 @@ function GetAfricatoItalyTransport()
 	return transport
 end
 function GetFinlandtoGermanyTransport()
-	local transport = {Type = TRANSPORT_MATERIEL, Reference = 250}
+	local factor = 1
+	local turn = Game.GetGameTurn()
+	local turnDate = 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if turnDate > 19410101 then		
+		factor = 2
+	end
+	if turnDate > 19420101 then		
+		factor = 3
+	end
+	if turnDate > 19430101 then		
+		factor = 4
+	end
+	local transport = {Type = TRANSPORT_MATERIEL, Reference = 250 * factor}
 	return transport
 end
 function GetNorwaytoGermanyTransport()
-	local transport = {Type = TRANSPORT_MATERIEL, Reference = 300}
+	local factor = 1
+	local turn = Game.GetGameTurn()
+	local turnDate = 0
+	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
+	if turnDate > 19410101 then		
+		factor = 2
+	end
+	if turnDate > 19420101 then		
+		factor = 3
+	end
+	if turnDate > 19430101 then		
+		factor = 4
+	end
+	local transport = {Type = TRANSPORT_MATERIEL, Reference = 300 * factor}
 	return transport
 end
 function GetSueztoUSSRTransport()
@@ -1658,13 +1698,16 @@ function GetUStoUSSRTransport()
 	local turnDate = 0
 	if g_Calendar[turn] then turnDate = g_Calendar[turn].Number else turnDate = 19470105 end
 	if turnDate > 19420101 then		
+		factor = 2
+	end
+	if turnDate > 19430101 then		
 		factor = 3
 	end
-	local rand = math.random( 1, 4 )
+	local rand = math.random( 1, 5 )
 	if rand < 4 then
 		transport = {Type = TRANSPORT_MATERIEL, Reference = 400 * factor} 
 	else 
-		transport = {Type = TRANSPORT_GOLD, Reference = 250 * factor}
+		transport = {Type = TRANSPORT_GOLD, Reference = 500 * factor}
 	end	
 	return transport
 end
@@ -1915,8 +1958,8 @@ g_Convoy = {
 		DestinationList = { {X=52, Y=53}, {X=46, Y=52}, {X=40, Y=55}, }, -- Konigsberg, Stettin, Kiel
 		RandomDestination = false,
 		CivID = GERMANY,
-		MaxFleet = 1, 
-		Frequency = 25,
+		MaxFleet = 3, 
+		Frequency = 30,
 		Condition = IsRouteOpenFinlandtoGermany,
 		Transport = GetFinlandtoGermanyTransport,
 	},
@@ -1927,7 +1970,7 @@ g_Convoy = {
 		DestinationList = { {X=22, Y=52}, {X=24, Y=57}, {X=27, Y=52}, }, -- Plymouth, Liverpool, London
 		RandomDestination = false, -- false : sequential try in destination list
 		CivID = ENGLAND,
-		MaxFleet = 1,
+		MaxFleet = 8,
 		Frequency = 20, -- probability (in percent) of convoy spawning at each turn
 		Condition = IsSuezAlly,
 		Transport = GetSueztoUKTransport,
@@ -1939,7 +1982,7 @@ g_Convoy = {
 		DestinationList = { {X=33, Y=34}, {X=29, Y=34}, }, -- near Nice, Marseille
 		RandomDestination = false, -- false : sequential try in destination list
 		CivID = FRANCE,
-		MaxFleet = 1,
+		MaxFleet = 5,
 		Frequency = 15, -- probability (in percent) of convoy spawning at each turn
 		Condition = IsRouteOpenSueztoFrance,
 		Transport = GetSueztoFranceTransport,
@@ -1988,7 +2031,7 @@ g_Convoy = {
 		DestinationList = { {X=39, Y=53}, {X=40, Y=55}, {X=46, Y=52}, }, -- Hamburg, Kiel, Stettin
 		RandomDestination = false,
 		CivID = GERMANY,
-		MaxFleet = 1, 
+		MaxFleet = 4, 
 		Frequency = 45,
 		Condition = IsRouteOpenNorwaytoGermany,
 		Transport = GetNorwaytoGermanyTransport,
@@ -2000,8 +2043,8 @@ g_Convoy = {
 		DestinationList = { {X=52, Y=53}, {X=46, Y=52}, {X=40, Y=55}, }, -- Konigsberg, Stettin, Kiel
 		RandomDestination = false,
 		CivID = GERMANY,
-		MaxFleet = 1, 
-		Frequency = 25,
+		MaxFleet = 3, 
+		Frequency = 30,
 		Condition = IsRouteOpenSwedentoGermany, 
 		Transport = GetFinlandtoGermanyTransport, -- re-use Finland values...
 	},
@@ -2126,7 +2169,7 @@ function UKReinforcementToFrance()
 	
 	Dprint ("  - UK is Checking to sent reinforcement troops to France", bDebug)
 
-	if FranceHasFallen() then
+	if NorthFranceInvaded() then
 		Dprint ("   - but France has fallen, now wait for D-Day...", bDebug)
 		return false
 	end
@@ -2238,7 +2281,7 @@ function UKtryDDay()
 	
 	Dprint ("  - UK is Checking if early D-Day is possible...", bDebug)
 
-	if not FranceHasFallen() then
+	if not FranceHasFallen() or NorthFranceInvaded() then
 		Dprint ("   - but France has not fallen yet...", bDebug)
 		return false
 	end
@@ -2807,6 +2850,15 @@ function IsGermanyReadyForFallGelb()
 	return true
 end
 
+function IsGermanyReadyForSeelowe()
+	local bDebug = false
+	if not (FranceHasFallen or (NorthFranceInvaded() and IsUSSRLosingWar())) then
+		Dprint("      - France has not fallen or North France and USSR are not invaded...", bDebug)
+		return false
+	end
+	return true
+end
+
 g_Military_Project = {
 	------------------------------------------------------------------------------------
 	[GERMANY] = {
@@ -2871,7 +2923,7 @@ g_Military_Project = {
 					RouteID = TROOPS_GERMANY_SEELOWE_ST_NAZAIRE, -- must define a troops route for amphibious operation in g_TroopsRoutes !
 				},
 			},			
-			Condition = FranceHasFallen, -- Must refer to a function, remove this line to use the default condition (always true)
+			Condition = IsGermanyReadyForSeelowe, -- Must refer to a function, remove this line to use the default condition (always true)
 		},
 		[OPERATION_FALLGELB] =  { -- projectID as index !
 			Name = "TXT_KEY_OPERATION_FALLGELB",
@@ -3116,20 +3168,15 @@ end
 
 function BalanceScenario()
 
-	local iGermany = GetPlayerIDFromCivID (GERMANY, false, true)
-	local pGermany = Players[iGermany]
-
-	local iUSSR = GetPlayerIDFromCivID (USSR, false, true)
-	local pUSSR = Players[iUSSR]
-
 	-- Place the Modlin Fortress in Poland
-	--if pGermany:IsHuman() or pUSSR:IsHuman() then
+	SetCitadelAt(52, 49)
+	
+	-- Place the Shlisselburg Fortress in USSR
+	SetCitadelAt(63, 65)
 
-		local iPoland = GetPlayerIDFromCivID (POLAND, true, true)
-		local pPoland = Players[iPoland]
-		 SetCitadelAt(52,49)
-
-	--end
+	-- Place the Mannerheim Line in Finland
+	SetBunkerAt(61, 66)
+	SetBunkerAt(62, 68)
 	
 	-- Place the fortifications for the Maginot Line
 	if(PreGame.GetGameOption("MaginotLine") ~= nil) and (PreGame.GetGameOption("MaginotLine") >  0) then

@@ -95,9 +95,12 @@ function UpdateScreen()
     --Controls.HandicapSupplyValue:SetText(   pPlayer:GetNumUnitsSuppliedByHandicap() );
     --Controls.CitiesSupplyValue:SetText(     pPlayer:GetNumUnitsSuppliedByCities() );
     --Controls.PopulationSupplyValue:SetText( pPlayer:GetNumUnitsSuppliedByPopulation() );
-    Controls.HandicapSupplyValue:SetHide(true);
-    Controls.CitiesSupplyValue:SetHide(true);
-    Controls.PopulationSupplyValue:SetHide(true);
+    --Controls.HandicapSupplyValue:SetHide(true);
+    --Controls.CitiesSupplyValue:SetHide(true);
+    --Controls.PopulationSupplyValue:SetHide(true);
+    Controls.HandicapSupply:SetHide(true);
+    Controls.CitiesSupply:SetHide(true);
+    Controls.PopulationSupply:SetHide(true);
     Controls.SupplyCapValue:SetText(        pPlayer:GetNumUnitsSupplied() );
     Controls.SupplyUseValue:SetText(        pPlayer:GetNumUnits() );
     
